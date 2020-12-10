@@ -5,3 +5,9 @@
   when: not (bsd_tar_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - bsd_tar
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (bsd_tar_state is match('false|no|remove'))
+  tags:
+    - bsd_tar

@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2020-10-12)
+F: Add task to remove package
+
 * Version 0.1.0 (2020-10-12)
 F: Initial release
