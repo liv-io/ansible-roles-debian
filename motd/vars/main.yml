@@ -1,0 +1,15 @@
+---
+
+# motd_os_color
+motd_os_color: '1;31m'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# motd
+file_src_motd: "templates/{{motd_motd_template}}/motd"
+file_dst_motd: '/etc/motd'
+file_mode_motd: '0644'
+file_owner_motd: 'root'
+file_group_motd: 'root'

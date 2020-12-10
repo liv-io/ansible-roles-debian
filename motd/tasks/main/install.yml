@@ -1,0 +1,31 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - motd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create motd'
+  template:
+    src: "{{file_src_motd}}"
+    dest: "{{file_dst_motd}}"
+    mode: "{{file_mode_motd}}"
+    owner: "{{file_owner_motd}}"
+    group: "{{file_group_motd}}"
+  tags:
+    - install
+    - motd
