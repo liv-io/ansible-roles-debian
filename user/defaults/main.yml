@@ -1,0 +1,9 @@
+---
+
+user_state: 'install'
+
+user_config_all: []
+
+user_config_group: []
+
+user_config_host: []
