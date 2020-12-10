@@ -1,0 +1,9 @@
+---
+
+hosts_state: 'install'
+
+hosts_config_all: []
+
+hosts_config_group: []
+
+hosts_config_host: []
