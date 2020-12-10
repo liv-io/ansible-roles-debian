@@ -1,0 +1,36 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - shell
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove shell.sh'
+  file:
+    state: 'absent'
+    path: "{{file_dst_shell_shell}}"
+  tags:
+    - remove
+    - shell
+
+- name: 'file remove z_shell.sh'
+  file:
+    state: 'absent'
+    path: "{{file_dst_z_shell_shell}}"
+  tags:
+    - remove
+    - shell
