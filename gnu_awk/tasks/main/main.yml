@@ -5,3 +5,9 @@
   when: not (gnu_awk_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - gnu_awk
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (gnu_awk_state is match('false|no|remove'))
+  tags:
+    - gnu_awk
