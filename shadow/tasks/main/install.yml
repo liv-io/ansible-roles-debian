@@ -1,0 +1,31 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - shadow
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file ensure shadow'
+  file:
+    state: 'file'
+    dest: "{{file_dst_shadow}}"
+    mode: "{{file_mode_shadow}}"
+    owner: "{{file_owner_shadow}}"
+    group: "{{file_group_shadow}}"
+  tags:
+    - install
+    - shadow
