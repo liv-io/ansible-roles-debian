@@ -1,0 +1,42 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - issue
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create issue'
+  template:
+    src: "{{file_src_issue}}"
+    dest: "{{file_dst_issue}}"
+    mode: "{{file_mode_issue}}"
+    owner: "{{file_owner_issue}}"
+    group: "{{file_group_issue}}"
+  tags:
+    - install
+    - issue
+
+- name: 'file create issue.net'
+  template:
+    src: "{{file_src_issue_net}}"
+    dest: "{{file_dst_issue_net}}"
+    mode: "{{file_mode_issue_net}}"
+    owner: "{{file_owner_issue_net}}"
+    group: "{{file_group_issue_net}}"
+  tags:
+    - install
+    - issue

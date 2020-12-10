@@ -1,0 +1,4 @@
+{% if not (issue_issue_template == '') %}
+
+{{issue_issue_template}}
+{% endif %}

@@ -1,0 +1,19 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# issue
+file_src_issue: 'templates/main/issue'
+file_dst_issue: '/etc/issue'
+file_mode_issue: '0644'
+file_owner_issue: 'root'
+file_group_issue: 'root'
+
+# issue.net
+file_src_issue_net: 'templates/main/issue.net'
+file_dst_issue_net: '/etc/issue.net'
+file_mode_issue_net: '0644'
+file_owner_issue_net: 'root'
+file_group_issue_net: 'root'
