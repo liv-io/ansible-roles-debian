@@ -1,0 +1,15 @@
+---
+
+hostname_state: 'install'
+
+hostname_chassis: ''
+
+hostname_deployment: ''
+
+hostname_hostname: "{{inventory_hostname}}"
+
+hostname_icon_name: ''
+
+hostname_location: ''
+
+hostname_pretty_hostname: ''

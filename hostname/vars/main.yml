@@ -1,0 +1,48 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# hostname
+package_name_hostname: 'hostname'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# get chassis
+command_cmd_get_chassis: "hostnamectl status | grep '^.*Chassis: ' | sed 's/^.*Chassis: //'"
+
+# get deployment
+command_cmd_get_deployment: "hostnamectl status | grep '^.*Deployment: ' | sed 's/^.*Deployment: //'"
+
+# get hostname
+command_cmd_get_hostname: "hostnamectl status | grep '^.*Static hostname: ' | sed 's/^.*Static hostname: //'"
+
+# get icon-name
+command_cmd_get_icon_name: "hostnamectl status | grep '^.*Icon name: ' | sed 's/^.*Icon name: //'"
+
+# get location
+command_cmd_get_location: "hostnamectl status | grep '^.*Location: ' | sed 's/^.*Location: //'"
+
+# get pretty-hostname
+command_cmd_get_pretty_hostname: "hostnamectl status | grep '^.*Pretty hostname: ' | sed 's/^.*Pretty hostname: //'"
+
+# set chassis
+command_cmd_set_chassis: "hostnamectl set-chassis {{hostname_chassis}}"
+
+# set deployment
+command_cmd_set_deployment: "hostnamectl set-deployment '{{hostname_deployment}}'"
+
+# set hostname
+command_cmd_set_hostname: "hostnamectl set-hostname --static '{{hostname_hostname}}'"
+
+# set icon-name
+command_cmd_set_icon_name: "hostnamectl set-icon-name {{hostname_icon_name}}"
+
+# set location
+command_cmd_set_location: "hostnamectl set-location '{{hostname_location}}'"
+
+# set pretty-hostname
+command_cmd_set_pretty_hostname: "hostnamectl set-hostname --pretty '{{hostname_pretty_hostname}}'"
