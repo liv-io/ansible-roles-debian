@@ -1,0 +1,9 @@
+---
+
+locale_state: 'install'
+
+locale_keymap_vc: 'us'
+
+locale_keymap_x11: 'us'
+
+locale_locale_system: 'en_US.UTF-8'

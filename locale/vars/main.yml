@@ -1,0 +1,23 @@
+---
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# get keymap-vc
+command_cmd_get_keymap_vc: "localectl status | grep '^.*VC Keymap: ' | sed 's/^.*VC Keymap: //'"
+
+# get keymap-x11
+command_cmd_get_keymap_x11: "localectl status | grep '^.*X11 Layout: ' | sed 's/^.*X11 Layout: //'"
+
+# get locale-system
+command_cmd_get_locale_system: "localectl status | grep '^.*System Locale: LANG=' | sed 's/^.*System Locale: LANG=//'"
+
+# set keymap-vc
+command_cmd_set_keymap_vc: "localectl set-keymap {{locale_keymap_vc}}"
+
+# set keymap-x11
+command_cmd_set_keymap_x11: "localectl set-x11-keymap {{locale_keymap_x11}}"
+
+# set locale-system
+command_cmd_set_locale_system: "localectl set-locale LANG={{locale_locale_system}}"
