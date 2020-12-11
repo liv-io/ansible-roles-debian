@@ -30,6 +30,13 @@ INSTALL
     vars:
       zip_state: 'install'
 
+REMOVE
+  - hosts: all
+    roles:
+      - role: zip
+    vars:
+      zip_state: 'remove'
+
 INACTIVE
   - hosts: all
     roles:
@@ -51,6 +58,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
