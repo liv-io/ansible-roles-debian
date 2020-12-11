@@ -1,0 +1,11 @@
+---
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# get time-zone
+command_cmd_get_timezone: "timedatectl status | grep '^.*Time zone: ' | awk '{print $3}'"
+
+# set time-zone
+command_cmd_set_timezone: "timedatectl set-timezone '{{timezone_timezone}}'"
