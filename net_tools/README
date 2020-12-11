@@ -1,0 +1,105 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : net_tools
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This package includes the important tools for controlling the network subsystem
+of the Linux kernel. This includes arp, ifconfig, netstat, rarp, nameif and
+route. Additionally, this package contains utilities relating to particular
+network hardware types (plipconfig, slattach, mii-tool) and advanced aspects of
+IP configuration (iptunnel, ipmaddr).
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: net_tools
+    vars:
+      net_tools_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: net_tools
+    vars:
+      net_tools_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: net_tools
+    vars:
+      net_tools_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  net_tools_state
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  net-tools
+    Version: >= 1.0
+    Name   :
+      Debian 10: 'net-tools'
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.7.0
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  Debian
+    Version: 10
+      Status: Testing
