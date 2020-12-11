@@ -1,0 +1,36 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# root.dir
+file_dst_root_dir: '/root'
+file_mode_root_dir: "{{root_root_dir_mode}}"
+file_owner_root_dir: "{{root_root_dir_owner}}"
+file_group_root_dir: "{{root_root_dir_group}}"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# root
+group_name_root: 'root'
+group_gid_root: '0'
+group_system_root: 'yes'
+
+# root
+user_name_root: 'root'
+user_comment_root: "{{root_comment}}"
+user_uid_root: '0'
+user_group_root: '0'
+user_groups_root: "{{root_groups}}"
+user_append_root: "{{'no' if (root_groups_append is match('false|no|disable')) else 'yes'}}"
+user_home_create_root: 'no'
+user_home_move_root: 'no'
+user_home_remove_root: 'no'
+user_home_force_root: 'no'
+user_password_root: "{{root_password}}"
+user_password_update_root: 'always'
+user_shell_root: "{{root_shell}}"
+user_system_root: 'yes'

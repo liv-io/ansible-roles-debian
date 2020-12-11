@@ -1,0 +1,19 @@
+---
+
+root_state: 'install'
+
+root_comment: 'root'
+
+root_groups: []
+
+root_groups_append: 'true'
+
+root_password: '!'
+
+root_root_dir_group: 'root'
+
+root_root_dir_mode: '0700'
+
+root_root_dir_owner: 'root'
+
+root_shell: '/bin/bash'
