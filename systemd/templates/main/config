@@ -1,0 +1,18 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% if not ((item.name|default('')) == '') %}
+#-----------------------------------------------------------------------------
+# {{(item.name|upper)}}
+#-----------------------------------------------------------------------------
+
+{% endif %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
+{% endif %}
+
+{% for option in item.options|default([]) %}
+{% if not ((option.section|default('')) == '') %}[{{(option.section|capitalize)}}]{% endif %}
+{% if not ((option.key|default('')) == '') %}{{option.key}}{% endif %}
+{%- if not ((option.value|default('')) == '') %}={{option.value}}{% endif %}
+
+{% endfor %}

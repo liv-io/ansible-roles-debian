@@ -1,0 +1,15 @@
+---
+
+systemd_state: 'install'
+
+systemd_config_all:
+  - name: 'ctrl-alt-del'
+    state: 'true'
+    mode: 'system'
+    type: 'target'
+    comment: "Disable 'ctrl+alt+del' hotkey"
+    options: []
+
+systemd_config_group: []
+
+systemd_config_host: []

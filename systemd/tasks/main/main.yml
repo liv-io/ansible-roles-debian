@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (systemd_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - systemd
+
+- name: 'task include config'
+  import_tasks: config.yml
+  when: not (systemd_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - systemd
