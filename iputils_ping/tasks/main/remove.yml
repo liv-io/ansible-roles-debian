@@ -1,0 +1,29 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - iputils_ping
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove iputils-ping'
+  package:
+    state: 'absent'
+    name: "{{package_name_iputils_ping}}"
+    install_recommends: 'no'
+  tags:
+    - remove
+    - iputils_ping
