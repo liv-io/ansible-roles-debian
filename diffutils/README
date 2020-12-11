@@ -1,0 +1,99 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : diffutils
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+The diffutils package provides the diff, diff3, sdiff, and cmp programs.
+
+'diff' shows differences between two files, or each corresponding file in two
+directories. 'cmp' shows the offsets and line numbers where two files differ.
+'cmp' can also show all the characters that differ between the two files, side
+by side. 'diff3' shows differences among three files. 'sdiff' merges two files
+interactively.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: diffutils
+    vars:
+      diffutils_state: 'install'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: diffutils
+    vars:
+      diffutils_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  diffutils_state
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  diffutils
+    Version: >= 3.0
+    Name   :
+      Debian 10: 'diffutils'
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.7.0
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  Debian
+    Version: 10
+      Status: Testing
