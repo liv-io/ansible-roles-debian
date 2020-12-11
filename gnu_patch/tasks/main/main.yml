@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (gnu_patch_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - gnu_patch
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (gnu_patch_state is match('false|no|remove'))
+  tags:
+    - gnu_patch
