@@ -1,0 +1,44 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - vim
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install vim'
+  package:
+    state: 'present'
+    name: "{{package_name_vim}}"
+    install_recommends: 'no'
+  tags:
+    - install
+    - vim
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create vimrc'
+  template:
+    src: "{{file_src_vimrc}}"
+    dest: "{{file_dst_vimrc}}"
+    mode: "{{file_mode_vimrc}}"
+    owner: "{{file_owner_vimrc}}"
+    group: "{{file_group_vimrc}}"
+  tags:
+    - install
+    - vim
