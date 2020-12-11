@@ -1,0 +1,45 @@
+---
+
+nftables_state: 'enable'
+
+nftables_filter_all:
+  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'destination-unreachable', comment: 'icmp destination-unreachable from any'}
+  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request from any'}
+  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'parameter-problem', comment: 'icmp parameter-problem from any'}
+  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench from any'}
+  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'time-exceeded', comment: 'icmp time-exceeded from any'}
+  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, ports: {'ssh'}, comment: 'ssh from private address space (RFC 1918)'}
+  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request to any'}
+  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench to any'}
+  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'}
+  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'}
+  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'ntp'}, comment: 'ntp to any'}
+  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'http', 'https'}, comment: 'http, https to any'}
+
+nftables_filter_group: []
+
+nftables_filter_host: []
+
+nftables_filter_policies:
+  - {action: 'drop', direction: 'input', version: 'ipv4', comment: 'default ipv4 input policy'}
+  - {action: 'drop', direction: 'forward', version: 'ipv4', comment: 'default ipv4 forward policy'}
+  - {action: 'drop', direction: 'output', version: 'ipv4', comment: 'default ipv4 output policy'}
+  - {action: 'drop', direction: 'input', version: 'ipv6', comment: 'default ipv6 input policy'}
+  - {action: 'drop', direction: 'forward', version: 'ipv6', comment: 'default ipv6 forward policy'}
+  - {action: 'drop', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'}
+
+nftables_nat_all: []
+
+nftables_nat_group: []
+
+nftables_nat_host: []
+
+nftables_nat_policies:
+  - {action: 'accept', direction: 'prerouting', version: 'ipv4', comment: 'default ipv4 prerouting policy'}
+  - {action: 'accept', direction: 'input', version: 'ipv4', comment: 'default ipv4 input policy'}
+  - {action: 'accept', direction: 'output', version: 'ipv4', comment: 'default ipv4 output policy'}
+  - {action: 'accept', direction: 'postrouting', version: 'ipv4', comment: 'default ipv4 postrouting policy'}
+  - {action: 'accept', direction: 'prerouting', version: 'ipv6', comment: 'default ipv6 prerouting policy'}
+  - {action: 'accept', direction: 'input', version: 'ipv6', comment: 'default ipv6 input policy'}
+  - {action: 'accept', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'}
+  - {action: 'accept', direction: 'postrouting', version: 'ipv6', comment: 'default ipv6 postrouting policy'}

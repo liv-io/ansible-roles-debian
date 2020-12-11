@@ -1,0 +1,26 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# nftables
+package_name_nftables: 'nftables'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# nftables.conf
+file_src_nftables_conf: 'templates/main/nftables.conf'
+file_dst_nftables_conf: '/etc/nftables.conf'
+file_mode_nftables_conf: '0750'
+file_owner_nftables_conf: 'root'
+file_group_nftables_conf: 'root'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# nftables
+service_name_nftables: 'nftables'

@@ -1,0 +1,45 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - nftables
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create nftables.conf'
+  template:
+    src: "{{file_src_nftables_conf}}"
+    dest: "{{file_dst_nftables_conf}}"
+    mode: "{{file_mode_nftables_conf}}"
+    owner: "{{file_owner_nftables_conf}}"
+    group: "{{file_group_nftables_conf}}"
+  notify: 'service reload nftables'
+  tags:
+    - enable
+    - nftables
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start nftables'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_nftables}}"
+  tags:
+    - enable
+    - nftables

@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (nftables_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - nftables
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (nftables_state is match('start|on|enable'))
+  tags:
+    - nftables
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (nftables_state is match('stop|off|disable'))
+  tags:
+    - nftables
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (nftables_state is match('false|no|remove'))
+  tags:
+    - nftables
