@@ -1,0 +1,13 @@
+---
+
+sudo_state: 'install'
+
+sudo_config_all: []
+
+sudo_config_group: []
+
+sudo_config_host: []
+
+sudo_insults: 'false'
+
+sudo_lecture: 'false'

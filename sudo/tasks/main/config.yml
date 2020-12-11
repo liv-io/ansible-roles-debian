@@ -1,0 +1,44 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - sudo
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+    validate: "{{file_validate_config}}"
+  loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - sudo
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
+  loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - sudo
