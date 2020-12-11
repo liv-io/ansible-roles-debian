@@ -1,0 +1,56 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - sysctl
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_sysctl_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}.conf"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  register: register_config
+  loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - sysctl
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    dest: "{{file_dst_sysctl_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}.conf"
+  loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - sysctl
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command set config'
+  shell: "{{command_cmd_set_sysctl}} {{file_dst_sysctl_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}.conf"
+  loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
+  when: (register_config is changed)
+  tags:
+    - config
+    - sysctl
