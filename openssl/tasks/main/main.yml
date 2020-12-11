@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (openssl_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - openssl
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (openssl_state is match('false|no|remove'))
+  tags:
+    - openssl
