@@ -1,0 +1,106 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : psmisc
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This package contains miscellaneous utilities that use the proc FS:
+ - fuser: identifies processes that are using files or sockets
+ - killall: kills processes by name (e.g. "killall -HUP named")
+ - peekfd: shows the data traveling over a file descriptor
+ - pstree: shows currently running processes as a tree
+ - prtstat: print the contents of /proc/<pid>/stat
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: psmisc
+    vars:
+      psmisc_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: psmisc
+    vars:
+      psmisc_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: psmisc
+    vars:
+      psmisc_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  psmisc_state
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  psmisc
+    Version: >= 23.0
+    Name   :
+      Debian 10: 'psmisc'
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.7.0
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  Debian
+    Version: 10
+      Status: Testing

@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (psmisc_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - psmisc
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (psmisc_state is match('false|no|remove'))
+  tags:
+    - psmisc
