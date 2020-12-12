@@ -1,0 +1,112 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# alertmanager_data.dir
+file_dst_alertmanager_data_dir: '/data/alertmanager'
+file_mode_alertmanager_data_dir: '0750'
+file_owner_alertmanager_data_dir: 'alertmanager'
+file_group_alertmanager_data_dir: 'alertmanager'
+
+# alertmanager_etc.dir
+file_dst_alertmanager_etc_dir: '/etc/alertmanager'
+file_mode_alertmanager_etc_dir: '0755'
+file_owner_alertmanager_etc_dir: 'root'
+file_group_alertmanager_etc_dir: 'root'
+
+# alertmanager.tar.gz
+file_src_alertmanager_tar_gz: "https://github.com/prometheus/alertmanager/releases/download/v{{alertmanager_version}}/alertmanager-{{alertmanager_version}}.linux-amd64.tar.gz"
+file_dst_alertmanager_tar_gz: "/usr/local/src/alertmanager-{{alertmanager_version}}.linux-amd64.tar.gz"
+file_mode_alertmanager_tar_gz: '0644'
+file_owner_alertmanager_tar_gz: 'root'
+file_group_alertmanager_tar_gz: 'root'
+file_checksum_alertmanager_tar_gz: "sha256:https://github.com/prometheus/alertmanager/releases/download/v{{alertmanager_version}}/sha256sums.txt"
+
+# alertmanager
+file_src_alertmanager: "/usr/local/src/alertmanager-{{alertmanager_version}}.linux-amd64.tar.gz"
+file_dst_alertmanager: '/usr/local/bin'
+file_owner_alertmanager: 'root'
+file_group_alertmanager: 'root'
+file_creates_alertmanager: '/usr/local/bin/alertmanager'
+file_exclude_alertmanager: ['LICENSE', 'NOTICE', 'alertmanager.yml']
+file_extra_opts_alertmanager: ['--strip-components=1']
+
+# alertmanager.default
+file_src_alertmanager_default: 'templates/main/alertmanager.default'
+file_dst_alertmanager_default: '/etc/default/alertmanager'
+file_mode_alertmanager_default: '0644'
+file_owner_alertmanager_default: 'root'
+file_group_alertmanager_default: 'root'
+
+# alertmanager.service
+file_src_alertmanager_service: 'templates/main/alertmanager.service'
+file_dst_alertmanager_service: '/lib/systemd/system/alertmanager.service'
+file_mode_alertmanager_service: '0644'
+file_owner_alertmanager_service: 'root'
+file_group_alertmanager_service: 'root'
+
+# alertmanager.yml
+file_src_alertmanager_yml: 'templates/main/alertmanager.yml'
+file_dst_alertmanager_yml: '/etc/alertmanager/alertmanager.yml'
+file_mode_alertmanager_yml: '0644'
+file_owner_alertmanager_yml: 'root'
+file_group_alertmanager_yml: 'root'
+
+# amtool
+file_dst_amtool: '/usr/local/bin/amtool'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# alertmanager.cfg
+file_src_alertmanager_cfg: 'templates/main/alertmanager.cfg'
+file_dst_alertmanager_cfg: '/etc/monit.d/alertmanager.cfg'
+file_mode_alertmanager_cfg: '0640'
+file_owner_alertmanager_cfg: 'root'
+file_group_alertmanager_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service alertmanager
+command_cmd_check_service_alertmanager: 'systemctl cat alertmanager.service > /dev/null 2>&1'
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# alertmanager
+group_name_alertmanager: 'alertmanager'
+group_system_alertmanager: 'yes'
+
+# alertmanager
+user_name_alertmanager: 'alertmanager'
+user_comment_alertmanager: 'Prometheus Alertmanager'
+user_group_alertmanager: 'alertmanager'
+user_append_alertmanager: 'yes'
+user_home_create_alertmanager: 'no'
+user_home_move_alertmanager: 'no'
+user_home_remove_alertmanager: 'yes'
+user_home_force_alertmanager: 'no'
+user_password_alertmanager: '!'
+user_password_update_alertmanager: 'always'
+user_shell_alertmanager: '/usr/sbin/nologin'
+user_system_alertmanager: 'yes'
+
+# alertmanager
+service_name_alertmanager: 'alertmanager'
+
+# monit
+service_name_monit: 'monit'

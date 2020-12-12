@@ -1,0 +1,70 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - alertmanager
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create alertmanager.yml'
+  template:
+    src: "{{file_src_alertmanager_yml}}"
+    dest: "{{file_dst_alertmanager_yml}}"
+    mode: "{{file_mode_alertmanager_yml}}"
+    owner: "{{file_owner_alertmanager_yml}}"
+    group: "{{file_group_alertmanager_yml}}"
+  notify: 'service reload alertmanager'
+  tags:
+    - enable
+    - alertmanager
+
+- name: 'file create alertmanager.default'
+  template:
+    src: "{{file_src_alertmanager_default}}"
+    dest: "{{file_dst_alertmanager_default}}"
+    mode: "{{file_mode_alertmanager_default}}"
+    owner: "{{file_owner_alertmanager_default}}"
+    group: "{{file_group_alertmanager_default}}"
+  notify: 'service reload alertmanager'
+  tags:
+    - enable
+    - alertmanager
+
+- name: 'file create alertmanager.cfg'
+  template:
+    src: "{{file_src_alertmanager_cfg}}"
+    dest: "{{file_dst_alertmanager_cfg}}"
+    mode: "{{file_mode_alertmanager_cfg}}"
+    owner: "{{file_owner_alertmanager_cfg}}"
+    group: "{{file_group_alertmanager_cfg}}"
+  notify: 'service reload monit'
+  when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - alertmanager
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start alertmanager'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_alertmanager}}"
+  tags:
+    - enable
+    - alertmanager

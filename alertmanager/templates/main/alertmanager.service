@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Prometheus Alertmanager
+After=syslog.target network.target
+
+[Service]
+User=alertmanager
+Group=alertmanager
+EnvironmentFile={{file_dst_alertmanager_default}}
+ExecStart={{file_creates_alertmanager}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

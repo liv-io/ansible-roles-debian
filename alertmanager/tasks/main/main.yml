@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (alertmanager_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - alertmanager
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (alertmanager_state is match('start|on|enable'))
+  tags:
+    - alertmanager
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (alertmanager_state is match('stop|off|disable'))
+  tags:
+    - alertmanager
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (alertmanager_state is match('false|no|remove'))
+  tags:
+    - alertmanager

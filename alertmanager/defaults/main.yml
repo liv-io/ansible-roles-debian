@@ -1,0 +1,11 @@
+---
+
+alertmanager_state: 'enable'
+
+alertmanager_config: []
+
+alertmanager_monitor_monit_state: 'false'
+
+alertmanager_version: '0.21.0'
+
+alertmanager_web_external_url: "https://alertmanager.{{ansible_domain}}"

@@ -1,0 +1,157 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - alertmanager
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create alertmanager'
+  group:
+    state: 'present'
+    name: "{{group_name_alertmanager}}"
+    system: "{{group_system_alertmanager}}"
+  tags:
+    - install
+    - alertmanager
+
+- name: 'user create alertmanager'
+  user:
+    state: 'present'
+    name: "{{user_name_alertmanager}}"
+    comment: "{{user_comment_alertmanager}}"
+    group: "{{user_group_alertmanager}}"
+    append: "{{user_append_alertmanager}}"
+    createhome: "{{user_home_create_alertmanager}}"
+    move_home: "{{user_home_move_alertmanager}}"
+    remove: "{{user_home_remove_alertmanager}}"
+    force: "{{user_home_force_alertmanager}}"
+    password: "{{user_password_alertmanager}}"
+    update_password: "{{user_password_update_alertmanager}}"
+    shell: "{{user_shell_alertmanager}}"
+    system: "{{user_system_alertmanager}}"
+  tags:
+    - install
+    - alertmanager
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create alertmanager_data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_alertmanager_data_dir}}"
+    mode: "{{file_mode_alertmanager_data_dir}}"
+    owner: "{{file_owner_alertmanager_data_dir}}"
+    group: "{{file_group_alertmanager_data_dir}}"
+  tags:
+    - install
+    - alertmanager
+
+- name: 'file create alertmanager_etc.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_alertmanager_etc_dir}}"
+    mode: "{{file_mode_alertmanager_etc_dir}}"
+    owner: "{{file_owner_alertmanager_etc_dir}}"
+    group: "{{file_group_alertmanager_etc_dir}}"
+  tags:
+    - install
+    - alertmanager
+
+- name: 'file download alertmanager.tar.gz'
+  get_url:
+    url: "{{file_src_alertmanager_tar_gz}}"
+    dest: "{{file_dst_alertmanager_tar_gz}}"
+    mode: "{{file_mode_alertmanager_tar_gz}}"
+    owner: "{{file_owner_alertmanager_tar_gz}}"
+    group: "{{file_group_alertmanager_tar_gz}}"
+    checksum: "{{file_checksum_alertmanager_tar_gz}}"
+  tags:
+    - install
+    - alertmanager
+
+- name: 'file unarchive alertmanager'
+  unarchive:
+    src: "{{file_src_alertmanager}}"
+    dest: "{{file_dst_alertmanager}}"
+    owner: "{{file_owner_alertmanager}}"
+    group: "{{file_group_alertmanager}}"
+    exclude: "{{file_exclude_alertmanager}}"
+    extra_opts: "{{file_extra_opts_alertmanager}}"
+    remote_src: 'yes'
+  tags:
+    - install
+    - alertmanager
+
+- name: 'file create alertmanager.service'
+  template:
+    src: "{{file_src_alertmanager_service}}"
+    dest: "{{file_dst_alertmanager_service}}"
+    mode: "{{file_mode_alertmanager_service}}"
+    owner: "{{file_owner_alertmanager_service}}"
+    group: "{{file_group_alertmanager_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - alertmanager
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - alertmanager
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (alertmanager_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - alertmanager
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - alertmanager
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - alertmanager
