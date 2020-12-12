@@ -1,0 +1,5 @@
+---
+
+dependencies:
+  - {role: gnupg1, when: (apt_state is match('true|yes|install'))}
+  - {role: mailx, when: (apt_monitor_mail_state is match('true|yes|enable'))}

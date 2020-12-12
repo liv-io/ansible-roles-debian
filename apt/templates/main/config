@@ -1,0 +1,10 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% for item in (item.repositories|default([])) %}
+{% if (item.comment|default('')) %}
+# {{item.comment}}
+{% endif %}
+{% if (item.state|default('true') is match('false|no|disable')) %}#{% endif %}{{(item.type|default('deb'))}} {{item.url}} {{(item.distribution|default('stretch'))}} {% for component in item.components %}{{component}}{% if not loop.last %} {% endif %}{% endfor %}
+
+
+{% endfor %}

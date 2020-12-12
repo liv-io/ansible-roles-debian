@@ -1,0 +1,55 @@
+---
+
+apt_state: 'install'
+
+apt_check_update_day: '*'
+
+apt_check_update_hour: '5'
+
+apt_check_update_minute: "{{(30|random(seed=inventory_hostname))}}"
+
+apt_check_update_month: '*'
+
+apt_check_update_state: 'enable'
+
+apt_check_update_weekday: '*'
+
+apt_config_all:
+  - path: '/etc/apt/sources.list'
+    state: 'true'
+    repositories:
+      - url: 'http://ftp.ch.debian.org/debian'
+        state: 'true'
+        comment: 'Debian - Base'
+        distribution: 'buster'
+        components: ['main']
+
+      - url: 'http://ftp.ch.debian.org/debian'
+        state: 'true'
+        comment: 'Debian - Updates'
+        distribution: 'buster-updates'
+        components: ['main']
+
+      - url: 'http://security.debian.org/debian-security'
+        state: 'true'
+        comment: 'Debian - Security'
+        distribution: 'buster/updates'
+        components: ['main']
+
+apt_config_group: []
+
+apt_config_host: []
+
+apt_http_proxy: ''
+
+apt_https_proxy: ''
+
+apt_monitor_mail_from_address: "root@{{ansible_domain}}"
+
+apt_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
+
+apt_monitor_mail_state: 'false'
+
+apt_monitor_prom_state: 'false'
+
+apt_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'

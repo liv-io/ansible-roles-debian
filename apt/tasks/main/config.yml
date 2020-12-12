@@ -1,0 +1,43 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - apt
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{(item.path|default('/etc/apt/sources.list'))}}"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
+  when: not (item.state|default('false') is match('false|no|remove'))
+  tags:
+    - config
+    - apt
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{(item.path|default('/etc/apt/sources.list'))}}"
+  loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
+  when: (item.state|default('false') is match('false|no|remove'))
+  tags:
+    - config
+    - apt

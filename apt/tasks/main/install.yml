@@ -1,0 +1,82 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - apt
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install apt'
+  package:
+    state: 'present'
+    name: "{{package_name_apt}}"
+  tags:
+    - install
+    - apt
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create apt.conf'
+  template:
+    src: "{{file_src_apt_conf}}"
+    dest: "{{file_dst_apt_conf}}"
+    mode: "{{file_mode_apt_conf}}"
+    owner: "{{file_owner_apt_conf}}"
+    group: "{{file_group_apt_conf}}"
+  tags:
+    - install
+    - apt
+
+- name: 'file create local_sbin.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_local_sbin_dir}}"
+    mode: "{{file_mode_local_sbin_dir}}"
+    owner: "{{file_owner_local_sbin_dir}}"
+    group: "{{file_group_local_sbin_dir}}"
+  tags:
+    - install
+    - apt
+
+- name: 'file create apt_check-update'
+  template:
+    src: "{{file_src_apt_check_update}}"
+    dest: "{{file_dst_apt_check_update}}"
+    mode: "{{file_mode_apt_check_update}}"
+    owner: "{{file_owner_apt_check_update}}"
+    group: "{{file_group_apt_check_update}}"
+  tags:
+    - install
+    - apt
+
+- name: 'cron create apt_check-update'
+  cron:
+    state: 'present'
+    disabled: "{{'yes' if (apt_check_update_state is match('false|no|disable')) else 'no'}}"
+    name: "{{cron_name_apt_check_update}}"
+    cron_file: "{{cron_cron_file_apt_check_update}}"
+    day: "{{cron_day_apt_check_update}}"
+    hour: "{{cron_hour_apt_check_update}}"
+    minute: "{{cron_minute_apt_check_update}}"
+    month: "{{cron_month_apt_check_update}}"
+    weekday: "{{cron_weekday_apt_check_update}}"
+    user: "{{cron_user_apt_check_update}}"
+    job: "{{cron_job_apt_check_update}}"
+  tags:
+    - install
+    - apt

@@ -1,0 +1,49 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# apt
+package_name_apt: 'apt'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# config
+file_src_config: 'templates/main/config'
+file_mode_config: '0644'
+file_owner_config: 'root'
+file_group_config: 'root'
+
+# apt.conf
+file_src_apt_conf: 'templates/main/apt.conf'
+file_dst_apt_conf: '/etc/apt/apt.conf'
+file_mode_apt_conf: '0644'
+file_owner_apt_conf: 'root'
+file_group_apt_conf: 'root'
+
+# local_sbin.dir
+file_dst_local_sbin_dir: '/usr/local/sbin'
+file_mode_local_sbin_dir: '0755'
+file_owner_local_sbin_dir: 'root'
+file_group_local_sbin_dir: 'root'
+
+# apt_check-update
+file_src_apt_check_update: 'templates/main/apt_check-update'
+file_dst_apt_check_update: '/usr/local/sbin/apt_check-update'
+file_mode_apt_check_update: '0754'
+file_owner_apt_check_update: 'root'
+file_group_apt_check_update: 'root'
+
+# apt_check-update
+cron_name_apt_check_update: 'apt: Check Update'
+cron_cron_file_apt_check_update: 'apt_check-update'
+cron_day_apt_check_update: "{{apt_check_update_day}}"
+cron_hour_apt_check_update: "{{apt_check_update_hour}}"
+cron_minute_apt_check_update: "{{apt_check_update_minute}}"
+cron_month_apt_check_update: "{{apt_check_update_month}}"
+cron_weekday_apt_check_update: "{{apt_check_update_weekday}}"
+cron_user_apt_check_update: "{{file_owner_apt_check_update}}"
+cron_job_apt_check_update: "{{file_dst_apt_check_update}}"
