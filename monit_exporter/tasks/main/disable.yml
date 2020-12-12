@@ -1,0 +1,68 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config.toml'
+  template:
+    src: "{{file_src_config_toml}}"
+    dest: "{{file_dst_config_toml}}"
+    mode: "{{file_mode_config_toml}}"
+    owner: "{{file_owner_config_toml}}"
+    group: "{{file_group_config_toml}}"
+  tags:
+    - disable
+    - monit_exporter
+
+- name: 'file create monit_exporter.default'
+  template:
+    src: "{{file_src_monit_exporter_default}}"
+    dest: "{{file_dst_monit_exporter_default}}"
+    mode: "{{file_mode_monit_exporter_default}}"
+    owner: "{{file_owner_monit_exporter_default}}"
+    group: "{{file_group_monit_exporter_default}}"
+  tags:
+    - disable
+    - monit_exporter
+
+- name: 'file create monit_exporter.cfg'
+  template:
+    src: "{{file_src_monit_exporter_cfg}}"
+    dest: "{{file_dst_monit_exporter_cfg}}"
+    mode: "{{file_mode_monit_exporter_cfg}}"
+    owner: "{{file_owner_monit_exporter_cfg}}"
+    group: "{{file_group_monit_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop monit_exporter'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_monit_exporter}}"
+  tags:
+    - disable
+    - monit_exporter

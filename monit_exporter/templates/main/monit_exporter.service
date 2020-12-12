@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Monit Exporter
+After=syslog.target network.target
+
+[Service]
+User=monit_exporter
+Group=monit_exporter
+EnvironmentFile={{file_dst_monit_exporter_default}}
+ExecStart={{file_creates_monit_exporter}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
