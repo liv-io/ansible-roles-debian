@@ -1,0 +1,103 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# blackbox_exporter_etc.dir
+file_dst_blackbox_exporter_etc_dir: '/etc/blackbox_exporter'
+file_mode_blackbox_exporter_etc_dir: '0755'
+file_owner_blackbox_exporter_etc_dir: 'root'
+file_group_blackbox_exporter_etc_dir: 'root'
+
+# blackbox.yml
+file_src_blackbox_yml: 'templates/main/blackbox.yml'
+file_dst_blackbox_yml: '/etc/blackbox_exporter/blackbox.yml'
+file_mode_blackbox_yml: '0644'
+file_owner_blackbox_yml: 'root'
+file_group_blackbox_yml: 'root'
+
+# blackbox_exporter.tar.gz
+file_src_blackbox_exporter_tar_gz: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{blackbox_exporter_version}}/blackbox_exporter-{{blackbox_exporter_version}}.linux-amd64.tar.gz"
+file_dst_blackbox_exporter_tar_gz: "/usr/local/src/blackbox_exporter-{{blackbox_exporter_version}}.linux-amd64.tar.gz"
+file_mode_blackbox_exporter_tar_gz: '0644'
+file_owner_blackbox_exporter_tar_gz: 'root'
+file_group_blackbox_exporter_tar_gz: 'root'
+file_checksum_blackbox_exporter_tar_gz: "sha256:https://github.com/prometheus/blackbox_exporter/releases/download/v{{blackbox_exporter_version}}/sha256sums.txt"
+
+# blackbox_exporter
+file_src_blackbox_exporter: "/usr/local/src/blackbox_exporter-{{blackbox_exporter_version}}.linux-amd64.tar.gz"
+file_dst_blackbox_exporter: '/usr/local/bin'
+file_owner_blackbox_exporter: 'root'
+file_group_blackbox_exporter: 'root'
+file_creates_blackbox_exporter: '/usr/local/bin/blackbox_exporter'
+file_exclude_blackbox_exporter: ['LICENSE', 'NOTICE', 'blackbox.yml']
+file_extra_opts_blackbox_exporter: ['--strip-components=1']
+
+# blackbox_exporter.default
+file_src_blackbox_exporter_default: 'templates/main/blackbox_exporter.default'
+file_dst_blackbox_exporter_default: '/etc/default/blackbox_exporter'
+file_mode_blackbox_exporter_default: '0644'
+file_owner_blackbox_exporter_default: 'root'
+file_group_blackbox_exporter_default: 'root'
+
+# blackbox_exporter.service
+file_src_blackbox_exporter_service: 'templates/main/blackbox_exporter.service'
+file_dst_blackbox_exporter_service: '/lib/systemd/system/blackbox_exporter.service'
+file_mode_blackbox_exporter_service: '0644'
+file_owner_blackbox_exporter_service: 'root'
+file_group_blackbox_exporter_service: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# blackbox_exporter.cfg
+file_src_blackbox_exporter_cfg: 'templates/main/blackbox_exporter.cfg'
+file_dst_blackbox_exporter_cfg: '/etc/monit.d/blackbox_exporter.cfg'
+file_mode_blackbox_exporter_cfg: '0640'
+file_owner_blackbox_exporter_cfg: 'root'
+file_group_blackbox_exporter_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service blackbox_exporter
+command_cmd_check_service_blackbox_exporter: 'systemctl cat blackbox_exporter.service > /dev/null 2>&1'
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# blackbox_exporter
+group_name_blackbox_exporter: 'blackbox_exporter'
+group_system_blackbox_exporter: 'yes'
+
+# blackbox_exporter
+user_name_blackbox_exporter: 'blackbox_exporter'
+user_comment_blackbox_exporter: 'Blackbox Exporter'
+user_group_blackbox_exporter: 'blackbox_exporter'
+user_append_blackbox_exporter: 'yes'
+user_home_create_blackbox_exporter: 'no'
+user_home_move_blackbox_exporter: 'no'
+user_home_remove_blackbox_exporter: 'yes'
+user_home_force_blackbox_exporter: 'no'
+user_password_blackbox_exporter: '!'
+user_password_update_blackbox_exporter: 'always'
+user_shell_blackbox_exporter: '/usr/sbin/nologin'
+user_system_blackbox_exporter: 'yes'
+
+# blackbox_exporter
+service_name_blackbox_exporter: 'blackbox_exporter'
+
+# monit
+service_name_monit: 'monit'

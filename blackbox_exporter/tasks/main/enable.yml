@@ -1,0 +1,70 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - blackbox_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create blackbox.yml'
+  template:
+    src: "{{file_src_blackbox_yml}}"
+    dest: "{{file_dst_blackbox_yml}}"
+    mode: "{{file_mode_blackbox_yml}}"
+    owner: "{{file_owner_blackbox_yml}}"
+    group: "{{file_group_blackbox_yml}}"
+  notify: 'service restart blackbox_exporter'
+  tags:
+    - enable
+    - blackbox_exporter
+
+- name: 'file create blackbox_exporter.default'
+  template:
+    src: "{{file_src_blackbox_exporter_default}}"
+    dest: "{{file_dst_blackbox_exporter_default}}"
+    mode: "{{file_mode_blackbox_exporter_default}}"
+    owner: "{{file_owner_blackbox_exporter_default}}"
+    group: "{{file_group_blackbox_exporter_default}}"
+  notify: 'service restart blackbox_exporter'
+  tags:
+    - enable
+    - blackbox_exporter
+
+- name: 'file create blackbox_exporter.cfg'
+  template:
+    src: "{{file_src_blackbox_exporter_cfg}}"
+    dest: "{{file_dst_blackbox_exporter_cfg}}"
+    mode: "{{file_mode_blackbox_exporter_cfg}}"
+    owner: "{{file_owner_blackbox_exporter_cfg}}"
+    group: "{{file_group_blackbox_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (blackbox_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - blackbox_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start blackbox_exporter'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_blackbox_exporter}}"
+  tags:
+    - enable
+    - blackbox_exporter

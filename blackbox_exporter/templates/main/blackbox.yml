@@ -1,0 +1,24 @@
+{{ansible_managed|comment(decoration='#')}}
+
+modules:
+{% for item in (blackbox_exporter_config|default([])) %}
+{% if not ((item.name|default('')) == '') %}
+  #-----------------------------------------------------------------------------
+  # {{(item.name|upper)}}
+  #-----------------------------------------------------------------------------
+
+{% endif %}
+{% if not ((item.comment|default('')) == '') %}
+  # {{item.comment}}
+{% endif %}
+  {{item.name}}:
+    prober: {{item.prober}}
+    timeout: {{(item.timeout|default('5s'))}}
+    {{item.prober}}:
+{% if not (item.config == '') %}
+{{(item.config|indent(width=6, indentfirst=True))}}
+{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}

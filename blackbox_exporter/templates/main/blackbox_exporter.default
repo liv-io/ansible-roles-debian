@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+OPTIONS="--config.file='{{file_dst_blackbox_yml}}'"
