@@ -1,0 +1,74 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - openssh
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove openssh'
+  package:
+    state: 'absent'
+    name: "{{package_name_openssh}}"
+    install_recommends: 'no'
+  tags:
+    - remove
+    - openssh
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove openssh.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openssh_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - openssh
+
+- name: 'file remove banner'
+  file:
+    state: 'absent'
+    path: "{{file_dst_banner}}"
+  tags:
+    - remove
+    - openssh
+
+- name: 'file remove moduli'
+  file:
+    state: 'absent'
+    path: "{{file_dst_moduli}}"
+  tags:
+    - remove
+    - openssh
+
+- name: 'file remove ssh_config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ssh_config}}"
+  tags:
+    - remove
+    - openssh
+
+- name: 'file remove sshd_config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_sshd_config}}"
+  tags:
+    - remove
+    - openssh

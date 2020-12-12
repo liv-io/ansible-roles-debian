@@ -1,0 +1,102 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - openssh
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create banner'
+  template:
+    src: "{{file_src_banner}}"
+    dest: "{{file_dst_banner}}"
+    mode: "{{file_mode_banner}}"
+    owner: "{{file_owner_banner}}"
+    group: "{{file_group_banner}}"
+  notify:
+    - 'command validate openssh'
+    - 'service reload openssh'
+  tags:
+    - enable
+    - openssh
+
+- name: 'file copy moduli'
+  copy:
+    src: "{{file_src_moduli}}"
+    dest: "{{file_dst_moduli}}"
+    mode: "{{file_mode_moduli}}"
+    owner: "{{file_owner_moduli}}"
+    group: "{{file_group_moduli}}"
+  notify:
+    - 'command validate openssh'
+    - 'service reload openssh'
+  tags:
+    - enable
+    - openssh
+
+- name: 'file create ssh_config'
+  template:
+    src: "{{file_src_ssh_config}}"
+    dest: "{{file_dst_ssh_config}}"
+    mode: "{{file_mode_ssh_config}}"
+    owner: "{{file_owner_ssh_config}}"
+    group: "{{file_group_ssh_config}}"
+  notify:
+    - 'command validate openssh'
+    - 'service reload openssh'
+  tags:
+    - enable
+    - openssh
+
+- name: 'file create sshd_config'
+  template:
+    src: "{{file_src_sshd_config}}"
+    dest: "{{file_dst_sshd_config}}"
+    mode: "{{file_mode_sshd_config}}"
+    owner: "{{file_owner_sshd_config}}"
+    group: "{{file_group_sshd_config}}"
+  notify:
+    - 'command validate openssh'
+    - 'service reload openssh'
+  tags:
+    - enable
+    - openssh
+
+- name: 'file create openssh.cfg'
+  template:
+    src: "{{file_src_openssh_cfg}}"
+    dest: "{{file_dst_openssh_cfg}}"
+    mode: "{{file_mode_openssh_cfg}}"
+    owner: "{{file_owner_openssh_cfg}}"
+    group: "{{file_group_openssh_cfg}}"
+  notify: 'service reload monit'
+  when: (openssh_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - openssh
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start openssh'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_openssh}}"
+  tags:
+    - enable
+    - openssh

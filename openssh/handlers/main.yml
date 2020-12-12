@@ -1,0 +1,35 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command validate openssh'
+  command: "{{command_cmd_validate_openssh}}"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service reload monit'
+  service:
+    state: 'reloaded'
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)
+
+- name: 'service reload openssh'
+  service:
+    state: 'reloaded'
+    name: "{{service_name_openssh}}"

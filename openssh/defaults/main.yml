@@ -1,0 +1,59 @@
+---
+
+openssh_state: 'enable'
+
+openssh_address_family: 'any'
+
+openssh_allow_groups: []
+
+openssh_allow_users: []
+
+openssh_banner: 'enable'
+
+openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
+
+openssh_compression: 'delayed'
+
+openssh_deny_groups: []
+
+openssh_deny_users: []
+
+openssh_host_key: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ed25519_key']
+
+openssh_host_key_algorithms: ['ssh-ed25519', 'ssh-rsa']
+
+openssh_kex_algorithms: ['curve25519-sha256', 'curve25519-sha256@libssh.org']
+
+openssh_listen_address: ['0.0.0.0']
+
+openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
+
+openssh_match: []
+
+openssh_monitor_monit_state: 'false'
+
+openssh_password_authentication: 'yes'
+
+openssh_permit_root_login: 'no'
+
+openssh_port: ['22']
+
+openssh_print_motd: 'no'
+
+openssh_print_last_log: 'yes'
+
+openssh_pubkey_authentication: 'yes'
+
+openssh_rsa_authentication: 'yes'
+
+openssh_tcp_keep_alive: 'yes'
+
+openssh_use_dns: 'no'
+
+openssh_version_addendum: 'none'
+
+openssh_x11_display_offset: 10
+
+openssh_x11_forwarding: 'no'
+
+openssh_x11_use_localhost: 'yes'
