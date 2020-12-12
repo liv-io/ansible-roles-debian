@@ -1,0 +1,112 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - node_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'command check service node_exporter'
+  shell: "{{command_cmd_check_service_node_exporter}}"
+  register: register_check_service_node_exporter
+  changed_when: (register_check_service_node_exporter.rc == 0)
+  failed_when: (register_check_service_node_exporter.rc > 1)
+  check_mode: 'no'
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'service stop node_exporter'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_node_exporter}}"
+  when: (register_check_service_node_exporter.rc == 0)
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'user remove node_exporter'
+  user:
+    state: 'absent'
+    name: "{{user_name_node_exporter}}"
+    remove: "{{user_home_remove_node_exporter}}"
+    force: "{{user_home_force_node_exporter}}"
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'group remove node_exporter'
+  group:
+    state: 'absent'
+    name: "{{group_name_node_exporter}}"
+  tags:
+    - remove
+    - node_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove node_exporter.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'file remove node_exporter_data.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_data_dir}}"
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'file remove node_exporter.default'
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_default}}"
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'file remove node_exporter.service'
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'file remove node_exporter'
+  file:
+    state: 'absent'
+    path: "{{file_creates_node_exporter}}"
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'file remove node_exporter.tar.gz'
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_tar_gz}}"
+  tags:
+    - remove
+    - node_exporter

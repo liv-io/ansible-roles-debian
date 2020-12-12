@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - node_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create node_exporter.default'
+  template:
+    src: "{{file_src_node_exporter_default}}"
+    dest: "{{file_dst_node_exporter_default}}"
+    mode: "{{file_mode_node_exporter_default}}"
+    owner: "{{file_owner_node_exporter_default}}"
+    group: "{{file_group_node_exporter_default}}"
+  tags:
+    - disable
+    - node_exporter
+
+- name: 'file create node_exporter.cfg'
+  template:
+    src: "{{file_src_node_exporter_cfg}}"
+    dest: "{{file_dst_node_exporter_cfg}}"
+    mode: "{{file_mode_node_exporter_cfg}}"
+    owner: "{{file_owner_node_exporter_cfg}}"
+    group: "{{file_group_node_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - node_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop node_exporter'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_node_exporter}}"
+  tags:
+    - disable
+    - node_exporter

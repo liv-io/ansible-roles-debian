@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Node Exporter
+After=syslog.target network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+EnvironmentFile={{file_dst_node_exporter_default}}
+ExecStart={{file_creates_node_exporter}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+OPTIONS="--collector.textfile.directory='{{file_dst_textfile_collector_dir}}'"
