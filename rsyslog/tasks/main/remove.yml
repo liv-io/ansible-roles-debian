@@ -1,0 +1,49 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove rsyslog'
+  package:
+    state: 'absent'
+    name: "{{package_name_rsyslog}}"
+  tags:
+    - remove
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove rsyslog.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - rsyslog
+
+- name: 'file remove rsyslog.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_conf}}"
+  tags:
+    - remove
+    - rsyslog

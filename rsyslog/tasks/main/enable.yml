@@ -1,0 +1,58 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create rsyslog.conf'
+  template:
+    src: "{{file_src_rsyslog_conf}}"
+    dest: "{{file_dst_rsyslog_conf}}"
+    mode: "{{file_mode_rsyslog_conf}}"
+    owner: "{{file_owner_rsyslog_conf}}"
+    group: "{{file_group_rsyslog_conf}}"
+  notify: 'service restart rsyslog'
+  tags:
+    - enable
+    - rsyslog
+
+- name: 'file create rsyslog.cfg'
+  template:
+    src: "{{file_src_rsyslog_cfg}}"
+    dest: "{{file_dst_rsyslog_cfg}}"
+    mode: "{{file_mode_rsyslog_cfg}}"
+    owner: "{{file_owner_rsyslog_cfg}}"
+    group: "{{file_group_rsyslog_cfg}}"
+  notify: 'service reload monit'
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start rsyslog'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_rsyslog}}"
+  tags:
+    - enable
+    - rsyslog
