@@ -1,0 +1,146 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create mysqld_exporter'
+  group:
+    state: 'present'
+    name: "{{group_name_mysqld_exporter}}"
+    system: "{{group_system_mysqld_exporter}}"
+  tags:
+    - install
+    - mysqld_exporter
+
+- name: 'user create mysqld_exporter'
+  user:
+    state: 'present'
+    name: "{{user_name_mysqld_exporter}}"
+    comment: "{{user_comment_mysqld_exporter}}"
+    group: "{{user_group_mysqld_exporter}}"
+    append: "{{user_append_mysqld_exporter}}"
+    createhome: "{{user_home_create_mysqld_exporter}}"
+    move_home: "{{user_home_move_mysqld_exporter}}"
+    remove: "{{user_home_remove_mysqld_exporter}}"
+    force: "{{user_home_force_mysqld_exporter}}"
+    password: "{{user_password_mysqld_exporter}}"
+    update_password: "{{user_password_update_mysqld_exporter}}"
+    shell: "{{user_shell_mysqld_exporter}}"
+    system: "{{user_system_mysqld_exporter}}"
+  tags:
+    - install
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create mysqld_exporter_etc.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_mysqld_exporter_etc_dir}}"
+    mode: "{{file_mode_mysqld_exporter_etc_dir}}"
+    owner: "{{file_owner_mysqld_exporter_etc_dir}}"
+    group: "{{file_group_mysqld_exporter_etc_dir}}"
+  tags:
+    - install
+    - mysqld_exporter
+
+- name: 'file download mysqld_exporter.tar.gz'
+  get_url:
+    url: "{{file_src_mysqld_exporter_tar_gz}}"
+    dest: "{{file_dst_mysqld_exporter_tar_gz}}"
+    mode: "{{file_mode_mysqld_exporter_tar_gz}}"
+    owner: "{{file_owner_mysqld_exporter_tar_gz}}"
+    group: "{{file_group_mysqld_exporter_tar_gz}}"
+    checksum: "{{file_checksum_mysqld_exporter_tar_gz}}"
+  tags:
+    - install
+    - mysqld_exporter
+
+- name: 'file unarchive mysqld_exporter'
+  unarchive:
+    src: "{{file_src_mysqld_exporter}}"
+    dest: "{{file_dst_mysqld_exporter}}"
+    owner: "{{file_owner_mysqld_exporter}}"
+    group: "{{file_group_mysqld_exporter}}"
+    exclude: "{{file_exclude_mysqld_exporter}}"
+    extra_opts: "{{file_extra_opts_mysqld_exporter}}"
+    remote_src: 'yes'
+  tags:
+    - install
+    - mysqld_exporter
+
+- name: 'file create mysqld_exporter.service'
+  template:
+    src: "{{file_src_mysqld_exporter_service}}"
+    dest: "{{file_dst_mysqld_exporter_service}}"
+    mode: "{{file_mode_mysqld_exporter_service}}"
+    owner: "{{file_owner_mysqld_exporter_service}}"
+    group: "{{file_group_mysqld_exporter_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - mysqld_exporter
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - mysqld_exporter
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - mysqld_exporter

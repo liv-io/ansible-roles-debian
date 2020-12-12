@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=MySQL Exporter
+After=syslog.target network.target
+
+[Service]
+User=mysqld_exporter
+Group=mysqld_exporter
+EnvironmentFile={{file_dst_mysqld_exporter_default}}
+ExecStart={{file_creates_mysqld_exporter}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

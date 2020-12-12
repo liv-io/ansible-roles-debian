@@ -1,0 +1,112 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'command check service mysqld_exporter'
+  shell: "{{command_cmd_check_service_mysqld_exporter}}"
+  register: register_check_service_mysqld_exporter
+  changed_when: (register_check_service_mysqld_exporter.rc == 0)
+  failed_when: (register_check_service_mysqld_exporter.rc > 1)
+  check_mode: 'no'
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'service stop mysqld_exporter'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_mysqld_exporter}}"
+  when: (register_check_service_mysqld_exporter.rc == 0)
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'user remove mysqld_exporter'
+  user:
+    state: 'absent'
+    name: "{{user_name_mysqld_exporter}}"
+    remove: "{{user_home_remove_mysqld_exporter}}"
+    force: "{{user_home_force_mysqld_exporter}}"
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'group remove mysqld_exporter'
+  group:
+    state: 'absent'
+    name: "{{group_name_mysqld_exporter}}"
+  tags:
+    - remove
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove mysqld_exporter.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_mysqld_exporter_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'file remove mysqld_exporter.default'
+  file:
+    state: 'absent'
+    path: "{{file_dst_mysqld_exporter_default}}"
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'file remove mysqld_exporter.service'
+  file:
+    state: 'absent'
+    path: "{{file_dst_mysqld_exporter_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'file remove mysqld_exporter_etc.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_mysqld_exporter_etc_dir}}"
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'file remove mysqld_exporter'
+  file:
+    state: 'absent'
+    path: "{{file_creates_mysqld_exporter}}"
+  tags:
+    - remove
+    - mysqld_exporter
+
+- name: 'file remove mysqld_exporter.tar.gz'
+  file:
+    state: 'absent'
+    path: "{{file_dst_mysqld_exporter_tar_gz}}"
+  tags:
+    - remove
+    - mysqld_exporter

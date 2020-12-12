@@ -1,0 +1,103 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# mysqld_exporter_etc.dir
+file_dst_mysqld_exporter_etc_dir: '/etc/mysqld_exporter'
+file_mode_mysqld_exporter_etc_dir: '0755'
+file_owner_mysqld_exporter_etc_dir: 'root'
+file_group_mysqld_exporter_etc_dir: 'root'
+
+# credentials.cnf
+file_src_credentials_cnf: 'templates/main/credentials.cnf'
+file_dst_credentials_cnf: '/etc/mysqld_exporter/credentials.cnf'
+file_mode_credentials_cnf: '0400'
+file_owner_credentials_cnf: 'mysqld_exporter'
+file_group_credentials_cnf: 'mysqld_exporter'
+
+# mysqld_exporter.tar.gz
+file_src_mysqld_exporter_tar_gz: "https://github.com/prometheus/mysqld_exporter/releases/download/v{{mysqld_exporter_version}}/mysqld_exporter-{{mysqld_exporter_version}}.linux-amd64.tar.gz"
+file_dst_mysqld_exporter_tar_gz: "/usr/local/src/mysqld_exporter-{{mysqld_exporter_version}}.linux-amd64.tar.gz"
+file_mode_mysqld_exporter_tar_gz: '0644'
+file_owner_mysqld_exporter_tar_gz: 'root'
+file_group_mysqld_exporter_tar_gz: 'root'
+file_checksum_mysqld_exporter_tar_gz: "sha256:https://github.com/prometheus/mysqld_exporter/releases/download/v{{mysqld_exporter_version}}/sha256sums.txt"
+
+# mysqld_exporter
+file_src_mysqld_exporter: "/usr/local/src/mysqld_exporter-{{mysqld_exporter_version}}.linux-amd64.tar.gz"
+file_dst_mysqld_exporter: '/usr/local/bin'
+file_owner_mysqld_exporter: 'root'
+file_group_mysqld_exporter: 'root'
+file_creates_mysqld_exporter: '/usr/local/bin/mysqld_exporter'
+file_exclude_mysqld_exporter: ['LICENSE', 'NOTICE']
+file_extra_opts_mysqld_exporter: ['--strip-components=1']
+
+# mysqld_exporter.default
+file_src_mysqld_exporter_default: 'templates/main/mysqld_exporter.default'
+file_dst_mysqld_exporter_default: '/etc/default/mysqld_exporter'
+file_mode_mysqld_exporter_default: '0644'
+file_owner_mysqld_exporter_default: 'root'
+file_group_mysqld_exporter_default: 'root'
+
+# mysqld_exporter.service
+file_src_mysqld_exporter_service: 'templates/main/mysqld_exporter.service'
+file_dst_mysqld_exporter_service: '/lib/systemd/system/mysqld_exporter.service'
+file_mode_mysqld_exporter_service: '0644'
+file_owner_mysqld_exporter_service: 'root'
+file_group_mysqld_exporter_service: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# mysqld_exporter.cfg
+file_src_mysqld_exporter_cfg: 'templates/main/mysqld_exporter.cfg'
+file_dst_mysqld_exporter_cfg: '/etc/monit.d/mysqld_exporter.cfg'
+file_mode_mysqld_exporter_cfg: '0640'
+file_owner_mysqld_exporter_cfg: 'root'
+file_group_mysqld_exporter_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service mysqld_exporter
+command_cmd_check_service_mysqld_exporter: 'systemctl cat mysqld_exporter.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# mysqld_exporter
+group_name_mysqld_exporter: 'mysqld_exporter'
+group_system_mysqld_exporter: 'yes'
+
+# mysqld_exporter
+user_name_mysqld_exporter: 'mysqld_exporter'
+user_comment_mysqld_exporter: 'MySQL Exporter'
+user_group_mysqld_exporter: 'mysqld_exporter'
+user_append_mysqld_exporter: 'yes'
+user_home_create_mysqld_exporter: 'no'
+user_home_move_mysqld_exporter: 'no'
+user_home_remove_mysqld_exporter: 'yes'
+user_home_force_mysqld_exporter: 'no'
+user_password_mysqld_exporter: '!'
+user_password_update_mysqld_exporter: 'always'
+user_shell_mysqld_exporter: '/usr/sbin/nologin'
+user_system_mysqld_exporter: 'yes'
+
+# monit
+service_name_monit: 'monit'
+
+# mysqld_exporter
+service_name_mysqld_exporter: 'mysqld_exporter'

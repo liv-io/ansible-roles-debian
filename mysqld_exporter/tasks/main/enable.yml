@@ -1,0 +1,70 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create credentials.cnf'
+  template:
+    src: "{{file_src_credentials_cnf}}"
+    dest: "{{file_dst_credentials_cnf}}"
+    mode: "{{file_mode_credentials_cnf}}"
+    owner: "{{file_owner_credentials_cnf}}"
+    group: "{{file_group_credentials_cnf}}"
+  notify: 'service restart mysqld_exporter'
+  tags:
+    - enable
+    - mysqld_exporter
+
+- name: 'file create mysqld_exporter.default'
+  template:
+    src: "{{file_src_mysqld_exporter_default}}"
+    dest: "{{file_dst_mysqld_exporter_default}}"
+    mode: "{{file_mode_mysqld_exporter_default}}"
+    owner: "{{file_owner_mysqld_exporter_default}}"
+    group: "{{file_group_mysqld_exporter_default}}"
+  notify: 'service restart mysqld_exporter'
+  tags:
+    - enable
+    - mysqld_exporter
+
+- name: 'file create mysqld_exporter.cfg'
+  template:
+    src: "{{file_src_mysqld_exporter_cfg}}"
+    dest: "{{file_dst_mysqld_exporter_cfg}}"
+    mode: "{{file_mode_mysqld_exporter_cfg}}"
+    owner: "{{file_owner_mysqld_exporter_cfg}}"
+    group: "{{file_group_mysqld_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - mysqld_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start mysqld_exporter'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_mysqld_exporter}}"
+  tags:
+    - enable
+    - mysqld_exporter

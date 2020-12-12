@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+OPTIONS="--config.my-cnf='{{file_dst_credentials_cnf}}'"
