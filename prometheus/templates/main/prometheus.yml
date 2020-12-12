@@ -1,0 +1,276 @@
+{{ansible_managed|comment(decoration='#')}}
+
+# my global config
+global:
+  # Set the scrape interval to every n seconds. Default is every 1 minute.
+  scrape_interval: {{prometheus_global_scrape_interval}}
+  # Evaluate rules every n seconds. The default is every 1 minute.
+  evaluation_interval: {{prometheus_global_evaluation_interval}}
+  # scrape_timeout is set to the global default (10s).
+
+{% if (prometheus_alertmanager_state is match('true|yes|enable')) %}
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+       - localhost:9093
+{% endif %}
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - "alerting_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+
+{% if (prometheus_alertmanager_state is match('true|yes|enable')) %}
+  #-----------------------------------------------------------------------------
+  # ALERTMANAGER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'alertmanager'
+    static_configs:
+
+    # Localhost
+    - targets: ['localhost:9093']
+      labels:
+        instance: '{{ansible_hostname}}'
+{% endif %}
+
+  #-----------------------------------------------------------------------------
+  # PROMETHEUS
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'prometheus'
+    static_configs:
+
+    # Localhost
+    - targets: ['localhost:9090']
+      labels:
+        instance: '{{ansible_hostname}}'
+
+{% if (prometheus_smokeping_prober_state is match('true|yes|enable')) %}
+  #-----------------------------------------------------------------------------
+  # SMOKEPING_PROBER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'smokeping'
+    static_configs:
+
+    # Localhost
+    - targets: ['localhost:9374']
+      labels:
+        instance: '{{ansible_hostname}}'
+
+    # Manual Hosts
+{% if not (prometheus_smokeping_prober_target_manual_hosts == []) %}
+{% for item in prometheus_smokeping_prober_target_manual_hosts %}
+    - targets: ['{{item.address}}:9374']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_smokeping_prober_target_ansible_groups == []) %}
+{% for group in prometheus_smokeping_prober_target_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}:9374']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% if (prometheus_blackbox_exporter_state is match('true|yes|enable')) %}
+  #-----------------------------------------------------------------------------
+  # BLACKBOX_EXPORTER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'http_ip4_basic'
+    metrics_path: /probe
+    params:
+      module: [http_ip4_basic]
+    static_configs:
+
+{% if not (prometheus_blackbox_exporter_http_ip4_basic_manual_hosts == []) %}
+    # Manual Hosts
+      - targets:
+{% for item in prometheus_blackbox_exporter_http_ip4_basic_manual_hosts %}
+        - '{{item.address}}'
+{% endfor %}
+{% endif %}
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+
+  - job_name: 'icmp_ip4'
+    metrics_path: /probe
+    params:
+      module: [icmp_ip4]
+    static_configs:
+
+    # Manual Hosts
+{% if not (prometheus_blackbox_exporter_icmp_ip4_manual_hosts == []) %}
+{% for item in prometheus_blackbox_exporter_icmp_ip4_manual_hosts %}
+    - targets: ['{{item.address}}']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_blackbox_exporter_icmp_ip4_ansible_groups == []) %}
+{% for group in prometheus_blackbox_exporter_icmp_ip4_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+{% endif %}
+
+  #-----------------------------------------------------------------------------
+  # HAPROXY_EXPORTER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'haproxy'
+    static_configs:
+
+    # Manual Hosts
+{% if not (prometheus_haproxy_exporter_target_manual_hosts == []) %}
+{% for item in prometheus_haproxy_exporter_target_manual_hosts %}
+    - targets: ['{{item.address}}:9101']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_haproxy_exporter_target_ansible_groups == []) %}
+{% for group in prometheus_haproxy_exporter_target_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}:9101']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+  #-----------------------------------------------------------------------------
+  # MONIT_EXPORTER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'monit'
+    static_configs:
+
+    # Localhost
+    - targets: ['localhost:9388']
+      labels:
+        instance: '{{ansible_hostname}}'
+
+    # Manual Hosts
+{% if not (prometheus_monit_exporter_target_manual_hosts == []) %}
+{% for item in prometheus_monit_exporter_target_manual_hosts %}
+    - targets: ['{{item.address}}:9388']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_monit_exporter_target_ansible_groups == []) %}
+{% for group in prometheus_monit_exporter_target_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}:9388']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+  #-----------------------------------------------------------------------------
+  # MYSQLD_EXPORTER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'mysqld'
+    static_configs:
+
+    # Manual Hosts
+{% if not (prometheus_mysqld_exporter_target_manual_hosts == []) %}
+{% for item in prometheus_mysqld_exporter_target_manual_hosts %}
+    - targets: ['{{item.address}}:9104']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_mysqld_exporter_target_ansible_groups == []) %}
+{% for group in prometheus_mysqld_exporter_target_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}:9104']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+  #-----------------------------------------------------------------------------
+  # NODE_EXPORTER
+  #-----------------------------------------------------------------------------
+
+  - job_name: 'node'
+    static_configs:
+
+    # Localhost
+    - targets: ['localhost:9100']
+      labels:
+        instance: '{{ansible_hostname}}'
+
+    # Manual Hosts
+{% if not (prometheus_node_exporter_target_manual_hosts == []) %}
+{% for item in prometheus_node_exporter_target_manual_hosts %}
+    - targets: ['{{item.address}}:9100']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_node_exporter_target_ansible_groups == []) %}
+{% for group in prometheus_node_exporter_target_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}:9100']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}

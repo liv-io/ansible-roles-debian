@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+OPTIONS="--config.file='{{file_dst_prometheus_yml}}' --storage.tsdb.path='{{file_dst_prometheus_data_dir}}' --storage.tsdb.retention.time='{{prometheus_storage_tsdb_retention_time}}' --web.enable-admin-api"

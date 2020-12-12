@@ -1,0 +1,12 @@
+{{ansible_managed|comment(decoration='#')}}
+
+# config file version
+apiVersion: 1
+
+providers:
+ - name: "builtin"
+   orgId: 1
+   folder: "Built-In"
+   type: file
+   options:
+     path: "/var/lib/grafana/dashboards/builtin"

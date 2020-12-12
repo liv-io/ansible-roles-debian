@@ -1,0 +1,217 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# app.dir
+file_dst_app_dir: '/app'
+file_mode_app_dir: '0755'
+file_owner_app_dir: 'root'
+file_group_app_dir: 'root'
+
+# prometheus_app.dir
+file_dst_prometheus_app_dir: '/app/prometheus'
+file_mode_prometheus_app_dir: '0755'
+file_owner_prometheus_app_dir: 'root'
+file_group_prometheus_app_dir: 'root'
+
+# prometheus_etc.dir
+file_dst_prometheus_etc_dir: '/etc/prometheus'
+file_mode_prometheus_etc_dir: '0755'
+file_owner_prometheus_etc_dir: 'root'
+file_group_prometheus_etc_dir: 'root'
+
+# data.dir
+file_dst_data_dir: '/data'
+file_mode_data_dir: '0755'
+file_owner_data_dir: 'root'
+file_group_data_dir: 'root'
+
+# prometheus_data.dir
+file_dst_prometheus_data_dir: '/data/prometheus'
+file_mode_prometheus_data_dir: '0750'
+file_owner_prometheus_data_dir: 'prometheus'
+file_group_prometheus_data_dir: 'prometheus'
+
+# dashboards.dir
+file_dst_dashboards_dir: '/var/lib/grafana/dashboards'
+file_mode_dashboards_dir: '0750'
+file_owner_dashboards_dir: 'grafana'
+file_group_dashboards_dir: 'grafana'
+
+# builtin_dashboards.dir
+file_dst_builtin_dashboards_dir: '/var/lib/grafana/dashboards/builtin'
+file_mode_builtin_dashboards_dir: '0750'
+file_owner_builtin_dashboards_dir: 'grafana'
+file_group_builtin_dashboards_dir: 'grafana'
+
+# prometheus.tar.gz
+file_src_prometheus_tar_gz: "https://github.com/prometheus/prometheus/releases/download/v{{prometheus_version}}/prometheus-{{prometheus_version}}.linux-amd64.tar.gz"
+file_dst_prometheus_tar_gz: "/usr/local/src/prometheus-{{prometheus_version}}.linux-amd64.tar.gz"
+file_mode_prometheus_tar_gz: '0644'
+file_owner_prometheus_tar_gz: 'root'
+file_group_prometheus_tar_gz: 'root'
+file_checksum_prometheus_tar_gz: "sha256:https://github.com/prometheus/prometheus/releases/download/v{{prometheus_version}}/sha256sums.txt"
+
+# prometheus
+file_src_prometheus: "/usr/local/src/prometheus-{{prometheus_version}}.linux-amd64.tar.gz"
+file_dst_prometheus: '/app/prometheus'
+file_owner_prometheus: 'root'
+file_group_prometheus: 'root'
+file_creates_prometheus: "/app/prometheus/prometheus-{{prometheus_version}}.linux-amd64"
+file_exclude_prometheus: ['LICENSE', 'NOTICE', 'prometheus.yml']
+
+# prometheus-current.link
+file_src_prometheus_current_link: "/app/prometheus/prometheus-{{prometheus_version}}.linux-amd64"
+file_dst_prometheus_current_link: '/app/prometheus/current'
+file_owner_prometheus_current_link: 'root'
+file_group_prometheus_current_link: 'root'
+
+# builtin_dashboards.yaml
+file_src_builtin_dashboards_yaml: 'templates/main/builtin_dashboards.yaml'
+file_dst_builtin_dashboards_yaml: '/etc/grafana/provisioning/dashboards/builtin.yaml'
+file_mode_builtin_dashboards_yaml: '0640'
+file_owner_builtin_dashboards_yaml: 'root'
+file_group_builtin_dashboards_yaml: 'grafana'
+
+# prometheus_alertmanager_datasource.yaml
+file_src_prometheus_alertmanager_datasource_yaml: 'templates/main/prometheus_alertmanager_datasource.yaml'
+file_dst_prometheus_alertmanager_datasource_yaml: '/etc/grafana/provisioning/datasources/prometheus_alertmanager_datasource.yaml'
+file_mode_prometheus_alertmanager_datasource_yaml: '0640'
+file_owner_prometheus_alertmanager_datasource_yaml: 'root'
+file_group_prometheus_alertmanager_datasource_yaml: 'grafana'
+
+# prometheus_datasource.yaml
+file_src_prometheus_datasource_yaml: 'templates/main/prometheus_datasource.yaml'
+file_dst_prometheus_datasource_yaml: '/etc/grafana/provisioning/datasources/prometheus_datasource.yaml'
+file_mode_prometheus_datasource_yaml: '0640'
+file_owner_prometheus_datasource_yaml: 'root'
+file_group_prometheus_datasource_yaml: 'grafana'
+
+# prometheus.default
+file_src_prometheus_default: 'templates/main/prometheus.default'
+file_dst_prometheus_default: '/etc/default/prometheus'
+file_mode_prometheus_default: '0644'
+file_owner_prometheus_default: 'root'
+file_group_prometheus_default: 'root'
+
+# prometheus.service
+file_src_prometheus_service: 'templates/main/prometheus.service'
+file_dst_prometheus_service: '/lib/systemd/system/prometheus.service'
+file_mode_prometheus_service: '0644'
+file_owner_prometheus_service: 'root'
+file_group_prometheus_service: 'root'
+
+# prometheus.yml
+file_src_prometheus_yml: 'templates/main/prometheus.yml'
+file_dst_prometheus_yml: '/etc/prometheus/prometheus.yml'
+file_mode_prometheus_yml: '0644'
+file_owner_prometheus_yml: 'root'
+file_group_prometheus_yml: 'root'
+
+# alerting_rules.yml
+file_src_alerting_rules_yml: 'templates/main/alerting_rules.yml'
+file_dst_alerting_rules_yml: '/etc/prometheus/alerting_rules.yml'
+file_mode_alerting_rules_yml: '0644'
+file_owner_alerting_rules_yml: 'root'
+file_group_alerting_rules_yml: 'root'
+
+# network_traffic.json
+file_src_network_traffic_json: 'files/main/network_traffic.json'
+file_dst_network_traffic_json: '/var/lib/grafana/dashboards/builtin/network_traffic.json'
+file_mode_network_traffic_json: '0640'
+file_owner_network_traffic_json: 'grafana'
+file_group_network_traffic_json: 'grafana'
+
+# node_exporter.json
+file_src_node_exporter_json: 'files/main/node_exporter.json'
+file_dst_node_exporter_json: '/var/lib/grafana/dashboards/builtin/node_exporter.json'
+file_mode_node_exporter_json: '0640'
+file_owner_node_exporter_json: 'grafana'
+file_group_node_exporter_json: 'grafana'
+
+# ping_prober.json
+file_src_ping_prober_json: 'files/main/ping_prober.json'
+file_dst_ping_prober_json: '/var/lib/grafana/dashboards/builtin/ping_prober.json'
+file_mode_ping_prober_json: '0640'
+file_owner_ping_prober_json: 'grafana'
+file_group_ping_prober_json: 'grafana'
+
+# script_status.json
+file_src_script_status_json: 'files/main/script_status.json'
+file_dst_script_status_json: '/var/lib/grafana/dashboards/builtin/script_status.json'
+file_mode_script_status_json: '0640'
+file_owner_script_status_json: 'grafana'
+file_group_script_status_json: 'grafana'
+
+# smokeping_prober.json
+file_src_smokeping_prober_json: 'files/main/smokeping_prober.json'
+file_dst_smokeping_prober_json: '/var/lib/grafana/dashboards/builtin/smokeping_prober.json'
+file_mode_smokeping_prober_json: '0640'
+file_owner_smokeping_prober_json: 'grafana'
+file_group_smokeping_prober_json: 'grafana'
+
+# system_status.json
+file_src_system_status_json: 'templates/main/system_status.json'
+file_dst_system_status_json: '/var/lib/grafana/dashboards/builtin/system_status.json'
+file_mode_system_status_json: '0640'
+file_owner_system_status_json: 'grafana'
+file_group_system_status_json: 'grafana'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# prometheus.cfg
+file_src_prometheus_cfg: 'templates/main/prometheus.cfg'
+file_dst_prometheus_cfg: '/etc/monit.d/prometheus.cfg'
+file_mode_prometheus_cfg: '0640'
+file_owner_prometheus_cfg: 'root'
+file_group_prometheus_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service prometheus
+command_cmd_check_service_prometheus: 'systemctl cat prometheus.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# prometheus
+group_name_prometheus: 'prometheus'
+group_system_prometheus: 'yes'
+
+# prometheus
+user_name_prometheus: 'prometheus'
+user_comment_prometheus: 'Prometheus'
+user_group_prometheus: 'prometheus'
+user_append_prometheus: 'yes'
+user_home_create_prometheus: 'no'
+user_home_move_prometheus: 'no'
+user_home_remove_prometheus: 'yes'
+user_home_force_prometheus: 'no'
+user_password_prometheus: '!'
+user_password_update_prometheus: 'always'
+user_shell_prometheus: '/usr/sbin/nologin'
+user_system_prometheus: 'yes'
+
+# grafana-server
+service_name_grafana: 'grafana-server'
+
+# monit
+service_name_monit: 'monit'
+
+# prometheus
+service_name_prometheus: 'prometheus'

@@ -1,0 +1,48 @@
+{{ansible_managed|comment(decoration='#')}}
+
+# config file version
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+#deleteDatasources:
+#  - name: "Prometheus Alertmanager"
+#    orgId: 1
+
+# list of datasources to insert/update depending
+# what's available in the database
+datasources:
+  # <string, required> name of the datasource. Required
+  - name: "Prometheus Alertmanager"
+    # <string, required> datasource type. Required
+    type: camptocamp-prometheus-alertmanager-datasource
+    # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
+    access: proxy
+    # <int> org id. will default to orgId 1 if not specified
+    orgId: 1
+    # <string> url
+    url: http://localhost:9093
+    # <string> Deprecated, use secureJsonData.password
+    password:
+    # <string> database user, if used
+    user:
+    # <string> database name, if used
+    database:
+    # <bool> enable/disable basic auth
+    basicAuth:
+    # <string> basic auth username
+    basicAuthUser:
+    # <string> Deprecated, use secureJsonData.basicAuthPassword
+    basicAuthPassword:
+    # <bool> enable/disable with credentials headers
+    withCredentials:
+    # <bool> mark as default datasource. Max one per org
+    isDefault: false
+    # <map> fields that will be converted to json and stored in jsonData
+    jsonData:
+      severity_critical: "critical"
+      severity_high: "high"
+      severity_warning: "warning"
+      severity_info: "info"
+    version: 1
+    # <bool> allow users to edit datasources from the UI.
+    editable: false

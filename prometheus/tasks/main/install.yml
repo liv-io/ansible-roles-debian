@@ -1,0 +1,216 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - prometheus
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create prometheus'
+  group:
+    state: 'present'
+    name: "{{group_name_prometheus}}"
+    system: "{{group_system_prometheus}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'user create prometheus'
+  user:
+    state: 'present'
+    name: "{{user_name_prometheus}}"
+    comment: "{{user_comment_prometheus}}"
+    group: "{{user_group_prometheus}}"
+    append: "{{user_append_prometheus}}"
+    createhome: "{{user_home_create_prometheus}}"
+    move_home: "{{user_home_move_prometheus}}"
+    remove: "{{user_home_remove_prometheus}}"
+    force: "{{user_home_force_prometheus}}"
+    password: "{{user_password_prometheus}}"
+    update_password: "{{user_password_update_prometheus}}"
+    shell: "{{user_shell_prometheus}}"
+    system: "{{user_system_prometheus}}"
+  tags:
+    - install
+    - prometheus
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create app.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_app_dir}}"
+    mode: "{{file_mode_app_dir}}"
+    owner: "{{file_owner_app_dir}}"
+    group: "{{file_group_app_dir}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create prometheus_app.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_prometheus_app_dir}}"
+    mode: "{{file_mode_prometheus_app_dir}}"
+    owner: "{{file_owner_prometheus_app_dir}}"
+    group: "{{file_group_prometheus_app_dir}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create prometheus_etc.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_prometheus_etc_dir}}"
+    mode: "{{file_mode_prometheus_etc_dir}}"
+    owner: "{{file_owner_prometheus_etc_dir}}"
+    group: "{{file_group_prometheus_etc_dir}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_data_dir}}"
+    mode: "{{file_mode_data_dir}}"
+    owner: "{{file_owner_data_dir}}"
+    group: "{{file_group_data_dir}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create prometheus_data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_prometheus_data_dir}}"
+    mode: "{{file_mode_prometheus_data_dir}}"
+    owner: "{{file_owner_prometheus_data_dir}}"
+    group: "{{file_group_prometheus_data_dir}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file download prometheus.tar.gz'
+  get_url:
+    url: "{{file_src_prometheus_tar_gz}}"
+    dest: "{{file_dst_prometheus_tar_gz}}"
+    mode: "{{file_mode_prometheus_tar_gz}}"
+    owner: "{{file_owner_prometheus_tar_gz}}"
+    group: "{{file_group_prometheus_tar_gz}}"
+    checksum: "{{file_checksum_prometheus_tar_gz}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file unarchive prometheus'
+  unarchive:
+    src: "{{file_src_prometheus}}"
+    dest: "{{file_dst_prometheus}}"
+    owner: "{{file_owner_prometheus}}"
+    group: "{{file_group_prometheus}}"
+    exclude: "{{file_exclude_prometheus}}"
+    remote_src: 'yes'
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create dashboards.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_dashboards_dir}}"
+    mode: "{{file_mode_dashboards_dir}}"
+    owner: "{{file_owner_dashboards_dir}}"
+    group: "{{file_group_dashboards_dir}}"
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create builtin_dashboards.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_builtin_dashboards_dir}}"
+    mode: "{{file_mode_builtin_dashboards_dir}}"
+    owner: "{{file_owner_builtin_dashboards_dir}}"
+    group: "{{file_group_builtin_dashboards_dir}}"
+  when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create prometheus.service'
+  template:
+    src: "{{file_src_prometheus_service}}"
+    dest: "{{file_dst_prometheus_service}}"
+    mode: "{{file_mode_prometheus_service}}"
+    owner: "{{file_owner_prometheus_service}}"
+    group: "{{file_group_prometheus_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - prometheus
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (prometheus_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - prometheus
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (prometheus_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - prometheus
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (prometheus_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - prometheus
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - prometheus

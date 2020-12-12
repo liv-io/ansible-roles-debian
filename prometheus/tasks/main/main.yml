@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (prometheus_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - prometheus
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (prometheus_state is match('start|on|enable'))
+  tags:
+    - prometheus
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (prometheus_state is match('stop|off|disable'))
+  tags:
+    - prometheus
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (prometheus_state is match('false|no|remove'))
+  tags:
+    - prometheus

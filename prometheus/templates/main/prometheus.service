@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Prometheus
+After=syslog.target network.target
+
+[Service]
+User=prometheus
+Group=prometheus
+EnvironmentFile={{file_dst_prometheus_default}}
+ExecStart={{file_dst_prometheus_current_link}}/prometheus $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

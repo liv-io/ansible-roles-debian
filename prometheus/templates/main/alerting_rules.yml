@@ -1,0 +1,268 @@
+{{ansible_managed|comment(decoration='#')}}
+
+groups:
+  #-----------------------------------------------------------------------------
+  # BUILTIN
+  #-----------------------------------------------------------------------------
+
+  - name: builtin
+    rules:
+
+      #-----------------------------------------------------------------------
+      # FILESYSTEM
+      #-----------------------------------------------------------------------
+
+      - alert: "Filesystem 'boot' Usage"
+        expr: ((sum by (instance) (node_filesystem_size_bytes{mountpoint="/boot"}) - sum by (instance) (node_filesystem_avail_bytes{mountpoint="/boot"})) / sum by (instance) (node_filesystem_size_bytes{mountpoint="/boot"})) * 100 > 80
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem: Usage (node_exporter)"
+          description: "Filesystem '/boot' usage above 80%: {% raw %}{{$value}}{% endraw %}%"
+
+      - alert: "Filesystem 'root' Usage"
+        expr: ((sum by (instance) (node_filesystem_size_bytes{mountpoint="/"}) - sum by (instance) (node_filesystem_avail_bytes{mountpoint="/"})) / sum by (instance) (node_filesystem_size_bytes{mountpoint="/"})) * 100 > 80
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem: Usage (node_exporter)"
+          description: "Filesystem '/' usage above 80%: {% raw %}{{$value}}{% endraw %}%"
+
+      - alert: "Filesystem 'swap' Usage"
+        expr: ((sum by (instance) (node_memory_SwapTotal_bytes)) - (sum by (instance) (node_memory_SwapFree_bytes)) ) / (sum by (instance) (node_memory_SwapTotal_bytes)) * 100 > 80
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem: Usage (node_exporter)"
+          description: "Filesystem 'swap' usage above 80%: {% raw %}{{$value}}{% endraw %}%"
+
+      - alert: "Filesystem 'data' Usage"
+        expr: ((sum by (instance) (node_filesystem_size_bytes{mountpoint="/data"}) - sum by (instance) (node_filesystem_avail_bytes{mountpoint="/data"})) / sum by (instance) (node_filesystem_size_bytes{mountpoint="/data"}) ) * 100 > 90
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem: Usage (node_exporter)"
+          description: "Filesystem '/data' usage above 90%: {% raw %}{{$value}}{% endraw %}%"
+
+      #-----------------------------------------------------------------------
+      # CPU USER
+      #-----------------------------------------------------------------------
+
+      - alert: "CPU 'user' Utilization (10mAVG)"
+        expr: avg by (instance)(irate(node_cpu_seconds_total{instance!="virt_005_s",instance!="backend_dev_s",instance!="backend_test_s",job="node",mode="user"}[10m])) * 100 > 80
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU: Utilization (node_exporter)"
+          description: "CPU 'user' load above 80% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
+
+      - alert: "CPU 'user' Utilization (60mAVG)"
+        expr: avg by (instance)(irate(node_cpu_seconds_total{instance!="virt_005_s",instance!="backend_dev_s",instance!="backend_test_s",job="node",mode="user"}[10m])) * 100 > 60
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU: Utilization (node_exporter)"
+          description: "CPU 'user' load above 60% for at least 60 minutes: {% raw %}{{$value}}{% endraw %}%"
+
+      #-----------------------------------------------------------------------
+      # CPU SYSTEM
+      #-----------------------------------------------------------------------
+
+      - alert: "CPU 'system' Utilization (10mAVG)"
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 80
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU: Utilization (node_exporter)"
+          description: "CPU 'system' load above 80% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
+
+      - alert: "CPU 'system' Utilization (60mAVG)"
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[60m])) * 100 > 60
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU: Utilization (node_exporter)"
+          description: "CPU 'system' load above 60% for at least 60 minutes: {% raw %}{{$value}}{% endraw %}%"
+
+      #-----------------------------------------------------------------------
+      # CPU IOWAIT
+      #-----------------------------------------------------------------------
+
+      - alert: "CPU 'IOwait' Utilization (10mAVG)"
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="iowait"}[10m])) * 100 > 80
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU: Utilization (node_exporter)"
+          description: "CPU 'IOwait' load above 80% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
+
+      - alert: "CPU 'IOwait' Utilization (60mAVG)"
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="iowait"}[60m])) * 100 > 60
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "CPU: Utilization (node_exporter)"
+          description: "CPU 'IOwait' load above 60% for at least 60 minutes: {% raw %}{{$value}}{% endraw %}%"
+
+      #-----------------------------------------------------------------------
+      # MEMORY
+      #-----------------------------------------------------------------------
+
+      - alert: "Memory Usage Exceeded"
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 90
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Memory: Usage (node_exporter)"
+          description: "Memory usage exceeded 90%: {% raw %}{{$value}}{% endraw %}%"
+
+      #-----------------------------------------------------------------------
+      # BLACKBOX EXPORTER
+      #-----------------------------------------------------------------------
+
+      - alert: "ICMP IPv4 Ping Failed"
+        expr: probe_success{job="icmp_ip4"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "ICMP IPv4: Ping Failed (blackbox_exporter)"
+          description: "Ping failed for at least 2 minutes: {% raw %}{{$labels.instance}}{% endraw %}"
+
+      - alert: "HTTP IPv4 Check Failed"
+        expr: probe_success{job="http_ip4_basic"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "HTTP IPv4: Check Failed (blackbox_exporter)"
+          description: "HTTP check failed for at least 30 seconds: {% raw %}{{$labels.instance}}{% endraw %}"
+
+      #-----------------------------------------------------------------------
+      # MONIT EXPORTER
+      #-----------------------------------------------------------------------
+
+      - alert: "Monit Process Unmonitored"
+        expr: monit_exporter_service_check{monitored="0"} == 0
+        for: 10m
+        labels:
+          severity: info
+        annotations:
+          summary: "Monit: Status (monit_exporter)"
+          description: "Process unmonitored: {% raw %}{{$labels.check_name}}{% endraw %}"
+
+      - alert: "Monit Process Failure"
+        expr: monit_exporter_service_check > 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Monit: Status (monit_exporter)"
+          description: "Process failure: {% raw %}{{$labels.check_name}}{% endraw %}"
+
+      #-----------------------------------------------------------------------
+      # SCRIPT STATUS
+      #-----------------------------------------------------------------------
+
+      - alert: "APT Pending Updates"
+        expr: apt_check_update_exit != 0
+        for: 7d
+        labels:
+          severity: info
+        annotations:
+          summary: "APT: Check Update (script_status)"
+          description: "APT pending updates for at least 7 days"
+
+      - alert: "DNF Pending Updates"
+        expr: dnf_check_update_exit != 0
+        for: 7d
+        labels:
+          severity: info
+        annotations:
+          summary: "DNF: Check Update (script_status)"
+          description: "DNF pending updates for at least 7 days"
+
+      - alert: "MariaDB Backup Failed"
+        expr: mariadb_run_backup_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "MariaDB: Run Backup (script_status)"
+          description: "MariaDB backup failed"
+
+      - alert: "PostgreSQL Backup Failed"
+        expr: postgresql_run_backup_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "PostgreSQL: Run Backup (script_status)"
+          description: "PostgreSQL backup failed"
+
+      - alert: "Restic Backup Failed"
+        expr: restic_run_backup_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Restic: Run Backup (script_status)"
+          description: "Restic backup failed"
+
+      - alert: "YUM Pending Updates"
+        expr: yum_check_update_exit != 0
+        for: 7d
+        labels:
+          severity: info
+        annotations:
+          summary: "YUM: Check Update (script_status)"
+          description: "YUM pending updates for at least 7 days"
+
+      - alert: "ZFS Disk Failure"
+        expr: zfs_check_pools_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "ZFS: Check Pools (script_status)"
+          description: "ZFS pool with faulty disk"
+
+      - alert: "ZFS Scrub Failed"
+        expr: zfs_check_pools_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "ZFS: Scrub Pools (script_status)"
+          description: "ZFS failed to scrub pool"
+
+      - alert: "ZFS Trim Failed"
+        expr: zfs_trim_pools_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "ZFS: Trim Pools (script_status)"
+          description: "ZFS failed to trim pool"
+
+{% if not (prometheus_alerting_rules == '') %}
+  #-----------------------------------------------------------------------------
+  # CUSTOM
+  #-----------------------------------------------------------------------------
+
+  - name: custom
+    rules:
+      {{(prometheus_alerting_rules|indent(width=6, indentfirst=True))}}
+
+{% endif %}

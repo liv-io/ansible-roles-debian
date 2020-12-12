@@ -1,0 +1,55 @@
+---
+
+prometheus_state: 'enable'
+
+prometheus_alerting_rules: ''
+
+prometheus_alertmanager_state: 'true'
+
+prometheus_alertmanager_url: "https://alertmanager.{{ansible_domain}}"
+
+prometheus_blackbox_exporter_state: 'true'
+
+prometheus_blackbox_exporter_http_ip4_basic_manual_hosts: []
+
+prometheus_blackbox_exporter_icmp_ip4_ansible_groups: ['all']
+
+prometheus_blackbox_exporter_icmp_ip4_manual_hosts: []
+
+prometheus_builtin_dashboards_state: 'true'
+
+prometheus_global_evaluation_interval: '30s'
+
+prometheus_global_scrape_interval: '30s'
+
+prometheus_grafana_url: "https://grafana.{{ansible_domain}}"
+
+prometheus_haproxy_exporter_target_ansible_groups: []
+
+prometheus_haproxy_exporter_target_manual_hosts: []
+
+prometheus_monit_exporter_target_ansible_groups: ['all']
+
+prometheus_monit_exporter_target_manual_hosts: []
+
+prometheus_monitor_monit_state: 'false'
+
+prometheus_mysqld_exporter_target_ansible_groups: []
+
+prometheus_mysqld_exporter_target_manual_hosts: []
+
+prometheus_node_exporter_target_ansible_groups: ['all']
+
+prometheus_node_exporter_target_manual_hosts: []
+
+prometheus_prometheus_url: "https://prometheus.{{ansible_domain}}"
+
+prometheus_smokeping_prober_state: 'false'
+
+prometheus_smokeping_prober_target_ansible_groups: []
+
+prometheus_smokeping_prober_target_manual_hosts: []
+
+prometheus_storage_tsdb_retention_time: '365d'
+
+prometheus_version: '2.23.0'

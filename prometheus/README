@@ -1,0 +1,447 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : prometheus
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+Prometheus, a Cloud Native Computing Foundation project, is a systems and
+service monitoring system. It collects metrics from configured targets at given
+intervals, evaluates rule expressions, displays the results, and can trigger
+alerts if some condition is observed to be true.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: prometheus
+    vars:
+      prometheus_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: prometheus
+    vars:
+      prometheus_state: 'enable'
+      prometheus_alertmanager_url: 'https://alert.example.com'
+      prometheus_grafana_url: 'https://monitor.example.com'
+      prometheus_prometheus_url: 'https://metric.example.com'
+      prometheus_monit_exporter_target_manual_hosts:
+        - {address: '10.1.1.11', hostname: 'host01'}
+        - {address: '10.1.1.13', hostname: 'host02'}
+        - {address: '10.1.1.15', hostname: 'host03'}
+      prometheus_node_exporter_target_manual_hosts:
+        - {address: '10.1.1.11', hostname: 'host01'}
+        - {address: '10.1.1.13', hostname: 'host02'}
+        - {address: '10.1.1.15', hostname: 'host03'}
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: prometheus
+    vars:
+      prometheus_state: 'disable'
+      prometheus_alertmanager_url: 'https://alert.example.com'
+      prometheus_grafana_url: 'https://monitor.example.com'
+      prometheus_prometheus_url: 'https://metric.example.com'
+      prometheus_monit_exporter_target_manual_hosts:
+        - {address: '10.1.1.11', hostname: 'host01'}
+        - {address: '10.1.1.13', hostname: 'host02'}
+        - {address: '10.1.1.15', hostname: 'host03'}
+      prometheus_node_exporter_target_manual_hosts:
+        - {address: '10.1.1.11', hostname: 'host01'}
+        - {address: '10.1.1.13', hostname: 'host02'}
+        - {address: '10.1.1.15', hostname: 'host03'}
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: prometheus
+    vars:
+      prometheus_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: prometheus
+    vars:
+      prometheus_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  prometheus_state
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  prometheus_alerting_rules
+    Description: Define the 'prometheus_alerting_rules' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: |
+        - alert: "Restic Backup Failed"
+          expr: restic_run_backup_exit != 0
+          for: 30s
+          labels:
+            severity: warning
+          annotations:
+            summary: "Restic: Run Backup (script_status)"
+            description: "Restic backup failed"
+      None    : ''
+
+  prometheus_alertmanager_state
+    Description: Control the 'prometheus_alertmanager_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  prometheus_alertmanager_url
+    Description: Define the 'prometheus_alertmanager_url' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "https://alertmanager.{{ansible_domain}}"
+    Options    :
+      Examples: 'https://alert.domain.tld'
+
+  prometheus_blackbox_exporter_state
+    Description: Control the 'prometheus_blackbox_exporter_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  prometheus_blackbox_exporter_http_ip4_basic_manual_hosts
+    Description: Define the 'prometheus_blackbox_exporter_http_ip4_basic_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: 'https://host01.domain.tld', hostname: 'host01'},
+                 {address: 'https://host02.domain.tld', hostname: 'host02'},
+                 {address: 'https://host03.domain.tld', hostname: 'host03'}]
+      None    : []
+
+  prometheus_blackbox_exporter_icmp_ip4_ansible_groups
+    Description: Define the 'prometheus_blackbox_exporter_icmp_ip4_ansible_groups' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+  prometheus_blackbox_exporter_icmp_ip4_manual_hosts
+    Description: Define the 'prometheus_blackbox_exporter_icmp_ip4_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
+  prometheus_builtin_dashboards_state
+    Description: Control the 'prometheus_builtin_dashboards_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  prometheus_global_evaluation_interval
+    Description: Define the 'prometheus_global_evaluation_interval' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '30s'
+    Options    :
+      Examples: '15s' | '30s' | '60s'
+
+  prometheus_global_scrape_interval
+    Description: Define the 'prometheus_global_scrape_interval' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '30s'
+    Options    :
+      Examples: '15s' | '30s' | '60s'
+
+  prometheus_grafana_url
+    Description: Define the 'prometheus_grafana_url' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "https://grafana.{{ansible_domain}}"
+    Options    :
+      Examples: 'https://monitor.domain.tld'
+
+  prometheus_haproxy_exporter_target_ansible_groups
+    Description: Define the 'prometheus_haproxy_exporter_target_ansible_groups' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+  prometheus_haproxy_exporter_target_manual_hosts
+    Description: Define the 'prometheus_haproxy_exporter_target_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
+  prometheus_monit_exporter_target_ansible_groups
+    Description: Define the 'prometheus_monit_exporter_target_ansible_groups' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : ['all']
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+  prometheus_monit_exporter_target_manual_hosts
+    Description: Define the 'prometheus_monit_exporter_target_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
+  prometheus_monitor_monit_state
+    Description: Control the 'prometheus_monitor_monit_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  prometheus_mysqld_exporter_target_ansible_groups
+    Description: Define the 'prometheus_mysqld_exporter_target_ansible_groups' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+  prometheus_mysqld_exporter_target_manual_hosts
+    Description: Define the 'prometheus_mysqld_exporter_target_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
+  prometheus_node_exporter_target_ansible_groups
+    Description: Define the 'prometheus_node_exporter_target_ansible_groups' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : ['all']
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+  prometheus_node_exporter_target_manual_hosts
+    Description: Define the 'prometheus_node_exporter_target_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
+  prometheus_prometheus_url
+    Description: Define the 'prometheus_prometheus_url' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "https://prometheus.{{ansible_domain}}"
+    Options    :
+      Examples: 'https://metric.domain.tld'
+
+  prometheus_smokeping_prober_state
+    Description: Control the 'prometheus_smokeping_prober_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  prometheus_smokeping_prober_target_ansible_groups
+    Description: Define the 'prometheus_smokeping_prober_target_ansible_groups' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+  prometheus_smokeping_prober_target_manual_hosts
+    Description: Define the 'prometheus_smokeping_prober_target_manual_hosts' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
+  prometheus_storage_tsdb_retention_time
+    Description: Define the 'prometheus_storage_tsdb_retention_time' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '365d'
+    Options    :
+      Examples: '90d' | '180d' | '365d' | '10y'
+
+  prometheus_version
+    Description: Define the 'prometheus_version' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2.22.2'
+    Options    :
+      Examples: '2.6.1' | '2.6.0'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  prometheus
+
+ROLES
+  alertmanager
+
+  blackbox_exporter
+
+  grafana
+
+  smokeping_prober
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.7.0
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  Debian
+    Version: 10
+      Status: Testing

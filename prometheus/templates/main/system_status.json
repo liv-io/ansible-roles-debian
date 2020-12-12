@@ -1,0 +1,601 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Monit Processes and Alertmanager Alerts",
+  "editable": false,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "columns": [],
+      "datasource": null,
+      "description": "Monit Exporter Alerts",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "links": [
+        {
+          "title": "Show metrics in Prometheus",
+          "url": "{{prometheus_prometheus_url}}/graph?g0.range_input=1h&g0.expr=monit_exporter_service_check&g0.tab=1"
+        }
+      ],
+      "pageSize": 20,
+      "showHeader": true,
+      "sort": {
+        "col": null,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Time",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "dateTimeAsIso"
+        },
+        {
+          "alias": "Value",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#32B43C",
+            "#3296CC",
+            "#F53737"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value",
+          "thresholds": [
+            "0.5",
+            "1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "OK",
+              "value": "0"
+            },
+            {
+              "text": "Checksum failed",
+              "value": "1"
+            },
+            {
+              "text": "Execution failed",
+              "value": "2"
+            },
+            {
+              "text": "Timeout",
+              "value": "4"
+            },
+            {
+              "text": "Timestamp failed",
+              "value": "8"
+            },
+            {
+              "text": "Size failed",
+              "value": "16"
+            },
+            {
+              "text": "Connection failed",
+              "value": "32"
+            },
+            {
+              "text": "Permission failed",
+              "value": "64"
+            },
+            {
+              "text": "UID failed",
+              "value": "128"
+            },
+            {
+              "text": "GID failed",
+              "value": "256"
+            },
+            {
+              "text": "Does not exist",
+              "value": "512"
+            },
+            {
+              "text": "Invalid type",
+              "value": "1024"
+            },
+            {
+              "text": "Data access error",
+              "value": "2048"
+            },
+            {
+              "text": "Execution failed",
+              "value": "4096"
+            },
+            {
+              "text": "Filesystem flags failed",
+              "value": "8192"
+            },
+            {
+              "text": "ICMP failed",
+              "value": "16384"
+            },
+            {
+              "text": "Content failed",
+              "value": "32768"
+            },
+            {
+              "text": "Monit instance failed",
+              "value": "65536"
+            },
+            {
+              "text": "Action done",
+              "value": "131072"
+            },
+            {
+              "text": "PID failed",
+              "value": "262144"
+            },
+            {
+              "text": "PPID failed",
+              "value": "524288"
+            },
+            {
+              "text": "Heartbeat failed",
+              "value": "1048576"
+            },
+            {
+              "text": "Status failed",
+              "value": "2097152"
+            },
+            {
+              "text": "Uptime failed",
+              "value": "4194304"
+            },
+            {
+              "text": "Link down",
+              "value": "8388608"
+            },
+            {
+              "text": "Speed failed",
+              "value": "16777216"
+            },
+            {
+              "text": "Saturation exceeded",
+              "value": "33554432"
+            },
+            {
+              "text": "Download bytes exceeded",
+              "value": "67108864"
+            },
+            {
+              "text": "Upload bytes exceeded",
+              "value": "134217728"
+            },
+            {
+              "text": "Download packets exceeded",
+              "value": "268435456"
+            },
+            {
+              "text": "Upload packets exceeded",
+              "value": "536870912"
+            },
+            {
+              "text": "Does exist",
+              "value": "1073741824"
+            },
+            {
+              "text": "All Errors",
+              "value": "2147483647"
+            }
+          ]
+        },
+        {
+          "alias": "Monitored",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#FFC800",
+            "#32B43C",
+            "#F53737"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "monitored",
+          "thresholds": [
+            "0.5",
+            "1.5"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "No",
+              "value": "0"
+            },
+            {
+              "text": "Yes",
+              "value": "1"
+            },
+            {
+              "text": "Failure",
+              "value": "2"
+            },
+            {
+              "text": "Monit Exporter not running",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "__name__",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "Job",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "job",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "Type",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "type",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show metrics in Grafana",
+          "linkUrl": "{{prometheus_grafana_url}}/d/0SkoOb0Mz/node-exporter?orgId=1&var-node=[[__cell:raw]]",
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sort (monit_exporter_service_check > 0 or monit_exporter_service_check{monitored=\"0\"})",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Processes",
+      "transform": "table",
+      "type": "table-old"
+    },
+    {
+      "columns": [],
+      "datasource": "Prometheus Alertmanager",
+      "description": "Prometheus Alertmanager",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 20,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 4,
+      "pageSize": 40,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 4,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "align": "auto",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "Severity",
+          "align": "auto",
+          "colorMode": "cell",
+          "colors": [
+            "#32B43C",
+            "#FF7700",
+            "#F53737"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "severity",
+          "thresholds": [
+            "2",
+            "4"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "Critical",
+              "value": "4"
+            },
+            {
+              "text": "High",
+              "value": "3"
+            },
+            {
+              "text": "Warning",
+              "value": "2"
+            },
+            {
+              "text": "Info",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "alias": "Instance",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show instance",
+          "linkUrl": "{{prometheus_alertmanager_url}}/#/alerts?silenced=false&inhibited=false&active=true&filter=%7Binstance%3D%22[[__cell:raw]]%22%7D",
+          "mappingType": 1,
+          "pattern": "instance",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Check",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show check",
+          "linkUrl": "{{prometheus_alertmanager_url}}/#/alerts?silenced=false&inhibited=false&active=true&filter=%7Bcheck_name%3D%22[[__cell:raw]]%22%7D",
+          "mappingType": 1,
+          "pattern": "check_name",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Alert",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show alert",
+          "linkUrl": "{{prometheus_alertmanager_url}}/#/alerts?silenced=false&inhibited=false&active=true&filter=%7Balertname%3D%22[[__cell:raw]]%22%7D",
+          "mappingType": 1,
+          "pattern": "alertname",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        },
+        {
+          "alias": "Type",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "type",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "Monitored",
+          "align": "auto",
+          "colorMode": null,
+          "colors": [
+            "#F53737",
+            "#FF7700",
+            "#32B43C"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "link": true,
+          "linkTargetBlank": true,
+          "linkTooltip": "Show status",
+          "linkUrl": "{{prometheus_alertmanager_url}}/#/alerts?silenced=false&inhibited=false&active=true&filter=%7Bmonitored%3D%220%22%7D",
+          "mappingType": 1,
+          "pattern": "monitored",
+          "rangeMaps": [],
+          "sanitize": true,
+          "thresholds": [
+            "0.5",
+            "1"
+          ],
+          "type": "string",
+          "unit": "short",
+          "valueMaps": [
+            {
+              "text": "No",
+              "value": "0"
+            },
+            {
+              "text": "Yes",
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "annotations": false,
+          "expr": "",
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "table"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Alerts",
+      "transform": "table",
+      "type": "table-old"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [
+    "system_status",
+    "monit_exporter",
+    "alertmanager",
+    "built-in"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "System Status",
+  "version": 1
+}
