@@ -47,7 +47,10 @@ file_group_grafana_cfg: 'root'
 #-------------------------------------------------------------------------------
 
 # add grafana.key
-command_cmd_add_grafana_key: 'apt-key add /etc/apt/trusted.gpg.d/grafana.gpg'
+command_cmd_add_grafana_key: 'apt-key add /usr/local/src/grafana.gpg'
+
+# apt update
+command_cmd_apt_update: 'apt update'
 
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'

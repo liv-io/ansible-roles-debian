@@ -14,5 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-12-12)
+B: Run 'apt update' after adding Grafana repository
+B: Correct grafana.gpg file path
+
 * Version 0.1.0 (2020-12-12)
 F: Initial release

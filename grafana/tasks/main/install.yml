@@ -75,6 +75,14 @@
     - install
     - grafana
 
+- name: 'command apt update'
+  shell: "{{command_cmd_apt_update}}"
+  check_mode: 'no'
+  when: register_grafana_gpg.changed
+  tags:
+    - install
+    - grafana
+
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
