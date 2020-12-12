@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - {role: mailx, when: (openntpd_monitor_mail_state is match('true|yes|enable'))}

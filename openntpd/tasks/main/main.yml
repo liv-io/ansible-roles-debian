@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (openntpd_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - openntpd
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (openntpd_state is match('start|on|enable'))
+  tags:
+    - openntpd
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (openntpd_state is match('stop|off|disable'))
+  tags:
+    - openntpd
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (openntpd_state is match('false|no|remove'))
+  tags:
+    - openntpd

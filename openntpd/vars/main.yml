@@ -1,0 +1,59 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# openntpd
+package_name_openntpd: 'openntpd'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# ntpd.conf
+file_src_ntpd_conf: 'templates/main/ntpd.conf'
+file_dst_ntpd_conf: '/etc/openntpd/ntpd.conf'
+file_mode_ntpd_conf: '0644'
+file_owner_ntpd_conf: 'root'
+file_group_ntpd_conf: 'root'
+
+# openntpd_check-time
+file_src_openntpd_check_time: 'templates/main/openntpd_check-time'
+file_dst_openntpd_check_time: '/usr/local/sbin/openntpd_check-time'
+file_mode_openntpd_check_time: '0754'
+file_owner_openntpd_check_time: 'root'
+file_group_openntpd_check_time: 'root'
+
+# openntpd_check-time
+cron_name_openntpd_check_time: 'OpenNTPD: Check Time'
+cron_day_openntpd_check_time: "{{openntpd_check_time_day}}"
+cron_hour_openntpd_check_time: "{{openntpd_check_time_hour}}"
+cron_minute_openntpd_check_time: "{{openntpd_check_time_minute}}"
+cron_month_openntpd_check_time: "{{openntpd_check_time_month}}"
+cron_weekday_openntpd_check_time: "{{openntpd_check_time_weekday}}"
+cron_user_openntpd_check_time: "{{file_owner_openntpd_check_time}}"
+cron_job_openntpd_check_time: "{{file_dst_openntpd_check_time}}"
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# openntpd.cfg
+file_src_openntpd_cfg: 'templates/main/openntpd.cfg'
+file_dst_openntpd_cfg: '/etc/monit.d/openntpd.cfg'
+file_mode_openntpd_cfg: '0640'
+file_owner_openntpd_cfg: 'root'
+file_group_openntpd_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# openntpd
+service_name_openntpd: 'openntpd'

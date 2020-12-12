@@ -1,0 +1,66 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - openntpd
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove openntpd'
+  package:
+    state: 'absent'
+    name: "{{package_name_openntpd}}"
+  tags:
+    - remove
+    - openntpd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove openntpd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - openntpd
+
+- name: 'cron remove openntpd_check-time'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_openntpd_check_time}}"
+    user: "{{cron_user_openntpd_check_time}}"
+  tags:
+    - remove
+    - openntpd
+
+- name: 'file remove openntpd_check-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_check_time}}"
+  tags:
+    - remove
+    - openntpd
+
+- name: 'file remove ntpd.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ntpd_conf}}"
+  tags:
+    - remove
+    - openntpd

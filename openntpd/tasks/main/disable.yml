@@ -1,0 +1,81 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - openntpd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create ntpd.conf'
+  template:
+    src: "{{file_src_ntpd_conf}}"
+    dest: "{{file_dst_ntpd_conf}}"
+    mode: "{{file_mode_ntpd_conf}}"
+    owner: "{{file_owner_ntpd_conf}}"
+    group: "{{file_group_ntpd_conf}}"
+  tags:
+    - disable
+    - openntpd
+
+- name: 'file remove openntpd_check-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_check_time}}"
+  tags:
+    - disable
+    - openntpd
+
+- name: 'cron create openntpd_check-time'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_openntpd_check_time}}"
+    day: "{{cron_day_openntpd_check_time}}"
+    hour: "{{cron_hour_openntpd_check_time}}"
+    minute: "{{cron_minute_openntpd_check_time}}"
+    month: "{{cron_month_openntpd_check_time}}"
+    weekday: "{{cron_weekday_openntpd_check_time}}"
+    user: "{{cron_user_openntpd_check_time}}"
+    job: "{{cron_job_openntpd_check_time}}"
+  tags:
+    - disable
+    - openntpd
+
+- name: 'file create openntpd.cfg'
+  template:
+    src: "{{file_src_openntpd_cfg}}"
+    dest: "{{file_dst_openntpd_cfg}}"
+    mode: "{{file_mode_openntpd_cfg}}"
+    owner: "{{file_owner_openntpd_cfg}}"
+    group: "{{file_group_openntpd_cfg}}"
+  notify: 'service reload monit'
+  when: (openntpd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - openntpd
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop openntpd'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_openntpd}}"
+  tags:
+    - disable
+    - openntpd
