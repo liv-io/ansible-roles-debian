@@ -1,0 +1,58 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - nginx
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create nginx.conf'
+  template:
+    src: "{{file_src_nginx_conf}}"
+    dest: "{{file_dst_nginx_conf}}"
+    mode: "{{file_mode_nginx_conf}}"
+    owner: "{{file_owner_nginx_conf}}"
+    group: "{{file_group_nginx_conf}}"
+  notify: 'command check nginx'
+  tags:
+    - disable
+    - nginx
+
+- name: 'file create nginx.cfg'
+  template:
+    src: "{{file_src_nginx_cfg}}"
+    dest: "{{file_dst_nginx_cfg}}"
+    mode: "{{file_mode_nginx_cfg}}"
+    owner: "{{file_owner_nginx_cfg}}"
+    group: "{{file_group_nginx_cfg}}"
+  notify: 'service reload monit'
+  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - nginx
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop nginx'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_nginx}}"
+  tags:
+    - disable
+    - nginx

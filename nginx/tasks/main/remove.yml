@@ -1,0 +1,65 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - nginx
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove nginx'
+  package:
+    state: 'absent'
+    name: "{{package_name_nginx}}"
+  tags:
+    - remove
+    - nginx
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove nginx.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_nginx_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - nginx
+
+- name: 'file remove nginx.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_nginx_conf}}"
+  tags:
+    - remove
+    - nginx
+
+- name: 'file remove dhparam.pem'
+  file:
+    state: 'absent'
+    path: "{{file_dst_dhparam_pem}}"
+  tags:
+    - remove
+    - nginx
+
+- name: 'file remove vhosts.d'
+  file:
+    state: 'absent'
+    path: "{{file_dst_vhosts_d}}"
+  tags:
+    - remove
+    - nginx
