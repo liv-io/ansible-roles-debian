@@ -1,0 +1,58 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - haproxy_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create haproxy_exporter.default'
+  template:
+    src: "{{file_src_haproxy_exporter_default}}"
+    dest: "{{file_dst_haproxy_exporter_default}}"
+    mode: "{{file_mode_haproxy_exporter_default}}"
+    owner: "{{file_owner_haproxy_exporter_default}}"
+    group: "{{file_group_haproxy_exporter_default}}"
+  notify: 'service restart haproxy_exporter'
+  tags:
+    - enable
+    - haproxy_exporter
+
+- name: 'file create haproxy_exporter.cfg'
+  template:
+    src: "{{file_src_haproxy_exporter_cfg}}"
+    dest: "{{file_dst_haproxy_exporter_cfg}}"
+    mode: "{{file_mode_haproxy_exporter_cfg}}"
+    owner: "{{file_owner_haproxy_exporter_cfg}}"
+    group: "{{file_group_haproxy_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (haproxy_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - haproxy_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start haproxy_exporter'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_haproxy_exporter}}"
+  tags:
+    - enable
+    - haproxy_exporter

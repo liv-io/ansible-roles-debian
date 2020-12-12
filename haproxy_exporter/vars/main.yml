@@ -1,0 +1,90 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# haproxy_exporter.tar.gz
+file_src_haproxy_exporter_tar_gz: "https://github.com/prometheus/haproxy_exporter/releases/download/v{{haproxy_exporter_version}}/haproxy_exporter-{{haproxy_exporter_version}}.linux-amd64.tar.gz"
+file_dst_haproxy_exporter_tar_gz: "/usr/local/src/haproxy_exporter-{{haproxy_exporter_version}}.linux-amd64.tar.gz"
+file_mode_haproxy_exporter_tar_gz: '0644'
+file_owner_haproxy_exporter_tar_gz: 'root'
+file_group_haproxy_exporter_tar_gz: 'root'
+file_checksum_haproxy_exporter_tar_gz: "sha256:https://github.com/prometheus/haproxy_exporter/releases/download/v{{haproxy_exporter_version}}/sha256sums.txt"
+
+# haproxy_exporter
+file_src_haproxy_exporter: "/usr/local/src/haproxy_exporter-{{haproxy_exporter_version}}.linux-amd64.tar.gz"
+file_dst_haproxy_exporter: '/usr/local/bin'
+file_owner_haproxy_exporter: 'root'
+file_group_haproxy_exporter: 'root'
+file_creates_haproxy_exporter: '/usr/local/bin/haproxy_exporter'
+file_exclude_haproxy_exporter: ['LICENSE', 'NOTICE']
+file_extra_opts_haproxy_exporter: ['--strip-components=1']
+
+# haproxy_exporter.default
+file_src_haproxy_exporter_default: 'templates/main/haproxy_exporter.default'
+file_dst_haproxy_exporter_default: '/etc/default/haproxy_exporter'
+file_mode_haproxy_exporter_default: '0644'
+file_owner_haproxy_exporter_default: 'root'
+file_group_haproxy_exporter_default: 'root'
+
+# haproxy_exporter.service
+file_src_haproxy_exporter_service: 'templates/main/haproxy_exporter.service'
+file_dst_haproxy_exporter_service: '/lib/systemd/system/haproxy_exporter.service'
+file_mode_haproxy_exporter_service: '0644'
+file_owner_haproxy_exporter_service: 'root'
+file_group_haproxy_exporter_service: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# haproxy_exporter.cfg
+file_src_haproxy_exporter_cfg: 'templates/main/haproxy_exporter.cfg'
+file_dst_haproxy_exporter_cfg: '/etc/monit.d/haproxy_exporter.cfg'
+file_mode_haproxy_exporter_cfg: '0640'
+file_owner_haproxy_exporter_cfg: 'root'
+file_group_haproxy_exporter_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service haproxy_exporter
+command_cmd_check_service_haproxy_exporter: 'systemctl cat haproxy_exporter.service > /dev/null 2>&1'
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# haproxy_exporter
+group_name_haproxy_exporter: 'haproxy_exporter'
+group_system_haproxy_exporter: 'yes'
+
+# haproxy_exporter
+user_name_haproxy_exporter: 'haproxy_exporter'
+user_comment_haproxy_exporter: 'HAProxy Exporter'
+user_group_haproxy_exporter: 'haproxy_exporter'
+user_append_haproxy_exporter: 'yes'
+user_home_create_haproxy_exporter: 'no'
+user_home_move_haproxy_exporter: 'no'
+user_home_remove_haproxy_exporter: 'yes'
+user_home_force_haproxy_exporter: 'no'
+user_password_haproxy_exporter: '!'
+user_password_update_haproxy_exporter: 'always'
+user_shell_haproxy_exporter: '/usr/sbin/nologin'
+user_system_haproxy_exporter: 'yes'
+
+# haproxy_exporter
+service_name_haproxy_exporter: 'haproxy_exporter'
+
+# monit
+service_name_monit: 'monit'
