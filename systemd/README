@@ -109,7 +109,7 @@ CONFIG
 
           - section: 'Service'
           - key: 'EnvironmentFile'
-            value: '/etc/sysconfig/crond'
+            value: '/etc/default/crond'
           - key: 'ExecStart'
             value: '/usr/sbin/crond -n $CRONDARGS'
           - key: 'ExecReload'
