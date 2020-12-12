@@ -1,0 +1,90 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - loki
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create loki.default'
+  template:
+    src: "{{file_src_loki_default}}"
+    dest: "{{file_dst_loki_default}}"
+    mode: "{{file_mode_loki_default}}"
+    owner: "{{file_owner_loki_default}}"
+    group: "{{file_group_loki_default}}"
+  tags:
+    - disable
+    - loki
+
+- name: 'file create loki.yaml'
+  template:
+    src: "{{file_src_loki_yaml}}"
+    dest: "{{file_dst_loki_yaml}}"
+    mode: "{{file_mode_loki_yaml}}"
+    owner: "{{file_owner_loki_yaml}}"
+    group: "{{file_group_loki_yaml}}"
+  tags:
+    - disable
+    - loki
+
+- name: 'file create loki_datasource.yaml'
+  template:
+    src: "{{file_src_loki_datasource_yaml}}"
+    dest: "{{file_dst_loki_datasource_yaml}}"
+    mode: "{{file_mode_loki_datasource_yaml}}"
+    owner: "{{file_owner_loki_datasource_yaml}}"
+    group: "{{file_group_loki_datasource_yaml}}"
+  tags:
+    - disable
+    - loki
+
+- name: 'file create loki_prometheus_datasource.yaml'
+  template:
+    src: "{{file_src_loki_prometheus_datasource_yaml}}"
+    dest: "{{file_dst_loki_prometheus_datasource_yaml}}"
+    mode: "{{file_mode_loki_prometheus_datasource_yaml}}"
+    owner: "{{file_owner_loki_prometheus_datasource_yaml}}"
+    group: "{{file_group_loki_prometheus_datasource_yaml}}"
+  tags:
+    - disable
+    - loki
+
+- name: 'file create loki.cfg'
+  template:
+    src: "{{file_src_loki_cfg}}"
+    dest: "{{file_dst_loki_cfg}}"
+    mode: "{{file_mode_loki_cfg}}"
+    owner: "{{file_owner_loki_cfg}}"
+    group: "{{file_group_loki_cfg}}"
+  notify: 'service reload monit'
+  when: (loki_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - loki
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop loki'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_loki}}"
+  tags:
+    - disable
+    - loki

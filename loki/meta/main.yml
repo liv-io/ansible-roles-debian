@@ -1,0 +1,6 @@
+---
+
+dependencies:
+  - {role: alertmanager, when: (loki_alertmanager_state is match('true|yes|enable'))}
+  - {role: grafana, when: (loki_state is match('true|yes|enable'))}
+  - {role: unzip, when: (loki_state is match('true|yes|enable'))}

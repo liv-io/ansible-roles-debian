@@ -1,0 +1,232 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - loki
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create loki'
+  group:
+    state: 'present'
+    name: "{{group_name_loki}}"
+    system: "{{group_system_loki}}"
+  tags:
+    - install
+    - loki
+
+- name: 'user create loki'
+  user:
+    state: 'present'
+    name: "{{user_name_loki}}"
+    comment: "{{user_comment_loki}}"
+    group: "{{user_group_loki}}"
+    append: "{{user_append_loki}}"
+    createhome: "{{user_home_create_loki}}"
+    move_home: "{{user_home_move_loki}}"
+    remove: "{{user_home_remove_loki}}"
+    force: "{{user_home_force_loki}}"
+    password: "{{user_password_loki}}"
+    update_password: "{{user_password_update_loki}}"
+    shell: "{{user_shell_loki}}"
+    system: "{{user_system_loki}}"
+  tags:
+    - install
+    - loki
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_data_dir}}"
+    mode: "{{file_mode_data_dir}}"
+    owner: "{{file_owner_data_dir}}"
+    group: "{{file_group_data_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create loki_data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_loki_data_dir}}"
+    mode: "{{file_mode_loki_data_dir}}"
+    owner: "{{file_owner_loki_data_dir}}"
+    group: "{{file_group_loki_data_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create chunks.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_chunks_dir}}"
+    mode: "{{file_mode_chunks_dir}}"
+    owner: "{{file_owner_chunks_dir}}"
+    group: "{{file_group_chunks_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create boltdb-shipper-active.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_boltdb_shipper_active_dir}}"
+    mode: "{{file_mode_boltdb_shipper_active_dir}}"
+    owner: "{{file_owner_boltdb_shipper_active_dir}}"
+    group: "{{file_group_boltdb_shipper_active_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create boltdb-shipper-cache.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_boltdb_shipper_cache_dir}}"
+    mode: "{{file_mode_boltdb_shipper_cache_dir}}"
+    owner: "{{file_owner_boltdb_shipper_cache_dir}}"
+    group: "{{file_group_boltdb_shipper_cache_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create boltdb-shipper-compactor.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_boltdb_shipper_compactor_dir}}"
+    mode: "{{file_mode_boltdb_shipper_compactor_dir}}"
+    owner: "{{file_owner_boltdb_shipper_compactor_dir}}"
+    group: "{{file_group_boltdb_shipper_compactor_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create rules.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_rules_dir}}"
+    mode: "{{file_mode_rules_dir}}"
+    owner: "{{file_owner_rules_dir}}"
+    group: "{{file_group_rules_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create rules-temp.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_rules_temp_dir}}"
+    mode: "{{file_mode_rules_temp_dir}}"
+    owner: "{{file_owner_rules_temp_dir}}"
+    group: "{{file_group_rules_temp_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file create loki_etc.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_loki_etc_dir}}"
+    mode: "{{file_mode_loki_etc_dir}}"
+    owner: "{{file_owner_loki_etc_dir}}"
+    group: "{{file_group_loki_etc_dir}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file download loki.zip'
+  get_url:
+    url: "{{file_src_loki_zip}}"
+    dest: "{{file_dst_loki_zip}}"
+    mode: "{{file_mode_loki_zip}}"
+    owner: "{{file_owner_loki_zip}}"
+    group: "{{file_group_loki_zip}}"
+    checksum: "{{file_checksum_loki_zip}}"
+  tags:
+    - install
+    - loki
+
+- name: 'file unarchive loki'
+  unarchive:
+    src: "{{file_src_loki}}"
+    dest: "{{file_dst_loki}}"
+    owner: "{{file_owner_loki}}"
+    group: "{{file_group_loki}}"
+    remote_src: 'yes'
+  tags:
+    - install
+    - loki
+
+- name: 'file create loki.service'
+  template:
+    src: "{{file_src_loki_service}}"
+    dest: "{{file_dst_loki_service}}"
+    mode: "{{file_mode_loki_service}}"
+    owner: "{{file_owner_loki_service}}"
+    group: "{{file_group_loki_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - loki
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (loki_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - loki
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (loki_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - loki
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (loki_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - loki
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - loki

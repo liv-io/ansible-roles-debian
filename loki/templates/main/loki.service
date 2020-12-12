@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Loki
+After=syslog.target network.target
+
+[Service]
+User=loki
+Group=loki
+EnvironmentFile={{file_dst_loki_default}}
+ExecStart={{file_creates_loki}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
