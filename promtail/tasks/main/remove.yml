@@ -1,0 +1,112 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - promtail
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'command check service promtail'
+  shell: "{{command_cmd_check_service_promtail}}"
+  register: register_check_service_promtail
+  changed_when: (register_check_service_promtail.rc == 0)
+  failed_when: (register_check_service_promtail.rc > 1)
+  check_mode: 'no'
+  tags:
+    - remove
+    - promtail
+
+- name: 'service stop promtail'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_promtail}}"
+  when: (register_check_service_promtail.rc == 0)
+  tags:
+    - remove
+    - promtail
+
+- name: 'user remove promtail'
+  user:
+    state: 'absent'
+    name: "{{user_name_promtail}}"
+    remove: "{{user_home_remove_promtail}}"
+    force: "{{user_home_force_promtail}}"
+  tags:
+    - remove
+    - promtail
+
+- name: 'group remove promtail'
+  group:
+    state: 'absent'
+    name: "{{group_name_promtail}}"
+  tags:
+    - remove
+    - promtail
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove promtail.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_promtail_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - promtail
+
+- name: 'file remove promtail_etc.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_promtail_etc_dir}}"
+  tags:
+    - remove
+    - promtail
+
+- name: 'file remove promtail.default'
+  file:
+    state: 'absent'
+    path: "{{file_dst_promtail_default}}"
+  tags:
+    - remove
+    - promtail
+
+- name: 'file remove promtail.service'
+  file:
+    state: 'absent'
+    path: "{{file_dst_promtail_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - remove
+    - promtail
+
+- name: 'file remove promtail'
+  file:
+    state: 'absent'
+    path: "{{file_creates_promtail}}"
+  tags:
+    - remove
+    - promtail
+
+- name: 'file remove promtail.zip'
+  file:
+    state: 'absent'
+    path: "{{file_dst_promtail_zip}}"
+  tags:
+    - remove
+    - promtail

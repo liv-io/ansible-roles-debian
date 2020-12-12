@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Promtail
+After=syslog.target network.target
+
+[Service]
+User=promtail
+Group=promtail
+EnvironmentFile={{file_dst_promtail_default}}
+ExecStart={{file_creates_promtail}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

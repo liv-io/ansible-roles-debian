@@ -1,0 +1,57 @@
+---
+
+promtail_state: 'enable'
+
+promtail_monitor_monit_state: 'false'
+
+promtail_pipeline_stages_all: |
+  {% raw %}
+  # Extract SSH user and source IP address and generate metrics
+  - match:
+      selector: '{job="syslog"}'
+      stages:
+      - regex:
+          expression: 'Accepted\spublickey\sfor\s(?P<ssh_user>(\w+))\sfrom\s(?P<ssh_source_ip>(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})'
+      - labels:
+          ssh_user:
+          ssh_source_ip:
+      - metrics:
+          ssh_login:
+            type: Counter
+            description: "SSH login counter"
+            source: ssh_user
+            config:
+              action: inc
+
+  # Extract SSH user and session status (opened or closed)
+  - match:
+      selector: '{job="syslog"}'
+      stages:
+      - regex:
+          expression: 'sshd.*session\s(?P<ssh_session_state>(\w+))\sfor user\s(?P<ssh_session_user>(\w+)).*'
+      - labels:
+          ssh_session_user:
+          ssh_session_state:
+      - metrics:
+          ssh_session:
+            type: Counter
+            description: "SSH login/logout counter"
+            source: ssh_session_state
+            config:
+              action: inc
+
+  # Extract name for users called su or sudo
+  - match:
+      selector: '{job="syslog"}'
+      stages:
+      - regex:
+          expression: "su.*session\\sopened\\sfor\\suser\\sroot\\sby\\s(?P<root_login_user>(\\w+))\\("
+      - labels:
+          root_login_user:
+  {% endraw %}
+
+promtail_pipeline_stages_group: ''
+
+promtail_pipeline_stages_host: ''
+
+promtail_version: '2.0.0'

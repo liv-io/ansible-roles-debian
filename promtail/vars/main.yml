@@ -1,0 +1,101 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# promtail_etc.dir
+file_dst_promtail_etc_dir: '/etc/promtail'
+file_mode_promtail_etc_dir: '0755'
+file_owner_promtail_etc_dir: 'root'
+file_group_promtail_etc_dir: 'root'
+
+# promtail.zip
+file_src_promtail_zip: "https://github.com/grafana/loki/releases/download/v{{promtail_version}}/promtail-linux-amd64.zip"
+file_dst_promtail_zip: '/usr/local/src/promtail-linux-amd64.zip'
+file_mode_promtail_zip: '0644'
+file_owner_promtail_zip: 'root'
+file_group_promtail_zip: 'root'
+file_checksum_promtail_zip: "sha256:https://github.com/grafana/loki/releases/download/v{{promtail_version}}/SHA256SUMS"
+
+# promtail
+file_src_promtail: "/usr/local/src/promtail-linux-amd64.zip"
+file_dst_promtail: '/usr/local/bin'
+file_owner_promtail: 'root'
+file_group_promtail: 'root'
+file_creates_promtail: '/usr/local/bin/promtail-linux-amd64'
+
+# promtail.default
+file_src_promtail_default: 'templates/main/promtail.default'
+file_dst_promtail_default: '/etc/default/promtail'
+file_mode_promtail_default: '0644'
+file_owner_promtail_default: 'root'
+file_group_promtail_default: 'root'
+
+# promtail.service
+file_src_promtail_service: 'templates/main/promtail.service'
+file_dst_promtail_service: '/lib/systemd/system/promtail.service'
+file_mode_promtail_service: '0644'
+file_owner_promtail_service: 'root'
+file_group_promtail_service: 'root'
+
+# promtail.yaml
+file_src_promtail_yaml: 'templates/main/promtail.yaml'
+file_dst_promtail_yaml: '/etc/promtail/promtail.yaml'
+file_mode_promtail_yaml: '0644'
+file_owner_promtail_yaml: 'root'
+file_group_promtail_yaml: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# promtail.cfg
+file_src_promtail_cfg: 'templates/main/promtail.cfg'
+file_dst_promtail_cfg: '/etc/monit.d/promtail.cfg'
+file_mode_promtail_cfg: '0640'
+file_owner_promtail_cfg: 'root'
+file_group_promtail_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service promtail
+command_cmd_check_service_promtail: 'systemctl cat promtail.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# promtail
+group_name_promtail: 'promtail'
+group_system_promtail: 'yes'
+
+# promtail
+user_name_promtail: 'promtail'
+user_comment_promtail: 'Promtail'
+user_group_promtail: 'promtail'
+user_append_promtail: 'yes'
+user_home_create_promtail: 'no'
+user_home_move_promtail: 'no'
+user_home_remove_promtail: 'yes'
+user_home_force_promtail: 'no'
+user_password_promtail: '!'
+user_password_update_promtail: 'always'
+user_shell_promtail: '/usr/sbin/nologin'
+user_system_promtail: 'yes'
+
+# monit
+service_name_monit: 'monit'
+
+# promtail
+service_name_promtail: 'promtail'

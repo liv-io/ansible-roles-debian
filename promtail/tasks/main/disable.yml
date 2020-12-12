@@ -1,0 +1,68 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - promtail
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create promtail.default'
+  template:
+    src: "{{file_src_promtail_default}}"
+    dest: "{{file_dst_promtail_default}}"
+    mode: "{{file_mode_promtail_default}}"
+    owner: "{{file_owner_promtail_default}}"
+    group: "{{file_group_promtail_default}}"
+  tags:
+    - disable
+    - promtail
+
+- name: 'file create promtail.yaml'
+  template:
+    src: "{{file_src_promtail_yaml}}"
+    dest: "{{file_dst_promtail_yaml}}"
+    mode: "{{file_mode_promtail_yaml}}"
+    owner: "{{file_owner_promtail_yaml}}"
+    group: "{{file_group_promtail_yaml}}"
+  tags:
+    - disable
+    - promtail
+
+- name: 'file create promtail.cfg'
+  template:
+    src: "{{file_src_promtail_cfg}}"
+    dest: "{{file_dst_promtail_cfg}}"
+    mode: "{{file_mode_promtail_cfg}}"
+    owner: "{{file_owner_promtail_cfg}}"
+    group: "{{file_group_promtail_cfg}}"
+  notify: 'service reload monit'
+  when: (promtail_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - promtail
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop promtail'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_promtail}}"
+  tags:
+    - disable
+    - promtail

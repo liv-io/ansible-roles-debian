@@ -1,0 +1,144 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - promtail
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create promtail'
+  group:
+    state: 'present'
+    name: "{{group_name_promtail}}"
+    system: "{{group_system_promtail}}"
+  tags:
+    - install
+    - promtail
+
+- name: 'user create promtail'
+  user:
+    state: 'present'
+    name: "{{user_name_promtail}}"
+    comment: "{{user_comment_promtail}}"
+    group: "{{user_group_promtail}}"
+    append: "{{user_append_promtail}}"
+    createhome: "{{user_home_create_promtail}}"
+    move_home: "{{user_home_move_promtail}}"
+    remove: "{{user_home_remove_promtail}}"
+    force: "{{user_home_force_promtail}}"
+    password: "{{user_password_promtail}}"
+    update_password: "{{user_password_update_promtail}}"
+    shell: "{{user_shell_promtail}}"
+    system: "{{user_system_promtail}}"
+  tags:
+    - install
+    - promtail
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create promtail_etc.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_promtail_etc_dir}}"
+    mode: "{{file_mode_promtail_etc_dir}}"
+    owner: "{{file_owner_promtail_etc_dir}}"
+    group: "{{file_group_promtail_etc_dir}}"
+  tags:
+    - install
+    - promtail
+
+- name: 'file download promtail.zip'
+  get_url:
+    url: "{{file_src_promtail_zip}}"
+    dest: "{{file_dst_promtail_zip}}"
+    mode: "{{file_mode_promtail_zip}}"
+    owner: "{{file_owner_promtail_zip}}"
+    group: "{{file_group_promtail_zip}}"
+    checksum: "{{file_checksum_promtail_zip}}"
+  tags:
+    - install
+    - promtail
+
+- name: 'file unarchive promtail'
+  unarchive:
+    src: "{{file_src_promtail}}"
+    dest: "{{file_dst_promtail}}"
+    owner: "{{file_owner_promtail}}"
+    group: "{{file_group_promtail}}"
+    remote_src: 'yes'
+  tags:
+    - install
+    - promtail
+
+- name: 'file create promtail.service'
+  template:
+    src: "{{file_src_promtail_service}}"
+    dest: "{{file_dst_promtail_service}}"
+    mode: "{{file_mode_promtail_service}}"
+    owner: "{{file_owner_promtail_service}}"
+    group: "{{file_group_promtail_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - promtail
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (promtail_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - promtail
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (promtail_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - promtail
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (promtail_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - promtail
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - promtail
