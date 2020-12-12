@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - grafana
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create grafana.ini'
+  template:
+    src: "{{file_src_grafana_ini}}"
+    dest: "{{file_dst_grafana_ini}}"
+    mode: "{{file_mode_grafana_ini}}"
+    owner: "{{file_owner_grafana_ini}}"
+    group: "{{file_group_grafana_ini}}"
+  tags:
+    - disable
+    - grafana
+
+- name: 'file create grafana.cfg'
+  template:
+    src: "{{file_src_grafana_cfg}}"
+    dest: "{{file_dst_grafana_cfg}}"
+    mode: "{{file_mode_grafana_cfg}}"
+    owner: "{{file_owner_grafana_cfg}}"
+    group: "{{file_group_grafana_cfg}}"
+  notify: 'service reload monit'
+  when: (grafana_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - grafana
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop grafana'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_grafana}}"
+  tags:
+    - disable
+    - grafana

@@ -1,0 +1,99 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - grafana
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file copy grafana.gpg'
+  copy:
+    src: "{{file_src_grafana_gpg}}"
+    dest: "{{file_dst_grafana_gpg}}"
+    mode: "{{file_mode_grafana_gpg}}"
+    owner: "{{file_owner_grafana_gpg}}"
+    group: "{{file_group_grafana_gpg}}"
+  register: register_grafana_gpg
+  tags:
+    - install
+    - grafana
+
+- name: 'file copy grafana.list'
+  copy:
+    src: "{{file_src_grafana_list}}"
+    dest: "{{file_dst_grafana_list}}"
+    mode: "{{file_mode_grafana_list}}"
+    owner: "{{file_owner_grafana_list}}"
+    group: "{{file_group_grafana_list}}"
+  tags:
+    - install
+    - grafana
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (grafana_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - grafana
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (grafana_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - grafana
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command add grafana.key'
+  shell: "{{command_cmd_add_grafana_key}}"
+  check_mode: 'no'
+  when: register_grafana_gpg.changed
+  tags:
+    - install
+    - grafana
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (grafana_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - grafana
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install grafana'
+  package:
+    state: 'present'
+    name: "{{package_name_grafana}}"
+  tags:
+    - install
+    - grafana

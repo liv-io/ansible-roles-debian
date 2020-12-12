@@ -1,0 +1,47 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - grafana
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'grafana_plugin install plugin'
+  grafana_plugin:
+    state: 'present'
+    name: "{{item.name}}"
+    grafana_plugins_dir: "{{(item.dst|default('/var/lib/grafana/plugins'))}}"
+    grafana_plugin_url: "{{(item.src|default(omit))}}"
+    grafana_list: "{{(item.repo|default(omit))}}"
+    version: "{{(item.version|default('latest'))}}"
+  loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"
+  notify: 'service restart grafana'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - grafana
+
+- name: 'grafana_plugin remove plugin'
+  grafana_plugin:
+    state: 'absent'
+    name: "{{item.name}}"
+    grafana_plugins_dir: "{{(item.dst|default('/var/lib/grafana/plugins'))}}"
+  loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"
+  notify: 'service restart grafana'
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - grafana
