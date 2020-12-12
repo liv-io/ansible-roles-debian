@@ -1,0 +1,93 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# smokeping_prober.tar.gz
+file_src_smokeping_prober_tar_gz: "https://github.com/SuperQ/smokeping_prober/releases/download/v{{smokeping_prober_version}}/smokeping_prober-{{smokeping_prober_version}}.linux-amd64.tar.gz"
+file_dst_smokeping_prober_tar_gz: "/usr/local/src/smokeping_prober-{{smokeping_prober_version}}.linux-amd64.tar.gz"
+file_mode_smokeping_prober_tar_gz: '0644'
+file_owner_smokeping_prober_tar_gz: 'root'
+file_group_smokeping_prober_tar_gz: 'root'
+file_checksum_smokeping_prober_tar_gz: "sha256:https://github.com/SuperQ/smokeping_prober/releases/download/v{{smokeping_prober_version}}/sha256sums.txt"
+
+# smokeping_prober
+file_src_smokeping_prober: "/usr/local/src/smokeping_prober-{{smokeping_prober_version}}.linux-amd64.tar.gz"
+file_dst_smokeping_prober: '/usr/local/bin'
+file_owner_smokeping_prober: 'root'
+file_group_smokeping_prober: 'root'
+file_creates_smokeping_prober: '/usr/local/bin/smokeping_prober'
+file_exclude_smokeping_prober: ['LICENSE']
+file_extra_opts_smokeping_prober: ['--strip-components=1']
+
+# smokeping_prober.default
+file_src_smokeping_prober_default: 'templates/main/smokeping_prober.default'
+file_dst_smokeping_prober_default: '/etc/default/smokeping_prober'
+file_mode_smokeping_prober_default: '0644'
+file_owner_smokeping_prober_default: 'root'
+file_group_smokeping_prober_default: 'root'
+
+# smokeping_prober.service
+file_src_smokeping_prober_service: 'templates/main/smokeping_prober.service'
+file_dst_smokeping_prober_service: '/lib/systemd/system/smokeping_prober.service'
+file_mode_smokeping_prober_service: '0644'
+file_owner_smokeping_prober_service: 'root'
+file_group_smokeping_prober_service: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# smokeping_prober.cfg
+file_src_smokeping_prober_cfg: 'templates/main/smokeping_prober.cfg'
+file_dst_smokeping_prober_cfg: '/etc/monit.d/smokeping_prober.cfg'
+file_mode_smokeping_prober_cfg: '0640'
+file_owner_smokeping_prober_cfg: 'root'
+file_group_smokeping_prober_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service smokeping_prober
+command_cmd_check_service_smokeping_prober: 'systemctl cat smokeping_prober.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+# set capability
+command_cmd_set_capability: "setcap cap_net_raw=+ep /usr/local/bin/smokeping_prober"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# smokeping_prober
+group_name_smokeping_prober: 'smokeping_prober'
+group_system_smokeping_prober: 'yes'
+
+# smokeping_prober
+user_name_smokeping_prober: 'smokeping_prober'
+user_comment_smokeping_prober: 'Smokeping Prober'
+user_group_smokeping_prober: 'smokeping_prober'
+user_append_smokeping_prober: 'yes'
+user_home_create_smokeping_prober: 'no'
+user_home_move_smokeping_prober: 'no'
+user_home_remove_smokeping_prober: 'yes'
+user_home_force_smokeping_prober: 'no'
+user_password_smokeping_prober: '!'
+user_password_update_smokeping_prober: 'always'
+user_shell_smokeping_prober: '/usr/sbin/nologin'
+user_system_smokeping_prober: 'yes'
+
+# monit
+service_name_monit: 'monit'
+
+# smokeping_prober
+service_name_smokeping_prober: 'smokeping_prober'

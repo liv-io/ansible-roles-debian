@@ -1,0 +1,16 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Smokeping Prober
+After=syslog.target network.target
+
+[Service]
+User=smokeping_prober
+Group=smokeping_prober
+EnvironmentFile={{file_dst_smokeping_prober_default}}
+ExecStart={{file_creates_smokeping_prober}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+CapabilityBoundingSet=CAP_NET_RAW
+
+[Install]
+WantedBy=multi-user.target

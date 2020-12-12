@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - smokeping_prober
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create smokeping_prober.default'
+  template:
+    src: "{{file_src_smokeping_prober_default}}"
+    dest: "{{file_dst_smokeping_prober_default}}"
+    mode: "{{file_mode_smokeping_prober_default}}"
+    owner: "{{file_owner_smokeping_prober_default}}"
+    group: "{{file_group_smokeping_prober_default}}"
+  tags:
+    - disable
+    - smokeping_prober
+
+- name: 'file create smokeping_prober.cfg'
+  template:
+    src: "{{file_src_smokeping_prober_cfg}}"
+    dest: "{{file_dst_smokeping_prober_cfg}}"
+    mode: "{{file_mode_smokeping_prober_cfg}}"
+    owner: "{{file_owner_smokeping_prober_cfg}}"
+    group: "{{file_group_smokeping_prober_cfg}}"
+  notify: 'service reload monit'
+  when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - smokeping_prober
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop smokeping_prober'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_smokeping_prober}}"
+  tags:
+    - disable
+    - smokeping_prober

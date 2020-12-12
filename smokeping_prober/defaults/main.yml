@@ -1,0 +1,9 @@
+---
+
+smokeping_prober_state: 'enable'
+
+smokeping_prober_hosts: []
+
+smokeping_prober_monitor_monit_state: 'false'
+
+smokeping_prober_version: '0.3.0'

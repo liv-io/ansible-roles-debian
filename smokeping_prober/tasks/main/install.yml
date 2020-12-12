@@ -1,0 +1,144 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - smokeping_prober
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create smokeping_prober'
+  group:
+    state: 'present'
+    name: "{{group_name_smokeping_prober}}"
+    system: "{{group_system_smokeping_prober}}"
+  tags:
+    - install
+    - smokeping_prober
+
+- name: 'user create smokeping_prober'
+  user:
+    state: 'present'
+    name: "{{user_name_smokeping_prober}}"
+    comment: "{{user_comment_smokeping_prober}}"
+    group: "{{user_group_smokeping_prober}}"
+    append: "{{user_append_smokeping_prober}}"
+    createhome: "{{user_home_create_smokeping_prober}}"
+    move_home: "{{user_home_move_smokeping_prober}}"
+    remove: "{{user_home_remove_smokeping_prober}}"
+    force: "{{user_home_force_smokeping_prober}}"
+    password: "{{user_password_smokeping_prober}}"
+    update_password: "{{user_password_update_smokeping_prober}}"
+    shell: "{{user_shell_smokeping_prober}}"
+    system: "{{user_system_smokeping_prober}}"
+  tags:
+    - install
+    - smokeping_prober
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file download smokeping_prober.tar.gz'
+  get_url:
+    url: "{{file_src_smokeping_prober_tar_gz}}"
+    dest: "{{file_dst_smokeping_prober_tar_gz}}"
+    mode: "{{file_mode_smokeping_prober_tar_gz}}"
+    owner: "{{file_owner_smokeping_prober_tar_gz}}"
+    group: "{{file_group_smokeping_prober_tar_gz}}"
+    checksum: "{{file_checksum_smokeping_prober_tar_gz}}"
+  tags:
+    - install
+    - smokeping_prober
+
+- name: 'file unarchive smokeping_prober'
+  unarchive:
+    src: "{{file_src_smokeping_prober}}"
+    dest: "{{file_dst_smokeping_prober}}"
+    owner: "{{file_owner_smokeping_prober}}"
+    group: "{{file_group_smokeping_prober}}"
+    exclude: "{{file_exclude_smokeping_prober}}"
+    extra_opts: "{{file_extra_opts_smokeping_prober}}"
+    remote_src: 'yes'
+  register: register_file_unarchive_smokeping_prober
+  tags:
+    - install
+    - smokeping_prober
+
+- name: 'file create smokeping_prober.service'
+  template:
+    src: "{{file_src_smokeping_prober_service}}"
+    dest: "{{file_dst_smokeping_prober_service}}"
+    mode: "{{file_mode_smokeping_prober_service}}"
+    owner: "{{file_owner_smokeping_prober_service}}"
+    group: "{{file_group_smokeping_prober_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - smokeping_prober
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - smokeping_prober
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (smokeping_prober_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - smokeping_prober
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command set capability'
+  shell: "{{command_cmd_set_capability}}"
+  check_mode: 'no'
+  when: (register_file_unarchive_smokeping_prober is changed)
+  tags:
+    - install
+    - smokeping_prober
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - smokeping_prober
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - smokeping_prober
