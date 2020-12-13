@@ -1,0 +1,47 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - restic
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'cron remove restic_run-backup'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_restic_run_backup}}"
+    cron_file: "{{cron_cron_file_restic_run_backup}}"
+    user: "{{cron_user_restic_run_backup}}"
+  tags:
+    - remove
+    - restic
+
+- name: 'file remove restic_run-backup'
+  file:
+    state: 'absent'
+    path: "{{file_dst_restic_run_backup}}"
+  no_log: 'true'
+  tags:
+    - remove
+    - restic
+
+- name: 'file remove restic_etc.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_restic_etc_dir}}"
+  tags:
+    - remove
+    - restic
