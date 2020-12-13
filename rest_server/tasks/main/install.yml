@@ -1,0 +1,158 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'group create rest-server'
+  group:
+    state: 'present'
+    name: "{{group_name_rest_server}}"
+    system: "{{group_system_rest_server}}"
+  tags:
+    - install
+    - rest_server
+
+- name: 'user create rest-server'
+  user:
+    state: 'present'
+    name: "{{user_name_rest_server}}"
+    comment: "{{user_comment_rest_server}}"
+    group: "{{user_group_rest_server}}"
+    append: "{{user_append_rest_server}}"
+    home: "{{user_home_rest_server}}"
+    createhome: "{{user_home_create_rest_server}}"
+    move_home: "{{user_home_move_rest_server}}"
+    remove: "{{user_home_remove_rest_server}}"
+    force: "{{user_home_force_rest_server}}"
+    password: "{{user_password_rest_server}}"
+    update_password: "{{user_password_update_rest_server}}"
+    shell: "{{user_shell_rest_server}}"
+    system: "{{user_system_rest_server}}"
+  tags:
+    - install
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_data_dir}}"
+    mode: "{{file_mode_data_dir}}"
+    owner: "{{file_owner_data_dir}}"
+    group: "{{file_group_data_dir}}"
+  tags:
+    - install
+    - rest_server
+
+- name: 'file create rest-server_data.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_rest_server_data_dir}}"
+    mode: "{{file_mode_rest_server_data_dir}}"
+    owner: "{{file_owner_rest_server_data_dir}}"
+    group: "{{file_group_rest_server_data_dir}}"
+  tags:
+    - install
+    - rest_server
+
+- name: 'file download rest-server.tar.gz'
+  get_url:
+    url: "{{file_src_rest_server_tar_gz}}"
+    dest: "{{file_dst_rest_server_tar_gz}}"
+    mode: "{{file_mode_rest_server_tar_gz}}"
+    owner: "{{file_owner_rest_server_tar_gz}}"
+    group: "{{file_group_rest_server_tar_gz}}"
+    checksum: "{{file_checksum_rest_server_tar_gz}}"
+  tags:
+    - install
+    - rest_server
+
+- name: 'file unarchive rest-server'
+  unarchive:
+    src: "{{file_src_rest_server}}"
+    dest: "{{file_dst_rest_server}}"
+    owner: "{{file_owner_rest_server}}"
+    group: "{{file_group_rest_server}}"
+    exclude: "{{file_exclude_rest_server}}"
+    extra_opts: "{{file_extra_opts_rest_server}}"
+    remote_src: 'yes'
+  tags:
+    - install
+    - rest_server
+
+- name: 'file create rest-server.service'
+  template:
+    src: "{{file_src_rest_server_service}}"
+    dest: "{{file_dst_rest_server_service}}"
+    mode: "{{file_mode_rest_server_service}}"
+    owner: "{{file_owner_rest_server_service}}"
+    group: "{{file_group_rest_server_service}}"
+  notify: 'command systemctl daemon-reload'
+  tags:
+    - install
+    - rest_server
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (rest_server_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - rest_server
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (rest_server_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (rest_server_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# META
+#-------------------------------------------------------------------------------
+
+- name: 'meta flush handlers'
+  meta: 'flush_handlers'
+  tags:
+    - install
+    - rest_server

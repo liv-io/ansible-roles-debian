@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Rest Server
+After=syslog.target network.target
+
+[Service]
+User=rest-server
+Group=rest-server
+EnvironmentFile={{file_dst_rest_server_default}}
+ExecStart={{file_creates_rest_server}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

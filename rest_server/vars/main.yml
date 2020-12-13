@@ -1,0 +1,103 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# data.dir
+file_dst_data_dir: '/data'
+file_mode_data_dir: '0755'
+file_owner_data_dir: 'root'
+file_group_data_dir: 'root'
+
+# rest-server_data.dir
+file_dst_rest_server_data_dir: '/data/rest-server'
+file_mode_rest_server_data_dir: '0750'
+file_owner_rest_server_data_dir: 'rest-server'
+file_group_rest_server_data_dir: 'rest-server'
+
+# rest-server.tar.gz
+file_src_rest_server_tar_gz: "https://github.com/restic/rest-server/releases/download/v{{rest_server_version}}/rest-server_{{rest_server_version}}_linux_amd64.tar.gz"
+file_dst_rest_server_tar_gz: "/usr/local/src/rest-server_{{rest_server_version}}_linux_amd64.tar.gz"
+file_mode_rest_server_tar_gz: '0644'
+file_owner_rest_server_tar_gz: 'root'
+file_group_rest_server_tar_gz: 'root'
+file_checksum_rest_server_tar_gz: "sha256:https://github.com/restic/rest-server/releases/download/v{{rest_server_version}}/SHA256SUMS"
+
+# rest-server
+file_src_rest_server: "/usr/local/src/rest-server_{{rest_server_version}}_linux_amd64.tar.gz"
+file_dst_rest_server: '/usr/local/bin'
+file_owner_rest_server: 'root'
+file_group_rest_server: 'root'
+file_creates_rest_server: '/usr/local/bin/rest-server'
+file_exclude_rest_server: ['CHANGELOG.md', 'LICENSE', 'README.md']
+file_extra_opts_rest_server: ['--strip-components=1']
+
+# rest-server.default
+file_src_rest_server_default: 'templates/main/rest-server.default'
+file_dst_rest_server_default: '/etc/default/rest-server'
+file_mode_rest_server_default: '0644'
+file_owner_rest_server_default: 'root'
+file_group_rest_server_default: 'root'
+
+# rest-server.service
+file_src_rest_server_service: 'templates/main/rest-server.service'
+file_dst_rest_server_service: '/lib/systemd/system/rest-server.service'
+file_mode_rest_server_service: '0644'
+file_owner_rest_server_service: 'root'
+file_group_rest_server_service: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# rest-server.cfg
+file_src_rest_server_cfg: 'templates/main/rest-server.cfg'
+file_dst_rest_server_cfg: '/etc/monit.d/rest-server.cfg'
+file_mode_rest_server_cfg: '0640'
+file_owner_rest_server_cfg: 'root'
+file_group_rest_server_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service rest-server
+command_cmd_check_service_rest_server: 'systemctl cat rest-server.service > /dev/null 2>&1'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# rest-server
+group_name_rest_server: 'rest-server'
+group_system_rest_server: 'yes'
+
+# rest-server
+user_name_rest_server: 'rest-server'
+user_comment_rest_server: 'Rest Server'
+user_group_rest_server: 'rest-server'
+user_append_rest_server: 'yes'
+user_home_rest_server: '/nonexistent'
+user_home_create_rest_server: 'no'
+user_home_move_rest_server: 'no'
+user_home_remove_rest_server: 'no'
+user_home_force_rest_server: 'no'
+user_password_rest_server: '!'
+user_password_update_rest_server: 'always'
+user_shell_rest_server: '/usr/sbin/nologin'
+user_system_rest_server: 'yes'
+
+# monit
+service_name_monit: 'monit'
+
+# rest-server
+service_name_rest_server: 'rest-server'

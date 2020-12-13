@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+OPTIONS="{% for item in (rest_server_options|default([])) %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}"

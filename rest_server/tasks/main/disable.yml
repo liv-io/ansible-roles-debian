@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create rest-server.default'
+  template:
+    src: "{{file_src_rest_server_default}}"
+    dest: "{{file_dst_rest_server_default}}"
+    mode: "{{file_mode_rest_server_default}}"
+    owner: "{{file_owner_rest_server_default}}"
+    group: "{{file_group_rest_server_default}}"
+  tags:
+    - disable
+    - rest_server
+
+- name: 'file create rest-server.cfg'
+  template:
+    src: "{{file_src_rest_server_cfg}}"
+    dest: "{{file_dst_rest_server_cfg}}"
+    mode: "{{file_mode_rest_server_cfg}}"
+    owner: "{{file_owner_rest_server_cfg}}"
+    group: "{{file_group_rest_server_cfg}}"
+  notify: 'service reload monit'
+  when: (rest_server_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop rest-server'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_rest_server}}"
+  tags:
+    - disable
+    - rest_server
