@@ -40,7 +40,7 @@
 * Roles can proxy HTTP/HTTPS traffic through Squid forward proxy
 * Host-based firewall restricts ingress and egress traffic by default
 * Restic and rest-server are available as backup solution
-* OpenNTPD is configurable as NTP client and server
+* OpenNTPD or Chrony is configurable as NTP client and server
 * Unbound is available as resolving DNS server
 * NSD is available as authoritative DNS server
 * Prometheus has built-in alerting rules and Grafana dashboards

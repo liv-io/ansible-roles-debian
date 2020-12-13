@@ -1,0 +1,83 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - chrony
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove chrony'
+  package:
+    state: 'absent'
+    name: "{{package_name_chrony}}"
+  tags:
+    - remove
+    - chrony
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove chronyd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chronyd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - chrony
+
+- name: 'cron remove chrony_check-time'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_chrony_check_time}}"
+    user: "{{cron_user_chrony_check_time}}"
+  tags:
+    - remove
+    - chrony
+
+- name: 'file remove chrony_check-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chrony_check_time}}"
+  tags:
+    - remove
+    - chrony
+
+- name: 'cron remove chrony_update-time'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_chrony_update_time}}"
+    user: "{{cron_user_chrony_update_time}}"
+  tags:
+    - remove
+    - chrony
+
+- name: 'file remove chrony_update-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chrony_update_time}}"
+  tags:
+    - remove
+    - chrony
+
+- name: 'file remove chrony.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chrony_conf}}"
+  tags:
+    - remove
+    - chrony

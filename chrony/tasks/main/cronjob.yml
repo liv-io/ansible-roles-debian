@@ -1,0 +1,88 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - cronjob
+    - chrony
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop chronyd'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_chronyd}}"
+  tags:
+    - cronjob
+    - chrony
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create chrony.conf'
+  template:
+    src: "{{file_src_chrony_conf}}"
+    dest: "{{file_dst_chrony_conf}}"
+    mode: "{{file_mode_chrony_conf}}"
+    owner: "{{file_owner_chrony_conf}}"
+    group: "{{file_group_chrony_conf}}"
+  tags:
+    - cronjob
+    - chrony
+
+- name: 'file remove chrony_check-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chrony_check_time}}"
+  tags:
+    - cronjob
+    - chrony
+
+- name: 'cron remove chrony_check-time'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_chrony_check_time}}"
+    user: "{{cron_user_chrony_check_time}}"
+  tags:
+    - cronjob
+    - chrony
+
+- name: 'file create chrony_update-time'
+  template:
+    src: "{{file_src_chrony_update_time}}"
+    dest: "{{file_dst_chrony_update_time}}"
+    mode: "{{file_mode_chrony_update_time}}"
+    owner: "{{file_owner_chrony_update_time}}"
+    group: "{{file_group_chrony_update_time}}"
+  tags:
+    - cronjob
+    - chrony
+
+- name: 'cron create chrony_update-time'
+  cron:
+    state: 'present'
+    disabled: 'no'
+    name: "{{cron_name_chrony_update_time}}"
+    day: "{{cron_day_chrony_update_time}}"
+    hour: "{{cron_hour_chrony_update_time}}"
+    minute: "{{cron_minute_chrony_update_time}}"
+    month: "{{cron_month_chrony_update_time}}"
+    weekday: "{{cron_weekday_chrony_update_time}}"
+    user: "{{cron_user_chrony_update_time}}"
+    job: "{{cron_job_chrony_update_time}}"
+  tags:
+    - cronjob
+    - chrony

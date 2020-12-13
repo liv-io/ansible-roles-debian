@@ -1,0 +1,98 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - chrony
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create chrony.conf'
+  template:
+    src: "{{file_src_chrony_conf}}"
+    dest: "{{file_dst_chrony_conf}}"
+    mode: "{{file_mode_chrony_conf}}"
+    owner: "{{file_owner_chrony_conf}}"
+    group: "{{file_group_chrony_conf}}"
+  tags:
+    - disable
+    - chrony
+
+- name: 'file remove chrony_check-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chrony_check_time}}"
+  tags:
+    - disable
+    - chrony
+
+- name: 'cron create chrony_check-time'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_chrony_check_time}}"
+    day: "{{cron_day_chrony_check_time}}"
+    hour: "{{cron_hour_chrony_check_time}}"
+    minute: "{{cron_minute_chrony_check_time}}"
+    month: "{{cron_month_chrony_check_time}}"
+    weekday: "{{cron_weekday_chrony_check_time}}"
+    user: "{{cron_user_chrony_check_time}}"
+    job: "{{cron_job_chrony_check_time}}"
+  tags:
+    - disable
+    - chrony
+
+- name: 'file remove chrony_update-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_chrony_update_time}}"
+  tags:
+    - disable
+    - chrony
+
+- name: 'cron remove chrony_update-time'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_chrony_update_time}}"
+    user: "{{cron_user_chrony_update_time}}"
+  tags:
+    - disable
+    - chrony
+
+- name: 'file create chronyd.cfg'
+  template:
+    src: "{{file_src_chronyd_cfg}}"
+    dest: "{{file_dst_chronyd_cfg}}"
+    mode: "{{file_mode_chronyd_cfg}}"
+    owner: "{{file_owner_chronyd_cfg}}"
+    group: "{{file_group_chronyd_cfg}}"
+  notify: 'service reload monit'
+  when: (chrony_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - chrony
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop chronyd'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_chronyd}}"
+  tags:
+    - disable
+    - chrony

@@ -1,0 +1,31 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (chrony_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - chrony
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (chrony_state is match('start|on|enable'))
+  tags:
+    - chrony
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (chrony_state is match('stop|off|disable'))
+  tags:
+    - chrony
+
+- name: 'task include cronjob'
+  import_tasks: cronjob.yml
+  when: (chrony_state is match('cron|cronjob'))
+  tags:
+    - chrony
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (chrony_state is match('false|no|remove'))
+  tags:
+    - chrony

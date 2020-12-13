@@ -1,0 +1,49 @@
+---
+
+chrony_state: 'enable'
+
+chrony_access:
+  - {action: 'deny', source: 'all', comment: 'Deny from all'}
+
+chrony_bind_address: []
+
+chrony_check_time_day: '*'
+
+chrony_check_time_hour: '*'
+
+chrony_check_time_minute: '*/10'
+
+chrony_check_time_month: '*'
+
+chrony_check_time_weekday: '*'
+
+chrony_check_time_offset_limit: 1
+
+chrony_check_time_state: 'enable'
+
+chrony_monitor_mail_from_address: "root@{{ansible_domain}}"
+
+chrony_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
+
+chrony_monitor_mail_state: 'false'
+
+chrony_monitor_monit_state: 'false'
+
+chrony_monitor_prom_state: 'false'
+
+chrony_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+
+chrony_pool: []
+
+chrony_server:
+  - {address: "ntp.{{ansible_domain}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default NTP server'}
+
+chrony_update_time_day: '*'
+
+chrony_update_time_hour: '*'
+
+chrony_update_time_minute: '*/10'
+
+chrony_update_time_month: '*'
+
+chrony_update_time_weekday: '*'
