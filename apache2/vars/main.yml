@@ -1,0 +1,211 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# apache2
+package_name_apache2: 'apache2'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# 000-default.conf
+file_src_000_default_conf: 'templates/main/000-default.conf'
+file_dst_000_default_conf: '/etc/apache2/sites-available/000-default.conf'
+file_mode_000_default_conf: '0644'
+file_owner_000_default_conf: 'root'
+file_group_000_default_conf: 'root'
+
+# 000-default.link
+file_src_000_default_link: '/etc/apache2/sites-available/000-default.conf'
+file_dst_000_default_link: '/etc/apache2/sites-enabled/000-default.conf'
+file_owner_000_default_link: 'root'
+file_group_000_default_link: 'root'
+
+# alias.conf
+file_src_alias_conf: 'templates/main/alias.conf'
+file_dst_alias_conf: '/etc/apache2/mods-available/alias.conf'
+file_mode_alias_conf: '0644'
+file_owner_alias_conf: 'root'
+file_group_alias_conf: 'root'
+
+# alias.link
+file_src_alias_link: '/etc/apache2/mods-available/alias.conf'
+file_dst_alias_link: '/etc/apache2/mods-enabled/alias.conf'
+file_owner_alias_link: 'root'
+file_group_alias_link: 'root'
+
+# apache2.conf
+file_src_apache2_conf: 'templates/main/apache2.conf'
+file_dst_apache2_conf: '/etc/apache2/apache2.conf'
+file_mode_apache2_conf: '0644'
+file_owner_apache2_conf: 'root'
+file_group_apache2_conf: 'root'
+
+# autoindex.conf
+file_src_autoindex_conf: 'templates/main/autoindex.conf'
+file_dst_autoindex_conf: '/etc/apache2/mods-available/autoindex.conf'
+file_mode_autoindex_conf: '0644'
+file_owner_autoindex_conf: 'root'
+file_group_autoindex_conf: 'root'
+
+# autoindex.link
+file_src_autoindex_link: '/etc/apache2/mods-available/autoindex.conf'
+file_dst_autoindex_link: '/etc/apache2/mods-enabled/autoindex.conf'
+file_owner_autoindex_link: 'root'
+file_group_autoindex_link: 'root'
+
+# config
+file_src_config: 'templates/main/config'
+file_mode_config: '0644'
+file_owner_config: 'root'
+file_group_config: 'root'
+
+# default-ssl.conf
+file_src_default_ssl_conf: 'templates/main/default-ssl.conf'
+file_dst_default_ssl_conf: '/etc/apache2/sites-available/default-ssl.conf'
+file_mode_default_ssl_conf: '0644'
+file_owner_default_ssl_conf: 'root'
+file_group_default_ssl_conf: 'root'
+
+# default-ssl.link
+file_src_default_ssl_link: '/etc/apache2/sites-available/default-ssl.conf'
+file_dst_default_ssl_link: '/etc/apache2/sites-enabled/default-ssl.conf'
+file_owner_default_ssl_link: 'root'
+file_group_default_ssl_link: 'root'
+
+# dir.conf
+file_src_dir_conf: 'templates/main/dir.conf'
+file_dst_dir_conf: '/etc/apache2/mods-available/dir.conf'
+file_mode_dir_conf: '0644'
+file_owner_dir_conf: 'root'
+file_group_dir_conf: 'root'
+
+# dir.link
+file_src_dir_link: '/etc/apache2/mods-available/dir.conf'
+file_dst_dir_link: '/etc/apache2/mods-enabled/dir.conf'
+file_owner_dir_link: 'root'
+file_group_dir_link: 'root'
+
+# info.conf
+file_src_info_conf: 'templates/main/info.conf'
+file_dst_info_conf: '/etc/apache2/mods-available/info.conf'
+file_mode_info_conf: '0644'
+file_owner_info_conf: 'root'
+file_group_info_conf: 'root'
+
+# info.link
+file_src_info_link: '/etc/apache2/mods-available/info.conf'
+file_dst_info_link: '/etc/apache2/mods-enabled/info.conf'
+file_owner_info_link: 'root'
+file_group_info_link: 'root'
+
+# mods-available
+file_src_mods_available: '/etc/apache2/mods-available'
+
+# mods-enabled
+file_dst_mods_enabled: '/etc/apache2/mods-enabled'
+
+# module.load
+file_owner_module_load: 'root'
+file_group_module_load: 'root'
+
+# ports.conf
+file_src_ports_conf: 'templates/main/ports.conf'
+file_dst_ports_conf: '/etc/apache2/ports.conf'
+file_mode_ports_conf: '0644'
+file_owner_ports_conf: 'root'
+file_group_ports_conf: 'root'
+
+# security.conf
+file_src_security_conf: 'templates/main/security.conf'
+file_dst_security_conf: '/etc/apache2/conf-available/security.conf'
+file_mode_security_conf: '0644'
+file_owner_security_conf: 'root'
+file_group_security_conf: 'root'
+
+# security.link
+file_src_security_link: '/etc/apache2/conf-available/security.conf'
+file_dst_security_link: '/etc/apache2/conf-enabled/security.conf'
+file_owner_security_link: 'root'
+file_group_security_link: 'root'
+
+# sites-enabled
+file_dst_sites_enabled: '/etc/apache2/sites-enabled'
+
+# ssl.conf
+file_src_ssl_conf: 'templates/main/ssl.conf'
+file_dst_ssl_conf: '/etc/apache2/mods-available/ssl.conf'
+file_mode_ssl_conf: '0644'
+file_owner_ssl_conf: 'root'
+file_group_ssl_conf: 'root'
+
+# ssl.link
+file_src_ssl_link: '/etc/apache2/mods-available/ssl.conf'
+file_dst_ssl_link: '/etc/apache2/mods-enabled/ssl.conf'
+file_owner_ssl_link: 'root'
+file_group_ssl_link: 'root'
+
+# status.conf
+file_src_status_conf: 'templates/main/status.conf'
+file_dst_status_conf: '/etc/apache2/mods-available/status.conf'
+file_mode_status_conf: '0644'
+file_owner_status_conf: 'root'
+file_group_status_conf: 'root'
+
+# status.link
+file_src_status_link: '/etc/apache2/mods-available/status.conf'
+file_dst_status_link: '/etc/apache2/mods-enabled/status.conf'
+file_owner_status_link: 'root'
+file_group_status_link: 'root'
+
+# userdir.conf
+file_src_userdir_conf: 'templates/main/userdir.conf'
+file_dst_userdir_conf: '/etc/apache2/mods-available/userdir.conf'
+file_mode_userdir_conf: '0644'
+file_owner_userdir_conf: 'root'
+file_group_userdir_conf: 'root'
+
+# userdir.link
+file_src_userdir_link: '/etc/apache2/mods-available/userdir.conf'
+file_dst_userdir_link: '/etc/apache2/mods-enabled/userdir.conf'
+file_owner_userdir_link: 'root'
+file_group_userdir_link: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# apache2.cfg
+file_src_apache2_cfg: 'templates/main/apache2.cfg'
+file_dst_apache2_cfg: '/etc/monit.d/apache2.cfg'
+file_mode_apache2_cfg: '0640'
+file_owner_apache2_cfg: 'root'
+file_group_apache2_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check apache2
+command_cmd_check_apache2: 'apachectl configtest'
+
+# reload apache2
+command_cmd_reload_apache2: 'apachectl graceful'
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# apache2
+service_name_apache2: 'apache2'
+
+# monit
+service_name_monit: 'monit'

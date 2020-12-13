@@ -1,0 +1,78 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - apache2
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_sites_enabled}}/{{item.name}}-{{(item.port|int)}}.conf"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  loop: "{{apache2_config}}"
+  notify:
+    - 'command check apache2'
+    - 'command reload apache2'
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - apache2
+
+- name: 'file create module.load'
+  file:
+    state: 'link'
+    src: "{{file_src_mods_available}}/{{item.name}}.load"
+    path: "{{file_dst_mods_enabled}}/{{item.name}}.load"
+    owner: "{{file_owner_module_load}}"
+    group: "{{file_group_module_load}}"
+  loop: "{{apache2_modules}}"
+  notify:
+    - 'command check apache2'
+    - 'command reload apache2'
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - apache2
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_sites_enabled}}/{{item.name}}-{{(item.port|int)}}.conf"
+  loop: "{{apache2_config}}"
+  notify:
+    - 'command check apache2'
+    - 'command reload apache2'
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - apache2
+
+- name: 'file remove module.load'
+  file:
+    state: 'absent'
+    path: "{{file_dst_mods_enabled}}/{{item.name}}.load"
+  loop: "{{apache2_modules}}"
+  notify:
+    - 'command check apache2'
+    - 'command reload apache2'
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - apache2

@@ -1,0 +1,225 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - apache2
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove apache2'
+  package:
+    state: 'absent'
+    name: "{{package_name_apache2}}"
+  tags:
+    - remove
+    - apache2
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove apache2.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_apache2_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove 000-default.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_000_default_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove 000-default.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_000_default_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove alias.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_alias_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove alias.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_alias_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove apache2.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_apache2_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove autoindex.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_autoindex_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove autoindex.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_autoindex_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove default-ssl.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_default_ssl_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove default-ssl.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_default_ssl_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove dir.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_dir_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove dir.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_dir_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove info.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_info_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove info.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_info_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove ports.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ports_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove ports.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ports_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove security.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_security_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove security.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_security_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove ssl.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ssl_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove ssl.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ssl_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove status.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_status_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove status.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_status_conf}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove userdir.link'
+  file:
+    state: 'absent'
+    path: "{{file_dst_userdir_link}}"
+  tags:
+    - remove
+    - apache2
+
+- name: 'file remove userdir.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_userdir_conf}}"
+  tags:
+    - remove
+    - apache2
