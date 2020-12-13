@@ -1,0 +1,37 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - fstrim
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'cron create fstrim_discard-blocks'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_fstrim_discard_blocks}}"
+    cron_file: "{{cron_cron_file_fstrim_discard_blocks}}"
+    day: "{{cron_day_fstrim_discard_blocks}}"
+    hour: "{{cron_hour_fstrim_discard_blocks}}"
+    minute: "{{cron_minute_fstrim_discard_blocks}}"
+    month: "{{cron_month_fstrim_discard_blocks}}"
+    weekday: "{{cron_weekday_fstrim_discard_blocks}}"
+    user: "{{cron_user_fstrim_discard_blocks}}"
+    job: "{{cron_job_fstrim_discard_blocks}}"
+  tags:
+    - disable
+    - fstrim

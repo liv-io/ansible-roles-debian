@@ -1,0 +1,54 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - fstrim
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create fstrim_log.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_fstrim_log_dir}}"
+    mode: "{{file_mode_fstrim_log_dir}}"
+    owner: "{{file_owner_fstrim_log_dir}}"
+    group: "{{file_group_fstrim_log_dir}}"
+  tags:
+    - install
+    - fstrim
+
+- name: 'file create fstrim.log'
+  copy:
+    content: ''
+    force: 'no'
+    dest: "{{file_dst_fstrim_log}}"
+    mode: "{{file_mode_fstrim_log}}"
+    owner: "{{file_owner_fstrim_log}}"
+    group: "{{file_group_fstrim_log}}"
+  tags:
+    - install
+    - fstrim
+
+- name: 'file create fstrim_discard-blocks'
+  template:
+    src: "{{file_src_fstrim_discard_blocks}}"
+    dest: "{{file_dst_fstrim_discard_blocks}}"
+    mode: "{{file_mode_fstrim_discard_blocks}}"
+    owner: "{{file_owner_fstrim_discard_blocks}}"
+    group: "{{file_group_fstrim_discard_blocks}}"
+  tags:
+    - install
+    - fstrim
