@@ -184,6 +184,15 @@ groups:
           summary: "APT: Check Update (script_status)"
           description: "APT pending updates for at least 7 days"
 
+      - alert: "Chrony Time Unsynchronized"
+        expr: chrony_check_time_exit != 0
+        for: 1h
+        labels:
+          severity: info
+        annotations:
+          summary: "Chrony: Check Time (script_status)"
+          description: "Chrony time unsynchronized for at least 1 hour"
+
       - alert: "MariaDB Backup Failed"
         expr: mariadb_run_backup_exit != 0
         for: 30s
@@ -192,6 +201,15 @@ groups:
         annotations:
           summary: "MariaDB: Run Backup (script_status)"
           description: "MariaDB backup failed"
+
+      - alert: "OpenNTPD Time Unsynchronized"
+        expr: openntpd_check_time_exit != 0
+        for: 1h
+        labels:
+          severity: info
+        annotations:
+          summary: "OpenNTPD: Check Time (script_status)"
+          description: "OpenNTPD time unsynchronized for at least 1 hour"
 
       - alert: "PostgreSQL Backup Failed"
         expr: postgresql_run_backup_exit != 0
