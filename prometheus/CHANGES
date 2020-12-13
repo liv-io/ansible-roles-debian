@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2020-12-13)
+C: Remove dnf_check-update and yum_check-update script status
+
 * Version 0.1.0 (2020-12-12)
 F: Initial release

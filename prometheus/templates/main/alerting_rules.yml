@@ -184,15 +184,6 @@ groups:
           summary: "APT: Check Update (script_status)"
           description: "APT pending updates for at least 7 days"
 
-      - alert: "DNF Pending Updates"
-        expr: dnf_check_update_exit != 0
-        for: 7d
-        labels:
-          severity: info
-        annotations:
-          summary: "DNF: Check Update (script_status)"
-          description: "DNF pending updates for at least 7 days"
-
       - alert: "MariaDB Backup Failed"
         expr: mariadb_run_backup_exit != 0
         for: 30s
@@ -219,15 +210,6 @@ groups:
         annotations:
           summary: "Restic: Run Backup (script_status)"
           description: "Restic backup failed"
-
-      - alert: "YUM Pending Updates"
-        expr: yum_check_update_exit != 0
-        for: 7d
-        labels:
-          severity: info
-        annotations:
-          summary: "YUM: Check Update (script_status)"
-          description: "YUM pending updates for at least 7 days"
 
       - alert: "ZFS Disk Failure"
         expr: zfs_check_pools_exit != 0
