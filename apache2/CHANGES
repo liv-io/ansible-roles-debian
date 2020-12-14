@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-12-14)
+E: Listen on port 80/tcp and 443/tcp by default
+
 * Version 0.1.0 (2020-12-13)
 F: Initial release

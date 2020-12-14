@@ -440,7 +440,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['80']
+    Default    : ['80', '443']
     Options    :
       Examples: ['80'] | ['8080']
       None    : []

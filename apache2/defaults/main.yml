@@ -12,7 +12,7 @@ apache2_global_config: ''
 
 apache2_hsts_max_age: 31536000
 
-apache2_listen: ['80']
+apache2_listen: ['80', '443']
 
 apache2_log_format_combined: '%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"'
 
