@@ -1,0 +1,7 @@
+---
+
+modsecurity_crs_state: 'enable'
+
+modsecurity_crs_sec_default_action:
+  - 'phase:1,log,auditlog,deny,status:403'
+  - 'phase:2,log,auditlog,deny,status:403'
