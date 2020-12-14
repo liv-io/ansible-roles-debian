@@ -566,16 +566,6 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  apache2_vhosts_d
-    Description: Define the 'apache2_vhosts_d' option.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'vhosts.d'
-    Options    :
-      Examples: 'vhosts.d'
-
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------

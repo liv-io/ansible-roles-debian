@@ -40,5 +40,3 @@ apache2_server_signature: 'true'
 apache2_server_tokens: 'prod'
 
 apache2_trace_enable: 'false'
-
-apache2_vhosts_d: 'vhosts.d'
