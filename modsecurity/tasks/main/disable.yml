@@ -1,0 +1,68 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - modsecurity
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create modsecurity.conf'
+  template:
+    src: "{{file_src_modsecurity_conf}}"
+    dest: "{{file_dst_modsecurity_conf}}"
+    mode: "{{file_mode_modsecurity_conf}}"
+    owner: "{{file_owner_modsecurity_conf}}"
+    group: "{{file_group_modsecurity_conf}}"
+  notify: 'command check apache2'
+  tags:
+    - disable
+    - modsecurity
+
+- name: 'file create modsecurity.link'
+  file:
+    state: 'link'
+    src: "{{file_src_modsecurity_link}}"
+    path: "{{file_dst_modsecurity_link}}"
+    owner: "{{file_owner_modsecurity_link}}"
+    group: "{{file_group_modsecurity_link}}"
+  notify: 'command check apache2'
+  tags:
+    - disable
+    - modsecurity
+
+- name: 'file create security2.conf'
+  template:
+    src: "{{file_src_security2_conf}}"
+    dest: "{{file_dst_security2_conf}}"
+    mode: "{{file_mode_security2_conf}}"
+    owner: "{{file_owner_security2_conf}}"
+    group: "{{file_group_security2_conf}}"
+  notify: 'command check apache2'
+  tags:
+    - disable
+    - modsecurity
+
+- name: 'file create security2.link'
+  file:
+    state: 'link'
+    src: "{{file_src_security2_link}}"
+    path: "{{file_dst_security2_link}}"
+    owner: "{{file_owner_security2_link}}"
+    group: "{{file_group_security2_link}}"
+  notify: 'command check apache2'
+  tags:
+    - disable
+    - modsecurity

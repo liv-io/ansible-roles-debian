@@ -1,0 +1,43 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - modsecurity
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install modsecurity'
+  package:
+    state: 'present'
+    name: "{{package_name_modsecurity}}"
+  tags:
+    - install
+    - modsecurity
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create security2.load'
+  file:
+    state: 'link'
+    src: "{{file_src_security2_load}}"
+    path: "{{file_dst_security2_load}}"
+    owner: "{{file_owner_module_load}}"
+    group: "{{file_group_module_load}}"
+  tags:
+    - install
+    - modsecurity
