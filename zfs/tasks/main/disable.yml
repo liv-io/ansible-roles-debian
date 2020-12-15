@@ -1,0 +1,71 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - zfs
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'cron create zfs_check-pools'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_zfs_check_pools}}"
+    cron_file: "{{cron_cron_file_zfs_check_pools}}"
+    day: "{{cron_day_zfs_check_pools}}"
+    hour: "{{cron_hour_zfs_check_pools}}"
+    minute: "{{cron_minute_zfs_check_pools}}"
+    month: "{{cron_month_zfs_check_pools}}"
+    weekday: "{{cron_weekday_zfs_check_pools}}"
+    user: "{{cron_user_zfs_check_pools}}"
+    job: "{{cron_job_zfs_check_pools}}"
+  tags:
+    - disable
+    - zfs
+
+- name: 'cron create zfs_scrub-pools'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_zfs_scrub_pools}}"
+    cron_file: "{{cron_cron_file_zfs_scrub_pools}}"
+    day: "{{cron_day_zfs_scrub_pools}}"
+    hour: "{{cron_hour_zfs_scrub_pools}}"
+    minute: "{{cron_minute_zfs_scrub_pools}}"
+    month: "{{cron_month_zfs_scrub_pools}}"
+    weekday: "{{cron_weekday_zfs_scrub_pools}}"
+    user: "{{cron_user_zfs_scrub_pools}}"
+    job: "{{cron_job_zfs_scrub_pools}}"
+  tags:
+    - disable
+    - zfs
+
+- name: 'cron create zfs_trim-pools'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_zfs_trim_pools}}"
+    cron_file: "{{cron_cron_file_zfs_trim_pools}}"
+    day: "{{cron_day_zfs_trim_pools}}"
+    hour: "{{cron_hour_zfs_trim_pools}}"
+    minute: "{{cron_minute_zfs_trim_pools}}"
+    month: "{{cron_month_zfs_trim_pools}}"
+    weekday: "{{cron_weekday_zfs_trim_pools}}"
+    user: "{{cron_user_zfs_trim_pools}}"
+    job: "{{cron_job_zfs_trim_pools}}"
+  tags:
+    - disable
+    - zfs

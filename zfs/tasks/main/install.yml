@@ -1,0 +1,53 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - zfs
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create zfs_check-pools'
+  template:
+    src: "{{file_src_zfs_check_pools}}"
+    dest: "{{file_dst_zfs_check_pools}}"
+    mode: "{{file_mode_zfs_check_pools}}"
+    owner: "{{file_owner_zfs_check_pools}}"
+    group: "{{file_group_zfs_check_pools}}"
+  tags:
+    - install
+    - zfs
+
+- name: 'file create zfs_scrub-pools'
+  template:
+    src: "{{file_src_zfs_scrub_pools}}"
+    dest: "{{file_dst_zfs_scrub_pools}}"
+    mode: "{{file_mode_zfs_scrub_pools}}"
+    owner: "{{file_owner_zfs_scrub_pools}}"
+    group: "{{file_group_zfs_scrub_pools}}"
+  tags:
+    - install
+    - zfs
+
+- name: 'file create zfs_trim-pools'
+  template:
+    src: "{{file_src_zfs_trim_pools}}"
+    dest: "{{file_dst_zfs_trim_pools}}"
+    mode: "{{file_mode_zfs_trim_pools}}"
+    owner: "{{file_owner_zfs_trim_pools}}"
+    group: "{{file_group_zfs_trim_pools}}"
+  tags:
+    - install
+    - zfs
