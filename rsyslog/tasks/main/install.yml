@@ -23,6 +23,7 @@
   package:
     state: 'present'
     name: "{{package_name_rsyslog}}"
+    install_recommends: 'no'
   tags:
     - install
     - rsyslog

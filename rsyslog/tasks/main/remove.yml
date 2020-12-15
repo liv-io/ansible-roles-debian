@@ -23,6 +23,7 @@
   package:
     state: 'absent'
     name: "{{package_name_rsyslog}}"
+    install_recommends: 'no'
   tags:
     - remove
     - rsyslog
