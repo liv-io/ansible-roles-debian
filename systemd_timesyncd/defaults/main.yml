@@ -1,0 +1,9 @@
+---
+
+systemd_timesyncd_state: 'enable'
+
+systemd_timesyncd_fallback: []
+
+systemd_timesyncd_monitor_monit_state: 'false'
+
+systemd_timesyncd_server: ["ntp.{{ansible_domain}}"]

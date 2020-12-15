@@ -1,0 +1,42 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# timesyncd.conf
+file_src_timesyncd_conf: 'templates/main/timesyncd.conf'
+file_dst_timesyncd_conf: '/etc/systemd/timesyncd.conf'
+file_mode_timesyncd_conf: '0644'
+file_owner_timesyncd_conf: 'root'
+file_group_timesyncd_conf: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# systemd-timesyncd.cfg
+file_src_systemd_timesyncd_cfg: 'templates/main/systemd-timesyncd.cfg'
+file_dst_systemd_timesyncd_cfg: '/etc/monit.d/systemd-timesyncd.cfg'
+file_mode_systemd_timesyncd_cfg: '0640'
+file_owner_systemd_timesyncd_cfg: 'root'
+file_group_systemd_timesyncd_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# systemd-timesyncd
+service_name_systemd_timesyncd: 'systemd-timesyncd'

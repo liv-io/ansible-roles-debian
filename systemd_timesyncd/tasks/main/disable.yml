@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - systemd_timesyncd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create timesyncd.conf'
+  template:
+    src: "{{file_src_timesyncd_conf}}"
+    dest: "{{file_dst_timesyncd_conf}}"
+    mode: "{{file_mode_timesyncd_conf}}"
+    owner: "{{file_owner_timesyncd_conf}}"
+    group: "{{file_group_timesyncd_conf}}"
+  tags:
+    - disable
+    - systemd_timesyncd
+
+- name: 'file create systemd-timesyncd.cfg'
+  template:
+    src: "{{file_src_systemd_timesyncd_cfg}}"
+    dest: "{{file_dst_systemd_timesyncd_cfg}}"
+    mode: "{{file_mode_systemd_timesyncd_cfg}}"
+    owner: "{{file_owner_systemd_timesyncd_cfg}}"
+    group: "{{file_group_systemd_timesyncd_cfg}}"
+  notify: 'service reload monit'
+  when: (systemd_timesyncd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - systemd_timesyncd
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop systemd-timesyncd'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_systemd_timesyncd}}"
+  tags:
+    - disable
+    - systemd_timesyncd
