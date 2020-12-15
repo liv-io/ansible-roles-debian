@@ -1,0 +1,47 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - monit
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create monitrc'
+  template:
+    src: "{{file_src_monitrc}}"
+    dest: "{{file_dst_monitrc}}"
+    mode: "{{file_mode_monitrc}}"
+    owner: "{{file_owner_monitrc}}"
+    group: "{{file_group_monitrc}}"
+  notify:
+    - 'command validate monit'
+    - 'service restart monit'
+  tags:
+    - enable
+    - monit
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start monit'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_monit}}"
+  tags:
+    - enable
+    - monit

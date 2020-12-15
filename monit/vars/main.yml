@@ -1,0 +1,45 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# monit
+package_name_monit: 'monit'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# monitrc
+file_src_monitrc: 'templates/main/monitrc'
+file_dst_monitrc: '/etc/monit/monitrc'
+file_mode_monitrc: '0600'
+file_owner_monitrc: 'root'
+file_group_monitrc: 'root'
+
+# config
+file_src_config: 'templates/main/config'
+file_mode_config: '0640'
+file_owner_config: 'root'
+file_group_config: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# validate-monit
+command_cmd_validate_monit: '/usr/bin/monit -t'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
