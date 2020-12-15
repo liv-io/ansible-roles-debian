@@ -1,0 +1,49 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# hddtemp
+package_name_hddtemp: 'hddtemp'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# hddtemp.cfg
+file_src_hddtemp_cfg: 'templates/main/hddtemp.cfg'
+file_dst_hddtemp_cfg: '/etc/monit.d/hddtemp.cfg'
+file_mode_hddtemp_cfg: '0640'
+file_owner_hddtemp_cfg: 'root'
+file_group_hddtemp_cfg: 'root'
+
+# hddtemp.default
+file_src_hddtemp_default: 'templates/main/hddtemp.default'
+file_dst_hddtemp_default: '/etc/default/hddtemp'
+file_mode_hddtemp_default: '0644'
+file_owner_hddtemp_default: 'root'
+file_group_hddtemp_default: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# hddtemp
+service_name_hddtemp: 'hddtemp'
+
+# monit
+service_name_monit: 'monit'

@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - hddtemp
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create hddtemp.default'
+  template:
+    src: "{{file_src_hddtemp_default}}"
+    dest: "{{file_dst_hddtemp_default}}"
+    mode: "{{file_mode_hddtemp_default}}"
+    owner: "{{file_owner_hddtemp_default}}"
+    group: "{{file_group_hddtemp_default}}"
+  tags:
+    - disable
+    - hddtemp
+
+- name: 'file create hddtemp.cfg'
+  template:
+    src: "{{file_src_hddtemp_cfg}}"
+    dest: "{{file_dst_hddtemp_cfg}}"
+    mode: "{{file_mode_hddtemp_cfg}}"
+    owner: "{{file_owner_hddtemp_cfg}}"
+    group: "{{file_group_hddtemp_cfg}}"
+  notify: 'service reload monit'
+  when: (hddtemp_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - hddtemp
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop hddtemp'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_hddtemp}}"
+  tags:
+    - disable
+    - hddtemp

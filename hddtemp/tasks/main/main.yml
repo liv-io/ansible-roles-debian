@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (hddtemp_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - hddtemp
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (hddtemp_state is match('start|on|enable'))
+  tags:
+    - hddtemp
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (hddtemp_state is match('stop|off|disable'))
+  tags:
+    - hddtemp
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (hddtemp_state is match('false|no|remove'))
+  tags:
+    - hddtemp
