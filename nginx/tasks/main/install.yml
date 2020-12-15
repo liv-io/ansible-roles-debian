@@ -23,6 +23,7 @@
   package:
     state: 'present'
     name: "{{package_name_nginx}}"
+    install_recommends: 'no'
   tags:
     - install
     - nginx
