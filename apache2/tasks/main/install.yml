@@ -23,6 +23,7 @@
   package:
     state: 'present'
     name: "{{package_name_apache2}}"
+    install_recommends: 'no'
   tags:
     - install
     - apache2

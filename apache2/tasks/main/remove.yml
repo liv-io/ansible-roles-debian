@@ -23,6 +23,7 @@
   package:
     state: 'absent'
     name: "{{package_name_apache2}}"
+    install_recommends: 'no'
   tags:
     - remove
     - apache2
