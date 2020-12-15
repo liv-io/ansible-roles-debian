@@ -1,0 +1,49 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - auditd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_rules_d}}/{{(item.name|default('config'))}}.rules"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  notify:
+    - 'command run augenrules'
+    - 'command restart auditd'
+  loop: "{{auditd_config_all + auditd_config_group + auditd_config_host}}"
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - auditd
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rules_d}}/{{(item.name|default('config'))}}.rules"
+  notify:
+    - 'command run augenrules'
+    - 'command restart auditd'
+  loop: "{{auditd_config_all + auditd_config_group + auditd_config_host}}"
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - auditd

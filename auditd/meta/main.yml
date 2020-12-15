@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - {role: audispd_plugins, when: not (audispd_plugins_state is match('false|no|remove|quiesce|inactive'))}

@@ -1,0 +1,100 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - auditd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create auditd.conf'
+  template:
+    src: "{{file_src_auditd_conf}}"
+    dest: "{{file_dst_auditd_conf}}"
+    mode: "{{file_mode_auditd_conf}}"
+    owner: "{{file_owner_auditd_conf}}"
+    group: "{{file_group_auditd_conf}}"
+  tags:
+    - disable
+    - auditd
+
+- name: 'file create audispd.conf'
+  template:
+    src: "{{file_src_audispd_conf}}"
+    dest: "{{file_dst_audispd_conf}}"
+    mode: "{{file_mode_audispd_conf}}"
+    owner: "{{file_owner_audispd_conf}}"
+    group: "{{file_group_audispd_conf}}"
+  tags:
+    - disable
+    - auditd
+
+- name: 'file create syslog.conf'
+  template:
+    src: "{{file_src_syslog_conf}}"
+    dest: "{{file_dst_syslog_conf}}"
+    mode: "{{file_mode_syslog_conf}}"
+    owner: "{{file_owner_syslog_conf}}"
+    group: "{{file_group_syslog_conf}}"
+  tags:
+    - disable
+    - auditd
+
+- name: 'file create auditd.cfg'
+  template:
+    src: "{{file_src_auditd_cfg}}"
+    dest: "{{file_dst_auditd_cfg}}"
+    mode: "{{file_mode_auditd_cfg}}"
+    owner: "{{file_owner_auditd_cfg}}"
+    group: "{{file_group_auditd_cfg}}"
+  notify: 'service reload monit'
+  when: (auditd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - auditd
+
+#-------------------------------------------------------------------------------
+# COMMAND
+#-------------------------------------------------------------------------------
+
+# NOTE: systemd refuses to stop 'auditd' service. RedHat bug: 1026648
+
+- name: 'command status auditd'
+  command: "{{command_cmd_status_auditd}}"
+  register: register_status_auditd
+  changed_when: (register_status_auditd.rc > 1)
+  failed_when: (register_status_auditd.rc > 1)
+  check_mode: 'no'
+  tags:
+    - disable
+    - auditd
+
+- name: 'command disable auditd'
+  command: "{{command_cmd_disable_auditd}}"
+  check_mode: 'no'
+  when: (register_status_auditd.rc != 3)
+  tags:
+    - disable
+    - auditd
+
+- name: 'command stop auditd'
+  command: "{{command_cmd_stop_auditd}}"
+  check_mode: 'no'
+  when: (register_status_auditd.rc != 3)
+  args:
+    warn: False
+  tags:
+    - disable
+    - auditd
