@@ -1,0 +1,29 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - audispd_plugins
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install audispd-plugins'
+  package:
+    state: 'present'
+    name: "{{package_name_audispd_plugins}}"
+    install_recommends: 'no'
+  tags:
+    - install
+    - audispd_plugins
