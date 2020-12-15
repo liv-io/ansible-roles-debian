@@ -1,0 +1,79 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - pve
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command create group'
+  shell: "grep '^group:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 || { pveum group add {{item.name}}; exit 255; }"
+  register: register_create_group
+  changed_when: (register_create_group.rc == 255)
+  failed_when: (register_create_group.rc > 0) and (register_create_group.rc < 255)
+  check_mode: 'no'
+  loop: "{{pve_group_config_all + pve_group_config_group + pve_group_config_host}}"
+  when: not ((item.state|default('true')) is match('false|no|remove'))
+  tags:
+    - config
+    - pve
+
+- name: 'command create user'
+  shell: "grep '^user:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 || { pveum user add {{item.name}} --groups {{(item.groups|default([])|join(','))}} ; exit 255; }"
+  register: register_create_user
+  changed_when: (register_create_user.rc == 255)
+  failed_when: (register_create_user.rc > 0) and (register_create_user.rc < 255)
+  check_mode: 'no'
+  loop: "{{pve_user_config_all + pve_user_config_group + pve_user_config_host}}"
+  when: not ((item.state|default('true')) is match('false|no|remove'))
+  tags:
+    - config
+    - pve
+
+- name: 'command create acl'
+  shell: "pveum acl modify {{(item.path|default('/'))}} --groups {{(item.groups|default([])|join(','))}} --roles {{(item.roles|default(['PVEAuditor'])|join(','))}}"
+  register: register_create_acl
+  changed_when: (register_create_acl.rc > 0)
+  check_mode: 'no'
+  loop: "{{pve_acl_config_all + pve_acl_config_group + pve_acl_config_host}}"
+  when: not ((item.state|default('true')) is match('false|no|remove'))
+  tags:
+    - config
+    - pve
+
+- name: 'command remove group'
+  shell: "grep '^group:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 && { pveum group delete {{item.name}}; exit 255; } || exit 0"
+  register: register_remove_group
+  changed_when: (register_remove_group.rc == 255)
+  failed_when: (register_remove_group.rc > 0) and (register_remove_group.rc < 255)
+  check_mode: 'no'
+  loop: "{{pve_group_config_all + pve_group_config_group + pve_group_config_host}}"
+  when: ((item.state|default('true')) is match('false|no|remove'))
+  tags:
+    - config
+    - pve
+
+- name: 'command remove user'
+  shell: "grep '^user:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 && { pveum user delete {{item.name}}; exit 255; } || exit 0"
+  register: register_remove_user
+  changed_when: (register_remove_user.rc == 255)
+  failed_when: (register_remove_user.rc > 0) and (register_remove_user.rc < 255)
+  check_mode: 'no'
+  loop: "{{pve_user_config_all + pve_user_config_group + pve_user_config_host}}"
+  when: ((item.state|default('true')) is match('false|no|remove'))
+  tags:
+    - config
+    - pve
