@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.2 (2020-12-15)
+E: Add install_recommends parameter to package tasks
+
 * Version 0.1.1 (2020-12-12)
 B: Run 'apt update' after adding Grafana repository
 B: Correct grafana.gpg file path

@@ -102,6 +102,7 @@
   package:
     state: 'present'
     name: "{{package_name_grafana}}"
+    install_recommends: 'no'
   tags:
     - install
     - grafana
