@@ -23,6 +23,7 @@
   package:
     state: 'absent'
     name: "{{package_name_modsecurity_crs}}"
+    install_recommends: 'no'
   tags:
     - remove
     - modsecurity_crs
