@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-12-15)
+E: Add install_recommends parameter to package tasks
+
 * Version 0.1.0 (2020-12-11)
 F: Initial release
