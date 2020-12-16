@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (openbsd_netcat_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - openbsd_netcat
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (openbsd_netcat_state is match('false|no|remove'))
+  tags:
+    - openbsd_netcat
