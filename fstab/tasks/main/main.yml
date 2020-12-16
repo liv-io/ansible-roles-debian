@@ -1,0 +1,7 @@
+---
+
+- name: 'task include config'
+  import_tasks: config.yml
+  when: not (fstab_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - fstab
