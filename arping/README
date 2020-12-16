@@ -2,7 +2,7 @@
 INFORMATION
 --------------------------------------------------------------------------------
 
-Name   : iputils_arping
+Name   : arping
 Type   : Ansible role
 
 Authors: liv community
@@ -12,9 +12,9 @@ License: Simplified BSD License
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-The arping command acts like the standard ping command except it pings a
-machine by its ARP address instead of its IP address. It is typically used to
-locate a machine if its hardware address is known but its IP address is unknown.
+The arping utility sends ARP and/or ICMP requests to the specified host and
+displays the replies. The host may be specified by its hostname, its IP address,
+or its MAC address.
 
 For more information on the usage and available configuration options,
 consult the following sections.
@@ -26,30 +26,30 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-      - role: iputils_arping
+      - role: arping
     vars:
-      iputils_arping_state: 'install'
+      arping_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-      - role: iputils_arping
+      - role: arping
     vars:
-      iputils_arping_state: 'remove'
+      arping_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-      - role: iputils_arping
+      - role: arping
     vars:
-      iputils_arping_state: 'inactive'
+      arping_state: 'inactive'
 
 --------------------------------------------------------------------------------
 PARAMETERS
 --------------------------------------------------------------------------------
 
 ROLE
-  iputils_arping_state
+  arping_state
     Description: Control the state of the role.
     Implemented: 0.1.0
     Required   : False
@@ -66,17 +66,17 @@ CONFLICTS
 --------------------------------------------------------------------------------
 
 ROLES
-  arping
+  iputils_arping
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  iputils-arping
-    Version: >= 20180629
+  arping
+    Version: >= 2.0
     Name   :
-      Debian 10: 'iputils-arping'
+      Debian 10: 'arping'
 
 ROLES
 
