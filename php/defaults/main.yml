@@ -12,10 +12,6 @@ php_max_input_vars: 1000
 
 php_memory_limit: '128M'
 
-php_mysql_allow_local_infile: 'false'
-
-php_mysqli_allow_local_infile: 'false'
-
 php_post_max_size: '32M'
 
 php_upload_max_filesize: '32M'

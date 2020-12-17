@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-12-17)
+B: Add missing php_expose_php if statement
+
 * Version 0.1.0 (2020-12-17)
 F: Initial release

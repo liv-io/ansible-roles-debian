@@ -135,28 +135,6 @@ ROLE
     Options    :
       Examples: '64M' | '128M' | '256M'
 
-  php_mysql_allow_local_infile
-    Description: Control the 'php_mysql_allow_local_infile' option.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
-  php_mysqli_allow_local_infile
-    Description: Control the 'php_mysqli_allow_local_infile' option.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
   php_post_max_size
     Description: Set the 'php_post_max_size' option.
     Implemented: 0.1.0
