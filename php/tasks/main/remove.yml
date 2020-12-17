@@ -1,0 +1,41 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - php
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove php'
+  package:
+    state: 'absent'
+    name: "{{package_name_php}}"
+    install_recommends: 'no'
+  tags:
+    - remove
+    - php
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove php.ini'
+  file:
+    state: 'absent'
+    path: "{{file_dst_php_ini}}"
+  tags:
+    - remove
+    - php

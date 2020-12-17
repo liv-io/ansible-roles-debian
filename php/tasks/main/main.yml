@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (php_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - php
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (php_state is match('start|on|enable'))
+  tags:
+    - php
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (php_state is match('stop|off|disable'))
+  tags:
+    - php
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (php_state is match('false|no|remove'))
+  tags:
+    - php
