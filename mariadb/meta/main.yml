@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - {role: mailx, when: (mariadb_monitor_mail_state is match('true|yes|enable'))}

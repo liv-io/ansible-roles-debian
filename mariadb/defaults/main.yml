@@ -1,0 +1,47 @@
+---
+
+mariadb_state: 'enable'
+
+mariadb_database_all: []
+
+mariadb_database_group: []
+
+mariadb_database_host: []
+
+mariadb_config_server: ''
+
+mariadb_monitor_mail_from_address: "root@{{ansible_domain}}"
+
+mariadb_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
+
+mariadb_monitor_mail_state: 'false'
+
+mariadb_monitor_monit_state: 'false'
+
+mariadb_monitor_prom_state: 'false'
+
+mariadb_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+
+mariadb_root_password: 'mTA_4Vamn.DGrM5p2u8f6ScHm3_g9quA'
+
+mariadb_run_backup_day: '*'
+
+mariadb_run_backup_exclude: []
+
+mariadb_run_backup_hour: '1'
+
+mariadb_run_backup_keep_days: 2
+
+mariadb_run_backup_minute: "{{(30|random(seed=inventory_hostname))}}"
+
+mariadb_run_backup_month: '*'
+
+mariadb_run_backup_state: 'enable'
+
+mariadb_run_backup_weekday: '*'
+
+mariadb_user_all: []
+
+mariadb_user_group: []
+
+mariadb_user_host: []

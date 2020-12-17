@@ -1,0 +1,182 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - mariadb
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create mariadb.cnf'
+  template:
+    src: "{{file_src_mariadb_cnf}}"
+    dest: "{{file_dst_mariadb_cnf}}"
+    mode: "{{file_mode_mariadb_cnf}}"
+    owner: "{{file_owner_mariadb_cnf}}"
+    group: "{{file_group_mariadb_cnf}}"
+  notify: 'service restart mariadb'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'file create 50-client.cnf'
+  template:
+    src: "{{file_src_50_client_cnf}}"
+    dest: "{{file_dst_50_client_cnf}}"
+    mode: "{{file_mode_50_client_cnf}}"
+    owner: "{{file_owner_50_client_cnf}}"
+    group: "{{file_group_50_client_cnf}}"
+  notify: 'service restart mariadb'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'file create 50-mysql-clients.cnf'
+  template:
+    src: "{{file_src_50_mysql_clients_cnf}}"
+    dest: "{{file_dst_50_mysql_clients_cnf}}"
+    mode: "{{file_mode_50_mysql_clients_cnf}}"
+    owner: "{{file_owner_50_mysql_clients_cnf}}"
+    group: "{{file_group_50_mysql_clients_cnf}}"
+  notify: 'service restart mariadb'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'file create 50-mysqld_safe.cnf'
+  template:
+    src: "{{file_src_50_mysqld_safe_cnf}}"
+    dest: "{{file_dst_50_mysqld_safe_cnf}}"
+    mode: "{{file_mode_50_mysqld_safe_cnf}}"
+    owner: "{{file_owner_50_mysqld_safe_cnf}}"
+    group: "{{file_group_50_mysqld_safe_cnf}}"
+  notify: 'service restart mariadb'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'file create 50-server.cnf'
+  template:
+    src: "{{file_src_50_server_cnf}}"
+    dest: "{{file_dst_50_server_cnf}}"
+    mode: "{{file_mode_50_server_cnf}}"
+    owner: "{{file_owner_50_server_cnf}}"
+    group: "{{file_group_50_server_cnf}}"
+  notify: 'service restart mariadb'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'cron create mariadb_run-backup'
+  cron:
+    state: 'present'
+    disabled: "{{'yes' if (mariadb_run_backup_state is match('false|no|disable')) else 'no'}}"
+    name: "{{cron_name_mariadb_run_backup}}"
+    cron_file: "{{cron_cron_file_mariadb_run_backup}}"
+    day: "{{cron_day_mariadb_run_backup}}"
+    hour: "{{cron_hour_mariadb_run_backup}}"
+    minute: "{{cron_minute_mariadb_run_backup}}"
+    month: "{{cron_month_mariadb_run_backup}}"
+    weekday: "{{cron_weekday_mariadb_run_backup}}"
+    user: "{{cron_user_mariadb_run_backup}}"
+    job: "{{cron_job_mariadb_run_backup}}"
+  tags:
+    - enable
+    - mariadb
+
+- name: 'file create mariadb.cfg'
+  template:
+    src: "{{file_src_mariadb_cfg}}"
+    dest: "{{file_dst_mariadb_cfg}}"
+    mode: "{{file_mode_mariadb_cfg}}"
+    owner: "{{file_owner_mariadb_cfg}}"
+    group: "{{file_group_mariadb_cfg}}"
+  notify: 'service reload monit'
+  when: (mariadb_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - mariadb
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start mariadb'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_mariadb}}"
+  tags:
+    - enable
+    - mariadb
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# NOTE: Revert to 'mysql_user' module once both MariaDB 5.x and 10.x (or higher)
+#        are properly supported
+- name: 'command set mariadb-root-password'
+  command: "{{command_cmd_mariadb_root_password}}"
+  check_mode: 'no'
+  notify: 'command flush privileges'
+  when: (register_package_install_mariadb_server is changed)
+  tags:
+    - enable
+    - mariadb
+
+- name: 'command remove anonymous-users'
+  command: "{{command_cmd_remove_anonymous_users}}"
+  check_mode: 'no'
+  changed_when: False
+  notify: 'command flush privileges'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'command remove root-remote-access'
+  command: "{{command_cmd_remove_root_remote_access}}"
+  check_mode: 'no'
+  changed_when: False
+  notify: 'command flush privileges'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'command remove test-database'
+  command: "{{command_cmd_remove_test_database}}"
+  check_mode: 'no'
+  changed_when: False
+  tags:
+    - enable
+    - mariadb
+
+- name: 'command remove test-database'
+  command: "{{command_cmd_remove_test_database}}"
+  check_mode: 'no'
+  changed_when: False
+  notify: 'command flush privileges'
+  tags:
+    - enable
+    - mariadb
+
+- name: 'command remove test-database-access'
+  command: "{{command_cmd_remove_test_database_access}}"
+  check_mode: 'no'
+  changed_when: False
+  notify: 'command flush privileges'
+  tags:
+    - enable
+    - mariadb

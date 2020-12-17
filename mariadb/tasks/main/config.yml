@@ -1,0 +1,78 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - mariadb
+
+#-------------------------------------------------------------------------------
+# DATABASE
+#-------------------------------------------------------------------------------
+
+- name: 'mysql create database'
+  mysql_db:
+    state: 'present'
+    name: "{{item.name}}"
+    collation: "{{(item.collation|default(''))}}"
+    encoding: "{{(item.encoding|default(''))}}"
+    login_host: 'localhost'
+    config_file: "{{file_dst_credentials_cnf}}"
+  loop: "{{mariadb_database_all + mariadb_database_group + mariadb_database_host}}"
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - mariadb
+
+- name: 'mysql remove database'
+  mysql_db:
+    state: 'absent'
+    name: "{{item.name}}"
+    login_host: 'localhost'
+    config_file: "{{file_dst_credentials_cnf}}"
+  loop: "{{mariadb_database_all + mariadb_database_group + mariadb_database_host}}"
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - mariadb
+
+- name: 'mysql create user'
+  mysql_user:
+    state: 'present'
+    name: "{{item.name}}"
+    host: "{{(item.host|default('localhost'))}}"
+    password: "{{item.password}}"
+    update_password: "{{'on_create' if (item.password_update|default('true') is match('false|no|disable')) else 'always'}}"
+    encrypted: "{{'yes' if (item.password_encrypted|default('false') is match('true|yes|enable')) else 'no'}}"
+    priv: "{{(item.privileges|default('*.*:ALL'))}}"
+    append_privs: "{{'yes' if (item.privileges_append|default('false') is match('true|yes|enable')) else 'no'}}"
+    login_host: 'localhost'
+    config_file: "{{file_dst_credentials_cnf}}"
+  no_log: 'true'
+  loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"
+  when: not (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - mariadb
+
+- name: 'mysql remove user'
+  mysql_user:
+    state: 'absent'
+    name: "{{item.name}}"
+    host: "{{(item.host|default('localhost'))}}"
+    login_host: 'localhost'
+    config_file: "{{file_dst_credentials_cnf}}"
+  loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"
+  when: (item.state is match('false|no|remove'))
+  tags:
+    - config
+    - mariadb
