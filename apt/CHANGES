@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2020-12-18)
+F: Add APT repository 'buster-backports' (required for monit, opensmtpd, suricata)
+
 * Version 0.1.1 (2020-12-15)
 E: Add install_recommends parameter to package tasks
 

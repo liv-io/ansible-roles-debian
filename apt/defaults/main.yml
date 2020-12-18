@@ -36,6 +36,12 @@ apt_config_all:
         distribution: 'buster/updates'
         components: ['main']
 
+      - url: 'http://ftp.ch.debian.org/debian'
+        state: 'true'
+        comment: 'Debian - Buster Backports'
+        distribution: 'buster-backports'
+        components: ['main']
+
 apt_config_group: []
 
 apt_config_host: []

@@ -60,6 +60,12 @@ CONFIG
             distribution: 'buster/updates'
             components: ['main']
 
+          - url: 'http://ftp.ch.debian.org/debian'
+            state: 'true'
+            comment: 'Debian - Buster Backports'
+            distribution: 'buster-backports'
+            components: ['main']
+
 --------------------------------------------------------------------------------
 PARAMETERS
 --------------------------------------------------------------------------------
@@ -143,7 +149,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{path: /etc/apt/sources.list, state: 'true', repositories: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}]}]
+    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Buster Backports, distribution: buster-backports, components: [main]}]
     Options    :
       Examples: [{path: /etc/apt/sources.list, state: 'true', repositories: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}]}]
       None    : []
