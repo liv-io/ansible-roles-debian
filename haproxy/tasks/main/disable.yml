@@ -1,0 +1,58 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - haproxy
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create haproxy.cfg'
+  template:
+    src: "{{file_src_haproxy_cfg}}"
+    dest: "{{file_dst_haproxy_cfg}}"
+    mode: "{{file_mode_haproxy_cfg}}"
+    owner: "{{file_owner_haproxy_cfg}}"
+    group: "{{file_group_haproxy_cfg}}"
+    validate: "{{file_validate_haproxy_cfg}}"
+  tags:
+    - disable
+    - haproxy
+
+- name: 'file create monit-haproxy.cfg'
+  template:
+    src: "{{file_src_monit_haproxy_cfg}}"
+    dest: "{{file_dst_monit_haproxy_cfg}}"
+    mode: "{{file_mode_monit_haproxy_cfg}}"
+    owner: "{{file_owner_monit_haproxy_cfg}}"
+    group: "{{file_group_monit_haproxy_cfg}}"
+  notify: 'service reload monit'
+  when: (haproxy_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - haproxy
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop haproxy'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_haproxy}}"
+  tags:
+    - disable
+    - haproxy

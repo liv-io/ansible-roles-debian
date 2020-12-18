@@ -1,0 +1,27 @@
+---
+
+haproxy_state: 'enable'
+
+haproxy_config: ''
+
+haproxy_monitor_monit_state: 'false'
+
+haproxy_stats_auth: []
+
+haproxy_stats_defaults_state: 'disable'
+
+haproxy_stats_hide_version: 'true'
+
+haproxy_stats_listen_state: 'disable'
+
+haproxy_stats_realm: 'Haproxy\ Statistics'
+
+haproxy_stats_refresh: 5
+
+haproxy_stats_show_desc: ''
+
+haproxy_stats_show_legends: 'true'
+
+haproxy_stats_show_node: 'true'
+
+haproxy_stats_uri: '/haproxy?stats'

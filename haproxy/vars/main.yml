@@ -1,0 +1,56 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# haproxy
+package_name_haproxy: 'haproxy'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# dhparam.pem
+file_dst_dhparam_pem: '/etc/haproxy/dhparam.pem'
+
+# haproxy.cfg
+file_src_haproxy_cfg: 'templates/main/haproxy.cfg'
+file_dst_haproxy_cfg: '/etc/haproxy/haproxy.cfg'
+file_mode_haproxy_cfg: '0644'
+file_owner_haproxy_cfg: 'root'
+file_group_haproxy_cfg: 'root'
+file_validate_haproxy_cfg: 'haproxy -c -q -f %s'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# monit-haproxy.cfg
+file_src_monit_haproxy_cfg: 'templates/main/monit-haproxy.cfg'
+file_dst_monit_haproxy_cfg: '/etc/monit.d/haproxy.cfg'
+file_mode_monit_haproxy_cfg: '0640'
+file_owner_monit_haproxy_cfg: 'root'
+file_group_monit_haproxy_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# generate dhparam
+command_cmd_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_dst_dhparam_pem}}"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# haproxy
+service_name_haproxy: 'haproxy'
+
+# monit
+service_name_monit: 'monit'
