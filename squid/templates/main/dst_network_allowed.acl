@@ -1,0 +1,9 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% for item in (squid_network_allowed|default([])) %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
+{% endif %}
+{{item.name}}
+
+{% endfor %}

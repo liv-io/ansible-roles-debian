@@ -1,0 +1,105 @@
+---
+
+# cache_effective_user
+cache_effective_user: 'proxy'
+
+# cache_effective_group
+cache_effective_group: 'proxy'
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# squid
+package_name_squid: 'squid'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# acl.dir
+file_dst_acl_dir: '/etc/squid/acl'
+file_mode_acl_dir: '0755'
+file_owner_acl_dir: 'root'
+file_group_acl_dir: 'root'
+
+# cache.dir
+file_dst_cache_dir: '/var/spool/squid/00'
+
+# dst_domain_allowed.acl
+file_src_dst_domain_allowed_acl: 'templates/main/dst_domain_allowed.acl'
+file_dst_dst_domain_allowed_acl: '/etc/squid/acl/dst_domain_allowed.acl'
+file_mode_dst_domain_allowed_acl: '0644'
+file_owner_dst_domain_allowed_acl: 'root'
+file_group_dst_domain_allowed_acl: 'root'
+
+# dst_domain_blocked.acl
+file_src_dst_domain_blocked_acl: 'templates/main/dst_domain_blocked.acl'
+file_dst_dst_domain_blocked_acl: '/etc/squid/acl/dst_domain_blocked.acl'
+file_mode_dst_domain_blocked_acl: '0644'
+file_owner_dst_domain_blocked_acl: 'root'
+file_group_dst_domain_blocked_acl: 'root'
+
+# dst_network_allowed.acl
+file_src_dst_network_allowed_acl: 'templates/main/dst_network_allowed.acl'
+file_dst_dst_network_allowed_acl: '/etc/squid/acl/dst_network_allowed.acl'
+file_mode_dst_network_allowed_acl: '0644'
+file_owner_dst_network_allowed_acl: 'root'
+file_group_dst_network_allowed_acl: 'root'
+
+# dst_network_blocked.acl
+file_src_dst_network_blocked_acl: 'templates/main/dst_network_blocked.acl'
+file_dst_dst_network_blocked_acl: '/etc/squid/acl/dst_network_blocked.acl'
+file_mode_dst_network_blocked_acl: '0644'
+file_owner_dst_network_blocked_acl: 'root'
+file_group_dst_network_blocked_acl: 'root'
+
+# squid.conf
+file_src_squid_conf: 'templates/main/squid.conf'
+file_dst_squid_conf: '/etc/squid/squid.conf'
+file_mode_squid_conf: '0644'
+file_owner_squid_conf: 'root'
+file_group_squid_conf: 'root'
+
+# src_network_unrestricted.acl
+file_src_src_network_unrestricted_acl: 'templates/main/src_network_unrestricted.acl'
+file_dst_src_network_unrestricted_acl: '/etc/squid/acl/src_network_unrestricted.acl'
+file_mode_src_network_unrestricted_acl: '0644'
+file_owner_src_network_unrestricted_acl: 'root'
+file_group_src_network_unrestricted_acl: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# squid.cfg
+file_src_squid_cfg: 'templates/main/squid.cfg'
+file_dst_squid_cfg: '/etc/monit.d/squid.cfg'
+file_mode_squid_cfg: '0640'
+file_owner_squid_cfg: 'root'
+file_group_squid_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# create cache_dir
+command_cmd_create_cache_dir: 'squid -z > /dev/null 2>&1'
+
+# parse config
+command_cmd_parse_config: 'squid -k parse > /dev/null 2>&1'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# squid
+service_name_squid: 'squid'
