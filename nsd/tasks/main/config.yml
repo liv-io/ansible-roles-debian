@@ -1,0 +1,45 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - nsd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_config}}/{{item.name}}.zone"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  loop: "{{nsd_zone}}"
+  notify: 'service restart nsd'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - nsd
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_config}}/{{item.name}}.zone"
+  loop: "{{nsd_zone}}"
+  notify: 'service restart nsd'
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - nsd

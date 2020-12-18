@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# nsd
+package_name_nsd: 'nsd'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# config
+file_src_config: 'templates/main/config'
+file_dst_config: '/etc/nsd'
+file_mode_config: '0644'
+file_owner_config: 'root'
+file_group_config: 'root'
+
+# nsd.conf
+file_src_nsd_conf: 'templates/main/nsd.conf'
+file_dst_nsd_conf: '/etc/nsd/nsd.conf'
+file_mode_nsd_conf: '0644'
+file_owner_nsd_conf: 'root'
+file_group_nsd_conf: 'root'
+file_validate_nsd_conf: 'nsd-checkconf %s'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# nsd.cfg
+file_src_nsd_cfg: 'templates/main/nsd.cfg'
+file_dst_nsd_cfg: '/etc/monit.d/nsd.cfg'
+file_mode_nsd_cfg: '0640'
+file_owner_nsd_cfg: 'root'
+file_group_nsd_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# nsd
+service_name_nsd: 'nsd'

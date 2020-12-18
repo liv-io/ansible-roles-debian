@@ -1,0 +1,49 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - nsd
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove nsd'
+  package:
+    state: 'absent'
+    name: "{{package_name_nsd}}"
+  tags:
+    - remove
+    - nsd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove nsd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_nsd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - nsd
+
+- name: 'file remove nsd.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_nsd_conf}}"
+  tags:
+    - remove
+    - nsd
