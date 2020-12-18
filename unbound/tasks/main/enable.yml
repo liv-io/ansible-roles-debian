@@ -1,0 +1,71 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - unbound
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file copy root.hints'
+  copy:
+    src: "{{file_src_root_hints}}"
+    dest: "{{file_dst_root_hints}}"
+    mode: "{{file_mode_root_hints}}"
+    owner: "{{file_owner_root_hints}}"
+    group: "{{file_group_root_hints}}"
+  notify: 'service restart unbound'
+  tags:
+    - enable
+    - unbound
+
+- name: 'file create unbound.conf'
+  template:
+    src: "{{file_src_unbound_conf}}"
+    dest: "{{file_dst_unbound_conf}}"
+    mode: "{{file_mode_unbound_conf}}"
+    owner: "{{file_owner_unbound_conf}}"
+    group: "{{file_group_unbound_conf}}"
+    validate: "{{file_validate_unbound_conf}}"
+  notify: 'service restart unbound'
+  tags:
+    - enable
+    - unbound
+
+- name: 'file create unbound.cfg'
+  template:
+    src: "{{file_src_unbound_cfg}}"
+    dest: "{{file_dst_unbound_cfg}}"
+    mode: "{{file_mode_unbound_cfg}}"
+    owner: "{{file_owner_unbound_cfg}}"
+    group: "{{file_group_unbound_cfg}}"
+  notify: 'service reload monit'
+  when: (unbound_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - unbound
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start unbound'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_unbound}}"
+  tags:
+    - enable
+    - unbound

@@ -1,0 +1,69 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - unbound
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create root.hints'
+  template:
+    src: "{{file_src_root_hints}}"
+    dest: "{{file_dst_root_hints}}"
+    mode: "{{file_mode_root_hints}}"
+    owner: "{{file_owner_root_hints}}"
+    group: "{{file_group_root_hints}}"
+  tags:
+    - disable
+    - unbound
+
+- name: 'file create unbound.conf'
+  template:
+    src: "{{file_src_unbound_conf}}"
+    dest: "{{file_dst_unbound_conf}}"
+    mode: "{{file_mode_unbound_conf}}"
+    owner: "{{file_owner_unbound_conf}}"
+    group: "{{file_group_unbound_conf}}"
+    validate: "{{file_validate_unbound_conf}}"
+  tags:
+    - disable
+    - unbound
+
+- name: 'file create unbound.cfg'
+  template:
+    src: "{{file_src_unbound_cfg}}"
+    dest: "{{file_dst_unbound_cfg}}"
+    mode: "{{file_mode_unbound_cfg}}"
+    owner: "{{file_owner_unbound_cfg}}"
+    group: "{{file_group_unbound_cfg}}"
+  notify: 'service reload monit'
+  when: (unbound_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - unbound
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop unbound'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_unbound}}"
+  tags:
+    - disable
+    - unbound

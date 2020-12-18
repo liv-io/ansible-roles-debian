@@ -1,0 +1,57 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# unbound
+package_name_unbound: 'unbound'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# root.hints
+file_src_root_hints: 'files/main/root.hints'
+file_dst_root_hints: '/etc/unbound/root.hints'
+file_mode_root_hints: '0644'
+file_owner_root_hints: 'root'
+file_group_root_hints: 'root'
+
+# unbound.conf
+file_src_unbound_conf: 'templates/main/unbound.conf'
+file_dst_unbound_conf: '/etc/unbound/unbound.conf'
+file_mode_unbound_conf: '0644'
+file_owner_unbound_conf: 'root'
+file_group_unbound_conf: 'root'
+file_validate_unbound_conf: 'unbound-checkconf %s'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# unbound.cfg
+file_src_unbound_cfg: 'templates/main/unbound.cfg'
+file_dst_unbound_cfg: '/etc/monit.d/unbound.cfg'
+file_mode_unbound_cfg: '0640'
+file_owner_unbound_cfg: 'root'
+file_group_unbound_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# unbound
+service_name_unbound: 'unbound'
