@@ -87,8 +87,6 @@
   # SSL/TLS protocol versions
 {% if not ((item.ssl_protocols|default([])) == []) %}
   SSLProtocol {% for ssl_protocols in item.ssl_protocols %}{{ssl_protocols}}{% if not loop.last %} {% endif %}{% endfor %}
-{% elif (ansible_distribution_major_version is match('7')) %}
-  SSLProtocol -ALL +TLSv1.2
 {% else %}
   SSLProtocol -ALL +TLSv1.2 +TLSv1.3
 {% endif %}
@@ -101,8 +99,6 @@
   # Cipher Suite available for negotiation in SSL handshake
 {% if not ((item.ssl_ciphers|default([])) == []) %}
   SSLCipherSuite '{{item.ssl_ciphers}}'
-{% elif (ansible_distribution_major_version is match('7')) %}
-  SSLCipherSuite 'AES256+EECDH'
 {% else %}
   SSLCipherSuite 'TLS_AES_256_GCM_SHA384:AES256+EECDH'
 {% endif %}

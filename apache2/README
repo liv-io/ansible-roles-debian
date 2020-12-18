@@ -279,9 +279,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    :
-      CentOS 7: 'AES256+EECDH'
-      CentOS 8: 'TLS_AES_256_GCM_SHA384:AES256+EECDH'
+    Default    : 'TLS_AES_256_GCM_SHA384:AES256+EECDH'
     Options    :
       Examples: 'TLS_AES_256_GCM_SHA384'
 
@@ -313,9 +311,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    :
-      CentOS 7: ['-ALL', '+TLSv1.2']
-      CentOS 8: ['-ALL', '+TLSv1.2', '+TLSv1.3']
+    Default    : ['-ALL', '+TLSv1.2', '+TLSv1.3']
     Options    :
       Examples: ['-ALL', '+TLSv1.3']
 
