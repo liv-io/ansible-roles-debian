@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (man_db_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - man_db
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (man_db_state is match('false|no|remove'))
+  tags:
+    - man_db
