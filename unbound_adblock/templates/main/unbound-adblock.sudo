@@ -1,0 +1,7 @@
+{{ansible_managed|comment(decoration='#')}}
+
+#-------------------------------------------------------------------------------
+# UNBOUND_ADBLOCK
+#-------------------------------------------------------------------------------
+
+{{user_name_unbound_adblock}} ALL=(root) NOPASSWD: {{service}} restart {{service_name_unbound}}, {{service}} status {{service_name_unbound}}
