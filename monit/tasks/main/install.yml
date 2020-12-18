@@ -23,6 +23,7 @@
   package:
     state: 'present'
     name: "{{package_name_monit}}"
+    default_release: 'buster-backports'
     install_recommends: 'no'
   tags:
     - install

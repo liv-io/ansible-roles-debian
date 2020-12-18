@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-12-18)
+B: Install Monit from 'buster-backports' APT repository
+
 * Version 0.1.0 (2020-12-15)
 F: Initial release
