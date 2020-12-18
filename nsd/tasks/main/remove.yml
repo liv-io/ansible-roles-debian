@@ -23,6 +23,7 @@
   package:
     state: 'absent'
     name: "{{package_name_nsd}}"
+    install_recommends: 'no'
   tags:
     - remove
     - nsd
