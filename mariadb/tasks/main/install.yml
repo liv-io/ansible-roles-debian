@@ -23,6 +23,7 @@
   package:
     state: 'present'
     name: "{{package_name_mariadb_client}}"
+    install_recommends: 'no'
   tags:
     - install
     - mariadb
@@ -31,6 +32,7 @@
   package:
     state: 'present'
     name: "{{package_name_mariadb_server}}"
+    install_recommends: 'no'
   register: register_package_install_mariadb_server
   tags:
     - install

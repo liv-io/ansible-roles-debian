@@ -23,6 +23,7 @@
   package:
     state: 'absent'
     name: "{{package_name_mariadb_client}}"
+    install_recommends: 'no'
   tags:
     - remove
     - mariadb
@@ -31,6 +32,7 @@
   package:
     state: 'absent'
     name: "{{package_name_mariadb_server}}"
+    install_recommends: 'no'
   tags:
     - remove
     - mariadb
