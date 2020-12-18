@@ -23,6 +23,7 @@
   package:
     state: 'present'
     name: "{{package_name_unbound}}"
+    install_recommends: 'no'
   tags:
     - install
     - unbound
