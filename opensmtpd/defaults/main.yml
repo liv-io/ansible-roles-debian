@@ -1,0 +1,44 @@
+---
+
+opensmtpd_state: 'enable'
+
+opensmtpd_action_all:
+  - {config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'}
+  - {config: {'action "relay" relay host smtp://mail'}, comment: 'Action: relay'}
+
+opensmtpd_action_group: []
+
+opensmtpd_action_host: []
+
+opensmtpd_listen_all:
+  - {config: {'listen on lo'}, comment: 'Listen: lo'}
+
+opensmtpd_listen_group: []
+
+opensmtpd_listen_host: []
+
+opensmtpd_match_all:
+  - {config: {'match for local action "local"'}, comment: 'Match: local'}
+  - {config: {'match for any action "relay"'}, comment: 'Match: relay'}
+
+opensmtpd_match_group: []
+
+opensmtpd_match_host: []
+
+opensmtpd_monitor_monit_state: 'false'
+
+opensmtpd_root_mail_address: "root@{{ansible_domain}}"
+
+opensmtpd_secrets_all: []
+
+opensmtpd_secrets_group: []
+
+opensmtpd_secrets_host: []
+
+opensmtpd_table_all:
+  - {config: {'table aliases file:/etc/aliases'}, comment: 'Table: aliases'}
+  - {config: {'table secrets file:/etc/smtpd/secrets'}, comment: 'Table: secrets'}
+
+opensmtpd_table_group: []
+
+opensmtpd_table_host: []

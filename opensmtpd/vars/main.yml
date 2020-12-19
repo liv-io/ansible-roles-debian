@@ -1,0 +1,72 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# opensmtpd
+package_name_opensmtpd: 'opensmtpd'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# aliases
+file_src_aliases: 'templates/main/aliases'
+file_dst_aliases: '/etc/aliases'
+file_mode_aliases: '0644'
+file_owner_aliases: 'root'
+file_group_aliases: 'root'
+
+# secrets
+file_src_secrets: 'templates/main/secrets'
+file_dst_secrets: '/etc/smtpd/secrets'
+file_mode_secrets: '0640'
+file_owner_secrets: 'root'
+file_group_secrets: 'opensmtpd'
+
+# smtpd.conf
+file_src_smtpd_conf: 'templates/main/smtpd.conf'
+file_dst_smtpd_conf: '/etc/smtpd.conf'
+file_mode_smtpd_conf: '0644'
+file_owner_smtpd_conf: 'root'
+file_group_smtpd_conf: 'root'
+
+# smtpd.dir
+file_dst_smtpd_dir: '/etc/smtpd'
+file_mode_smtpd_dir: '0750'
+file_owner_smtpd_dir: 'root'
+file_group_smtpd_dir: 'opensmtpd'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# opensmtpd.cfg
+file_src_opensmtpd_cfg: 'templates/main/opensmtpd.cfg'
+file_dst_opensmtpd_cfg: '/etc/monit.d/opensmtpd.cfg'
+file_mode_opensmtpd_cfg: '0640'
+file_owner_opensmtpd_cfg: 'root'
+file_group_opensmtpd_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# smtpctl aliases
+command_cmd_smtpctl_aliases: 'smtpctl update table aliases'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# opensmtpd
+service_name_opensmtpd: 'opensmtpd'

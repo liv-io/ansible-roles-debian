@@ -1,0 +1,59 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - opensmtpd
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove opensmtpd'
+  package:
+    state: 'absent'
+    name: "{{package_name_opensmtpd}}"
+    default_release: 'buster-backports'
+    install_recommends: 'no'
+  tags:
+    - remove
+    - opensmtpd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove opensmtpd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_opensmtpd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - opensmtpd
+
+- name: 'file remove smtpd.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_smtpd_conf}}"
+  tags:
+    - remove
+    - opensmtpd
+
+- name: 'file remove smtpd.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_smtpd_dir}}"
+  tags:
+    - remove
+    - opensmtpd

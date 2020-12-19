@@ -1,0 +1,40 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command smtpctl aliases'
+  command: "{{command_cmd_smtpctl_aliases}}"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service reload monit'
+  service:
+    state: 'reloaded'
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)
+
+- name: 'service start opensmtpd'
+  service:
+    state: 'started'
+    name: "{{service_name_opensmtpd}}"
+
+- name: 'service restart opensmtpd'
+  service:
+    state: 'restarted'
+    name: "{{service_name_opensmtpd}}"
