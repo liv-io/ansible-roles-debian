@@ -1,0 +1,166 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# suricata
+package_name_suricata: 'suricata'
+
+# suricata-update
+package_name_suricata_update: 'suricata-update'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# config
+file_src_config: 'templates/main/config'
+file_dst_config: '/etc/suricata/rules'
+file_mode_config: '0640'
+file_owner_config: 'root'
+file_group_config: 'suricata'
+
+# log.dir
+file_dst_log_dir: '/var/log/suricata'
+file_mode_log_dir: '0750'
+file_owner_log_dir: 'suricata'
+file_group_log_dir: 'suricata'
+
+# eve.json
+file_dst_eve_json: '/var/log/suricata/eve.json'
+file_mode_eve_json: '0640'
+file_owner_eve_json: 'suricata'
+file_group_eve_json: 'suricata'
+
+# fast.log
+file_dst_fast_log: '/var/log/suricata/fast.log'
+file_mode_fast_log: '0640'
+file_owner_fast_log: 'suricata'
+file_group_fast_log: 'suricata'
+
+# stats.log
+file_dst_stats_log: '/var/log/suricata/stats.log'
+file_mode_stats_log: '0640'
+file_owner_stats_log: 'suricata'
+file_group_stats_log: 'suricata'
+
+# suricata.log
+file_dst_suricata_log: '/var/log/suricata/suricata.log'
+file_mode_suricata_log: '0640'
+file_owner_suricata_log: 'suricata'
+file_group_suricata_log: 'suricata'
+
+# sources.dir
+file_dst_sources_dir: '/var/lib/suricata/update/sources/'
+
+# promiscuous_mode@.service
+file_src_promiscuous_mode_service: 'templates/main/promiscuous_mode.service'
+file_dst_promiscuous_mode_service: '/usr/lib/systemd/system/promiscuous_mode@.service'
+file_mode_promiscuous_mode_service: '0644'
+file_owner_promiscuous_mode_service: 'root'
+file_group_promiscuous_mode_service: 'root'
+
+# suricata.logrotate
+file_src_suricata_logrotate: 'templates/main/suricata.logrotate'
+file_dst_suricata_logrotate: '/etc/logrotate.d/suricata'
+file_mode_suricata_logrotate: '0644'
+file_owner_suricata_logrotate: 'root'
+file_group_suricata_logrotate: 'root'
+
+# suricata.rules
+file_dst_suricata_rules: '/var/lib/suricata/rules/suricata.rules'
+
+# suricata.default
+file_src_suricata_default: 'templates/main/suricata.default'
+file_dst_suricata_default: '/etc/default/suricata'
+file_mode_suricata_default: '0640'
+file_owner_suricata_default: 'root'
+file_group_suricata_default: 'suricata'
+
+# suricata.service
+file_src_suricata_service: 'templates/main/suricata.service'
+file_dst_suricata_service: '/lib/systemd/system/suricata.service'
+file_mode_suricata_service: '0644'
+file_owner_suricata_service: 'root'
+file_group_suricata_service: 'root'
+
+# suricata.yaml
+file_src_suricata_yaml: 'templates/main/suricata.yaml'
+file_dst_suricata_yaml: '/etc/suricata/suricata.yaml'
+file_mode_suricata_yaml: '0640'
+file_owner_suricata_yaml: 'root'
+file_group_suricata_yaml: 'suricata'
+file_validate_suricata_yaml: 'suricata -T -c %s'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# suricata.cfg
+file_src_suricata_cfg: 'templates/main/suricata.cfg'
+file_dst_suricata_cfg: '/etc/monit.d/suricata.cfg'
+file_mode_suricata_cfg: '0640'
+file_owner_suricata_cfg: 'root'
+file_group_suricata_cfg: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service suricata
+command_cmd_check_service_suricata: 'systemctl cat suricata.service > /dev/null 2>&1'
+
+# enable ruleset
+command_cmd_enable_ruleset: 'suricata-update enable-source'
+
+# install ruleset
+command_cmd_install_ruleset: 'suricata-update add-source'
+
+# list enabled rulesets
+command_cmd_list_enabled_rulesets: 'suricata-update list-enabled-sources'
+
+# remove ruleset
+command_cmd_remove_ruleset: 'suricata-update remove-source'
+
+# update permissions
+command_cmd_update_permissions: 'chown -R suricata:suricata /var/log/suricata'
+
+# update suricata
+command_cmd_update_suricata: 'suricata-update --local /etc/suricata/rules/ --output /var/lib/suricata/rules/ --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.63"'
+
+# systemctl daemon-reload
+command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# suricata
+group_name_suricata: 'suricata'
+group_system_suricata: 'yes'
+
+# suricata
+user_name_suricata: 'suricata'
+user_comment_suricata: 'Suricata'
+user_group_suricata: 'suricata'
+user_append_suricata: 'yes'
+user_home_create_suricata: 'no'
+user_home_move_suricata: 'no'
+user_home_remove_suricata: 'yes'
+user_home_force_suricata: 'no'
+user_password_suricata: '!'
+user_password_update_suricata: 'always'
+user_shell_suricata: '/usr/sbin/nologin'
+user_system_suricata: 'yes'
+
+# monit
+service_name_monit: 'monit'
+
+# suricata
+service_name_suricata: 'suricata'

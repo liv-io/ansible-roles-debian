@@ -1,0 +1,80 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - suricata
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create suricata.default'
+  template:
+    src: "{{file_src_suricata_default}}"
+    dest: "{{file_dst_suricata_default}}"
+    mode: "{{file_mode_suricata_default}}"
+    owner: "{{file_owner_suricata_default}}"
+    group: "{{file_group_suricata_default}}"
+  notify: 'service reload suricata'
+  tags:
+    - enable
+    - suricata
+
+- name: 'file create suricata.yaml'
+  template:
+    src: "{{file_src_suricata_yaml}}"
+    dest: "{{file_dst_suricata_yaml}}"
+    mode: "{{file_mode_suricata_yaml}}"
+    owner: "{{file_owner_suricata_yaml}}"
+    group: "{{file_group_suricata_yaml}}"
+    validate: "{{file_validate_suricata_yaml}}"
+  notify: 'service reload suricata'
+  tags:
+    - enable
+    - suricata
+
+- name: 'file create suricata.cfg'
+  template:
+    src: "{{file_src_suricata_cfg}}"
+    dest: "{{file_dst_suricata_cfg}}"
+    mode: "{{file_mode_suricata_cfg}}"
+    owner: "{{file_owner_suricata_cfg}}"
+    group: "{{file_group_suricata_cfg}}"
+  notify: 'service reload monit'
+  when: (suricata_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - suricata
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start promiscuous_mode@.service'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "promiscuous_mode@{{suricata_interface}}"
+  tags:
+    - enable
+    - suricata
+
+- name: 'service start suricata'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_suricata}}"
+  tags:
+    - enable
+    - suricata
