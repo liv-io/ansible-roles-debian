@@ -217,8 +217,8 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 ## performed should a test fail.
 #
 #  check system $HOST
-#    if loadavg (1min) > 4 then alert
-#    if loadavg (5min) > 2 then alert
+#    if loadavg (1min) per core > 2 for 5 cycles then alert
+#    if loadavg (5min) per core > 1.5 for 10 cycles then alert
 #    if cpu usage > 95% for 10 cycles then alert
 #    if memory usage > 75% then alert
 #    if swap usage > 25% then alert
@@ -234,8 +234,8 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #    if failed checksum and
 #       expect the sum 8f7f419955cefa0b33a2ba316cba3659 then unmonitor
 #    if failed permission 755 then unmonitor
-#    if failed uid root then unmonitor
-#    if failed gid root then unmonitor
+#    if failed uid "root" then unmonitor
+#    if failed gid "root" then unmonitor
 #    alert security@foo.bar on {
 #           checksum, permission, uid, gid, unmonitor
 #        } with the mail-format { subject: Alarm! }
@@ -257,19 +257,18 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #    if cpu > 80% for 5 cycles then restart
 #    if totalmem > 200.0 MB for 5 cycles then restart
 #    if children > 250 then restart
-#    if loadavg(5min) greater than 10 for 8 cycles then stop
-#    if failed host www.tildeslash.com port 80 protocol http
-#       and request "/somefile.html"
-#    then restart
+#    if disk read > 500 kb/s for 10 cycles then alert
+#    if disk write > 500 kb/s for 10 cycles then alert
+#    if failed host www.tildeslash.com port 80 protocol http and request "/somefile.html" then restart
 #    if failed port 443 protocol https with timeout 15 seconds then restart
 #    if 3 restarts within 5 cycles then unmonitor
 #    depends on apache_bin
 #    group server
 #
 #
-## Check filesystem permissions, uid, gid, space and inode usage. Other services,
-## such as databases, may depend on this resource and an automatically graceful
-## stop may be cascaded to them before the filesystem will become full and data
+## Check filesystem permissions, uid, gid, space usage, inode usage and disk I/O.
+## Other services, such as databases, may depend on this resource and an automatically
+## graceful stop may be cascaded to them before the filesystem will become full and data
 ## lost.
 #
 #  check filesystem datafs with path /dev/sdb1

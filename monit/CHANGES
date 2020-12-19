@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.2 (2020-12-19)
+E: Adapt monitrc configuration file to Debian template
+
 * Version 0.1.1 (2020-12-18)
 B: Install Monit from 'buster-backports' APT repository
 
