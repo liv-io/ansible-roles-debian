@@ -27,6 +27,7 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
+  notify: 'command update sources'
   when: not (item.state|default('false') is match('false|no|remove'))
   tags:
     - config
@@ -37,6 +38,7 @@
     state: 'absent'
     path: "{{(item.path|default('/etc/apt/sources.list'))}}"
   loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
+  notify: 'command update sources'
   when: (item.state|default('false') is match('false|no|remove'))
   tags:
     - config
