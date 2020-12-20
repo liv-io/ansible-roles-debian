@@ -27,7 +27,8 @@ set daemon {{(monit_daemon_interval|int(60))}}
 ## Set syslog logging. If you want to log to a standalone log file instead,
 ## specify the full path to the log file
 #
-  set logfile /var/log/monit.log
+  set log /var/log/monit.log
+
 #
 #
 ## Set the location of the Monit lock file which stores the process id of the
@@ -114,7 +115,7 @@ set mailserver {{item.address}}
       slots 100                     # optionally limit the queue size
 #
 #
-## Send status and events to M/Monit (for more informations about M/Monit
+## Send status and events to M/Monit (for more information about M/Monit
 ## see https://mmonit.com/). By default Monit registers credentials with
 ## M/Monit so M/Monit can smoothly communicate back to Monit and you don't
 ## have to register Monit credentials manually in M/Monit. It is possible to
@@ -122,13 +123,15 @@ set mailserver {{item.address}}
 ## Though, if safety is a concern we recommend instead using https when
 ## communicating with M/Monit and send credentials encrypted. The password
 ## should be URL encoded if it contains URL-significant characters like
-## ":", "?", "@".
+## ":", "?", "@". Default timeout is 5 seconds, you can customize it by
+## adding the timeout option.
 #
 # set mmonit http://monit:monit@192.168.1.10:8080/collector
+#     # with timeout 30 seconds              # Default timeout is 5 seconds
 #     # and register without credentials     # Don't register credentials
 #
 #
-## Monit by default uses the following format for alerts if the the mail-format
+## Monit by default uses the following format for alerts if the mail-format
 ## statement is missing::
 ## --8<--
 ## set mail-format {
@@ -275,12 +278,17 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #    start program  = "/bin/mount /data"
 #    stop program  = "/bin/umount /data"
 #    if failed permission 660 then unmonitor
-#    if failed uid root then unmonitor
-#    if failed gid disk then unmonitor
+#    if failed uid "root" then unmonitor
+#    if failed gid "disk" then unmonitor
 #    if space usage > 80% for 5 times within 15 cycles then alert
 #    if space usage > 99% then stop
 #    if inode usage > 30000 then alert
 #    if inode usage > 99% then stop
+#    if read rate > 1 MB/s for 5 cycles then alert
+#    if read rate > 500 operations/s for 5 cycles then alert
+#    if write rate > 1 MB/s for 5 cycles then alert
+#    if write rate > 500 operations/s for 5 cycles then alert
+#    if service time > 10 milliseconds for 3 times within 5 cycles then alert
 #    group server
 #
 #
@@ -290,8 +298,8 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #
 #  check file database with path /data/mydatabase.db
 #    if failed permission 700 then alert
-#    if failed uid data then alert
-#    if failed gid data then alert
+#    if failed uid "data" then alert
+#    if failed gid "data" then alert
 #    if timestamp > 15 minutes then alert
 #    if size > 100 MB then exec "/my/cleanup/script" as uid dba and gid dba
 #
@@ -342,6 +350,7 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 ## It is possible to include additional configuration parts from other files or
 ## directories.
 #
-include {{monit_include}}
-#
+   #include /etc/monit/conf.d/*
+   #include /etc/monit/conf-enabled/*
+    include {{monit_include}}
 #

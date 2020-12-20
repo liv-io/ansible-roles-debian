@@ -11,6 +11,12 @@ package_name_monit: 'monit'
 # FILES
 #-------------------------------------------------------------------------------
 
+# conf.d
+file_dst_conf_d: '/etc/monit/conf.d'
+
+# conf-enabled
+file_dst_conf_enabled: '/etc/monit/conf-enabled'
+
 # monitrc
 file_src_monitrc: 'templates/main/monitrc'
 file_dst_monitrc: '/etc/monit/monitrc'

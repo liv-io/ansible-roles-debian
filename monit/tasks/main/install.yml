@@ -43,3 +43,19 @@
   tags:
     - install
     - monit
+
+- name: 'file remove conf.d'
+  file:
+    state: 'absent'
+    path: "{{file_dst_conf_d}}"
+  tags:
+    - install
+    - monit
+
+- name: 'file remove conf-enabled'
+  file:
+    state: 'absent'
+    path: "{{file_dst_conf_enabled}}"
+  tags:
+    - install
+    - monit
