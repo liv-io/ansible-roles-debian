@@ -51,17 +51,6 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create data.dir'
-  file:
-    state: 'directory'
-    path: "{{file_dst_data_dir}}"
-    mode: "{{file_mode_data_dir}}"
-    owner: "{{file_owner_data_dir}}"
-    group: "{{file_group_data_dir}}"
-  tags:
-    - install
-    - node_exporter
-
 - name: 'file create node_exporter_data.dir'
   file:
     state: 'directory'
