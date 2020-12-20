@@ -20,4 +20,4 @@ fstrim_monitor_mail_state: 'false'
 
 fstrim_monitor_prom_state: 'false'
 
-fstrim_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+fstrim_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
