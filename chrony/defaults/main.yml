@@ -31,7 +31,7 @@ chrony_monitor_monit_state: 'false'
 
 chrony_monitor_prom_state: 'false'
 
-chrony_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+chrony_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 chrony_pool: []
 

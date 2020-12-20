@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.3 (2020-12-20)
+E: Modify 'textfile_collector' directory path to comply with Linux FHS
+
 * Version 0.1.2 (2020-12-15)
 E: Add install_recommends parameter to package tasks
 

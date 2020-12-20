@@ -257,9 +257,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '/data/node_exporter/textfile_collector'
+    Default    : '/var/local/node_exporter/textfile_collector'
     Options    :
-      Examples: '/data/node_exporter/textfile_collector'
+      Examples: '/var/local/node_exporter/textfile_collector'
 
   chrony_pool
     Description: Define the 'chrony_pool' option.
