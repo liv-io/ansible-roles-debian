@@ -20,7 +20,7 @@ mariadb_monitor_monit_state: 'false'
 
 mariadb_monitor_prom_state: 'false'
 
-mariadb_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+mariadb_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 mariadb_root_password: 'mTA_4Vamn.DGrM5p2u8f6ScHm3_g9quA'
 
