@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.0 (2021-01-07)
+F: Update Prometheus to version 2.24.0
+
 * Version 0.2.1 (2020-12-13)
 F: Add alerting rules for chrony_check-time and openntpd_check-time
 
