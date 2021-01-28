@@ -150,11 +150,10 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'delayed'
+    Default    : 'yes'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
-      Delayed: 'delayed'
 
   openssh_deny_groups
     Description: Define the 'openssh_deny_groups' option.

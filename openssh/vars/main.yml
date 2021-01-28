@@ -69,5 +69,5 @@ command_cmd_validate_openssh: '/usr/sbin/sshd -t'
 # monit
 service_name_monit: 'monit'
 
-# sshd
-service_name_openssh: 'sshd'
+# ssh
+service_name_openssh: 'ssh'

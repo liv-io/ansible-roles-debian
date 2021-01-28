@@ -14,5 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2021-01-28)
+E: Remove legacy Compression argument "delayed"
+E: Use primary service name instead of alias name
+
 * Version 0.1.0 (2020-12-12)
 F: Initial release

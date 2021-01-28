@@ -240,12 +240,10 @@ TCPKeepAlive yes
 #UseLogin no
 #UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
-{% if (openssh_compression is match('true|yes|enable')) %}
-Compression yes
-{% elif (openssh_compression is match('false|no|disable')) %}
+{% if (openssh_compression is match('false|no|disable')) %}
 Compression no
 {% else %}
-Compression delayed
+Compression yes
 {% endif %}
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
