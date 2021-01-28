@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.0 (2021-01-28)
+E: Remove needless loop from install tasks
+
 * Version 0.1.0 (2020-12-11)
 F: Initial release
