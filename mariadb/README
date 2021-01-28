@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : mariadb
 Type   : Ansible role
@@ -8,9 +6,7 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 MariaDB is a fast, stable and true multi-user, multi-threaded SQL database
 server. SQL (Structured Query Language) is the most popular database query
@@ -20,9 +16,7 @@ of use.
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - hosts: all
@@ -103,9 +97,7 @@ CONFIG
         password_encrypted: 'false'
         privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE'
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 ROLE
   mariadb_state
@@ -367,15 +359,11 @@ ROLE
                  {state: 'false', name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
       None    : []
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
   mariadb-client
@@ -393,9 +381,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -408,9 +394,7 @@ MANAGED NODE
   Python-MySQL
     Version: >= 1.2.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian

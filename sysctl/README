@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : sysctl
 Type   : Ansible role
@@ -8,9 +6,7 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 'sysctl' is used to modify kernel parameters at runtime. The parameters
 available are those listed under /proc/sys/. Procfs is required for sysctl
@@ -19,9 +15,7 @@ support in Linux. You can use sysctl to both read and write sysctl data.
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - sysctl: all
@@ -92,9 +86,7 @@ CONFIG
             value: '65535'
             comment: 'Set max PIDs'
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 ROLE
   sysctl_state
@@ -156,15 +148,11 @@ ROLE
                            {key: 'net.ipv4.icmp_echo_ignore_broadcasts', value: '1', comment: 'Smurf attack protection'}]}]
       None    : []
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
 
@@ -172,9 +160,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -184,9 +170,7 @@ MANAGED NODE
   Python
     Version: >= 2.7.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian

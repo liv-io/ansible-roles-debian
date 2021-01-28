@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : openvswitch_switch
 Type   : Ansible role
@@ -8,9 +6,7 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 Open vSwitch is a production quality, multilayer, software-based, Ethernet
 virtual switch. It is designed to enable massive network automation through
@@ -22,9 +18,7 @@ servers similar to VMware's vNetwork distributed vswitch or Cisco's Nexus 1000V
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - hosts: all
@@ -40,9 +34,7 @@ INACTIVE
     vars:
       openvswitch_switch_state: 'inactive'
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 ROLE
   openvswitch_switch_state
@@ -56,15 +48,11 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
   openvswitch-switch
@@ -76,9 +64,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -88,9 +74,7 @@ MANAGED NODE
   Python
     Version: >= 2.7.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian

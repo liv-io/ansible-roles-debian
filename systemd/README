@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : systemd
 Type   : Ansible role
@@ -8,9 +6,7 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 systemd is a system and service manager for Linux, compatible with SysV and LSB
 init scripts. systemd provides aggressive parallelization capabilities, uses
@@ -23,9 +19,7 @@ can work as a drop-in replacement for sysvinit.
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - systemd: all
@@ -121,9 +115,7 @@ CONFIG
           - key: 'WantedBy'
             value: 'multi-user.target'
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 CONFIG
   state
@@ -249,15 +241,11 @@ ROLE
                   comment: "Disable 'ctrl+alt+del' hotkey", options: []}]
       None    : []
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
   systemd
@@ -269,9 +257,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -281,9 +267,7 @@ MANAGED NODE
   Python
     Version: >= 2.7.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian

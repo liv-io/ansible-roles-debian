@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : nftables
 Type   : Ansible role
@@ -8,9 +6,7 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 This software provides an in-kernel packet classification framework that is
 based on a network-specific Virtual Machine (VM) and the nft userspace command
@@ -21,9 +17,7 @@ userspace queueing and logging subsystem.
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - hosts: all
@@ -93,9 +87,7 @@ CONFIG
     nftables_nat_all:
       - {action: 'masquerade', direction: 'postrouting', version: 'ipv4', oif: 'ens18', comment: 'WireGuard masquerading'}
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 ROLE
   nftables_state
@@ -285,15 +277,11 @@ ROLE
                   {action: 'drop', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'},
                   {action: 'drop', direction: 'postrouting', version: 'ipv6', comment: 'default ipv6 postrouting policy'}]
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
   nftables
@@ -305,9 +293,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -317,9 +303,7 @@ MANAGED NODE
   Python
     Version: >= 2.7.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian

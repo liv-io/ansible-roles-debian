@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : nftables
 Type   : Ansible role
@@ -8,21 +6,15 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 BUGS
---------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------
 ENHANCEMENTS
---------------------------------------------------------------------------------
 
 - Generally improve IPv4 NAT template and syntax
 - Ensure safe defaults if parameter 'nftables_filter_policies' is empty
 - Ensure safe defaults if parameter 'nftables_nat_policies' is empty
 
---------------------------------------------------------------------------------
 FEATURES
---------------------------------------------------------------------------------
 
 - Add IPv6 NAT support
 - Add parameter 'nftables_filter_dependencies'

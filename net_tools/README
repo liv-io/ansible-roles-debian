@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : net_tools
 Type   : Ansible role
@@ -8,9 +6,7 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 This package includes the important tools for controlling the network subsystem
 of the Linux kernel. This includes arp, ifconfig, netstat, rarp, nameif and
@@ -21,9 +17,7 @@ IP configuration (iptunnel, ipmaddr).
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - hosts: all
@@ -46,9 +40,7 @@ INACTIVE
     vars:
       net_tools_state: 'inactive'
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 ROLE
   net_tools_state
@@ -63,15 +55,11 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
   net-tools
@@ -83,9 +71,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -95,9 +81,7 @@ MANAGED NODE
   Python
     Version: >= 2.7.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian

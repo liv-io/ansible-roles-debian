@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 Name   : issue
 Type   : Ansible role
@@ -8,18 +6,14 @@ Type   : Ansible role
 Authors: liv community
 License: Simplified BSD License
 
---------------------------------------------------------------------------------
 DESCRIPTION
---------------------------------------------------------------------------------
 
 The contents of '/etc/issue' are displayed by login before a successful login.
 
 For more information on the usage and available configuration options,
 consult the following sections.
 
---------------------------------------------------------------------------------
 USAGE
---------------------------------------------------------------------------------
 
 INSTALL
   - hosts: all
@@ -35,9 +29,7 @@ INACTIVE
     vars:
       issue_state: 'inactive'
 
---------------------------------------------------------------------------------
 PARAMETERS
---------------------------------------------------------------------------------
 
 ROLE
   issue_state
@@ -59,9 +51,7 @@ ROLE
     Value      : Arbitrary
     Type       : String
     Default    : |
-      --------------------------------------------------------------------------------
                                           WARNING
-      --------------------------------------------------------------------------------
     
        You have reached a private system. Unauthorized access is prohibited and
        a violation of law. This system, including all related equipment, networks
@@ -77,9 +67,7 @@ ROLE
        By further accessing the contents of this system, you are implicitly agreeing
        to all the conditions stated above.
     
-      --------------------------------------------------------------------------------
                 DISCONNECT NOW IF YOU ARE NOT AUTHORIZED TO USE THIS SYSTEM
-      --------------------------------------------------------------------------------
     Options    :
       Examples: 'Arbitrary Text' | 'hello cyberspace'
       None    : ''
@@ -91,9 +79,7 @@ ROLE
     Value      : Arbitrary
     Type       : String
     Default    : |
-      --------------------------------------------------------------------------------
                                           WARNING
-      --------------------------------------------------------------------------------
 
        You have reached a private system. Unauthorized access is prohibited and
        a violation of law. This system, including all related equipment, networks
@@ -109,22 +95,16 @@ ROLE
        By further accessing the contents of this system, you are implicitly agreeing
        to all the conditions stated above.
 
-      --------------------------------------------------------------------------------
                 DISCONNECT NOW IF YOU ARE NOT AUTHORIZED TO USE THIS SYSTEM
-      --------------------------------------------------------------------------------
     Options    :
       Examples: 'Arbitrary Text' | 'hello cyberspace'
       None    : ''
 
---------------------------------------------------------------------------------
 CONFLICTS
---------------------------------------------------------------------------------
 
 ROLES
 
---------------------------------------------------------------------------------
 DEPENDENCIES
---------------------------------------------------------------------------------
 
 PACKAGES
 
@@ -132,9 +112,7 @@ ROLES
 
 PARAMETERS
 
---------------------------------------------------------------------------------
 REQUIREMENTS
---------------------------------------------------------------------------------
 
 CONTROL NODE
   Ansible
@@ -144,9 +122,7 @@ MANAGED NODE
   Python
     Version: >= 2.7.0
 
---------------------------------------------------------------------------------
 SUPPORT
---------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
   Debian
