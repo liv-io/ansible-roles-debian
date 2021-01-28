@@ -28,6 +28,7 @@ apache2_modules:
   - {name: 'auth_basic', state: 'true'}
   - {name: 'headers', state: 'true'}
   - {name: 'proxy', state: 'true'}
+  - {name: 'proxy_wstunnel', state: 'true'}
   - {name: 'socache_shmcb', state: 'true'}
   - {name: 'ssl', state: 'true'}
 

@@ -497,7 +497,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : Array/Hash
-    Default    : [{name: auth_basic, state: 'true'}, {name: headers, state: 'true'}, {name: proxy, state: 'true'}, {name: socache_shmcb, state: 'true'}, {name: ssl, state: 'true'}]
+    Default    : [{name: auth_basic, state: 'true'}, {name: headers, state: 'true'}, {name: proxy, state: 'true'}, {name: proxy_wstunnel, state: 'true'}, {name: socache_shmcb, state: 'true'}, {name: ssl, state: 'true'}]
     Options    :
       Examples: [{name: 'brotli', state: 'false'}, {name: 'http2', state: 'true'}, {name: 'rewrite', state: 'true'}]
       None    : []
