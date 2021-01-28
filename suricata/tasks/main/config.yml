@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -32,7 +23,6 @@
     - 'service reload suricata'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - suricata
 
 - name: 'file remove config'
@@ -43,12 +33,7 @@
   notify: 'service reload suricata'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - suricata
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command list enabled ruleset'
   shell: "{{command_cmd_list_enabled_rulesets}} | grep '{{item.name}}'"
@@ -58,7 +43,6 @@
   check_mode: 'no'
   loop: "{{suricata_ruleset}}"
   tags:
-    - config
     - suricata
 
 - name: 'command install ruleset'
@@ -70,7 +54,6 @@
     - 'service reload suricata'
   when: (item.rc != 0) and (item.item.state|default('true') is match('install'))
   tags:
-    - config
     - suricata
 
 - name: 'command enable ruleset'
@@ -82,7 +65,6 @@
     - 'service reload suricata'
   when: (item.rc != 0) and not (item.item.state|default('true') is match('false|no|remove|disable|install'))
   tags:
-    - config
     - suricata
 
 - name: 'command remove ruleset'
@@ -94,5 +76,4 @@
     - 'service reload suricata'
   when: (item.rc == 0) and (item.item.state|default('true') is match('false|no|remove|disable'))
   tags:
-    - config
     - suricata

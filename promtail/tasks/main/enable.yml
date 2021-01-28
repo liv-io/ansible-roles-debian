@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - promtail
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create promtail.default'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_promtail_default}}"
   notify: 'service restart promtail'
   tags:
-    - enable
     - promtail
 
 - name: 'file create promtail.yaml'
@@ -40,7 +30,6 @@
     group: "{{file_group_promtail_yaml}}"
   notify: 'service restart promtail'
   tags:
-    - enable
     - promtail
 
 - name: 'file create promtail.cfg'
@@ -53,12 +42,7 @@
   notify: 'service reload monit'
   when: (promtail_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - promtail
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start promtail'
   service:
@@ -66,5 +50,4 @@
     enabled: 'yes'
     name: "{{service_name_promtail}}"
   tags:
-    - enable
     - promtail

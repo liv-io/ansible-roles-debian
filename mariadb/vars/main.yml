@@ -1,18 +1,10 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # mariadb-client
 package_name_mariadb_client: 'mariadb-client'
 
 # mariadb-server
 package_name_mariadb_server: 'mariadb-server'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # backup.dir
 file_dst_backup_dir: '/backup'
@@ -110,10 +102,6 @@ file_mode_mariadb_cfg: '0640'
 file_owner_mariadb_cfg: 'root'
 file_group_mariadb_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -134,10 +122,6 @@ command_cmd_remove_test_database_access: "mysql --defaults-file='/etc/mysql/cred
 
 # remove-root-remote-access
 command_cmd_remove_root_remote_access: "mysql --defaults-file='/etc/mysql/credentials.cnf' -ne \"DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')\""
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # mariadb
 service_name_mariadb: 'mariadb'

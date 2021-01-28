@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - apt
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'cron remove apt_check-update'
   cron:
@@ -26,7 +17,6 @@
     cron_file: "{{cron_cron_file_apt_check_update}}"
     user: "{{cron_user_apt_check_update}}"
   tags:
-    - remove
     - apt
 
 - name: 'file remove apt_check-update'
@@ -34,5 +24,4 @@
     state: 'absent'
     path: "{{file_dst_apt_check_update}}"
   tags:
-    - remove
     - apt

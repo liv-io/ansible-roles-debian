@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - mariadb
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create mariadb.cnf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_mariadb_cnf}}"
   notify: 'service restart mariadb'
   tags:
-    - enable
     - mariadb
 
 - name: 'file create 50-client.cnf'
@@ -40,7 +30,6 @@
     group: "{{file_group_50_client_cnf}}"
   notify: 'service restart mariadb'
   tags:
-    - enable
     - mariadb
 
 - name: 'file create 50-mysql-clients.cnf'
@@ -52,7 +41,6 @@
     group: "{{file_group_50_mysql_clients_cnf}}"
   notify: 'service restart mariadb'
   tags:
-    - enable
     - mariadb
 
 - name: 'file create 50-mysqld_safe.cnf'
@@ -64,7 +52,6 @@
     group: "{{file_group_50_mysqld_safe_cnf}}"
   notify: 'service restart mariadb'
   tags:
-    - enable
     - mariadb
 
 - name: 'file create 50-server.cnf'
@@ -76,7 +63,6 @@
     group: "{{file_group_50_server_cnf}}"
   notify: 'service restart mariadb'
   tags:
-    - enable
     - mariadb
 
 - name: 'cron create mariadb_run-backup'
@@ -93,7 +79,6 @@
     user: "{{cron_user_mariadb_run_backup}}"
     job: "{{cron_job_mariadb_run_backup}}"
   tags:
-    - enable
     - mariadb
 
 - name: 'file create mariadb.cfg'
@@ -106,12 +91,7 @@
   notify: 'service reload monit'
   when: (mariadb_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - mariadb
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start mariadb'
   service:
@@ -119,12 +99,7 @@
     enabled: 'yes'
     name: "{{service_name_mariadb}}"
   tags:
-    - enable
     - mariadb
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # NOTE: Revert to 'mysql_user' module once both MariaDB 5.x and 10.x (or higher)
 #        are properly supported
@@ -134,7 +109,6 @@
   notify: 'command flush privileges'
   when: (register_package_install_mariadb_server is changed)
   tags:
-    - enable
     - mariadb
 
 - name: 'command remove anonymous-users'
@@ -143,7 +117,6 @@
   changed_when: False
   notify: 'command flush privileges'
   tags:
-    - enable
     - mariadb
 
 - name: 'command remove root-remote-access'
@@ -152,7 +125,6 @@
   changed_when: False
   notify: 'command flush privileges'
   tags:
-    - enable
     - mariadb
 
 - name: 'command remove test-database'
@@ -160,7 +132,6 @@
   check_mode: 'no'
   changed_when: False
   tags:
-    - enable
     - mariadb
 
 - name: 'command remove test-database'
@@ -169,7 +140,6 @@
   changed_when: False
   notify: 'command flush privileges'
   tags:
-    - enable
     - mariadb
 
 - name: 'command remove test-database-access'
@@ -178,5 +148,4 @@
   changed_when: False
   notify: 'command flush privileges'
   tags:
-    - enable
     - mariadb

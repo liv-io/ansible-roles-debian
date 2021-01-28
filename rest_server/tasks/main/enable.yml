@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - rest_server
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create rest-server.default'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_rest_server_default}}"
   notify: 'service restart rest-server'
   tags:
-    - enable
     - rest_server
 
 - name: 'file create rest-server.cfg'
@@ -41,12 +31,7 @@
   notify: 'service reload monit'
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - rest_server
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start rest-server'
   service:
@@ -54,5 +39,4 @@
     enabled: 'yes'
     name: "{{service_name_rest_server}}"
   tags:
-    - enable
     - rest_server

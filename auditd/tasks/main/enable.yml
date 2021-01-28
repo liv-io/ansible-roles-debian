@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - auditd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create auditd.conf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_auditd_conf}}"
   notify: 'command restart auditd'
   tags:
-    - enable
     - auditd
 
 - name: 'file create audispd.conf'
@@ -40,7 +30,6 @@
     group: "{{file_group_audispd_conf}}"
   notify: 'command restart auditd'
   tags:
-    - enable
     - auditd
 
 - name: 'file create syslog.conf'
@@ -52,7 +41,6 @@
     group: "{{file_group_syslog_conf}}"
   notify: 'command restart auditd'
   tags:
-    - enable
     - auditd
 
 - name: 'file create auditd.cfg'
@@ -65,12 +53,7 @@
   notify: 'service reload monit'
   when: (auditd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - auditd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start auditd'
   service:
@@ -78,5 +61,4 @@
     enabled: 'yes'
     name: "{{service_name_auditd}}"
   tags:
-    - enable
     - auditd

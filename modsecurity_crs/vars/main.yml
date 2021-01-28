@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # modsecurity-crs
 package_name_modsecurity_crs: 'modsecurity-crs'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # crs-setup.conf
 file_src_crs_setup_conf: 'templates/main/crs-setup.conf'
@@ -17,10 +9,6 @@ file_dst_crs_setup_conf: '/etc/modsecurity/crs/crs-setup.conf'
 file_mode_crs_setup_conf: '0644'
 file_owner_crs_setup_conf: 'root'
 file_group_crs_setup_conf: 'root'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check apache2
 command_cmd_check_apache2: 'apachectl configtest'

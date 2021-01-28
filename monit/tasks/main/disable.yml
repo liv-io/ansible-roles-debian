@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - monit
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create monitrc'
   template:
@@ -27,12 +18,7 @@
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
   tags:
-    - disable
     - monit
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop monit'
   service:
@@ -40,5 +26,4 @@
     enabled: 'no'
     name: "{{service_name_monit}}"
   tags:
-    - disable
     - monit

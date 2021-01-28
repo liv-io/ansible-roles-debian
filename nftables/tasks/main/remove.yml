@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - nftables
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove nftables'
   package:
@@ -25,17 +16,11 @@
     name: "{{package_name_nftables}}"
     install_recommends: 'no'
   tags:
-    - remove
     - nftables
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove nftables.conf'
   file:
     state: 'absent'
     path: "{{file_dst_nftables_conf}}"
   tags:
-    - remove
     - nftables

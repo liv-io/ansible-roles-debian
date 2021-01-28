@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - alertmanager
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'command check service alertmanager'
   shell: "{{command_cmd_check_service_alertmanager}}"
@@ -26,7 +17,6 @@
   failed_when: (register_check_service_alertmanager.rc > 1)
   check_mode: 'no'
   tags:
-    - remove
     - alertmanager
 
 - name: 'service stop alertmanager'
@@ -36,7 +26,6 @@
     name: "{{service_name_alertmanager}}"
   when: (register_check_service_alertmanager.rc == 0)
   tags:
-    - remove
     - alertmanager
 
 - name: 'user remove alertmanager'
@@ -46,7 +35,6 @@
     remove: "{{user_home_remove_alertmanager}}"
     force: "{{user_home_force_alertmanager}}"
   tags:
-    - remove
     - alertmanager
 
 - name: 'group remove alertmanager'
@@ -54,12 +42,7 @@
     state: 'absent'
     name: "{{group_name_alertmanager}}"
   tags:
-    - remove
     - alertmanager
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove alertmanager.cfg'
   file:
@@ -67,7 +50,6 @@
     path: "{{file_dst_alertmanager_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - alertmanager
 
 - name: 'file remove alertmanager.default'
@@ -75,7 +57,6 @@
     state: 'absent'
     path: "{{file_dst_alertmanager_default}}"
   tags:
-    - remove
     - alertmanager
 
 - name: 'file remove alertmanager.service'
@@ -84,7 +65,6 @@
     path: "{{file_dst_alertmanager_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - alertmanager
 
 - name: 'file remove alertmanager_etc.dir'
@@ -92,7 +72,6 @@
     state: 'absent'
     path: "{{file_dst_alertmanager_etc_dir}}"
   tags:
-    - remove
     - alertmanager
 
 - name: 'file remove alertmanager'
@@ -100,7 +79,6 @@
     state: 'absent'
     path: "{{file_creates_alertmanager}}"
   tags:
-    - remove
     - alertmanager
 
 - name: 'file remove alertmanager.tar.gz'
@@ -108,7 +86,6 @@
     state: 'absent'
     path: "{{file_dst_alertmanager_tar_gz}}"
   tags:
-    - remove
     - alertmanager
 
 - name: 'file remove amtool'
@@ -116,5 +93,4 @@
     state: 'absent'
     path: "{{file_dst_amtool}}"
   tags:
-    - remove
     - alertmanager

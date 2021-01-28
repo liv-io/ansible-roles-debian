@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - alertmanager
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create alertmanager'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_alertmanager}}"
     system: "{{group_system_alertmanager}}"
   tags:
-    - install
     - alertmanager
 
 - name: 'user create alertmanager'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_alertmanager}}"
     system: "{{user_system_alertmanager}}"
   tags:
-    - install
     - alertmanager
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create alertmanager_data.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_alertmanager_data_dir}}"
     group: "{{file_group_alertmanager_data_dir}}"
   tags:
-    - install
     - alertmanager
 
 - name: 'file create alertmanager_etc.dir'
@@ -70,7 +54,6 @@
     owner: "{{file_owner_alertmanager_etc_dir}}"
     group: "{{file_group_alertmanager_etc_dir}}"
   tags:
-    - install
     - alertmanager
 
 - name: 'file download alertmanager.tar.gz'
@@ -82,7 +65,6 @@
     group: "{{file_group_alertmanager_tar_gz}}"
     checksum: "{{file_checksum_alertmanager_tar_gz}}"
   tags:
-    - install
     - alertmanager
 
 - name: 'file unarchive alertmanager'
@@ -95,7 +77,6 @@
     extra_opts: "{{file_extra_opts_alertmanager}}"
     remote_src: 'yes'
   tags:
-    - install
     - alertmanager
 
 - name: 'file create alertmanager.service'
@@ -107,7 +88,6 @@
     group: "{{file_group_alertmanager_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - alertmanager
 
 - name: 'stat file monit.d'
@@ -116,7 +96,6 @@
   register: register_monit_d
   when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - alertmanager
 
 - name: 'file create monit.d'
@@ -128,12 +107,7 @@
     group: "{{file_group_monit_d}}"
   when: (alertmanager_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - alertmanager
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -143,15 +117,9 @@
   check_mode: 'no'
   when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - alertmanager
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - alertmanager

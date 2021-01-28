@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # auditd
 package_name_audit: 'auditd'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # config
 file_src_config: 'templates/main/config'
@@ -57,10 +49,6 @@ file_mode_auditd_cfg: '0640'
 file_owner_auditd_cfg: 'root'
 file_group_auditd_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -80,10 +68,6 @@ command_cmd_status_auditd: 'systemctl status auditd'
 
 # stop auditd
 command_cmd_stop_auditd: 'service auditd stop'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # auditd
 service_name_auditd: 'auditd'

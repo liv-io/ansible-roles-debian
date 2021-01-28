@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - pve
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command create group'
   shell: "grep '^group:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 || { pveum group add {{item.name}}; exit 255; }"
@@ -28,7 +19,6 @@
   loop: "{{pve_group_config_all + pve_group_config_group + pve_group_config_host}}"
   when: not ((item.state|default('true')) is match('false|no|remove'))
   tags:
-    - config
     - pve
 
 - name: 'command create user'
@@ -40,7 +30,6 @@
   loop: "{{pve_user_config_all + pve_user_config_group + pve_user_config_host}}"
   when: not ((item.state|default('true')) is match('false|no|remove'))
   tags:
-    - config
     - pve
 
 - name: 'command create acl'
@@ -51,7 +40,6 @@
   loop: "{{pve_acl_config_all + pve_acl_config_group + pve_acl_config_host}}"
   when: not ((item.state|default('true')) is match('false|no|remove'))
   tags:
-    - config
     - pve
 
 - name: 'command remove group'
@@ -63,7 +51,6 @@
   loop: "{{pve_group_config_all + pve_group_config_group + pve_group_config_host}}"
   when: ((item.state|default('true')) is match('false|no|remove'))
   tags:
-    - config
     - pve
 
 - name: 'command remove user'
@@ -75,5 +62,4 @@
   loop: "{{pve_user_config_all + pve_user_config_group + pve_user_config_host}}"
   when: ((item.state|default('true')) is match('false|no|remove'))
   tags:
-    - config
     - pve

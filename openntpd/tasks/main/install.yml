@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - openntpd
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install openntpd'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_openntpd}}"
     install_recommends: 'no'
   tags:
-    - install
     - openntpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -38,7 +24,6 @@
   register: register_monit_d
   when: (openntpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - openntpd
 
 - name: 'file create monit.d'
@@ -50,12 +35,7 @@
     group: "{{file_group_monit_d}}"
   when: (openntpd_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - openntpd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -65,5 +45,4 @@
   check_mode: 'no'
   when: (openntpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - openntpd

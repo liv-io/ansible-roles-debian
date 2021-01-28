@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # promtail_etc.dir
 file_dst_promtail_etc_dir: '/etc/promtail'
 file_mode_promtail_etc_dir: '0755'
@@ -59,10 +55,6 @@ file_mode_promtail_cfg: '0640'
 file_owner_promtail_cfg: 'root'
 file_group_promtail_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -71,10 +63,6 @@ command_cmd_check_service_promtail: 'systemctl cat promtail.service > /dev/null 
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # promtail
 group_name_promtail: 'promtail'

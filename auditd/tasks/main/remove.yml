@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - auditd
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove audit'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_audit}}"
     install_recommends: 'no'
   tags:
-    - remove
     - auditd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove auditd.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_auditd_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - auditd
 
 - name: 'file remove auditd.conf'
@@ -46,7 +31,6 @@
     state: 'absent'
     path: "{{file_dst_auditd_conf}}"
   tags:
-    - remove
     - auditd
 
 - name: 'file remove syslog.conf'
@@ -54,7 +38,6 @@
     state: 'absent'
     path: "{{file_dst_syslog_conf}}"
   tags:
-    - remove
     - auditd
 
 - name: 'file remove audispd.conf'
@@ -62,5 +45,4 @@
     state: 'absent'
     path: "{{file_dst_audispd_conf}}"
   tags:
-    - remove
     - auditd

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,19 +8,11 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 - name: 'command update suricata'
   shell: "{{command_cmd_update_suricata}}"
 
 - name: 'command systemctl daemon-reload'
   command: "{{command_cmd_systemctl_daemon_reload}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service reload monit'
   service:

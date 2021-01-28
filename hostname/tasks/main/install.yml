@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - hostname
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install hostname'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_hostname}}"
     install_recommends: 'no'
   tags:
-    - install
     - hostname
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command get chassis'
   shell: "{{command_cmd_get_chassis}}"
@@ -38,14 +24,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - hostname
 
 - name: 'command set chassis'
   command: "{{command_cmd_set_chassis}}"
   when: not (hostname_chassis == '') and not (register_chassis.stdout == hostname_chassis)
   tags:
-    - install
     - hostname
 
 - name: 'command get deployment'
@@ -54,14 +38,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - hostname
 
 - name: 'command set deployment'
   command: "{{command_cmd_set_deployment}}"
   when: not (hostname_deployment == '') and not (register_deployment.stdout == hostname_deployment)
   tags:
-    - install
     - hostname
 
 - name: 'command get hostname'
@@ -70,14 +52,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - hostname
 
 - name: 'command set hostname'
   command: "{{command_cmd_set_hostname}}"
   when: not (register_hostname.stdout == hostname_hostname)
   tags:
-    - install
     - hostname
 
 - name: 'command get icon-name'
@@ -86,14 +66,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - hostname
 
 - name: 'command set icon-name'
   command: "{{command_cmd_set_icon_name}}"
   when: not (hostname_icon_name == '') and not (register_icon_name.stdout == hostname_icon_name)
   tags:
-    - install
     - hostname
 
 - name: 'command get location'
@@ -102,14 +80,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - hostname
 
 - name: 'command set location'
   command: "{{command_cmd_set_location}}"
   when: not (hostname_location == '') and not (register_location.stdout == hostname_location)
   tags:
-    - install
     - hostname
 
 - name: 'command get pretty-hostname'
@@ -118,12 +94,10 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - hostname
 
 - name: 'command set pretty-hostname'
   command: "{{command_cmd_set_pretty_hostname}}"
   when: not (hostname_pretty_hostname == '') and not (register_pretty_hostname.stdout == hostname_pretty_hostname)
   tags:
-    - install
     - hostname

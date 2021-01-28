@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create suricata.default'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_suricata_default}}"
   notify: 'service reload suricata'
   tags:
-    - enable
     - suricata
 
 - name: 'file create suricata.yaml'
@@ -41,7 +31,6 @@
     validate: "{{file_validate_suricata_yaml}}"
   notify: 'service reload suricata'
   tags:
-    - enable
     - suricata
 
 - name: 'file create suricata.cfg'
@@ -54,12 +43,7 @@
   notify: 'service reload monit'
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - suricata
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start promiscuous_mode@.service'
   service:
@@ -67,7 +51,6 @@
     enabled: 'yes'
     name: "promiscuous_mode@{{suricata_interface}}"
   tags:
-    - enable
     - suricata
 
 - name: 'service start suricata'
@@ -76,5 +59,4 @@
     enabled: 'yes'
     name: "{{service_name_suricata}}"
   tags:
-    - enable
     - suricata

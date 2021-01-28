@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create smokeping_prober.default'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_smokeping_prober_default}}"
   notify: 'service restart smokeping_prober'
   tags:
-    - enable
     - smokeping_prober
 
 - name: 'file create smokeping_prober.cfg'
@@ -41,12 +31,7 @@
   notify: 'service reload monit'
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start smokeping_prober'
   service:
@@ -54,5 +39,4 @@
     enabled: 'yes'
     name: "{{service_name_smokeping_prober}}"
   tags:
-    - enable
     - smokeping_prober

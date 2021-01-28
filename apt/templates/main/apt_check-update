@@ -2,16 +2,12 @@
 
 {{ansible_managed|comment(decoration='#')}}
 
-#-------------------------------------------------------------------------------
 # SHELL VARIABLES
-#-------------------------------------------------------------------------------
 
 SHELL='/bin/sh'
 PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 
-#-------------------------------------------------------------------------------
 # COMMANDS
-#-------------------------------------------------------------------------------
 
 which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
 basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
@@ -32,9 +28,7 @@ whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 
 apt_get=$(${which} apt-get) || { echo "Error: Command 'apt-get' not found."; exit 127; }
 
-#-------------------------------------------------------------------------------
 # VARIABLES
-#-------------------------------------------------------------------------------
 
 host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
@@ -53,9 +47,7 @@ mail_to_address='{% for item in apt_monitor_mail_to_address %}{{item}}{% if not 
 mail_subject='apt: Check Update - Error ({{ansible_hostname}})'
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # FUNCTIONS
-#-------------------------------------------------------------------------------
 
 {% if (apt_monitor_mail_state is match('true|yes|enable')) %}
 mail_error() {
@@ -196,9 +188,7 @@ log_and_exit() {
   exit "${retval}"
 }
 
-#-------------------------------------------------------------------------------
 # SCRIPT
-#-------------------------------------------------------------------------------
 
 check_script_user
 

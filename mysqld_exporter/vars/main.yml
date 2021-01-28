@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # mysqld_exporter_etc.dir
 file_dst_mysqld_exporter_etc_dir: '/etc/mysqld_exporter'
 file_mode_mysqld_exporter_etc_dir: '0755'
@@ -61,10 +57,6 @@ file_mode_mysqld_exporter_cfg: '0640'
 file_owner_mysqld_exporter_cfg: 'root'
 file_group_mysqld_exporter_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -73,10 +65,6 @@ command_cmd_check_service_mysqld_exporter: 'systemctl cat mysqld_exporter.servic
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # mysqld_exporter
 group_name_mysqld_exporter: 'mysqld_exporter'

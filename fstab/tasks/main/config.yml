@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - fstab
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config fstab'
   lineinfile:
@@ -27,5 +18,4 @@
     dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_fstab}}"
   loop: "{{fstab_config_all + fstab_config_group + fstab_config_host}}"
   tags:
-    - config
     - fstab

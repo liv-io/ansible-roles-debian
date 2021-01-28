@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # opensmtpd
 package_name_opensmtpd: 'opensmtpd'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # aliases
 file_src_aliases: 'templates/main/aliases'
@@ -51,19 +43,11 @@ file_mode_opensmtpd_cfg: '0640'
 file_owner_opensmtpd_cfg: 'root'
 file_group_opensmtpd_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # smtpctl aliases
 command_cmd_smtpctl_aliases: 'smtpctl update table aliases'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

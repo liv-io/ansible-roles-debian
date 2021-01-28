@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - systemd_timesyncd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -25,7 +16,6 @@
   register: register_monit_d
   when: (openssh_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - systemd_timesyncd
 
 - name: 'file create monit.d'
@@ -37,12 +27,7 @@
     group: "{{file_group_monit_d}}"
   when: (openssh_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - systemd_timesyncd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -52,5 +37,4 @@
   check_mode: 'no'
   when: (openssh_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - systemd_timesyncd

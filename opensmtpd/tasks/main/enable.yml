@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create aliases'
   template:
@@ -31,7 +22,6 @@
     - 'command smtpctl aliases'
     - 'service restart opensmtpd'
   tags:
-    - enable
     - opensmtpd
 
 - name: 'file create secrets'
@@ -44,7 +34,6 @@
   no_log: 'true'
   notify: 'service restart opensmtpd'
   tags:
-    - enable
     - opensmtpd
 
 - name: 'file create smtpd.conf'
@@ -56,7 +45,6 @@
     group: "{{file_group_smtpd_conf}}"
   notify: 'service restart opensmtpd'
   tags:
-    - enable
     - opensmtpd
 
 - name: 'file create opensmtpd.cfg'
@@ -69,12 +57,7 @@
   notify: 'service reload monit'
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start opensmtpd'
   service:
@@ -82,5 +65,4 @@
     enabled: 'yes'
     name: "{{service_name_opensmtpd}}"
   tags:
-    - enable
     - opensmtpd

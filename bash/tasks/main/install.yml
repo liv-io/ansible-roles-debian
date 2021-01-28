@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - bash
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install bash'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_bash}}"
     install_recommends: 'no'
   tags:
-    - install
     - bash
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create bash.bash'
   template:
@@ -40,7 +26,6 @@
     owner: "{{file_owner_bash_bash}}"
     group: "{{file_group_bash_bash}}"
   tags:
-    - install
     - bash
 
 - name: 'file create zz_bash.bash'
@@ -51,7 +36,6 @@
     owner: "{{file_owner_zz_bash_bash}}"
     group: "{{file_group_zz_bash_bash}}"
   tags:
-    - install
     - bash
 
 - name: 'file create .bashrc'
@@ -62,5 +46,4 @@
     owner: "{{file_owner_bashrc}}"
     group: "{{file_group_bashrc}}"
   tags:
-    - install
     - bash

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create node_exporter'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_node_exporter}}"
     system: "{{group_system_node_exporter}}"
   tags:
-    - install
     - node_exporter
 
 - name: 'user create node_exporter'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_node_exporter}}"
     system: "{{user_system_node_exporter}}"
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create node_exporter_var.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_node_exporter_var_dir}}"
     group: "{{file_group_node_exporter_var_dir}}"
   tags:
-    - install
     - node_exporter
 
 - name: 'file create textfile_collector.dir'
@@ -70,7 +54,6 @@
     owner: "{{file_owner_textfile_collector_dir}}"
     group: "{{file_group_textfile_collector_dir}}"
   tags:
-    - install
     - node_exporter
 
 - name: 'file download node_exporter.tar.gz'
@@ -82,7 +65,6 @@
     group: "{{file_group_node_exporter_tar_gz}}"
     checksum: "{{file_checksum_node_exporter_tar_gz}}"
   tags:
-    - install
     - node_exporter
 
 - name: 'file unarchive node_exporter'
@@ -95,7 +77,6 @@
     extra_opts: "{{file_extra_opts_node_exporter}}"
     remote_src: 'yes'
   tags:
-    - install
     - node_exporter
 
 - name: 'file create node_exporter.service'
@@ -107,7 +88,6 @@
     group: "{{file_group_node_exporter_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - node_exporter
 
 - name: 'stat file monit.d'
@@ -116,7 +96,6 @@
   register: register_monit_d
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - node_exporter
 
 - name: 'file create monit.d'
@@ -128,12 +107,7 @@
     group: "{{file_group_monit_d}}"
   when: (node_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -143,15 +117,9 @@
   check_mode: 'no'
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - node_exporter

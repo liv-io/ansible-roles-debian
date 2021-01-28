@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - modsecurity_crs
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create crs-setup.conf'
   template:
@@ -28,5 +19,4 @@
     group: "{{file_group_crs_setup_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - modsecurity_crs

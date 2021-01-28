@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'command check service smokeping_prober'
   shell: "{{command_cmd_check_service_smokeping_prober}}"
@@ -26,7 +17,6 @@
   failed_when: (register_check_service_smokeping_prober.rc > 1)
   check_mode: 'no'
   tags:
-    - remove
     - smokeping_prober
 
 - name: 'service stop smokeping_prober'
@@ -36,7 +26,6 @@
     name: "{{service_name_smokeping_prober}}"
   when: (register_check_service_smokeping_prober.rc == 0)
   tags:
-    - remove
     - smokeping_prober
 
 - name: 'user remove smokeping_prober'
@@ -46,7 +35,6 @@
     remove: "{{user_home_remove_smokeping_prober}}"
     force: "{{user_home_force_smokeping_prober}}"
   tags:
-    - remove
     - smokeping_prober
 
 - name: 'group remove smokeping_prober'
@@ -54,12 +42,7 @@
     state: 'absent'
     name: "{{group_name_smokeping_prober}}"
   tags:
-    - remove
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove smokeping_prober.cfg'
   file:
@@ -67,7 +50,6 @@
     path: "{{file_dst_smokeping_prober_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - smokeping_prober
 
 - name: 'file remove smokeping_prober.default'
@@ -75,7 +57,6 @@
     state: 'absent'
     path: "{{file_dst_smokeping_prober_default}}"
   tags:
-    - remove
     - smokeping_prober
 
 - name: 'file remove smokeping_prober.service'
@@ -84,5 +65,4 @@
     path: "{{file_dst_smokeping_prober_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - smokeping_prober

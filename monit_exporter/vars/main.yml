@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # config.toml
 file_src_config_toml: 'templates/main/config.toml'
 file_dst_config_toml: '/etc/monit_exporter/config.toml'
@@ -60,10 +56,6 @@ file_mode_monit_exporter_cfg: '0640'
 file_owner_monit_exporter_cfg: 'root'
 file_group_monit_exporter_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -72,10 +64,6 @@ command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service 
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit_exporter
 group_name_monit_exporter: 'monit_exporter'

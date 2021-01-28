@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # smokeping_prober.tar.gz
 file_src_smokeping_prober_tar_gz: "https://github.com/SuperQ/smokeping_prober/releases/download/v{{smokeping_prober_version}}/smokeping_prober-{{smokeping_prober_version}}.linux-amd64.tar.gz"
 file_dst_smokeping_prober_tar_gz: "/usr/local/src/smokeping_prober-{{smokeping_prober_version}}.linux-amd64.tar.gz"
@@ -48,10 +44,6 @@ file_mode_smokeping_prober_cfg: '0640'
 file_owner_smokeping_prober_cfg: 'root'
 file_group_smokeping_prober_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -63,10 +55,6 @@ command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
 
 # set capability
 command_cmd_set_capability: "setcap cap_net_raw=+ep /usr/local/bin/smokeping_prober"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # smokeping_prober
 group_name_smokeping_prober: 'smokeping_prober'

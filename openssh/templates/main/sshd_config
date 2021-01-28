@@ -12,9 +12,7 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-#-------------------------------------------------------------------------------
 # PORT
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_port == []) %}
 {% for item in openssh_port %}
@@ -24,9 +22,7 @@ Port {{(item|int(22))}}
 Port 22
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # ADDRESS FAMILY
-#-------------------------------------------------------------------------------
 
 {% if (openssh_address_family is match('any|all')) %}
 AddressFamily any
@@ -38,9 +34,7 @@ AddressFamily inet6
 #AddressFamily any
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # LISTEN ADDRESS
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_listen_address == []) %}
 {% for item in openssh_listen_address %}
@@ -51,9 +45,7 @@ ListenAddress {{item}}
 #ListenAddress ::
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # HOST KEY
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_host_key == []) %}
 {% for item in openssh_host_key %}
@@ -66,9 +58,7 @@ HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # CIPHERS
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_ciphers == []) %}
 Ciphers {% for item in openssh_ciphers %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
@@ -77,9 +67,7 @@ Ciphers {% for item in openssh_ciphers %}{{item}}{% if not loop.last %},{% endif
 Ciphers aes256-ctr,aes192-ctr
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # HOST KEY ALGORITHMS
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_host_key_algorithms == []) %}
 HostKeyAlgorithms {% for item in openssh_host_key_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
@@ -88,9 +76,7 @@ HostKeyAlgorithms {% for item in openssh_host_key_algorithms %}{{item}}{% if not
 HostKeyAlgorithms ssh-ed25519,ssh-rsa
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # KEY EXCHANGE ALGORITHMS
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_kex_algorithms == []) %}
 KexAlgorithms {% for item in openssh_kex_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
@@ -99,9 +85,7 @@ KexAlgorithms {% for item in openssh_kex_algorithms %}{{item}}{% if not loop.las
 KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # MESSAGE AUTHENTICATION CODE ALGORITHMS
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_macs == []) %}
 MACs {% for item in openssh_macs %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
@@ -110,22 +94,17 @@ MACs {% for item in openssh_macs %}{{item}}{% if not loop.last %},{% endif %}{% 
 MACs hmac-sha2-512,hmac-sha2-256
 {% endif %}
 
-#-------------------------------------------------------------------------------
 
 # Ciphers and keying
 #RekeyLimit default none
 
-#-------------------------------------------------------------------------------
 # LOGGING
-#-------------------------------------------------------------------------------
 
 # Logging
 #SyslogFacility AUTH
 #LogLevel INFO
 
-#-------------------------------------------------------------------------------
 # AUTHENTICATION
-#-------------------------------------------------------------------------------
 
 # Authentication:
 
@@ -196,9 +175,7 @@ ChallengeResponseAuthentication no
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
 
-#-------------------------------------------------------------------------------
 # FORWARDING
-#-------------------------------------------------------------------------------
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
@@ -217,9 +194,7 @@ X11UseLocalhost no
 {% endif %}
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # OTHER
-#-------------------------------------------------------------------------------
 
 #PermitTTY yes
 {% if (openssh_print_motd is match('true|yes|enable')) %}
@@ -258,9 +233,7 @@ UseDNS no
 #ChrootDirectory none
 VersionAddendum {{openssh_version_addendum}}
 
-#-------------------------------------------------------------------------------
 # BANNER
-#-------------------------------------------------------------------------------
 
 # no default banner path
 {% if (openssh_banner is match('false|no|disable')) %}
@@ -275,9 +248,7 @@ AcceptEnv LANG LC_*
 # override default of no subsystems
 Subsystem	sftp	/usr/lib/openssh/sftp-server
 
-#-------------------------------------------------------------------------------
 # CONDITIONAL
-#-------------------------------------------------------------------------------
 
 {% if not (openssh_match == []) %}
 {% for item in openssh_match %}
@@ -296,9 +267,7 @@ Match {{item.type}} {{item.name}}
 #	ForceCommand cvs server
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # ACCESS RESTRICTION
-#-------------------------------------------------------------------------------
 
 # Login is disallowed for user names that match one of the patterns.
 {% if not (openssh_deny_users == []) %}

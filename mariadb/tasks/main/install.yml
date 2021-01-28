@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - mariadb
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install mariadb-client'
   package:
@@ -25,7 +16,6 @@
     name: "{{package_name_mariadb_client}}"
     install_recommends: 'no'
   tags:
-    - install
     - mariadb
 
 - name: 'package install mariadb-server'
@@ -35,12 +25,7 @@
     install_recommends: 'no'
   register: register_package_install_mariadb_server
   tags:
-    - install
     - mariadb
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create backup.dir'
   file:
@@ -50,7 +35,6 @@
     owner: "{{file_owner_backup_dir}}"
     group: "{{file_group_backup_dir}}"
   tags:
-    - install
     - mariadb
 
 - name: 'file create mariadb_backup.dir'
@@ -61,7 +45,6 @@
     owner: "{{file_owner_mariadb_backup_dir}}"
     group: "{{file_group_mariadb_backup_dir}}"
   tags:
-    - install
     - mariadb
 
 - name: 'file create mysql-etc.dir'
@@ -72,7 +55,6 @@
     owner: "{{file_owner_mysql_etc_dir}}"
     group: "{{file_group_mysql_etc_dir}}"
   tags:
-    - install
     - mariadb
 
 - name: 'file create credentials.cnf'
@@ -84,7 +66,6 @@
     group: "{{file_group_credentials_cnf}}"
   no_log: 'true'
   tags:
-    - install
     - mariadb
 
 - name: 'file create mariadb_run-backup'
@@ -95,7 +76,6 @@
     owner: "{{file_owner_mariadb_run_backup}}"
     group: "{{file_group_mariadb_run_backup}}"
   tags:
-    - install
     - mariadb
 
 - name: 'stat file monit.d'
@@ -104,7 +84,6 @@
   register: register_monit_d
   when: (mariadb_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - mariadb
 
 - name: 'file create monit.d'
@@ -116,12 +95,7 @@
     group: "{{file_group_monit_d}}"
   when: (mariadb_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - mariadb
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -131,5 +105,4 @@
   check_mode: 'no'
   when: (mariadb_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - mariadb

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config.toml'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_config_toml}}"
   notify: 'service restart monit_exporter'
   tags:
-    - enable
     - monit_exporter
 
 - name: 'file create monit_exporter.default'
@@ -40,7 +30,6 @@
     group: "{{file_group_monit_exporter_default}}"
   notify: 'service restart monit_exporter'
   tags:
-    - enable
     - monit_exporter
 
 - name: 'file create monit_exporter.cfg'
@@ -53,12 +42,7 @@
   notify: 'service reload monit'
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start monit_exporter'
   service:
@@ -66,5 +50,4 @@
     enabled: 'yes'
     name: "{{service_name_monit_exporter}}"
   tags:
-    - enable
     - monit_exporter

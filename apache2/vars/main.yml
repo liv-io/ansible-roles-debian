@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # apache2
 package_name_apache2: 'apache2'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # 000-default.conf
 file_src_000_default_conf: 'templates/main/000-default.conf'
@@ -187,10 +179,6 @@ file_mode_apache2_cfg: '0640'
 file_owner_apache2_cfg: 'root'
 file_group_apache2_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check apache2
 command_cmd_check_apache2: 'apachectl configtest'
 
@@ -199,10 +187,6 @@ command_cmd_reload_apache2: 'apachectl graceful'
 
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # apache2
 service_name_apache2: 'apache2'

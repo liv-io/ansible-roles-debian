@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # libapache2-mod-security2
 package_name_modsecurity: 'libapache2-mod-security2'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # modsecurity.conf
 file_src_modsecurity_conf: 'templates/main/modsecurity.conf'
@@ -42,10 +34,6 @@ file_src_security2_load: '/etc/apache2/mods-available/security2.load'
 file_dst_security2_load: '/etc/apache2/mods-enabled/security2.load'
 file_owner_security2_load: 'root'
 file_group_security2_load: 'root'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check apache2
 command_cmd_check_apache2: 'apachectl configtest'

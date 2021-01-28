@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install opensmtpd'
   package:
@@ -26,12 +17,7 @@
     default_release: 'buster-backports'
     install_recommends: 'no'
   tags:
-    - install
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create smtpd.dir'
   file:
@@ -41,7 +27,6 @@
     owner: "{{file_owner_smtpd_dir}}"
     group: "{{file_group_smtpd_dir}}"
   tags:
-    - install
     - opensmtpd
 
 - name: 'stat file monit.d'
@@ -50,7 +35,6 @@
   register: register_monit_d
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - opensmtpd
 
 - name: 'file create monit.d'
@@ -62,12 +46,7 @@
     group: "{{file_group_monit_d}}"
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -77,5 +56,4 @@
   check_mode: 'no'
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - opensmtpd

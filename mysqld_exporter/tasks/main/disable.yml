@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - mysqld_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create credentials.cnf'
   template:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_credentials_cnf}}"
     group: "{{file_group_credentials_cnf}}"
   tags:
-    - disable
     - mysqld_exporter
 
 - name: 'file create mysqld_exporter.default'
@@ -38,7 +28,6 @@
     owner: "{{file_owner_mysqld_exporter_default}}"
     group: "{{file_group_mysqld_exporter_default}}"
   tags:
-    - disable
     - mysqld_exporter
 
 - name: 'file create mysqld_exporter.cfg'
@@ -51,12 +40,7 @@
   notify: 'service reload monit'
   when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - mysqld_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop mysqld_exporter'
   service:
@@ -64,5 +48,4 @@
     enabled: 'no'
     name: "{{service_name_mysqld_exporter}}"
   tags:
-    - disable
     - mysqld_exporter

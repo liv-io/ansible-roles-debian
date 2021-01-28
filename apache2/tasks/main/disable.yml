@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - apache2
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create 000-default.conf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_000_default_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file remove 000-default.link'
@@ -38,7 +28,6 @@
     path: "{{file_dst_000_default_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create alias.conf'
@@ -50,7 +39,6 @@
     group: "{{file_group_alias_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create alias.link'
@@ -62,7 +50,6 @@
     group: "{{file_group_alias_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create apache2.conf'
@@ -74,7 +61,6 @@
     group: "{{file_group_apache2_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create autoindex.conf'
@@ -86,7 +72,6 @@
     group: "{{file_group_autoindex_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create autoindex.link'
@@ -98,7 +83,6 @@
     group: "{{file_group_autoindex_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create default-ssl.conf'
@@ -110,7 +94,6 @@
     group: "{{file_group_default_ssl_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file remove default-ssl.link'
@@ -120,7 +103,6 @@
     path: "{{file_dst_default_ssl_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create dir.conf'
@@ -132,7 +114,6 @@
     group: "{{file_group_dir_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create dir.link'
@@ -144,7 +125,6 @@
     group: "{{file_group_dir_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create info.conf'
@@ -156,7 +136,6 @@
     group: "{{file_group_info_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create info.link'
@@ -168,7 +147,6 @@
     group: "{{file_group_info_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create ports.conf'
@@ -180,7 +158,6 @@
     group: "{{file_group_ports_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create security.conf'
@@ -192,7 +169,6 @@
     group: "{{file_group_security_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create security.link'
@@ -204,7 +180,6 @@
     group: "{{file_group_security_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create ssl.conf'
@@ -216,7 +191,6 @@
     group: "{{file_group_ssl_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create ssl.link'
@@ -228,7 +202,6 @@
     group: "{{file_group_ssl_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create status.conf'
@@ -240,7 +213,6 @@
     group: "{{file_group_status_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create status.link'
@@ -252,7 +224,6 @@
     group: "{{file_group_status_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create userdir.conf'
@@ -264,7 +235,6 @@
     group: "{{file_group_userdir_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create userdir.link'
@@ -276,7 +246,6 @@
     group: "{{file_group_userdir_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - apache2
 
 - name: 'file create apache2.cfg'
@@ -289,12 +258,7 @@
   notify: 'service reload monit'
   when: (apache2_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - apache2
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop apache2'
   service:
@@ -302,5 +266,4 @@
     enabled: 'no'
     name: "{{service_name_apache2}}"
   tags:
-    - disable
     - apache2

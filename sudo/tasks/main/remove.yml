@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - sudo
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove sudo'
   package:
@@ -25,19 +16,13 @@
     name: "{{package_name_sudo}}"
     install_recommends: 'no'
   tags:
-    - remove
     - sudo
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove sudoers'
   file:
     state: 'absent'
     path: "{{file_dst_sudoers}}"
   tags:
-    - remove
     - sudo
 
 - name: 'file remove sudoers.d'
@@ -45,5 +30,4 @@
     state: 'absent'
     path: "{{file_dst_sudoers_d}}"
   tags:
-    - remove
     - sudo

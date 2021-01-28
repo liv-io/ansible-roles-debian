@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # haproxy
 package_name_haproxy: 'haproxy'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # dhparam.pem
 file_dst_dhparam_pem: '/etc/haproxy/dhparam.pem'
@@ -35,19 +27,11 @@ file_mode_monit_haproxy_cfg: '0640'
 file_owner_monit_haproxy_cfg: 'root'
 file_group_monit_haproxy_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # generate dhparam
 command_cmd_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_dst_dhparam_pem}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # haproxy
 service_name_haproxy: 'haproxy'

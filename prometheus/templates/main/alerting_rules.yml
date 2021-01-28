@@ -1,16 +1,12 @@
 {{ansible_managed|comment(decoration='#')}}
 
 groups:
-  #-----------------------------------------------------------------------------
   # BUILTIN
-  #-----------------------------------------------------------------------------
 
   - name: builtin
     rules:
 
-      #-----------------------------------------------------------------------
       # FILESYSTEM
-      #-----------------------------------------------------------------------
 
       - alert: "Filesystem 'boot' Usage"
         expr: ((sum by (instance) (node_filesystem_size_bytes{mountpoint="/boot"}) - sum by (instance) (node_filesystem_avail_bytes{mountpoint="/boot"})) / sum by (instance) (node_filesystem_size_bytes{mountpoint="/boot"})) * 100 > 80
@@ -48,9 +44,7 @@ groups:
           summary: "Filesystem: Usage (node_exporter)"
           description: "Filesystem '/data' usage above 90%: {% raw %}{{$value}}{% endraw %}%"
 
-      #-----------------------------------------------------------------------
       # CPU USER
-      #-----------------------------------------------------------------------
 
       - alert: "CPU 'user' Utilization (10mAVG)"
         expr: avg by (instance)(irate(node_cpu_seconds_total{instance!="virt_005_s",instance!="backend_dev_s",instance!="backend_test_s",job="node",mode="user"}[10m])) * 100 > 80
@@ -70,9 +64,7 @@ groups:
           summary: "CPU: Utilization (node_exporter)"
           description: "CPU 'user' load above 60% for at least 60 minutes: {% raw %}{{$value}}{% endraw %}%"
 
-      #-----------------------------------------------------------------------
       # CPU SYSTEM
-      #-----------------------------------------------------------------------
 
       - alert: "CPU 'system' Utilization (10mAVG)"
         expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 80
@@ -92,9 +84,7 @@ groups:
           summary: "CPU: Utilization (node_exporter)"
           description: "CPU 'system' load above 60% for at least 60 minutes: {% raw %}{{$value}}{% endraw %}%"
 
-      #-----------------------------------------------------------------------
       # CPU IOWAIT
-      #-----------------------------------------------------------------------
 
       - alert: "CPU 'IOwait' Utilization (10mAVG)"
         expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="iowait"}[10m])) * 100 > 80
@@ -114,9 +104,7 @@ groups:
           summary: "CPU: Utilization (node_exporter)"
           description: "CPU 'IOwait' load above 60% for at least 60 minutes: {% raw %}{{$value}}{% endraw %}%"
 
-      #-----------------------------------------------------------------------
       # MEMORY
-      #-----------------------------------------------------------------------
 
       - alert: "Memory Usage Exceeded"
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 90
@@ -127,9 +115,7 @@ groups:
           summary: "Memory: Usage (node_exporter)"
           description: "Memory usage exceeded 90%: {% raw %}{{$value}}{% endraw %}%"
 
-      #-----------------------------------------------------------------------
       # BLACKBOX EXPORTER
-      #-----------------------------------------------------------------------
 
       - alert: "ICMP IPv4 Ping Failed"
         expr: probe_success{job="icmp_ip4"} == 0
@@ -149,9 +135,7 @@ groups:
           summary: "HTTP IPv4: Check Failed (blackbox_exporter)"
           description: "HTTP check failed for at least 30 seconds: {% raw %}{{$labels.instance}}{% endraw %}"
 
-      #-----------------------------------------------------------------------
       # MONIT EXPORTER
-      #-----------------------------------------------------------------------
 
       - alert: "Monit Process Unmonitored"
         expr: monit_exporter_service_check{monitored="0"} == 0
@@ -171,9 +155,7 @@ groups:
           summary: "Monit: Status (monit_exporter)"
           description: "Process failure: {% raw %}{{$labels.check_name}}{% endraw %}"
 
-      #-----------------------------------------------------------------------
       # SCRIPT STATUS
-      #-----------------------------------------------------------------------
 
       - alert: "APT Pending Updates"
         expr: apt_check_update_exit != 0
@@ -257,9 +239,7 @@ groups:
           description: "ZFS failed to trim pool"
 
 {% if not (prometheus_alerting_rules == '') %}
-  #-----------------------------------------------------------------------------
   # CUSTOM
-  #-----------------------------------------------------------------------------
 
   - name: custom
     rules:

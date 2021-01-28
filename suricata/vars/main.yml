@@ -1,18 +1,10 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # suricata
 package_name_suricata: 'suricata'
 
 # suricata-update
 package_name_suricata_update: 'suricata-update'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # config
 file_src_config: 'templates/main/config'
@@ -106,10 +98,6 @@ file_mode_suricata_cfg: '0640'
 file_owner_suricata_cfg: 'root'
 file_group_suricata_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -136,10 +124,6 @@ command_cmd_update_suricata: 'suricata-update --local /etc/suricata/rules/ --out
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # suricata
 group_name_suricata: 'suricata'

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - haproxy_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create haproxy_exporter'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_haproxy_exporter}}"
     system: "{{group_system_haproxy_exporter}}"
   tags:
-    - install
     - haproxy_exporter
 
 - name: 'user create haproxy_exporter'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_haproxy_exporter}}"
     system: "{{user_system_haproxy_exporter}}"
   tags:
-    - install
     - haproxy_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file download haproxy_exporter.tar.gz'
   get_url:
@@ -60,7 +45,6 @@
     group: "{{file_group_haproxy_exporter_tar_gz}}"
     checksum: "{{file_checksum_haproxy_exporter_tar_gz}}"
   tags:
-    - install
     - haproxy_exporter
 
 - name: 'file unarchive haproxy_exporter'
@@ -73,7 +57,6 @@
     extra_opts: "{{file_extra_opts_haproxy_exporter}}"
     remote_src: 'yes'
   tags:
-    - install
     - haproxy_exporter
 
 - name: 'file create haproxy_exporter.service'
@@ -85,7 +68,6 @@
     group: "{{file_group_haproxy_exporter_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - haproxy_exporter
 
 - name: 'stat file monit.d'
@@ -94,7 +76,6 @@
   register: register_monit_d
   when: (haproxy_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - haproxy_exporter
 
 - name: 'file create monit.d'
@@ -106,12 +87,7 @@
     group: "{{file_group_monit_d}}"
   when: (haproxy_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - haproxy_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -121,15 +97,9 @@
   check_mode: 'no'
   when: (haproxy_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - haproxy_exporter
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - haproxy_exporter

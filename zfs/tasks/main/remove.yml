@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - zfs
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'cron remove zfs_check-pools'
   cron:
@@ -26,7 +17,6 @@
     cron_file: "{{cron_cron_file_zfs_check_pools}}"
     user: "{{cron_user_zfs_scrub_pools}}"
   tags:
-    - remove
     - zfs
 
 - name: 'file remove zfs_check-pools'
@@ -34,7 +24,6 @@
     state: 'absent'
     path: "{{file_dst_zfs_check_pools}}"
   tags:
-    - remove
     - zfs
 
 - name: 'cron remove zfs_scrub-pools'
@@ -44,7 +33,6 @@
     cron_file: "{{cron_cron_file_zfs_scrub_pools}}"
     user: "{{cron_user_zfs_scrub_pools}}"
   tags:
-    - remove
     - zfs
 
 - name: 'file remove zfs_scrub-pools'
@@ -52,7 +40,6 @@
     state: 'absent'
     path: "{{file_src_zfs_scrub_pools}}"
   tags:
-    - remove
     - zfs
 
 - name: 'cron remove zfs_trim-pools'
@@ -62,7 +49,6 @@
     cron_file: "{{cron_cron_file_zfs_trim_pools}}"
     user: "{{cron_user_zfs_trim_pools}}"
   tags:
-    - remove
     - zfs
 
 - name: 'file remove zfs_trim-pools'
@@ -70,5 +56,4 @@
     state: 'absent'
     path: "{{file_src_zfs_trim_pools}}"
   tags:
-    - remove
     - zfs

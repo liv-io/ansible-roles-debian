@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - openssh
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create banner'
   template:
@@ -30,7 +21,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file copy moduli'
@@ -44,7 +34,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file create ssh_config'
@@ -58,7 +47,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file create sshd_config'
@@ -72,7 +60,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file create openssh.cfg'
@@ -85,12 +72,7 @@
   notify: 'service reload monit'
   when: (openssh_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - openssh
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start openssh'
   service:
@@ -98,5 +80,4 @@
     enabled: 'yes'
     name: "{{service_name_openssh}}"
   tags:
-    - enable
     - openssh

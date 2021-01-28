@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - chrony
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create chrony.conf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_chrony_conf}}"
   notify: 'service restart chronyd'
   tags:
-    - enable
     - chrony
 
 - name: 'file create chrony_check-time'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_chrony_check_time}}"
     group: "{{file_group_chrony_check_time}}"
   tags:
-    - enable
     - chrony
 
 - name: 'cron create chrony_check-time'
@@ -55,7 +44,6 @@
     user: "{{cron_user_chrony_check_time}}"
     job: "{{cron_job_chrony_check_time}}"
   tags:
-    - enable
     - chrony
 
 - name: 'file remove chrony_update-time'
@@ -63,7 +51,6 @@
     state: 'absent'
     path: "{{file_dst_chrony_update_time}}"
   tags:
-    - enable
     - chrony
 
 - name: 'cron remove chrony_update-time'
@@ -72,7 +59,6 @@
     name: "{{cron_name_chrony_update_time}}"
     user: "{{cron_user_chrony_update_time}}"
   tags:
-    - enable
     - chrony
 
 - name: 'file create chronyd.cfg'
@@ -85,12 +71,7 @@
   notify: 'service reload monit'
   when: (chrony_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - chrony
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start chronyd'
   service:
@@ -98,5 +79,4 @@
     enabled: 'yes'
     name: "{{service_name_chronyd}}"
   tags:
-    - enable
     - chrony

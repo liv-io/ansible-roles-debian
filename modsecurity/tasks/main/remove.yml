@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - modsecurity
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove modsecurity'
   package:
@@ -25,19 +16,13 @@
     name: "{{package_name_modsecurity}}"
     install_recommends: 'no'
   tags:
-    - remove
     - modsecurity
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove modsecurity.link'
   file:
     state: 'absent'
     path: "{{file_dst_modsecurity_link}}"
   tags:
-    - remove
     - modsecurity
 
 - name: 'file remove modsecurity.conf'
@@ -45,7 +30,6 @@
     state: 'absent'
     path: "{{file_dst_modsecurity_conf}}"
   tags:
-    - remove
     - modsecurity
 
 - name: 'file remove security2.link'
@@ -53,7 +37,6 @@
     state: 'absent'
     path: "{{file_dst_security2_link}}"
   tags:
-    - remove
     - modsecurity
 
 - name: 'file remove security2.conf'
@@ -61,7 +44,6 @@
     state: 'absent'
     path: "{{file_dst_security2_conf}}"
   tags:
-    - remove
     - modsecurity
 
 - name: 'file remove security2.load'
@@ -69,5 +51,4 @@
     state: 'absent'
     path: "{{file_dst_security2_load}}"
   tags:
-    - remove
     - modsecurity

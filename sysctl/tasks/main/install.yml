@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - sysctl
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create sysctl.d'
   file:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_sysctl_d}}"
     group: "{{file_group_sysctl_d}}"
   tags:
-    - install
     - sysctl
 
 - name: 'file create sysctl.conf'
@@ -39,16 +29,10 @@
     group: "{{file_group_sysctl_conf}}"
   register: register_sysctl_conf
   tags:
-    - install
     - sysctl
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command set sysctl.conf'
   shell: "{{command_cmd_set_sysctl}} {{file_dst_sysctl_conf}}"
   when: (register_sysctl_conf is changed)
   tags:
-    - config
     - sysctl

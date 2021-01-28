@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - nginx
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create nginx.conf'
   template:
@@ -30,7 +21,6 @@
     - 'command check nginx'
     - 'service reload nginx'
   tags:
-    - enable
     - nginx
 
 - name: 'file create nginx.cfg'
@@ -43,12 +33,7 @@
   notify: 'service reload monit'
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - nginx
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start nginx'
   service:
@@ -56,5 +41,4 @@
     enabled: 'yes'
     name: "{{service_name_nginx}}"
   tags:
-    - enable
     - nginx

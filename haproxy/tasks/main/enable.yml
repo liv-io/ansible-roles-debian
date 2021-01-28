@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - haproxy
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create haproxy.cfg'
   template:
@@ -29,7 +20,6 @@
     validate: "{{file_validate_haproxy_cfg}}"
   notify: 'service reload haproxy'
   tags:
-    - enable
     - haproxy
 
 - name: 'file create monit-haproxy.cfg'
@@ -42,12 +32,7 @@
   notify: 'service reload monit'
   when: (haproxy_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - haproxy
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start haproxy'
   service:
@@ -55,5 +40,4 @@
     enabled: 'yes'
     name: "{{service_name_haproxy}}"
   tags:
-    - enable
     - haproxy

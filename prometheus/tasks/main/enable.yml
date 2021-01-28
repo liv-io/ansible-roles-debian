@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - prometheus
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create prometheus-current.link'
   file:
@@ -28,7 +19,6 @@
     group: "{{file_group_prometheus_current_link}}"
   notify: 'service restart prometheus'
   tags:
-    - enable
     - prometheus
 
 - name: 'file create prometheus.default'
@@ -40,7 +30,6 @@
     group: "{{file_group_prometheus_default}}"
   notify: 'service restart prometheus'
   tags:
-    - enable
     - prometheus
 
 - name: 'file create alerting_rules.yml'
@@ -53,7 +42,6 @@
   notify: 'service restart prometheus'
   when: (prometheus_alertmanager_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file create prometheus.yml'
@@ -65,7 +53,6 @@
     group: "{{file_group_prometheus_yml}}"
   notify: 'service restart prometheus'
   tags:
-    - enable
     - prometheus
 
 - name: 'file create prometheus_alertmanager_datasource.yaml'
@@ -78,7 +65,6 @@
   notify: 'service restart grafana'
   when: (prometheus_alertmanager_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file create prometheus_datasource.yaml'
@@ -90,7 +76,6 @@
     group: "{{file_group_prometheus_datasource_yaml}}"
   notify: 'service restart grafana'
   tags:
-    - enable
     - prometheus
 
 - name: 'file create builtin_dashboards.yaml'
@@ -103,7 +88,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file copy network_traffic.json'
@@ -116,7 +100,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file copy node_exporter.json'
@@ -129,7 +112,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file copy ping_prober.json'
@@ -142,7 +124,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable')) and (prometheus_blackbox_exporter_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file copy script_status.json'
@@ -155,7 +136,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file copy smokeping_prober.json'
@@ -168,7 +148,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable')) and (prometheus_smokeping_prober_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file create system_status.json'
@@ -181,7 +160,6 @@
   notify: 'service restart grafana'
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
 
 - name: 'file create prometheus.cfg'
@@ -194,12 +172,7 @@
   notify: 'service reload monit'
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - prometheus
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start prometheus'
   service:
@@ -207,5 +180,4 @@
     enabled: 'yes'
     name: "{{service_name_prometheus}}"
   tags:
-    - enable
     - prometheus

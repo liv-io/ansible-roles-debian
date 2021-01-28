@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - promtail
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create promtail.default'
   template:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_promtail_default}}"
     group: "{{file_group_promtail_default}}"
   tags:
-    - disable
     - promtail
 
 - name: 'file create promtail.yaml'
@@ -38,7 +28,6 @@
     owner: "{{file_owner_promtail_yaml}}"
     group: "{{file_group_promtail_yaml}}"
   tags:
-    - disable
     - promtail
 
 - name: 'file create promtail.cfg'
@@ -51,12 +40,7 @@
   notify: 'service reload monit'
   when: (promtail_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - promtail
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop promtail'
   service:
@@ -64,5 +48,4 @@
     enabled: 'no'
     name: "{{service_name_promtail}}"
   tags:
-    - disable
     - promtail

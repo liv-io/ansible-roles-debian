@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - loki
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'command check service loki'
   shell: "{{command_cmd_check_service_loki}}"
@@ -26,7 +17,6 @@
   failed_when: (register_check_service_loki.rc > 1)
   check_mode: 'no'
   tags:
-    - remove
     - loki
 
 - name: 'service stop loki'
@@ -36,7 +26,6 @@
     name: "{{service_name_loki}}"
   when: (register_check_service_loki.rc == 0)
   tags:
-    - remove
     - loki
 
 - name: 'user remove loki'
@@ -46,7 +35,6 @@
     remove: "{{user_home_remove_loki}}"
     force: "{{user_home_force_loki}}"
   tags:
-    - remove
     - loki
 
 - name: 'group remove loki'
@@ -54,7 +42,6 @@
     state: 'absent'
     name: "{{group_name_loki}}"
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki.cfg'
@@ -63,19 +50,13 @@
     path: "{{file_dst_loki_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - loki
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove loki_datasource.yaml'
   file:
     state: 'absent'
     path: "{{file_dst_loki_datasource_yaml}}"
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki_prometheus_datasource.yaml'
@@ -83,7 +64,6 @@
     state: 'absent'
     path: "{{file_dst_loki_prometheus_datasource_yaml}}"
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki_etc.dir'
@@ -91,7 +71,6 @@
     state: 'absent'
     path: "{{file_dst_loki_etc_dir}}"
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki.default'
@@ -99,7 +78,6 @@
     state: 'absent'
     path: "{{file_dst_loki_default}}"
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki.service'
@@ -108,7 +86,6 @@
     path: "{{file_dst_loki_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki'
@@ -116,7 +93,6 @@
     state: 'absent'
     path: "{{file_creates_loki}}"
   tags:
-    - remove
     - loki
 
 - name: 'file remove loki.zip'
@@ -124,5 +100,4 @@
     state: 'absent'
     path: "{{file_dst_loki_zip}}"
   tags:
-    - remove
     - loki

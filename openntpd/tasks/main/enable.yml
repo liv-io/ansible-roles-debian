@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - openntpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create ntpd.conf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_ntpd_conf}}"
   notify: 'service restart openntpd'
   tags:
-    - enable
     - openntpd
 
 - name: 'file create openntpd_check-time'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_openntpd_check_time}}"
     group: "{{file_group_openntpd_check_time}}"
   tags:
-    - enable
     - openntpd
 
 - name: 'cron create openntpd_check-time'
@@ -55,7 +44,6 @@
     user: "{{cron_user_openntpd_check_time}}"
     job: "{{cron_job_openntpd_check_time}}"
   tags:
-    - enable
     - openntpd
 
 - name: 'file create openntpd.cfg'
@@ -68,12 +56,7 @@
   notify: 'service reload monit'
   when: (openntpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - openntpd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start openntpd'
   service:
@@ -81,5 +64,4 @@
     enabled: 'yes'
     name: "{{service_name_openntpd}}"
   tags:
-    - enable
     - openntpd

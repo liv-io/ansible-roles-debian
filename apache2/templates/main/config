@@ -7,9 +7,7 @@
  *:{{(item.port|int)}}
 {%- endif %}>
 
-  #-----------------------------------------------------------------------------
   # GENERAL
-  #-----------------------------------------------------------------------------
 
   # Server hostname and port
   ServerName {{item.name}}
@@ -28,9 +26,7 @@
   DocumentRoot '{{item.document_root}}'
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # LOGGING
-  #-----------------------------------------------------------------------------
 
 {% if ((item.ssl_state|default('false')) is match('true|yes|enable')) %}
   # Combined Log Format (CLF) + SSL/TLS Information
@@ -53,9 +49,7 @@
   LogLevel warn
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # HTTP HEADER
-  #-----------------------------------------------------------------------------
 
 {% if ((item.hsts_state|default('false')) is match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
@@ -72,9 +66,7 @@
 {% endif %}
 
 {% if ((item.ssl_state|default('false')) is match('true|yes|enable')) %}
-  #-----------------------------------------------------------------------------
   # SSL
-  #-----------------------------------------------------------------------------
 
   # Enable SSL/TLS protocol engine
   SSLEngine On
@@ -132,9 +124,7 @@
 {% endif %}
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # CONFIG
-  #-----------------------------------------------------------------------------
 
 {% if not (item.config == '') %}
 {{(item.config|indent(width=2, indentfirst=True))}}

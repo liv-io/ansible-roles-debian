@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # config
 file_src_config: 'templates/main/config'
 file_mode_config: '0644'
@@ -22,10 +18,6 @@ file_dst_sysctl_d: '/etc/sysctl.d'
 file_mode_sysctl_d: '0755'
 file_owner_sysctl_d: 'root'
 file_group_sysctl_d: 'root'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # set-sysctl
 command_cmd_set_sysctl: 'sysctl -qp'

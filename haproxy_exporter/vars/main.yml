@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # haproxy_exporter.tar.gz
 file_src_haproxy_exporter_tar_gz: "https://github.com/prometheus/haproxy_exporter/releases/download/v{{haproxy_exporter_version}}/haproxy_exporter-{{haproxy_exporter_version}}.linux-amd64.tar.gz"
 file_dst_haproxy_exporter_tar_gz: "/usr/local/src/haproxy_exporter-{{haproxy_exporter_version}}.linux-amd64.tar.gz"
@@ -48,10 +44,6 @@ file_mode_haproxy_exporter_cfg: '0640'
 file_owner_haproxy_exporter_cfg: 'root'
 file_group_haproxy_exporter_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service haproxy_exporter
 command_cmd_check_service_haproxy_exporter: 'systemctl cat haproxy_exporter.service > /dev/null 2>&1'
 
@@ -60,10 +52,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # haproxy_exporter
 group_name_haproxy_exporter: 'haproxy_exporter'

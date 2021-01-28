@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - apache2
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create 000-default.conf'
   template:
@@ -30,7 +21,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file remove 000-default.link'
@@ -42,7 +32,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create alias.conf'
@@ -56,7 +45,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create alias.link'
@@ -70,7 +58,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create apache2.conf'
@@ -84,7 +71,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create autoindex.conf'
@@ -98,7 +84,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create autoindex.link'
@@ -112,7 +97,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create default-ssl.conf'
@@ -126,7 +110,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file remove default-ssl.link'
@@ -138,7 +121,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create dir.conf'
@@ -152,7 +134,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create dir.link'
@@ -166,7 +147,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create info.conf'
@@ -180,7 +160,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create info.link'
@@ -194,7 +173,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create ports.conf'
@@ -208,7 +186,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create security.conf'
@@ -222,7 +199,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create security.link'
@@ -236,7 +212,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create ssl.conf'
@@ -250,7 +225,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create ssl.link'
@@ -264,7 +238,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create status.conf'
@@ -278,7 +251,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create status.link'
@@ -292,7 +264,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create userdir.conf'
@@ -306,7 +277,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create userdir.link'
@@ -320,7 +290,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - apache2
 
 - name: 'file create apache2.cfg'
@@ -333,12 +302,7 @@
   notify: 'service reload monit'
   when: (apache2_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - apache2
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start apache2'
   service:
@@ -346,5 +310,4 @@
     enabled: 'yes'
     name: "{{service_name_apache2}}"
   tags:
-    - enable
     - apache2

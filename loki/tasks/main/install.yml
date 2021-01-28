@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - loki
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create loki'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_loki}}"
     system: "{{group_system_loki}}"
   tags:
-    - install
     - loki
 
 - name: 'user create loki'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_loki}}"
     system: "{{user_system_loki}}"
   tags:
-    - install
     - loki
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create data.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_data_dir}}"
     group: "{{file_group_data_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create loki_data.dir'
@@ -70,7 +54,6 @@
     owner: "{{file_owner_loki_data_dir}}"
     group: "{{file_group_loki_data_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create chunks.dir'
@@ -81,7 +64,6 @@
     owner: "{{file_owner_chunks_dir}}"
     group: "{{file_group_chunks_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create boltdb-shipper-active.dir'
@@ -92,7 +74,6 @@
     owner: "{{file_owner_boltdb_shipper_active_dir}}"
     group: "{{file_group_boltdb_shipper_active_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create boltdb-shipper-cache.dir'
@@ -103,7 +84,6 @@
     owner: "{{file_owner_boltdb_shipper_cache_dir}}"
     group: "{{file_group_boltdb_shipper_cache_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create boltdb-shipper-compactor.dir'
@@ -114,7 +94,6 @@
     owner: "{{file_owner_boltdb_shipper_compactor_dir}}"
     group: "{{file_group_boltdb_shipper_compactor_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create rules.dir'
@@ -125,7 +104,6 @@
     owner: "{{file_owner_rules_dir}}"
     group: "{{file_group_rules_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create rules-temp.dir'
@@ -136,7 +114,6 @@
     owner: "{{file_owner_rules_temp_dir}}"
     group: "{{file_group_rules_temp_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file create loki_etc.dir'
@@ -147,7 +124,6 @@
     owner: "{{file_owner_loki_etc_dir}}"
     group: "{{file_group_loki_etc_dir}}"
   tags:
-    - install
     - loki
 
 - name: 'file download loki.zip'
@@ -159,7 +135,6 @@
     group: "{{file_group_loki_zip}}"
     checksum: "{{file_checksum_loki_zip}}"
   tags:
-    - install
     - loki
 
 - name: 'file unarchive loki'
@@ -170,7 +145,6 @@
     group: "{{file_group_loki}}"
     remote_src: 'yes'
   tags:
-    - install
     - loki
 
 - name: 'file create loki.service'
@@ -182,7 +156,6 @@
     group: "{{file_group_loki_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - loki
 
 - name: 'stat file monit.d'
@@ -191,7 +164,6 @@
   register: register_monit_d
   when: (loki_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - loki
 
 - name: 'file create monit.d'
@@ -203,12 +175,7 @@
     group: "{{file_group_monit_d}}"
   when: (loki_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - loki
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -218,15 +185,9 @@
   check_mode: 'no'
   when: (loki_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - loki
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - loki

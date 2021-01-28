@@ -1,8 +1,6 @@
 {{ansible_managed|comment(decoration='#')}}
 
-#-------------------------------------------------------------------------------
 # SHELL OPTIONS
-#-------------------------------------------------------------------------------
 
 # checkwinsize
 {% if (bash_checkwinsize is match('false|no|disable')) %}
@@ -18,9 +16,7 @@ shopt -d histappend
 shopt -s histappend
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # SHELL VARIABLES
-#-------------------------------------------------------------------------------
 
 {% if not (bash_histcontrol is match('false|no|disable')) %}
 # HISTCONTROL
@@ -81,9 +77,7 @@ readonly TMOUT
 export TMOUT
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # KEY BINDINGS
-#-------------------------------------------------------------------------------
 
 if [[ $- =~ i ]]; then
   bind '"\e[1~": beginning-of-line'

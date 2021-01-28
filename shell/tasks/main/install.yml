@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - shell
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create profile.d'
   file:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_profile_d}}"
     group: "{{file_group_profile_d}}"
   tags:
-    - install
     - shell
 
 - name: 'file create profile'
@@ -38,7 +28,6 @@
     owner: "{{file_owner_profile}}"
     group: "{{file_group_profile}}"
   tags:
-    - install
     - shell
 
 - name: 'file create shell.sh'
@@ -49,7 +38,6 @@
     owner: "{{file_owner_shell_shell}}"
     group: "{{file_group_shell_shell}}"
   tags:
-    - install
     - shell
 
 - name: 'file create z_shell.sh'
@@ -60,5 +48,4 @@
     owner: "{{file_owner_z_shell_shell}}"
     group: "{{file_group_z_shell_shell}}"
   tags:
-    - install
     - shell

@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # grafana
 package_name_grafana: 'grafana'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 file_src_grafana_gpg: 'files/main/grafana.gpg'
 file_dst_grafana_gpg: '/usr/local/src/grafana.gpg'
@@ -42,10 +34,6 @@ file_mode_grafana_cfg: '0640'
 file_owner_grafana_cfg: 'root'
 file_group_grafana_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # add grafana.key
 command_cmd_add_grafana_key: 'apt-key add /usr/local/src/grafana.gpg'
 
@@ -57,10 +45,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # del grafana.key
 command_cmd_del_grafana_key: 'apt-key del 24098CB6'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # grafana-server
 service_name_grafana: 'grafana-server'

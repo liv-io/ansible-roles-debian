@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - modsecurity
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create modsecurity.conf'
   template:
@@ -30,7 +21,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - modsecurity
 
 - name: 'file create modsecurity.link'
@@ -44,7 +34,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - modsecurity
 
 - name: 'file create security2.conf'
@@ -58,7 +47,6 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - modsecurity
 
 - name: 'file create security2.link'
@@ -72,5 +60,4 @@
     - 'command check apache2'
     - 'command reload apache2'
   tags:
-    - enable
     - modsecurity

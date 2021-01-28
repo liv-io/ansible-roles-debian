@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - tmux
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove tmux'
   package:
@@ -25,17 +16,11 @@
     name: "{{package_name_tmux}}"
     install_recommends: 'no'
   tags:
-    - remove
     - tmux
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove tmux.conf'
   file:
     state: 'absent'
     path: "{{file_dst_tmux_conf}}"
   tags:
-    - remove
     - tmux

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - fstrim
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create fstrim_log.dir'
   file:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_fstrim_log_dir}}"
     group: "{{file_group_fstrim_log_dir}}"
   tags:
-    - install
     - fstrim
 
 - name: 'file create fstrim.log'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_fstrim_log}}"
     group: "{{file_group_fstrim_log}}"
   tags:
-    - install
     - fstrim
 
 - name: 'file create fstrim_discard-blocks'
@@ -50,5 +39,4 @@
     owner: "{{file_owner_fstrim_discard_blocks}}"
     group: "{{file_group_fstrim_discard_blocks}}"
   tags:
-    - install
     - fstrim

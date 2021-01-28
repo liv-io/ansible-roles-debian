@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - squid
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create dst_domain_allowed.acl'
   template:
@@ -30,7 +21,6 @@
     - 'command parse config'
     - 'service restart squid'
   tags:
-    - enable
     - squid
 
 - name: 'file create dst_domain_blocked.acl'
@@ -44,7 +34,6 @@
     - 'command parse config'
     - 'service restart squid'
   tags:
-    - enable
     - squid
 
 - name: 'file create dst_network_allowed.acl'
@@ -58,7 +47,6 @@
     - 'command parse config'
     - 'service restart squid'
   tags:
-    - enable
     - squid
 
 - name: 'file create dst_network_blocked.acl'
@@ -72,7 +60,6 @@
     - 'command parse config'
     - 'service restart squid'
   tags:
-    - enable
     - squid
 
 - name: 'file create src_network_unrestricted.acl'
@@ -86,7 +73,6 @@
     - 'command parse config'
     - 'service restart squid'
   tags:
-    - enable
     - squid
 
 - name: 'file create squid.conf'
@@ -101,7 +87,6 @@
     - 'command parse config'
     - 'service restart squid'
   tags:
-    - enable
     - squid
 
 - name: 'stat file cache.dir'
@@ -109,7 +94,6 @@
     path: "{{file_dst_cache_dir}}"
   register: register_cache_dir
   tags:
-    - enable
     - squid
 
 - name: 'file create squid.cfg'
@@ -122,12 +106,7 @@
   notify: 'service reload monit'
   when: (squid_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - squid
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'service stop squid'
   service:
@@ -136,7 +115,6 @@
     name: "{{service_name_squid}}"
   when: (register_cache_dir.stat.exists == False)
   tags:
-    - enable
     - squid
 
 - name: 'command create cache.dir'
@@ -144,12 +122,7 @@
   check_mode: 'no'
   when: (register_cache_dir.stat.exists == False)
   tags:
-    - enable
     - squid
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start squid'
   service:
@@ -157,5 +130,4 @@
     enabled: 'yes'
     name: "{{service_name_squid}}"
   tags:
-    - enable
     - squid

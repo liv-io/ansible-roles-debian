@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # alertmanager_data.dir
 file_dst_alertmanager_data_dir: '/data/alertmanager'
 file_mode_alertmanager_data_dir: '0750'
@@ -70,10 +66,6 @@ file_mode_alertmanager_cfg: '0640'
 file_owner_alertmanager_cfg: 'root'
 file_group_alertmanager_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service alertmanager
 command_cmd_check_service_alertmanager: 'systemctl cat alertmanager.service > /dev/null 2>&1'
 
@@ -82,10 +74,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # alertmanager
 group_name_alertmanager: 'alertmanager'

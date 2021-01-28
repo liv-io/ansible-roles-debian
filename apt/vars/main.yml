@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # apt
 package_name_apt: 'apt'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # config
 file_src_config: 'templates/main/config'
@@ -47,10 +39,6 @@ cron_month_apt_check_update: "{{apt_check_update_month}}"
 cron_weekday_apt_check_update: "{{apt_check_update_weekday}}"
 cron_user_apt_check_update: "{{file_owner_apt_check_update}}"
 cron_job_apt_check_update: "{{file_dst_apt_check_update}}"
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # update sources
 command_cmd_update_sources: 'apt update'

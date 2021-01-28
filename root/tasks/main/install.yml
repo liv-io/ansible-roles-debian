@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - root
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create root'
   group:
@@ -26,7 +17,6 @@
     gid: "{{group_gid_root}}"
     system: "{{group_system_root}}"
   tags:
-    - install
     - root
 
 - name: 'user create root'
@@ -47,12 +37,7 @@
     shell: "{{user_shell_root}}"
     system: "{{user_system_root}}"
   tags:
-    - install
     - root
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create root.dir'
   file:
@@ -62,5 +47,4 @@
     owner: "{{file_owner_root_dir}}"
     group: "{{file_group_root_dir}}"
   tags:
-    - install
     - root

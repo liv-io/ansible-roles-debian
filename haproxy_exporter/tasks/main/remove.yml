@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - haproxy_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'command check service haproxy_exporter'
   shell: "{{command_cmd_check_service_haproxy_exporter}}"
@@ -26,7 +17,6 @@
   failed_when: (register_check_service_haproxy_exporter.rc > 1)
   check_mode: 'no'
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'service stop haproxy_exporter'
@@ -36,7 +26,6 @@
     name: "{{service_name_haproxy_exporter}}"
   when: (register_check_service_haproxy_exporter.rc == 0)
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'user remove haproxy_exporter'
@@ -46,7 +35,6 @@
     remove: "{{user_home_remove_haproxy_exporter}}"
     force: "{{user_home_force_haproxy_exporter}}"
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'group remove haproxy_exporter'
@@ -54,12 +42,7 @@
     state: 'absent'
     name: "{{group_name_haproxy_exporter}}"
   tags:
-    - remove
     - haproxy_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove haproxy_exporter.cfg'
   file:
@@ -67,7 +50,6 @@
     path: "{{file_dst_haproxy_exporter_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'file remove haproxy_exporter.default'
@@ -75,7 +57,6 @@
     state: 'absent'
     path: "{{file_dst_haproxy_exporter_default}}"
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'file remove haproxy_exporter.service'
@@ -84,7 +65,6 @@
     path: "{{file_dst_haproxy_exporter_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'file remove haproxy_exporter'
@@ -92,7 +72,6 @@
     state: 'absent'
     path: "{{file_creates_haproxy_exporter}}"
   tags:
-    - remove
     - haproxy_exporter
 
 - name: 'file remove haproxy_exporter.tar.gz'
@@ -100,5 +79,4 @@
     state: 'absent'
     path: "{{file_dst_haproxy_exporter_tar_gz}}"
   tags:
-    - remove
     - haproxy_exporter

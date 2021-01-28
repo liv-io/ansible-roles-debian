@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - systemd_timesyncd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove systemd-timesyncd.cfg'
   file:
@@ -25,5 +16,4 @@
     path: "{{file_dst_systemd_timesyncd_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - systemd_timesyncd

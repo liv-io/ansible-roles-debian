@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # timesyncd.conf
 file_src_timesyncd_conf: 'templates/main/timesyncd.conf'
 file_dst_timesyncd_conf: '/etc/systemd/timesyncd.conf'
@@ -24,16 +20,8 @@ file_mode_systemd_timesyncd_cfg: '0640'
 file_owner_systemd_timesyncd_cfg: 'root'
 file_group_systemd_timesyncd_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

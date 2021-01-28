@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - hddtemp
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove hddtemp'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_hddtemp}}"
     install_recommends: 'no'
   tags:
-    - remove
     - hddtemp
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove hddtemp.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_hddtemp_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - hddtemp
 
 - name: 'file remove hddtemp.default'
@@ -46,5 +31,4 @@
     state: 'absent'
     path: "{{file_dst_hddtemp_default}}"
   tags:
-    - remove
     - hddtemp

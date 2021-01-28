@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - unbound
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove unbound'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_unbound}}"
     install_recommends: 'no'
   tags:
-    - remove
     - unbound
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove unbound.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_unbound_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - unbound
 
 - name: 'file remove unbound.conf'
@@ -46,7 +31,6 @@
     state: 'absent'
     path: "{{file_dst_unbound_conf}}"
   tags:
-    - remove
     - unbound
 
 - name: 'file remove root.hints'
@@ -54,5 +38,4 @@
     state: 'absent'
     path: "{{file_dst_root_hints}}"
   tags:
-    - remove
     - unbound

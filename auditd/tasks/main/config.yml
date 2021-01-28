@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - auditd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -32,7 +23,6 @@
     - 'command restart auditd'
   when: not (item.state is match('false|no|remove'))
   tags:
-    - config
     - auditd
 
 - name: 'file remove config'
@@ -45,5 +35,4 @@
     - 'command restart auditd'
   when: (item.state is match('false|no|remove'))
   tags:
-    - config
     - auditd

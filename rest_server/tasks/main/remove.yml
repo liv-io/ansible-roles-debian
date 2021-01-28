@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - rest_server
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'command check service rest-server'
   shell: "{{command_cmd_check_service_rest_server}}"
@@ -26,7 +17,6 @@
   failed_when: (register_check_service_rest_server.rc > 1)
   check_mode: 'no'
   tags:
-    - remove
     - rest_server
 
 - name: 'service stop rest-server'
@@ -36,7 +26,6 @@
     name: "{{service_name_rest_server}}"
   when: (register_check_service_rest_server.rc == 0)
   tags:
-    - remove
     - rest_server
 
 - name: 'user remove rest-server'
@@ -46,7 +35,6 @@
     remove: "{{user_home_remove_rest_server}}"
     force: "{{user_home_force_rest_server}}"
   tags:
-    - remove
     - rest_server
 
 - name: 'group remove rest-server'
@@ -54,12 +42,7 @@
     state: 'absent'
     name: "{{group_name_rest_server}}"
   tags:
-    - remove
     - rest_server
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove rest-server.cfg'
   file:
@@ -67,7 +50,6 @@
     path: "{{file_dst_rest_server_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest-server.default'
@@ -75,7 +57,6 @@
     state: 'absent'
     path: "{{file_dst_rest_server_default}}"
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest-server.service'
@@ -84,7 +65,6 @@
     path: "{{file_dst_rest_server_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest-server'
@@ -92,7 +72,6 @@
     state: 'absent'
     path: "{{file_creates_rest_server}}"
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest-server.tar.gz'
@@ -100,5 +79,4 @@
     state: 'absent'
     path: "{{file_dst_rest_server_tar_gz}}"
   tags:
-    - remove
     - rest_server

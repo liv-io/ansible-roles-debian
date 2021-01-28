@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - issue
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create issue'
   template:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_issue}}"
     group: "{{file_group_issue}}"
   tags:
-    - install
     - issue
 
 - name: 'file create issue.net'
@@ -38,5 +28,4 @@
     owner: "{{file_owner_issue_net}}"
     group: "{{file_group_issue_net}}"
   tags:
-    - install
     - issue

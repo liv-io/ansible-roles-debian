@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - nsd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create nsd.conf'
   template:
@@ -29,7 +20,6 @@
     validate: "{{file_validate_nsd_conf}}"
   notify: 'service restart nsd'
   tags:
-    - enable
     - nsd
 
 - name: 'file create nsd.cfg'
@@ -42,12 +32,7 @@
   notify: 'service reload monit'
   when: (nsd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - nsd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start nsd'
   service:
@@ -55,5 +40,4 @@
     enabled: 'yes'
     name: "{{service_name_nsd}}"
   tags:
-    - enable
     - nsd

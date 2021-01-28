@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - nftables
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create nftables.conf'
   template:
@@ -28,12 +19,7 @@
     group: "{{file_group_nftables_conf}}"
   notify: 'service reload nftables'
   tags:
-    - enable
     - nftables
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start nftables'
   service:
@@ -41,5 +27,4 @@
     enabled: 'yes'
     name: "{{service_name_nftables}}"
   tags:
-    - enable
     - nftables

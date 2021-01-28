@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - mariadb
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove mariadb-client'
   package:
@@ -25,7 +16,6 @@
     name: "{{package_name_mariadb_client}}"
     install_recommends: 'no'
   tags:
-    - remove
     - mariadb
 
 - name: 'package remove mariadb-server'
@@ -34,12 +24,7 @@
     name: "{{package_name_mariadb_server}}"
     install_recommends: 'no'
   tags:
-    - remove
     - mariadb
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove mariadb.cfg'
   file:
@@ -47,7 +32,6 @@
     path: "{{file_dst_mariadb_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - mariadb
 
 - name: 'cron remove mariadb_run-backup'
@@ -57,7 +41,6 @@
     cron_file: "{{cron_cron_file_mariadb_run_backup}}"
     user: "{{cron_user_mariadb_run_backup}}"
   tags:
-    - remove
     - mariadb
 
 - name: 'file remove mariadb_run-backup'
@@ -65,7 +48,6 @@
     state: 'absent'
     path: "{{file_dst_mariadb_run_backup}}"
   tags:
-    - remove
     - mariadb
 
 - name: 'file remove mysql-etc.dir'
@@ -73,5 +55,4 @@
     state: 'absent'
     path: "{{file_dst_mysql_etc_dir}}"
   tags:
-    - remove
     - mariadb

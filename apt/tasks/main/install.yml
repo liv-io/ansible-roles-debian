@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - apt
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install apt'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_apt}}"
     install_recommends: 'no'
   tags:
-    - install
     - apt
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create apt.conf'
   template:
@@ -40,7 +26,6 @@
     owner: "{{file_owner_apt_conf}}"
     group: "{{file_group_apt_conf}}"
   tags:
-    - install
     - apt
 
 - name: 'file create local_sbin.dir'
@@ -51,7 +36,6 @@
     owner: "{{file_owner_local_sbin_dir}}"
     group: "{{file_group_local_sbin_dir}}"
   tags:
-    - install
     - apt
 
 - name: 'file create apt_check-update'
@@ -62,7 +46,6 @@
     owner: "{{file_owner_apt_check_update}}"
     group: "{{file_group_apt_check_update}}"
   tags:
-    - install
     - apt
 
 - name: 'cron create apt_check-update'
@@ -79,5 +62,4 @@
     user: "{{cron_user_apt_check_update}}"
     job: "{{cron_job_apt_check_update}}"
   tags:
-    - install
     - apt

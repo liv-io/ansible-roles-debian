@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - blackbox_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create blackbox_exporter'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_blackbox_exporter}}"
     system: "{{group_system_blackbox_exporter}}"
   tags:
-    - install
     - blackbox_exporter
 
 - name: 'user create blackbox_exporter'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_blackbox_exporter}}"
     system: "{{user_system_blackbox_exporter}}"
   tags:
-    - install
     - blackbox_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create blackbox_exporter_etc.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_blackbox_exporter_etc_dir}}"
     group: "{{file_group_blackbox_exporter_etc_dir}}"
   tags:
-    - install
     - blackbox_exporter
 
 - name: 'file download blackbox_exporter.tar.gz'
@@ -71,7 +55,6 @@
     group: "{{file_group_blackbox_exporter_tar_gz}}"
     checksum: "{{file_checksum_blackbox_exporter_tar_gz}}"
   tags:
-    - install
     - blackbox_exporter
 
 - name: 'file unarchive blackbox_exporter'
@@ -84,7 +67,6 @@
     extra_opts: "{{file_extra_opts_blackbox_exporter}}"
     remote_src: 'yes'
   tags:
-    - install
     - blackbox_exporter
 
 - name: 'file create blackbox_exporter.service'
@@ -96,12 +78,7 @@
     group: "{{file_group_blackbox_exporter_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - blackbox_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -109,7 +86,6 @@
   register: register_monit_d
   when: (blackbox_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - blackbox_exporter
 
 - name: 'file create monit.d'
@@ -121,12 +97,7 @@
     group: "{{file_group_monit_d}}"
   when: (blackbox_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - blackbox_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -136,15 +107,9 @@
   check_mode: 'no'
   when: (blackbox_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - blackbox_exporter
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - blackbox_exporter

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - modsecurity
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create modsecurity.conf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_modsecurity_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - modsecurity
 
 - name: 'file create modsecurity.link'
@@ -40,7 +30,6 @@
     group: "{{file_group_modsecurity_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - modsecurity
 
 - name: 'file create security2.conf'
@@ -52,7 +41,6 @@
     group: "{{file_group_security2_conf}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - modsecurity
 
 - name: 'file create security2.link'
@@ -64,5 +52,4 @@
     group: "{{file_group_security2_link}}"
   notify: 'command check apache2'
   tags:
-    - disable
     - modsecurity

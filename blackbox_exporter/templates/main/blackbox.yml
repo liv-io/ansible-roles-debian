@@ -2,12 +2,6 @@
 
 modules:
 {% for item in (blackbox_exporter_config|default([])) %}
-{% if not ((item.name|default('')) == '') %}
-  #-----------------------------------------------------------------------------
-  # {{(item.name|upper)}}
-  #-----------------------------------------------------------------------------
-
-{% endif %}
 {% if not ((item.comment|default('')) == '') %}
   # {{item.comment}}
 {% endif %}

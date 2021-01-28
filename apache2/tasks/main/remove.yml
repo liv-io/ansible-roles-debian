@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - apache2
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove apache2'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_apache2}}"
     install_recommends: 'no'
   tags:
-    - remove
     - apache2
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove apache2.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_apache2_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - apache2
 
 - name: 'file remove 000-default.link'
@@ -46,7 +31,6 @@
     state: 'absent'
     path: "{{file_dst_000_default_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove 000-default.conf'
@@ -54,7 +38,6 @@
     state: 'absent'
     path: "{{file_dst_000_default_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove alias.link'
@@ -62,7 +45,6 @@
     state: 'absent'
     path: "{{file_dst_alias_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove alias.conf'
@@ -70,7 +52,6 @@
     state: 'absent'
     path: "{{file_dst_alias_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove apache2.conf'
@@ -78,7 +59,6 @@
     state: 'absent'
     path: "{{file_dst_apache2_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove autoindex.link'
@@ -86,7 +66,6 @@
     state: 'absent'
     path: "{{file_dst_autoindex_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove autoindex.conf'
@@ -94,7 +73,6 @@
     state: 'absent'
     path: "{{file_dst_autoindex_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove default-ssl.link'
@@ -102,7 +80,6 @@
     state: 'absent'
     path: "{{file_dst_default_ssl_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove default-ssl.conf'
@@ -110,7 +87,6 @@
     state: 'absent'
     path: "{{file_dst_default_ssl_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove dir.link'
@@ -118,7 +94,6 @@
     state: 'absent'
     path: "{{file_dst_dir_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove dir.conf'
@@ -126,7 +101,6 @@
     state: 'absent'
     path: "{{file_dst_dir_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove info.link'
@@ -134,7 +108,6 @@
     state: 'absent'
     path: "{{file_dst_info_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove info.conf'
@@ -142,7 +115,6 @@
     state: 'absent'
     path: "{{file_dst_info_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove ports.link'
@@ -150,7 +122,6 @@
     state: 'absent'
     path: "{{file_dst_ports_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove ports.conf'
@@ -158,7 +129,6 @@
     state: 'absent'
     path: "{{file_dst_ports_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove security.link'
@@ -166,7 +136,6 @@
     state: 'absent'
     path: "{{file_dst_security_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove security.conf'
@@ -174,7 +143,6 @@
     state: 'absent'
     path: "{{file_dst_security_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove ssl.link'
@@ -182,7 +150,6 @@
     state: 'absent'
     path: "{{file_dst_ssl_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove ssl.conf'
@@ -190,7 +157,6 @@
     state: 'absent'
     path: "{{file_dst_ssl_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove status.link'
@@ -198,7 +164,6 @@
     state: 'absent'
     path: "{{file_dst_status_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove status.conf'
@@ -206,7 +171,6 @@
     state: 'absent'
     path: "{{file_dst_status_conf}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove userdir.link'
@@ -214,7 +178,6 @@
     state: 'absent'
     path: "{{file_dst_userdir_link}}"
   tags:
-    - remove
     - apache2
 
 - name: 'file remove userdir.conf'
@@ -222,5 +185,4 @@
     state: 'absent'
     path: "{{file_dst_userdir_conf}}"
   tags:
-    - remove
     - apache2

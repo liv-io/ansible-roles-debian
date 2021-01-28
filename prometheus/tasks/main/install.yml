@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - prometheus
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create prometheus'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_prometheus}}"
     system: "{{group_system_prometheus}}"
   tags:
-    - install
     - prometheus
 
 - name: 'user create prometheus'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_prometheus}}"
     system: "{{user_system_prometheus}}"
   tags:
-    - install
     - prometheus
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create app.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_app_dir}}"
     group: "{{file_group_app_dir}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file create prometheus_app.dir'
@@ -70,7 +54,6 @@
     owner: "{{file_owner_prometheus_app_dir}}"
     group: "{{file_group_prometheus_app_dir}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file create prometheus_etc.dir'
@@ -81,7 +64,6 @@
     owner: "{{file_owner_prometheus_etc_dir}}"
     group: "{{file_group_prometheus_etc_dir}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file create data.dir'
@@ -92,7 +74,6 @@
     owner: "{{file_owner_data_dir}}"
     group: "{{file_group_data_dir}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file create prometheus_data.dir'
@@ -103,7 +84,6 @@
     owner: "{{file_owner_prometheus_data_dir}}"
     group: "{{file_group_prometheus_data_dir}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file download prometheus.tar.gz'
@@ -115,7 +95,6 @@
     group: "{{file_group_prometheus_tar_gz}}"
     checksum: "{{file_checksum_prometheus_tar_gz}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file unarchive prometheus'
@@ -127,7 +106,6 @@
     exclude: "{{file_exclude_prometheus}}"
     remote_src: 'yes'
   tags:
-    - install
     - prometheus
 
 - name: 'file create dashboards.dir'
@@ -138,7 +116,6 @@
     owner: "{{file_owner_dashboards_dir}}"
     group: "{{file_group_dashboards_dir}}"
   tags:
-    - install
     - prometheus
 
 - name: 'file create builtin_dashboards.dir'
@@ -150,7 +127,6 @@
     group: "{{file_group_builtin_dashboards_dir}}"
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
-    - install
     - prometheus
 
 - name: 'file create prometheus.service'
@@ -162,12 +138,7 @@
     group: "{{file_group_prometheus_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - prometheus
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -175,7 +146,6 @@
   register: register_monit_d
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - prometheus
 
 - name: 'file create monit.d'
@@ -187,12 +157,7 @@
     group: "{{file_group_monit_d}}"
   when: (prometheus_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - prometheus
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -202,15 +167,9 @@
   check_mode: 'no'
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - prometheus
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - prometheus

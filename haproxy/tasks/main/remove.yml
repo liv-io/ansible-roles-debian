@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - haproxy
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove haproxy'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_haproxy}}"
     install_recommends: 'no'
   tags:
-    - remove
     - haproxy
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove monit-haproxy.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_monit_haproxy_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - haproxy
 
 - name: 'file remove haproxy.cfg'
@@ -46,7 +31,6 @@
     state: 'absent'
     path: "{{file_dst_haproxy_cfg}}"
   tags:
-    - remove
     - haproxy
 
 - name: 'file remove dhparam.pem'
@@ -54,5 +38,4 @@
     state: 'absent'
     path: "{{file_dst_dhparam_pem}}"
   tags:
-    - remove
     - haproxy

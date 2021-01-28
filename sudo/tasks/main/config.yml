@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - sudo
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -30,7 +21,6 @@
   loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
-    - config
     - sudo
 
 - name: 'file remove config'
@@ -40,5 +30,4 @@
   loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
   when: (item.state is match('false|no|remove'))
   tags:
-    - config
     - sudo

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - promtail
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create promtail'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_promtail}}"
     system: "{{group_system_promtail}}"
   tags:
-    - install
     - promtail
 
 - name: 'user create promtail'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_promtail}}"
     system: "{{user_system_promtail}}"
   tags:
-    - install
     - promtail
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create promtail_etc.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_promtail_etc_dir}}"
     group: "{{file_group_promtail_etc_dir}}"
   tags:
-    - install
     - promtail
 
 - name: 'file download promtail.zip'
@@ -71,7 +55,6 @@
     group: "{{file_group_promtail_zip}}"
     checksum: "{{file_checksum_promtail_zip}}"
   tags:
-    - install
     - promtail
 
 - name: 'file unarchive promtail'
@@ -82,7 +65,6 @@
     group: "{{file_group_promtail}}"
     remote_src: 'yes'
   tags:
-    - install
     - promtail
 
 - name: 'file create promtail.service'
@@ -94,7 +76,6 @@
     group: "{{file_group_promtail_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - promtail
 
 - name: 'stat file monit.d'
@@ -103,7 +84,6 @@
   register: register_monit_d
   when: (promtail_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - promtail
 
 - name: 'file create monit.d'
@@ -115,12 +95,7 @@
     group: "{{file_group_monit_d}}"
   when: (promtail_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - promtail
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -130,15 +105,9 @@
   check_mode: 'no'
   when: (promtail_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - promtail
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - promtail

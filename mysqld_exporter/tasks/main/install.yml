@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - mysqld_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create mysqld_exporter'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_mysqld_exporter}}"
     system: "{{group_system_mysqld_exporter}}"
   tags:
-    - install
     - mysqld_exporter
 
 - name: 'user create mysqld_exporter'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_mysqld_exporter}}"
     system: "{{user_system_mysqld_exporter}}"
   tags:
-    - install
     - mysqld_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create mysqld_exporter_etc.dir'
   file:
@@ -59,7 +44,6 @@
     owner: "{{file_owner_mysqld_exporter_etc_dir}}"
     group: "{{file_group_mysqld_exporter_etc_dir}}"
   tags:
-    - install
     - mysqld_exporter
 
 - name: 'file download mysqld_exporter.tar.gz'
@@ -71,7 +55,6 @@
     group: "{{file_group_mysqld_exporter_tar_gz}}"
     checksum: "{{file_checksum_mysqld_exporter_tar_gz}}"
   tags:
-    - install
     - mysqld_exporter
 
 - name: 'file unarchive mysqld_exporter'
@@ -84,7 +67,6 @@
     extra_opts: "{{file_extra_opts_mysqld_exporter}}"
     remote_src: 'yes'
   tags:
-    - install
     - mysqld_exporter
 
 - name: 'file create mysqld_exporter.service'
@@ -96,7 +78,6 @@
     group: "{{file_group_mysqld_exporter_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - mysqld_exporter
 
 - name: 'stat file monit.d'
@@ -105,7 +86,6 @@
   register: register_monit_d
   when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - mysqld_exporter
 
 - name: 'file create monit.d'
@@ -117,12 +97,7 @@
     group: "{{file_group_monit_d}}"
   when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - mysqld_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -132,15 +107,9 @@
   check_mode: 'no'
   when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - mysqld_exporter
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - mysqld_exporter

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # data.dir
 file_dst_data_dir: '/data'
 file_mode_data_dir: '0755'
@@ -60,10 +56,6 @@ file_mode_rest_server_cfg: '0640'
 file_owner_rest_server_cfg: 'root'
 file_group_rest_server_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -72,10 +64,6 @@ command_cmd_check_service_rest_server: 'systemctl cat rest-server.service > /dev
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # rest-server
 group_name_rest_server: 'rest-server'

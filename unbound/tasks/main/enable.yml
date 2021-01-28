@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - unbound
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file copy root.hints'
   copy:
@@ -28,7 +19,6 @@
     group: "{{file_group_root_hints}}"
   notify: 'service restart unbound'
   tags:
-    - enable
     - unbound
 
 - name: 'file create unbound.conf'
@@ -41,7 +31,6 @@
     validate: "{{file_validate_unbound_conf}}"
   notify: 'service restart unbound'
   tags:
-    - enable
     - unbound
 
 - name: 'file create unbound.cfg'
@@ -54,12 +43,7 @@
   notify: 'service reload monit'
   when: (unbound_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - unbound
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start unbound'
   service:
@@ -67,5 +51,4 @@
     enabled: 'yes'
     name: "{{service_name_unbound}}"
   tags:
-    - enable
     - unbound

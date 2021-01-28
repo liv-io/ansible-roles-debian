@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - modsecurity
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install modsecurity'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_modsecurity}}"
     install_recommends: 'no'
   tags:
-    - install
     - modsecurity
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create security2.load'
   file:
@@ -40,5 +26,4 @@
     owner: "{{file_owner_module_load}}"
     group: "{{file_group_module_load}}"
   tags:
-    - install
     - modsecurity

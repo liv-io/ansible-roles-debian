@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # app.dir
 file_dst_app_dir: '/app'
 file_mode_app_dir: '0755'
@@ -172,10 +168,6 @@ file_mode_prometheus_cfg: '0640'
 file_owner_prometheus_cfg: 'root'
 file_group_prometheus_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -184,10 +176,6 @@ command_cmd_check_service_prometheus: 'systemctl cat prometheus.service > /dev/n
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # prometheus
 group_name_prometheus: 'prometheus'

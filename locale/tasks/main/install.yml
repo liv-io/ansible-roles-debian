@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - locale
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command get keymap-vc'
   shell: "{{command_cmd_get_keymap_vc}}"
@@ -25,14 +16,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - locale
 
 - name: 'command set keymap-vc'
   command: "{{command_cmd_set_keymap_vc}}"
   when: not (locale_keymap_vc == '') and not (register_keymap_vc.stdout == locale_keymap_vc)
   tags:
-    - install
     - locale
 
 - name: 'command get keymap-x11'
@@ -41,14 +30,12 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - locale
 
 - name: 'command set keymap-x11'
   command: "{{command_cmd_set_keymap_x11}}"
   when: not (locale_keymap_x11 == '') and not (register_keymap_x11.stdout == locale_keymap_x11)
   tags:
-    - install
     - locale
 
 - name: 'command get locale-system'
@@ -57,12 +44,10 @@
   changed_when: False
   check_mode: 'no'
   tags:
-    - install
     - locale
 
 - name: 'command set locale-system'
   command: "{{command_cmd_set_locale_system}}"
   when: not (locale_locale_system == '') and not (register_locale_system.stdout == locale_locale_system)
   tags:
-    - install
     - locale

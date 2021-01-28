@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - grafana
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove grafana'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_grafana}}"
     install_recommends: 'no'
   tags:
-    - remove
     - grafana
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove grafana.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_grafana_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - grafana
 
 - name: 'file remove grafana.gpg'
@@ -47,7 +32,6 @@
     path: "{{file_dst_grafana_gpg}}"
   register: register_grafana_gpg
   tags:
-    - remove
     - grafana
 
 - name: 'file remove grafana.list'
@@ -55,7 +39,6 @@
     state: 'absent'
     path: "{{file_dst_grafana_list}}"
   tags:
-    - remove
     - grafana
 
 - name: 'file remove grafana.ini'
@@ -63,17 +46,11 @@
     state: 'absent'
     path: "{{file_dst_grafana_ini}}"
   tags:
-    - remove
     - grafana
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command del grafana.key'
   shell: "{{command_cmd_del_grafana_key}}"
   check_mode: 'no'
   when: register_grafana_gpg.changed
   tags:
-    - install
     - grafana

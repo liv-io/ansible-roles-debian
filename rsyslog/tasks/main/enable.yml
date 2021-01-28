@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create rsyslog.conf'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_rsyslog_conf}}"
   notify: 'service restart rsyslog'
   tags:
-    - enable
     - rsyslog
 
 - name: 'file create rsyslog.cfg'
@@ -41,12 +31,7 @@
   notify: 'service reload monit'
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start rsyslog'
   service:
@@ -54,5 +39,4 @@
     enabled: 'yes'
     name: "{{service_name_rsyslog}}"
   tags:
-    - enable
     - rsyslog

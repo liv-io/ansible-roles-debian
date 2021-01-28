@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # boltdb-shipper-active.dir
 file_dst_boltdb_shipper_active_dir: '/data/loki/boltdb-shipper-active'
 file_mode_boltdb_shipper_active_dir: '0750'
@@ -121,10 +117,6 @@ file_mode_loki_cfg: '0640'
 file_owner_loki_cfg: 'root'
 file_group_loki_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service loki
 command_cmd_check_service_loki: 'systemctl cat loki.service > /dev/null 2>&1'
 
@@ -133,10 +125,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # loki
 group_name_loki: 'loki'

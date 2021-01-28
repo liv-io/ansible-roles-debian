@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - suricata
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove suricata'
   package:
@@ -26,7 +17,6 @@
     default_release: 'buster-backports'
     install_recommends: 'no'
   tags:
-    - remove
     - suricata
 
 - name: 'package remove suricata-update'
@@ -36,12 +26,7 @@
     default_release: 'buster-backports'
     install_recommends: 'no'
   tags:
-    - remove
     - suricata
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'command check service suricata'
   shell: "{{command_cmd_check_service_suricata}}"
@@ -50,7 +35,6 @@
   failed_when: (register_check_service_suricata.rc > 1)
   check_mode: 'no'
   tags:
-    - remove
     - suricata
 
 - name: 'service stop suricata'
@@ -60,7 +44,6 @@
     name: "{{service_name_suricata}}"
   when: (register_check_service_suricata.rc == 0)
   tags:
-    - remove
     - suricata
 
 - name: 'user remove suricata'
@@ -70,7 +53,6 @@
     remove: "{{user_home_remove_suricata}}"
     force: "{{user_home_force_suricata}}"
   tags:
-    - remove
     - suricata
 
 - name: 'group remove suricata'
@@ -78,12 +60,7 @@
     state: 'absent'
     name: "{{group_name_suricata}}"
   tags:
-    - remove
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove suricata.cfg'
   file:
@@ -91,7 +68,6 @@
     path: "{{file_dst_suricata_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.logrotate'
@@ -99,7 +75,6 @@
     state: 'absent'
     path: "{{file_dst_suricata_logrotate}}"
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.yaml'
@@ -107,7 +82,6 @@
     state: 'absent'
     path: "{{file_dst_suricata_yaml}}"
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.rules'
@@ -115,7 +89,6 @@
     state: 'absent'
     path: "{{file_dst_suricata_rules}}"
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.service'
@@ -124,7 +97,6 @@
     path: "{{file_dst_suricata_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.default'
@@ -132,7 +104,6 @@
     state: 'absent'
     path: "{{file_dst_suricata_default}}"
   tags:
-    - remove
     - suricata
 
 - name: 'file remove promiscuous_mode@.service'
@@ -141,5 +112,4 @@
     path: "{{file_dst_promiscuous_mode_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - remove
     - suricata

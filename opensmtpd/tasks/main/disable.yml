@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create aliases'
   template:
@@ -27,7 +18,6 @@
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
   tags:
-    - disable
     - opensmtpd
 
 - name: 'file create secrets'
@@ -39,7 +29,6 @@
     group: "{{file_group_secrets}}"
   no_log: 'true'
   tags:
-    - disable
     - opensmtpd
 
 - name: 'file create smtpd.conf'
@@ -50,7 +39,6 @@
     owner: "{{file_owner_smtpd_conf}}"
     group: "{{file_group_smtpd_conf}}"
   tags:
-    - disable
     - opensmtpd
 
 - name: 'file create opensmtpd.cfg'
@@ -63,12 +51,7 @@
   notify: 'service reload monit'
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop opensmtpd'
   service:
@@ -76,5 +59,4 @@
     enabled: 'no'
     name: "{{service_name_opensmtpd}}"
   tags:
-    - disable
     - opensmtpd

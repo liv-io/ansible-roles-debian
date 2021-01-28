@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - squid
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove squid'
   package:
@@ -25,12 +16,7 @@
     name: "{{package_name_squid}}"
     install_recommends: 'no'
   tags:
-    - remove
     - squid
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove squid.cfg'
   file:
@@ -38,7 +24,6 @@
     path: "{{file_dst_squid_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - squid
 
 - name: 'file remove squid.conf'
@@ -46,7 +31,6 @@
     state: 'absent'
     path: "{{file_dst_squid_conf}}"
   tags:
-    - remove
     - squid
 
 - name: 'file remove acl.dir'
@@ -54,5 +38,4 @@
     state: 'absent'
     path: "{{file_dst_acl_dir}}"
   tags:
-    - remove
     - squid

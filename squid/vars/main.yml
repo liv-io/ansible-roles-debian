@@ -6,16 +6,8 @@ cache_effective_user: 'proxy'
 # cache_effective_group
 cache_effective_group: 'proxy'
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # squid
 package_name_squid: 'squid'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # acl.dir
 file_dst_acl_dir: '/etc/squid/acl'
@@ -81,10 +73,6 @@ file_mode_squid_cfg: '0640'
 file_owner_squid_cfg: 'root'
 file_group_squid_cfg: 'root'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
@@ -93,10 +81,6 @@ command_cmd_create_cache_dir: 'squid -z > /dev/null 2>&1'
 
 # parse config
 command_cmd_parse_config: 'squid -k parse > /dev/null 2>&1'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

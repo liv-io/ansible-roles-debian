@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - grafana
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file copy grafana.gpg'
   copy:
@@ -28,7 +19,6 @@
     group: "{{file_group_grafana_gpg}}"
   register: register_grafana_gpg
   tags:
-    - install
     - grafana
 
 - name: 'file copy grafana.list'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_grafana_list}}"
     group: "{{file_group_grafana_list}}"
   tags:
-    - install
     - grafana
 
 - name: 'stat file monit.d'
@@ -48,7 +37,6 @@
   register: register_monit_d
   when: (grafana_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - grafana
 
 - name: 'file create monit.d'
@@ -60,19 +48,13 @@
     group: "{{file_group_monit_d}}"
   when: (grafana_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - grafana
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command add grafana.key'
   shell: "{{command_cmd_add_grafana_key}}"
   check_mode: 'no'
   when: register_grafana_gpg.changed
   tags:
-    - install
     - grafana
 
 - name: 'command apt update'
@@ -80,7 +62,6 @@
   check_mode: 'no'
   when: register_grafana_gpg.changed
   tags:
-    - install
     - grafana
 
 - name: 'command check service monit'
@@ -91,12 +72,7 @@
   check_mode: 'no'
   when: (grafana_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - grafana
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install grafana'
   package:
@@ -104,5 +80,4 @@
     name: "{{package_name_grafana}}"
     install_recommends: 'no'
   tags:
-    - install
     - grafana

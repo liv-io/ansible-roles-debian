@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - modsecurity_crs
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove modsecurity-crs'
   package:
@@ -25,17 +16,11 @@
     name: "{{package_name_modsecurity_crs}}"
     install_recommends: 'no'
   tags:
-    - remove
     - modsecurity_crs
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove crs-setup.conf'
   file:
     state: 'absent'
     path: "{{file_dst_crs_setup_conf}}"
   tags:
-    - remove
     - modsecurity_crs

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create node_exporter.default'
   template:
@@ -28,7 +19,6 @@
     group: "{{file_group_node_exporter_default}}"
   notify: 'service restart node_exporter'
   tags:
-    - enable
     - node_exporter
 
 - name: 'file create node_exporter.cfg'
@@ -41,12 +31,7 @@
   notify: 'service reload monit'
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start node_exporter'
   service:
@@ -54,5 +39,4 @@
     enabled: 'yes'
     name: "{{service_name_node_exporter}}"
   tags:
-    - enable
     - node_exporter

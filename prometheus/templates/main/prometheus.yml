@@ -26,9 +26,7 @@ rule_files:
 scrape_configs:
 
 {% if (prometheus_alertmanager_state is match('true|yes|enable')) %}
-  #-----------------------------------------------------------------------------
   # ALERTMANAGER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'alertmanager'
     static_configs:
@@ -39,9 +37,7 @@ scrape_configs:
         instance: '{{ansible_hostname}}'
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # PROMETHEUS
-  #-----------------------------------------------------------------------------
 
   - job_name: 'prometheus'
     static_configs:
@@ -52,9 +48,7 @@ scrape_configs:
         instance: '{{ansible_hostname}}'
 
 {% if (prometheus_smokeping_prober_state is match('true|yes|enable')) %}
-  #-----------------------------------------------------------------------------
   # SMOKEPING_PROBER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'smokeping'
     static_configs:
@@ -88,9 +82,7 @@ scrape_configs:
 {% endif %}
 
 {% if (prometheus_blackbox_exporter_state is match('true|yes|enable')) %}
-  #-----------------------------------------------------------------------------
   # BLACKBOX_EXPORTER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'http_ip4_basic'
     metrics_path: /probe
@@ -149,9 +141,7 @@ scrape_configs:
         replacement: 127.0.0.1:9115
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # HAPROXY_EXPORTER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'haproxy'
     static_configs:
@@ -178,9 +168,7 @@ scrape_configs:
 {% endfor %}
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # MONIT_EXPORTER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'monit'
     static_configs:
@@ -212,9 +200,7 @@ scrape_configs:
 {% endfor %}
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # MYSQLD_EXPORTER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'mysqld'
     static_configs:
@@ -241,9 +227,7 @@ scrape_configs:
 {% endfor %}
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # NODE_EXPORTER
-  #-----------------------------------------------------------------------------
 
   - job_name: 'node'
     static_configs:

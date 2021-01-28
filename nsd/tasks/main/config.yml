@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - nsd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -30,7 +21,6 @@
   notify: 'service restart nsd'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - nsd
 
 - name: 'file remove config'
@@ -41,5 +31,4 @@
   notify: 'service restart nsd'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - nsd

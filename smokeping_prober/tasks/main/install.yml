@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,12 +8,7 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create smokeping_prober'
   group:
@@ -25,7 +16,6 @@
     name: "{{group_name_smokeping_prober}}"
     system: "{{group_system_smokeping_prober}}"
   tags:
-    - install
     - smokeping_prober
 
 - name: 'user create smokeping_prober'
@@ -44,12 +34,7 @@
     shell: "{{user_shell_smokeping_prober}}"
     system: "{{user_system_smokeping_prober}}"
   tags:
-    - install
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file download smokeping_prober.tar.gz'
   get_url:
@@ -60,7 +45,6 @@
     group: "{{file_group_smokeping_prober_tar_gz}}"
     checksum: "{{file_checksum_smokeping_prober_tar_gz}}"
   tags:
-    - install
     - smokeping_prober
 
 - name: 'file unarchive smokeping_prober'
@@ -74,7 +58,6 @@
     remote_src: 'yes'
   register: register_file_unarchive_smokeping_prober
   tags:
-    - install
     - smokeping_prober
 
 - name: 'file create smokeping_prober.service'
@@ -86,7 +69,6 @@
     group: "{{file_group_smokeping_prober_service}}"
   notify: 'command systemctl daemon-reload'
   tags:
-    - install
     - smokeping_prober
 
 - name: 'stat file monit.d'
@@ -95,7 +77,6 @@
   register: register_monit_d
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - smokeping_prober
 
 - name: 'file create monit.d'
@@ -107,19 +88,13 @@
     group: "{{file_group_monit_d}}"
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command set capability'
   shell: "{{command_cmd_set_capability}}"
   check_mode: 'no'
   when: (register_file_unarchive_smokeping_prober is changed)
   tags:
-    - install
     - smokeping_prober
 
 - name: 'command check service monit'
@@ -130,15 +105,9 @@
   check_mode: 'no'
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - smokeping_prober
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - smokeping_prober
