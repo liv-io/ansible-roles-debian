@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - promtail
 
-- name: 'command check service promtail'
+- name: check service promtail
   shell: "{{command_cmd_check_service_promtail}}"
   register: register_check_service_promtail
   changed_when: (register_check_service_promtail.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - promtail
 
-- name: 'service stop promtail'
+- name: stop service promtail
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - promtail
 
-- name: 'user remove promtail'
+- name: remove user promtail
   user:
     state: 'absent'
     name: "{{user_name_promtail}}"
@@ -37,51 +37,51 @@
   tags:
     - promtail
 
-- name: 'group remove promtail'
+- name: remove group promtail
   group:
     state: 'absent'
     name: "{{group_name_promtail}}"
   tags:
     - promtail
 
-- name: 'file remove promtail.cfg'
+- name: remove file promtail.cfg
   file:
     state: 'absent'
     path: "{{file_dst_promtail_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - promtail
 
-- name: 'file remove promtail_etc.dir'
+- name: remove file promtail_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_promtail_etc_dir}}"
   tags:
     - promtail
 
-- name: 'file remove promtail.default'
+- name: remove file promtail.default
   file:
     state: 'absent'
     path: "{{file_dst_promtail_default}}"
   tags:
     - promtail
 
-- name: 'file remove promtail.service'
+- name: remove file promtail.service
   file:
     state: 'absent'
     path: "{{file_dst_promtail_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - promtail
 
-- name: 'file remove promtail'
+- name: remove file promtail
   file:
     state: 'absent'
     path: "{{file_creates_promtail}}"
   tags:
     - promtail
 
-- name: 'file remove promtail.zip'
+- name: remove file promtail.zip
   file:
     state: 'absent'
     path: "{{file_dst_promtail_zip}}"

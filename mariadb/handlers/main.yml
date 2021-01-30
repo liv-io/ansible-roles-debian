@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -8,15 +8,15 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: 'command flush privileges'
+- name: flush privileges
   command: "{{command_cmd_flush_privileges}}"
 
-- name: 'service restart mariadb'
+- name: restart service mariadb
   service:
     state: 'restarted'
     name: "{{service_name_mariadb}}"
 
-- name: 'service reload monit'
+- name: reload service monit
   service:
     state: 'reloaded'
     name: "{{service_name_monit}}"

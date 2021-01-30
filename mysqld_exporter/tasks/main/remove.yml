@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - mysqld_exporter
 
-- name: 'command check service mysqld_exporter'
+- name: check service mysqld_exporter
   shell: "{{command_cmd_check_service_mysqld_exporter}}"
   register: register_check_service_mysqld_exporter
   changed_when: (register_check_service_mysqld_exporter.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - mysqld_exporter
 
-- name: 'service stop mysqld_exporter'
+- name: stop service mysqld_exporter
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - mysqld_exporter
 
-- name: 'user remove mysqld_exporter'
+- name: remove user mysqld_exporter
   user:
     state: 'absent'
     name: "{{user_name_mysqld_exporter}}"
@@ -37,51 +37,51 @@
   tags:
     - mysqld_exporter
 
-- name: 'group remove mysqld_exporter'
+- name: remove group mysqld_exporter
   group:
     state: 'absent'
     name: "{{group_name_mysqld_exporter}}"
   tags:
     - mysqld_exporter
 
-- name: 'file remove mysqld_exporter.cfg'
+- name: remove file mysqld_exporter.cfg
   file:
     state: 'absent'
     path: "{{file_dst_mysqld_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - mysqld_exporter
 
-- name: 'file remove mysqld_exporter.default'
+- name: remove file mysqld_exporter.default
   file:
     state: 'absent'
     path: "{{file_dst_mysqld_exporter_default}}"
   tags:
     - mysqld_exporter
 
-- name: 'file remove mysqld_exporter.service'
+- name: remove file mysqld_exporter.service
   file:
     state: 'absent'
     path: "{{file_dst_mysqld_exporter_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - mysqld_exporter
 
-- name: 'file remove mysqld_exporter_etc.dir'
+- name: remove file mysqld_exporter_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_mysqld_exporter_etc_dir}}"
   tags:
     - mysqld_exporter
 
-- name: 'file remove mysqld_exporter'
+- name: remove file mysqld_exporter
   file:
     state: 'absent'
     path: "{{file_creates_mysqld_exporter}}"
   tags:
     - mysqld_exporter
 
-- name: 'file remove mysqld_exporter.tar.gz'
+- name: remove file mysqld_exporter.tar.gz
   file:
     state: 'absent'
     path: "{{file_dst_mysqld_exporter_tar_gz}}"

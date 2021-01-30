@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - apache2
 
-- name: 'package remove apache2'
+- name: remove package apache2
   package:
     state: 'absent'
     name: "{{package_name_apache2}}"
@@ -18,169 +18,169 @@
   tags:
     - apache2
 
-- name: 'file remove apache2.cfg'
+- name: remove file apache2.cfg
   file:
     state: 'absent'
     path: "{{file_dst_apache2_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - apache2
 
-- name: 'file remove 000-default.link'
+- name: remove file 000-default.link
   file:
     state: 'absent'
     path: "{{file_dst_000_default_link}}"
   tags:
     - apache2
 
-- name: 'file remove 000-default.conf'
+- name: remove file 000-default.conf
   file:
     state: 'absent'
     path: "{{file_dst_000_default_conf}}"
   tags:
     - apache2
 
-- name: 'file remove alias.link'
+- name: remove file alias.link
   file:
     state: 'absent'
     path: "{{file_dst_alias_link}}"
   tags:
     - apache2
 
-- name: 'file remove alias.conf'
+- name: remove file alias.conf
   file:
     state: 'absent'
     path: "{{file_dst_alias_conf}}"
   tags:
     - apache2
 
-- name: 'file remove apache2.conf'
+- name: remove file apache2.conf
   file:
     state: 'absent'
     path: "{{file_dst_apache2_conf}}"
   tags:
     - apache2
 
-- name: 'file remove autoindex.link'
+- name: remove file autoindex.link
   file:
     state: 'absent'
     path: "{{file_dst_autoindex_link}}"
   tags:
     - apache2
 
-- name: 'file remove autoindex.conf'
+- name: remove file autoindex.conf
   file:
     state: 'absent'
     path: "{{file_dst_autoindex_conf}}"
   tags:
     - apache2
 
-- name: 'file remove default-ssl.link'
+- name: remove file default-ssl.link
   file:
     state: 'absent'
     path: "{{file_dst_default_ssl_link}}"
   tags:
     - apache2
 
-- name: 'file remove default-ssl.conf'
+- name: remove file default-ssl.conf
   file:
     state: 'absent'
     path: "{{file_dst_default_ssl_conf}}"
   tags:
     - apache2
 
-- name: 'file remove dir.link'
+- name: remove file dir.link
   file:
     state: 'absent'
     path: "{{file_dst_dir_link}}"
   tags:
     - apache2
 
-- name: 'file remove dir.conf'
+- name: remove file dir.conf
   file:
     state: 'absent'
     path: "{{file_dst_dir_conf}}"
   tags:
     - apache2
 
-- name: 'file remove info.link'
+- name: remove file info.link
   file:
     state: 'absent'
     path: "{{file_dst_info_link}}"
   tags:
     - apache2
 
-- name: 'file remove info.conf'
+- name: remove file info.conf
   file:
     state: 'absent'
     path: "{{file_dst_info_conf}}"
   tags:
     - apache2
 
-- name: 'file remove ports.link'
+- name: remove file ports.link
   file:
     state: 'absent'
     path: "{{file_dst_ports_link}}"
   tags:
     - apache2
 
-- name: 'file remove ports.conf'
+- name: remove file ports.conf
   file:
     state: 'absent'
     path: "{{file_dst_ports_conf}}"
   tags:
     - apache2
 
-- name: 'file remove security.link'
+- name: remove file security.link
   file:
     state: 'absent'
     path: "{{file_dst_security_link}}"
   tags:
     - apache2
 
-- name: 'file remove security.conf'
+- name: remove file security.conf
   file:
     state: 'absent'
     path: "{{file_dst_security_conf}}"
   tags:
     - apache2
 
-- name: 'file remove ssl.link'
+- name: remove file ssl.link
   file:
     state: 'absent'
     path: "{{file_dst_ssl_link}}"
   tags:
     - apache2
 
-- name: 'file remove ssl.conf'
+- name: remove file ssl.conf
   file:
     state: 'absent'
     path: "{{file_dst_ssl_conf}}"
   tags:
     - apache2
 
-- name: 'file remove status.link'
+- name: remove file status.link
   file:
     state: 'absent'
     path: "{{file_dst_status_link}}"
   tags:
     - apache2
 
-- name: 'file remove status.conf'
+- name: remove file status.conf
   file:
     state: 'absent'
     path: "{{file_dst_status_conf}}"
   tags:
     - apache2
 
-- name: 'file remove userdir.link'
+- name: remove file userdir.link
   file:
     state: 'absent'
     path: "{{file_dst_userdir_link}}"
   tags:
     - apache2
 
-- name: 'file remove userdir.conf'
+- name: remove file userdir.conf
   file:
     state: 'absent'
     path: "{{file_dst_userdir_conf}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - hddtemp
 
-- name: 'package remove hddtemp'
+- name: remove package hddtemp
   package:
     state: 'absent'
     name: "{{package_name_hddtemp}}"
@@ -18,15 +18,15 @@
   tags:
     - hddtemp
 
-- name: 'file remove hddtemp.cfg'
+- name: remove file hddtemp.cfg
   file:
     state: 'absent'
     path: "{{file_dst_hddtemp_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - hddtemp
 
-- name: 'file remove hddtemp.default'
+- name: remove file hddtemp.default
   file:
     state: 'absent'
     path: "{{file_dst_hddtemp_default}}"

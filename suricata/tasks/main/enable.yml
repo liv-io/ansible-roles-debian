@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,18 +10,18 @@
   tags:
     - suricata
 
-- name: 'file create suricata.default'
+- name: create file suricata.default
   template:
     src: "{{file_src_suricata_default}}"
     dest: "{{file_dst_suricata_default}}"
     mode: "{{file_mode_suricata_default}}"
     owner: "{{file_owner_suricata_default}}"
     group: "{{file_group_suricata_default}}"
-  notify: 'service reload suricata'
+  notify: reload service suricata
   tags:
     - suricata
 
-- name: 'file create suricata.yaml'
+- name: create file suricata.yaml
   template:
     src: "{{file_src_suricata_yaml}}"
     dest: "{{file_dst_suricata_yaml}}"
@@ -29,23 +29,23 @@
     owner: "{{file_owner_suricata_yaml}}"
     group: "{{file_group_suricata_yaml}}"
     validate: "{{file_validate_suricata_yaml}}"
-  notify: 'service reload suricata'
+  notify: reload service suricata
   tags:
     - suricata
 
-- name: 'file create suricata.cfg'
+- name: create file suricata.cfg
   template:
     src: "{{file_src_suricata_cfg}}"
     dest: "{{file_dst_suricata_cfg}}"
     mode: "{{file_mode_suricata_cfg}}"
     owner: "{{file_owner_suricata_cfg}}"
     group: "{{file_group_suricata_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
     - suricata
 
-- name: 'service start promiscuous_mode@.service'
+- name: start service promiscuous_mode@.service
   service:
     state: 'started'
     enabled: 'yes'
@@ -53,7 +53,7 @@
   tags:
     - suricata
 
-- name: 'service start suricata'
+- name: start service suricata
   service:
     state: 'started'
     enabled: 'yes'

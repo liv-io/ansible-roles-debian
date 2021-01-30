@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - promtail
 
-- name: 'group create promtail'
+- name: create group promtail
   group:
     state: 'present'
     name: "{{group_name_promtail}}"
@@ -18,7 +18,7 @@
   tags:
     - promtail
 
-- name: 'user create promtail'
+- name: create user promtail
   user:
     state: 'present'
     name: "{{user_name_promtail}}"
@@ -36,7 +36,7 @@
   tags:
     - promtail
 
-- name: 'file create promtail_etc.dir'
+- name: create file promtail_etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_promtail_etc_dir}}"
@@ -46,7 +46,7 @@
   tags:
     - promtail
 
-- name: 'file download promtail.zip'
+- name: download file promtail.zip
   get_url:
     url: "{{file_src_promtail_zip}}"
     dest: "{{file_dst_promtail_zip}}"
@@ -57,7 +57,7 @@
   tags:
     - promtail
 
-- name: 'file unarchive promtail'
+- name: unarchive file promtail
   unarchive:
     src: "{{file_src_promtail}}"
     dest: "{{file_dst_promtail}}"
@@ -67,18 +67,18 @@
   tags:
     - promtail
 
-- name: 'file create promtail.service'
+- name: create file promtail.service
   template:
     src: "{{file_src_promtail_service}}"
     dest: "{{file_dst_promtail_service}}"
     mode: "{{file_mode_promtail_service}}"
     owner: "{{file_owner_promtail_service}}"
     group: "{{file_group_promtail_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - promtail
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -86,7 +86,7 @@
   tags:
     - promtail
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -97,7 +97,7 @@
   tags:
     - promtail
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -107,7 +107,7 @@
   tags:
     - promtail
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - promtail

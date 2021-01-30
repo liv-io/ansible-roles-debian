@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - auditd
 
-- name: 'package remove audit'
+- name: remove package audit
   package:
     state: 'absent'
     name: "{{package_name_audit}}"
@@ -18,29 +18,29 @@
   tags:
     - auditd
 
-- name: 'file remove auditd.cfg'
+- name: remove file auditd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_auditd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - auditd
 
-- name: 'file remove auditd.conf'
+- name: remove file auditd.conf
   file:
     state: 'absent'
     path: "{{file_dst_auditd_conf}}"
   tags:
     - auditd
 
-- name: 'file remove syslog.conf'
+- name: remove file syslog.conf
   file:
     state: 'absent'
     path: "{{file_dst_syslog_conf}}"
   tags:
     - auditd
 
-- name: 'file remove audispd.conf'
+- name: remove file audispd.conf
   file:
     state: 'absent'
     path: "{{file_dst_audispd_conf}}"

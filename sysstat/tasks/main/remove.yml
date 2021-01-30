@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - sysstat
 
-- name: 'package remove sysstat'
+- name: remove package sysstat
   package:
     state: 'absent'
     name: "{{package_name_sysstat}}"

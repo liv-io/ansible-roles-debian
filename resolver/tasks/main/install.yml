@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - resolver
 
-- name: 'file create resolv.conf'
+- name: create file resolv.conf
   template:
     src: "{{file_src_resolv_conf}}"
     dest: "{{file_dst_resolv_conf}}"

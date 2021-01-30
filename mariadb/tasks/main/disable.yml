@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - mariadb
 
-- name: 'file create mariadb.cnf'
+- name: create file mariadb.cnf
   template:
     src: "{{file_src_mariadb_cnf}}"
     dest: "{{file_dst_mariadb_cnf}}"
@@ -20,7 +20,7 @@
   tags:
     - mariadb
 
-- name: 'file create 50-client.cnf'
+- name: create file 50-client.cnf
   template:
     src: "{{file_src_50_client_cnf}}"
     dest: "{{file_dst_50_client_cnf}}"
@@ -30,7 +30,7 @@
   tags:
     - mariadb
 
-- name: 'file create 50-mysql-clients.cnf'
+- name: create file 50-mysql-clients.cnf
   template:
     src: "{{file_src_50_mysql_clients_cnf}}"
     dest: "{{file_dst_50_mysql_clients_cnf}}"
@@ -40,7 +40,7 @@
   tags:
     - mariadb
 
-- name: 'file create 50-mysqld_safe.cnf'
+- name: create file 50-mysqld_safe.cnf
   template:
     src: "{{file_src_50_mysqld_safe_cnf}}"
     dest: "{{file_dst_50_mysqld_safe_cnf}}"
@@ -50,7 +50,7 @@
   tags:
     - mariadb
 
-- name: 'file create 50-server.cnf'
+- name: create file 50-server.cnf
   template:
     src: "{{file_src_50_server_cnf}}"
     dest: "{{file_dst_50_server_cnf}}"
@@ -60,7 +60,7 @@
   tags:
     - mariadb
 
-- name: 'cron create mariadb_run-backup'
+- name: create cron mariadb_run-backup
   cron:
     state: 'present'
     disabled: 'yes'
@@ -76,19 +76,19 @@
   tags:
     - mariadb
 
-- name: 'file create mariadb.cfg'
+- name: create file mariadb.cfg
   template:
     src: "{{file_src_mariadb_cfg}}"
     dest: "{{file_dst_mariadb_cfg}}"
     mode: "{{file_mode_mariadb_cfg}}"
     owner: "{{file_owner_mariadb_cfg}}"
     group: "{{file_group_mariadb_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (mariadb_monitor_monit_state is match('true|yes|enable'))
   tags:
     - mariadb
 
-- name: 'service stop mariadb'
+- name: stop service mariadb
   service:
     state: 'stopped'
     enabled: 'no'

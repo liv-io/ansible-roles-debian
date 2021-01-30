@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - restic
 
-- name: 'file create restic_etc.dir'
+- name: create file restic_etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_restic_etc_dir}}"
@@ -20,7 +20,7 @@
   tags:
     - restic
 
-- name: 'file create restic_log.dir'
+- name: create file restic_log.dir
   file:
     state: 'directory'
     path: "{{file_dst_restic_log_dir}}"
@@ -30,7 +30,7 @@
   tags:
     - restic
 
-- name: 'file download restic.bz2'
+- name: download file restic.bz2
   get_url:
     url: "{{file_src_restic_bz2}}"
     dest: "{{file_dst_restic_bz2}}"
@@ -42,13 +42,13 @@
   tags:
     - restic
 
-- name: 'command unarchive restic.bz2'
+- name: unarchive restic.bz2
   shell: "{{command_cmd_unarchive_restic_bz2}}"
   when: register_file_download_restic_bz2.changed
   tags:
     - restic
 
-- name: 'file ensure restic'
+- name: ensure file restic
   file:
     state: 'file'
     path: "{{file_dst_restic}}"
@@ -58,7 +58,7 @@
   tags:
     - restic
 
-- name: 'file create exclude.conf'
+- name: create file exclude.conf
   template:
     src: "{{file_src_exclude_conf}}"
     dest: "{{file_dst_exclude_conf}}"
@@ -68,7 +68,7 @@
   tags:
     - restic
 
-- name: 'file create include.conf'
+- name: create file include.conf
   template:
     src: "{{file_src_include_conf}}"
     dest: "{{file_dst_include_conf}}"
@@ -78,7 +78,7 @@
   tags:
     - restic
 
-- name: 'file create password.conf'
+- name: create file password.conf
   template:
     src: "{{file_src_password_conf}}"
     dest: "{{file_dst_password_conf}}"
@@ -89,7 +89,7 @@
   tags:
     - restic
 
-- name: 'file create restic.log'
+- name: create file restic.log
   copy:
     content: ''
     force: 'no'
@@ -100,7 +100,7 @@
   tags:
     - restic
 
-- name: 'file create restic_run-backup'
+- name: create file restic_run-backup
   template:
     src: "{{file_src_restic_run_backup}}"
     dest: "{{file_dst_restic_run_backup}}"

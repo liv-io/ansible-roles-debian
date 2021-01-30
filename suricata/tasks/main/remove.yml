@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - suricata
 
-- name: 'package remove suricata'
+- name: remove package suricata
   package:
     state: 'absent'
     name: "{{package_name_suricata}}"
@@ -19,7 +19,7 @@
   tags:
     - suricata
 
-- name: 'package remove suricata-update'
+- name: remove package suricata-update
   package:
     state: 'absent'
     name: "{{package_name_suricata_update}}"
@@ -28,7 +28,7 @@
   tags:
     - suricata
 
-- name: 'command check service suricata'
+- name: check service suricata
   shell: "{{command_cmd_check_service_suricata}}"
   register: register_check_service_suricata
   changed_when: (register_check_service_suricata.rc == 0)
@@ -37,7 +37,7 @@
   tags:
     - suricata
 
-- name: 'service stop suricata'
+- name: stop service suricata
   service:
     state: 'stopped'
     enabled: 'no'
@@ -46,7 +46,7 @@
   tags:
     - suricata
 
-- name: 'user remove suricata'
+- name: remove user suricata
   user:
     state: 'absent'
     name: "{{user_name_suricata}}"
@@ -55,61 +55,61 @@
   tags:
     - suricata
 
-- name: 'group remove suricata'
+- name: remove group suricata
   group:
     state: 'absent'
     name: "{{group_name_suricata}}"
   tags:
     - suricata
 
-- name: 'file remove suricata.cfg'
+- name: remove file suricata.cfg
   file:
     state: 'absent'
     path: "{{file_dst_suricata_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - suricata
 
-- name: 'file remove suricata.logrotate'
+- name: remove file suricata.logrotate
   file:
     state: 'absent'
     path: "{{file_dst_suricata_logrotate}}"
   tags:
     - suricata
 
-- name: 'file remove suricata.yaml'
+- name: remove file suricata.yaml
   file:
     state: 'absent'
     path: "{{file_dst_suricata_yaml}}"
   tags:
     - suricata
 
-- name: 'file remove suricata.rules'
+- name: remove file suricata.rules
   file:
     state: 'absent'
     path: "{{file_dst_suricata_rules}}"
   tags:
     - suricata
 
-- name: 'file remove suricata.service'
+- name: remove file suricata.service
   file:
     state: 'absent'
     path: "{{file_dst_suricata_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - suricata
 
-- name: 'file remove suricata.default'
+- name: remove file suricata.default
   file:
     state: 'absent'
     path: "{{file_dst_suricata_default}}"
   tags:
     - suricata
 
-- name: 'file remove promiscuous_mode@.service'
+- name: remove file promiscuous_mode@.service
   file:
     state: 'absent'
     path: "{{file_dst_promiscuous_mode_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - suricata

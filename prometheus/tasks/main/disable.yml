@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus.default'
+- name: create file prometheus.default
   template:
     src: "{{file_src_prometheus_default}}"
     dest: "{{file_dst_prometheus_default}}"
@@ -20,7 +20,7 @@
   tags:
     - prometheus
 
-- name: 'file create alerting_rules.yml'
+- name: create file alerting_rules.yml
   template:
     src: "{{file_src_alerting_rules_yml}}"
     dest: "{{file_dst_alerting_rules_yml}}"
@@ -31,7 +31,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus.yml'
+- name: create file prometheus.yml
   template:
     src: "{{file_src_prometheus_yml}}"
     dest: "{{file_dst_prometheus_yml}}"
@@ -41,7 +41,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus_alertmanager_datasource.yaml'
+- name: create file prometheus_alertmanager_datasource.yaml
   template:
     src: "{{file_src_prometheus_alertmanager_datasource_yaml}}"
     dest: "{{file_dst_prometheus_alertmanager_datasource_yaml}}"
@@ -52,7 +52,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus_datasource.yaml'
+- name: create file prometheus_datasource.yaml
   template:
     src: "{{file_src_prometheus_datasource_yaml}}"
     dest: "{{file_dst_prometheus_datasource_yaml}}"
@@ -62,7 +62,7 @@
   tags:
     - prometheus
 
-- name: 'file create builtin_dashboards.yaml'
+- name: create file builtin_dashboards.yaml
   template:
     src: "{{file_src_builtin_dashboards_yaml}}"
     dest: "{{file_dst_builtin_dashboards_yaml}}"
@@ -73,7 +73,7 @@
   tags:
     - prometheus
 
-- name: 'file copy network_traffic.json'
+- name: copy file network_traffic.json
   copy:
     src: "{{file_src_network_traffic_json}}"
     dest: "{{file_dst_network_traffic_json}}"
@@ -84,7 +84,7 @@
   tags:
     - prometheus
 
-- name: 'file copy node_exporter.json'
+- name: copy file node_exporter.json
   copy:
     src: "{{file_src_node_exporter_json}}"
     dest: "{{file_dst_node_exporter_json}}"
@@ -95,7 +95,7 @@
   tags:
     - prometheus
 
-- name: 'file copy ping_prober.json'
+- name: copy file ping_prober.json
   copy:
     src: "{{file_src_ping_prober_json}}"
     dest: "{{file_dst_ping_prober_json}}"
@@ -106,7 +106,7 @@
   tags:
     - prometheus
 
-- name: 'file copy script_status.json'
+- name: copy file script_status.json
   copy:
     src: "{{file_src_script_status_json}}"
     dest: "{{file_dst_script_status_json}}"
@@ -117,7 +117,7 @@
   tags:
     - prometheus
 
-- name: 'file copy smokeping_prober.json'
+- name: copy file smokeping_prober.json
   copy:
     src: "{{file_src_smokeping_prober_json}}"
     dest: "{{file_dst_smokeping_prober_json}}"
@@ -128,7 +128,7 @@
   tags:
     - prometheus
 
-- name: 'file create system_status.json'
+- name: create file system_status.json
   template:
     src: "{{file_src_system_status_json}}"
     dest: "{{file_dst_system_status_json}}"
@@ -139,19 +139,19 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus.cfg'
+- name: create file prometheus.cfg
   template:
     src: "{{file_src_prometheus_cfg}}"
     dest: "{{file_dst_prometheus_cfg}}"
     mode: "{{file_mode_prometheus_cfg}}"
     owner: "{{file_owner_prometheus_cfg}}"
     group: "{{file_group_prometheus_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'service stop prometheus'
+- name: stop service prometheus
   service:
     state: 'stopped'
     enabled: 'no'

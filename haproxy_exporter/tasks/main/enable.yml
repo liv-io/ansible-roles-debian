@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,30 +10,30 @@
   tags:
     - haproxy_exporter
 
-- name: 'file create haproxy_exporter.default'
+- name: create file haproxy_exporter.default
   template:
     src: "{{file_src_haproxy_exporter_default}}"
     dest: "{{file_dst_haproxy_exporter_default}}"
     mode: "{{file_mode_haproxy_exporter_default}}"
     owner: "{{file_owner_haproxy_exporter_default}}"
     group: "{{file_group_haproxy_exporter_default}}"
-  notify: 'service restart haproxy_exporter'
+  notify: restart service haproxy_exporter
   tags:
     - haproxy_exporter
 
-- name: 'file create haproxy_exporter.cfg'
+- name: create file haproxy_exporter.cfg
   template:
     src: "{{file_src_haproxy_exporter_cfg}}"
     dest: "{{file_dst_haproxy_exporter_cfg}}"
     mode: "{{file_mode_haproxy_exporter_cfg}}"
     owner: "{{file_owner_haproxy_exporter_cfg}}"
     group: "{{file_group_haproxy_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (haproxy_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - haproxy_exporter
 
-- name: 'service start haproxy_exporter'
+- name: start service haproxy_exporter
   service:
     state: 'started'
     enabled: 'yes'

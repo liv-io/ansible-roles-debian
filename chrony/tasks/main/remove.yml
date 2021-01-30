@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - chrony
 
-- name: 'package remove chrony'
+- name: remove package chrony
   package:
     state: 'absent'
     name: "{{package_name_chrony}}"
@@ -18,15 +18,15 @@
   tags:
     - chrony
 
-- name: 'file remove chronyd.cfg'
+- name: remove file chronyd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_chronyd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - chrony
 
-- name: 'cron remove chrony_check-time'
+- name: remove cron chrony_check-time
   cron:
     state: 'absent'
     name: "{{cron_name_chrony_check_time}}"
@@ -34,14 +34,14 @@
   tags:
     - chrony
 
-- name: 'file remove chrony_check-time'
+- name: remove file chrony_check-time
   file:
     state: 'absent'
     path: "{{file_dst_chrony_check_time}}"
   tags:
     - chrony
 
-- name: 'cron remove chrony_update-time'
+- name: remove cron chrony_update-time
   cron:
     state: 'absent'
     name: "{{cron_name_chrony_update_time}}"
@@ -49,14 +49,14 @@
   tags:
     - chrony
 
-- name: 'file remove chrony_update-time'
+- name: remove file chrony_update-time
   file:
     state: 'absent'
     path: "{{file_dst_chrony_update_time}}"
   tags:
     - chrony
 
-- name: 'file remove chrony.conf'
+- name: remove file chrony.conf
   file:
     state: 'absent'
     path: "{{file_dst_chrony_conf}}"

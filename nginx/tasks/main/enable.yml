@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - nginx
 
-- name: 'file create nginx.conf'
+- name: create file nginx.conf
   template:
     src: "{{file_src_nginx_conf}}"
     dest: "{{file_dst_nginx_conf}}"
@@ -18,24 +18,24 @@
     owner: "{{file_owner_nginx_conf}}"
     group: "{{file_group_nginx_conf}}"
   notify:
-    - 'command check nginx'
-    - 'service reload nginx'
+    - check nginx
+    - reload service nginx
   tags:
     - nginx
 
-- name: 'file create nginx.cfg'
+- name: create file nginx.cfg
   template:
     src: "{{file_src_nginx_cfg}}"
     dest: "{{file_dst_nginx_cfg}}"
     mode: "{{file_mode_nginx_cfg}}"
     owner: "{{file_owner_nginx_cfg}}"
     group: "{{file_group_nginx_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
     - nginx
 
-- name: 'service start nginx'
+- name: start service nginx
   service:
     state: 'started'
     enabled: 'yes'

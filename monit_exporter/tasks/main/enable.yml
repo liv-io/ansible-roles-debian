@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,41 +10,41 @@
   tags:
     - monit_exporter
 
-- name: 'file create config.toml'
+- name: create file config.toml
   template:
     src: "{{file_src_config_toml}}"
     dest: "{{file_dst_config_toml}}"
     mode: "{{file_mode_config_toml}}"
     owner: "{{file_owner_config_toml}}"
     group: "{{file_group_config_toml}}"
-  notify: 'service restart monit_exporter'
+  notify: restart service monit_exporter
   tags:
     - monit_exporter
 
-- name: 'file create monit_exporter.default'
+- name: create file monit_exporter.default
   template:
     src: "{{file_src_monit_exporter_default}}"
     dest: "{{file_dst_monit_exporter_default}}"
     mode: "{{file_mode_monit_exporter_default}}"
     owner: "{{file_owner_monit_exporter_default}}"
     group: "{{file_group_monit_exporter_default}}"
-  notify: 'service restart monit_exporter'
+  notify: restart service monit_exporter
   tags:
     - monit_exporter
 
-- name: 'file create monit_exporter.cfg'
+- name: create file monit_exporter.cfg
   template:
     src: "{{file_src_monit_exporter_cfg}}"
     dest: "{{file_dst_monit_exporter_cfg}}"
     mode: "{{file_mode_monit_exporter_cfg}}"
     owner: "{{file_owner_monit_exporter_cfg}}"
     group: "{{file_group_monit_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - monit_exporter
 
-- name: 'service start monit_exporter'
+- name: start service monit_exporter
   service:
     state: 'started'
     enabled: 'yes'

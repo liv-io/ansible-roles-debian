@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - nsd
 
-- name: 'package remove nsd'
+- name: remove package nsd
   package:
     state: 'absent'
     name: "{{package_name_nsd}}"
@@ -18,15 +18,15 @@
   tags:
     - nsd
 
-- name: 'file remove nsd.cfg'
+- name: remove file nsd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_nsd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - nsd
 
-- name: 'file remove nsd.conf'
+- name: remove file nsd.conf
   file:
     state: 'absent'
     path: "{{file_dst_nsd_conf}}"

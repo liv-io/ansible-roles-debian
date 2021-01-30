@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - monit
 
-- name: 'file create monitrc'
+- name: create file monitrc
   template:
     src: "{{file_src_monitrc}}"
     dest: "{{file_dst_monitrc}}"
@@ -20,7 +20,7 @@
   tags:
     - monit
 
-- name: 'service stop monit'
+- name: stop service monit
   service:
     state: 'stopped'
     enabled: 'no'

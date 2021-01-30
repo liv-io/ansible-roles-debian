@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,13 +10,13 @@
   tags:
     - modsecurity_crs
 
-- name: 'file create crs-setup.conf'
+- name: create file crs-setup.conf
   template:
     src: "{{file_src_crs_setup_conf}}"
     dest: "{{file_dst_crs_setup_conf}}"
     mode: "{{file_mode_crs_setup_conf}}"
     owner: "{{file_owner_crs_setup_conf}}"
     group: "{{file_group_crs_setup_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - modsecurity_crs

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - chrony
 
-- name: 'file create chrony.conf'
+- name: create file chrony.conf
   template:
     src: "{{file_src_chrony_conf}}"
     dest: "{{file_dst_chrony_conf}}"
@@ -20,14 +20,14 @@
   tags:
     - chrony
 
-- name: 'file remove chrony_check-time'
+- name: remove file chrony_check-time
   file:
     state: 'absent'
     path: "{{file_dst_chrony_check_time}}"
   tags:
     - chrony
 
-- name: 'cron create chrony_check-time'
+- name: create cron chrony_check-time
   cron:
     state: 'present'
     disabled: 'yes'
@@ -42,14 +42,14 @@
   tags:
     - chrony
 
-- name: 'file remove chrony_update-time'
+- name: remove file chrony_update-time
   file:
     state: 'absent'
     path: "{{file_dst_chrony_update_time}}"
   tags:
     - chrony
 
-- name: 'cron remove chrony_update-time'
+- name: remove cron chrony_update-time
   cron:
     state: 'absent'
     name: "{{cron_name_chrony_update_time}}"
@@ -57,19 +57,19 @@
   tags:
     - chrony
 
-- name: 'file create chronyd.cfg'
+- name: create file chronyd.cfg
   template:
     src: "{{file_src_chronyd_cfg}}"
     dest: "{{file_dst_chronyd_cfg}}"
     mode: "{{file_mode_chronyd_cfg}}"
     owner: "{{file_owner_chronyd_cfg}}"
     group: "{{file_group_chronyd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (chrony_monitor_monit_state is match('true|yes|enable'))
   tags:
     - chrony
 
-- name: 'service stop chronyd'
+- name: stop service chronyd
   service:
     state: 'stopped'
     enabled: 'no'

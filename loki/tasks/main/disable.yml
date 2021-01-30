@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - loki
 
-- name: 'file create loki.default'
+- name: create file loki.default
   template:
     src: "{{file_src_loki_default}}"
     dest: "{{file_dst_loki_default}}"
@@ -20,7 +20,7 @@
   tags:
     - loki
 
-- name: 'file create loki.yaml'
+- name: create file loki.yaml
   template:
     src: "{{file_src_loki_yaml}}"
     dest: "{{file_dst_loki_yaml}}"
@@ -30,7 +30,7 @@
   tags:
     - loki
 
-- name: 'file create loki_datasource.yaml'
+- name: create file loki_datasource.yaml
   template:
     src: "{{file_src_loki_datasource_yaml}}"
     dest: "{{file_dst_loki_datasource_yaml}}"
@@ -40,7 +40,7 @@
   tags:
     - loki
 
-- name: 'file create loki_prometheus_datasource.yaml'
+- name: create file loki_prometheus_datasource.yaml
   template:
     src: "{{file_src_loki_prometheus_datasource_yaml}}"
     dest: "{{file_dst_loki_prometheus_datasource_yaml}}"
@@ -50,19 +50,19 @@
   tags:
     - loki
 
-- name: 'file create loki.cfg'
+- name: create file loki.cfg
   template:
     src: "{{file_src_loki_cfg}}"
     dest: "{{file_dst_loki_cfg}}"
     mode: "{{file_mode_loki_cfg}}"
     owner: "{{file_owner_loki_cfg}}"
     group: "{{file_group_loki_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (loki_monitor_monit_state is match('true|yes|enable'))
   tags:
     - loki
 
-- name: 'service stop loki'
+- name: stop service loki
   service:
     state: 'stopped'
     enabled: 'no'

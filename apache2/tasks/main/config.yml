@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - apache2
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_sites_enabled}}/{{item.name}}-{{(item.port|int)}}.conf"
@@ -19,13 +19,13 @@
     group: "{{file_group_config}}"
   loop: "{{apache2_config}}"
   notify:
-    - 'command check apache2'
-    - 'command reload apache2'
+    - check apache2
+    - reload apache2
   when: not (item.state is match('false|no|remove'))
   tags:
     - apache2
 
-- name: 'file create module.load'
+- name: create file module.load
   file:
     state: 'link'
     src: "{{file_src_mods_available}}/{{item.name}}.load"
@@ -34,32 +34,32 @@
     group: "{{file_group_module_load}}"
   loop: "{{apache2_modules}}"
   notify:
-    - 'command check apache2'
-    - 'command reload apache2'
+    - check apache2
+    - reload apache2
   when: not (item.state is match('false|no|remove'))
   tags:
     - apache2
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_sites_enabled}}/{{item.name}}-{{(item.port|int)}}.conf"
   loop: "{{apache2_config}}"
   notify:
-    - 'command check apache2'
-    - 'command reload apache2'
+    - check apache2
+    - reload apache2
   when: (item.state is match('false|no|remove'))
   tags:
     - apache2
 
-- name: 'file remove module.load'
+- name: remove file module.load
   file:
     state: 'absent'
     path: "{{file_dst_mods_enabled}}/{{item.name}}.load"
   loop: "{{apache2_modules}}"
   notify:
-    - 'command check apache2'
-    - 'command reload apache2'
+    - check apache2
+    - reload apache2
   when: (item.state is match('false|no|remove'))
   tags:
     - apache2

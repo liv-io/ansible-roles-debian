@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - auditd
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_rules_d}}/{{(item.name|default('config'))}}.rules"
@@ -19,20 +19,20 @@
     group: "{{file_group_config}}"
   loop: "{{auditd_config_all + auditd_config_group + auditd_config_host}}"
   notify:
-    - 'command run augenrules'
-    - 'command restart auditd'
+    - run augenrules
+    - restart auditd
   when: not (item.state is match('false|no|remove'))
   tags:
     - auditd
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_rules_d}}/{{(item.name|default('config'))}}.rules"
   loop: "{{auditd_config_all + auditd_config_group + auditd_config_host}}"
   notify:
-    - 'command run augenrules'
-    - 'command restart auditd'
+    - run augenrules
+    - restart auditd
   when: (item.state is match('false|no|remove'))
   tags:
     - auditd

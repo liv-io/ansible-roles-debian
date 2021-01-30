@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - systemd
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_systemd}}/{{(item.mode|default('system'))}}/{{(item.name|default('config'))}}.{{(item.type|default('target'))}}"
@@ -22,7 +22,7 @@
   tags:
     - systemd
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     dest: "{{file_dst_systemd}}/{{(item.mode|default('system'))}}/{{(item.name|default('config'))}}.{{(item.type|default('target'))}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - smokeping_prober
 
-- name: 'group create smokeping_prober'
+- name: create group smokeping_prober
   group:
     state: 'present'
     name: "{{group_name_smokeping_prober}}"
@@ -18,7 +18,7 @@
   tags:
     - smokeping_prober
 
-- name: 'user create smokeping_prober'
+- name: create user smokeping_prober
   user:
     state: 'present'
     name: "{{user_name_smokeping_prober}}"
@@ -36,7 +36,7 @@
   tags:
     - smokeping_prober
 
-- name: 'file download smokeping_prober.tar.gz'
+- name: download file smokeping_prober.tar.gz
   get_url:
     url: "{{file_src_smokeping_prober_tar_gz}}"
     dest: "{{file_dst_smokeping_prober_tar_gz}}"
@@ -47,7 +47,7 @@
   tags:
     - smokeping_prober
 
-- name: 'file unarchive smokeping_prober'
+- name: unarchive file smokeping_prober
   unarchive:
     src: "{{file_src_smokeping_prober}}"
     dest: "{{file_dst_smokeping_prober}}"
@@ -60,18 +60,18 @@
   tags:
     - smokeping_prober
 
-- name: 'file create smokeping_prober.service'
+- name: create file smokeping_prober.service
   template:
     src: "{{file_src_smokeping_prober_service}}"
     dest: "{{file_dst_smokeping_prober_service}}"
     mode: "{{file_mode_smokeping_prober_service}}"
     owner: "{{file_owner_smokeping_prober_service}}"
     group: "{{file_group_smokeping_prober_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - smokeping_prober
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -79,7 +79,7 @@
   tags:
     - smokeping_prober
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -90,14 +90,14 @@
   tags:
     - smokeping_prober
 
-- name: 'command set capability'
+- name: set capability
   shell: "{{command_cmd_set_capability}}"
   check_mode: 'no'
   when: (register_file_unarchive_smokeping_prober is changed)
   tags:
     - smokeping_prober
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -107,7 +107,7 @@
   tags:
     - smokeping_prober
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - smokeping_prober

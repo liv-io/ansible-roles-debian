@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - motd
 
-- name: 'file create motd'
+- name: create file motd
   template:
     src: "{{file_src_motd}}"
     dest: "{{file_dst_motd}}"

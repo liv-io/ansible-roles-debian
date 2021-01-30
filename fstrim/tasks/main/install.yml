@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - fstrim
 
-- name: 'file create fstrim_log.dir'
+- name: create file fstrim_log.dir
   file:
     state: 'directory'
     path: "{{file_dst_fstrim_log_dir}}"
@@ -20,7 +20,7 @@
   tags:
     - fstrim
 
-- name: 'file create fstrim.log'
+- name: create file fstrim.log
   copy:
     content: ''
     force: 'no'
@@ -31,7 +31,7 @@
   tags:
     - fstrim
 
-- name: 'file create fstrim_discard-blocks'
+- name: create file fstrim_discard-blocks
   template:
     src: "{{file_src_fstrim_discard_blocks}}"
     dest: "{{file_dst_fstrim_discard_blocks}}"

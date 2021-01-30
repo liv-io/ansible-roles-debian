@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - unbound
 
-- name: 'package remove unbound'
+- name: remove package unbound
   package:
     state: 'absent'
     name: "{{package_name_unbound}}"
@@ -18,22 +18,22 @@
   tags:
     - unbound
 
-- name: 'file remove unbound.cfg'
+- name: remove file unbound.cfg
   file:
     state: 'absent'
     path: "{{file_dst_unbound_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - unbound
 
-- name: 'file remove unbound.conf'
+- name: remove file unbound.conf
   file:
     state: 'absent'
     path: "{{file_dst_unbound_conf}}"
   tags:
     - unbound
 
-- name: 'file remove root.hints'
+- name: remove file root.hints
   file:
     state: 'absent'
     path: "{{file_dst_root_hints}}"

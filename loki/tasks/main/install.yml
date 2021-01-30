@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - loki
 
-- name: 'group create loki'
+- name: create group loki
   group:
     state: 'present'
     name: "{{group_name_loki}}"
@@ -18,7 +18,7 @@
   tags:
     - loki
 
-- name: 'user create loki'
+- name: create user loki
   user:
     state: 'present'
     name: "{{user_name_loki}}"
@@ -36,7 +36,7 @@
   tags:
     - loki
 
-- name: 'file create data.dir'
+- name: create file data.dir
   file:
     state: 'directory'
     path: "{{file_dst_data_dir}}"
@@ -46,7 +46,7 @@
   tags:
     - loki
 
-- name: 'file create loki_data.dir'
+- name: create file loki_data.dir
   file:
     state: 'directory'
     path: "{{file_dst_loki_data_dir}}"
@@ -56,7 +56,7 @@
   tags:
     - loki
 
-- name: 'file create chunks.dir'
+- name: create file chunks.dir
   file:
     state: 'directory'
     path: "{{file_dst_chunks_dir}}"
@@ -66,7 +66,7 @@
   tags:
     - loki
 
-- name: 'file create boltdb-shipper-active.dir'
+- name: create file boltdb-shipper-active.dir
   file:
     state: 'directory'
     path: "{{file_dst_boltdb_shipper_active_dir}}"
@@ -76,7 +76,7 @@
   tags:
     - loki
 
-- name: 'file create boltdb-shipper-cache.dir'
+- name: create file boltdb-shipper-cache.dir
   file:
     state: 'directory'
     path: "{{file_dst_boltdb_shipper_cache_dir}}"
@@ -86,7 +86,7 @@
   tags:
     - loki
 
-- name: 'file create boltdb-shipper-compactor.dir'
+- name: create file boltdb-shipper-compactor.dir
   file:
     state: 'directory'
     path: "{{file_dst_boltdb_shipper_compactor_dir}}"
@@ -96,7 +96,7 @@
   tags:
     - loki
 
-- name: 'file create rules.dir'
+- name: create file rules.dir
   file:
     state: 'directory'
     path: "{{file_dst_rules_dir}}"
@@ -106,7 +106,7 @@
   tags:
     - loki
 
-- name: 'file create rules-temp.dir'
+- name: create file rules-temp.dir
   file:
     state: 'directory'
     path: "{{file_dst_rules_temp_dir}}"
@@ -116,7 +116,7 @@
   tags:
     - loki
 
-- name: 'file create loki_etc.dir'
+- name: create file loki_etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_loki_etc_dir}}"
@@ -126,7 +126,7 @@
   tags:
     - loki
 
-- name: 'file download loki.zip'
+- name: download file loki.zip
   get_url:
     url: "{{file_src_loki_zip}}"
     dest: "{{file_dst_loki_zip}}"
@@ -137,7 +137,7 @@
   tags:
     - loki
 
-- name: 'file unarchive loki'
+- name: unarchive file loki
   unarchive:
     src: "{{file_src_loki}}"
     dest: "{{file_dst_loki}}"
@@ -147,18 +147,18 @@
   tags:
     - loki
 
-- name: 'file create loki.service'
+- name: create file loki.service
   template:
     src: "{{file_src_loki_service}}"
     dest: "{{file_dst_loki_service}}"
     mode: "{{file_mode_loki_service}}"
     owner: "{{file_owner_loki_service}}"
     group: "{{file_group_loki_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - loki
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -166,7 +166,7 @@
   tags:
     - loki
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -177,7 +177,7 @@
   tags:
     - loki
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -187,7 +187,7 @@
   tags:
     - loki
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - loki

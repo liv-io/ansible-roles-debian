@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,171 +10,171 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus-current.link'
+- name: create file prometheus-current.link
   file:
     state: 'link'
     src: "{{file_src_prometheus_current_link}}"
     path: "{{file_dst_prometheus_current_link}}"
     owner: "{{file_owner_prometheus_current_link}}"
     group: "{{file_group_prometheus_current_link}}"
-  notify: 'service restart prometheus'
+  notify: restart service prometheus
   tags:
     - prometheus
 
-- name: 'file create prometheus.default'
+- name: create file prometheus.default
   template:
     src: "{{file_src_prometheus_default}}"
     dest: "{{file_dst_prometheus_default}}"
     mode: "{{file_mode_prometheus_default}}"
     owner: "{{file_owner_prometheus_default}}"
     group: "{{file_group_prometheus_default}}"
-  notify: 'service restart prometheus'
+  notify: restart service prometheus
   tags:
     - prometheus
 
-- name: 'file create alerting_rules.yml'
+- name: create file alerting_rules.yml
   template:
     src: "{{file_src_alerting_rules_yml}}"
     dest: "{{file_dst_alerting_rules_yml}}"
     mode: "{{file_mode_alerting_rules_yml}}"
     owner: "{{file_owner_alerting_rules_yml}}"
     group: "{{file_group_alerting_rules_yml}}"
-  notify: 'service restart prometheus'
+  notify: restart service prometheus
   when: (prometheus_alertmanager_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file create prometheus.yml'
+- name: create file prometheus.yml
   template:
     src: "{{file_src_prometheus_yml}}"
     dest: "{{file_dst_prometheus_yml}}"
     mode: "{{file_mode_prometheus_yml}}"
     owner: "{{file_owner_prometheus_yml}}"
     group: "{{file_group_prometheus_yml}}"
-  notify: 'service restart prometheus'
+  notify: restart service prometheus
   tags:
     - prometheus
 
-- name: 'file create prometheus_alertmanager_datasource.yaml'
+- name: create file prometheus_alertmanager_datasource.yaml
   template:
     src: "{{file_src_prometheus_alertmanager_datasource_yaml}}"
     dest: "{{file_dst_prometheus_alertmanager_datasource_yaml}}"
     mode: "{{file_mode_prometheus_alertmanager_datasource_yaml}}"
     owner: "{{file_owner_prometheus_alertmanager_datasource_yaml}}"
     group: "{{file_group_prometheus_alertmanager_datasource_yaml}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_alertmanager_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file create prometheus_datasource.yaml'
+- name: create file prometheus_datasource.yaml
   template:
     src: "{{file_src_prometheus_datasource_yaml}}"
     dest: "{{file_dst_prometheus_datasource_yaml}}"
     mode: "{{file_mode_prometheus_datasource_yaml}}"
     owner: "{{file_owner_prometheus_datasource_yaml}}"
     group: "{{file_group_prometheus_datasource_yaml}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   tags:
     - prometheus
 
-- name: 'file create builtin_dashboards.yaml'
+- name: create file builtin_dashboards.yaml
   template:
     src: "{{file_src_builtin_dashboards_yaml}}"
     dest: "{{file_dst_builtin_dashboards_yaml}}"
     mode: "{{file_mode_builtin_dashboards_yaml}}"
     owner: "{{file_owner_builtin_dashboards_yaml}}"
     group: "{{file_group_builtin_dashboards_yaml}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file copy network_traffic.json'
+- name: copy file network_traffic.json
   copy:
     src: "{{file_src_network_traffic_json}}"
     dest: "{{file_dst_network_traffic_json}}"
     mode: "{{file_mode_network_traffic_json}}"
     owner: "{{file_owner_network_traffic_json}}"
     group: "{{file_group_network_traffic_json}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file copy node_exporter.json'
+- name: copy file node_exporter.json
   copy:
     src: "{{file_src_node_exporter_json}}"
     dest: "{{file_dst_node_exporter_json}}"
     mode: "{{file_mode_node_exporter_json}}"
     owner: "{{file_owner_node_exporter_json}}"
     group: "{{file_group_node_exporter_json}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file copy ping_prober.json'
+- name: copy file ping_prober.json
   copy:
     src: "{{file_src_ping_prober_json}}"
     dest: "{{file_dst_ping_prober_json}}"
     mode: "{{file_mode_ping_prober_json}}"
     owner: "{{file_owner_ping_prober_json}}"
     group: "{{file_group_ping_prober_json}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable')) and (prometheus_blackbox_exporter_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file copy script_status.json'
+- name: copy file script_status.json
   copy:
     src: "{{file_src_script_status_json}}"
     dest: "{{file_dst_script_status_json}}"
     mode: "{{file_mode_script_status_json}}"
     owner: "{{file_owner_script_status_json}}"
     group: "{{file_group_script_status_json}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file copy smokeping_prober.json'
+- name: copy file smokeping_prober.json
   copy:
     src: "{{file_src_smokeping_prober_json}}"
     dest: "{{file_dst_smokeping_prober_json}}"
     mode: "{{file_mode_smokeping_prober_json}}"
     owner: "{{file_owner_smokeping_prober_json}}"
     group: "{{file_group_smokeping_prober_json}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable')) and (prometheus_smokeping_prober_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file create system_status.json'
+- name: create file system_status.json
   template:
     src: "{{file_src_system_status_json}}"
     dest: "{{file_dst_system_status_json}}"
     mode: "{{file_mode_system_status_json}}"
     owner: "{{file_owner_system_status_json}}"
     group: "{{file_group_system_status_json}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'file create prometheus.cfg'
+- name: create file prometheus.cfg
   template:
     src: "{{file_src_prometheus_cfg}}"
     dest: "{{file_dst_prometheus_cfg}}"
     mode: "{{file_mode_prometheus_cfg}}"
     owner: "{{file_owner_prometheus_cfg}}"
     group: "{{file_group_prometheus_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
   tags:
     - prometheus
 
-- name: 'service start prometheus'
+- name: start service prometheus
   service:
     state: 'started'
     enabled: 'yes'

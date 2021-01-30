@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - php
 
-- name: 'package remove php'
+- name: remove package php
   package:
     state: 'absent'
     name: "{{package_name_php}}"
@@ -18,7 +18,7 @@
   tags:
     - php
 
-- name: 'file remove php.ini'
+- name: remove file php.ini
   file:
     state: 'absent'
     path: "{{file_dst_php_ini}}"

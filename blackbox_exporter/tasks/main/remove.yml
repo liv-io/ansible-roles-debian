@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - blackbox_exporter
 
-- name: 'command check service blackbox_exporter'
+- name: check service blackbox_exporter
   shell: "{{command_cmd_check_service_blackbox_exporter}}"
   register: register_check_service_blackbox_exporter
   changed_when: (register_check_service_blackbox_exporter.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - blackbox_exporter
 
-- name: 'service stop blackbox_exporter'
+- name: stop service blackbox_exporter
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - blackbox_exporter
 
-- name: 'user remove blackbox_exporter'
+- name: remove user blackbox_exporter
   user:
     state: 'absent'
     name: "{{user_name_blackbox_exporter}}"
@@ -37,51 +37,51 @@
   tags:
     - blackbox_exporter
 
-- name: 'group remove blackbox_exporter'
+- name: remove group blackbox_exporter
   group:
     state: 'absent'
     name: "{{group_name_blackbox_exporter}}"
   tags:
     - blackbox_exporter
 
-- name: 'file remove blackbox_exporter.cfg'
+- name: remove file blackbox_exporter.cfg
   file:
     state: 'absent'
     path: "{{file_dst_blackbox_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - blackbox_exporter
 
-- name: 'file remove blackbox_exporter.default'
+- name: remove file blackbox_exporter.default
   file:
     state: 'absent'
     path: "{{file_dst_blackbox_exporter_default}}"
   tags:
     - blackbox_exporter
 
-- name: 'file remove blackbox_exporter.service'
+- name: remove file blackbox_exporter.service
   file:
     state: 'absent'
     path: "{{file_dst_blackbox_exporter_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - blackbox_exporter
 
-- name: 'file remove blackbox_exporter_etc.dir'
+- name: remove file blackbox_exporter_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_blackbox_exporter_etc_dir}}"
   tags:
     - blackbox_exporter
 
-- name: 'file remove blackbox_exporter'
+- name: remove file blackbox_exporter
   file:
     state: 'absent'
     path: "{{file_creates_blackbox_exporter}}"
   tags:
     - blackbox_exporter
 
-- name: 'file remove blackbox_exporter.tar.gz'
+- name: remove file blackbox_exporter.tar.gz
   file:
     state: 'absent'
     path: "{{file_dst_blackbox_exporter_tar_gz}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - nsd
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_config}}/{{item.name}}.zone"
@@ -18,17 +18,17 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{nsd_zone}}"
-  notify: 'service restart nsd'
+  notify: restart service nsd
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - nsd
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_config}}/{{item.name}}.zone"
   loop: "{{nsd_zone}}"
-  notify: 'service restart nsd'
+  notify: restart service nsd
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - nsd

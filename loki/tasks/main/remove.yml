@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - loki
 
-- name: 'command check service loki'
+- name: check service loki
   shell: "{{command_cmd_check_service_loki}}"
   register: register_check_service_loki
   changed_when: (register_check_service_loki.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - loki
 
-- name: 'service stop loki'
+- name: stop service loki
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - loki
 
-- name: 'user remove loki'
+- name: remove user loki
   user:
     state: 'absent'
     name: "{{user_name_loki}}"
@@ -37,65 +37,65 @@
   tags:
     - loki
 
-- name: 'group remove loki'
+- name: remove group loki
   group:
     state: 'absent'
     name: "{{group_name_loki}}"
   tags:
     - loki
 
-- name: 'file remove loki.cfg'
+- name: remove file loki.cfg
   file:
     state: 'absent'
     path: "{{file_dst_loki_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - loki
 
-- name: 'file remove loki_datasource.yaml'
+- name: remove file loki_datasource.yaml
   file:
     state: 'absent'
     path: "{{file_dst_loki_datasource_yaml}}"
   tags:
     - loki
 
-- name: 'file remove loki_prometheus_datasource.yaml'
+- name: remove file loki_prometheus_datasource.yaml
   file:
     state: 'absent'
     path: "{{file_dst_loki_prometheus_datasource_yaml}}"
   tags:
     - loki
 
-- name: 'file remove loki_etc.dir'
+- name: remove file loki_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_loki_etc_dir}}"
   tags:
     - loki
 
-- name: 'file remove loki.default'
+- name: remove file loki.default
   file:
     state: 'absent'
     path: "{{file_dst_loki_default}}"
   tags:
     - loki
 
-- name: 'file remove loki.service'
+- name: remove file loki.service
   file:
     state: 'absent'
     path: "{{file_dst_loki_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - loki
 
-- name: 'file remove loki'
+- name: remove file loki
   file:
     state: 'absent'
     path: "{{file_creates_loki}}"
   tags:
     - loki
 
-- name: 'file remove loki.zip'
+- name: remove file loki.zip
   file:
     state: 'absent'
     path: "{{file_dst_loki_zip}}"

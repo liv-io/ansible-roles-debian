@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,18 +10,18 @@
   tags:
     - nftables
 
-- name: 'file create nftables.conf'
+- name: create file nftables.conf
   template:
     src: "{{file_src_nftables_conf}}"
     dest: "{{file_dst_nftables_conf}}"
     mode: "{{file_mode_nftables_conf}}"
     owner: "{{file_owner_nftables_conf}}"
     group: "{{file_group_nftables_conf}}"
-  notify: 'service reload nftables'
+  notify: reload service nftables
   tags:
     - nftables
 
-- name: 'service start nftables'
+- name: start service nftables
   service:
     state: 'started'
     enabled: 'yes'

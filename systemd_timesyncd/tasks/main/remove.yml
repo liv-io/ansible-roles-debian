@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,10 +10,10 @@
   tags:
     - systemd_timesyncd
 
-- name: 'file remove systemd-timesyncd.cfg'
+- name: remove file systemd-timesyncd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_systemd_timesyncd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - systemd_timesyncd

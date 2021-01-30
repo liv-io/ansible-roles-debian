@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - node_exporter
 
-- name: 'file create node_exporter.default'
+- name: create file node_exporter.default
   template:
     src: "{{file_src_node_exporter_default}}"
     dest: "{{file_dst_node_exporter_default}}"
@@ -20,19 +20,19 @@
   tags:
     - node_exporter
 
-- name: 'file create node_exporter.cfg'
+- name: create file node_exporter.cfg
   template:
     src: "{{file_src_node_exporter_cfg}}"
     dest: "{{file_dst_node_exporter_cfg}}"
     mode: "{{file_mode_node_exporter_cfg}}"
     owner: "{{file_owner_node_exporter_cfg}}"
     group: "{{file_group_node_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - node_exporter
 
-- name: 'service stop node_exporter'
+- name: stop service node_exporter
   service:
     state: 'stopped'
     enabled: 'no'

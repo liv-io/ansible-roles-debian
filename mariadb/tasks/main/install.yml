@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - mariadb
 
-- name: 'package install mariadb-client'
+- name: install package mariadb-client
   package:
     state: 'present'
     name: "{{package_name_mariadb_client}}"
@@ -18,7 +18,7 @@
   tags:
     - mariadb
 
-- name: 'package install mariadb-server'
+- name: install package mariadb-server
   package:
     state: 'present'
     name: "{{package_name_mariadb_server}}"
@@ -27,7 +27,7 @@
   tags:
     - mariadb
 
-- name: 'file create backup.dir'
+- name: create file backup.dir
   file:
     state: 'directory'
     path: "{{file_dst_backup_dir}}"
@@ -37,7 +37,7 @@
   tags:
     - mariadb
 
-- name: 'file create mariadb_backup.dir'
+- name: create file mariadb_backup.dir
   file:
     state: 'directory'
     path: "{{file_dst_mariadb_backup_dir}}"
@@ -47,7 +47,7 @@
   tags:
     - mariadb
 
-- name: 'file create mysql-etc.dir'
+- name: create file mysql-etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_mysql_etc_dir}}"
@@ -57,7 +57,7 @@
   tags:
     - mariadb
 
-- name: 'file create credentials.cnf'
+- name: create file credentials.cnf
   template:
     src: "{{file_src_credentials_cnf}}"
     dest: "{{file_dst_credentials_cnf}}"
@@ -68,7 +68,7 @@
   tags:
     - mariadb
 
-- name: 'file create mariadb_run-backup'
+- name: create file mariadb_run-backup
   template:
     src: "{{file_src_mariadb_run_backup}}"
     dest: "{{file_dst_mariadb_run_backup}}"
@@ -78,7 +78,7 @@
   tags:
     - mariadb
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -86,7 +86,7 @@
   tags:
     - mariadb
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -97,7 +97,7 @@
   tags:
     - mariadb
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)

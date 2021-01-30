@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - rsyslog
 
-- name: 'package remove rsyslog'
+- name: remove package rsyslog
   package:
     state: 'absent'
     name: "{{package_name_rsyslog}}"
@@ -18,15 +18,15 @@
   tags:
     - rsyslog
 
-- name: 'file remove rsyslog.cfg'
+- name: remove file rsyslog.cfg
   file:
     state: 'absent'
     path: "{{file_dst_rsyslog_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - rsyslog
 
-- name: 'file remove rsyslog.conf'
+- name: remove file rsyslog.conf
   file:
     state: 'absent'
     path: "{{file_dst_rsyslog_conf}}"

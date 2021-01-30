@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - promtail
 
-- name: 'file create promtail.default'
+- name: create file promtail.default
   template:
     src: "{{file_src_promtail_default}}"
     dest: "{{file_dst_promtail_default}}"
@@ -20,7 +20,7 @@
   tags:
     - promtail
 
-- name: 'file create promtail.yaml'
+- name: create file promtail.yaml
   template:
     src: "{{file_src_promtail_yaml}}"
     dest: "{{file_dst_promtail_yaml}}"
@@ -30,19 +30,19 @@
   tags:
     - promtail
 
-- name: 'file create promtail.cfg'
+- name: create file promtail.cfg
   template:
     src: "{{file_src_promtail_cfg}}"
     dest: "{{file_dst_promtail_cfg}}"
     mode: "{{file_mode_promtail_cfg}}"
     owner: "{{file_owner_promtail_cfg}}"
     group: "{{file_group_promtail_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (promtail_monitor_monit_state is match('true|yes|enable'))
   tags:
     - promtail
 
-- name: 'service stop promtail'
+- name: stop service promtail
   service:
     state: 'stopped'
     enabled: 'no'

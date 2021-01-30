@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,41 +10,41 @@
   tags:
     - alertmanager
 
-- name: 'file create alertmanager.yml'
+- name: create file alertmanager.yml
   template:
     src: "{{file_src_alertmanager_yml}}"
     dest: "{{file_dst_alertmanager_yml}}"
     mode: "{{file_mode_alertmanager_yml}}"
     owner: "{{file_owner_alertmanager_yml}}"
     group: "{{file_group_alertmanager_yml}}"
-  notify: 'service reload alertmanager'
+  notify: reload service alertmanager
   tags:
     - alertmanager
 
-- name: 'file create alertmanager.default'
+- name: create file alertmanager.default
   template:
     src: "{{file_src_alertmanager_default}}"
     dest: "{{file_dst_alertmanager_default}}"
     mode: "{{file_mode_alertmanager_default}}"
     owner: "{{file_owner_alertmanager_default}}"
     group: "{{file_group_alertmanager_default}}"
-  notify: 'service reload alertmanager'
+  notify: reload service alertmanager
   tags:
     - alertmanager
 
-- name: 'file create alertmanager.cfg'
+- name: create file alertmanager.cfg
   template:
     src: "{{file_src_alertmanager_cfg}}"
     dest: "{{file_dst_alertmanager_cfg}}"
     mode: "{{file_mode_alertmanager_cfg}}"
     owner: "{{file_owner_alertmanager_cfg}}"
     group: "{{file_group_alertmanager_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
   tags:
     - alertmanager
 
-- name: 'service start alertmanager'
+- name: start service alertmanager
   service:
     state: 'started'
     enabled: 'yes'

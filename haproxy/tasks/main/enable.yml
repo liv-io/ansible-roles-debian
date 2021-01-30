@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - haproxy
 
-- name: 'file create haproxy.cfg'
+- name: create file haproxy.cfg
   template:
     src: "{{file_src_haproxy_cfg}}"
     dest: "{{file_dst_haproxy_cfg}}"
@@ -18,23 +18,23 @@
     owner: "{{file_owner_haproxy_cfg}}"
     group: "{{file_group_haproxy_cfg}}"
     validate: "{{file_validate_haproxy_cfg}}"
-  notify: 'service reload haproxy'
+  notify: reload service haproxy
   tags:
     - haproxy
 
-- name: 'file create monit-haproxy.cfg'
+- name: create file monit-haproxy.cfg
   template:
     src: "{{file_src_monit_haproxy_cfg}}"
     dest: "{{file_dst_monit_haproxy_cfg}}"
     mode: "{{file_mode_monit_haproxy_cfg}}"
     owner: "{{file_owner_monit_haproxy_cfg}}"
     group: "{{file_group_monit_haproxy_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (haproxy_monitor_monit_state is match('true|yes|enable'))
   tags:
     - haproxy
 
-- name: 'service start haproxy'
+- name: start service haproxy
   service:
     state: 'started'
     enabled: 'yes'

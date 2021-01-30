@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - opensmtpd
 
-- name: 'package remove opensmtpd'
+- name: remove package opensmtpd
   package:
     state: 'absent'
     name: "{{package_name_opensmtpd}}"
@@ -19,22 +19,22 @@
   tags:
     - opensmtpd
 
-- name: 'file remove opensmtpd.cfg'
+- name: remove file opensmtpd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_opensmtpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - opensmtpd
 
-- name: 'file remove smtpd.conf'
+- name: remove file smtpd.conf
   file:
     state: 'absent'
     path: "{{file_dst_smtpd_conf}}"
   tags:
     - opensmtpd
 
-- name: 'file remove smtpd.dir'
+- name: remove file smtpd.dir
   file:
     state: 'absent'
     path: "{{file_dst_smtpd_dir}}"

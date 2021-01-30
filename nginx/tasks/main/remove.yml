@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - nginx
 
-- name: 'package remove nginx'
+- name: remove package nginx
   package:
     state: 'absent'
     name: "{{package_name_nginx}}"
@@ -18,29 +18,29 @@
   tags:
     - nginx
 
-- name: 'file remove nginx.cfg'
+- name: remove file nginx.cfg
   file:
     state: 'absent'
     path: "{{file_dst_nginx_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - nginx
 
-- name: 'file remove nginx.conf'
+- name: remove file nginx.conf
   file:
     state: 'absent'
     path: "{{file_dst_nginx_conf}}"
   tags:
     - nginx
 
-- name: 'file remove dhparam.pem'
+- name: remove file dhparam.pem
   file:
     state: 'absent'
     path: "{{file_dst_dhparam_pem}}"
   tags:
     - nginx
 
-- name: 'file remove vhosts.d'
+- name: remove file vhosts.d
   file:
     state: 'absent'
     path: "{{file_dst_vhosts_d}}"

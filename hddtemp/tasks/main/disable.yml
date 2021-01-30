@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - hddtemp
 
-- name: 'file create hddtemp.default'
+- name: create file hddtemp.default
   template:
     src: "{{file_src_hddtemp_default}}"
     dest: "{{file_dst_hddtemp_default}}"
@@ -20,19 +20,19 @@
   tags:
     - hddtemp
 
-- name: 'file create hddtemp.cfg'
+- name: create file hddtemp.cfg
   template:
     src: "{{file_src_hddtemp_cfg}}"
     dest: "{{file_dst_hddtemp_cfg}}"
     mode: "{{file_mode_hddtemp_cfg}}"
     owner: "{{file_owner_hddtemp_cfg}}"
     group: "{{file_group_hddtemp_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (hddtemp_monitor_monit_state is match('true|yes|enable'))
   tags:
     - hddtemp
 
-- name: 'service stop hddtemp'
+- name: stop service hddtemp
   service:
     state: 'stopped'
     enabled: 'no'

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - grafana
 
-- name: 'grafana_plugin install plugin'
+- name: install grafana_plugin plugin
   grafana_plugin:
     state: 'present'
     name: "{{item.name}}"
@@ -19,18 +19,18 @@
     grafana_list: "{{(item.repo|default(omit))}}"
     version: "{{(item.version|default('latest'))}}"
   loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - grafana
 
-- name: 'grafana_plugin remove plugin'
+- name: remove grafana_plugin plugin
   grafana_plugin:
     state: 'absent'
     name: "{{item.name}}"
     grafana_plugins_dir: "{{(item.dst|default('/var/lib/grafana/plugins'))}}"
   loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"
-  notify: 'service restart grafana'
+  notify: restart service grafana
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - grafana

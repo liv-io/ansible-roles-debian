@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - modsecurity
 
-- name: 'package remove modsecurity'
+- name: remove package modsecurity
   package:
     state: 'absent'
     name: "{{package_name_modsecurity}}"
@@ -18,35 +18,35 @@
   tags:
     - modsecurity
 
-- name: 'file remove modsecurity.link'
+- name: remove file modsecurity.link
   file:
     state: 'absent'
     path: "{{file_dst_modsecurity_link}}"
   tags:
     - modsecurity
 
-- name: 'file remove modsecurity.conf'
+- name: remove file modsecurity.conf
   file:
     state: 'absent'
     path: "{{file_dst_modsecurity_conf}}"
   tags:
     - modsecurity
 
-- name: 'file remove security2.link'
+- name: remove file security2.link
   file:
     state: 'absent'
     path: "{{file_dst_security2_link}}"
   tags:
     - modsecurity
 
-- name: 'file remove security2.conf'
+- name: remove file security2.conf
   file:
     state: 'absent'
     path: "{{file_dst_security2_conf}}"
   tags:
     - modsecurity
 
-- name: 'file remove security2.load'
+- name: remove file security2.load
   file:
     state: 'absent'
     path: "{{file_dst_security2_load}}"

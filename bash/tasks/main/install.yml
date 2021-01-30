@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - bash
 
-- name: 'package install bash'
+- name: install package bash
   package:
     state: 'present'
     name: "{{package_name_bash}}"
@@ -18,7 +18,7 @@
   tags:
     - bash
 
-- name: 'file create bash.bash'
+- name: create file bash.bash
   template:
     src: "{{file_src_bash_bash}}"
     dest: "{{file_dst_bash_bash}}"
@@ -28,7 +28,7 @@
   tags:
     - bash
 
-- name: 'file create zz_bash.bash'
+- name: create file zz_bash.bash
   template:
     src: "{{file_src_zz_bash_bash}}"
     dest: "{{file_dst_zz_bash_bash}}"
@@ -38,7 +38,7 @@
   tags:
     - bash
 
-- name: 'file create .bashrc'
+- name: create file .bashrc
   template:
     src: "{{file_src_bashrc}}"
     dest: "{{file_dst_bashrc}}"

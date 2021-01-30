@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -8,15 +8,15 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: 'command systemctl daemon-reload'
+- name: systemctl daemon-reload
   command: "{{command_cmd_systemctl_daemon_reload}}"
 
-- name: 'service restart blackbox_exporter'
+- name: restart service blackbox_exporter
   service:
     state: 'restarted'
     name: "{{service_name_blackbox_exporter}}"
 
-- name: 'service reload monit'
+- name: reload service monit
   service:
     state: 'reloaded'
     name: "{{service_name_monit}}"

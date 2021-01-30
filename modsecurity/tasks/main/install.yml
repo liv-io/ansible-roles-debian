@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - modsecurity
 
-- name: 'package install modsecurity'
+- name: install package modsecurity
   package:
     state: 'present'
     name: "{{package_name_modsecurity}}"
@@ -18,7 +18,7 @@
   tags:
     - modsecurity
 
-- name: 'file create security2.load'
+- name: create file security2.load
   file:
     state: 'link'
     src: "{{file_src_security2_load}}"

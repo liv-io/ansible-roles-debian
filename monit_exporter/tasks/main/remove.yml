@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - monit_exporter
 
-- name: 'command check service monit_exporter'
+- name: check service monit_exporter
   shell: "{{command_cmd_check_service_monit_exporter}}"
   register: register_check_service_monit_exporter
   changed_when: (register_check_service_monit_exporter.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - monit_exporter
 
-- name: 'service stop monit_exporter'
+- name: stop service monit_exporter
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - monit_exporter
 
-- name: 'user remove monit_exporter'
+- name: remove user monit_exporter
   user:
     state: 'absent'
     name: "{{user_name_monit_exporter}}"
@@ -37,51 +37,51 @@
   tags:
     - monit_exporter
 
-- name: 'group remove monit_exporter'
+- name: remove group monit_exporter
   group:
     state: 'absent'
     name: "{{group_name_monit_exporter}}"
   tags:
     - monit_exporter
 
-- name: 'file remove monit_exporter.cfg'
+- name: remove file monit_exporter.cfg
   file:
     state: 'absent'
     path: "{{file_dst_monit_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - monit_exporter
 
-- name: 'file remove monit_exporter_etc.dir'
+- name: remove file monit_exporter_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_monit_exporter_etc_dir}}"
   tags:
     - monit_exporter
 
-- name: 'file remove monit_exporter.default'
+- name: remove file monit_exporter.default
   file:
     state: 'absent'
     path: "{{file_dst_monit_exporter_default}}"
   tags:
     - monit_exporter
 
-- name: 'file remove monit_exporter.service'
+- name: remove file monit_exporter.service
   file:
     state: 'absent'
     path: "{{file_dst_monit_exporter_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - monit_exporter
 
-- name: 'file remove monit_exporter'
+- name: remove file monit_exporter
   file:
     state: 'absent'
     path: "{{file_creates_monit_exporter}}"
   tags:
     - monit_exporter
 
-- name: 'file remove monit_exporter.tar.gz'
+- name: remove file monit_exporter.tar.gz
   file:
     state: 'absent'
     path: "{{file_dst_monit_exporter_tar_gz}}"

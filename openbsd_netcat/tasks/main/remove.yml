@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - openbsd_netcat
 
-- name: 'package remove openbsd-netcat'
+- name: remove package openbsd-netcat
   package:
     state: 'absent'
     name: "{{package_name_openbsd_netcat}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - openssh
 
-- name: 'package remove openssh'
+- name: remove package openssh
   package:
     state: 'absent'
     name: "{{package_name_openssh}}"
@@ -18,36 +18,36 @@
   tags:
     - openssh
 
-- name: 'file remove openssh.cfg'
+- name: remove file openssh.cfg
   file:
     state: 'absent'
     path: "{{file_dst_openssh_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - openssh
 
-- name: 'file remove banner'
+- name: remove file banner
   file:
     state: 'absent'
     path: "{{file_dst_banner}}"
   tags:
     - openssh
 
-- name: 'file remove moduli'
+- name: remove file moduli
   file:
     state: 'absent'
     path: "{{file_dst_moduli}}"
   tags:
     - openssh
 
-- name: 'file remove ssh_config'
+- name: remove file ssh_config
   file:
     state: 'absent'
     path: "{{file_dst_ssh_config}}"
   tags:
     - openssh
 
-- name: 'file remove sshd_config'
+- name: remove file sshd_config
   file:
     state: 'absent'
     path: "{{file_dst_sshd_config}}"

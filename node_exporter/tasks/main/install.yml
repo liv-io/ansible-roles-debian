@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - node_exporter
 
-- name: 'group create node_exporter'
+- name: create group node_exporter
   group:
     state: 'present'
     name: "{{group_name_node_exporter}}"
@@ -18,7 +18,7 @@
   tags:
     - node_exporter
 
-- name: 'user create node_exporter'
+- name: create user node_exporter
   user:
     state: 'present'
     name: "{{user_name_node_exporter}}"
@@ -36,7 +36,7 @@
   tags:
     - node_exporter
 
-- name: 'file create node_exporter_var.dir'
+- name: create file node_exporter_var.dir
   file:
     state: 'directory'
     path: "{{file_dst_node_exporter_var_dir}}"
@@ -46,7 +46,7 @@
   tags:
     - node_exporter
 
-- name: 'file create textfile_collector.dir'
+- name: create file textfile_collector.dir
   file:
     state: 'directory'
     path: "{{file_dst_textfile_collector_dir}}"
@@ -56,7 +56,7 @@
   tags:
     - node_exporter
 
-- name: 'file download node_exporter.tar.gz'
+- name: download file node_exporter.tar.gz
   get_url:
     url: "{{file_src_node_exporter_tar_gz}}"
     dest: "{{file_dst_node_exporter_tar_gz}}"
@@ -67,7 +67,7 @@
   tags:
     - node_exporter
 
-- name: 'file unarchive node_exporter'
+- name: unarchive file node_exporter
   unarchive:
     src: "{{file_src_node_exporter}}"
     dest: "{{file_dst_node_exporter}}"
@@ -79,18 +79,18 @@
   tags:
     - node_exporter
 
-- name: 'file create node_exporter.service'
+- name: create file node_exporter.service
   template:
     src: "{{file_src_node_exporter_service}}"
     dest: "{{file_dst_node_exporter_service}}"
     mode: "{{file_mode_node_exporter_service}}"
     owner: "{{file_owner_node_exporter_service}}"
     group: "{{file_group_node_exporter_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - node_exporter
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -98,7 +98,7 @@
   tags:
     - node_exporter
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -109,7 +109,7 @@
   tags:
     - node_exporter
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -119,7 +119,7 @@
   tags:
     - node_exporter
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - node_exporter

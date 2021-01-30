@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - iputils_ping
 
-- name: 'package remove iputils-ping'
+- name: remove package iputils-ping
   package:
     state: 'absent'
     name: "{{package_name_iputils_ping}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - issue
 
-- name: 'file create issue'
+- name: create file issue
   template:
     src: "{{file_src_issue}}"
     dest: "{{file_dst_issue}}"
@@ -20,7 +20,7 @@
   tags:
     - issue
 
-- name: 'file create issue.net'
+- name: create file issue.net
   template:
     src: "{{file_src_issue_net}}"
     dest: "{{file_dst_issue_net}}"

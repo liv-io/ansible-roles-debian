@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - bsd_tar
 
-- name: 'package install bsd-tar'
+- name: install package bsd-tar
   package:
     state: 'present'
     name: "{{package_name_bsd_tar}}"

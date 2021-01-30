@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - alertmanager
 
-- name: 'command check service alertmanager'
+- name: check service alertmanager
   shell: "{{command_cmd_check_service_alertmanager}}"
   register: register_check_service_alertmanager
   changed_when: (register_check_service_alertmanager.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - alertmanager
 
-- name: 'service stop alertmanager'
+- name: stop service alertmanager
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - alertmanager
 
-- name: 'user remove alertmanager'
+- name: remove user alertmanager
   user:
     state: 'absent'
     name: "{{user_name_alertmanager}}"
@@ -37,58 +37,58 @@
   tags:
     - alertmanager
 
-- name: 'group remove alertmanager'
+- name: remove group alertmanager
   group:
     state: 'absent'
     name: "{{group_name_alertmanager}}"
   tags:
     - alertmanager
 
-- name: 'file remove alertmanager.cfg'
+- name: remove file alertmanager.cfg
   file:
     state: 'absent'
     path: "{{file_dst_alertmanager_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - alertmanager
 
-- name: 'file remove alertmanager.default'
+- name: remove file alertmanager.default
   file:
     state: 'absent'
     path: "{{file_dst_alertmanager_default}}"
   tags:
     - alertmanager
 
-- name: 'file remove alertmanager.service'
+- name: remove file alertmanager.service
   file:
     state: 'absent'
     path: "{{file_dst_alertmanager_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - alertmanager
 
-- name: 'file remove alertmanager_etc.dir'
+- name: remove file alertmanager_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_alertmanager_etc_dir}}"
   tags:
     - alertmanager
 
-- name: 'file remove alertmanager'
+- name: remove file alertmanager
   file:
     state: 'absent'
     path: "{{file_creates_alertmanager}}"
   tags:
     - alertmanager
 
-- name: 'file remove alertmanager.tar.gz'
+- name: remove file alertmanager.tar.gz
   file:
     state: 'absent'
     path: "{{file_dst_alertmanager_tar_gz}}"
   tags:
     - alertmanager
 
-- name: 'file remove amtool'
+- name: remove file amtool
   file:
     state: 'absent'
     path: "{{file_dst_amtool}}"

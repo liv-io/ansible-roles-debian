@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create aliases'
+- name: create file aliases
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_dst_aliases}}"
@@ -20,7 +20,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create secrets'
+- name: create file secrets
   template:
     src: "{{file_src_secrets}}"
     dest: "{{file_dst_secrets}}"
@@ -31,7 +31,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create smtpd.conf'
+- name: create file smtpd.conf
   template:
     src: "{{file_src_smtpd_conf}}"
     dest: "{{file_dst_smtpd_conf}}"
@@ -41,19 +41,19 @@
   tags:
     - opensmtpd
 
-- name: 'file create opensmtpd.cfg'
+- name: create file opensmtpd.cfg
   template:
     src: "{{file_src_opensmtpd_cfg}}"
     dest: "{{file_dst_opensmtpd_cfg}}"
     mode: "{{file_mode_opensmtpd_cfg}}"
     owner: "{{file_owner_opensmtpd_cfg}}"
     group: "{{file_group_opensmtpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - opensmtpd
 
-- name: 'service stop opensmtpd'
+- name: stop service opensmtpd
   service:
     state: 'stopped'
     enabled: 'no'

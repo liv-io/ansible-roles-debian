@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - php
 
-- name: 'package install php'
+- name: install package php
   package:
     state: 'present'
     name: "{{package_name_php}}"

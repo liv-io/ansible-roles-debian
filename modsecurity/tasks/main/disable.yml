@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,46 +10,46 @@
   tags:
     - modsecurity
 
-- name: 'file create modsecurity.conf'
+- name: create file modsecurity.conf
   template:
     src: "{{file_src_modsecurity_conf}}"
     dest: "{{file_dst_modsecurity_conf}}"
     mode: "{{file_mode_modsecurity_conf}}"
     owner: "{{file_owner_modsecurity_conf}}"
     group: "{{file_group_modsecurity_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - modsecurity
 
-- name: 'file create modsecurity.link'
+- name: create file modsecurity.link
   file:
     state: 'link'
     src: "{{file_src_modsecurity_link}}"
     path: "{{file_dst_modsecurity_link}}"
     owner: "{{file_owner_modsecurity_link}}"
     group: "{{file_group_modsecurity_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - modsecurity
 
-- name: 'file create security2.conf'
+- name: create file security2.conf
   template:
     src: "{{file_src_security2_conf}}"
     dest: "{{file_dst_security2_conf}}"
     mode: "{{file_mode_security2_conf}}"
     owner: "{{file_owner_security2_conf}}"
     group: "{{file_group_security2_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - modsecurity
 
-- name: 'file create security2.link'
+- name: create file security2.link
   file:
     state: 'link'
     src: "{{file_src_security2_link}}"
     path: "{{file_dst_security2_link}}"
     owner: "{{file_owner_security2_link}}"
     group: "{{file_group_security2_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - modsecurity

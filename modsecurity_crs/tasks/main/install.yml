@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - modsecurity_crs
 
-- name: 'package install modsecurity-crs'
+- name: install package modsecurity-crs
   package:
     state: 'present'
     name: "{{package_name_modsecurity_crs}}"

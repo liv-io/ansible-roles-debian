@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - fstrim
 
-- name: 'cron remove fstrim_discard-blocks'
+- name: remove cron fstrim_discard-blocks
   cron:
     state: 'absent'
     name: "{{cron_name_fstrim_discard_blocks}}"
@@ -19,7 +19,7 @@
   tags:
     - fstrim
 
-- name: 'file remove fstrim_discard-blocks'
+- name: remove file fstrim_discard-blocks
   file:
     state: 'absent'
     path: "{{file_dst_fstrim_discard_blocks}}"

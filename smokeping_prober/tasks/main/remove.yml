@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - smokeping_prober
 
-- name: 'command check service smokeping_prober'
+- name: check service smokeping_prober
   shell: "{{command_cmd_check_service_smokeping_prober}}"
   register: register_check_service_smokeping_prober
   changed_when: (register_check_service_smokeping_prober.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - smokeping_prober
 
-- name: 'service stop smokeping_prober'
+- name: stop service smokeping_prober
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - smokeping_prober
 
-- name: 'user remove smokeping_prober'
+- name: remove user smokeping_prober
   user:
     state: 'absent'
     name: "{{user_name_smokeping_prober}}"
@@ -37,32 +37,32 @@
   tags:
     - smokeping_prober
 
-- name: 'group remove smokeping_prober'
+- name: remove group smokeping_prober
   group:
     state: 'absent'
     name: "{{group_name_smokeping_prober}}"
   tags:
     - smokeping_prober
 
-- name: 'file remove smokeping_prober.cfg'
+- name: remove file smokeping_prober.cfg
   file:
     state: 'absent'
     path: "{{file_dst_smokeping_prober_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - smokeping_prober
 
-- name: 'file remove smokeping_prober.default'
+- name: remove file smokeping_prober.default
   file:
     state: 'absent'
     path: "{{file_dst_smokeping_prober_default}}"
   tags:
     - smokeping_prober
 
-- name: 'file remove smokeping_prober.service'
+- name: remove file smokeping_prober.service
   file:
     state: 'absent'
     path: "{{file_dst_smokeping_prober_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - smokeping_prober

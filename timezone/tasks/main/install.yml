@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - timezone
 
-- name: 'command get time-zone'
+- name: get time-zone
   shell: "{{command_cmd_get_timezone}}"
   register: register_timezone
   changed_when: False
@@ -18,7 +18,7 @@
   tags:
     - timezone
 
-- name: 'command set time-zone'
+- name: set time-zone
   command: "{{command_cmd_set_timezone}}"
   when: not (timezone_timezone == '') and not (register_timezone.stdout == timezone_timezone)
   tags:

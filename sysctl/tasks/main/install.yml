@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - sysctl
 
-- name: 'file create sysctl.d'
+- name: create file sysctl.d
   file:
     state: 'directory'
     path: "{{file_dst_sysctl_d}}"
@@ -20,7 +20,7 @@
   tags:
     - sysctl
 
-- name: 'file create sysctl.conf'
+- name: create file sysctl.conf
   template:
     src: "{{file_src_sysctl_conf}}"
     dest: "{{file_dst_sysctl_conf}}"
@@ -31,7 +31,7 @@
   tags:
     - sysctl
 
-- name: 'command set sysctl.conf'
+- name: set sysctl.conf
   shell: "{{command_cmd_set_sysctl}} {{file_dst_sysctl_conf}}"
   when: (register_sysctl_conf is changed)
   tags:

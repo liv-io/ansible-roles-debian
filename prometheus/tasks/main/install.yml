@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - prometheus
 
-- name: 'group create prometheus'
+- name: create group prometheus
   group:
     state: 'present'
     name: "{{group_name_prometheus}}"
@@ -18,7 +18,7 @@
   tags:
     - prometheus
 
-- name: 'user create prometheus'
+- name: create user prometheus
   user:
     state: 'present'
     name: "{{user_name_prometheus}}"
@@ -36,7 +36,7 @@
   tags:
     - prometheus
 
-- name: 'file create app.dir'
+- name: create file app.dir
   file:
     state: 'directory'
     path: "{{file_dst_app_dir}}"
@@ -46,7 +46,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus_app.dir'
+- name: create file prometheus_app.dir
   file:
     state: 'directory'
     path: "{{file_dst_prometheus_app_dir}}"
@@ -56,7 +56,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus_etc.dir'
+- name: create file prometheus_etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_prometheus_etc_dir}}"
@@ -66,7 +66,7 @@
   tags:
     - prometheus
 
-- name: 'file create data.dir'
+- name: create file data.dir
   file:
     state: 'directory'
     path: "{{file_dst_data_dir}}"
@@ -76,7 +76,7 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus_data.dir'
+- name: create file prometheus_data.dir
   file:
     state: 'directory'
     path: "{{file_dst_prometheus_data_dir}}"
@@ -86,7 +86,7 @@
   tags:
     - prometheus
 
-- name: 'file download prometheus.tar.gz'
+- name: download file prometheus.tar.gz
   get_url:
     url: "{{file_src_prometheus_tar_gz}}"
     dest: "{{file_dst_prometheus_tar_gz}}"
@@ -97,7 +97,7 @@
   tags:
     - prometheus
 
-- name: 'file unarchive prometheus'
+- name: unarchive file prometheus
   unarchive:
     src: "{{file_src_prometheus}}"
     dest: "{{file_dst_prometheus}}"
@@ -108,7 +108,7 @@
   tags:
     - prometheus
 
-- name: 'file create dashboards.dir'
+- name: create file dashboards.dir
   file:
     state: 'directory'
     path: "{{file_dst_dashboards_dir}}"
@@ -118,7 +118,7 @@
   tags:
     - prometheus
 
-- name: 'file create builtin_dashboards.dir'
+- name: create file builtin_dashboards.dir
   file:
     state: 'directory'
     path: "{{file_dst_builtin_dashboards_dir}}"
@@ -129,18 +129,18 @@
   tags:
     - prometheus
 
-- name: 'file create prometheus.service'
+- name: create file prometheus.service
   template:
     src: "{{file_src_prometheus_service}}"
     dest: "{{file_dst_prometheus_service}}"
     mode: "{{file_mode_prometheus_service}}"
     owner: "{{file_owner_prometheus_service}}"
     group: "{{file_group_prometheus_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - prometheus
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -148,7 +148,7 @@
   tags:
     - prometheus
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -159,7 +159,7 @@
   tags:
     - prometheus
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -169,7 +169,7 @@
   tags:
     - prometheus
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - prometheus

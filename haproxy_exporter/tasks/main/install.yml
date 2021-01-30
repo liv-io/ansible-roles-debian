@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'group create haproxy_exporter'
+- name: create group haproxy_exporter
   group:
     state: 'present'
     name: "{{group_name_haproxy_exporter}}"
@@ -18,7 +18,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'user create haproxy_exporter'
+- name: create user haproxy_exporter
   user:
     state: 'present'
     name: "{{user_name_haproxy_exporter}}"
@@ -36,7 +36,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'file download haproxy_exporter.tar.gz'
+- name: download file haproxy_exporter.tar.gz
   get_url:
     url: "{{file_src_haproxy_exporter_tar_gz}}"
     dest: "{{file_dst_haproxy_exporter_tar_gz}}"
@@ -47,7 +47,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'file unarchive haproxy_exporter'
+- name: unarchive file haproxy_exporter
   unarchive:
     src: "{{file_src_haproxy_exporter}}"
     dest: "{{file_dst_haproxy_exporter}}"
@@ -59,18 +59,18 @@
   tags:
     - haproxy_exporter
 
-- name: 'file create haproxy_exporter.service'
+- name: create file haproxy_exporter.service
   template:
     src: "{{file_src_haproxy_exporter_service}}"
     dest: "{{file_dst_haproxy_exporter_service}}"
     mode: "{{file_mode_haproxy_exporter_service}}"
     owner: "{{file_owner_haproxy_exporter_service}}"
     group: "{{file_group_haproxy_exporter_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - haproxy_exporter
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -78,7 +78,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -89,7 +89,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -99,7 +99,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - haproxy_exporter

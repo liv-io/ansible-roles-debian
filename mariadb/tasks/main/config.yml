@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - mariadb
 
-- name: 'mysql create database'
+- name: create mysql database
   mysql_db:
     state: 'present'
     name: "{{item.name}}"
@@ -23,7 +23,7 @@
   tags:
     - mariadb
 
-- name: 'mysql remove database'
+- name: remove mysql database
   mysql_db:
     state: 'absent'
     name: "{{item.name}}"
@@ -34,7 +34,7 @@
   tags:
     - mariadb
 
-- name: 'mysql create user'
+- name: create mysql user
   mysql_user:
     state: 'present'
     name: "{{item.name}}"
@@ -52,7 +52,7 @@
   tags:
     - mariadb
 
-- name: 'mysql remove user'
+- name: remove mysql user
   mysql_user:
     state: 'absent'
     name: "{{item.name}}"

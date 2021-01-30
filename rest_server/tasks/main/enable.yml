@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,30 +10,30 @@
   tags:
     - rest_server
 
-- name: 'file create rest-server.default'
+- name: create file rest-server.default
   template:
     src: "{{file_src_rest_server_default}}"
     dest: "{{file_dst_rest_server_default}}"
     mode: "{{file_mode_rest_server_default}}"
     owner: "{{file_owner_rest_server_default}}"
     group: "{{file_group_rest_server_default}}"
-  notify: 'service restart rest-server'
+  notify: restart service rest-server
   tags:
     - rest_server
 
-- name: 'file create rest-server.cfg'
+- name: create file rest-server.cfg
   template:
     src: "{{file_src_rest_server_cfg}}"
     dest: "{{file_dst_rest_server_cfg}}"
     mode: "{{file_mode_rest_server_cfg}}"
     owner: "{{file_owner_rest_server_cfg}}"
     group: "{{file_group_rest_server_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
     - rest_server
 
-- name: 'service start rest-server'
+- name: start service rest-server
   service:
     state: 'started'
     enabled: 'yes'

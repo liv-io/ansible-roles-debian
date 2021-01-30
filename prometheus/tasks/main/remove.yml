@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - prometheus
 
-- name: 'command check service prometheus'
+- name: check service prometheus
   shell: "{{command_cmd_check_service_prometheus}}"
   register: register_check_service_prometheus
   changed_when: (register_check_service_prometheus.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - prometheus
 
-- name: 'service stop prometheus'
+- name: stop service prometheus
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - prometheus
 
-- name: 'user remove prometheus'
+- name: remove user prometheus
   user:
     state: 'absent'
     name: "{{user_name_prometheus}}"
@@ -37,74 +37,74 @@
   tags:
     - prometheus
 
-- name: 'group remove prometheus'
+- name: remove group prometheus
   group:
     state: 'absent'
     name: "{{group_name_prometheus}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus.cfg'
+- name: remove file prometheus.cfg
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - prometheus
 
-- name: 'file remove builtin_dashboards.yaml'
+- name: remove file builtin_dashboards.yaml
   file:
     state: 'absent'
     path: "{{file_dst_builtin_dashboards_yaml}}"
   tags:
     - prometheus
 
-- name: 'file remove dashboards.dir'
+- name: remove file dashboards.dir
   file:
     state: 'absent'
     path: "{{file_dst_dashboards_dir}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus_alertmanager_datasource.yaml'
+- name: remove file prometheus_alertmanager_datasource.yaml
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_alertmanager_datasource_yaml}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus_datasource.yaml'
+- name: remove file prometheus_datasource.yaml
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_datasource_yaml}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus_app.dir'
+- name: remove file prometheus_app.dir
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_app_dir}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus_etc.dir'
+- name: remove file prometheus_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_etc_dir}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus.default'
+- name: remove file prometheus.default
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_default}}"
   tags:
     - prometheus
 
-- name: 'file remove prometheus.service'
+- name: remove file prometheus.service
   file:
     state: 'absent'
     path: "{{file_dst_prometheus_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - prometheus

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - php
 
-- name: 'file create php.ini'
+- name: create file php.ini
   template:
     src: "{{file_src_php_ini}}"
     dest: "{{file_dst_php_ini}}"
@@ -18,7 +18,7 @@
     owner: "{{file_owner_php_ini}}"
     group: "{{file_group_php_ini}}"
   notify:
-    - 'command check apache2'
-    - 'command reload apache2'
+    - check apache2
+    - reload service apache2
   tags:
     - php

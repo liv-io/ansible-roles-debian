@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - mysqld_exporter
 
-- name: 'file create credentials.cnf'
+- name: create file credentials.cnf
   template:
     src: "{{file_src_credentials_cnf}}"
     dest: "{{file_dst_credentials_cnf}}"
@@ -20,7 +20,7 @@
   tags:
     - mysqld_exporter
 
-- name: 'file create mysqld_exporter.default'
+- name: create file mysqld_exporter.default
   template:
     src: "{{file_src_mysqld_exporter_default}}"
     dest: "{{file_dst_mysqld_exporter_default}}"
@@ -30,19 +30,19 @@
   tags:
     - mysqld_exporter
 
-- name: 'file create mysqld_exporter.cfg'
+- name: create file mysqld_exporter.cfg
   template:
     src: "{{file_src_mysqld_exporter_cfg}}"
     dest: "{{file_dst_mysqld_exporter_cfg}}"
     mode: "{{file_mode_mysqld_exporter_cfg}}"
     owner: "{{file_owner_mysqld_exporter_cfg}}"
     group: "{{file_group_mysqld_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (mysqld_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - mysqld_exporter
 
-- name: 'service stop mysqld_exporter'
+- name: stop service mysqld_exporter
   service:
     state: 'stopped'
     enabled: 'no'

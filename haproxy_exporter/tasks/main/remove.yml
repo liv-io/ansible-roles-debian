@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'command check service haproxy_exporter'
+- name: check service haproxy_exporter
   shell: "{{command_cmd_check_service_haproxy_exporter}}"
   register: register_check_service_haproxy_exporter
   changed_when: (register_check_service_haproxy_exporter.rc == 0)
@@ -19,7 +19,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'service stop haproxy_exporter'
+- name: stop service haproxy_exporter
   service:
     state: 'stopped'
     enabled: 'no'
@@ -28,7 +28,7 @@
   tags:
     - haproxy_exporter
 
-- name: 'user remove haproxy_exporter'
+- name: remove user haproxy_exporter
   user:
     state: 'absent'
     name: "{{user_name_haproxy_exporter}}"
@@ -37,44 +37,44 @@
   tags:
     - haproxy_exporter
 
-- name: 'group remove haproxy_exporter'
+- name: remove group haproxy_exporter
   group:
     state: 'absent'
     name: "{{group_name_haproxy_exporter}}"
   tags:
     - haproxy_exporter
 
-- name: 'file remove haproxy_exporter.cfg'
+- name: remove file haproxy_exporter.cfg
   file:
     state: 'absent'
     path: "{{file_dst_haproxy_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - haproxy_exporter
 
-- name: 'file remove haproxy_exporter.default'
+- name: remove file haproxy_exporter.default
   file:
     state: 'absent'
     path: "{{file_dst_haproxy_exporter_default}}"
   tags:
     - haproxy_exporter
 
-- name: 'file remove haproxy_exporter.service'
+- name: remove file haproxy_exporter.service
   file:
     state: 'absent'
     path: "{{file_dst_haproxy_exporter_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - haproxy_exporter
 
-- name: 'file remove haproxy_exporter'
+- name: remove file haproxy_exporter
   file:
     state: 'absent'
     path: "{{file_creates_haproxy_exporter}}"
   tags:
     - haproxy_exporter
 
-- name: 'file remove haproxy_exporter.tar.gz'
+- name: remove file haproxy_exporter.tar.gz
   file:
     state: 'absent'
     path: "{{file_dst_haproxy_exporter_tar_gz}}"

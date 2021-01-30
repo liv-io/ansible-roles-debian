@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - grafana
 
-- name: 'file copy grafana.gpg'
+- name: copy file grafana.gpg
   copy:
     src: "{{file_src_grafana_gpg}}"
     dest: "{{file_dst_grafana_gpg}}"
@@ -21,7 +21,7 @@
   tags:
     - grafana
 
-- name: 'file copy grafana.list'
+- name: copy file grafana.list
   copy:
     src: "{{file_src_grafana_list}}"
     dest: "{{file_dst_grafana_list}}"
@@ -31,7 +31,7 @@
   tags:
     - grafana
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -39,7 +39,7 @@
   tags:
     - grafana
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -50,21 +50,21 @@
   tags:
     - grafana
 
-- name: 'command add grafana.key'
+- name: add grafana.key
   shell: "{{command_cmd_add_grafana_key}}"
   check_mode: 'no'
   when: register_grafana_gpg.changed
   tags:
     - grafana
 
-- name: 'command apt update'
+- name: apt update
   shell: "{{command_cmd_apt_update}}"
   check_mode: 'no'
   when: register_grafana_gpg.changed
   tags:
     - grafana
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -74,7 +74,7 @@
   tags:
     - grafana
 
-- name: 'package install grafana'
+- name: install package grafana
   package:
     state: 'present'
     name: "{{package_name_grafana}}"

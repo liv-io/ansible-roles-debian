@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - auditd
 
-- name: 'file create auditd.conf'
+- name: create file auditd.conf
   template:
     src: "{{file_src_auditd_conf}}"
     dest: "{{file_dst_auditd_conf}}"
@@ -20,7 +20,7 @@
   tags:
     - auditd
 
-- name: 'file create audispd.conf'
+- name: create file audispd.conf
   template:
     src: "{{file_src_audispd_conf}}"
     dest: "{{file_dst_audispd_conf}}"
@@ -30,7 +30,7 @@
   tags:
     - auditd
 
-- name: 'file create syslog.conf'
+- name: create file syslog.conf
   template:
     src: "{{file_src_syslog_conf}}"
     dest: "{{file_dst_syslog_conf}}"
@@ -40,21 +40,21 @@
   tags:
     - auditd
 
-- name: 'file create auditd.cfg'
+- name: create file auditd.cfg
   template:
     src: "{{file_src_auditd_cfg}}"
     dest: "{{file_dst_auditd_cfg}}"
     mode: "{{file_mode_auditd_cfg}}"
     owner: "{{file_owner_auditd_cfg}}"
     group: "{{file_group_auditd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (auditd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - auditd
 
 # NOTE: systemd refuses to stop 'auditd' service. RedHat bug: 1026648
 
-- name: 'command status auditd'
+- name: status auditd
   command: "{{command_cmd_status_auditd}}"
   register: register_status_auditd
   changed_when: (register_status_auditd.rc > 1)
@@ -63,14 +63,14 @@
   tags:
     - auditd
 
-- name: 'command disable auditd'
+- name: disable auditd
   command: "{{command_cmd_disable_auditd}}"
   check_mode: 'no'
   when: (register_status_auditd.rc != 3)
   tags:
     - auditd
 
-- name: 'command stop auditd'
+- name: stop auditd
   command: "{{command_cmd_stop_auditd}}"
   check_mode: 'no'
   when: (register_status_auditd.rc != 3)

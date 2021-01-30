@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - modsecurity_crs
 
-- name: 'package remove modsecurity-crs'
+- name: remove package modsecurity-crs
   package:
     state: 'absent'
     name: "{{package_name_modsecurity_crs}}"
@@ -18,7 +18,7 @@
   tags:
     - modsecurity_crs
 
-- name: 'file remove crs-setup.conf'
+- name: remove file crs-setup.conf
   file:
     state: 'absent'
     path: "{{file_dst_crs_setup_conf}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - grafana
 
-- name: 'file create grafana.ini'
+- name: create file grafana.ini
   template:
     src: "{{file_src_grafana_ini}}"
     dest: "{{file_dst_grafana_ini}}"
@@ -20,19 +20,19 @@
   tags:
     - grafana
 
-- name: 'file create grafana.cfg'
+- name: create file grafana.cfg
   template:
     src: "{{file_src_grafana_cfg}}"
     dest: "{{file_dst_grafana_cfg}}"
     mode: "{{file_mode_grafana_cfg}}"
     owner: "{{file_owner_grafana_cfg}}"
     group: "{{file_group_grafana_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (grafana_monitor_monit_state is match('true|yes|enable'))
   tags:
     - grafana
 
-- name: 'service stop grafana'
+- name: stop service grafana
   service:
     state: 'stopped'
     enabled: 'no'

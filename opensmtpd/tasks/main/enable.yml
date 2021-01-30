@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create aliases'
+- name: create file aliases
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_dst_aliases}}"
@@ -18,13 +18,13 @@
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
   notify:
-    - 'service start opensmtpd'
-    - 'command smtpctl aliases'
-    - 'service restart opensmtpd'
+    - start service opensmtpd'
+    - smtpctl aliases'
+    - restart service opensmtpd'
   tags:
     - opensmtpd
 
-- name: 'file create secrets'
+- name: create file secrets
   template:
     src: "{{file_src_secrets}}"
     dest: "{{file_dst_secrets}}"
@@ -32,34 +32,34 @@
     owner: "{{file_owner_secrets}}"
     group: "{{file_group_secrets}}"
   no_log: 'true'
-  notify: 'service restart opensmtpd'
+  notify: restart service opensmtpd
   tags:
     - opensmtpd
 
-- name: 'file create smtpd.conf'
+- name: create file smtpd.conf
   template:
     src: "{{file_src_smtpd_conf}}"
     dest: "{{file_dst_smtpd_conf}}"
     mode: "{{file_mode_smtpd_conf}}"
     owner: "{{file_owner_smtpd_conf}}"
     group: "{{file_group_smtpd_conf}}"
-  notify: 'service restart opensmtpd'
+  notify: restart service opensmtpd
   tags:
     - opensmtpd
 
-- name: 'file create opensmtpd.cfg'
+- name: create file opensmtpd.cfg
   template:
     src: "{{file_src_opensmtpd_cfg}}"
     dest: "{{file_dst_opensmtpd_cfg}}"
     mode: "{{file_mode_opensmtpd_cfg}}"
     owner: "{{file_owner_opensmtpd_cfg}}"
     group: "{{file_group_opensmtpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - opensmtpd
 
-- name: 'service start opensmtpd'
+- name: start service opensmtpd
   service:
     state: 'started'
     enabled: 'yes'

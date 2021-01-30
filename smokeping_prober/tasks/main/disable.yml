@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - smokeping_prober
 
-- name: 'file create smokeping_prober.default'
+- name: create file smokeping_prober.default
   template:
     src: "{{file_src_smokeping_prober_default}}"
     dest: "{{file_dst_smokeping_prober_default}}"
@@ -20,19 +20,19 @@
   tags:
     - smokeping_prober
 
-- name: 'file create smokeping_prober.cfg'
+- name: create file smokeping_prober.cfg
   template:
     src: "{{file_src_smokeping_prober_cfg}}"
     dest: "{{file_dst_smokeping_prober_cfg}}"
     mode: "{{file_mode_smokeping_prober_cfg}}"
     owner: "{{file_owner_smokeping_prober_cfg}}"
     group: "{{file_group_smokeping_prober_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
   tags:
     - smokeping_prober
 
-- name: 'service stop smokeping_prober'
+- name: stop service smokeping_prober
   service:
     state: 'stopped'
     enabled: 'no'

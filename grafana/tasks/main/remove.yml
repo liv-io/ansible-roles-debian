@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - grafana
 
-- name: 'package remove grafana'
+- name: remove package grafana
   package:
     state: 'absent'
     name: "{{package_name_grafana}}"
@@ -18,15 +18,15 @@
   tags:
     - grafana
 
-- name: 'file remove grafana.cfg'
+- name: remove file grafana.cfg
   file:
     state: 'absent'
     path: "{{file_dst_grafana_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - grafana
 
-- name: 'file remove grafana.gpg'
+- name: remove file grafana.gpg
   file:
     state: 'absent'
     path: "{{file_dst_grafana_gpg}}"
@@ -34,21 +34,21 @@
   tags:
     - grafana
 
-- name: 'file remove grafana.list'
+- name: remove file grafana.list
   file:
     state: 'absent'
     path: "{{file_dst_grafana_list}}"
   tags:
     - grafana
 
-- name: 'file remove grafana.ini'
+- name: remove file grafana.ini
   file:
     state: 'absent'
     path: "{{file_dst_grafana_ini}}"
   tags:
     - grafana
 
-- name: 'command del grafana.key'
+- name: del grafana.key
   shell: "{{command_cmd_del_grafana_key}}"
   check_mode: 'no'
   when: register_grafana_gpg.changed

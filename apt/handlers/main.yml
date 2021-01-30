@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -8,5 +8,5 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: 'command update sources'
+- name: update sources
   command: "{{command_cmd_update_sources}}"

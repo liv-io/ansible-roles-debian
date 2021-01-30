@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - locale
 
-- name: 'command get keymap-vc'
+- name: get keymap-vc
   shell: "{{command_cmd_get_keymap_vc}}"
   register: register_keymap_vc
   changed_when: False
@@ -18,13 +18,13 @@
   tags:
     - locale
 
-- name: 'command set keymap-vc'
+- name: set keymap-vc
   command: "{{command_cmd_set_keymap_vc}}"
   when: not (locale_keymap_vc == '') and not (register_keymap_vc.stdout == locale_keymap_vc)
   tags:
     - locale
 
-- name: 'command get keymap-x11'
+- name: get keymap-x11
   shell: "{{command_cmd_get_keymap_x11}}"
   register: register_keymap_x11
   changed_when: False
@@ -32,13 +32,13 @@
   tags:
     - locale
 
-- name: 'command set keymap-x11'
+- name: set keymap-x11
   command: "{{command_cmd_set_keymap_x11}}"
   when: not (locale_keymap_x11 == '') and not (register_keymap_x11.stdout == locale_keymap_x11)
   tags:
     - locale
 
-- name: 'command get locale-system'
+- name: get locale-system
   shell: "{{command_cmd_get_locale_system}}"
   register: register_locale_system
   changed_when: False
@@ -46,7 +46,7 @@
   tags:
     - locale
 
-- name: 'command set locale-system'
+- name: set locale-system
   command: "{{command_cmd_set_locale_system}}"
   when: not (locale_locale_system == '') and not (register_locale_system.stdout == locale_locale_system)
   tags:

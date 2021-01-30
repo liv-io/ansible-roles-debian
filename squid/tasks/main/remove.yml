@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - squid
 
-- name: 'package remove squid'
+- name: remove package squid
   package:
     state: 'absent'
     name: "{{package_name_squid}}"
@@ -18,22 +18,22 @@
   tags:
     - squid
 
-- name: 'file remove squid.cfg'
+- name: remove file squid.cfg
   file:
     state: 'absent'
     path: "{{file_dst_squid_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - squid
 
-- name: 'file remove squid.conf'
+- name: remove file squid.conf
   file:
     state: 'absent'
     path: "{{file_dst_squid_conf}}"
   tags:
     - squid
 
-- name: 'file remove acl.dir'
+- name: remove file acl.dir
   file:
     state: 'absent'
     path: "{{file_dst_acl_dir}}"

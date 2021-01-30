@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - haproxy
 
-- name: 'package install haproxy'
+- name: install package haproxy
   package:
     state: 'present'
     name: "{{package_name_haproxy}}"
@@ -18,14 +18,14 @@
   tags:
     - haproxy
 
-- name: 'stat file dhparam.pem'
+- name: stat file dhparam.pem
   stat:
     path: "{{file_dst_dhparam_pem}}"
   register: register_dhparam_pem
   tags:
     - haproxy
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -33,7 +33,7 @@
   tags:
     - haproxy
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -44,14 +44,14 @@
   tags:
     - haproxy
 
-- name: 'command generate dhparam'
+- name: generate dhparam
   shell: "{{command_cmd_generate_dhparam}}"
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   tags:
     - haproxy
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)

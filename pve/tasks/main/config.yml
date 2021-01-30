@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - pve
 
-- name: 'command create group'
+- name: create group
   shell: "grep '^group:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 || { pveum group add {{item.name}}; exit 255; }"
   register: register_create_group
   changed_when: (register_create_group.rc == 255)
@@ -21,7 +21,7 @@
   tags:
     - pve
 
-- name: 'command create user'
+- name: create user
   shell: "grep '^user:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 || { pveum user add {{item.name}} --groups {{(item.groups|default([])|join(','))}} ; exit 255; }"
   register: register_create_user
   changed_when: (register_create_user.rc == 255)
@@ -32,7 +32,7 @@
   tags:
     - pve
 
-- name: 'command create acl'
+- name: create acl
   shell: "pveum acl modify {{(item.path|default('/'))}} --groups {{(item.groups|default([])|join(','))}} --roles {{(item.roles|default(['PVEAuditor'])|join(','))}}"
   register: register_create_acl
   changed_when: (register_create_acl.rc > 0)
@@ -42,7 +42,7 @@
   tags:
     - pve
 
-- name: 'command remove group'
+- name: remove group
   shell: "grep '^group:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 && { pveum group delete {{item.name}}; exit 255; } || exit 0"
   register: register_remove_group
   changed_when: (register_remove_group.rc == 255)
@@ -53,7 +53,7 @@
   tags:
     - pve
 
-- name: 'command remove user'
+- name: remove user
   shell: "grep '^user:{{item.name}}:' {{file_dst_user_cfg}} > /dev/null 2>&1 && { pveum user delete {{item.name}}; exit 255; } || exit 0"
   register: register_remove_user
   changed_when: (register_remove_user.rc == 255)

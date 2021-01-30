@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - suricata
 
-- name: 'package install suricata'
+- name: install package suricata
   package:
     state: 'present'
     name: "{{package_name_suricata}}"
@@ -20,7 +20,7 @@
   tags:
     - suricata
 
-- name: 'package install suricata-update'
+- name: install package suricata-update
   package:
     state: 'present'
     name: "{{package_name_suricata_update}}"
@@ -29,7 +29,7 @@
   tags:
     - suricata
 
-- name: 'service stop suricata'
+- name: stop service suricata
   service:
     state: 'stopped'
     enabled: 'yes'
@@ -38,7 +38,7 @@
   tags:
     - suricata
 
-- name: 'group create suricata'
+- name: create group suricata
   group:
     state: 'present'
     name: "{{group_name_suricata}}"
@@ -46,7 +46,7 @@
   tags:
     - suricata
 
-- name: 'user create suricata'
+- name: create user suricata
   user:
     state: 'present'
     name: "{{user_name_suricata}}"
@@ -64,7 +64,7 @@
   tags:
     - suricata
 
-- name: 'file create log.dir'
+- name: create file log.dir
   file:
     state: 'directory'
     path: "{{file_dst_log_dir}}"
@@ -74,7 +74,7 @@
   tags:
     - suricata
 
-- name: 'file create eve.json'
+- name: create file eve.json
   copy:
     content: ''
     force: 'no'
@@ -85,7 +85,7 @@
   tags:
     - suricata
 
-- name: 'file create fast.log'
+- name: create file fast.log
   copy:
     content: ''
     force: 'no'
@@ -96,7 +96,7 @@
   tags:
     - suricata
 
-- name: 'file create stats.log'
+- name: create file stats.log
   copy:
     content: ''
     force: 'no'
@@ -107,7 +107,7 @@
   tags:
     - suricata
 
-- name: 'file create suricata.log'
+- name: create file suricata.log
   copy:
     content: ''
     force: 'no'
@@ -118,7 +118,7 @@
   tags:
     - suricata
 
-- name: 'file create suricata.logrotate'
+- name: create file suricata.logrotate
   template:
     src: "{{file_src_suricata_logrotate}}"
     dest: "{{file_dst_suricata_logrotate}}"
@@ -128,36 +128,36 @@
   tags:
     - suricata
 
-- name: 'file create suricata.service'
+- name: create file suricata.service
   template:
     src: "{{file_src_suricata_service}}"
     dest: "{{file_dst_suricata_service}}"
     mode: "{{file_mode_suricata_service}}"
     owner: "{{file_owner_suricata_service}}"
     group: "{{file_group_suricata_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - suricata
 
-- name: 'stat file suricata.rules'
+- name: stat file suricata.rules
   stat:
     path: "{{file_dst_suricata_rules}}"
   register: register_suricata_rules
   tags:
     - suricata
 
-- name: 'file create promiscuous_mode@.service'
+- name: create file promiscuous_mode@.service
   template:
     src: "{{file_src_promiscuous_mode_service}}"
     dest: "{{file_dst_promiscuous_mode_service}}"
     mode: "{{file_mode_promiscuous_mode_service}}"
     owner: "{{file_owner_promiscuous_mode_service}}"
     group: "{{file_group_promiscuous_mode_service}}"
-  notify: 'command systemctl daemon-reload'
+  notify: systemctl daemon-reload
   tags:
     - suricata
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -165,7 +165,7 @@
   tags:
     - suricata
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -176,7 +176,7 @@
   tags:
     - suricata
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
@@ -186,14 +186,14 @@
   tags:
     - suricata
 
-- name: 'command update permissions'
+- name: update permissions
   shell: "{{command_cmd_update_permissions}}"
   check_mode: 'no'
   when: (register_package_install_suricata is changed)
   tags:
     - suricata
 
-- name: 'command update suricata'
+- name: update suricata
   shell: "{{command_cmd_update_suricata}}"
   check_mode: 'no'
   when: (register_suricata_rules.stat.exists == False)

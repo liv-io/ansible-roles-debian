@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -8,15 +8,15 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: 'command run augenrules'
+- name: run augenrules
   command: "{{command_cmd_run_augenrules}}"
 
-- name: 'command restart auditd'
+- name: restart auditd
   command: "{{command_cmd_restart_auditd}}"
   args:
     warn: 'false'
 
-- name: 'service reload monit'
+- name: reload service monit
   service:
     state: 'reloaded'
     name: "{{service_name_monit}}"

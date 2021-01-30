@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,30 +10,30 @@
   tags:
     - systemd_timesyncd
 
-- name: 'file create timesyncd.conf'
+- name: create file timesyncd.conf
   template:
     src: "{{file_src_timesyncd_conf}}"
     dest: "{{file_dst_timesyncd_conf}}"
     mode: "{{file_mode_timesyncd_conf}}"
     owner: "{{file_owner_timesyncd_conf}}"
     group: "{{file_group_timesyncd_conf}}"
-  notify: 'service restart systemd-timesyncd'
+  notify: restart service systemd-timesyncd
   tags:
     - systemd_timesyncd
 
-- name: 'file create systemd-timesyncd.cfg'
+- name: create file systemd-timesyncd.cfg
   template:
     src: "{{file_src_systemd_timesyncd_cfg}}"
     dest: "{{file_dst_systemd_timesyncd_cfg}}"
     mode: "{{file_mode_systemd_timesyncd_cfg}}"
     owner: "{{file_owner_systemd_timesyncd_cfg}}"
     group: "{{file_group_systemd_timesyncd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (systemd_timesyncd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - systemd_timesyncd
 
-- name: 'service start systemd-timesyncd'
+- name: start service systemd-timesyncd
   service:
     state: 'started'
     enabled: 'yes'

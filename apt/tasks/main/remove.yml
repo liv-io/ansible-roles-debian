@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - apt
 
-- name: 'cron remove apt_check-update'
+- name: remove cron apt_check-update
   cron:
     state: 'absent'
     name: "{{cron_name_apt_check_update}}"
@@ -19,7 +19,7 @@
   tags:
     - apt
 
-- name: 'file remove apt_check-update'
+- name: remove file apt_check-update
   file:
     state: 'absent'
     path: "{{file_dst_apt_check_update}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,257 +10,257 @@
   tags:
     - apache2
 
-- name: 'file create 000-default.conf'
+- name: create file 000-default.conf
   template:
     src: "{{file_src_000_default_conf}}"
     dest: "{{file_dst_000_default_conf}}"
     mode: "{{file_mode_000_default_conf}}"
     owner: "{{file_owner_000_default_conf}}"
     group: "{{file_group_000_default_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file remove 000-default.link'
+- name: remove file 000-default.link
   file:
     state: 'absent'
     src: "{{file_src_000_default_link}}"
     path: "{{file_dst_000_default_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create alias.conf'
+- name: create file alias.conf
   template:
     src: "{{file_src_alias_conf}}"
     dest: "{{file_dst_alias_conf}}"
     mode: "{{file_mode_alias_conf}}"
     owner: "{{file_owner_alias_conf}}"
     group: "{{file_group_alias_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create alias.link'
+- name: create file alias.link
   file:
     state: 'link'
     src: "{{file_src_alias_link}}"
     path: "{{file_dst_alias_link}}"
     owner: "{{file_owner_alias_link}}"
     group: "{{file_group_alias_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create apache2.conf'
+- name: create file apache2.conf
   template:
     src: "{{file_src_apache2_conf}}"
     dest: "{{file_dst_apache2_conf}}"
     mode: "{{file_mode_apache2_conf}}"
     owner: "{{file_owner_apache2_conf}}"
     group: "{{file_group_apache2_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create autoindex.conf'
+- name: create file autoindex.conf
   template:
     src: "{{file_src_autoindex_conf}}"
     dest: "{{file_dst_autoindex_conf}}"
     mode: "{{file_mode_autoindex_conf}}"
     owner: "{{file_owner_autoindex_conf}}"
     group: "{{file_group_autoindex_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create autoindex.link'
+- name: create file autoindex.link
   file:
     state: 'link'
     src: "{{file_src_autoindex_link}}"
     path: "{{file_dst_autoindex_link}}"
     owner: "{{file_owner_autoindex_link}}"
     group: "{{file_group_autoindex_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create default-ssl.conf'
+- name: create file default-ssl.conf
   template:
     src: "{{file_src_default_ssl_conf}}"
     dest: "{{file_dst_default_ssl_conf}}"
     mode: "{{file_mode_default_ssl_conf}}"
     owner: "{{file_owner_default_ssl_conf}}"
     group: "{{file_group_default_ssl_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file remove default-ssl.link'
+- name: remove file default-ssl.link
   file:
     state: 'absent'
     src: "{{file_src_default_ssl_link}}"
     path: "{{file_dst_default_ssl_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create dir.conf'
+- name: create file dir.conf
   template:
     src: "{{file_src_dir_conf}}"
     dest: "{{file_dst_dir_conf}}"
     mode: "{{file_mode_dir_conf}}"
     owner: "{{file_owner_dir_conf}}"
     group: "{{file_group_dir_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create dir.link'
+- name: create file dir.link
   file:
     state: 'link'
     src: "{{file_src_dir_link}}"
     path: "{{file_dst_dir_link}}"
     owner: "{{file_owner_dir_link}}"
     group: "{{file_group_dir_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create info.conf'
+- name: create file info.conf
   template:
     src: "{{file_src_info_conf}}"
     dest: "{{file_dst_info_conf}}"
     mode: "{{file_mode_info_conf}}"
     owner: "{{file_owner_info_conf}}"
     group: "{{file_group_info_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create info.link'
+- name: create file info.link
   file:
     state: 'link'
     src: "{{file_src_info_link}}"
     path: "{{file_dst_info_link}}"
     owner: "{{file_owner_info_link}}"
     group: "{{file_group_info_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create ports.conf'
+- name: create file ports.conf
   template:
     src: "{{file_src_ports_conf}}"
     dest: "{{file_dst_ports_conf}}"
     mode: "{{file_mode_ports_conf}}"
     owner: "{{file_owner_ports_conf}}"
     group: "{{file_group_ports_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create security.conf'
+- name: create file security.conf
   template:
     src: "{{file_src_security_conf}}"
     dest: "{{file_dst_security_conf}}"
     mode: "{{file_mode_security_conf}}"
     owner: "{{file_owner_security_conf}}"
     group: "{{file_group_security_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create security.link'
+- name: create file security.link
   file:
     state: 'link'
     src: "{{file_src_security_link}}"
     path: "{{file_dst_security_link}}"
     owner: "{{file_owner_security_link}}"
     group: "{{file_group_security_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create ssl.conf'
+- name: create file ssl.conf
   template:
     src: "{{file_src_ssl_conf}}"
     dest: "{{file_dst_ssl_conf}}"
     mode: "{{file_mode_ssl_conf}}"
     owner: "{{file_owner_ssl_conf}}"
     group: "{{file_group_ssl_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create ssl.link'
+- name: create file ssl.link
   file:
     state: 'link'
     src: "{{file_src_ssl_link}}"
     path: "{{file_dst_ssl_link}}"
     owner: "{{file_owner_ssl_link}}"
     group: "{{file_group_ssl_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create status.conf'
+- name: create file status.conf
   template:
     src: "{{file_src_status_conf}}"
     dest: "{{file_dst_status_conf}}"
     mode: "{{file_mode_status_conf}}"
     owner: "{{file_owner_status_conf}}"
     group: "{{file_group_status_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create status.link'
+- name: create file status.link
   file:
     state: 'link'
     src: "{{file_src_status_link}}"
     path: "{{file_dst_status_link}}"
     owner: "{{file_owner_status_link}}"
     group: "{{file_group_status_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create userdir.conf'
+- name: create file userdir.conf
   template:
     src: "{{file_src_userdir_conf}}"
     dest: "{{file_dst_userdir_conf}}"
     mode: "{{file_mode_userdir_conf}}"
     owner: "{{file_owner_userdir_conf}}"
     group: "{{file_group_userdir_conf}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create userdir.link'
+- name: create file userdir.link
   file:
     state: 'link'
     src: "{{file_src_userdir_link}}"
     path: "{{file_dst_userdir_link}}"
     owner: "{{file_owner_userdir_link}}"
     group: "{{file_group_userdir_link}}"
-  notify: 'command check apache2'
+  notify: check apache2
   tags:
     - apache2
 
-- name: 'file create apache2.cfg'
+- name: create file apache2.cfg
   template:
     src: "{{file_src_apache2_cfg}}"
     dest: "{{file_dst_apache2_cfg}}"
     mode: "{{file_mode_apache2_cfg}}"
     owner: "{{file_owner_apache2_cfg}}"
     group: "{{file_group_apache2_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (apache2_monitor_monit_state is match('true|yes|enable'))
   tags:
     - apache2
 
-- name: 'service stop apache2'
+- name: stop service apache2
   service:
     state: 'stopped'
     enabled: 'no'

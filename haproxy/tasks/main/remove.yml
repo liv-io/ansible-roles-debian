@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,7 +10,7 @@
   tags:
     - haproxy
 
-- name: 'package remove haproxy'
+- name: remove package haproxy
   package:
     state: 'absent'
     name: "{{package_name_haproxy}}"
@@ -18,22 +18,22 @@
   tags:
     - haproxy
 
-- name: 'file remove monit-haproxy.cfg'
+- name: remove file monit-haproxy.cfg
   file:
     state: 'absent'
     path: "{{file_dst_monit_haproxy_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - haproxy
 
-- name: 'file remove haproxy.cfg'
+- name: remove file haproxy.cfg
   file:
     state: 'absent'
     path: "{{file_dst_haproxy_cfg}}"
   tags:
     - haproxy
 
-- name: 'file remove dhparam.pem'
+- name: remove file dhparam.pem
   file:
     state: 'absent'
     path: "{{file_dst_dhparam_pem}}"

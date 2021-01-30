@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -10,18 +10,18 @@
   tags:
     - unbound
 
-- name: 'file copy root.hints'
+- name: copy file root.hints
   copy:
     src: "{{file_src_root_hints}}"
     dest: "{{file_dst_root_hints}}"
     mode: "{{file_mode_root_hints}}"
     owner: "{{file_owner_root_hints}}"
     group: "{{file_group_root_hints}}"
-  notify: 'service restart unbound'
+  notify: restart service unbound
   tags:
     - unbound
 
-- name: 'file create unbound.conf'
+- name: create file unbound.conf
   template:
     src: "{{file_src_unbound_conf}}"
     dest: "{{file_dst_unbound_conf}}"
@@ -29,23 +29,23 @@
     owner: "{{file_owner_unbound_conf}}"
     group: "{{file_group_unbound_conf}}"
     validate: "{{file_validate_unbound_conf}}"
-  notify: 'service restart unbound'
+  notify: restart service unbound
   tags:
     - unbound
 
-- name: 'file create unbound.cfg'
+- name: create file unbound.cfg
   template:
     src: "{{file_src_unbound_cfg}}"
     dest: "{{file_dst_unbound_cfg}}"
     mode: "{{file_mode_unbound_cfg}}"
     owner: "{{file_owner_unbound_cfg}}"
     group: "{{file_group_unbound_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (unbound_monitor_monit_state is match('true|yes|enable'))
   tags:
     - unbound
 
-- name: 'service start unbound'
+- name: start service unbound
   service:
     state: 'started'
     enabled: 'yes'
