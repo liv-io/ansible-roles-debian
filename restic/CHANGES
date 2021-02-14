@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.2.0 (2021-02-14)
+F: Update restic to version 0.12.0
+
 * Version 0.1.1 (2020-12-20)
 E: Modify 'textfile_collector' directory path to comply with Linux FHS
 
