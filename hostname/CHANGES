@@ -12,5 +12,8 @@ F: feature
 
 CHANGES
 
+* Version 0.1.1 (2021-02-25)
+E: Minor command improvement (awk instead of grep/sed)
+
 * Version 0.1.0 (2020-12-11)
 F: Initial release

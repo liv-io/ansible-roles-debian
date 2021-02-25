@@ -4,22 +4,22 @@
 package_name_hostname: 'hostname'
 
 # get chassis
-command_cmd_get_chassis: "hostnamectl status | grep '^.*Chassis: ' | sed 's/^.*Chassis: //'"
+command_cmd_get_chassis: "hostnamectl status | awk -F': ' '/^.*Chassis: /{ print $2 }'"
 
 # get deployment
-command_cmd_get_deployment: "hostnamectl status | grep '^.*Deployment: ' | sed 's/^.*Deployment: //'"
+command_cmd_get_deployment: "hostnamectl status | awk -F': ' '/^.*Deployment: /{ print $2 }'"
 
 # get hostname
-command_cmd_get_hostname: "hostnamectl status | grep '^.*Static hostname: ' | sed 's/^.*Static hostname: //'"
+command_cmd_get_hostname: "hostnamectl status | awk -F': ' '/^.*Static hostname: /{ print $2 }'"
 
 # get icon-name
-command_cmd_get_icon_name: "hostnamectl status | grep '^.*Icon name: ' | sed 's/^.*Icon name: //'"
+command_cmd_get_icon_name: "hostnamectl status | awk -F': ' '/^.*Icon name: /{ print $2 }'"
 
 # get location
-command_cmd_get_location: "hostnamectl status | grep '^.*Location: ' | sed 's/^.*Location: //'"
+command_cmd_get_location: "hostnamectl status | awk -F': ' '/^.*Location: /{ print $2 }'"
 
 # get pretty-hostname
-command_cmd_get_pretty_hostname: "hostnamectl status | grep '^.*Pretty hostname: ' | sed 's/^.*Pretty hostname: //'"
+command_cmd_get_pretty_hostname: "hostnamectl status | awk -F': ' '/^.*Pretty hostname: /{ print $2 }'"
 
 # set chassis
 command_cmd_set_chassis: "hostnamectl set-chassis {{hostname_chassis}}"
