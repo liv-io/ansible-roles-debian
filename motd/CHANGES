@@ -12,5 +12,8 @@ F: feature
 
 CHANGES
 
+* Version 0.1.1 (2021-03-07)
+E: Minor wording improvement in motd template
+
 * Version 0.1.0 (2020-12-10)
 F: Initial release
