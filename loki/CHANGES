@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.3.0 (2021-03-13)
+F: Update Loki to version 2.2.0
+
 * Version 0.2.0 (2020-12-25)
 F: Update Loki to version 2.1.0
 
