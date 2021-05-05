@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.5.0 (2021-05-06)
+F: Update smokeping_prober to version 0.4.2
+
 * Version 0.4.0 (2021-02-03)
 F: Update smokeping_prober to version 0.4.1
 
