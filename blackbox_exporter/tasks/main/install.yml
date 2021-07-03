@@ -66,6 +66,7 @@
     exclude: "{{file_exclude_blackbox_exporter}}"
     extra_opts: "{{file_extra_opts_blackbox_exporter}}"
     remote_src: 'yes'
+  register: register_unarchive_file_blackbox_exporter
   tags:
     - blackbox_exporter
 
@@ -77,6 +78,14 @@
     owner: "{{file_owner_blackbox_exporter_service}}"
     group: "{{file_group_blackbox_exporter_service}}"
   notify: systemctl daemon-reload
+  tags:
+    - blackbox_exporter
+
+- name: set capability cap_net_raw
+  command: "{{command_cmd_set_cap_net_raw}}"
+  register: register_set_cap_net_raw
+  check_mode: 'no'
+  when: register_unarchive_file_blackbox_exporter.changed
   tags:
     - blackbox_exporter
 

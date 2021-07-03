@@ -63,6 +63,9 @@ command_cmd_check_service_blackbox_exporter: 'systemctl cat blackbox_exporter.se
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
+# set capability cap_net_raw
+command_cmd_set_cap_net_raw: 'setcap cap_net_raw+ep /usr/local/bin/blackbox_exporter'
+
 # systemctl daemon-reload
 command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
 
