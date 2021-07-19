@@ -12,5 +12,8 @@ F: feature
 
 CHANGES
 
+* Version 0.1.1 (2021-07-19)
+B: Fix notify arguments (remove trailing single quote)
+
 * Version 0.1.0 (2020-12-19)
 F: Initial release

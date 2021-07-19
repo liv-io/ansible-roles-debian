@@ -18,9 +18,9 @@
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
   notify:
-    - start service opensmtpd'
-    - smtpctl aliases'
-    - restart service opensmtpd'
+    - start service opensmtpd
+    - smtpctl aliases
+    - restart service opensmtpd
   tags:
     - opensmtpd
 
