@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.2.1 (2021-08-03)
+F: Update restic to version 0.12.1
+
 * Version 0.2.0 (2021-02-14)
 F: Update restic to version 0.12.0
 
