@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.7.0 (2021-08-07)
+F: Update node_exporter to version 1.2.2
+
 * Version 0.6.0 (2021-08-05)
 F: Update node_exporter to version 1.2.1
 

@@ -85,7 +85,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '1.2.1'
+    Default    : '1.2.2'
     Options    :
       Examples: '0.15.0' | '0.16.0'
 
