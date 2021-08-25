@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.5.0 (2021-08-25)
+F: Update alertmanager to version 0.23.0
+
 * Version 0.4.0 (2021-06-02)
 F: Update alertmanager to version 0.22.2
 
