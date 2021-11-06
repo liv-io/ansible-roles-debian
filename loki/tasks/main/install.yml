@@ -116,6 +116,16 @@
   tags:
     - loki
 
+- name: create file wal.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_wal_dir}}"
+    mode: "{{file_mode_wal_dir}}"
+    owner: "{{file_owner_wal_dir}}"
+    group: "{{file_group_wal_dir}}"
+  tags:
+    - loki
+
 - name: create file loki_etc.dir
   file:
     state: 'directory'

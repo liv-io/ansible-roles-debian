@@ -117,6 +117,12 @@ file_mode_loki_cfg: '0640'
 file_owner_loki_cfg: 'root'
 file_group_loki_cfg: 'root'
 
+# wal.dir
+file_dst_wal_dir: '/data/loki/wal'
+file_mode_wal_dir: '0750'
+file_owner_wal_dir: 'loki'
+file_group_wal_dir: 'loki'
+
 # check service loki
 command_cmd_check_service_loki: 'systemctl cat loki.service > /dev/null 2>&1'
 
