@@ -24,7 +24,6 @@
 - name: remove file 000-default.link
   file:
     state: 'absent'
-    src: "{{file_src_000_default_link}}"
     path: "{{file_dst_000_default_link}}"
   notify: check apache2
   tags:
@@ -99,7 +98,6 @@
 - name: remove file default-ssl.link
   file:
     state: 'absent'
-    src: "{{file_src_default_ssl_link}}"
     path: "{{file_dst_default_ssl_link}}"
   notify: check apache2
   tags:
