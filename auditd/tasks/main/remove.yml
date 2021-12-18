@@ -39,10 +39,3 @@
     path: "{{file_dst_syslog_conf}}"
   tags:
     - auditd
-
-- name: remove file audispd.conf
-  file:
-    state: 'absent'
-    path: "{{file_dst_audispd_conf}}"
-  tags:
-    - auditd

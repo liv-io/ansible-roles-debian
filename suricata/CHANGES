@@ -12,5 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.0.0 (2021-12-19)
+C: Add support for Debian 11 (Bullseye)
+C: Drop support for Debian 10 (Buster)
+
 * Version 0.1.0 (2020-12-19)
 F: Initial release

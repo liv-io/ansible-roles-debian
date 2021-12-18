@@ -39,25 +39,25 @@ CONFIG
           - url: 'http://ftp.ch.debian.org/debian'
             state: 'true'
             comment: 'Debian - Base'
-            distribution: 'buster'
+            distribution: 'bullseye'
             components: ['main']
 
           - url: 'http://ftp.ch.debian.org/debian'
             state: 'true'
             comment: 'Debian - Updates'
-            distribution: 'buster-updates'
+            distribution: 'bullseye-updates'
             components: ['main']
 
           - url: 'http://security.debian.org/debian-security'
             state: 'true'
             comment: 'Debian - Security'
-            distribution: 'buster/updates'
+            distribution: 'bullseye-security'
             components: ['main']
 
           - url: 'http://ftp.ch.debian.org/debian'
             state: 'true'
-            comment: 'Debian - Buster Backports'
-            distribution: 'buster-backports'
+            comment: 'Debian - Backports'
+            distribution: 'bullseye-backports'
             components: ['main']
 
 PARAMETERS
@@ -141,9 +141,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Buster Backports, distribution: buster-backports, components: [main]}]
+    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Backports, distribution: bullseye-backports, components: [main]}]
     Options    :
-      Examples: [{path: /etc/apt/sources.list, state: 'true', repositories: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}]
       None    : []
 
   apt_config_group
@@ -154,7 +154,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{path: /etc/apt/sources.list, state: 'true', repositories: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}]
       None    : []
 
   apt_config_host
@@ -165,7 +165,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{path: /etc/apt/sources.list, state: 'true', repositories: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: buster, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: buster-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: buster/updates, components: [main]}]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}]
       None    : []
 
   apt_http_proxy
@@ -276,5 +276,5 @@ SUPPORT
 
 OPERATING SYSTEMS
   Debian
-    Version: 10
+    Version: 11
       Status: Testing

@@ -1,5 +1,32 @@
 {{ansible_managed|comment(decoration='#')}}
 
+# Default config for Suricata
+
+# set to yes to start the server in the init.d script
+RUN=no
+
+# Configuration file to load
+SURCONF=/etc/suricata/suricata.yaml
+
+# Listen mode: pcap, nfqueue or af-packet
+# depending on this value, only one of the two following options
+# will be used (af-packet uses neither).
+# Please note that IPS mode is only available when using nfqueue
+LISTENMODE=nfqueue
+
+# Interface to listen on (for pcap mode)
+IFACE={{suricata_interface}}
+
+# Queue number to listen on (for nfqueue mode)
+NFQUEUE=0
+
+# Load Google TCMALLOC if libtcmalloc-minimal4 is installed
+# This _might_ give you very very small performance gain....
+TCMALLOC="YES"
+
+# Pid file
+PIDFILE=/run/suricata.pid
+
 # The following parameters are the most commonly needed to configure
 # suricata. A full list can be seen by running /sbin/suricata --help
 # -i <network interface device>

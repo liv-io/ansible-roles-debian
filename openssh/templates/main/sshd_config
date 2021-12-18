@@ -12,6 +12,8 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
+#Include /etc/ssh/sshd_config.d/*.conf
+
 # PORT
 
 {% if not (openssh_port == []) %}
@@ -213,7 +215,6 @@ TCPKeepAlive no
 TCPKeepAlive yes
 {% endif %}
 #UseLogin no
-#UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
 {% if (openssh_compression is match('false|no|disable')) %}
 Compression no

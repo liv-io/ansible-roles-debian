@@ -12,6 +12,10 @@ F: feature
 
 CHANGES
 
+* Version 1.0.0 (2021-12-18)
+C: Add support for Debian 11 (Bullseye)
+C: Drop support for Debian 10 (Buster)
+
 * Version 0.2.0 (2021-11-26)
 F: Update haproxy_exporter to version 0.13.0
 

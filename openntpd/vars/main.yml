@@ -40,6 +40,12 @@ file_mode_openntpd_cfg: '0640'
 file_owner_openntpd_cfg: 'root'
 file_group_openntpd_cfg: 'root'
 
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service monit_exporter
+command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
+
 # monit
 service_name_monit: 'monit'
 

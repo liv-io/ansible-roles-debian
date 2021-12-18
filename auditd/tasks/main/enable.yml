@@ -21,17 +21,6 @@
   tags:
     - auditd
 
-- name: create file audispd.conf
-  template:
-    src: "{{file_src_audispd_conf}}"
-    dest: "{{file_dst_audispd_conf}}"
-    mode: "{{file_mode_audispd_conf}}"
-    owner: "{{file_owner_audispd_conf}}"
-    group: "{{file_group_audispd_conf}}"
-  notify: restart auditd
-  tags:
-    - auditd
-
 - name: create file syslog.conf
   template:
     src: "{{file_src_syslog_conf}}"

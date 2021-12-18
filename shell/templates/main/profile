@@ -3,7 +3,7 @@
 # /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
 # and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
 
-if [ "`id -u`" -eq 0 ]; then
+if [ "$(id -u)" -eq 0 ]; then
   PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 else
   PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
@@ -18,7 +18,7 @@ if [ "${PS1-}" ]; then
       . /etc/bash.bashrc
     fi
   else
-    if [ "`id -u`" -eq 0 ]; then
+    if [ "$(id -u)" -eq 0 ]; then
       PS1='# '
     else
       PS1='$ '
@@ -27,13 +27,17 @@ if [ "${PS1-}" ]; then
 fi
 
 # Source general Shell environment variables
-for shell in /etc/profile.d/*.sh ; do
-  [ -r "$shell" ] && . "$shell"
-done
+if [ -d /etc/profile.d ]; then
+  for shell in /etc/profile.d/*.sh ; do
+    [ -r "$shell" ] && . "$shell"
+  done
+fi
 
 # Source Bash specific environment variables
-if [ $(echo $0 | tr -d '-') == 'bash' ]; then
-  for bash in /etc/profile.d/*.bash ; do
-    [ -r "$bash" ] && . "$bash"
-  done
+if [ -d /etc/profile.d ]; then
+  if [ $(echo $0 | tr -d '-') == 'bash' ]; then
+    for bash in /etc/profile.d/*.bash ; do
+      [ -r "$bash" ] && . "$bash"
+    done
+  fi
 fi

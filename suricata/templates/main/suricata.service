@@ -8,17 +8,14 @@ Documentation=man:suricata(8) man:suricatasc(8)
 Documentation=https://suricata-ids.org/docs/
 
 [Service]
+Type=forking
+#Environment=LD_PRELOAD=/usr/lib/libtcmalloc_minimal.so.4
 EnvironmentFile=/etc/default/suricata
 PIDFile=/run/suricata.pid
-ExecStartPre=/bin/rm -f /run/suricata.pid
-ExecStart=/usr/bin/suricata -c /etc/suricata/suricata.yaml --pidfile /run/suricata.pid $OPTIONS
-ExecReload=/bin/kill -USR2 $MAINPID
-
-### Security Settings ###
-MemoryDenyWriteExecute=true
-LockPersonality=true
-ProtectControlGroups=true
-ProtectKernelModules=true
+ExecStart=/usr/bin/suricata -D --af-packet -c /etc/suricata/suricata.yaml --pidfile /run/suricata.pid $OPTIONS
+ExecReload=/usr/bin/suricatasc -c reload-rules ; /bin/kill -HUP $MAINPID
+ExecStop=/usr/bin/suricatasc -c shutdown
+Restart=on-failure
 ProtectSystem=full
 ProtectHome=true
 

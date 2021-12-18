@@ -19,6 +19,6 @@
     group: "{{file_group_php_ini}}"
   notify:
     - check apache2
-    - reload service apache2
+    - reload apache2
   tags:
     - php

@@ -32,3 +32,8 @@
   when: (item.state|default('false') is match('false|no|remove'))
   tags:
     - apt
+
+- name: flush meta handlers
+  meta: 'flush_handlers'
+  tags:
+    - apt

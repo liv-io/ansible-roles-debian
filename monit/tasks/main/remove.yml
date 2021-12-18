@@ -14,7 +14,7 @@
   package:
     state: 'absent'
     name: "{{package_name_monit}}"
-    default_release: 'buster-backports'
+    default_release: 'bullseye-backports'
     install_recommends: 'no'
   tags:
     - monit

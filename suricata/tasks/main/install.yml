@@ -14,7 +14,7 @@
   package:
     state: 'present'
     name: "{{package_name_suricata}}"
-    default_release: 'buster-backports'
+    default_release: 'bullseye-backports'
     install_recommends: 'no'
   register: register_package_install_suricata
   tags:
@@ -24,7 +24,7 @@
   package:
     state: 'present'
     name: "{{package_name_suricata_update}}"
-    default_release: 'buster-backports'
+    default_release: 'bullseye-backports'
     install_recommends: 'no'
   tags:
     - suricata

@@ -63,6 +63,8 @@ CONFIG
           -D
           # Increase the buffers to survive stress events.
           -b 8192
+          # Set the time for the kernel to wait
+          --backlog_wait_time 60000
           # Set failure mode to syslog
           -f 1
           # Watch '/etc/shadow' for changes
@@ -80,6 +82,8 @@ CONFIG
           -D
           # Increase the buffers to survive stress events.
           -b 8192
+          # Set the time for the kernel to wait
+          --backlog_wait_time 60000
           # Set failure mode to syslog
           -f 1
           # Log all commands (32-bit)
@@ -128,6 +132,8 @@ ROLE
                      -D
                      # Increase the buffers to survive stress events.
                      -b 8192
+                     # Set the time for the kernel to wait
+                     --backlog_wait_time 60000
                      # Set failure mode to syslog
                      -f 1
     Options    :
@@ -221,5 +227,5 @@ SUPPORT
 
 OPERATING SYSTEMS
   Debian
-    Version: 10
+    Version: 11
       Status: Testing
