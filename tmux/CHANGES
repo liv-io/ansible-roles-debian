@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.0.1 (2022-01-01)
+B: Update tmux.conf to Debian 11 (tmux 3.1c-1)
+
 * Version 1.0.0 (2021-12-18)
 C: Add support for Debian 11 (Bullseye)
 C: Drop support for Debian 10 (Buster)
