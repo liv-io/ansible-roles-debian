@@ -1,0 +1,89 @@
+INFORMATION
+
+Name   : gnupg
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+DESCRIPTION
+
+GNU privacy guard - a free PGP replacement
+GnuPG is GNU's tool for secure communication and data storage. It can be used
+to encrypt data and to create digital signatures. It includes an advanced key
+management facility and is compliant with the proposed OpenPGP Internet
+standard as described in RFC4880.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+USAGE
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: gnupg
+    vars:
+      gnupg_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: gnupg
+    vars:
+      gnupg_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: gnupg
+    vars:
+      gnupg_state: 'inactive'
+
+PARAMETERS
+
+ROLE
+  gnupg_state
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+CONFLICTS
+
+ROLES
+
+DEPENDENCIES
+
+PACKAGES
+  gnupg
+    Version: >= 2.0
+    Name   :
+      Debian 11: 'gnupg'
+
+ROLES
+
+PARAMETERS
+
+REQUIREMENTS
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.7.0
+
+SUPPORT
+
+OPERATING SYSTEMS
+  Debian
+    Version: 11
+      Status: Testing

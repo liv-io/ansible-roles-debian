@@ -1,0 +1,19 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - gnupg
+
+- name: remove package gnupg
+  package:
+    state: 'absent'
+    name: "{{package_name_gnupg}}"
+    install_recommends: 'no'
+  tags:
+    - gnupg
