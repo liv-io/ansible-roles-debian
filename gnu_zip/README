@@ -56,7 +56,7 @@ PACKAGES
   gnu-zip
     Version: >= 1.0
     Name   :
-      Debian 10: 'gzip'
+      Debian 11: 'gzip'
 
 ROLES
 

@@ -63,7 +63,7 @@ PACKAGES
   php-mysql
     Version: >= 7.3
     Name   :
-      Debian 10: 'php-mysql'
+      Debian 11: 'php-mysql'
 
 ROLES
 

@@ -61,7 +61,7 @@ PACKAGES
   nyancat
     Version: >= 1.0
     Name   :
-      Debian 10: 'nyancat'
+      Debian 11: 'nyancat'
 
 ROLES
 

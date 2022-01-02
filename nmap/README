@@ -68,7 +68,7 @@ PACKAGES
   nmap
     Version: >= 7.0
     Name   :
-      Debian 10: 'nmap'
+      Debian 11: 'nmap'
 
 ROLES
 

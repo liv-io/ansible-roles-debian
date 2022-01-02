@@ -63,7 +63,7 @@ PACKAGES
   jq
     Version: >= 1.0
     Name   :
-      Debian 10: 'jq'
+      Debian 11: 'jq'
 
 ROLES
 

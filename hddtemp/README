@@ -101,7 +101,7 @@ PACKAGES
   hddtemp
     Version: >= 0.3
     Name   :
-      Debian 10: 'hddtemp'
+      Debian 11: 'hddtemp'
 
 ROLES
 

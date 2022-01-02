@@ -64,7 +64,7 @@ PACKAGES
   gdisk
     Version: >= 1.0
     Name   :
-      Debian 10: 'gdisk'
+      Debian 11: 'gdisk'
 
 ROLES
 

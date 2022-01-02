@@ -63,7 +63,7 @@ PACKAGES
   htop
     Version: >= 2.0
     Name   :
-      Debian 10: 'htop'
+      Debian 11: 'htop'
 
 ROLES
 

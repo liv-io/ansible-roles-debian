@@ -369,12 +369,12 @@ PACKAGES
   mariadb-client
     Version: >= 10.0
     Name   :
-      Debian 10: 'mariadb-client'
+      Debian 11: 'mariadb-client'
 
   mariadb-server
     Version: >= 10.0
     Name   :
-      Debian 10: 'mariadb-server'
+      Debian 11: 'mariadb-server'
 
 ROLES
   mailx

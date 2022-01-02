@@ -62,7 +62,7 @@ PACKAGES
   iperf3
     Version: >= 3.0
     Name   :
-      Debian 10: 'iperf3'
+      Debian 11: 'iperf3'
 
 ROLES
 

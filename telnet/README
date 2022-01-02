@@ -62,7 +62,7 @@ PACKAGES
   telnet
     Version: >= 0.10
     Name   :
-      Debian 10: 'telnet'
+      Debian 11: 'telnet'
 
 ROLES
 

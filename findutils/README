@@ -56,7 +56,7 @@ PACKAGES
   findutils
     Version: >= 4.0
     Name   :
-      Debian 10: 'findutils'
+      Debian 11: 'findutils'
 
 ROLES
 

@@ -253,7 +253,7 @@ PACKAGES
   apt
     Version: >= 1.0
     Name   :
-      Debian 10: 'apt'
+      Debian 11: 'apt'
 
 ROLES
   gnupg1

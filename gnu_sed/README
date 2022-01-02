@@ -58,7 +58,7 @@ PACKAGES
   gnu-sed
     Version: >= 4.2
     Name   :
-      Debian 10: 'sed'
+      Debian 11: 'sed'
 
 ROLES
 

@@ -64,7 +64,7 @@ PACKAGES
   iputils-arping
     Version: >= 20180629
     Name   :
-      Debian 10: 'iputils-arping'
+      Debian 11: 'iputils-arping'
 
 ROLES
 

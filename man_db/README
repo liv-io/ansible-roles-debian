@@ -66,7 +66,7 @@ PACKAGES
   man-db
     Version: >= 2.0
     Name   :
-      Debian 10: 'man-db'
+      Debian 11: 'man-db'
 
 ROLES
 

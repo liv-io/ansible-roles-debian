@@ -54,7 +54,7 @@ PACKAGES
   iproute2
     Version: >= 3.10
     Name   :
-      Debian 10: 'iproute2'
+      Debian 11: 'iproute2'
 
 ROLES
 

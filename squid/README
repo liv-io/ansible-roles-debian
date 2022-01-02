@@ -394,7 +394,7 @@ PACKAGES
   squid
     Version: >= 4.0
     Name   :
-      Debian 10: 'squid'
+      Debian 11: 'squid'
 
 ROLES
 

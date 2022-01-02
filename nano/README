@@ -63,7 +63,7 @@ PACKAGES
   nano
     Version: >= 3.0
     Name   :
-      Debian 10: 'nano'
+      Debian 11: 'nano'
 
 ROLES
 

@@ -63,7 +63,7 @@ PACKAGES
   colordiff
     Version: >= 1.0
     Name   :
-      Debian 10: 'colordiff'
+      Debian 11: 'colordiff'
 
 ROLES
 

@@ -65,7 +65,7 @@ PACKAGES
   socat
     Version: >= 1.0
     Name   :
-      Debian 10: 'socat'
+      Debian 11: 'socat'
 
 ROLES
 

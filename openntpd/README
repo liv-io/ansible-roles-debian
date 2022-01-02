@@ -262,7 +262,7 @@ PACKAGES
   openntpd
     Version: >= 6.0
     Name   :
-      Debian 10: 'openntpd'
+      Debian 11: 'openntpd'
 
 ROLES
   mailx

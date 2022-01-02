@@ -64,7 +64,7 @@ PACKAGES
   gnupg1
     Version: >= 1.0
     Name   :
-      Debian 10: 'gnupg1'
+      Debian 11: 'gnupg1'
 
 ROLES
 

@@ -68,7 +68,7 @@ PACKAGES
   sysstat
     Version: >= 12.0
     Name   :
-      Debian 10: 'sysstat'
+      Debian 11: 'sysstat'
 
 ROLES
 

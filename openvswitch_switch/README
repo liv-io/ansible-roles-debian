@@ -58,7 +58,7 @@ PACKAGES
   openvswitch-switch
     Version: >= 2.0
     Name   :
-      Debian 10: 'openvswitch-switch'
+      Debian 11: 'openvswitch-switch'
 
 ROLES
 

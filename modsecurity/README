@@ -198,7 +198,7 @@ PACKAGES
   modsecurity
     Version: >= 2.4
     Name   :
-      Debian 10: 'libmodsecurity3'
+      Debian 11: 'libmodsecurity3'
 
 ROLES
 

@@ -299,7 +299,7 @@ PACKAGES
   opensmtpd
     Version: >= 6.6
     Name   :
-      Debian 10: 'opensmtpd'
+      Debian 11: 'opensmtpd'
 
 ROLES
 

@@ -63,7 +63,7 @@ PACKAGES
   coreutils
     Version: >= 8.0
     Name   :
-      Debian 10: 'coreutils'
+      Debian 11: 'coreutils'
 
 ROLES
 

@@ -340,7 +340,7 @@ PACKAGES
   chrony
     Version: >= 3.0
     Name   :
-      Debian 10: 'chrony'
+      Debian 11: 'chrony'
 
 ROLES
   bc

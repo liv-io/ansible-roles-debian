@@ -63,7 +63,7 @@ PACKAGES
   cloc
     Version: >= 1.0
     Name   :
-      Debian 10: 'cloc'
+      Debian 11: 'cloc'
 
 ROLES
 

@@ -62,7 +62,7 @@ PACKAGES
   iputils-ping
     Version: >= 20180629
     Name   :
-      Debian 10: 'iputils-ping'
+      Debian 11: 'iputils-ping'
 
 ROLES
 

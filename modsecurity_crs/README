@@ -96,7 +96,7 @@ PACKAGES
   modsecurity-crs
     Version: >= 3.0
     Name   :
-      Debian 10: 'modsecurity-crs'
+      Debian 11: 'modsecurity-crs'
 
 ROLES
 

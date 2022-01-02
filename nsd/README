@@ -288,7 +288,7 @@ PACKAGES
   nsd
     Version: >= 4.0
     Name   :
-      Debian 10: 'nsd'
+      Debian 11: 'nsd'
 
 ROLES
 

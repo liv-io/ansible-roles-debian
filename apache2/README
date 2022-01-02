@@ -564,7 +564,7 @@ PACKAGES
   apache2
     Version: >= 2.4
     Name   :
-      Debian 10: 'apache2'
+      Debian 11: 'apache2'
 
 ROLES
 

@@ -64,7 +64,7 @@ PACKAGES
   bc
     Version: >= 1.0
     Name   :
-      Debian 10: 'bc'
+      Debian 11: 'bc'
 
 ROLES
 

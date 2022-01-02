@@ -64,7 +64,7 @@ PACKAGES
   less
     Version: >= 436
     Name   :
-      Debian 10: 'less'
+      Debian 11: 'less'
 
 ROLES
 

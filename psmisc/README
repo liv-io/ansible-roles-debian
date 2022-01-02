@@ -66,7 +66,7 @@ PACKAGES
   psmisc
     Version: >= 23.0
     Name   :
-      Debian 10: 'psmisc'
+      Debian 11: 'psmisc'
 
 ROLES
 

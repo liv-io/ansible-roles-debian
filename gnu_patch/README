@@ -63,7 +63,7 @@ PACKAGES
   gnu-patch
     Version: >= 2.0
     Name   :
-      Debian 10: 'gpatch'
+      Debian 11: 'gpatch'
 
 ROLES
 

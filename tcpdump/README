@@ -63,7 +63,7 @@ PACKAGES
   tcpdump
     Version: >= 4.0
     Name   :
-      Debian 10: 'tcpdump'
+      Debian 11: 'tcpdump'
 
 ROLES
 

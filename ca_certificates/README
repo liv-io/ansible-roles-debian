@@ -62,7 +62,7 @@ PACKAGES
   ca-certificates
     Version: >= 20200601
     Name   :
-      Debian 10: 'ca-certificates'
+      Debian 11: 'ca-certificates'
 
 ROLES
 

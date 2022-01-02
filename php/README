@@ -157,7 +157,7 @@ PACKAGES
   php
     Version: >= 7.3
     Name   :
-      Debian 10: 'php'
+      Debian 11: 'php'
 
 ROLES
 

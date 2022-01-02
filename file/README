@@ -62,7 +62,7 @@ PACKAGES
   file
     Version: >= 5.0
     Name   :
-      Debian 10: 'file'
+      Debian 11: 'file'
 
 ROLES
 

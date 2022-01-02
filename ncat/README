@@ -63,7 +63,7 @@ PACKAGES
   ncat
     Version: >= 7.0
     Name   :
-      Debian 10: 'ncat'
+      Debian 11: 'ncat'
 
 ROLES
 

@@ -62,7 +62,7 @@ PACKAGES
   mtr
     Version: >= 0.92
     Name   :
-      Debian 10: 'mtr-tiny'
+      Debian 11: 'mtr-tiny'
 
 ROLES
 

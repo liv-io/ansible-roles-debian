@@ -65,7 +65,7 @@ PACKAGES
   nload
     Version: >= 0.7
     Name   :
-      Debian 10: 'nload'
+      Debian 11: 'nload'
 
 ROLES
 

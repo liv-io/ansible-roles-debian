@@ -64,7 +64,7 @@ PACKAGES
   iftop
     Version: >= 1.0
     Name   :
-      Debian 10: 'iftop'
+      Debian 11: 'iftop'
 
 ROLES
 

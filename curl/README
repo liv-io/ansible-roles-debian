@@ -68,7 +68,7 @@ PACKAGES
   curl
     Version: >= 7.0
     Name   :
-      Debian 10: 'curl'
+      Debian 11: 'curl'
 
 ROLES
 

@@ -73,7 +73,7 @@ PACKAGES
   patchutils
     Version: >= 0.3
     Name   :
-      Debian 10: 'patchutils'
+      Debian 11: 'patchutils'
 
 ROLES
 

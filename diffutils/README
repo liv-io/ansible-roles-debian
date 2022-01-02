@@ -59,7 +59,7 @@ PACKAGES
   diffutils
     Version: >= 3.0
     Name   :
-      Debian 10: 'diffutils'
+      Debian 11: 'diffutils'
 
 ROLES
 

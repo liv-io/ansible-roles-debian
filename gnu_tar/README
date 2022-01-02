@@ -58,7 +58,7 @@ PACKAGES
   gnu-tar
     Version: >= 1.0
     Name   :
-      Debian 10: 'tar'
+      Debian 11: 'tar'
 
 ROLES
 

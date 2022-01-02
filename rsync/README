@@ -64,7 +64,7 @@ PACKAGES
   rsync
     Version: >= 3.0
     Name   :
-      Debian 10: 'rsync'
+      Debian 11: 'rsync'
 
 ROLES
 

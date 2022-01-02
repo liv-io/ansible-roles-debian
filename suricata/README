@@ -202,7 +202,7 @@ PACKAGES
   suricata
     Version: >= 5.0
     Name   :
-      Debian 10: 'suricata'
+      Debian 11: 'suricata'
 
 ROLES
 

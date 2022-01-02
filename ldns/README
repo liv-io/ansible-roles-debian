@@ -68,7 +68,7 @@ PACKAGES
   ldns
     Version: >= 1.0
     Name   :
-      Debian 10: 'ldnsutils'
+      Debian 11: 'ldnsutils'
 
 ROLES
 

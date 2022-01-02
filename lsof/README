@@ -63,7 +63,7 @@ PACKAGES
   lsof
     Version: >= 4.0
     Name   :
-      Debian 10: 'lsof'
+      Debian 11: 'lsof'
 
 ROLES
 

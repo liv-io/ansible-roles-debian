@@ -187,7 +187,7 @@ PACKAGES
   bash
     Version: >= 4.0
     Name   :
-      Debian 10: 'bash'
+      Debian 11: 'bash'
 
 ROLES
   shell

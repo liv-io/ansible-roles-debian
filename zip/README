@@ -63,7 +63,7 @@ PACKAGES
   zip
     Version: >= 3.0
     Name   :
-      Debian 10: 'zip'
+      Debian 11: 'zip'
 
 ROLES
 

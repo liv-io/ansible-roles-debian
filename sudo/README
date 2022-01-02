@@ -240,7 +240,7 @@ PACKAGES
   sudo
     Version: >= 1.8
     Name   :
-      Debian 10: 'sudo'
+      Debian 11: 'sudo'
 
 ROLES
 

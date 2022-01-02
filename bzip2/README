@@ -64,7 +64,7 @@ PACKAGES
   bzip2
     Version: >= 1.0
     Name   :
-      Debian 10: 'bzip2'
+      Debian 11: 'bzip2'
 
 ROLES
 

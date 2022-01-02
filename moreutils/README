@@ -79,7 +79,7 @@ PACKAGES
   moreutils
     Version: >= 0.6
     Name   :
-      Debian 10: 'moreutils'
+      Debian 11: 'moreutils'
 
 ROLES
 

@@ -63,7 +63,7 @@ PACKAGES
   audispd-plugins
     Version: >= 2.0
     Name   :
-      Debian 10: 'audispd-plugins'
+      Debian 11: 'audispd-plugins'
 
 ROLES
 

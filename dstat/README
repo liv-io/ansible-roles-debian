@@ -62,7 +62,7 @@ PACKAGES
   dstat
     Version: >= 0.7
     Name   :
-      Debian 10: 'dstat'
+      Debian 11: 'dstat'
 
 ROLES
 

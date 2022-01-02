@@ -258,7 +258,7 @@ PACKAGES
   haproxy
     Version: >= 1.8
     Name   :
-      Debian 10: 'haproxy'
+      Debian 11: 'haproxy'
 
 ROLES
   openssl

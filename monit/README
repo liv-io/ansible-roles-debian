@@ -472,7 +472,7 @@ PACKAGES
   monit
     Version: >= 5.2
     Name   :
-      Debian 10: 'monit'
+      Debian 11: 'monit'
 
 ROLES
 

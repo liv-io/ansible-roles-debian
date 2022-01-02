@@ -65,7 +65,7 @@ PACKAGES
   net-tools
     Version: >= 1.0
     Name   :
-      Debian 10: 'net-tools'
+      Debian 11: 'net-tools'
 
 ROLES
 

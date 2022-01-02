@@ -62,7 +62,7 @@ PACKAGES
   mailx
     Version: >= 8.0
     Name   :
-      Debian 10: 'bsd-mailx'
+      Debian 11: 'bsd-mailx'
 
 ROLES
 

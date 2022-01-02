@@ -65,7 +65,7 @@ PACKAGES
   tcptraceroute
     Version: >= 1.0
     Name   :
-      Debian 10: 'tcptraceroute'
+      Debian 11: 'tcptraceroute'
 
 ROLES
 

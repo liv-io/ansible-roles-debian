@@ -205,7 +205,7 @@ PACKAGES
   grafana
     Version: >= 7.0
     Name   :
-      Debian 10: 'grafana'
+      Debian 11: 'grafana'
 
 ROLES
   gnupg1

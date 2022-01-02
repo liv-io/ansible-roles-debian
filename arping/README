@@ -64,7 +64,7 @@ PACKAGES
   arping
     Version: >= 2.0
     Name   :
-      Debian 10: 'arping'
+      Debian 11: 'arping'
 
 ROLES
 

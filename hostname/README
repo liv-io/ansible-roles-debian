@@ -126,7 +126,7 @@ PACKAGES
   hostname
     Version: >= 3.0
     Name   :
-      Debian 10: 'hostname'
+      Debian 11: 'hostname'
 
 ROLES
 

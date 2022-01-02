@@ -55,7 +55,7 @@ PACKAGES
   gnu-grep
     Version: >= 2.6
     Name   :
-      Debian 10: 'grep'
+      Debian 11: 'grep'
 
 ROLES
 

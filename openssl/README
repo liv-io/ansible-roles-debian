@@ -62,7 +62,7 @@ PACKAGES
   openssl
     Version: >= 1.0
     Name   :
-      Debian 10: 'openssl'
+      Debian 11: 'openssl'
 
 ROLES
 

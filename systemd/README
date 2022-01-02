@@ -251,7 +251,7 @@ PACKAGES
   systemd
     Version: >= 219
     Name   :
-      Debian 10: 'systemd'
+      Debian 11: 'systemd'
 
 ROLES
 

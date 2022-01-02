@@ -64,7 +64,7 @@ PACKAGES
   unzip
     Version: >= 6.0
     Name   :
-      Debian 10: 'unzip'
+      Debian 11: 'unzip'
 
 ROLES
 

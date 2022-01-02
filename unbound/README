@@ -408,7 +408,7 @@ PACKAGES
   unbound
     Version: >= 1.9
     Name   :
-      Debian 10: 'unbound'
+      Debian 11: 'unbound'
 
 ROLES
 
