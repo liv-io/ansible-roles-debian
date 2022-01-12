@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.0.1 (2022-01-12)
+E: Update Loki to version 2.4.2
+
 * Version 1.0.0 (2021-12-18)
 C: Add support for Debian 11 (Bullseye)
 C: Drop support for Debian 10 (Buster)
