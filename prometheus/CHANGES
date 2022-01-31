@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.2.0 (2022-01-31)
+F: Update Prometheus to version 2.33.0
+
 * Version 1.1.0 (2021-12-19)
 F: Update Prometheus to version 2.32.1
 
