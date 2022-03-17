@@ -96,7 +96,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.4.2'
+    Default    : '0.5.2'
     Options    :
       Examples: '0.1.0' | '0.2.0'
 
