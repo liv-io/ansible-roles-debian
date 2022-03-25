@@ -6,6 +6,6 @@ alertmanager_config: []
 
 alertmanager_monitor_monit_state: 'false'
 
-alertmanager_version: '0.23.0'
+alertmanager_version: '0.24.0'
 
 alertmanager_web_external_url: "https://alertmanager.{{ansible_domain}}"
