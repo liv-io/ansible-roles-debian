@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.1.0 (2022-03-27)
+F: Update restic to version 0.13.0
+
 * Version 1.0.0 (2021-12-18)
 C: Add support for Debian 11 (Bullseye)
 C: Drop support for Debian 10 (Buster)
