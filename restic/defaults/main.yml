@@ -65,4 +65,4 @@ restic_server_port: '443'
 
 restic_server_username: 'restic'
 
-restic_version: '0.13.0'
+restic_version: '0.13.1'
