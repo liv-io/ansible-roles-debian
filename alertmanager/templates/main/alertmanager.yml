@@ -7,7 +7,7 @@
 {% endif %}
 {{item.section}}:
 {% if not ((item.config|default('')) == '') %}
-{{(item.config|indent(width=2,indentfirst=True))}}
+{{(item.config|indent(width=2,first=True))}}
 {% endif %}
 {% if not loop.last %}
 

@@ -243,6 +243,6 @@ groups:
 
   - name: custom
     rules:
-      {{(prometheus_alerting_rules|indent(width=6, indentfirst=True))}}
+      {{(prometheus_alerting_rules|indent(width=6, first=True))}}
 
 {% endif %}
