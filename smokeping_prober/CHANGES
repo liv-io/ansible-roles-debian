@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.2.0 (2022-05-23)
+F: Update smokeping_prober to version 0.6.0
+
 * Version 1.1.1 (2022-04-05)
 E: Ensure compatibility with Ansible 2.14.0 and Jinja2 >= 3.0.0
 

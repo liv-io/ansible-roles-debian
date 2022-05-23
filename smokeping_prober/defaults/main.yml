@@ -6,4 +6,4 @@ smokeping_prober_hosts: []
 
 smokeping_prober_monitor_monit_state: 'false'
 
-smokeping_prober_version: '0.5.2'
+smokeping_prober_version: '0.6.0'
