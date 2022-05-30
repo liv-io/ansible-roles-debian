@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.10.0 (2022-05-30)
+F: Update Prometheus to version 2.36.0
+
 * Version 1.9.1 (2022-04-05)
 E: Ensure compatibility with Ansible 2.14.0 and Jinja2 >= 3.0.0
 
