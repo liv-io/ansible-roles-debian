@@ -30,4 +30,4 @@ blackbox_exporter_config:
 
 blackbox_exporter_monitor_monit_state: 'false'
 
-blackbox_exporter_version: '0.21.1'
+blackbox_exporter_version: '0.22.0'
