@@ -218,11 +218,11 @@ if [ $? -ne 0 ]; then
 fi
 
 # Create new backup
-${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
+${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} --compression auto {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' 'Unable to create new backup.'
 
 # Remove old backups
-${restic} forget -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
+${restic} forget -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune --compression auto {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' 'Unable to remove old backups.'
 
 # Check backup repository
