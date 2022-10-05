@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.15.0 (2022-10-05)
+F: Update Prometheus to version 2.39.0
+
 * Version 1.14.0 (2022-08-17)
 F: Update Prometheus to version 2.38.0
 
