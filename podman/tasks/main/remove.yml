@@ -1,0 +1,26 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - podman
+
+- name: remove package podman
+  package:
+    state: 'absent'
+    name: "{{package_name_podman}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
+- name: remove file storage.conf
+  file:
+    state: 'absent'
+    path: "{{file_dst_storage_conf}}"
+  tags:
+    - podman

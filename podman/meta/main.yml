@@ -1,0 +1,7 @@
+---
+
+dependencies:
+  - {role: dbus_user_session, when: not (podman_state is match('false|no|remove|quiesce|inactive'))}
+  - {role: fuse_overlayfs, when: not (podman_state is match('false|no|remove|quiesce|inactive'))}
+  - {role: rootlesskit, when: not (podman_state is match('false|no|remove|quiesce|inactive'))}
+  - {role: slirp4netns, when: not (podman_state is match('false|no|remove|quiesce|inactive'))}

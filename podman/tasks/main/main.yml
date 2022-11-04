@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (podman_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - podman
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (podman_state is match('false|no|remove'))
+  tags:
+    - podman

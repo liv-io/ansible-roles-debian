@@ -1,0 +1,29 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - podman
+
+- name: install package podman
+  package:
+    state: 'present'
+    name: "{{package_name_podman}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
+- name: create file storage.conf
+  template:
+    src: "{{file_src_storage_conf}}"
+    dest: "{{file_dst_storage_conf}}"
+    mode: "{{file_mode_storage_conf}}"
+    owner: "{{file_owner_storage_conf}}"
+    group: "{{file_group_storage_conf}}"
+  tags:
+    - podman

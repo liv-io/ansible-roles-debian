@@ -1,0 +1,11 @@
+---
+
+# podman
+package_name_podman: 'podman'
+
+# storage.yaml
+file_src_storage_conf: 'templates/main/storage.conf'
+file_dst_storage_conf: '/etc/containers/storage.conf'
+file_mode_storage_conf: '0644'
+file_owner_storage_conf: 'root'
+file_group_storage_conf: 'root'
