@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (slirp4netns_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - slirp4netns
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (slirp4netns_state is match('false|no|remove'))
+  tags:
+    - slirp4netns
