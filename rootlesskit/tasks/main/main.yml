@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (rootlesskit_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - rootlesskit
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (rootlesskit_state is match('false|no|remove'))
+  tags:
+    - rootlesskit
