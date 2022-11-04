@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (dbus_user_session_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - dbus_user_session
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (dbus_user_session_state is match('false|no|remove'))
+  tags:
+    - dbus_user_session
