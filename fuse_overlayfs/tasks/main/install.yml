@@ -1,0 +1,19 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - fuse_overlayfs
+
+- name: install package fuse_overlayfs
+  package:
+    state: 'present'
+    name: "{{package_name_fuse_overlayfs}}"
+    install_recommends: 'no'
+  tags:
+    - fuse_overlayfs
