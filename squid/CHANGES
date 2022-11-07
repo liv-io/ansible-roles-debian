@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.0.1 (2022-11-07)
+E: Remove unused handler 'create cache_dir'
+
 * Version 1.0.0 (2021-12-18)
 C: Add support for Debian 11 (Bullseye)
 C: Drop support for Debian 10 (Buster)

@@ -8,9 +8,6 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: create cache_dir
-  command: "{{command_cmd_create_cache_dir}}"
-
 - name: parse config
   command: "{{command_cmd_parse_config}}"
 
