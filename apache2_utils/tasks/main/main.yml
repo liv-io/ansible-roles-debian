@@ -1,0 +1,13 @@
+---
+
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (apache2_utils_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - apache2_utils
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (apache2_utils_state is match('false|no|remove'))
+  tags:
+    - apache2_utils

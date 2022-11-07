@@ -1,0 +1,19 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - apache2_utils
+
+- name: remove package apache2_utils
+  package:
+    state: 'absent'
+    name: "{{package_name_apache2_utils}}"
+    install_recommends: 'no'
+  tags:
+    - apache2_utils
