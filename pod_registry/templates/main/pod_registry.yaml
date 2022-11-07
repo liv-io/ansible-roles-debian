@@ -1,0 +1,55 @@
+---
+
+{{ansible_managed|comment(decoration='#')}}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: registry
+  name: pod_registry
+spec:
+  containers:
+  - args:
+    env:
+    - name: REGISTRY_AUTH_HTPASSWD_PATH
+      value: /auth/htpasswd
+    - name: REGISTRY_AUTH
+      value: htpasswd
+    - name: REGISTRY_AUTH_HTPASSWD_REALM
+      value: Container Registry Realm
+    image: docker.io/library/registry:{{pod_registry_version}}
+    name: registry
+    ports:
+    - containerPort: 5000
+      hostPort: 5000
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: true
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: false
+      seLinuxOptions: {}
+    volumeMounts:
+    - name: pod_registry_data
+      mountPath: /var/lib/registry
+    - name: pod_registry_auth
+      mountPath: /auth
+    workingDir: /
+  dnsConfig: {}
+  restartPolicy: Always
+  volumes:
+  - name: pod_registry_data
+    hostPath:
+      type: Directory
+      path: /data/podman/pod_registry
+  - name: pod_registry_auth
+    hostPath:
+      type: Directory
+      path: /etc/podman/pod_registry/auth
+status: {}

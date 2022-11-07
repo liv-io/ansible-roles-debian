@@ -1,0 +1,184 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_registry
+
+- name: create group pod_registry
+  group:
+    state: 'present'
+    name: "{{group_name_pod_registry}}"
+    system: "{{group_system_pod_registry}}"
+  tags:
+    - pod_registry
+
+- name: create user pod_registry
+  user:
+    state: 'present'
+    name: "{{user_name_pod_registry}}"
+    comment: "{{user_comment_pod_registry}}"
+    group: "{{user_group_pod_registry}}"
+    append: "{{user_append_pod_registry}}"
+    createhome: "{{user_home_create_pod_registry}}"
+    move_home: "{{user_home_move_pod_registry}}"
+    remove: "{{user_home_remove_pod_registry}}"
+    force: "{{user_home_force_pod_registry}}"
+    password: "{{user_password_pod_registry}}"
+    update_password: "{{user_password_update_pod_registry}}"
+    shell: "{{user_shell_pod_registry}}"
+    system: "{{user_system_pod_registry}}"
+  register: register_create_user_pod_registry
+  tags:
+    - pod_registry
+
+- name: loginctl enable-linger
+  shell: "{{command_cmd_loginctl_enable_linger}}"
+  check_mode: 'no'
+  when: register_create_user_pod_registry.changed
+  tags:
+    - pod_registry
+
+- name: usermod add-sub
+  shell: "{{command_cmd_usermod_add_sub}}"
+  check_mode: 'no'
+  when: register_create_user_pod_registry.changed
+  tags:
+    - pod_registry
+
+- name: create file podman_etc.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_podman_etc_dir}}"
+    mode: "{{file_mode_podman_etc_dir}}"
+    owner: "{{file_owner_podman_etc_dir}}"
+    group: "{{file_group_podman_etc_dir}}"
+  tags:
+    - pod_registry
+
+- name: create file pod_registry_etc.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_pod_registry_etc_dir}}"
+    mode: "{{file_mode_pod_registry_etc_dir}}"
+    owner: "{{file_owner_pod_registry_etc_dir}}"
+    group: "{{file_group_pod_registry_etc_dir}}"
+  tags:
+    - pod_registry
+
+- name: create file data.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_data_dir}}"
+    mode: "{{file_mode_data_dir}}"
+    owner: "{{file_owner_data_dir}}"
+    group: "{{file_group_data_dir}}"
+  tags:
+    - pod_registry
+
+- name: create file podman_data.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_podman_data_dir}}"
+    mode: "{{file_mode_podman_data_dir}}"
+    owner: "{{file_owner_podman_data_dir}}"
+    group: "{{file_group_podman_data_dir}}"
+  tags:
+    - pod_registry
+
+- name: create file pod_registry_auth.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_pod_registry_auth_dir}}"
+    mode: "{{file_mode_pod_registry_auth_dir}}"
+    owner: "{{file_owner_pod_registry_auth_dir}}"
+    group: "{{file_group_pod_registry_auth_dir}}"
+  tags:
+    - pod_registry
+
+- name: create file pod_registry_data.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_pod_registry_data_dir}}"
+    mode: "{{file_mode_pod_registry_data_dir}}"
+    owner: "{{file_owner_pod_registry_data_dir}}"
+    group: "{{file_group_pod_registry_data_dir}}"
+  tags:
+    - pod_registry
+
+- name: stat file htpasswd
+  stat:
+    path: "{{file_dst_htpasswd}}"
+  register: register_htpasswd
+  when: (pod_registry_username != '')
+  tags:
+    - pod_registry
+
+- name: create htpasswd
+  shell: "{{command_cmd_create_htpasswd}}"
+  check_mode: 'no'
+  register: register_htpasswd_create
+  no_log: 'true'
+  when: (pod_registry_username != '') and (register_htpasswd.stat.exists == False)
+  tags:
+    - pod_registry
+
+- name: create file htpasswd
+  file:
+    path: "{{file_dst_htpasswd}}"
+    mode: "{{file_mode_htpasswd}}"
+    owner: "{{file_owner_htpasswd}}"
+    group: "{{file_group_htpasswd}}"
+  when: (pod_registry_username != '') and (register_htpasswd_create is changed)
+  tags:
+    - pod_registry
+
+- name: create file pod_registry.service
+  template:
+    src: "{{file_src_pod_registry_service}}"
+    dest: "{{file_dst_pod_registry_service}}"
+    mode: "{{file_mode_pod_registry_service}}"
+    owner: "{{file_owner_pod_registry_service}}"
+    group: "{{file_group_pod_registry_service}}"
+  notify: systemctl daemon-reload
+  tags:
+    - pod_registry
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (pod_registry_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - pod_registry
+
+- name: create file monit.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (pod_registry_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - pod_registry
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (pod_registry_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - pod_registry
+
+- name: flush meta handlers
+  meta: 'flush_handlers'
+  tags:
+    - pod_registry

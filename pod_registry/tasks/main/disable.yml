@@ -1,0 +1,51 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_registry
+
+- name: create file pod_registry.yaml
+  template:
+    src: "{{file_src_pod_registry_yaml}}"
+    dest: "{{file_dst_pod_registry_yaml}}"
+    mode: "{{file_mode_pod_registry_yaml}}"
+    owner: "{{file_owner_pod_registry_yaml}}"
+    group: "{{file_group_pod_registry_yaml}}"
+  tags:
+    - pod_registry
+
+- name: create file pod_registry.default
+  template:
+    src: "{{file_src_pod_registry_default}}"
+    dest: "{{file_dst_pod_registry_default}}"
+    mode: "{{file_mode_pod_registry_default}}"
+    owner: "{{file_owner_pod_registry_default}}"
+    group: "{{file_group_pod_registry_default}}"
+  tags:
+    - pod_registry
+
+- name: create file pod_registry.cfg
+  template:
+    src: "{{file_src_pod_registry_cfg}}"
+    dest: "{{file_dst_pod_registry_cfg}}"
+    mode: "{{file_mode_pod_registry_cfg}}"
+    owner: "{{file_owner_pod_registry_cfg}}"
+    group: "{{file_group_pod_registry_cfg}}"
+  notify: reload service monit
+  when: (pod_registry_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - pod_registry
+
+- name: stop service pod_registry
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_pod_registry}}"
+  tags:
+    - pod_registry

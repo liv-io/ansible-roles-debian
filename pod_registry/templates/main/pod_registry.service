@@ -1,0 +1,23 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Pod Registry
+Documentation=man:podman-generate-systemd(1)
+Wants=network.target
+After=network-online.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+User=pod_registry
+Group=pod_registry
+EnvironmentFile={{file_dst_pod_registry_default}}
+Restart=always
+TimeoutStartSec=60
+TimeoutStopSec=60
+ExecStart=/usr/bin/podman play kube {{file_dst_pod_registry_yaml}}
+ExecStop=/usr/bin/podman stop --time 15 pod_registry
+ExecStopPost=/usr/bin/podman pod rm --force pod_registry
+
+[Install]
+WantedBy=multi-user.target

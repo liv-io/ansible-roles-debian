@@ -1,0 +1,13 @@
+---
+
+pod_registry_state: 'enable'
+
+pod_registry_monitor_monit_state: 'false'
+
+pod_registry_password: ''
+
+pod_registry_proxy: ''
+
+pod_registry_username: ''
+
+pod_registry_version: 'latest'

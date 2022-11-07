@@ -1,0 +1,23 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+
+- name: systemctl daemon-reload
+  command: "{{command_cmd_systemctl_daemon_reload}}"
+
+- name: reload service monit
+  service:
+    state: 'reloaded'
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)
+
+- name: restart service pod_registry
+  service:
+    state: 'restarted'
+    name: "{{service_name_pod_registry}}"
