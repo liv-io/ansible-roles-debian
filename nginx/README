@@ -410,6 +410,7 @@ PACKAGES
       Debian 11: 'nginx'
 
 ROLES
+  openssl
 
 PARAMETERS
 
