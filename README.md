@@ -52,7 +52,7 @@
 ### Support
 
 The following operating systems are supported:
-* Debian 10
+* Debian 11
 
 ### Dependencies
 
