@@ -1,0 +1,12 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+
+- name: update-ca-certificates
+  command: "{{command_cmd_update_ca_certificates}}"

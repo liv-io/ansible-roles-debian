@@ -1,0 +1,54 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ca_certificate
+
+- name: create file ca-certificates.dir
+  file:
+    state: 'directory'
+    path: "{{file_dst_ca_certificates_dir}}"
+    mode: "{{file_mode_ca_certificates_dir}}"
+    owner: "{{file_owner_ca_certificates_dir}}"
+    group: "{{file_group_ca_certificates_dir}}"
+  tags:
+    - ca_certificate
+
+- name: copy file ca-certificate
+  copy:
+    content: "{{item.content}}"
+    dest: "{{file_dst_ca_certificates_dir}}/{{item.name}}"
+    mode: "{{file_mode_ca_certificate}}"
+    owner: "{{file_owner_ca_certificate}}"
+    group: "{{file_group_ca_certificate}}"
+  loop: "{{ca_certificate_config}}"
+  notify: update-ca-certificates
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - ca_certificate
+
+- name: remove file ca-certificate.link
+  file:
+    state: 'absent'
+    path: "{{file_dst_certs_dir}}/{{item.name|basename|splitext|first}}.pem"
+  loop: "{{ca_certificate_config}}"
+  notify: update-ca-certificates
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - ca_certificate
+
+- name: remove file ca-certificate
+  file:
+    state: 'absent'
+    path: "{{file_dst_ca_certificates_dir}}/{{item.name}}"
+  loop: "{{ca_certificate_config}}"
+  notify: update-ca-certificates
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - ca_certificate

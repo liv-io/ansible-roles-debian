@@ -1,0 +1,5 @@
+---
+
+ca_certificate_state: 'install'
+
+ca_certificate_config: []

@@ -1,0 +1,21 @@
+---
+
+# certs.dir
+file_dst_certs_dir: "/etc/ssl/certs"
+file_mode_certs_dir: "0755"
+file_owner_certs_dir: "root"
+file_group_certs_dir: "root"
+
+# ca-certificates.dir
+file_dst_ca_certificates_dir: "/usr/local/share/ca-certificates"
+file_mode_ca_certificates_dir: "0755"
+file_owner_ca_certificates_dir: "root"
+file_group_ca_certificates_dir: "root"
+
+# ca-certificate
+file_mode_ca_certificate: "0444"
+file_owner_ca_certificate: "root"
+file_group_ca_certificate: "root"
+
+# update-ca-certificates
+command_cmd_update_ca_certificates: 'update-ca-certificates'
