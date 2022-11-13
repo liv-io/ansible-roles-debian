@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.0.1 (2022-11-13)
+B: Update to latest upstream deb repository URL
+
 * Version 1.0.0 (2021-12-18)
 C: Add support for Debian 11 (Bullseye)
 C: Drop support for Debian 10 (Buster)

@@ -4,4 +4,4 @@
 
 # GRAFANA
 
-deb https://packages.grafana.com/oss/deb stable main
+deb https://apt.grafana.com stable main
