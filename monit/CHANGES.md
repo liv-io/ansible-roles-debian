@@ -15,9 +15,6 @@ The headers are:
 ### Changes
 
 - Add support for Debian 11 (Bullseye)
-
-### Changes
-
 - Drop support for Debian 10 (Buster)
 
 ## 0.1.3 (2020-12-20)
@@ -25,9 +22,6 @@ The headers are:
 ### Enhancements
 
 - Remove default conf.d and conf-enabled directories
-
-### Enhancements
-
 - Adapt monitrc configuration file to Debian template
 
 ## 0.1.2 (2020-12-19)

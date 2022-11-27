@@ -21,9 +21,6 @@ The headers are:
 ### Changes
 
 - Add support for Debian 11 (Bullseye)
-
-### Changes
-
 - Drop support for Debian 10 (Buster)
 
 ## 0.1.4 (2020-12-18)
@@ -49,9 +46,6 @@ The headers are:
 ### Bugs
 
 - Run `apt update` after adding Grafana repository
-
-### Bugs
-
 - Correct `grafana.gpg` file path
 
 ## 0.1.0 (2020-12-12)

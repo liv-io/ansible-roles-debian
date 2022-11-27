@@ -21,9 +21,6 @@ The headers are:
 ### Changes
 
 - Add support for Debian 11 (Bullseye)
-
-### Changes
-
 - Drop support for Debian 10 (Buster)
 
 ## 0.9.0 (2021-12-05)

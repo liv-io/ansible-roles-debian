@@ -15,9 +15,6 @@ The headers are:
 ### Changes
 
 - Add support for Debian 11 (Bullseye)
-
-### Changes
-
 - Drop support for Debian 10 (Buster)
 
 ## 0.1.1 (2021-01-28)
@@ -25,9 +22,6 @@ The headers are:
 ### Enhancements
 
 - Remove legacy compression argument "delayed"
-
-### Enhancements
-
 - Use primary service name instead of alias name
 
 ## 0.1.0 (2020-12-12)
