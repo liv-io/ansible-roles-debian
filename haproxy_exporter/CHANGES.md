@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.0 (2022-11-29)
+
+### Features
+
+- Update `haproxy_exporter` to version 0.14.0
+
 ## 1.0.1 (2022-04-05)
 
 ### Enhancements
