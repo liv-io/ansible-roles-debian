@@ -1,0 +1,242 @@
+# alertmanager
+
+## Description
+
+The Alertmanager handles alerts sent by client applications such as the
+Prometheus server. It takes care of deduplicating, grouping, and routing them to
+the correct receiver integrations such as email, PagerDuty, or OpsGenie. It also
+takes care of silencing and inhibition of alerts.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+## Usage
+
+### Install
+
+```
+- hosts: all
+  roles:
+    - role: alertmanager
+  vars:
+    alertmanager_state: 'install'
+```
+
+### Enable
+
+```
+- hosts: all
+  roles:
+    - role: alertmanager
+  vars:
+    alertmanager_state: 'enable'
+    alertmanager_config:
+      - section: 'global'
+        config: |
+          smtp_from: 'alertmanager@domain.tld'
+          smtp_hello: 'ms.domain.tld'
+          smtp_smarthost: 'mail.domain.tld:587'
+          smtp_auth_username: 'alertmanager@domain.tld'
+          smtp_auth_password: 'TFvPtx-64pUMmBH2HMp5MRW.r_VYx45q'
+          smtp_require_tls: true
+
+      - section: 'route'
+        config: |
+          receiver: 'itops'
+          group_by: ['instance', 'alert']
+          group_wait: 1m
+          group_interval: 30m
+          repeat_interval: 150m
+          routes:
+          - match:
+              severity: 'critical'
+              receiver: 'itops'
+
+      - section: 'inhibit_rules'
+        config: |
+          - source_match:
+              severity: 'critical'
+            target_match:
+              severity: 'warning'
+            equal: ['alertname']
+
+      - section: 'receivers'
+        config: |
+          - name: 'itops'
+            email_configs:
+            - to: 'user01@domain.tld, user02@domain.tld'
+```
+
+### Disable
+
+```
+- hosts: all
+  roles:
+    - role: alertmanager
+  vars:
+    alertmanager_state: 'disable'
+    alertmanager_config:
+      - section: 'global'
+        config: |
+          smtp_from: 'alertmanager@domain.tld'
+          smtp_hello: 'ms.example.com'
+          smtp_smarthost: 'mail.domain.tld:587'
+          smtp_auth_username: 'alertmanager@domain.tld'
+          smtp_auth_password: 'TFvPtx-64pUMmBH2HMp5MRW.r_VYx45q'
+          smtp_require_tls: true
+
+      - section: 'route'
+        config: |
+          receiver: 'itops'
+          group_by: ['instance', 'alert']
+          group_wait: 1m
+          group_interval: 30m
+          repeat_interval: 150m
+          routes:
+          - match:
+              severity: 'critical'
+              receiver: 'itops'
+
+      - section: 'inhibit_rules'
+        config: |
+          - source_match:
+              severity: 'critical'
+            target_match:
+              severity: 'warning'
+            equal: ['alertname']
+
+      - section: 'receivers'
+        config: |
+          - name: 'itops'
+            email_configs:
+            - to: 'user01@domain.tld, user02@domain.tld'
+```
+
+### Remove
+
+```
+- hosts: all
+  roles:
+    - role: alertmanager
+  vars:
+    alertmanager_state: 'remove'
+```
+
+### Inactive
+
+```
+- hosts: all
+  roles:
+    - role: alertmanager
+  vars:
+    alertmanager_state: 'inactive'
+```
+
+## Parameters
+
+### Role
+
+`alertmanager_state`
+
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+`alertmanager_config`
+
+    Description: Define the 'alertmanager_config' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: section: 'global'
+                config: |
+                  smtp_from: 'alertmanager@domain.tld'
+                  smtp_hello: 'ms.domain.tld'
+                  smtp_smarthost: 'mail.domain.tld:587'
+                  smtp_auth_username: 'alertmanager@domain.tld'
+                  smtp_auth_password: 'TFvPtx-64pUMmBH2HMp5MRW.r_VYx45q'
+                  smtp_require_tls: true
+
+                section: 'receivers'
+                config: |
+                  name: 'itops'
+                  email_configs:
+                    - to: 'user01@domain.tld, user02@domain.tld'
+
+`alertmanager_monitor_monit_state`
+
+    Description: Control the 'alertmanager_monitor_monit_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`alertmanager_version`
+
+    Description: Define the 'alertmanager_version' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0.24.0'
+    Options    :
+      Examples: '0.15.3' | '0.16.0'
+
+`alertmanager_web_external_url`
+
+    Description: Define the 'alertmanager_web_external_url' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "https://alertmanager.{{ansible_domain}}"
+    Options    :
+      Examples: 'https://host.domain.tld'
+
+## Conflicts
+
+## Dependencies
+
+### Archives
+
+`alertmanager`
+
+## Parameters
+
+## Requirements
+
+### Control Node
+
+`ansible`
+
+    Version: >= 2.8.0
+
+### Managed Node
+
+`python`
+
+    Version: >= 2.7.0
+
+## Support
+
+### Operating Systems
+
+`debian`
+
+    Version: 11
