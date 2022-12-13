@@ -10,6 +10,14 @@
   tags:
     - systemd_timesyncd
 
+- name: remove package systemd-timesyncd
+  package:
+    state: 'absent'
+    name: "{{package_name_systemd_timesyncd}}"
+    install_recommends: 'no'
+  tags:
+    - systemd_timesyncd
+
 - name: remove file systemd-timesyncd.cfg
   file:
     state: 'absent'

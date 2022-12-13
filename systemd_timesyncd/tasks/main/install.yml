@@ -10,6 +10,14 @@
   tags:
     - systemd_timesyncd
 
+- name: install package systemd-timesyncd
+  package:
+    state: 'present'
+    name: "{{package_name_systemd_timesyncd}}"
+    install_recommends: 'no'
+  tags:
+    - systemd_timesyncd
+
 - name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"

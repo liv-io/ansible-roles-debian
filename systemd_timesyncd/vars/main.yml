@@ -1,5 +1,8 @@
 ---
 
+# systemd-timesyncd
+package_name_systemd_timesyncd: 'systemd-timesyncd'
+
 # timesyncd.conf
 file_src_timesyncd_conf: 'templates/main/timesyncd.conf'
 file_dst_timesyncd_conf: '/etc/systemd/timesyncd.conf'

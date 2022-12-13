@@ -102,6 +102,14 @@ consult the following sections.
 
 ## Dependencies
 
+### Packages
+
+`systemd-timesyncd`
+
+    Version: >= 247.0
+    Name   :
+      Debian 11: 'systemd-timesyncd'
+
 ## Parameters
 
 ## Requirements
