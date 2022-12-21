@@ -426,7 +426,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.40.7'
+    Default    : '2.41.0'
     Options    :
       Examples: '2.6.1' | '2.6.0'
 
