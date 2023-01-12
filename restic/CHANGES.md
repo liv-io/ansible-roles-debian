@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.4.0 (2023-01-12)
+
+### Features
+
+- Update restic to version 0.15.0
+
 ## 1.3.0 (2022-08-26)
 
 ### Features
