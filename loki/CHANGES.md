@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.4.0 (2023-02-02)
+
+### Features
+
+- Update Loki to version 2.7.3
+
 ## 1.3.0 (2022-07-11)
 
 ### Enhancements
