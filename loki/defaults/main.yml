@@ -8,4 +8,4 @@ loki_monitor_monit_state: 'false'
 
 loki_retention_period: '365d'
 
-loki_version: '2.7.3'
+loki_version: '2.7.4'
