@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.0 (2023-04-04)
+
+### Features
+
+- Update Promtail to version 2.8.0
+
 ## 1.0.1 (2022-04-05)
 
 ### Enhancements
