@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.2 (2023-04-07)
+
+### Bugs
+
+- Fix `systemd_timesyncd_monitor_monit_state` variable name in Ansible tasks
+
 ## 1.0.1 (2022-12-13)
 
 ### Bugs
