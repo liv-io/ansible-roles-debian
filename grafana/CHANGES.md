@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.2 (2022-04-09)
+
+### Enhancements
+
+- Provide full APT repository GPG key file
+
 ## 1.0.1 (2022-11-13)
 
 ### Bugs
