@@ -14,7 +14,7 @@ file_owner_monit_exporter_etc_dir: 'root'
 file_group_monit_exporter_etc_dir: 'root'
 
 # monit_exporter.tar.gz
-file_src_monit_exporter_tar_gz: "https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/monit_exporter_{{monit_exporter_version}}_Linux_amd64.tar.gz"
+file_src_monit_exporter_tar_gz: "https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/monit_exporter_{{monit_exporter_version}}_linux_amd64.tar.gz"
 file_dst_monit_exporter_tar_gz: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_Linux_amd64.tar.gz"
 file_mode_monit_exporter_tar_gz: '0644'
 file_owner_monit_exporter_tar_gz: 'root'
