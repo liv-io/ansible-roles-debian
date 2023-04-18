@@ -92,9 +92,6 @@ command_cmd_loginctl_enable_linger: "loginctl enable-linger pod_registry"
 # usermod add_sub
 command_cmd_usermod_add_sub: "usermod --add-subuids 100000-165535 --add-subgids 100000-165535 pod_registry"
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # pod_registry
 group_name_pod_registry: 'pod_registry'
 group_system_pod_registry: 'yes'

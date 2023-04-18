@@ -164,7 +164,6 @@
     mode: "{{file_mode_loki_service}}"
     owner: "{{file_owner_loki_service}}"
     group: "{{file_group_loki_service}}"
-  notify: systemctl daemon-reload
   tags:
     - loki
 
@@ -194,10 +193,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (loki_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - loki
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - loki

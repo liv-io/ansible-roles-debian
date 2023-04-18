@@ -145,7 +145,6 @@
     mode: "{{file_mode_pod_registry_service}}"
     owner: "{{file_owner_pod_registry_service}}"
     group: "{{file_group_pod_registry_service}}"
-  notify: systemctl daemon-reload
   tags:
     - pod_registry
 
@@ -175,10 +174,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (pod_registry_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - pod_registry
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - pod_registry

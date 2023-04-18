@@ -179,5 +179,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_prometheus}}"
+    daemon_reload: 'yes'
   tags:
     - prometheus

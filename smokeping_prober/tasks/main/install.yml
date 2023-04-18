@@ -67,7 +67,6 @@
     mode: "{{file_mode_smokeping_prober_service}}"
     owner: "{{file_owner_smokeping_prober_service}}"
     group: "{{file_group_smokeping_prober_service}}"
-  notify: systemctl daemon-reload
   tags:
     - smokeping_prober
 
@@ -104,10 +103,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - smokeping_prober
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - smokeping_prober

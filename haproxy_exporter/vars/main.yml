@@ -50,9 +50,6 @@ command_cmd_check_service_haproxy_exporter: 'systemctl cat haproxy_exporter.serv
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # haproxy_exporter
 group_name_haproxy_exporter: 'haproxy_exporter'
 group_system_haproxy_exporter: 'yes'

@@ -49,5 +49,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_promtail}}"
+    daemon_reload: 'yes'
   tags:
     - promtail

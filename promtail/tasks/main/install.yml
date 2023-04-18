@@ -74,7 +74,6 @@
     mode: "{{file_mode_promtail_service}}"
     owner: "{{file_owner_promtail_service}}"
     group: "{{file_group_promtail_service}}"
-  notify: systemctl daemon-reload
   tags:
     - promtail
 
@@ -104,10 +103,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (promtail_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - promtail
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - promtail

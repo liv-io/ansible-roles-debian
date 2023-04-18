@@ -71,5 +71,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_loki}}"
+    daemon_reload: 'yes'
   tags:
     - loki

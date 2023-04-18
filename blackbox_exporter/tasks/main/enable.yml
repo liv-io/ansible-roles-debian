@@ -49,5 +49,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_blackbox_exporter}}"
+    daemon_reload: 'yes'
   tags:
     - blackbox_exporter

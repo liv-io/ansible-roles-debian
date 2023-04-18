@@ -129,9 +129,6 @@ command_cmd_check_service_loki: 'systemctl cat loki.service > /dev/null 2>&1'
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # loki
 group_name_loki: 'loki'
 group_system_loki: 'yes'

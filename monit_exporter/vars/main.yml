@@ -62,9 +62,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service monit_exporter
 command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # monit_exporter
 group_name_monit_exporter: 'monit_exporter'
 group_system_monit_exporter: 'yes'

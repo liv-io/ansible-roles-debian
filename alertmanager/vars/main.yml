@@ -72,9 +72,6 @@ command_cmd_check_service_alertmanager: 'systemctl cat alertmanager.service > /d
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # alertmanager
 group_name_alertmanager: 'alertmanager'
 group_system_alertmanager: 'yes'

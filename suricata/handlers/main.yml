@@ -11,9 +11,6 @@
 - name: update suricata
   shell: "{{command_cmd_update_suricata}}"
 
-- name: systemctl daemon-reload
-  command: "{{command_cmd_systemctl_daemon_reload}}"
-
 - name: reload service monit
   service:
     state: 'reloaded'

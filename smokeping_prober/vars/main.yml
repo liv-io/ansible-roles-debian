@@ -50,9 +50,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service smokeping_prober
 command_cmd_check_service_smokeping_prober: 'systemctl cat smokeping_prober.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # set capability
 command_cmd_set_capability: "setcap cap_net_raw=+ep /usr/local/bin/smokeping_prober"
 

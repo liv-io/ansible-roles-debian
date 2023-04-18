@@ -49,5 +49,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_alertmanager}}"
+    daemon_reload: 'yes'
   tags:
     - alertmanager

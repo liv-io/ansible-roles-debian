@@ -174,9 +174,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service prometheus
 command_cmd_check_service_prometheus: 'systemctl cat prometheus.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # prometheus
 group_name_prometheus: 'prometheus'
 group_system_prometheus: 'yes'

@@ -37,12 +37,21 @@
   tags:
     - suricata
 
+- name: stop service promiscuous_mode@.service
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "promiscuous_mode@{{suricata_interface}}"
+    daemon_reload: 'yes'
+  tags:
+    - suricata
+
 - name: stop service suricata
   service:
     state: 'stopped'
     enabled: 'no'
     name: "{{service_name_suricata}}"
-  when: (register_check_service_suricata.rc == 0)
+    daemon_reload: 'yes'
   tags:
     - suricata
 
@@ -95,7 +104,6 @@
   file:
     state: 'absent'
     path: "{{file_dst_suricata_service}}"
-  notify: systemctl daemon-reload
   tags:
     - suricata
 
@@ -110,6 +118,5 @@
   file:
     state: 'absent'
     path: "{{file_dst_promiscuous_mode_service}}"
-  notify: systemctl daemon-reload
   tags:
     - suricata

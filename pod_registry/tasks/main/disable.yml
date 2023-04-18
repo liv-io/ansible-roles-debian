@@ -47,5 +47,6 @@
     state: 'stopped'
     enabled: 'no'
     name: "{{service_name_pod_registry}}"
+    daemon_reload: 'yes'
   tags:
     - pod_registry

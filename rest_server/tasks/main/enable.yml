@@ -38,5 +38,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_rest_server}}"
+    daemon_reload: 'yes'
   tags:
     - rest_server

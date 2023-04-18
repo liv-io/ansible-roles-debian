@@ -34,6 +34,7 @@
     state: 'stopped'
     enabled: 'yes'
     name: "{{service_name_suricata}}"
+    daemon_reload: 'yes'
   when: (register_package_install_suricata is changed)
   tags:
     - suricata
@@ -135,7 +136,6 @@
     mode: "{{file_mode_suricata_service}}"
     owner: "{{file_owner_suricata_service}}"
     group: "{{file_group_suricata_service}}"
-  notify: systemctl daemon-reload
   tags:
     - suricata
 
@@ -153,7 +153,6 @@
     mode: "{{file_mode_promiscuous_mode_service}}"
     owner: "{{file_owner_promiscuous_mode_service}}"
     group: "{{file_group_promiscuous_mode_service}}"
-  notify: systemctl daemon-reload
   tags:
     - suricata
 

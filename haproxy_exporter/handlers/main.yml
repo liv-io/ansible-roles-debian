@@ -8,9 +8,6 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: systemctl daemon-reload
-  command: "{{command_cmd_systemctl_daemon_reload}}"
-
 - name: restart service haproxy_exporter
   service:
     state: 'restarted'

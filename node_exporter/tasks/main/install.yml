@@ -86,7 +86,6 @@
     mode: "{{file_mode_node_exporter_service}}"
     owner: "{{file_owner_node_exporter_service}}"
     group: "{{file_group_node_exporter_service}}"
-  notify: systemctl daemon-reload
   tags:
     - node_exporter
 
@@ -116,10 +115,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - node_exporter
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - node_exporter

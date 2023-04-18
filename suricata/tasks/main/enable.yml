@@ -50,6 +50,7 @@
     state: 'started'
     enabled: 'yes'
     name: "promiscuous_mode@{{suricata_interface}}"
+    daemon_reload: 'yes'
   tags:
     - suricata
 
@@ -58,5 +59,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_suricata}}"
+    daemon_reload: 'yes'
   tags:
     - suricata

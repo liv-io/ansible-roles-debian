@@ -47,5 +47,6 @@
     state: 'stopped'
     enabled: 'no'
     name: "{{service_name_monit_exporter}}"
+    daemon_reload: 'yes'
   tags:
     - monit_exporter

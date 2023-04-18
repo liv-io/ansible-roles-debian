@@ -75,7 +75,6 @@
     mode: "{{file_mode_monit_exporter_service}}"
     owner: "{{file_owner_monit_exporter_service}}"
     group: "{{file_group_monit_exporter_service}}"
-  notify: systemctl daemon-reload
   tags:
     - monit_exporter
 
@@ -105,10 +104,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - monit_exporter
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - monit_exporter

@@ -62,9 +62,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service node_exporter
 command_cmd_check_service_node_exporter: 'systemctl cat node_exporter.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # node_exporter
 group_name_node_exporter: 'node_exporter'
 group_system_node_exporter: 'yes'

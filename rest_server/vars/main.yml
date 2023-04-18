@@ -62,9 +62,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service rest-server
 command_cmd_check_service_rest_server: 'systemctl cat rest-server.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # rest-server
 group_name_rest_server: 'rest-server'
 group_system_rest_server: 'yes'

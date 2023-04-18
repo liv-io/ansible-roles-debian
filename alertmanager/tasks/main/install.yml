@@ -86,7 +86,6 @@
     mode: "{{file_mode_alertmanager_service}}"
     owner: "{{file_owner_alertmanager_service}}"
     group: "{{file_group_alertmanager_service}}"
-  notify: systemctl daemon-reload
   tags:
     - alertmanager
 
@@ -116,10 +115,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - alertmanager
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - alertmanager

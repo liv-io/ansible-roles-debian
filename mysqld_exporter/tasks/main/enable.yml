@@ -49,5 +49,6 @@
     state: 'started'
     enabled: 'yes'
     name: "{{service_name_mysqld_exporter}}"
+    daemon_reload: 'yes'
   tags:
     - mysqld_exporter

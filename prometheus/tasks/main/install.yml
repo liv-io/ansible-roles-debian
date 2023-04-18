@@ -136,7 +136,6 @@
     mode: "{{file_mode_prometheus_service}}"
     owner: "{{file_owner_prometheus_service}}"
     group: "{{file_group_prometheus_service}}"
-  notify: systemctl daemon-reload
   tags:
     - prometheus
 
@@ -166,10 +165,5 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
-  tags:
-    - prometheus
-
-- name: flush meta handlers
-  meta: 'flush_handlers'
   tags:
     - prometheus

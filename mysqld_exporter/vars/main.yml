@@ -63,9 +63,6 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service mysqld_exporter
 command_cmd_check_service_mysqld_exporter: 'systemctl cat mysqld_exporter.service > /dev/null 2>&1'
 
-# systemctl daemon-reload
-command_cmd_systemctl_daemon_reload: 'systemctl daemon-reload'
-
 # mysqld_exporter
 group_name_mysqld_exporter: 'mysqld_exporter'
 group_system_mysqld_exporter: 'yes'

@@ -37,5 +37,6 @@
     state: 'stopped'
     enabled: 'no'
     name: "{{service_name_smokeping_prober}}"
+    daemon_reload: 'yes'
   tags:
     - smokeping_prober

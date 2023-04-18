@@ -24,6 +24,7 @@
     state: 'stopped'
     enabled: 'no'
     name: "{{service_name_pod_registry}}"
+    daemon_reload: 'yes'
   when: (register_check_service_pod_registry.rc == 0)
   tags:
     - pod_registry
@@ -70,6 +71,5 @@
   file:
     state: 'absent'
     path: "{{file_dst_pod_registry_service}}"
-  notify: systemctl daemon-reload
   tags:
     - pod_registry
