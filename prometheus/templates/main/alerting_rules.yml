@@ -35,6 +35,15 @@ groups:
           summary: "Filesystem: Usage (node_exporter)"
           description: "Filesystem 'swap' usage above 80%: {% raw %}{{$value}}{% endraw %}%"
 
+      - alert: "Filesystem 'opt' Usage"
+        expr: ((sum by (instance) (node_filesystem_size_bytes{mountpoint="/opt"}) - sum by (instance) (node_filesystem_avail_bytes{mountpoint="/opt"})) / sum by (instance) (node_filesystem_size_bytes{mountpoint="/opt"}) ) * 100 > 90
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Filesystem: Usage (node_exporter)"
+          description: "Filesystem '/opt' usage above 90%: {% raw %}{{$value}}{% endraw %}%"
+
       - alert: "Filesystem 'data' Usage"
         expr: ((sum by (instance) (node_filesystem_size_bytes{mountpoint="/data"}) - sum by (instance) (node_filesystem_avail_bytes{mountpoint="/data"})) / sum by (instance) (node_filesystem_size_bytes{mountpoint="/data"}) ) * 100 > 90
         for: 30s
@@ -47,16 +56,16 @@ groups:
       # CPU USER
 
       - alert: "CPU 'user' Utilization (10mAVG)"
-        expr: avg by (instance)(irate(node_cpu_seconds_total{instance!="virt_005_s",instance!="backend_dev_s",instance!="backend_test_s",job="node",mode="user"}[10m])) * 100 > 80
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 90
         for: 30s
         labels:
           severity: warning
         annotations:
           summary: "CPU: Utilization (node_exporter)"
-          description: "CPU 'user' load above 80% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
+          description: "CPU 'user' load above 90% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
 
       - alert: "CPU 'user' Utilization (60mAVG)"
-        expr: avg by (instance)(irate(node_cpu_seconds_total{instance!="virt_005_s",instance!="backend_dev_s",instance!="backend_test_s",job="node",mode="user"}[10m])) * 100 > 60
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 60
         for: 30s
         labels:
           severity: warning
@@ -67,13 +76,13 @@ groups:
       # CPU SYSTEM
 
       - alert: "CPU 'system' Utilization (10mAVG)"
-        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 80
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 90
         for: 30s
         labels:
           severity: warning
         annotations:
           summary: "CPU: Utilization (node_exporter)"
-          description: "CPU 'system' load above 80% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
+          description: "CPU 'system' load above 90% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
 
       - alert: "CPU 'system' Utilization (60mAVG)"
         expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[60m])) * 100 > 60
@@ -87,13 +96,13 @@ groups:
       # CPU IOWAIT
 
       - alert: "CPU 'IOwait' Utilization (10mAVG)"
-        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="iowait"}[10m])) * 100 > 80
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="iowait"}[10m])) * 100 > 90
         for: 30s
         labels:
           severity: warning
         annotations:
           summary: "CPU: Utilization (node_exporter)"
-          description: "CPU 'IOwait' load above 80% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
+          description: "CPU 'IOwait' load above 90% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
 
       - alert: "CPU 'IOwait' Utilization (60mAVG)"
         expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="iowait"}[60m])) * 100 > 60

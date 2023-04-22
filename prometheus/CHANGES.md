@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.25.2 (2023-04-22)
+
+### Enhancements
+
+- Improve default built-in alerting rules
+
 ## 1.25.1 (2023-04-18)
 
 ### Enhancements
