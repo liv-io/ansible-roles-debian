@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.1 (2023-04-23)
+
+### Bugs
+
+- Remove `nftables.conf` file in remove state
+
 ## 2.0.0 (2023-04-23)
 
 ### Changes

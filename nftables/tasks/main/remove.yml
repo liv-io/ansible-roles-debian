@@ -24,3 +24,10 @@
     path: "{{file_dst_nftables_d}}"
   tags:
     - nftables
+
+- name: remove file nftables.conf
+  file:
+    state: 'absent'
+    path: "{{file_dst_nftables_conf}}"
+  tags:
+    - nftables
