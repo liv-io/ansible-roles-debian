@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.0 (2023-04-23)
+
+### Changes
+
+- Completely redesign nftables parameters and role
+
 ## 1.0.0 (2021-12-18)
 
 ### Changes

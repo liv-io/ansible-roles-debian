@@ -17,3 +17,13 @@
     install_recommends: 'no'
   tags:
     - nftables
+
+- name: create file nftables.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  tags:
+    - nftables

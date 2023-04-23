@@ -10,6 +10,39 @@
   tags:
     - nftables
 
+- name: create file 00-filter-table.conf
+  template:
+    src: "{{file_src_00_filter_table_conf}}"
+    dest: "{{file_dst_00_filter_table_conf}}"
+    mode: "{{file_mode_00_filter_table_conf}}"
+    owner: "{{file_owner_00_filter_table_conf}}"
+    group: "{{file_group_00_filter_table_conf}}"
+  notify: reload service nftables
+  tags:
+    - nftables
+
+- name: create file 01-filter-chain.conf
+  template:
+    src: "{{file_src_01_filter_chain_conf}}"
+    dest: "{{file_dst_01_filter_chain_conf}}"
+    mode: "{{file_mode_01_filter_chain_conf}}"
+    owner: "{{file_owner_01_filter_chain_conf}}"
+    group: "{{file_group_01_filter_chain_conf}}"
+  notify: reload service nftables
+  tags:
+    - nftables
+
+- name: create file 02-filter-rule.conf
+  template:
+    src: "{{file_src_02_filter_rule_conf}}"
+    dest: "{{file_dst_02_filter_rule_conf}}"
+    mode: "{{file_mode_02_filter_rule_conf}}"
+    owner: "{{file_owner_02_filter_rule_conf}}"
+    group: "{{file_group_02_filter_rule_conf}}"
+  notify: reload service nftables
+  tags:
+    - nftables
+
 - name: create file nftables.conf
   template:
     src: "{{file_src_nftables_conf}}"

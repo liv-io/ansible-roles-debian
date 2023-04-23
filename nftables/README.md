@@ -31,6 +31,16 @@ consult the following sections.
     - role: nftables
   vars:
     nftables_state: 'enable'
+    nftables_filter_rule_all: |
+      add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 22 counter accept comment "ssh from internal-networks"
+      add rule ip filter INPUT ip saddr 10.1.1.10 ct state new tcp dport 9100 counter accept comment "node_exporter from prometheus"
+      add rule ip filter INPUT ip saddr 10.1.1.10 ct state new tcp dport 9388 counter accept comment "monit_exporter from prometheus"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new tcp dport 53 counter accept comment "dns to gateway"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new udp dport 53 counter accept comment "dns to gateway"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new udp dport 123 counter accept comment "ntp to gateway"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new tcp dport 3128 counter accept comment "squid to gateway"
+      add rule ip filter OUTPUT ip daddr 10.1.1.11 ct state new tcp dport 514 counter accept comment "rsyslog to loki"
+      add rule ip filter OUTPUT ip daddr 10.1.1.11 ct state new udp dport 514 counter accept comment "rsyslog to loki"
 ```
 
 ### Disable
@@ -41,6 +51,16 @@ consult the following sections.
     - role: nftables
   vars:
    nftables_state: 'disable'
+    nftables_filter_rule_all: |
+      add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 22 counter accept comment "ssh from internal-networks"
+      add rule ip filter INPUT ip saddr 10.1.1.10 ct state new tcp dport 9100 counter accept comment "node_exporter from prometheus"
+      add rule ip filter INPUT ip saddr 10.1.1.10 ct state new tcp dport 9388 counter accept comment "monit_exporter from prometheus"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new tcp dport 53 counter accept comment "dns to gateway"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new udp dport 53 counter accept comment "dns to gateway"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new udp dport 123 counter accept comment "ntp to gateway"
+      add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new tcp dport 3128 counter accept comment "squid to gateway"
+      add rule ip filter OUTPUT ip daddr 10.1.1.11 ct state new tcp dport 514 counter accept comment "rsyslog to loki"
+      add rule ip filter OUTPUT ip daddr 10.1.1.11 ct state new udp dport 514 counter accept comment "rsyslog to loki"
 ```
 
 ### Remove
@@ -63,42 +83,6 @@ consult the following sections.
     nftables_state: 'inactive'
 ```
 
-### Config
-
-```
-vars:
-  nftables_filter_all:
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'destination-unreachable', comment: 'icmp destination-unreachable from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'parameter-problem', comment: 'icmp parameter-problem from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'time-exceeded', comment: 'icmp time-exceeded from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', sources: {'10.1.1.0/24', '10.1.2.0/24', '10.1.3.0/24'}, ports: {'22'}, comment: 'ssh from n_dmz, n_base, n_client'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request to any'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench to any'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, comment: 'dns to dns servers'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, comment: 'dns to dns servers'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, comment: 'ntp to ntp servers'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'10.2.1.15'}, ports: {'http', 'https'}, comment: 'http, https to package repository'}
-
-  nftables_filter_group:
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'http', 'https'}, comment: 'http, https from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'tcp', ports: {'http', 'https'}, comment: 'http, https from any'}
-
-  nftables_filter_host:
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'smtp'}, comment: 'mail from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'submission'}, comment: 'mail from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'imaps'}, comment: 'imaps from any'}
-    - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'http', 'https'}, comment: 'http, https from any'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', ports: {'smtp'}, comment: 'mail from any'}
-    - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', ports: {'submission'}, comment: 'mail from any'}
-    - {action: 'accept', direction: 'forward', iif: 'wg0', version: 'ipv4', comment: 'WireGuard forwarding'}
-    - {action: 'accept', direction: 'forward', oif: 'wg0', version: 'ipv4', comment: 'WireGuard forwarding'}
-
-  nftables_nat_all:
-    - {action: 'masquerade', direction: 'postrouting', version: 'ipv4', oif: 'ens18', comment: 'WireGuard masquerading'}
-```
-
 ## Parameters
 
 ### Role
@@ -118,186 +102,164 @@ vars:
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`nftables_filter_all`
+`nftables_filter_table`
 
-    Description: Define the 'nftables_filter_all' option.
-    Implemented: 0.1.0
+    Description: Define the 'nftables_filter_table' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'destination-unreachable', comment: 'icmp destination-unreachable from any'},
-                  {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request from any'},
-                  {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'parameter-problem', comment: 'icmp parameter-problem from any'},
-                  {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench from any'},
-                  {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'time-exceeded', comment: 'icmp time-exceeded from any'},
-                  {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, ports: {'ssh'}, comment: 'ssh from private address space (RFC 1918)'},
-                  {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request to any'},
-                  {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench to any'},
-                  {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'},
-                  {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'},
-                  {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'ntp'}, comment: 'ntp to any'},
-                  {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'http', 'https'}, comment: 'http, https to any'}]
+    Type       : String
+    Default    : |
+      # IPv4
+      add table ip filter
+      # IPv6
+      add table ip6 filter
     Options    :
-      Examples: [{action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'destination-unreachable', comment: 'icmp destination-unreachable from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'parameter-problem', comment: 'icmp parameter-problem from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'time-exceeded', comment: 'icmp time-exceeded from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, ports: {'ssh'}, comment: 'ssh from private address space (RFC 1918)'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'ntp'}, comment: 'ntp to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'http', 'https'}, comment: 'http, https to any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', code: 'destination-unreachable', comment: 'icmp6 destination-unreachable from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', code: 'echo-request', comment: 'icmp6 echo-request from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', code: 'parameter-problem', comment: 'icmp6 parameter-problem from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', code: 'packet-too-big', comment: 'icmp6 packet-too-big from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', code: 'time-exceeded', comment: 'icmp6 time-exceeded from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', sources: {'::'}, code: 'address-unreachable', comment: 'icmp address unreachable from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', sources: {'::'}, code: 'port-unreachable', comment: 'icmp port unreachable from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', sources: {'::'}, code: 'packet-too-big', comment: 'icmp packet too big from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'icmp', sources: {'::'}, code: 'echo-request', comment: 'icmp echo request from any'},
-                 {action: 'accept', direction: 'in', version: 'ipv6', protocol: 'tcp', sources: {'fc00::/7'}, ports: {'ssh'}, comment: 'ssh from private address space (RFC 1918)'},
-                 {action: 'accept', direction: 'out', version: 'ipv6', protocol: 'icmp', code: 'echo-request', comment: 'icmp6 echo-request to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv6', protocol: 'tcp', destinations: {'::'}, ports: {'domain'}, comment: 'dns to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv6', protocol: 'udp', destinations: {'::'}, ports: {'domain'}, comment: 'dns to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv6', protocol: 'udp', destinations: {'::'}, ports: {'ntp'}, comment: 'ntp to any'},
-                 {action: 'accept', direction: 'out', version: 'ipv6', protocol: 'tcp', destinations: {'::'}, ports: {'http', 'https'}, comment: 'http, https to any'}]
-      None    : []
+      Examples: -
+      None    : ''
 
-`nftables_filter_group`
+`nftables_filter_chain`
 
-    Description: Define the 'nftables_filter_group' option.
-    Implemented: 0.1.0
+    Description: Define the 'nftables_filter_chain' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : |
+      # IPv4
+      add chain ip filter INPUT { type filter hook input priority 0; policy drop; }
+      add chain ip filter FORWARD { type filter hook forward priority 0; policy drop; }
+      add chain ip filter OUTPUT { type filter hook output priority 0; policy drop; }
+      # IPv6
+      add chain ip6 filter INPUT { type filter hook input priority 0; policy drop; }
+      add chain ip6 filter FORWARD { type filter hook forward priority 0; policy drop; }
+      add chain ip6 filter OUTPUT { type filter hook output priority 0; policy drop; }
     Options    :
-      Examples: [{action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'http', 'https'}, comment: 'http, https from any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'10.1.1.0/24', '10.2.1.0/24'}, ports: {'http', 'https'}, comment: 'http, https to n_dmz, n_int'}]
-      None    : []
+      Examples: |
+        # IPv4
+        add chain ip filter INPUT { type filter hook input priority 0; policy drop; }
+        add chain ip filter FORWARD { type filter hook forward priority 0; policy drop; }
+        add chain ip filter OUTPUT { type filter hook output priority 0; policy accept; }
+        # IPv6
+        add chain ip6 filter INPUT { type filter hook input priority 0; policy drop; }
+        add chain ip6 filter FORWARD { type filter hook forward priority 0; policy drop; }
+        add chain ip6 filter OUTPUT { type filter hook output priority 0; policy accept; }
+      None    : ''
 
-`nftables_filter_host`
+`nftables_filter_rule_default`
 
-    Description: Define the 'nftables_filter_host' option.
-    Implemented: 0.1.0
+    Description: Define the 'nftables_filter_rule_default' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : |
+      # IPv4 ingress
+      add rule ip filter INPUT ct state related,established  counter accept comment "related and established connections"
+      add rule ip filter INPUT iifname "lo" counter accept comment "loopback connections"
+      add rule ip filter INPUT ct state new icmp type destination-unreachable counter accept comment "icmp destination-unreachable"
+      add rule ip filter INPUT ct state new icmp type source-quench counter accept comment "icmp source-quench"
+      add rule ip filter INPUT ct state new icmp type time-exceeded counter accept comment "icmp time-exceeded"
+      add rule ip filter INPUT ct state new icmp type parameter-problem counter accept comment "icmp parameter-problem"
+      add rule ip filter INPUT ct state new icmp type echo-request counter accept comment "icmp echo-request"
+      add rule ip filter INPUT ct state new icmp type echo-reply counter accept comment "icmp echo-reply"
+      # IPv6 ingress
+      add rule ip6 filter INPUT ct state related,established  counter accept comment "related and established connections"
+      add rule ip6 filter INPUT iifname "lo" counter accept comment "loopback connections"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type destination-unreachable counter accept comment "icmp6 destination-unreachable"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type packet-too-big counter accept comment "icmp6 packet-too-big"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type time-exceeded counter accept comment "icmp6 time-exceeded"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type parameter-problem counter accept comment "icmp6 parameter-problem"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type echo-request counter accept comment "icmp6 echo-request"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type echo-reply counter accept comment "icmp6 echo-reply"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type nd-router-advert counter accept comment "icmp6 router-advertisement"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-solicit counter accept comment "icmp6 neighbor-solicitation"
+      add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-advert counter accept comment "icmp6 neighbor-advertisement"
+      # IPv4 egress
+      add rule ip filter OUTPUT ct state related,established  counter accept comment "related and established connections"
+      add rule ip filter OUTPUT oifname "lo" counter accept comment "loopback connections"
+      add rule ip filter OUTPUT ct state new icmp type destination-unreachable counter accept comment "icmp destination-unreachable"
+      add rule ip filter OUTPUT ct state new icmp type source-quench counter accept comment "icmp source-quench"
+      add rule ip filter OUTPUT ct state new icmp type time-exceeded counter accept comment "icmp time-exceeded"
+      add rule ip filter OUTPUT ct state new icmp type parameter-problem counter accept comment "icmp parameter-problem"
+      add rule ip filter OUTPUT ct state new icmp type echo-request counter accept comment "icmp echo-request"
+      add rule ip filter OUTPUT ct state new icmp type echo-reply counter accept comment "icmp echo-reply"
+      # IPv6 egress
+      add rule ip6 filter OUTPUT ct state related,established  counter accept comment "related and established connections"
+      add rule ip6 filter OUTPUT oifname "lo" counter accept comment "loopback connections"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type destination-unreachable counter accept comment "icmp6 destination-unreachable"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type packet-too-big counter accept comment "icmp6 packet-too-big"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type time-exceeded counter accept comment "icmp6 time-exceeded"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type parameter-problem counter accept comment "icmp6 parameter-problem"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type echo-request counter accept comment "icmp6 echo-request"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type echo-reply counter accept comment "icmp6 echo-reply"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type nd-router-solicit counter accept comment "icmp6 router-solicitation"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-solicit counter accept comment "icmp6 neighbor-solicitation"
+      add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-advert counter accept comment "icmp6 neighbor-advertisement"
     Options    :
-      Examples: [{action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', ports: {'http', 'https'}, comment: 'http, https from any'},
-                 {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'10.1.1.0/24', '10.2.1.0/24'}, ports: {'http', 'https'}, comment: 'http, https to n_dmz, n_int'}]
-      None    : []
+      Examples: -
+      None    : ''
 
-`nftables_filter_policies`
+`nftables_filter_rule_all`
 
-    Description: Define the 'nftables_filter_policies' option.
-    Implemented: 0.1.0
+    Description: Define the 'nftables_filter_rule_all' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{action: 'drop', direction: 'input', version: 'ipv4', comment: 'Default ipv4 input policy'},
-                  {action: 'drop', direction: 'forward', version: 'ipv4', comment: 'Default ipv4 forward policy'},
-                  {action: 'drop', direction: 'output', version: 'ipv4', comment: 'Default ipv4 output policy'},
-                  {action: 'drop', direction: 'input', version: 'ipv6', comment: 'Default ipv6 input policy'},
-                  {action: 'drop', direction: 'forward', version: 'ipv6', comment: 'Default ipv6 forward policy'},
-                  {action: 'drop', direction: 'output', version: 'ipv6', comment: 'Default ipv6 output policy'}]
+    Type       : String
+    Default    : |
+      # IPv4 ingress
+      add rule ip filter INPUT ct state new tcp dport 22 counter accept comment "ssh from any"
+      # IPv6 ingress
+      add rule ip6 filter INPUT ct state new tcp dport 22 counter accept comment "ssh from any"
+      # IPv4 egress
+      add rule ip filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+      add rule ip filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+      add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+      add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+      # IPv6 egress
+      add rule ip6 filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+      add rule ip6 filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+      add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
     Options    :
-      Examples: [{action: 'drop', direction: 'input', version: 'ipv4', comment: 'Default ipv4 input policy'},
-                 {action: 'drop', direction: 'forward', version: 'ipv4', comment: 'Default ipv4 forward policy'},
-                 {action: 'accept', direction: 'output', version: 'ipv4', comment: 'Default ipv4 output policy'},
-                 {action: 'drop', direction: 'input', version: 'ipv6', comment: 'Default ipv6 input policy'},
-                 {action: 'drop', direction: 'forward', version: 'ipv6', comment: 'Default ipv6 forward policy'},
-                 {action: 'accept', direction: 'output', version: 'ipv6', comment: 'Default ipv6 output policy'}]
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 22 counter accept comment "ssh from internal-networks"
+        add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new tcp dport 53 counter accept comment "dns to gateway"
+        add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new udp dport 53 counter accept comment "dns to gateway"
+        add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new udp dport 123 counter accept comment "ntp to gateway"
+        add rule ip filter OUTPUT ip daddr {{ansible_default_ipv4.gateway}} ct state new tcp dport 3128 counter accept comment "squid to gateway"
+      None    : ''
 
-`nftables_nat_all`
+`nftables_filter_rule_group`
 
-    Description: Define the 'nftables_nat_all' option.
-    Implemented: 0.1.0
+    Description: Define the 'nftables_filter_rule_group' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-    Options    :
-      Examples: [{action: 'redirect', direction: 'prerouting', version: 'ipv4', comment: 'dnat redirect to local machine'}] |
-                [{action: 'redirect', direction: 'prerouting', version: 'ipv4', protocol: 'tcp', dports: {'22'}, port: '222', comment: 'dnat redirect port 22 to 222'}] |
-                [{direction: 'prerouting', version: 'ipv4', dnat: '10.11.1.11', comment: 'dnat to host'}] |
-                [{direction: 'prerouting', version: 'ipv4', iif: 'eth0', protocol: 'tcp', dports: {'80'}, dnat: '10.11.1.11:80', comment: 'dnat port 80 to host on port 80'}] |
-                [{direction: 'prerouting', version: 'ipv4', iif: 'eth0', protocol: 'tcp', dports: {'80', '443'}, dnat: '10.11.1.11', comment: 'dnat port 80, 443 to host'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', comment: 'masquerade', comment: 'snat masquerade source to address of output interface'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', types: {'fully-random'}, comment: 'snat masquerade source to address of output interface and port randomization'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', oif: 'eth0', sources: {'10.10.1.0/24'}, comment: 'snat masquerade sources on interface'}] |
-                [{direction: 'postrouting', version: 'ipv4', oif: 'eth0', sources: {'10.10.1.0/24'}, snat: '1.2.3.4', types: {'fully-random'}, comment: 'snat sources on interface via address and port randomization'}]
-      None    : []
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.1.1.10 ct state new tcp dport 9100 counter accept comment "node_exporter from prometheus"
+        add rule ip filter INPUT ip saddr 10.1.1.10 ct state new tcp dport 9388 counter accept comment "monit_exporter from prometheus"
+        add rule ip filter OUTPUT ip daddr 10.1.1.11 ct state new tcp dport 514 counter accept comment "rsyslog to loki"
+        add rule ip filter OUTPUT ip daddr 10.1.1.11 ct state new udp dport 514 counter accept comment "rsyslog to loki"
+      None    : ''
 
-`nftables_nat_group`
+`nftables_filter_rule_host`
 
-    Description: Define the 'nftables_nat_group' option.
-    Implemented: 0.1.0
+    Description: Define the 'nftables_filter_rule_host' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{action: 'redirect', direction: 'prerouting', version: 'ipv4', comment: 'dnat redirect to local machine'}] |
-                [{action: 'redirect', direction: 'prerouting', version: 'ipv4', protocol: 'tcp', dports: {'22'}, port: '222', comment: 'dnat redirect port 22 to 222'}] |
-                [{direction: 'prerouting', version: 'ipv4', dnat: '10.11.1.11', comment: 'dnat to host'}] |
-                [{direction: 'prerouting', version: 'ipv4', iif: 'eth0', protocol: 'tcp', dports: {'80'}, dnat: '10.11.1.11:80', comment: 'dnat port 80 to host on port 80'}] |
-                [{direction: 'prerouting', version: 'ipv4', iif: 'eth0', protocol: 'tcp', dports: {'80', '443'}, dnat: '10.11.1.11', comment: 'dnat port 80, 443 to host'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', comment: 'masquerade', comment: 'snat masquerade source to address of output interface'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', types: {'fully-random'}, comment: 'snat masquerade source to address of output interface and port randomization'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', oif: 'eth0', sources: {'10.10.1.0/24'}, comment: 'snat masquerade sources on interface'}] |
-                [{direction: 'postrouting', version: 'ipv4', oif: 'eth0', sources: {'10.10.1.0/24'}, snat: '1.2.3.4', types: {'fully-random'}, comment: 'snat sources on interface via address and port randomization'}]
-      None    : []
-
-`nftables_nat_host`
-
-    Description: Define the 'nftables_nat_host' option.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{action: 'redirect', direction: 'prerouting', version: 'ipv4', comment: 'dnat redirect to local machine'}] |
-                [{action: 'redirect', direction: 'prerouting', version: 'ipv4', protocol: 'tcp', dports: {'22'}, port: '222', comment: 'dnat redirect port 22 to 222'}] |
-                [{direction: 'prerouting', version: 'ipv4', dnat: '10.11.1.11', comment: 'dnat to host'}] |
-                [{direction: 'prerouting', version: 'ipv4', iif: 'eth0', protocol: 'tcp', dports: {'80'}, dnat: '10.11.1.11:80', comment: 'dnat port 80 to host on port 80'}] |
-                [{direction: 'prerouting', version: 'ipv4', iif: 'eth0', protocol: 'tcp', dports: {'80', '443'}, dnat: '10.11.1.11', comment: 'dnat port 80, 443 to host'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', comment: 'masquerade', comment: 'snat masquerade source to address of output interface'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', types: {'fully-random'}, comment: 'snat masquerade source to address of output interface and port randomization'}] |
-                [{action: 'masquerade', direction: 'postrouting', version: 'ipv4', oif: 'eth0', sources: {'10.10.1.0/24'}, comment: 'snat masquerade sources on interface'}] |
-                [{direction: 'postrouting', version: 'ipv4', oif: 'eth0', sources: {'10.10.1.0/24'}, snat: '1.2.3.4', types: {'fully-random'}, comment: 'snat sources on interface via address and port randomization'}]
-      None    : []
-
-`nftables_nat_policies`
-
-    Description: Define the 'nftables_nat_policies' option.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{action: 'accept', direction: 'prerouting', version: 'ipv4', comment: 'default ipv4 prerouting policy'},
-                  {action: 'accept', direction: 'input', version: 'ipv4', comment: 'default ipv4 input policy'},
-                  {action: 'accept', direction: 'output', version: 'ipv4', comment: 'default ipv4 output policy'},
-                  {action: 'accept', direction: 'postrouting', version: 'ipv4', comment: 'default ipv4 postrouting policy'},
-                  {action: 'accept', direction: 'prerouting', version: 'ipv6', comment: 'default ipv6 prerouting policy'},
-                  {action: 'accept', direction: 'input', version: 'ipv6', comment: 'default ipv6 input policy'},
-                  {action: 'accept', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'},
-                  {action: 'accept', direction: 'postrouting', version: 'ipv6', comment: 'default ipv6 postrouting policy'}]
-    Options    : [{action: 'accept', direction: 'prerouting', version: 'ipv4', comment: 'default ipv4 prerouting policy'},
-                  {action: 'accept', direction: 'input', version: 'ipv4', comment: 'default ipv4 input policy'},
-                  {action: 'accept', direction: 'output', version: 'ipv4', comment: 'default ipv4 output policy'},
-                  {action: 'accept', direction: 'postrouting', version: 'ipv4', comment: 'default ipv4 postrouting policy'},
-                  {action: 'drop', direction: 'prerouting', version: 'ipv6', comment: 'default ipv6 prerouting policy'},
-                  {action: 'drop', direction: 'input', version: 'ipv6', comment: 'default ipv6 input policy'},
-                  {action: 'drop', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'},
-                  {action: 'drop', direction: 'postrouting', version: 'ipv6', comment: 'default ipv6 postrouting policy'}]
+      Examples: |
+        add rule ip filter INPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https from any"
+        add rule ip6 filter INPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https from any"
+      None    : ''
 
 ## Conflicts
 

@@ -2,44 +2,82 @@
 
 nftables_state: 'enable'
 
-nftables_filter_all:
-  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'destination-unreachable', comment: 'icmp destination-unreachable from any'}
-  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request from any'}
-  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'parameter-problem', comment: 'icmp parameter-problem from any'}
-  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench from any'}
-  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'icmp', code: 'time-exceeded', comment: 'icmp time-exceeded from any'}
-  - {action: 'accept', direction: 'in', version: 'ipv4', protocol: 'tcp', sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, ports: {'ssh'}, comment: 'ssh from private address space (RFC 1918)'}
-  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'echo-request', comment: 'icmp echo-request to any'}
-  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'icmp', code: 'source-quench', comment: 'icmp source-quench to any'}
-  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'}
-  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'domain'}, comment: 'dns to any'}
-  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'udp', destinations: {'0.0.0.0/0'}, ports: {'ntp'}, comment: 'ntp to any'}
-  - {action: 'accept', direction: 'out', version: 'ipv4', protocol: 'tcp', destinations: {'0.0.0.0/0'}, ports: {'http', 'https'}, comment: 'http, https to any'}
+nftables_filter_table: |
+  # IPv4
+  add table ip filter
+  # IPv6
+  add table ip6 filter
 
-nftables_filter_group: []
+nftables_filter_chain: |
+  # IPv4
+  add chain ip filter INPUT { type filter hook input priority 0; policy drop; }
+  add chain ip filter FORWARD { type filter hook forward priority 0; policy drop; }
+  add chain ip filter OUTPUT { type filter hook output priority 0; policy drop; }
+  # IPv6
+  add chain ip6 filter INPUT { type filter hook input priority 0; policy drop; }
+  add chain ip6 filter FORWARD { type filter hook forward priority 0; policy drop; }
+  add chain ip6 filter OUTPUT { type filter hook output priority 0; policy drop; }
 
-nftables_filter_host: []
+nftables_filter_rule_default: |
+  # IPv4 ingress
+  add rule ip filter INPUT ct state related,established  counter accept comment "related and established connections"
+  add rule ip filter INPUT iifname "lo" counter accept comment "loopback connections"
+  add rule ip filter INPUT ct state new icmp type destination-unreachable counter accept comment "icmp destination-unreachable"
+  add rule ip filter INPUT ct state new icmp type source-quench counter accept comment "icmp source-quench"
+  add rule ip filter INPUT ct state new icmp type time-exceeded counter accept comment "icmp time-exceeded"
+  add rule ip filter INPUT ct state new icmp type parameter-problem counter accept comment "icmp parameter-problem"
+  add rule ip filter INPUT ct state new icmp type echo-request counter accept comment "icmp echo-request"
+  add rule ip filter INPUT ct state new icmp type echo-reply counter accept comment "icmp echo-reply"
+  # IPv6 ingress
+  add rule ip6 filter INPUT ct state related,established  counter accept comment "related and established connections"
+  add rule ip6 filter INPUT iifname "lo" counter accept comment "loopback connections"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type destination-unreachable counter accept comment "icmp6 destination-unreachable"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type packet-too-big counter accept comment "icmp6 packet-too-big"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type time-exceeded counter accept comment "icmp6 time-exceeded"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type parameter-problem counter accept comment "icmp6 parameter-problem"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type echo-request counter accept comment "icmp6 echo-request"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type echo-reply counter accept comment "icmp6 echo-reply"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type nd-router-advert counter accept comment "icmp6 router-advertisement"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-solicit counter accept comment "icmp6 neighbor-solicitation"
+  add rule ip6 filter INPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-advert counter accept comment "icmp6 neighbor-advertisement"
+  # IPv4 egress
+  add rule ip filter OUTPUT ct state related,established  counter accept comment "related and established connections"
+  add rule ip filter OUTPUT oifname "lo" counter accept comment "loopback connections"
+  add rule ip filter OUTPUT ct state new icmp type destination-unreachable counter accept comment "icmp destination-unreachable"
+  add rule ip filter OUTPUT ct state new icmp type source-quench counter accept comment "icmp source-quench"
+  add rule ip filter OUTPUT ct state new icmp type time-exceeded counter accept comment "icmp time-exceeded"
+  add rule ip filter OUTPUT ct state new icmp type parameter-problem counter accept comment "icmp parameter-problem"
+  add rule ip filter OUTPUT ct state new icmp type echo-request counter accept comment "icmp echo-request"
+  add rule ip filter OUTPUT ct state new icmp type echo-reply counter accept comment "icmp echo-reply"
+  # IPv6 egress
+  add rule ip6 filter OUTPUT ct state related,established  counter accept comment "related and established connections"
+  add rule ip6 filter OUTPUT oifname "lo" counter accept comment "loopback connections"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type destination-unreachable counter accept comment "icmp6 destination-unreachable"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type packet-too-big counter accept comment "icmp6 packet-too-big"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type time-exceeded counter accept comment "icmp6 time-exceeded"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type parameter-problem counter accept comment "icmp6 parameter-problem"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type echo-request counter accept comment "icmp6 echo-request"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type echo-reply counter accept comment "icmp6 echo-reply"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type nd-router-solicit counter accept comment "icmp6 router-solicitation"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-solicit counter accept comment "icmp6 neighbor-solicitation"
+  add rule ip6 filter OUTPUT meta l4proto ipv6-icmp icmpv6 type nd-neighbor-advert counter accept comment "icmp6 neighbor-advertisement"
 
-nftables_filter_policies:
-  - {action: 'drop', direction: 'input', version: 'ipv4', comment: 'default ipv4 input policy'}
-  - {action: 'drop', direction: 'forward', version: 'ipv4', comment: 'default ipv4 forward policy'}
-  - {action: 'drop', direction: 'output', version: 'ipv4', comment: 'default ipv4 output policy'}
-  - {action: 'drop', direction: 'input', version: 'ipv6', comment: 'default ipv6 input policy'}
-  - {action: 'drop', direction: 'forward', version: 'ipv6', comment: 'default ipv6 forward policy'}
-  - {action: 'drop', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'}
+nftables_filter_rule_all: |
+  # IPv4 ingress
+  add rule ip filter INPUT ct state new tcp dport 22 counter accept comment "ssh from any"
+  # IPv6 ingress
+  add rule ip6 filter INPUT ct state new tcp dport 22 counter accept comment "ssh from any"
+  # IPv4 egress
+  add rule ip filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+  add rule ip filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+  add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+  add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+  # IPv6 egress
+  add rule ip6 filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+  add rule ip6 filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+  add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
 
-nftables_nat_all: []
+nftables_filter_rule_group: ''
 
-nftables_nat_group: []
-
-nftables_nat_host: []
-
-nftables_nat_policies:
-  - {action: 'accept', direction: 'prerouting', version: 'ipv4', comment: 'default ipv4 prerouting policy'}
-  - {action: 'accept', direction: 'input', version: 'ipv4', comment: 'default ipv4 input policy'}
-  - {action: 'accept', direction: 'output', version: 'ipv4', comment: 'default ipv4 output policy'}
-  - {action: 'accept', direction: 'postrouting', version: 'ipv4', comment: 'default ipv4 postrouting policy'}
-  - {action: 'accept', direction: 'prerouting', version: 'ipv6', comment: 'default ipv6 prerouting policy'}
-  - {action: 'accept', direction: 'input', version: 'ipv6', comment: 'default ipv6 input policy'}
-  - {action: 'accept', direction: 'output', version: 'ipv6', comment: 'default ipv6 output policy'}
-  - {action: 'accept', direction: 'postrouting', version: 'ipv6', comment: 'default ipv6 postrouting policy'}
+nftables_filter_rule_host: ''

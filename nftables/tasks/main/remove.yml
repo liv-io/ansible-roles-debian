@@ -18,9 +18,9 @@
   tags:
     - nftables
 
-- name: remove file nftables.conf
+- name: remove file nftables.d
   file:
     state: 'absent'
-    path: "{{file_dst_nftables_conf}}"
+    path: "{{file_dst_nftables_d}}"
   tags:
     - nftables
