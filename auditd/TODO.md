@@ -1,18 +1,14 @@
-INFORMATION
+# TODO
 
-Name   : auditd
-Type   : Ansible role
+## Bugs
 
-Authors: liv community
-License: Simplified BSD License
+## Changes
 
-BUGS
-
-ENHANCEMENTS
+## Enhancements
 
 - Improve config parameter by splitting it into individual keys
 
-FEATURES
+## Features
 
 - Purge all rule files when removing role
 - Delete active rules when removing a rule file

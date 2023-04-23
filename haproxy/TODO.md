@@ -1,18 +1,14 @@
-INFORMATION
+# TODO
 
-Name   : haproxy
-Type   : Ansible role
+## Bugs
 
-Authors: liv community
-License: Simplified BSD License
+## Changes
 
-BUGS
-
-ENHANCEMENTS
+## Enhancements
 
 - Add option to split HAProxy configuration in multiple files
 
-FEATURES
+## Features
 
 - Add parameters to configure 'global' and 'defaults' section
 - Add parameters to configure SSL/TLS settings

@@ -1,16 +1,12 @@
-INFORMATION
+# TODO
 
-Name   : rsyslog
-Type   : Ansible role
+## Bugs
 
-Authors: liv community
-License: Simplified BSD License
+## Changes
 
-BUGS
+## Enhancements
 
-ENHANCEMENTS
-
-FEATURES
+## Features
 
 - Add support for rsyslog global section
 - Add support for rsyslog template section

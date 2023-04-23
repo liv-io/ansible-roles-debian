@@ -1,17 +1,13 @@
-INFORMATION
+# TODO
 
-Name   : suricata
-Type   : Ansible role
+## Bugs
 
-Authors: liv community
-License: Simplified BSD License
+## Changes
 
-BUGS
-
-ENHANCEMENTS
+## Enhancements
 
 - Improve install, enable, disable, remove tasks of suricata_ruleset option
 
-FEATURES
+## Features
 
 - Add cronjob to update Suricata ruleset signatures on a regular basis
