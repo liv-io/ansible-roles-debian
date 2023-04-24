@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-04-24)
+
+### Features
+
+- Update rest-server to version 0.12.0
+
 ## 1.1.2 (2023-04-18)
 
 ### Enhancements
@@ -24,7 +30,7 @@ The headers are:
 
 ## 1.1.0 (2022-02-11)
 
-### Changes
+### Features
 
 - Update rest-server to version 0.11.0
 
