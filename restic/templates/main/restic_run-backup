@@ -2,235 +2,241 @@
 
 {{ansible_managed|comment(decoration='#')}}
 
-# SHELL VARIABLES
+# Shell variables
 
 SHELL='/bin/sh'
 PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 
-# COMMANDS
+# Commands
 
-which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
-basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
-date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
-echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
-expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
-hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
-logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
+WHICH='/usr/bin/which' && [ -x ${WHICH} ] || { echo "Error: Command 'which' not found."; exit 127; }
+BASENAME=$(${WHICH} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
+DATE=$(${WHICH} date) || { echo "Error: Command 'date' not found."; exit 127; }
+ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
+EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
+LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
-mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
+MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
-rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-tr=$(${which} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
-touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
-whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
+RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
+TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
+WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
-restic='{{file_dst_restic}}' && [ -x ${restic} ] || { echo "Error: Command 'restic' not found."; exit 127; }
+RESTIC='{{file_dst_restic}}' && [ -x ${RESTIC} ] || { echo "Error: Command 'restic' not found."; exit 127; }
 
-# VARIABLES
+# Environment variables
 
-host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
-script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
-date_start=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
-time_start=$(${date} '+%s')
-user='{{file_owner_restic_run_backup}}'
-lockfile='/var/tmp/restic_run-backup.lock'
-retval=0
-severity='Debug'
-message='Please check log files for more information.'
+HOST=$(${HOSTNAME} -s) || { echo "Error: Host name unknown."; exit 68; }
+SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+TIME_START=$(${DATE} '+%s')
+USER='{{file_owner_restic_run_backup}}'
+LOCKFILE='/var/tmp/restic_run-backup.lock'
 
-server_username='{{restic_server_username}}'
-server_password='{{restic_server_password}}'
-server_address='{{restic_server_address}}'
-server_port='{{restic_server_port}}'
-repo="rest:https://${server_username}:${server_password}@${server_address}:${server_port}/$(${hostname} -s)"
-password='{{file_dst_password_conf}}'
-include='{{file_dst_include_conf}}'
-exclude='{{file_dst_exclude_conf}}'
-log_file='{{file_dst_restic_log}}'
+SERVER_USERNAME='{{restic_server_username}}'
+SERVER_PASSWORD='{{restic_server_password}}'
+SERVER_ADDRESS='{{restic_server_address}}'
+SERVER_PORT='{{restic_server_port}}'
+REPO="rest:https://${SERVER_USERNAME}:${SERVER_PASSWORD}@${SERVER_ADDRESS}:${SERVER_PORT}/$(${HOSTNAME} -s)"
+PASSWORD='{{file_dst_password_conf}}'
+INCLUDE='{{file_dst_include_conf}}'
+EXCLUDE='{{file_dst_exclude_conf}}'
+LOG_FILE='{{file_dst_restic_log}}'
 {% if not (restic_cacert == '') %}
-ca_file='{{restic_cacert}}'
+CA_FILE='{{restic_cacert}}'
 {% endif %}
-keep_hourly='{{restic_keep_hourly}}'
-keep_daily='{{restic_keep_daily}}'
-keep_weekly='{{restic_keep_weekly}}'
-keep_monthly='{{restic_keep_monthly}}'
-limit_download='{{restic_limit_download}}'
-limit_upload='{{restic_limit_upload}}'
-textfile_collector='{{restic_monitor_prom_textfile_collector}}'
+KEEP_HOURLY='{{restic_keep_hourly}}'
+KEEP_DAILY='{{restic_keep_daily}}'
+KEEP_WEEKLY='{{restic_keep_weekly}}'
+KEEP_MONTHLY='{{restic_keep_monthly}}'
+LIMIT_DOWNLOAD='{{restic_limit_download}}'
+LIMIT_UPLOAD='{{restic_limit_upload}}'
+TEXTFILE_COLLECTOR='{{restic_monitor_prom_textfile_collector}}'
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
-mail_from_address='{{restic_monitor_mail_from_address}}'
-mail_to_address='{% for item in restic_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='restic: Run Backup - Error ({{ansible_hostname}})'
+MAIL_FROM_ADDRESS='{{restic_monitor_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in restic_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+MAIL_SUBJECT='restic: Run Backup - Error ({{ansible_hostname}})'
 {% endif %}
 
-# FUNCTIONS
+# Functions
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
 mail_error() {
-  retval=$1
-  severity=$2
-  message=$3
-  mail_body="ERROR
+    local exit_code=${1}
+    local message=${2}
+    local mail_body="ERROR
 
 Message     : ${message}
-Severity    : ${severity}
-Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
+Exit Code   : ${exit_code}
+Date & Time : $(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
 
 SCRIPT
 
 Name        : restic_run-backup
 Type        : Shell script
-PID         : $$
+PID         : ${$}
 
 SYSTEM
 
 Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}"
 
-  ${echo} "${mail_body}" | ${mailx} -r "${mail_from_address}" -s "${mail_subject}" "${mail_to_address}" > /dev/null 2>&1
+    ${ECHO} "${mail_body}" | ${MAILX} -r "${MAIL_FROM_ADDRESS}" -s "${MAIL_SUBJECT}" "${MAIL_TO_ADDRESS}" >/dev/null 2>&1
 }
 {% endif %}
 
 {% if (restic_monitor_prom_state is match('true|yes|enable')) %}
 update_prom() {
-  retval="$1"
-  time_start="$2"
-  time_exec="$3"
+    local exit_code=${1}
+    local time_exec=${2}
 
-  if [ -w "${textfile_collector}" ]; then
-    ${echo} -e "# HELP restic_run_backup_exit The script's exit code.\n"\
+    if [ -w "${TEXTFILE_COLLECTOR}" ]; then
+        if [ -z "${exit_code}" ] ; then
+            ${ECHO} -e "# HELP restic_run_backup_exit The script's exit code.\n"\
 "# TYPE restic_run_backup_exit counter\n"\
-"restic_run_backup_exit ${retval}" > "${textfile_collector}/restic_run_backup_exit.prom"
+"restic_run_backup_exit ${exit_code}" >"${TEXTFILE_COLLECTOR}/restic_run_backup_exit.prom"
+        fi
 
-    if [ -z "${time_start}" ] ; then
-      ${rm} -f "${textfile_collector}/restic_run_backup_start.prom"
-    else
-      ${echo} -e "# HELP restic_run_backup_start The script's start time in epoch.\n"\
+        if [ -z "${TIME_START}" ] ; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/restic_run_backup_start.prom"
+        else
+            ${ECHO} -e "# HELP restic_run_backup_start The script's start time in epoch.\n"\
 "# TYPE restic_run_backup_start counter\n"\
-"restic_run_backup_start ${time_start}" > "${textfile_collector}/restic_run_backup_start.prom"
-    fi
+"restic_run_backup_start ${TIME_START}" >"${TEXTFILE_COLLECTOR}/restic_run_backup_start.prom"
+        fi
 
-    if [ -z "${time_exec}" ] ; then
-      ${rm} -f "${textfile_collector}/restic_run_backup_duration.prom"
-    else
-      ${echo} -e "# HELP restic_run_backup_duration The script's execution duration in seconds.\n"\
+        if [ -z "${time_exec}" ] ; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/restic_run_backup_duration.prom"
+        else
+            ${ECHO} -e "# HELP restic_run_backup_duration The script's execution duration in seconds.\n"\
 "# TYPE restic_run_backup_duration counter\n"\
-"restic_run_backup_duration ${time_exec}" > "${textfile_collector}/restic_run_backup_duration.prom"
+"restic_run_backup_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/restic_run_backup_duration.prom"
+        fi
     fi
-  fi
 }
 {% endif %}
 
 check_script_user() {
-  if [ "$(${whoami})" != "${user}" ]; then
-    retval=77
-    severity='Error'
-    message="Please run script as user '${user}'"
-    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: "${severity}: ${message}""
-    exit ${retval}
-  fi
+    if [ "$(${WHOAMI})" != "${USER}" ]; then
+        local exit_code=77
+        local message="Please run script as user '${USER}'"
+
+        if [ -t 1 ] ; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        exit ${exit_code}
+    fi
 }
 
 create_lockfile() {
-  if [ ! -e ${lockfile} ]; then
-    ${touch} ${lockfile} || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
-  else
-    log_and_exit_on_error "$?" 'Warning' 'Lockfile does already exist. Please investigate.'
-  fi
+    if [ ! -e "${LOCKFILE}" ]; then
+        ${TOUCH} ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not create lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile does already exist. Please investigate.'
+    fi
 }
 
 remove_lockfile() {
-  if [ -e ${lockfile} ]; then
-    ${rm} -f ${lockfile} || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
-  else
-    log_and_exit_on_error "$?" 'Warning' 'Lockfile did not exist. Please investigate.'
-  fi
+    if [ -e "${LOCKFILE}" ]; then
+        ${RM} -f ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not remove lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile did not exist. Please investigate.'
+    fi
 }
 
 log_and_exit_on_error() {
-  retval=$1
-  severity=$2
-  message=$3
-  if [ ${retval} -ne 0 ]; then
-    ${rm} -f ${lockfile}
+    local exit_code=${1}
+    local message=${2}
+    if [ ${exit_code} -ne 0 ]; then
+        ${RM} -f ${LOCKFILE}
 
-    if [ -t 1 ] ; then
-      ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
-    fi
+        if [ -t 1 ] ; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
 
-    ${logger} -t ${script} "${severity}: ${message}"
+        ${LOGGER} -t ${SCRIPT} "${message}"
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
-    mail_error ${retval} "${severity}" "${message}"
+        mail_error ${exit_code} "${message}"
 {% endif %}
 
 {% if (restic_monitor_prom_state is match('true|yes|enable')) %}
-    update_prom "${retval}" "${time_start}" "${time_exec}"
+        update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
-    add_log_header 'backup failed'
+        add_log_header 'backup failed'
 
-    exit ${retval}
-  fi
+        exit ${exit_code}
+    fi
 }
 
 log_and_exit() {
-  date_end=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
-  time_end=$(${date} '+%s')
-  time_exec=$(${expr} ${time_end} - ${time_start})
-  time_hr=$(${date} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    local time_end=$(${DATE} '+%s')
+    local time_exec=$(${EXPR} ${time_end} - ${TIME_START})
+    local time_hr=$(${DATE} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    local exit_code=0
+    local message='Backup created successfully.'
 
-  retval=0
-  severity='Info'
-  message='Backup created successfully.'
-  ${logger} -t ${script} "${severity}: ${message} Duration: ${time_hr}"
+    if [ -t 1 ] ; then
+        ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}"
+    fi
+
+    ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
 {% if (restic_monitor_prom_state is match('true|yes|enable')) %}
-  update_prom "${retval}" "${time_start}" "${time_exec}"
+    update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
-  exit ${retval}
+    exit ${exit_code}
 }
 
 add_log_header() {
-  name=$1
-
-  name_upper=$(${echo} ${name} | ${tr} '[:lower:]' '[:upper:]')
-  date_time=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
-  echo "# ${name_upper} | ${date_time}" >> ${log_file}
+    local name=${1}
+    local name_upper=$(${ECHO} ${name} | ${TR} '[:lower:]' '[:upper:]')
+    local date_time=$(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
+    echo "# ${name_upper} | ${date_time}" >>${LOG_FILE}
 }
 
-# SCRIPT
+create_backup_repository() {
+    # Get stats to verify backup repository
+    ${RESTIC} stats -r ${REPO} -p ${PASSWORD} {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >/dev/null 2>&1
+    if [ ${?} -ne 0 ]; then
+        # Initialize backup repository if inexistent
+        ${RESTIC} init -r ${REPO} -p ${PASSWORD} {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >/dev/null 2>&1
+        log_and_exit_on_error "${?}" 'Unable to create backup repository.'
+    fi
+}
 
-check_script_user
+create_new_backup() {
+    ${RESTIC} backup -r ${REPO} -p ${PASSWORD} --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --files-from ${INCLUDE} --exclude-caches --exclude-file ${EXCLUDE} --compression auto {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >>${LOG_FILE} 2>&1
+    log_and_exit_on_error "${?}" 'Unable to create new backup.'
+}
 
-create_lockfile
+remove_old_backups() {
+    ${RESTIC} forget -r ${REPO} -p ${PASSWORD} --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --keep-hourly ${KEEP_HOURLY} --keep-daily ${KEEP_DAILY} --keep-weekly ${KEEP_WEEKLY} --keep-monthly ${KEEP_MONTHLY} --prune --compression auto {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >>${LOG_FILE} 2>&1
+    log_and_exit_on_error "${?}" 'Unable to remove old backups.'
+}
 
-add_log_header 'backup started'
+check_backup_repository() {
+    ${RESTIC} check -r ${REPO} -p ${PASSWORD} --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --with-cache {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >>${LOG_FILE} 2>&1
+    log_and_exit_on_error "${?}" 'Unable to check backup repository.'
+}
 
-# Get stats and check backup repository
-${restic} stats -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-  # Initialize backup repository
-  ${restic} init -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} > /dev/null 2>&1
-  log_and_exit_on_error "$?" 'Error' 'Unable to create backup repository.'
-fi
+# Establish run order
+main() {
+    check_script_user
+    create_lockfile
+    add_log_header 'backup started'
+    create_backup_repository
+    create_new_backup
+    remove_old_backups
+    check_backup_repository
+    add_log_header 'backup successful'
+    remove_lockfile
+    log_and_exit
+}
 
-# Create new backup
-${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} --compression auto {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
-log_and_exit_on_error "$?" 'Error' 'Unable to create new backup.'
-
-# Remove old backups
-${restic} forget -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune --compression auto {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
-log_and_exit_on_error "$?" 'Error' 'Unable to remove old backups.'
-
-# Check backup repository
-${restic} check -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --with-cache {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
-log_and_exit_on_error "$?" 'Error' 'Unable to check backup repository.'
-
-add_log_header 'backup successful'
-
-remove_lockfile
-
-log_and_exit
+main
