@@ -75,11 +75,9 @@ update_prom() {
     local time_exec=${2}
 
     if [ -w "${TEXTFILE_COLLECTOR}" ]; then
-        if [ -z "${exit_code}" ]; then
-            ${ECHO} -e "# HELP fstrim_discard_blocks_exit The script's exit code.\n"\
+        ${ECHO} -e "# HELP fstrim_discard_blocks_exit The script's exit code.\n"\
 "# TYPE fstrim_discard_blocks_exit counter\n"\
 "fstrim_discard_blocks_exit ${exit_code}" >"${TEXTFILE_COLLECTOR}/fstrim_discard_blocks_exit.prom"
-        fi
 
         if [ -z "${TIME_START}" ]; then
             ${RM} -f "${TEXTFILE_COLLECTOR}/fstrim_discard_blocks_start.prom"

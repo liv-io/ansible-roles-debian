@@ -10,7 +10,13 @@ The headers are:
 - enhancements
 - features
 
-## 1.0.0 (2023-05-01)
+## 1.0.2 (2023-05-03)
+
+### Enhancements
+
+- Remove if-statement for `fstrim_discard_blocks_exit` Prometheus metric
+
+## 1.0.1 (2023-05-01)
 
 ### Enhancements
 
