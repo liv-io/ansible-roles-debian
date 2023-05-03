@@ -93,11 +93,9 @@ update_prom() {
     local time_exec=${2}
 
     if [ -w "${TEXTFILE_COLLECTOR}" ]; then
-        if [ -z "${exit_code}" ]; then
-            ${ECHO} -e "# HELP restic_run_backup_exit The script's exit code.\n"\
+        ${ECHO} -e "# HELP restic_run_backup_exit The script's exit code.\n"\
 "# TYPE restic_run_backup_exit counter\n"\
 "restic_run_backup_exit ${exit_code}" >"${TEXTFILE_COLLECTOR}/restic_run_backup_exit.prom"
-        fi
 
         if [ -z "${TIME_START}" ]; then
             ${RM} -f "${TEXTFILE_COLLECTOR}/restic_run_backup_start.prom"

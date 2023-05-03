@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.5.2 (2023-05-03)
+
+### Enhancements
+
+- Remove if-statement for `restic_run_backup_exit` Prometheus metric
+
 ## 1.5.1 (2023-05-01)
 
 ### Enhancements
