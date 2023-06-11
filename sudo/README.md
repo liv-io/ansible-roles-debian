@@ -259,6 +259,7 @@ vars:
     Version: >= 1.8
     Name   :
       Debian 11: 'sudo'
+      Debian 12: 'sudo'
 
 ## Parameters
 
@@ -283,3 +284,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12

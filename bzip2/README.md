@@ -70,6 +70,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'bzip2'
+      Debian 12: 'bzip2'
 
 ## Parameters
 
@@ -94,3 +95,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

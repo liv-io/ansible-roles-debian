@@ -74,6 +74,7 @@ consult the following sections.
     Version: >= 7.0
     Name   :
       Debian 11: 'nmap'
+      Debian 12: 'nmap'
 
 ## Parameters
 
@@ -98,3 +99,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

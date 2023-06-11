@@ -85,6 +85,7 @@ consult the following sections.
     Version: >= 0.6
     Name   :
       Debian 11: 'moreutils'
+      Debian 12: 'moreutils'
 
 ## Parameters
 
@@ -109,3 +110,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

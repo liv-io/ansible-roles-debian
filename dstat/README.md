@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 0.7
     Name   :
       Debian 11: 'dstat'
+      Debian 12: 'dstat'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

@@ -59,6 +59,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'gzip'
+      Debian 12: 'gzip'
 
 ## Parameters
 
@@ -83,3 +84,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

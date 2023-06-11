@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 3.0
     Name   :
       Debian 11: 'zip'
+      Debian 12: 'zip'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

@@ -72,6 +72,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'wget'
+      Debian 12: 'wget'
 
 ## Parameters
 
@@ -96,3 +97,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 2.0
     Name   :
       Debian 11: 'htop'
+      Debian 12: 'htop'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

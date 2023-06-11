@@ -68,6 +68,8 @@ consult the following sections.
     Version: >= 2.0
     Name   :
       Debian 11: 'iperf'
+      Debian 12: 'iperf'
+      Debian 11: 'iperf'
 
 ## Parameters
 
@@ -92,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

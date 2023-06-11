@@ -74,6 +74,7 @@ consult the following sections.
     Version: >= 12.0
     Name   :
       Debian 11: 'sysstat'
+      Debian 12: 'sysstat'
 
 ## Parameters
 
@@ -98,3 +99,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

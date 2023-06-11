@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 5.0
     Name   :
       Debian 11: 'file'
+      Debian 12: 'file'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

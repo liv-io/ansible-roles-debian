@@ -72,6 +72,7 @@ consult the following sections.
     Version: >= 2.0
     Name   :
       Debian 11: 'man-db'
+      Debian 12: 'man-db'
 
 ## Parameters
 
@@ -96,3 +97,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

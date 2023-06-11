@@ -58,6 +58,7 @@ consult the following sections.
     Version: >= 2.6
     Name   :
       Debian 11: 'grep'
+      Debian 12: 'grep'
 
 ## Parameters
 
@@ -82,3 +83,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

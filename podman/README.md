@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 3.0
     Name   :
       Debian 11: 'podman'
+      Debian 12: 'podman'
 
 ### Roles
 
@@ -102,3 +103,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

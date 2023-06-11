@@ -72,6 +72,7 @@ consult the following sections.
     Version: >= 3.0
     Name   :
       Debian 11: 'picocom'
+      Debian 12: 'picocom'
 
 ## Parameters
 
@@ -96,3 +97,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

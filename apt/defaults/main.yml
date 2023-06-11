@@ -21,26 +21,27 @@ apt_config_all:
       - url: 'http://ftp.ch.debian.org/debian'
         state: 'true'
         comment: 'Debian - Base'
-        distribution: 'bullseye'
-        components: ['main']
+        distribution: "{{ansible_distribution_release}}"
+        components: "{% if (ansible_distribution_major_version == '12') %}['main', 'non-free-firmware']{% else %}['main']{% endif %}"
+
 
       - url: 'http://ftp.ch.debian.org/debian'
         state: 'true'
         comment: 'Debian - Updates'
-        distribution: 'bullseye-updates'
-        components: ['main']
+        distribution: "{{ansible_distribution_release}}-updates"
+        components: "{% if (ansible_distribution_major_version == '12') %}['main', 'non-free-firmware']{% else %}['main']{% endif %}"
 
       - url: 'http://security.debian.org/debian-security'
         state: 'true'
         comment: 'Debian - Security'
-        distribution: 'bullseye-security'
-        components: ['main']
+        distribution: "{{ansible_distribution_release}}-security"
+        components: "{% if (ansible_distribution_major_version == '12') %}['main', 'non-free-firmware']{% else %}['main']{% endif %}"
 
       - url: 'http://ftp.ch.debian.org/debian'
         state: 'true'
         comment: 'Debian - Backports'
-        distribution: 'bullseye-backports'
-        components: ['main']
+        distribution: "{{ansible_distribution_release}}-backports"
+        components: "{% if (ansible_distribution_major_version == '12') %}['main', 'non-free-firmware']{% else %}['main']{% endif %}"
 
 apt_config_group: []
 

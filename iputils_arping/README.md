@@ -73,6 +73,7 @@ consult the following sections.
     Version: >= 20180629
     Name   :
       Debian 11: 'iputils-arping'
+      Debian 12: 'iputils-arping'
 
 ## Parameters
 
@@ -97,3 +98,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

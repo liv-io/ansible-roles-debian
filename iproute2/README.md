@@ -57,6 +57,7 @@ consult the following sections.
     Version: >= 3.10
     Name   :
       Debian 11: 'iproute2'
+      Debian 12: 'iproute2'
 
 ## Parameters
 
@@ -81,3 +82,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

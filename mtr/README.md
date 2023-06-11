@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 0.92
     Name   :
       Debian 11: 'mtr-tiny'
+      Debian 12: 'mtr-tiny'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

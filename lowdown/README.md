@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 0.8
     Name   :
       Debian 11: 'lowdown'
+      Debian 12: 'lowdown'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

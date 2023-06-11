@@ -224,3 +224,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12

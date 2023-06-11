@@ -70,6 +70,7 @@ consult the following sections.
     Version: >= 436
     Name   :
       Debian 11: 'less'
+      Debian 12: 'less'
 
 ## Parameters
 
@@ -94,3 +95,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

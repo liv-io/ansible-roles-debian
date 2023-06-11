@@ -72,6 +72,7 @@ consult the following sections.
     Version: >= 7.2
     Name   :
       Debian 11: 'vim'
+      Debian 12: 'vim'
 
 ## Parameters
 
@@ -96,3 +97,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

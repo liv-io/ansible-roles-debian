@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 3.0
     Name   :
       Debian 11: 'iperf3'
+      Debian 12: 'iperf3'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

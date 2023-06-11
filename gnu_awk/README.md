@@ -71,6 +71,7 @@ consult the following sections.
     Version: >= 4.1
     Name   :
       Debian 11: 'gawk'
+      Debian 12: 'gawk'
 
 ## Parameters
 
@@ -95,3 +96,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

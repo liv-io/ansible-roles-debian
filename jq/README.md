@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'jq'
+      Debian 12: 'jq'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

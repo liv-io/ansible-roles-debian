@@ -75,6 +75,7 @@ consult the following sections.
     Version: >= 9.0
     Name   :
       Debian 11: 'dnsutils'
+      Debian 12: 'dnsutils'
 
 ## Parameters
 
@@ -99,3 +100,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

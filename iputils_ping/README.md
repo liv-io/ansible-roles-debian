@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 20180629
     Name   :
       Debian 11: 'iputils-ping'
+      Debian 12: 'iputils-ping'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

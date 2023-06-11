@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 4.0
     Name   :
       Debian 11: 'lsof'
+      Debian 12: 'lsof'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

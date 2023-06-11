@@ -79,6 +79,7 @@ consult the following sections.
     Version: >= 0.3
     Name   :
       Debian 11: 'patchutils'
+      Debian 12: 'patchutils'
 
 ## Parameters
 
@@ -103,3 +104,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

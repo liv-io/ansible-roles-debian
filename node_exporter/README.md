@@ -133,3 +133,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

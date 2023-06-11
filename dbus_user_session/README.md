@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'dbus-user-session'
+      Debian 12: 'dbus-user-session'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

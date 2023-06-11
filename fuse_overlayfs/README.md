@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'fuse-overlayfs'
+      Debian 12: 'fuse-overlayfs'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

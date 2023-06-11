@@ -109,6 +109,7 @@ consult the following sections.
     Version: >= 247.0
     Name   :
       Debian 11: 'systemd-timesyncd'
+      Debian 12: 'systemd-timesyncd'
 
 ## Parameters
 
@@ -133,3 +134,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

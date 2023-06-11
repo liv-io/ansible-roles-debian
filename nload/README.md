@@ -71,6 +71,7 @@ consult the following sections.
     Version: >= 0.7
     Name   :
       Debian 11: 'nload'
+      Debian 12: 'nload'
 
 ## Parameters
 
@@ -95,3 +96,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

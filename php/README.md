@@ -176,6 +176,7 @@ consult the following sections.
     Version: >= 7.3
     Name   :
       Debian 11: 'php'
+      Debian 12: 'php'
 
 ## Parameters
 
@@ -200,3 +201,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

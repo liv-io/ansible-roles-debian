@@ -61,6 +61,7 @@ consult the following sections.
     Version: >= 1.0
     Name   :
       Debian 11: 'tar'
+      Debian 12: 'tar'
 
 ## Parameters
 
@@ -85,3 +86,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

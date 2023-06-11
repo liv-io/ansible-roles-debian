@@ -66,6 +66,7 @@ consult the following sections.
     Version: >= 8.0
     Name   :
       Debian 11: 'coreutils'
+      Debian 12: 'coreutils'
 
 ## Parameters
 
@@ -90,3 +91,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

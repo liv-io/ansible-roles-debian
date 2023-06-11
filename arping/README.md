@@ -73,6 +73,7 @@ consult the following sections.
     Version: >= 2.0
     Name   :
       Debian 11: 'arping'
+      Debian 12: 'arping'
 
 ## Parameters
 
@@ -97,3 +98,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 8.0
     Name   :
       Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

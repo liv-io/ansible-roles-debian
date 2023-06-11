@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 20200601
     Name   :
       Debian 11: 'ca-certificates'
+      Debian 12: 'ca-certificates'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

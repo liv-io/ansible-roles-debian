@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 0.14
     Name   :
       Debian 11: 'rootlesskit'
+      Debian 12: 'rootlesskit'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

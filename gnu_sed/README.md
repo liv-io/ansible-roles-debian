@@ -61,6 +61,7 @@ consult the following sections.
     Version: >= 4.2
     Name   :
       Debian 11: 'sed'
+      Debian 12: 'sed'
 
 ## Parameters
 
@@ -85,3 +86,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

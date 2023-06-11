@@ -41,25 +41,25 @@ vars:
         - url: 'http://ftp.ch.debian.org/debian'
           state: 'true'
           comment: 'Debian - Base'
-          distribution: 'bullseye'
+          distribution: "{{ansible_distribution_release}}"
           components: ['main']
 
         - url: 'http://ftp.ch.debian.org/debian'
           state: 'true'
           comment: 'Debian - Updates'
-          distribution: 'bullseye-updates'
+          distribution: "{{ansible_distribution_release}}-updates"
           components: ['main']
 
         - url: 'http://security.debian.org/debian-security'
           state: 'true'
           comment: 'Debian - Security'
-          distribution: 'bullseye-security'
+          distribution: "{{ansible_distribution_release}}-security"
           components: ['main']
 
         - url: 'http://ftp.ch.debian.org/debian'
           state: 'true'
           comment: 'Debian - Backports'
-          distribution: 'bullseye-backports'
+          distribution: "{{ansible_distribution_release}}-backports"
           components: ['main']
 ```
 
@@ -153,9 +153,9 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Backports, distribution: bullseye-backports, components: [main]}]
+    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Backports, distribution: {{ansible_distribution_release}}-backports, components: [main]}]
     Options    :
-      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
       None    : []
 
 `apt_config_group`
@@ -167,7 +167,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
       None    : []
 
 `apt_config_host`
@@ -179,7 +179,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: bullseye, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: bullseye-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: bullseye-security, components: [main]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
       None    : []
 
 `apt_http_proxy`
@@ -275,6 +275,7 @@ vars:
     Version: >= 1.0
     Name   :
       Debian 11: 'apt'
+      Debian 12: 'apt'
 
 ### Roles
 
@@ -305,3 +306,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12

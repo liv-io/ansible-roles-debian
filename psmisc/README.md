@@ -72,6 +72,7 @@ consult the following sections.
     Version: >= 23.0
     Name   :
       Debian 11: 'psmisc'
+      Debian 12: 'psmisc'
 
 ## Parameters
 
@@ -96,3 +97,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

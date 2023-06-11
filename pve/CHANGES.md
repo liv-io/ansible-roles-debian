@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.0 (2023-06-11)
+
+### Features
+
+- Add support for Debian 12 (Bookworm)
+
 ## 1.0.0 (2021-12-18)
 
 ### Changes

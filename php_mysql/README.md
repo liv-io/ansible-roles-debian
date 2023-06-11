@@ -69,6 +69,7 @@ consult the following sections.
     Version: >= 7.3
     Name   :
       Debian 11: 'php-mysql'
+      Debian 12: 'php-mysql'
 
 ## Parameters
 
@@ -93,3 +94,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

@@ -68,6 +68,7 @@ consult the following sections.
     Version: >= 0.10
     Name   :
       Debian 11: 'telnet'
+      Debian 12: 'telnet'
 
 ## Parameters
 
@@ -92,3 +93,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

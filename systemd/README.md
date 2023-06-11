@@ -267,6 +267,7 @@ vars:
     Version: >= 219
     Name   :
       Debian 11: 'systemd'
+      Debian 12: 'systemd'
 
 ## Parameters
 
@@ -291,3 +292,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12

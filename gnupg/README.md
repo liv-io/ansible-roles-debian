@@ -71,6 +71,7 @@ consult the following sections.
     Version: >= 2.0
     Name   :
       Debian 11: 'gnupg'
+      Debian 12: 'gnupg'
 
 ## Parameters
 
@@ -95,3 +96,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12
