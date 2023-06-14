@@ -432,6 +432,7 @@ consult the following sections.
     Version: >= 4.0
     Name   :
       Debian 11: 'squid'
+      Debian 12: 'squid'
 
 ## Parameters
 
@@ -456,3 +457,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12
