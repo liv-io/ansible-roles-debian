@@ -272,6 +272,7 @@ consult the following sections.
     Version: >= 0.9
     Name   :
       Debian 11: 'nftables'
+      Debian 12: 'nftables'
 
 ## Parameters
 
@@ -296,3 +297,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12
