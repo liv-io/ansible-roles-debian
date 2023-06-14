@@ -290,6 +290,7 @@ consult the following sections.
     Version: >= 6.0
     Name   :
       Debian 11: 'openntpd'
+      Debian 12: 'openntpd'
 
 ### Roles
 
@@ -318,3 +319,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12
