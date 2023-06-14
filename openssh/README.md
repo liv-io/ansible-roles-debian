@@ -433,6 +433,7 @@ consult the following sections.
     Version: >= 7.0
     Name   :
       Debian 11: 'openssh-server'
+      Debian 12: 'openssh-server'
 
 ## Parameters
 
@@ -457,3 +458,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

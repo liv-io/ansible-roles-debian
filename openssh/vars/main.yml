@@ -11,21 +11,21 @@ file_owner_banner: 'root'
 file_group_banner: 'root'
 
 # moduli
-file_src_moduli: 'files/main/moduli'
+file_src_moduli: "files/{{ansible_distribution_major_version}}/moduli"
 file_dst_moduli: '/etc/ssh/moduli'
 file_mode_moduli: '0600'
 file_owner_moduli: 'root'
 file_group_moduli: 'root'
 
 # ssh_config
-file_src_ssh_config: 'templates/main/ssh_config'
+file_src_ssh_config: "templates/{{ansible_distribution_major_version}}/ssh_config"
 file_dst_ssh_config: '/etc/ssh/ssh_config'
 file_mode_ssh_config: '0644'
 file_owner_ssh_config: 'root'
 file_group_ssh_config: 'root'
 
 # sshd_config
-file_src_sshd_config: 'templates/main/sshd_config'
+file_src_sshd_config: "templates/{{ansible_distribution_major_version}}/sshd_config"
 file_dst_sshd_config: '/etc/ssh/sshd_config'
 file_mode_sshd_config: '0600'
 file_owner_sshd_config: 'root'
