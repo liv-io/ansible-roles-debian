@@ -380,6 +380,7 @@ consult the following sections.
     Version: >= 3.0
     Name   :
       Debian 11: 'chrony'
+      Debian 12: 'chrony'
 
 ### Roles
 
@@ -410,3 +411,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12
