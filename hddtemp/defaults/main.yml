@@ -1,7 +1,0 @@
----
-
-hddtemp_state: 'enable'
-
-hddtemp_daemonize: 'true'
-
-hddtemp_monitor_monit_state: 'false'
