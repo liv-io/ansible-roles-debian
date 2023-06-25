@@ -448,6 +448,7 @@ vars:
     Version: >= 1.8
     Name   :
       Debian 11: 'nginx'
+      Debian 12: 'nginx'
 
 ### Roles
 
@@ -476,3 +477,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12
