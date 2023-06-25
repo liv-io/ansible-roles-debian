@@ -54,8 +54,8 @@
   tags:
     - nginx
 
-- name: generate dhparam
-  shell: "{{command_cmd_generate_dhparam}}"
+- name: generate dhparam.pem
+  shell: "{{command_cmd_generate_dhparam_pem}}"
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   tags:

@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.1 (2023-06-25)
+
+### Enhancements
+
+- Minor task name and variable improvement
+
 ## 1.1.0 (2023-06-25)
 
 ### Features
