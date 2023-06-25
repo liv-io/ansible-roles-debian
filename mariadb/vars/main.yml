@@ -72,7 +72,7 @@ file_owner_50_mysqld_safe_cnf: 'root'
 file_group_50_mysqld_safe_cnf: 'root'
 
 # 50-server.cnf
-file_src_50_server_cnf: 'templates/main/50-server.cnf'
+file_src_50_server_cnf: "templates/{{ansible_distribution_major_version}}/50-server.cnf"
 file_dst_50_server_cnf: '/etc/mysql/mariadb.conf.d/50-server.cnf'
 file_mode_50_server_cnf: '0644'
 file_owner_50_server_cnf: 'root'

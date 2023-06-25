@@ -405,12 +405,14 @@ vars:
     Version: >= 10.0
     Name   :
       Debian 11: 'mariadb-client'
+      Debian 12: 'mariadb-client'
 
 `mariadb-server`
 
     Version: >= 10.0
     Name   :
       Debian 11: 'mariadb-server'
+      Debian 12: 'mariadb-server'
 
 ### Roles
 
@@ -442,3 +444,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12
