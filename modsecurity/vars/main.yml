@@ -4,7 +4,7 @@
 package_name_modsecurity: 'libapache2-mod-security2'
 
 # modsecurity.conf
-file_src_modsecurity_conf: 'templates/main/modsecurity.conf'
+file_src_modsecurity_conf: "templates/{{ansible_distribution_major_version}}/modsecurity.conf"
 file_dst_modsecurity_conf: '/etc/apache2/conf-available/modsecurity.conf'
 file_mode_modsecurity_conf: '0644'
 file_owner_modsecurity_conf: 'root'
