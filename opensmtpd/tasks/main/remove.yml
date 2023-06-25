@@ -16,6 +16,17 @@
     name: "{{package_name_opensmtpd}}"
     default_release: 'bullseye-backports'
     install_recommends: 'no'
+  when: (ansible_distribution_major_version is match('11'))
+  tags:
+    - opensmtpd
+
+- name: remove package opensmtpd
+  package:
+    state: 'absent'
+    name: "{{package_name_opensmtpd}}"
+    install_recommends: 'no'
+  when: (ansible_distribution_major_version is match('12'))
+
   tags:
     - opensmtpd
 
