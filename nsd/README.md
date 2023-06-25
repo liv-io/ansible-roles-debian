@@ -317,6 +317,7 @@ vars:
     Version: >= 4.0
     Name   :
       Debian 11: 'nsd'
+      Debian 12: 'nsd'
 
 ## Parameters
 
@@ -341,3 +342,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12
