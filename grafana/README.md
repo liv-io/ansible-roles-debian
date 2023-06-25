@@ -228,6 +228,7 @@ consult the following sections.
     Version: >= 7.0
     Name   :
       Debian 11: 'grafana'
+      Debian 12: 'grafana'
 
 ### Roles
 
@@ -256,3 +257,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

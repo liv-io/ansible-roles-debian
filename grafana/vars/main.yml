@@ -3,7 +3,13 @@
 # grafana
 package_name_grafana: 'grafana'
 
-file_src_grafana_gpg: 'files/main/grafana.gpg'
+file_src_grafana_asc: "files/{{ansible_distribution_major_version}}/grafana.asc"
+file_dst_grafana_asc: '/etc/apt/trusted.gpg.d/grafana.asc'
+file_mode_grafana_asc: '0644'
+file_owner_grafana_asc: 'root'
+file_group_grafana_asc: 'root'
+
+file_src_grafana_gpg: "files/{{ansible_distribution_major_version}}/grafana.gpg"
 file_dst_grafana_gpg: '/usr/local/src/grafana.gpg'
 file_mode_grafana_gpg: '0644'
 file_owner_grafana_gpg: 'root'
