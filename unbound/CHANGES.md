@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.0 (2023-06-25)
+
+### Features
+
+- Add support for Debian 12 (Bookworm)
+- Add unbound-anchor tasks
+
+### Enhancements
+
+- Improve unbound.conf configuration file
+
 ## 1.0.1 (2022-12-14)
 
 ### Enhancements

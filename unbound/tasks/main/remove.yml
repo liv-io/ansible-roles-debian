@@ -10,6 +10,14 @@
   tags:
     - unbound
 
+- name: remove package unbound-anchor
+  package:
+    state: 'absent'
+    name: "{{package_name_unbound_anchor}}"
+    install_recommends: 'no'
+  tags:
+    - unbound
+
 - name: remove package unbound
   package:
     state: 'absent'
@@ -37,5 +45,12 @@
   file:
     state: 'absent'
     path: "{{file_dst_root_hints}}"
+  tags:
+    - unbound
+
+- name: remove file root.key
+  file:
+    state: 'absent'
+    path: "{{file_dst_root_key}}"
   tags:
     - unbound

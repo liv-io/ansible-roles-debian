@@ -18,6 +18,21 @@
   tags:
     - unbound
 
+- name: install package unbound-anchor
+  package:
+    state: 'present'
+    name: "{{package_name_unbound_anchor}}"
+    install_recommends: 'no'
+  tags:
+    - unbound
+
+- name: stat file root.key
+  stat:
+    path: "{{file_dst_root_key}}"
+  register: register_root_key
+  tags:
+    - unbound
+
 - name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
@@ -44,5 +59,15 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (unbound_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - unbound
+
+- name: generate root.key
+  shell: "{{command_cmd_generate_root_key}}"
+  check_mode: 'no'
+  register: register_generate_root_key
+  changed_when: (register_generate_root_key.rc > 0)
+  failed_when: (register_generate_root_key.rc > 1)
+  when: (register_root_key.stat.exists == False)
   tags:
     - unbound

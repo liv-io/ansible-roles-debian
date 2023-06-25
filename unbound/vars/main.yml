@@ -3,6 +3,9 @@
 # unbound
 package_name_unbound: 'unbound'
 
+# unbound-anchor
+package_name_unbound_anchor: 'unbound-anchor'
+
 # root.hints
 file_src_root_hints: 'files/main/root.hints'
 file_dst_root_hints: '/etc/unbound/root.hints'
@@ -11,7 +14,7 @@ file_owner_root_hints: 'root'
 file_group_root_hints: 'root'
 
 # unbound.conf
-file_src_unbound_conf: 'templates/main/unbound.conf'
+file_src_unbound_conf: "templates/{{ansible_distribution_major_version}}/unbound.conf"
 file_dst_unbound_conf: '/etc/unbound/unbound.conf'
 file_mode_unbound_conf: '0644'
 file_owner_unbound_conf: 'root'
@@ -31,8 +34,14 @@ file_mode_unbound_cfg: '0640'
 file_owner_unbound_cfg: 'root'
 file_group_unbound_cfg: 'root'
 
+# root.key
+file_dst_root_key: '/var/lib/unbound/root.key'
+
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# generate root.key
+command_cmd_generate_root_key: "unbound-anchor -a /var/lib/unbound/root.key"
 
 # monit
 service_name_monit: 'monit'
