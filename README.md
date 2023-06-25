@@ -53,6 +53,7 @@
 
 The following operating systems are supported:
 * Debian 11
+* Debian 12
 
 ### Dependencies
 
