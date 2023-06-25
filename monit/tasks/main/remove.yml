@@ -16,6 +16,16 @@
     name: "{{package_name_monit}}"
     default_release: 'bullseye-backports'
     install_recommends: 'no'
+  when: (ansible_distribution_major_version is match('11'))
+  tags:
+    - monit
+
+- name: remove package monit
+  package:
+    state: 'absent'
+    name: "{{package_name_monit}}"
+    install_recommends: 'no'
+  when: (ansible_distribution_major_version is match('12'))
   tags:
     - monit
 

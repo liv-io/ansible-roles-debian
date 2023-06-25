@@ -10,7 +10,7 @@ file_dst_conf_d: '/etc/monit/conf.d'
 file_dst_conf_enabled: '/etc/monit/conf-enabled'
 
 # monitrc
-file_src_monitrc: 'templates/main/monitrc'
+file_src_monitrc: "templates/{{ansible_distribution_major_version}}/monitrc"
 file_dst_monitrc: '/etc/monit/monitrc'
 file_mode_monitrc: '0600'
 file_owner_monitrc: 'root'
