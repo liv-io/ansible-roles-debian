@@ -220,6 +220,7 @@ consult the following sections.
     Version: >= 5.0
     Name   :
       Debian 11: 'suricata'
+      Debian 12: 'suricata'
 
 ## Parameters
 
@@ -244,3 +245,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

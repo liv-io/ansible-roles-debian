@@ -64,7 +64,7 @@ file_group_suricata_logrotate: 'root'
 file_dst_suricata_rules: '/var/lib/suricata/rules/suricata.rules'
 
 # suricata.default
-file_src_suricata_default: 'templates/main/suricata.default'
+file_src_suricata_default: "templates/{{ansible_distribution_major_version}}/suricata.default"
 file_dst_suricata_default: '/etc/default/suricata'
 file_mode_suricata_default: '0640'
 file_owner_suricata_default: 'root'
@@ -78,7 +78,7 @@ file_owner_suricata_service: 'root'
 file_group_suricata_service: 'root'
 
 # suricata.yaml
-file_src_suricata_yaml: 'templates/main/suricata.yaml'
+file_src_suricata_yaml: "templates/{{ansible_distribution_major_version}}/suricata.yaml"
 file_dst_suricata_yaml: '/etc/suricata/suricata.yaml'
 file_mode_suricata_yaml: '0640'
 file_owner_suricata_yaml: 'root'
