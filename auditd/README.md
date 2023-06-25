@@ -226,6 +226,7 @@ vars:
     Version: >= 2.0
     Name   :
       Debian 11: 'auditd'
+      Debian 12: 'auditd'
 
 ### Roles
 
@@ -254,3 +255,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12
