@@ -618,6 +618,7 @@ vars:
     Version: >= 2.4
     Name   :
       Debian 11: 'apache2'
+      Debian 12: 'apache2'
 
 ## Parameters
 
@@ -642,3 +643,4 @@ vars:
 `debian`
 
     Version: 11
+    Version: 12
