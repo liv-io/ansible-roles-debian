@@ -281,6 +281,7 @@ consult the following sections.
     Version: >= 1.8
     Name   :
       Debian 11: 'haproxy'
+      Debian 12: 'haproxy'
 
 ### Roles
 
@@ -309,3 +310,4 @@ consult the following sections.
 `debian`
 
     Version: 11
+    Version: 12

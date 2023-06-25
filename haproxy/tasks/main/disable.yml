@@ -21,13 +21,13 @@
   tags:
     - haproxy
 
-- name: create file monit-haproxy.cfg
+- name: create file haproxy.monit
   template:
-    src: "{{file_src_monit_haproxy_cfg}}"
-    dest: "{{file_dst_monit_haproxy_cfg}}"
-    mode: "{{file_mode_monit_haproxy_cfg}}"
-    owner: "{{file_owner_monit_haproxy_cfg}}"
-    group: "{{file_group_monit_haproxy_cfg}}"
+    src: "{{file_src_haproxy_monit}}"
+    dest: "{{file_dst_haproxy_monit}}"
+    mode: "{{file_mode_haproxy_monit}}"
+    owner: "{{file_owner_haproxy_monit}}"
+    group: "{{file_group_haproxy_monit}}"
   notify: reload service monit
   when: (haproxy_monitor_monit_state is match('true|yes|enable'))
   tags:
