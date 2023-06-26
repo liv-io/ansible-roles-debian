@@ -3,8 +3,14 @@
 # chronyd
 chronyd: 'chronyd -q'
 
+# bc
+package_name_bc: 'bc'
+
 # chrony
 package_name_chrony: 'chrony'
+
+# mailx
+package_name_mailx: 'bsd-mailx'
 
 # chrony.conf
 file_src_chrony_conf: 'templates/main/chrony.conf'

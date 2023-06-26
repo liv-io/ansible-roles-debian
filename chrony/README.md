@@ -382,11 +382,19 @@ consult the following sections.
       Debian 11: 'chrony'
       Debian 12: 'chrony'
 
-### Roles
-
 `bc`
 
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'bc'
+      Debian 12: 'bc'
+
 `mailx`
+
+    Version: >= 8.0
+    Name   :
+      Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 

@@ -10,6 +10,23 @@
   tags:
     - chrony
 
+- name: install package bc
+  package:
+    state: 'present'
+    name: "{{package_name_bc}}"
+    install_recommends: 'no'
+  tags:
+    - chrony
+
+- name: install package mailx
+  package:
+    state: 'present'
+    name: "{{package_name_mailx}}"
+    install_recommends: 'no'
+  when: (chrony_monitor_mail_state is match('true|yes|enable'))
+  tags:
+    - chrony
+
 - name: install package chrony
   package:
     state: 'present'
