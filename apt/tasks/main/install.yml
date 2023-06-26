@@ -10,6 +10,23 @@
   tags:
     - apt
 
+- name: install package gnupg1
+  package:
+    state: 'present'
+    name: "{{package_name_gnupg1}}"
+    install_recommends: 'no'
+  tags:
+    - apt
+
+- name: install package mailx
+  package:
+    state: 'present'
+    name: "{{package_name_mailx}}"
+    install_recommends: 'no'
+  when: (apt_monitor_mail_state is match('true|yes|enable'))
+  tags:
+    - apt
+
 - name: install package apt
   package:
     state: 'present'

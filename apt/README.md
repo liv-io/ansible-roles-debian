@@ -277,11 +277,19 @@ vars:
       Debian 11: 'apt'
       Debian 12: 'apt'
 
-### Roles
-
 `gnupg1`
 
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'gnupg1'
+      Debian 12: 'gnupg1'
+
 `mailx`
+
+    Version: >= 8.0
+    Name   :
+      Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 

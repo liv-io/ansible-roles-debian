@@ -3,6 +3,12 @@
 # apt
 package_name_apt: 'apt'
 
+# gnupg1
+package_name_gnupg1: 'gnupg1'
+
+# mailx
+package_name_mailx: 'bsd-mailx'
+
 # config
 file_src_config: 'templates/main/config'
 file_mode_config: '0644'
