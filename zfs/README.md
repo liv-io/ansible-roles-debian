@@ -380,9 +380,14 @@ consult the following sections.
 
 ## Dependencies
 
-### Roles
+### Packages
 
 `mailx`
+
+    Version: >= 8.0
+    Name   :
+      Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 
