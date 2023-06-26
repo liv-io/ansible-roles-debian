@@ -414,9 +414,12 @@ vars:
       Debian 11: 'mariadb-server'
       Debian 12: 'mariadb-server'
 
-### Roles
-
 `mailx`
+
+    Version: >= 8.0
+    Name   :
+      Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 

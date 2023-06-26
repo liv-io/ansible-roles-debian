@@ -10,6 +10,15 @@
   tags:
     - mariadb
 
+- name: install package mailx
+  package:
+    state: 'present'
+    name: "{{package_name_mailx}}"
+    install_recommends: 'no'
+  when: (mariadb_monitor_mail_state is match('true|yes|enable'))
+  tags:
+    - mariadb
+
 - name: install package mariadb-client
   package:
     state: 'present'
