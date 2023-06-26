@@ -10,6 +10,14 @@
   tags:
     - loki
 
+- name: install package unzip
+  package:
+    state: 'present'
+    name: "{{package_name_unzip}}"
+    install_recommends: 'no'
+  tags:
+    - haproxy
+
 - name: create group loki
   group:
     state: 'present'

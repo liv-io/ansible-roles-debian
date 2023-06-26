@@ -135,13 +135,20 @@ consult the following sections.
 
 `loki`
 
+### Packages
+
+`unzip`
+
+    Version: >= 6.0
+    Name   :
+      Debian 11: 'unzip'
+      Debian 12: 'unzip'
+
 ### Roles
 
 `alertmanager`
 
 `grafana`
-
-`unzip`
 
 ## Parameters
 

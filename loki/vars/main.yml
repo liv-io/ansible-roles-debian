@@ -1,5 +1,8 @@
 ---
 
+# unzip
+package_name_unzip: 'unzip'
+
 # boltdb-shipper-active.dir
 file_dst_boltdb_shipper_active_dir: '/data/loki/boltdb-shipper-active'
 file_mode_boltdb_shipper_active_dir: '0750'
