@@ -1,0 +1,9 @@
+---
+
+package_state: 'install'
+
+package_config_all: []
+
+package_config_group: []
+
+package_config_host: []
