@@ -70,15 +70,33 @@ consult the following sections.
       Debian 11: 'podman'
       Debian 12: 'podman'
 
-### Roles
+`dbus-user-session`
 
-`dbus_user_session`
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'dbus-user-session'
+      Debian 12: 'dbus-user-session'
 
-`fuse_overlayfs`
+`fuse-overlayfs`
+
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'fuse-overlayfs'
+      Debian 12: 'fuse-overlayfs'
 
 `rootlesskit`
 
+    Version: >= 0.14
+    Name   :
+      Debian 11: 'rootlesskit'
+      Debian 12: 'rootlesskit'
+
 `slirp4netns`
+
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'slirp4netns'
+      Debian 12: 'slirp4netns'
 
 ## Parameters
 

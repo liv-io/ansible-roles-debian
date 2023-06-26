@@ -18,6 +18,38 @@
   tags:
     - podman
 
+- name: remove package dbus_user_session
+  package:
+    state: 'absent'
+    name: "{{package_name_dbus_user_session}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
+- name: remove package fuse_overlayfs
+  package:
+    state: 'absent'
+    name: "{{package_name_fuse_overlayfs}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
+- name: remove package rootlesskit
+  package:
+    state: 'absent'
+    name: "{{package_name_rootlesskit}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
+- name: remove package slirp4netns
+  package:
+    state: 'absent'
+    name: "{{package_name_slirp4netns}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
 - name: remove file storage.conf
   file:
     state: 'absent'
