@@ -1,7 +1,0 @@
----
-
-- name: import tasks install
-  import_tasks: install.yml
-  when: not (diffutils_state is match('false|no|remove|quiesce|inactive'))
-  tags:
-    - diffutils
