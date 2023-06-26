@@ -10,6 +10,14 @@
   tags:
     - nginx
 
+- name: install package openssl
+  package:
+    state: 'present'
+    name: "{{package_name_openssl}}"
+    install_recommends: 'no'
+  tags:
+    - nginx
+
 - name: install package nginx
   package:
     state: 'present'

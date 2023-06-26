@@ -3,6 +3,9 @@
 # nginx
 package_name_nginx: 'nginx'
 
+# openssl
+package_name_openssl: 'openssl'
+
 # config
 file_src_config: 'templates/main/config'
 file_mode_config: '0644'

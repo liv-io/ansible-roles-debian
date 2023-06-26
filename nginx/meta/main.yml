@@ -1,4 +1,0 @@
----
-
-dependencies:
-  - {role: openssl, when: not (nginx_state is match('false|no|remove|quiesce|inactive'))}

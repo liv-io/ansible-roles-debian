@@ -450,9 +450,12 @@ vars:
       Debian 11: 'nginx'
       Debian 12: 'nginx'
 
-### Roles
-
 `openssl`
+
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'openssl'
+      Debian 12: 'openssl'
 
 ## Parameters
 
