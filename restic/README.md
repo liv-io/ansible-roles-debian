@@ -368,11 +368,19 @@ consult the following sections.
 
 `restic`
 
-### Roles
-
 `bzip2`
 
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'bzip2'
+      Debian 12: 'bzip2'
+
 `mailx`
+
+    Version: >= 8.0
+    Name   :
+      Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 

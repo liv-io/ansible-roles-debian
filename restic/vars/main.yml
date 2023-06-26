@@ -1,5 +1,11 @@
 ---
 
+# bzip2
+package_name_bzip2: 'bzip2'
+
+# mailx
+package_name_mailx: 'bsd-mailx'
+
 # restic_etc.dir
 file_dst_restic_etc_dir: '/etc/restic'
 file_mode_restic_etc_dir: '0700'
