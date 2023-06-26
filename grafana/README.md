@@ -230,9 +230,12 @@ consult the following sections.
       Debian 11: 'grafana'
       Debian 12: 'grafana'
 
-### Roles
-
 `gnupg1`
+
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'gnupg1'
+      Debian 12: 'gnupg1'
 
 ## Parameters
 

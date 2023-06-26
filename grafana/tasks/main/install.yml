@@ -10,6 +10,14 @@
   tags:
     - grafana
 
+- name: install package gnupg1
+  package:
+    state: 'present'
+    name: "{{package_name_gnupg1}}"
+    install_recommends: 'no'
+  tags:
+    - grafana
+
 - name: copy file grafana.asc
   copy:
     src: "{{file_src_grafana_asc}}"
