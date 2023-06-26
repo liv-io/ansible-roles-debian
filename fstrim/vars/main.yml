@@ -1,5 +1,8 @@
 ---
 
+# mailx
+package_name_mailx: 'bsd-mailx'
+
 # fstrim_log.dir
 file_dst_fstrim_log_dir: "/var/log/fstrim"
 file_mode_fstrim_log_dir: '0700'

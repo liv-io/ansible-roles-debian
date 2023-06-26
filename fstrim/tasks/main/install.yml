@@ -10,6 +10,15 @@
   tags:
     - fstrim
 
+- name: install package mailx
+  package:
+    state: 'present'
+    name: "{{package_name_mailx}}"
+    install_recommends: 'no'
+  when: (fstrim_monitor_mail_state is match('true|yes|enable'))
+  tags:
+    - chrony
+
 - name: create file fstrim_log.dir
   file:
     state: 'directory'

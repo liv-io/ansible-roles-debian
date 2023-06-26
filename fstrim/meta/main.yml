@@ -1,4 +1,0 @@
----
-
-dependencies:
-  - {role: mailx, when: (fstrim_monitor_mail_state is match('true|yes|enable'))}
