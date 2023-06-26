@@ -292,9 +292,12 @@ consult the following sections.
       Debian 11: 'openntpd'
       Debian 12: 'openntpd'
 
-### Roles
-
 `mailx`
+
+    Version: >= 8.0
+    Name   :
+      Debian 11: 'bsd-mailx'
+      Debian 12: 'bsd-mailx'
 
 ## Parameters
 
