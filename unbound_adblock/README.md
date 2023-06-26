@@ -234,11 +234,14 @@ consult the following sections.
 
 ### Packages
 
-`unbound-adblock`
+`curl`
+
+    Version: >= 7.0
+    Name   :
+      Debian 11: 'curl'
+      Debian 12: 'curl'
 
 ### Roles
-
-`curl`
 
 `sudo`
 
