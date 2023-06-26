@@ -1,5 +1,8 @@
 ---
 
+# apache2-utils
+package_name_apache2_utils: 'apache2-utils'
+
 # htpasswd
 file_src_htpasswd: 'templates/main/htpasswd'
 file_dst_htpasswd: '/etc/podman/pod_registry/auth/htpasswd'

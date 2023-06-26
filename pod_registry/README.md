@@ -152,11 +152,18 @@ consult the following sections.
 
 `docker.io/library/registry`
 
+### Packages
+
+`apache2-utils`
+
+    Version: >= 2.4
+    Name   :
+      Debian 11: 'apache2-utils'
+      Debian 12: 'apache2-utils'
+
 ### Roles
 
 `podman`
-
-`apache2_utils`
 
 ## Parameters
 
