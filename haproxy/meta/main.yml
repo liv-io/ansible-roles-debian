@@ -1,4 +1,0 @@
----
-
-dependencies:
-  - {role: openssl, when: not (haproxy_state is match('false|no|remove|quiesce|inactive'))}

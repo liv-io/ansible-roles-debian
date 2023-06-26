@@ -10,6 +10,14 @@
   tags:
     - haproxy
 
+- name: install package openssl
+  package:
+    state: 'present'
+    name: "{{package_name_openssl}}"
+    install_recommends: 'no'
+  tags:
+    - haproxy
+
 - name: install package haproxy
   package:
     state: 'present'

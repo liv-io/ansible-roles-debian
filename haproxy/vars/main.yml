@@ -3,6 +3,9 @@
 # haproxy
 package_name_haproxy: 'haproxy'
 
+# openssl
+package_name_openssl: 'openssl'
+
 # dhparam.pem
 file_dst_dhparam_pem: '/etc/haproxy/dhparam.pem'
 

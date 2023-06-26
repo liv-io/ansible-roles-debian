@@ -283,9 +283,12 @@ consult the following sections.
       Debian 11: 'haproxy'
       Debian 12: 'haproxy'
 
-### Roles
-
 `openssl`
+
+    Version: >= 1.0
+    Name   :
+      Debian 11: 'openssl'
+      Debian 12: 'openssl'
 
 ## Parameters
 
