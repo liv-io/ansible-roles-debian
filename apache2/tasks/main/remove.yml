@@ -18,6 +18,14 @@
   tags:
     - apache2
 
+- name: remove package apache2_utils
+  package:
+    state: 'absent'
+    name: "{{package_name_apache2_utils}}"
+    install_recommends: 'no'
+  tags:
+    - apache2
+
 - name: remove file apache2.cfg
   file:
     state: 'absent'

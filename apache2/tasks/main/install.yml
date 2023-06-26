@@ -10,6 +10,14 @@
   tags:
     - apache2
 
+- name: install package apache2_utils
+  package:
+    state: 'present'
+    name: "{{package_name_apache2_utils}}"
+    install_recommends: 'no'
+  tags:
+    - apache2
+
 - name: install package apache2
   package:
     state: 'present'

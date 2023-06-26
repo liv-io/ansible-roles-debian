@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.1 (2023-06-26)
+
+### Enhancements
+
+- Add `apache2-utils` package dependency
+
 ## 1.1.0 (2023-06-25)
 
 ### Features

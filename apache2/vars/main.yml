@@ -3,6 +3,9 @@
 # apache2
 package_name_apache2: 'apache2'
 
+# apache2-utils
+package_name_apache2_utils: 'apache2-utils'
+
 # 000-default.conf
 file_src_000_default_conf: 'templates/main/000-default.conf'
 file_dst_000_default_conf: '/etc/apache2/sites-available/000-default.conf'
