@@ -10,6 +10,14 @@
   tags:
     - auditd
 
+- name: install package audispd-plugins
+  package:
+    state: 'present'
+    name: "{{package_name_audispd_plugins}}"
+    install_recommends: 'no'
+  tags:
+    - auditd
+
 - name: install package audit
   package:
     state: 'present'

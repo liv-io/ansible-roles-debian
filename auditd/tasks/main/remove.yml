@@ -18,6 +18,14 @@
   tags:
     - auditd
 
+- name: remove package audispd-plugins
+  package:
+    state: 'absent'
+    name: "{{package_name_audispd_plugins}}"
+    install_recommends: 'no'
+  tags:
+    - auditd
+
 - name: remove file auditd.cfg
   file:
     state: 'absent'

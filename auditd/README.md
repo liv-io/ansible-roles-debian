@@ -228,9 +228,12 @@ vars:
       Debian 11: 'auditd'
       Debian 12: 'auditd'
 
-### Roles
-
 `audispd_plugins`
+
+    Version: >= 2.0
+    Name   :
+      Debian 11: 'audispd-plugins'
+      Debian 12: 'audispd-plugins'
 
 ## Parameters
 

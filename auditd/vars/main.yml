@@ -3,6 +3,9 @@
 # auditd
 package_name_audit: 'auditd'
 
+# audispd-plugins
+package_name_audispd_plugins: 'audispd-plugins'
+
 # config
 file_src_config: 'templates/main/config'
 file_mode_config: '0600'
