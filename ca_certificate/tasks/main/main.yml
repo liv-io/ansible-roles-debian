@@ -1,5 +1,11 @@
 ---
 
+- name: import tasks install
+  import_tasks: install.yml
+  when: not (ca_certificate_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - ca_certificate
+
 - name: import tasks config
   import_tasks: config.yml
   when: not (ca_certificate_state is match('false|no|remove|quiesce|inactive'))

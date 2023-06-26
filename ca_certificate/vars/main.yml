@@ -1,5 +1,8 @@
 ---
 
+# ca-certificates
+package_name_ca_certificates: 'ca-certificates'
+
 # certs.dir
 file_dst_certs_dir: "/etc/ssl/certs"
 file_mode_certs_dir: "0755"

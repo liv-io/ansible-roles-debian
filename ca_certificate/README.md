@@ -155,9 +155,14 @@ vars:
 
 ## Dependencies
 
-### Roles
+### Packages
 
-`ca_certificates`
+`ca-certificates`
+
+    Version: >= 20200601
+    Name   :
+      Debian 11: 'ca-certificates'
+      Debian 12: 'ca-certificates'
 
 ## Parameters
 

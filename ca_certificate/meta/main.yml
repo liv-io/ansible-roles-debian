@@ -1,4 +1,0 @@
----
-
-dependencies:
-  - {role: ca_certificates, when: not (ca_certificate_state is match('false|no|remove|quiesce|inactive'))}
