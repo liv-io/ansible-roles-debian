@@ -6,4 +6,4 @@ mysqld_exporter_monitor_monit_state: 'false'
 
 mysqld_exporter_mysql_password: 'ruK.JSj23aN,48vbhELQ2-tUAu3.J5sB'
 
-mysqld_exporter_version: '0.12.1'
+mysqld_exporter_version: '0.15.0'
