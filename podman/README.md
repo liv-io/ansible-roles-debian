@@ -70,6 +70,13 @@ consult the following sections.
       Debian 11: 'podman'
       Debian 12: 'podman'
 
+`catatonit`
+
+    Version: >= 0.1
+    Name   :
+      Debian 11: 'catatonit'
+      Debian 12: 'catatonit'
+
 `dbus-user-session`
 
     Version: >= 1.0

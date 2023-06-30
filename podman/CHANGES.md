@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.2 (2023-06-30)
+
+### Bugs
+
+- Add missing dependency 'catatonit'
+
 ## 0.2.1 (2023-06-26)
 
 ### Enhancements

@@ -3,6 +3,9 @@
 # podman
 package_name_podman: 'podman'
 
+# catatonit
+package_name_dbus_user_session: 'catatonit'
+
 # dbus-user-session
 package_name_dbus_user_session: 'dbus-user-session'
 

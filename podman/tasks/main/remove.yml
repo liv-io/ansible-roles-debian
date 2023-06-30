@@ -18,6 +18,14 @@
   tags:
     - podman
 
+- name: remove package catatonit
+  package:
+    state: 'absent'
+    name: "{{package_name_catatonit}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
 - name: remove package dbus_user_session
   package:
     state: 'absent'

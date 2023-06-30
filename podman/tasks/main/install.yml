@@ -10,6 +10,14 @@
   tags:
     - podman
 
+- name: install package catatonit
+  package:
+    state: 'present'
+    name: "{{package_name_catatonit}}"
+    install_recommends: 'no'
+  tags:
+    - podman
+
 - name: install package dbus_user_session
   package:
     state: 'present'
