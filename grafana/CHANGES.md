@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.2 (2023-07-11)
+
+### Bugs
+
+- Update APT cache if either `grafana.gpg` or `grafana.asc` has changed
+
 ## 1.1.1 (2023-06-26)
 
 ### Enhancements

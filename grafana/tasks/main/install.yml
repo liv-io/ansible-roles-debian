@@ -81,7 +81,7 @@
 - name: apt update
   shell: "{{command_cmd_apt_update}}"
   check_mode: 'no'
-  when: register_grafana_gpg.changed
+  when: (register_grafana_gpg.changed) or (register_grafana_asc.changed)
   tags:
     - grafana
 
