@@ -43,11 +43,9 @@ vars:
       password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
       password_update: 'true'
       shell: '/bin/bash'
-      authorized_key:
-        - state: 'true'
-          key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqAJMzq+BmNh+rkQiV64pKahfS2JQKYCruyoEmUMRJ7iLNmYs1xYuAcDwinxV6G39X6DMPLyPrV/e6ZECQKdcgg/8+GJ2CPWTCGC/6eyOdq1/iLgAuovMv32/t4sIZbNfKWAgVSkrcLHln6Scdh7hGHEk85o4eubzArWZRwRjvDtyiozl1LUDWnoJo8YZAb8ABg/NMyEcprVLNtZ3ZlgNk8SHiih5dARvPAPZXNKax3SCQx9S0ZSHRGmjlLVclTxC1kDn0vaPRqnFN6opEnd9F15Dmb+VHc1pvKVEFa1ukMOTzeNvQZrhhRjVuaWpiJrjAIGTk6wsGxoHathPEf2X4w== user01'
-        - state: 'true'
-          key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
+      authorized_keys:
+        - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01'
+        - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02'
 
   user_config_group:
     - name: 'user02'
@@ -59,7 +57,7 @@ vars:
       password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
       password_update: 'true'
       shell: '/bin/bash'
-      authorized_key: []
+      authorized_keys: []
 
   user_config_host:
     - name: 'user03'
@@ -67,14 +65,12 @@ vars:
       uid: '1003'
       home_remove: 'true'
       home_force: 'true'
-      authorized_key: []
+      authorized_keys: []
 ```
 
 ## Parameters
 
 ### Config
-
-#### User
 
 `state`
 
@@ -257,54 +253,18 @@ vars:
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-#### authorized_key
+`authorized_keys`
 
-`state`
-
-    Description: Control the state of the authorized_key.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'true'
-    Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
-
-`user`
-
-    Description: Define the user of the authorized_key.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : "{{user.name}}"
-    Options    :
-      Examples: 'user01' | 'user02' | 'user03'
-
-`key`
-
-    Description: Define the authorized_key of the user.
-    Implemented: 0.1.0
-    Required   : True
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5Qg4nV3Jh9kqnCs3YAoVbTCN5DV3vrOPzf1eLp514TE+QC2IDNEV6c8hWUD5VZZF0FS7MfGhsYx3pcd+7OiSvkRtIomNG+GuDJWhD5nCRuvYotrEUGh/P+mm7eLmQUBmZuMBvwUZn9W92zqic8F+uCrOMOqNcxsVp6oHUZSfZUkEoRnJxdBfd4UsLxinwM1fLCm0qYNAAHRjIycXEkAp37gx+6k6qulvf8c3oS/+akZ3xV0hAu7Ce5K1e7dC5iLS0GahMfr16grx+qqK4BHhsN4i7Xg2f1/eMyxsubzH3OkPrzAhoUJbhLUnaaURGhIrMB+JYN0Jo0XMvIavgqcYcQ== user01'
-      None    : ''
-
-`key_options`
-
-    Description: Define the options for the authorized_key.
-    Implemented: 0.1.0
+    Description: Define the authorized_keys of the user.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : ''
+    Type       : Array
+    Default    : []
     Options    :
-      Examples: 'command="command"' | 'no-agent-forwarding' | 'no-port-forwarding'
-      None    : ''
+      Examples: ['ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01',
+                 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02']
+      None    : []
 
 ### Role
 
@@ -331,7 +291,7 @@ vars:
     Options    :
       Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
                  groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+                 password_update: 'true', shell: '/bin/bash', authorized_keys: []}]
       None    : []
 
 `user_config_group`
@@ -345,7 +305,7 @@ vars:
     Options    :
       Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
                  groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+                 password_update: 'true', shell: '/bin/bash', authorized_keys: []}]
       None    : []
 
 `user_config_host`
@@ -359,7 +319,7 @@ vars:
     Options    :
       Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
                  groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+                 password_update: 'true', shell: '/bin/bash', authorized_keys: []}]
       None    : []
 
 ## Conflicts
@@ -367,8 +327,6 @@ vars:
 ## Dependencies
 
 ### Roles
-
-`group`
 
 `passwd`
 

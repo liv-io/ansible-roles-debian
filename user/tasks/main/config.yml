@@ -10,7 +10,17 @@
   tags:
     - user
 
-- name: config user user
+- name: config primary group
+  group:
+    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
+    name: "{{item.name}}"
+    gid: "{{(item.gid|default(omit))}}"
+    system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
+  loop: "{{user_config_all + user_config_group + user_config_host}}"
+  tags:
+    - user
+
+- name: config user
   user:
     state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
     name: "{{item.name}}"
@@ -32,16 +42,25 @@
   tags:
     - user
 
-- name: config user authorized_key
-  authorized_key:
-    state: "{{'absent' if (item.1.state|default('true') is match('false|no|remove')) else 'present'}}"
-    user: "{{item.0.name}}"
-    key: "{{item.1.key}}"
-    key_options: "{{(item.1.options|default(''))}}"
-  with_subelements:
-    - "{{user_config_all + user_config_group + user_config_host}}"
-    - authorized_key
-    - flags:
-      skip_missing: true
+- name: config .ssh.dir
+  file:
+    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'directory'}}"
+    path: "{{item.home|default('/home/'+item.name+'/.ssh')}}"
+    mode: "{{file_mode_ssh_dir}}"
+    owner: "{{item.name}}"
+    group: "{{item.group|default(item.name)}}"
+  loop: "{{user_config_all + user_config_group + user_config_host}}"
+  tags:
+    - user
+
+- name: config authorized_keys
+  template:
+    src: "{{file_src_authorized_keys}}"
+    dest: "{{item.home|default('/home/'+item.name+'/.ssh')}}/authorized_keys"
+    mode: "{{file_mode_authorized_keys}}"
+    owner: "{{item.name}}"
+    group: "{{item.group|default(item.name)}}"
+  loop: "{{user_config_all + user_config_group + user_config_host}}"
+  when: not (item.state is match('false|no|remove'))
   tags:
     - user

@@ -1,0 +1,7 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% if not (item.authorized_keys == []) %}
+{% for item in (item.authorized_keys) %}
+{{item}}
+{% endfor %}
+{% endif %}

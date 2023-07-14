@@ -1,6 +1,5 @@
 ---
 
 dependencies:
-  - {role: group, when: not (user_state is match('false|no|remove|quiesce|inactive'))}
   - {role: passwd, when: not (user_state is match('false|no|remove|quiesce|inactive'))}
   - {role: shadow, when: not (user_state is match('false|no|remove|quiesce|inactive'))}
