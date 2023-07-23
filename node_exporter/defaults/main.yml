@@ -4,4 +4,10 @@ node_exporter_state: 'enable'
 
 node_exporter_monitor_monit_state: 'false'
 
+node_exporter_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9100 counter accept comment "node_exporter from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9100 counter accept comment "node_exporter from unique local addresses"
+
+node_exporter_nftables_state: 'false'
+
 node_exporter_version: '1.6.1'

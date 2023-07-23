@@ -33,6 +33,18 @@
   tags:
     - node_exporter
 
+- name: create file node_exporter.nft
+  template:
+    src: "{{file_src_node_exporter_nft}}"
+    dest: "{{file_dst_node_exporter_nft}}"
+    mode: "{{file_mode_node_exporter_nft}}"
+    owner: "{{file_owner_node_exporter_nft}}"
+    group: "{{file_group_node_exporter_nft}}"
+  notify: reload service nftables
+  when: (node_exporter_nftables_state is match('true|yes|enable'))
+  tags:
+    - node_exporter
+
 - name: start service node_exporter
   service:
     state: 'started'

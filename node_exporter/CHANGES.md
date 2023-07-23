@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.5.0 (2023-07-23)
+
+### Features
+
+- Add parameter `node_exporter_nftables_filter_rule`
+- Add parameter `node_exporter_nftables_state`
+
 ## 1.4.0 (2023-07-18)
 
 ### Enhancements

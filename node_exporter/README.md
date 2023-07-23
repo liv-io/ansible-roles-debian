@@ -91,6 +91,32 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+`node_exporter_nftables_state`
+
+    Description: Control the 'node_exporter_nftables_state' option.
+    Implemented: 1.5.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`node_exporter_nftables_filter_rule`
+
+    Description: Define the 'node_exporter_nftables_filter_rule' option.
+    Implemented: 1.5.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9100 counter accept comment "node_exporter from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9100 counter accept comment "node_exporter from unique local addresses"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr { 10.0.0.0/8 } ct state new tcp dport 9100 counter accept comment "node_exporter from internal-networks"
+
 `node_exporter_version`
 
     Description: Define the 'node_exporter_version' option.
