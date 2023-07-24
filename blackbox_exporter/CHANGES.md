@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.8.0 (2023-07-24)
+
+### Features
+
+- Add parameter `blackbox_exporter_nftables_filter_rule`
+- Add parameter `blackbox_exporter_nftables_state`
+
 ## 1.7.0 (2023-06-11)
 
 ### Features

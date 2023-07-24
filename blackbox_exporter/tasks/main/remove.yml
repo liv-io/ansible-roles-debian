@@ -45,6 +45,14 @@
   tags:
     - blackbox_exporter
 
+- name: remove file blackbox_exporter.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_blackbox_exporter_nft}}"
+  notify: reload service nftables
+  tags:
+    - blackbox_exporter
+
 - name: remove file blackbox_exporter.cfg
   file:
     state: 'absent'

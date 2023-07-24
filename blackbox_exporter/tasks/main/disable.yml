@@ -42,6 +42,18 @@
   tags:
     - blackbox_exporter
 
+- name: create file blackbox_exporter.nft
+  template:
+    src: "{{file_src_blackbox_exporter_nft}}"
+    dest: "{{file_dst_blackbox_exporter_nft}}"
+    mode: "{{file_mode_blackbox_exporter_nft}}"
+    owner: "{{file_owner_blackbox_exporter_nft}}"
+    group: "{{file_group_blackbox_exporter_nft}}"
+  notify: reload service nftables
+  when: (blackbox_exporter_nftables_state is match('true|yes|enable'))
+  tags:
+    - blackbox_exporter
+
 - name: stop service blackbox_exporter
   service:
     state: 'stopped'

@@ -50,6 +50,12 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
 # blackbox_exporter.cfg
 file_src_blackbox_exporter_cfg: 'templates/main/blackbox_exporter.cfg'
 file_dst_blackbox_exporter_cfg: '/etc/monit.d/blackbox_exporter.cfg'
@@ -57,11 +63,21 @@ file_mode_blackbox_exporter_cfg: '0640'
 file_owner_blackbox_exporter_cfg: 'root'
 file_group_blackbox_exporter_cfg: 'root'
 
+# blackbox_exporter.nft
+file_src_blackbox_exporter_nft: 'templates/main/blackbox_exporter.nft'
+file_dst_blackbox_exporter_nft: '/etc/nftables.d/blackbox_exporter.conf'
+file_mode_blackbox_exporter_nft: '0640'
+file_owner_blackbox_exporter_nft: 'root'
+file_group_blackbox_exporter_nft: 'root'
+
 # check service blackbox_exporter
 command_cmd_check_service_blackbox_exporter: 'systemctl cat blackbox_exporter.service > /dev/null 2>&1'
 
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
 
 # set capability cap_net_raw
 command_cmd_set_cap_net_raw: 'setcap cap_net_raw+ep /usr/local/bin/blackbox_exporter'
@@ -89,3 +105,6 @@ service_name_blackbox_exporter: 'blackbox_exporter'
 
 # monit
 service_name_monit: 'monit'
+
+# nftables
+service_name_nftables: 'nftables'
