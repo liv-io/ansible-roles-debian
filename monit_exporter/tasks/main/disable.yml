@@ -42,6 +42,18 @@
   tags:
     - monit_exporter
 
+- name: create file monit_exporter.nft
+  template:
+    src: "{{file_src_monit_exporter_nft}}"
+    dest: "{{file_dst_monit_exporter_nft}}"
+    mode: "{{file_mode_monit_exporter_nft}}"
+    owner: "{{file_owner_monit_exporter_nft}}"
+    group: "{{file_group_monit_exporter_nft}}"
+  notify: reload service nftables
+  when: (monit_exporter_nftables_state is match('true|yes|enable'))
+  tags:
+    - monit_exporter
+
 - name: stop service monit_exporter
   service:
     state: 'stopped'

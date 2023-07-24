@@ -49,6 +49,12 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
 # monit_exporter.cfg
 file_src_monit_exporter_cfg: 'templates/main/monit_exporter.cfg'
 file_dst_monit_exporter_cfg: '/etc/monit.d/monit_exporter.cfg'
@@ -56,11 +62,21 @@ file_mode_monit_exporter_cfg: '0640'
 file_owner_monit_exporter_cfg: 'root'
 file_group_monit_exporter_cfg: 'root'
 
+# monit_exporter.nft
+file_src_monit_exporter_nft: 'templates/main/monit_exporter.nft'
+file_dst_monit_exporter_nft: '/etc/nftables.d/monit_exporter.conf'
+file_mode_monit_exporter_nft: '0640'
+file_owner_monit_exporter_nft: 'root'
+file_group_monit_exporter_nft: 'root'
+
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # check service monit_exporter
 command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
+
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
 
 # monit_exporter
 group_name_monit_exporter: 'monit_exporter'
@@ -85,3 +101,6 @@ service_name_monit: 'monit'
 
 # monit_exporter
 service_name_monit_exporter: 'monit_exporter'
+
+# nftables
+service_name_nftables: 'nftables'

@@ -45,6 +45,14 @@
   tags:
     - monit_exporter
 
+- name: remove file monit_exporter.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_exporter_nft}}"
+  notify: reload service nftables
+  tags:
+    - monit_exporter
+
 - name: remove file monit_exporter.cfg
   file:
     state: 'absent'

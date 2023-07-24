@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{monit_exporter_nftables_filter_rule}}
