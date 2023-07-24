@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.3.0 (2023-07-24)
+
+### Features
+
+- Add parameter `haproxy_exporter_nftables_filter_rule`
+- Add parameter `haproxy_exporter_nftables_state`
+
 ## 1.2.0 (2023-06-11)
 
 ### Features

@@ -33,6 +33,18 @@
   tags:
     - haproxy_exporter
 
+- name: create file haproxy_exporter.nft
+  template:
+    src: "{{file_src_haproxy_exporter_nft}}"
+    dest: "{{file_dst_haproxy_exporter_nft}}"
+    mode: "{{file_mode_haproxy_exporter_nft}}"
+    owner: "{{file_owner_haproxy_exporter_nft}}"
+    group: "{{file_group_haproxy_exporter_nft}}"
+  notify: reload service nftables
+  when: (haproxy_exporter_nftables_state is match('true|yes|enable'))
+  tags:
+    - haproxy_exporter
+
 - name: start service haproxy_exporter
   service:
     state: 'started'

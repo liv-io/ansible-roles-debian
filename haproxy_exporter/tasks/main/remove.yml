@@ -45,6 +45,14 @@
   tags:
     - haproxy_exporter
 
+- name: remove file haproxy_exporter.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_haproxy_exporter_nft}}"
+  notify: reload service nftables
+  tags:
+    - haproxy_exporter
+
 - name: remove file haproxy_exporter.cfg
   file:
     state: 'absent'
