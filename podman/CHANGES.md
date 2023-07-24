@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.3 (2023-07-24)
+
+### Bugs
+
+- Fix variable name `package_name_catatonit`
+
 ## 0.2.2 (2023-06-30)
 
 ### Bugs
