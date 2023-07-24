@@ -45,6 +45,14 @@
   tags:
     - mysqld_exporter
 
+- name: remove file mysqld_exporter.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_mysqld_exporter_nft}}"
+  notify: reload service nftables
+  tags:
+    - mysqld_exporter
+
 - name: remove file mysqld_exporter.cfg
   file:
     state: 'absent'

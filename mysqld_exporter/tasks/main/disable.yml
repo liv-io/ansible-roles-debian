@@ -42,6 +42,18 @@
   tags:
     - mysqld_exporter
 
+- name: create file mysqld_exporter.nft
+  template:
+    src: "{{file_src_mysqld_exporter_nft}}"
+    dest: "{{file_dst_mysqld_exporter_nft}}"
+    mode: "{{file_mode_mysqld_exporter_nft}}"
+    owner: "{{file_owner_mysqld_exporter_nft}}"
+    group: "{{file_group_mysqld_exporter_nft}}"
+  notify: reload service nftables
+  when: (mysqld_exporter_nftables_state is match('true|yes|enable'))
+  tags:
+    - mysqld_exporter
+
 - name: stop service mysqld_exporter
   service:
     state: 'stopped'
