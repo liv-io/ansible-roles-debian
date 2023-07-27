@@ -86,6 +86,28 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+`systemd_timesyncd_poll_interval_max_sec`
+
+    Description: Define the 'systemd_timesyncd_poll_interval_max_sec' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 2048
+    Options    :
+      Examples: 512 | 1024 | 4096
+
+`systemd_timesyncd_poll_interval_min_sec`
+
+    Description: Define the 'systemd_timesyncd_poll_interval_min_sec' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 32
+    Options    :
+      Examples: 8 | 16 | 64
+
 `systemd_timesyncd_server`
 
     Description: Define the 'systemd_timesyncd_server' option.

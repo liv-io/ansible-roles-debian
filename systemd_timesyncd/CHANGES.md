@@ -10,6 +10,14 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-07-27)
+
+### Features
+
+- Add parameter `systemd_timesyncd_poll_interval_max_sec`
+- Add parameter `systemd_timesyncd_poll_interval_min_sec`
+- Check modify timestamp of clock file
+
 ## 1.1.0 (2023-06-11)
 
 ### Features
