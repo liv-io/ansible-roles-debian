@@ -10,4 +10,4 @@ monit_exporter_nftables_filter_rule: |
 
 monit_exporter_nftables_state: 'false'
 
-monit_exporter_version: '0.2.0'
+monit_exporter_version: '0.2.1'
