@@ -22,6 +22,7 @@ mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127;
 {% endif %}
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
 sleep=$(${which} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
+stat=$(${which} stat) || { echo "Error: Command 'stat' not found."; exit 127; }
 timedatectl=$(${which} timedatectl) || { echo "Error: Command 'timedatectl' not found."; exit 127; }
 touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
@@ -32,7 +33,7 @@ host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
 time_start=$(${date} '+%s')
 user='{{file_owner_systemd_timesyncd_check_time}}'
-lockfile='/var/tmp/systemd_timesyncd_check-time.lock'
+lockfile='/var/tmp/systemd-timesyncd_check-time.lock'
 retval=0
 severity='Debug'
 message='Please check log files for more information.'
@@ -62,7 +63,7 @@ Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 
 SCRIPT
 
-Name        : systemd_timesyncd_check-time
+Name        : systemd-timesyncd_check-time
 Type        : Shell script
 PID         : $$
 
@@ -201,7 +202,7 @@ time_initial=0
 watch_and_wait_for_change "${timedatectl}" 'System clock synchronized: yes' '' '2' '32'
 
 # Get modification time (mtime) of clock file
-time_clock=$(stat --format=%Y /var/lib/systemd/timesync/clock)
+time_clock=$(${stat} --format=%Y /var/lib/systemd/timesync/clock)
 
 # Calculate time since last successful synchronization
 last_sync=$(${expr} "${time_start}" - "${time_clock}")
