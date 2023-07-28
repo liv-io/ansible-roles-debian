@@ -103,14 +103,6 @@ update_prom() {
 "# TYPE systemd_timesyncd_check_time_duration counter\n"\
 "systemd_timesyncd_check_time_duration ${time_exec}" > "${textfile_collector}/systemd_timesyncd_check_time_duration.prom"
     fi
-
-    if [ -z "${offset_raw}" ] ; then
-      ${rm} -f "${textfile_collector}/systemd_timesyncd_check_time_offset.prom"
-    else
-      ${echo} -e "# HELP systemd_timesyncd_check_time_offset The system time offset in seconds.\n"\
-"# TYPE systemd_timesyncd_check_time_offset counter\n"\
-"systemd_timesyncd_check_time_offset{limit=\"${offset_limit}\"} ${offset_raw}" > "${textfile_collector}/systemd_timesyncd_check_time_offset.prom"
-    fi
   fi
 }
 {% endif %}

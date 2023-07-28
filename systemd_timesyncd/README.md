@@ -117,17 +117,6 @@ consult the following sections.
     Options    :
       Examples: '6' | 'Saturday'
 
-`systemd_timesyncd_check_time_offset_limit`
-
-    Description: Set the 'systemd_timesyncd_check_time_offset_limit' option.
-    Implemented: 1.3.0
-    Required   : False
-    Value      : Arbitrary
-    Type       : Integer
-    Default    : 1
-    Options    :
-      Examples: 0.2 | 0.5 | 1 | 1.5
-
 `systemd_timesyncd_check_time_state`
 
     Description: Control the 'systemd_timesyncd_check_time_state' option.

@@ -12,8 +12,6 @@ systemd_timesyncd_check_time_month: '*'
 
 systemd_timesyncd_check_time_weekday: '*'
 
-systemd_timesyncd_check_time_offset_limit: 1
-
 systemd_timesyncd_check_time_state: 'enable'
 
 systemd_timesyncd_fallback: []

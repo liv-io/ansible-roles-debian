@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.3.1 (2023-07-28)
+
+### Bugs
+
+- Remove unused parameter `systemd_timesyncd_check_time_offset_limit`
+
 ## 1.3.0 (2023-07-28)
 
 ### Enhancements
