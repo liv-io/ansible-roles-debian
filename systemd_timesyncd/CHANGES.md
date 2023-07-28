@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.3.2 (2023-07-28)
+
+### Enhancements
+
+- Remove unused command variables in script
+
 ## 1.3.1 (2023-07-28)
 
 ### Bugs
