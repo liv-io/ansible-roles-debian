@@ -62,6 +62,84 @@ consult the following sections.
       Disable : 'stop' | 'off' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
+`systemd_timesyncd_check_time_day`
+
+    Description: Define the 'systemd_timesyncd_check_time_day' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '1' | '*/2'
+
+`systemd_timesyncd_check_time_hour`
+
+    Description: Define the 'systemd_timesyncd_check_time_hour' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '5' | '*/6'
+
+`systemd_timesyncd_check_time_minute`
+
+    Description: Define the 'systemd_timesyncd_check_time_minute' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*/10'
+    Options    :
+      Examples: '42' | '*/30'
+
+`systemd_timesyncd_check_time_month`
+
+    Description: Define the 'systemd_timesyncd_check_time_month' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '10' | '*/1'
+
+`systemd_timesyncd_check_time_weekday`
+
+    Description: Define the 'systemd_timesyncd_check_time_weekday' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '6' | 'Saturday'
+
+`systemd_timesyncd_check_time_offset_limit`
+
+    Description: Set the 'systemd_timesyncd_check_time_offset_limit' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 1
+    Options    :
+      Examples: 0.2 | 0.5 | 1 | 1.5
+
+`systemd_timesyncd_check_time_state`
+
+    Description: Control the 'systemd_timesyncd_check_time_state' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `systemd_timesyncd_fallback`
 
     Description: Define the 'systemd_timesyncd_fallback' option.
@@ -74,6 +152,41 @@ consult the following sections.
       Examples: ['195.176.26.204', '195.176.26.205', '195.176.26.206', '192.33.96.101', '192.33.96.102']
       None    : []
 
+`systemd_timesyncd_monitor_mail_from_address`
+
+    Description: Define the 'systemd_timesyncd_monitor_mail_from_address' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+`systemd_timesyncd_monitor_mail_to_address`
+
+    Description: Define the 'systemd_timesyncd_monitor_mail_to_address' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["admin@{{ansible_domain}}"]
+    Options    :
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
+                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+
+`systemd_timesyncd_monitor_mail_state`
+
+    Description: Control the 'systemd_timesyncd_monitor_mail_state' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `systemd_timesyncd_monitor_monit_state`
 
     Description: Control the 'systemd_timesyncd_monitor_monit_state' option.
@@ -85,6 +198,29 @@ consult the following sections.
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
+
+`systemd_timesyncd_monitor_prom_state`
+
+    Description: Control the 'systemd_timesyncd_monitor_prom_state' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`systemd_timesyncd_monitor_prom_textfile_collector`
+
+    Description: Define the 'systemd_timesyncd_monitor_prom_textfile_collector' option.
+    Implemented: 1.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `systemd_timesyncd_poll_interval_max_sec`
 
@@ -106,7 +242,7 @@ consult the following sections.
     Type       : Integer
     Default    : 32
     Options    :
-      Examples: 8 | 16 | 64
+      Examples: 16 | 64 | 128
 
 `systemd_timesyncd_server`
 

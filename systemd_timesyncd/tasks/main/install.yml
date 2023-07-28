@@ -10,6 +10,15 @@
   tags:
     - systemd_timesyncd
 
+- name: install package mailx
+  package:
+    state: 'present'
+    name: "{{package_name_mailx}}"
+    install_recommends: 'no'
+  when: (systemd_timesyncd_monitor_mail_state is match('true|yes|enable'))
+  tags:
+    - systemd_timesyncd
+
 - name: install package systemd-timesyncd
   package:
     state: 'present'

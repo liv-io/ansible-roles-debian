@@ -1,7 +1,27 @@
 ---
 
+# mailx
+package_name_mailx: 'bsd-mailx'
+
 # systemd-timesyncd
 package_name_systemd_timesyncd: 'systemd-timesyncd'
+
+# systemd-timesyncd_check-time
+file_src_systemd_timesyncd_check_time: 'templates/main/systemd-timesyncd_check-time'
+file_dst_systemd_timesyncd_check_time: '/usr/local/sbin/systemd-timesyncd_check-time'
+file_mode_systemd_timesyncd_check_time: '0754'
+file_owner_systemd_timesyncd_check_time: 'root'
+file_group_systemd_timesyncd_check_time: 'root'
+
+# systemd-timesyncd_check-time
+cron_name_systemd_timesyncd_check_time: 'systemd-timesyncd: Check Time'
+cron_day_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_day}}"
+cron_hour_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_hour}}"
+cron_minute_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_minute}}"
+cron_month_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_month}}"
+cron_weekday_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_weekday}}"
+cron_user_systemd_timesyncd_check_time: "{{file_owner_systemd_timesyncd_check_time}}"
+cron_job_systemd_timesyncd_check_time: "{{file_dst_systemd_timesyncd_check_time}}"
 
 # timesyncd.conf
 file_src_timesyncd_conf: "templates/{{ansible_distribution_major_version}}/timesyncd.conf"

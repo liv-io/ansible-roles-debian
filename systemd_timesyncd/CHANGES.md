@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.3.0 (2023-07-28)
+
+### Enhancements
+
+- Add script to check system time synchronization
+- Remove monit modify timestamp check
+
 ## 1.2.0 (2023-07-27)
 
 ### Features

@@ -21,6 +21,31 @@
   tags:
     - systemd_timesyncd
 
+- name: create file systemd-timesyncd_check-time
+  template:
+    src: "{{file_src_systemd_timesyncd_check_time}}"
+    dest: "{{file_dst_systemd_timesyncd_check_time}}"
+    mode: "{{file_mode_systemd_timesyncd_check_time}}"
+    owner: "{{file_owner_systemd_timesyncd_check_time}}"
+    group: "{{file_group_systemd_timesyncd_check_time}}"
+  tags:
+    - systemd_timesyncd
+
+- name: create cron systemd-timesyncd_check-time
+  cron:
+    state: 'present'
+    disabled: "{{'yes' if (systemd_timesyncd_check_time_state is match('false|no|disable')) else 'no'}}"
+    name: "{{cron_name_systemd_timesyncd_check_time}}"
+    day: "{{cron_day_systemd_timesyncd_check_time}}"
+    hour: "{{cron_hour_systemd_timesyncd_check_time}}"
+    minute: "{{cron_minute_systemd_timesyncd_check_time}}"
+    month: "{{cron_month_systemd_timesyncd_check_time}}"
+    weekday: "{{cron_weekday_systemd_timesyncd_check_time}}"
+    user: "{{cron_user_systemd_timesyncd_check_time}}"
+    job: "{{cron_job_systemd_timesyncd_check_time}}"
+  tags:
+    - systemd_timesyncd
+
 - name: create file systemd-timesyncd.cfg
   template:
     src: "{{file_src_systemd_timesyncd_cfg}}"
