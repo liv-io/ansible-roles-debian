@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.2 (2023-07-27)
+
+### Enhancements
+
+- Remove unused Ansible tags
+
 ## 1.1.1 (2023-06-26)
 
 ### Enhancements

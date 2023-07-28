@@ -8,7 +8,6 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
-    - cronjob
     - chrony
 
 - name: stop service chronyd
@@ -17,7 +16,6 @@
     enabled: 'no'
     name: "{{service_name_chronyd}}"
   tags:
-    - cronjob
     - chrony
 
 - name: create file chrony.conf
@@ -28,7 +26,6 @@
     owner: "{{file_owner_chrony_conf}}"
     group: "{{file_group_chrony_conf}}"
   tags:
-    - cronjob
     - chrony
 
 - name: remove file chrony_check-time
@@ -36,7 +33,6 @@
     state: 'absent'
     path: "{{file_dst_chrony_check_time}}"
   tags:
-    - cronjob
     - chrony
 
 - name: remove cron chrony_check-time
@@ -45,7 +41,6 @@
     name: "{{cron_name_chrony_check_time}}"
     user: "{{cron_user_chrony_check_time}}"
   tags:
-    - cronjob
     - chrony
 
 - name: create file chrony_update-time
@@ -56,7 +51,6 @@
     owner: "{{file_owner_chrony_update_time}}"
     group: "{{file_group_chrony_update_time}}"
   tags:
-    - cronjob
     - chrony
 
 - name: create cron chrony_update-time
@@ -72,5 +66,4 @@
     user: "{{cron_user_chrony_update_time}}"
     job: "{{cron_job_chrony_update_time}}"
   tags:
-    - cronjob
     - chrony
