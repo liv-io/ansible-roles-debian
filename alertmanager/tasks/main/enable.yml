@@ -44,6 +44,18 @@
   tags:
     - alertmanager
 
+- name: create file alertmanager.nft
+  template:
+    src: "{{file_src_alertmanager_nft}}"
+    dest: "{{file_dst_alertmanager_nft}}"
+    mode: "{{file_mode_alertmanager_nft}}"
+    owner: "{{file_owner_alertmanager_nft}}"
+    group: "{{file_group_alertmanager_nft}}"
+  notify: reload service nftables
+  when: (alertmanager_nftables_state is match('true|yes|enable'))
+  tags:
+    - alertmanager
+
 - name: start service alertmanager
   service:
     state: 'started'

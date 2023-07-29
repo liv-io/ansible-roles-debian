@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.4.0 (2023-07-29)
+
+### Features
+
+- Add parameter `alertmanager_nftables_filter_rule`
+- Add parameter `alertmanager_nftables_state`
+
 ## 1.3.0 (2023-06-11)
 
 ### Features

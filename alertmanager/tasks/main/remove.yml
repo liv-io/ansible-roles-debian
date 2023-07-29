@@ -45,6 +45,15 @@
   tags:
     - alertmanager
 
+
+- name: remove file alertmanager.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_alertmanager_nft}}"
+  notify: reload service nftables
+  tags:
+    - alertmanager
+
 - name: remove file alertmanager.cfg
   file:
     state: 'absent'
