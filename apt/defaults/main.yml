@@ -60,3 +60,9 @@ apt_monitor_mail_state: 'false'
 apt_monitor_prom_state: 'false'
 
 apt_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
+
+apt_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+
+apt_nftables_state: 'false'

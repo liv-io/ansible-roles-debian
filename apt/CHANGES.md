@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-07-30)
+
+### Features
+
+- Add parameter `apt_nftables_filter_rule`
+- Add parameter `apt_nftables_state`
+
 ## 1.1.1 (2023-06-26)
 
 ### Enhancements

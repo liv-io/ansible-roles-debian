@@ -10,6 +10,14 @@
   tags:
     - apt
 
+- name: remove file apt.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_apt_nft}}"
+  notify: reload service nftables
+  tags:
+    - apt
+
 - name: remove cron apt_check-update
   cron:
     state: 'absent'

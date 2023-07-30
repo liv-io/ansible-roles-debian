@@ -28,6 +28,19 @@ file_mode_local_sbin_dir: '0755'
 file_owner_local_sbin_dir: 'root'
 file_group_local_sbin_dir: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
+# apt.nft
+file_src_apt_nft: 'templates/main/apt.nft'
+file_dst_apt_nft: '/etc/nftables.d/apt.conf'
+file_mode_apt_nft: '0640'
+file_owner_apt_nft: 'root'
+file_group_apt_nft: 'root'
+
 # apt_check-update
 file_src_apt_check_update: 'templates/main/apt_check-update'
 file_dst_apt_check_update: '/usr/local/sbin/apt_check-update'
@@ -46,5 +59,11 @@ cron_weekday_apt_check_update: "{{apt_check_update_weekday}}"
 cron_user_apt_check_update: "{{file_owner_apt_check_update}}"
 cron_job_apt_check_update: "{{file_dst_apt_check_update}}"
 
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+
 # update sources
 command_cmd_update_sources: 'apt update'
+
+# nftables
+service_name_nftables: 'nftables'

@@ -10,3 +10,9 @@
 
 - name: update sources
   command: "{{command_cmd_update_sources}}"
+
+- name: reload service nftables
+  service:
+    state: reloaded
+    name: "{{service_name_nftables}}"
+  when: (register_check_service_nftables.rc == 0
