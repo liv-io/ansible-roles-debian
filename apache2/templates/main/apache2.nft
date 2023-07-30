@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{apache2_nftables_filter_rule}}

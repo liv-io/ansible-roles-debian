@@ -26,6 +26,14 @@
   tags:
     - apache2
 
+- name: remove file apache2.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_apache2_nft}}"
+  notify: reload service nftables
+  tags:
+    - apache2
+
 - name: remove file apache2.cfg
   file:
     state: 'absent'

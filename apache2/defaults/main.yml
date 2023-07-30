@@ -34,6 +34,12 @@ apache2_modules:
 
 apache2_monitor_monit_state: 'false'
 
+apache2_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "apache2 from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 80, 443 } counter accept comment "apache2 from unique local addresses"
+
+apache2_nftables_state: 'false'
+
 apache2_server_admin: "admin@{{ansible_domain}}"
 
 apache2_server_signature: 'true'
