@@ -91,6 +91,40 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+`grafana_nftables_state`
+
+    Description: Control the 'grafana_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`grafana_nftables_filter_rule`
+
+    Description: Define the 'grafana_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3100 counter accept comment "grafana from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3100 counter accept comment "grafana from unique local addresses"
+      add rule ip filter OUTPUT ct state new tcp dport 9090 counter accept comment "grafana to prometheus"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9090 counter accept comment "grafana to prometheus"
+      add rule ip filter OUTPUT ct state new tcp dport 3100 counter accept comment "grafana to loki"
+      add rule ip6 filter OUTPUT ct state new tcp dport 3100 counter accept comment "grafana to loki"
+      add rule ip filter OUTPUT ct state new tcp dport 9093 counter accept comment "grafana to alertmanager"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9093 counter accept comment "grafana to alertmanager"
+
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3100 counter accept comment "grafana from internal private addresses"
+        add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3100 counter accept comment "grafana from unique local addresses"
+
 `grafana_plugins_all`
 
     Description: Define the 'grafana_plugins_all' option.

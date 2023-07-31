@@ -4,6 +4,18 @@ grafana_state: 'enable'
 
 grafana_monitor_monit_state: 'false'
 
+grafana_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3000 counter accept comment "grafana from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3000 counter accept comment "grafana from unique local addresses"
+  add rule ip filter OUTPUT ct state new tcp dport 9090 counter accept comment "grafana to prometheus"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9090 counter accept comment "grafana to prometheus"
+  add rule ip filter OUTPUT ct state new tcp dport 3100 counter accept comment "grafana to loki"
+  add rule ip6 filter OUTPUT ct state new tcp dport 3100 counter accept comment "grafana to loki"
+  add rule ip filter OUTPUT ct state new tcp dport 9093 counter accept comment "grafana to alertmanager"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9093 counter accept comment "grafana to alertmanager"
+
+grafana_nftables_state: 'false'
+
 grafana_plugins_all:
   - {name: 'camptocamp-prometheus-alertmanager-datasource', state: 'true', version: 'latest'}
   - {name: 'grafana-piechart-panel', state: 'true', version: 'latest'}

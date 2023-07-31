@@ -33,6 +33,18 @@
   tags:
     - grafana
 
+- name: create file grafana.nft
+  template:
+    src: "{{file_src_grafana_nft}}"
+    dest: "{{file_dst_grafana_nft}}"
+    mode: "{{file_mode_grafana_nft}}"
+    owner: "{{file_owner_grafana_nft}}"
+    group: "{{file_group_grafana_nft}}"
+  notify: reload service nftables
+  when: (grafana_nftables_state is match('true|yes|enable'))
+  tags:
+    - grafana
+
 - name: start service grafana
   service:
     state: 'started'

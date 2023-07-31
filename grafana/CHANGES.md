@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-07-31)
+
+### Features
+
+- Add parameter `grafana_nftables_filter_rule`
+- Add parameter `grafana_nftables_state`
+
 ## 1.1.2 (2023-07-11)
 
 ### Bugs
