@@ -53,6 +53,18 @@
   tags:
     - chrony
 
+- name: create file chronyd.nft
+  template:
+    src: "{{file_src_chronyd_nft}}"
+    dest: "{{file_dst_chronyd_nft}}"
+    mode: "{{file_mode_chronyd_nft}}"
+    owner: "{{file_owner_chronyd_nft}}"
+    group: "{{file_group_chronyd_nft}}"
+  notify: reload service nftables
+  when: (chrony_nftables_state is match('true|yes|enable'))
+  tags:
+    - chrony
+
 - name: create cron chrony_update-time
   cron:
     state: 'present'

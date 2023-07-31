@@ -282,6 +282,32 @@ consult the following sections.
     Options    :
       Examples: '/var/local/node_exporter/textfile_collector'
 
+`chrony_nftables_state`
+
+    Description: Control the 'chrony_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`chrony_nftables_filter_rule`
+
+    Description: Define the 'chrony_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+      add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+    Options    :
+      Examples: |
+        add rule ip filter OUTPUT ip daddr 10.0.0.0/8 ct state new udp dport 123 counter accept comment "ntp to internal-networks"
+
 `chrony_pool`
 
     Description: Define the 'chrony_pool' option.

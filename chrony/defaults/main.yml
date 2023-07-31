@@ -33,6 +33,12 @@ chrony_monitor_prom_state: 'false'
 
 chrony_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
+chrony_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+  add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+
+chrony_nftables_state: 'false'
+
 chrony_pool: []
 
 chrony_server:
