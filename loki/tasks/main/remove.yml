@@ -45,6 +45,14 @@
   tags:
     - loki
 
+- name: remove file loki.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_loki_nft}}"
+  notify: reload service nftables
+  tags:
+    - loki
+
 - name: remove file loki.cfg
   file:
     state: 'absent'

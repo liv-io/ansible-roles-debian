@@ -62,6 +62,18 @@
   tags:
     - loki
 
+- name: create file loki.nft
+  template:
+    src: "{{file_src_loki_nft}}"
+    dest: "{{file_dst_loki_nft}}"
+    mode: "{{file_mode_loki_nft}}"
+    owner: "{{file_owner_loki_nft}}"
+    group: "{{file_group_loki_nft}}"
+  notify: reload service nftables
+  when: (loki_nftables_state is match('true|yes|enable'))
+  tags:
+    - loki
+
 - name: stop service loki
   service:
     state: 'stopped'

@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{loki_nftables_filter_rule}}

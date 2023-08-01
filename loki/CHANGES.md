@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.11.0 (2023-08-01)
+
+### Features
+
+- Add parameter `loki_nftables_filter_rule`
+- Add parameter `loki_nftables_state`
+
 ## 1.10.0 (2023-07-22)
 
 ### Enhancements

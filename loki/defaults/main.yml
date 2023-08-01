@@ -6,6 +6,12 @@ loki_alertmanager_state: 'true'
 
 loki_monitor_monit_state: 'false'
 
+loki_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 3100, 9095 } counter accept comment "loki from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 3100, 9095 } counter accept comment "loki from unique local addresses"
+
+loki_nftables_state: 'false'
+
 loki_retention_period: '365d'
 
 loki_version: '2.8.3'

@@ -13,13 +13,19 @@
     state: 'restarted'
     name: "{{service_name_grafana}}"
 
+- name: restart service loki
+  service:
+    state: 'restarted'
+    name: "{{service_name_loki}}"
+
 - name: reload service monit
   service:
     state: 'reloaded'
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 
-- name: restart service loki
+- name: reload service nftables
   service:
-    state: 'restarted'
-    name: "{{service_name_loki}}"
+    state: reloaded
+    name: "{{service_name_nftables}}"
+  when: (register_check_service_nftables.rc == 0)
