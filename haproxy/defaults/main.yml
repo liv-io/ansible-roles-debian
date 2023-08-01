@@ -6,6 +6,14 @@ haproxy_config: ''
 
 haproxy_monitor_monit_state: 'false'
 
+haproxy_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "http, https from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 80, 443 } counter accept comment "http, https from unique local addresses"
+  add rule ip filter OUTPUT ct state new udp dport { 80, 443 } counter accept comment "http, https to any"
+  add rule ip6 filter OUTPUT ct state new udp dport { 80, 443 } counter accept comment "http, https to any"
+
+haproxy_nftables_state: 'false'
+
 haproxy_stats_auth: []
 
 haproxy_stats_defaults_state: 'disable'

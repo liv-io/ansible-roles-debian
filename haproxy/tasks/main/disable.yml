@@ -33,6 +33,18 @@
   tags:
     - haproxy
 
+- name: create file haproxy.nft
+  template:
+    src: "{{file_src_haproxy_nft}}"
+    dest: "{{file_dst_haproxy_nft}}"
+    mode: "{{file_mode_haproxy_nft}}"
+    owner: "{{file_owner_haproxy_nft}}"
+    group: "{{file_group_haproxy_nft}}"
+  notify: reload service nftables
+  when: (haproxy_nftables_state is match('true|yes|enable'))
+  tags:
+    - haproxy
+
 - name: stop service haproxy
   service:
     state: 'stopped'
