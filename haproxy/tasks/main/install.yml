@@ -33,6 +33,13 @@
   tags:
     - haproxy
 
+- name: generate dhparam
+  shell: "{{command_cmd_generate_dhparam}}"
+  check_mode: 'no'
+  when: (register_dhparam_pem.stat.exists == False)
+  tags:
+    - haproxy
+
 - name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
@@ -49,6 +56,16 @@
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
   when: (haproxy_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - haproxy
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (haproxy_monitor_monit_state is match('true|yes|enable'))
   tags:
     - haproxy
 
@@ -78,22 +95,5 @@
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: 'no'
   when: (haproxy_nftables_state is match('true|yes|enable'))
-  tags:
-    - haproxy
-
-- name: generate dhparam
-  shell: "{{command_cmd_generate_dhparam}}"
-  check_mode: 'no'
-  when: (register_dhparam_pem.stat.exists == False)
-  tags:
-    - haproxy
-
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 1)
-  failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
-  when: (haproxy_monitor_monit_state is match('true|yes|enable'))
   tags:
     - haproxy
