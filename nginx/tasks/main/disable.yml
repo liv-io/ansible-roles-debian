@@ -33,6 +33,18 @@
   tags:
     - nginx
 
+- name: create file nginx.nft
+  template:
+    src: "{{file_src_nginx_nft}}"
+    dest: "{{file_dst_nginx_nft}}"
+    mode: "{{file_mode_nginx_nft}}"
+    owner: "{{file_owner_nginx_nft}}"
+    group: "{{file_group_nginx_nft}}"
+  notify: reload service nftables
+  when: (nginx_nftables_state is match('true|yes|enable'))
+  tags:
+    - nginx
+
 - name: stop service nginx
   service:
     state: 'stopped'

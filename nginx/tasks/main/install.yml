@@ -43,6 +43,13 @@
   tags:
     - nginx
 
+- name: generate dhparam.pem
+  shell: "{{command_cmd_generate_dhparam_pem}}"
+  check_mode: 'no'
+  when: (register_dhparam_pem.stat.exists == False)
+  tags:
+    - nginx
+
 - name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
@@ -62,13 +69,6 @@
   tags:
     - nginx
 
-- name: generate dhparam.pem
-  shell: "{{command_cmd_generate_dhparam_pem}}"
-  check_mode: 'no'
-  when: (register_dhparam_pem.stat.exists == False)
-  tags:
-    - nginx
-
 - name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
@@ -76,5 +76,34 @@
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: 'no'
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - nginx
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (nginx_nftables_state is match('true|yes|enable'))
+  tags:
+    - nginx
+
+- name: create file nftables.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (nginx_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  tags:
+    - nginx
+
+- name: check service nftables
+  shell: "{{command_cmd_check_service_nftables}}"
+  register: register_check_service_nftables
+  changed_when: (register_check_service_nftables.rc > 1)
+  failed_when: (register_check_service_nftables.rc > 1)
+  check_mode: 'no'
+  when: (nginx_nftables_state is match('true|yes|enable'))
   tags:
     - nginx

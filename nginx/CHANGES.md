@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-08-04)
+
+### Features
+
+- Add parameter `nginx_nftables_filter_rule`
+- Add parameter `nginx_nftables_state`
+
 ## 1.1.2 (2023-06-26)
 
 ### Enhancements
