@@ -30,6 +30,14 @@
   tags:
     - opensmtpd
 
+- name: remove file opensmtpd.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_opensmtpd_nft}}"
+  notify: reload service nftables
+  tags:
+    - opensmtpd
+
 - name: remove file opensmtpd.cfg
   file:
     state: 'absent'

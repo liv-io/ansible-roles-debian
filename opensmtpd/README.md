@@ -226,6 +226,35 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+`opensmtpd_nftables_filter_rule`
+
+    Description: Define the 'opensmtpd_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 25 counter accept comment "smtp from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 25 counter accept comment "smtp from unique local addresses"
+      add rule ip filter OUTPUT ip daddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new udp dport 25 counter accept comment "smtp to internal private addresses"
+      add rule ip6 filter OUTPUT ip6 daddr fc00::/7 ct state new udp dport 25 counter accept comment "smtp to unique local addresses"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 25 counter accept comment "smtp from internal private addresses"
+        add rule ip filter OUTPUT ip daddr 10.0.0.0/8 ct state new udp dport 25 counter accept comment "smtp to internal private addresses"
+
+`opensmtpd_nftables_state`
+
+    Description: Control the 'opensmtpd_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `opensmtpd_root_mail_address`
 
     Description: Define the 'opensmtpd_root_mail_address' option.

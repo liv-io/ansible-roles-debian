@@ -27,6 +27,14 @@ opensmtpd_match_host: []
 
 opensmtpd_monitor_monit_state: 'false'
 
+opensmtpd_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 25 counter accept comment "smtp from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 25 counter accept comment "smtp from unique local addresses"
+  add rule ip filter OUTPUT ip daddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new udp dport 25 counter accept comment "smtp to internal private addresses"
+  add rule ip6 filter OUTPUT ip6 daddr fc00::/7 ct state new udp dport 25 counter accept comment "smtp to unique local addresses"
+
+opensmtpd_nftables_state: 'false'
+
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
 
 opensmtpd_secrets_all: []

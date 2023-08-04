@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-08-04)
+
+### Features
+
+- Add parameter `opensmtpd_nftables_filter_rule`
+- Add parameter `opensmtpd_nftables_state`
+
 ## 1.1.1 (2023-06-14)
 
 ### Bugs

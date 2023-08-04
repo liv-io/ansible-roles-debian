@@ -53,6 +53,18 @@
   tags:
     - opensmtpd
 
+- name: create file opensmtpd.nft
+  template:
+    src: "{{file_src_opensmtpd_nft}}"
+    dest: "{{file_dst_opensmtpd_nft}}"
+    mode: "{{file_mode_opensmtpd_nft}}"
+    owner: "{{file_owner_opensmtpd_nft}}"
+    group: "{{file_group_opensmtpd_nft}}"
+  notify: reload service nftables
+  when: (opensmtpd_nftables_state is match('true|yes|enable'))
+  tags:
+    - opensmtpd
+
 - name: stop service opensmtpd
   service:
     state: 'stopped'
