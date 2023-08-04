@@ -187,18 +187,6 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-`alertmanager_nftables_state`
-
-    Description: Control the 'alertmanager_nftables_state' option.
-    Implemented: 1.4.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `alertmanager_nftables_filter_rule`
 
     Description: Define the 'alertmanager_nftables_filter_rule' option.
@@ -215,7 +203,19 @@ consult the following sections.
       add rule ip6 filter OUTPUT ct state new tcp dport { 465, 587 } counter accept comment "smtps to any"
     Options    :
       Examples: |
-        add rule ip filter INPUT ip saddr { 10.0.0.0/8 } ct state new tcp dport { 9093, 9093 } counter accept comment "alertmanager from internal-networks"
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport { 9093, 9093 } counter accept comment "alertmanager from internal-networks"
+
+`alertmanager_nftables_state`
+
+    Description: Control the 'alertmanager_nftables_state' option.
+    Implemented: 1.4.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `alertmanager_version`
 

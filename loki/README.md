@@ -105,18 +105,6 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-`loki_nftables_state`
-
-    Description: Control the 'loki_nftables_state' option.
-    Implemented: 1.11.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `loki_nftables_filter_rule`
 
     Description: Define the 'loki_nftables_filter_rule' option.
@@ -130,6 +118,18 @@ consult the following sections.
     Options    :
       Examples: |
         add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport { 3100, 9095 } counter accept comment "loki from internal-networks"
+
+`loki_nftables_state`
+
+    Description: Control the 'loki_nftables_state' option.
+    Implemented: 1.11.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `loki_retention_period`
 

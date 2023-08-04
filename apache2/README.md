@@ -554,18 +554,6 @@ vars:
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-`apache2_nftables_state`
-
-    Description: Control the 'apache2_nftables_state' option.
-    Implemented: 1.2.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `apache2_nftables_filter_rule`
 
     Description: Define the 'apache2_nftables_filter_rule' option.
@@ -578,7 +566,19 @@ vars:
       add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 80, 443 }counter accept comment "apache2 from unique local addresses"
     Options    :
       Examples: |
-        add rule ip filter INPUT ip saddr { 10.0.0.0/8 } ct state new tcp dport { 80, 443 } counter accept comment "apache2 from internal-networks"
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport { 80, 443 } counter accept comment "apache2 from internal-networks"
+
+`apache2_nftables_state`
+
+    Description: Control the 'apache2_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `apache2_server_admin`
 

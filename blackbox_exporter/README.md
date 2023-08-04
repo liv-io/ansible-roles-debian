@@ -188,18 +188,6 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-`blackbox_exporter_nftables_state`
-
-    Description: Control the 'blackbox_exporter_nftables_state' option.
-    Implemented: 1.8.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `blackbox_exporter_nftables_filter_rule`
 
     Description: Define the 'blackbox_exporter_nftables_filter_rule' option.
@@ -212,7 +200,19 @@ consult the following sections.
       add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9115 counter accept comment "blackbox_exporter from unique local addresses"
     Options    :
       Examples: |
-        add rule ip filter INPUT ip saddr { 10.0.0.0/8 } ct state new tcp dport 9115 counter accept comment "blackbox_exporter from internal-networks"
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 9115 counter accept comment "blackbox_exporter from internal-networks"
+
+`blackbox_exporter_nftables_state`
+
+    Description: Control the 'blackbox_exporter_nftables_state' option.
+    Implemented: 1.8.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `blackbox_exporter_version`
 

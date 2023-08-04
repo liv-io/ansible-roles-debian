@@ -241,18 +241,6 @@ vars:
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-`apt_nftables_state`
-
-    Description: Control the 'apt_nftables_state' option.
-    Implemented: 1.2.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `apt_nftables_filter_rule`
 
     Description: Define the 'apt_nftables_filter_rule' option.
@@ -265,7 +253,19 @@ vars:
       add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
     Options    :
       Examples: |
-        add rule ip filter OUTPUT ip daddr { 10.0.0.0/8 } ct state new tcp dport 3128 counter accept comment "squid to internal-networks"
+        add rule ip filter OUTPUT ip daddr 10.0.0.0/8 ct state new tcp dport 3128 counter accept comment "squid to internal-networks"
+
+`apt_nftables_state`
+
+    Description: Control the 'apt_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `apt_monitor_prom_state`
 

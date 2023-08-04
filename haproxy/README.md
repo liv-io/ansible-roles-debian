@@ -160,19 +160,6 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-
-`haproxy_nftables_state`
-
-    Description: Control the 'haproxy_nftables_state' option.
-    Implemented: 1.2.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `haproxy_nftables_filter_rule`
 
     Description: Define the 'haproxy_nftables_filter_rule' option.
@@ -189,6 +176,18 @@ consult the following sections.
       Examples: |
         add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport { 80, 443 } counter accept comment "haproxy from internal-networks"
         add rule ip filter OUTPUT ip daddr 10.0.0.0/8 ct state new udp dport { 80, 443 } counter accept comment "haproxy to internal-networks"
+
+`haproxy_nftables_state`
+
+    Description: Control the 'haproxy_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `haproxy_stats_auth`
 
