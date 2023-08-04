@@ -259,6 +259,32 @@ vars:
     Options    :
       Examples: '/var/local/node_exporter/textfile_collector'
 
+`mariadb_nftables_filter_rule`
+
+    Description: Define the 'mariadb_nftables_filter_rule' option.
+    Implemented: 2.0.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3306 counter accept comment "mariadb from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3306 counter accept comment "mariadb from unique local addresses"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 3306 counter accept comment "mariadb from internal-networks"
+
+`mariadb_nftables_state`
+
+    Description: Control the 'mariadb_nftables_state' option.
+    Implemented: 2.0.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `mariadb_root_password`
 
     Description: Define the 'mariadb_root_password' option.
@@ -266,7 +292,7 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'mTA_4Vamn.DGrM5p2u8f6ScHm3_g9quA'
+    Default    : ''
     Options    :
       Examples: '6q7FMh2w-KGskqDX82B.g3E_3r7LgS2F' | '3X5wBEMtx-uJaj5bfCq.EeDT5Qd2eMTh'
 

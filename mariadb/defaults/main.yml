@@ -22,7 +22,13 @@ mariadb_monitor_prom_state: 'false'
 
 mariadb_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
-mariadb_root_password: 'mTA_4Vamn.DGrM5p2u8f6ScHm3_g9quA'
+mariadb_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3306 counter accept comment "mariadb from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3306 counter accept comment "mariadb from unique local addresses"
+
+mariadb_nftables_state: 'false'
+
+mariadb_root_password: ''
 
 mariadb_run_backup_day: '*'
 

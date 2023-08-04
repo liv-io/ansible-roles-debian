@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.0 (2023-08-04)
+
+### Changes
+
+- Remove default value for parameter `mariadb_root_password`
+
+### Features
+
+- Add parameter `mariadb_nftables_filter_rule`
+- Add parameter `mariadb_nftables_state`
+
 ## 1.1.1 (2023-06-26)
 
 ### Enhancements
