@@ -30,6 +30,14 @@ openntpd_monitor_prom_state: 'false'
 
 openntpd_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
+openntpd_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new udp dport 123 counter accept comment "ntp from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new udp dport 123 counter accept comment "ntp from unique local addresses"
+  add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+  add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+
+openntpd_nftables_state: 'false'
+
 openntpd_server:
   - {address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}
 

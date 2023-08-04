@@ -247,6 +247,35 @@ consult the following sections.
     Options    :
       Examples: '/var/local/node_exporter/textfile_collector'
 
+`openntpd_nftables_filter_rule`
+
+    Description: Define the 'openntpd_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new udp dport 123 counter accept comment "ntp from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new udp dport 123 counter accept comment "ntp from unique local addresses"
+      add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+      add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new udp dport 123 counter accept comment "ntp from internal-networks"
+        add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+
+`openntpd_nftables_state`
+
+    Description: Control the 'openntpd_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `openntpd_server`
 
     Description: Define the 'openntpd_server' option.

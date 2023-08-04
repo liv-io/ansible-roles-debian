@@ -26,12 +26,25 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
 # openntpd.cfg
 file_src_openntpd_cfg: 'templates/main/openntpd.cfg'
 file_dst_openntpd_cfg: '/etc/monit.d/openntpd.cfg'
 file_mode_openntpd_cfg: '0640'
 file_owner_openntpd_cfg: 'root'
 file_group_openntpd_cfg: 'root'
+
+# openntpd.nft
+file_src_openntpd_nft: 'templates/main/openntpd.nft'
+file_dst_openntpd_nft: '/etc/nftables.d/openntpd.conf'
+file_mode_openntpd_nft: '0640'
+file_owner_openntpd_nft: 'root'
+file_group_openntpd_nft: 'root'
 
 # openntpd_check-time
 cron_name_openntpd_check_time: 'OpenNTPD: Check Time'
@@ -49,8 +62,14 @@ command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 # check service monit_exporter
 command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
 
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+
 # monit
 service_name_monit: 'monit'
+
+# nftables
+service_name_nftables: 'nftables'
 
 # openntpd
 service_name_openntpd: 'openntpd'

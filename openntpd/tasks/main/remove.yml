@@ -18,6 +18,14 @@
   tags:
     - openntpd
 
+- name: remove file openntpd.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_nft}}"
+  notify: reload service nftables
+  tags:
+    - openntpd
+
 - name: remove file openntpd.cfg
   file:
     state: 'absent'

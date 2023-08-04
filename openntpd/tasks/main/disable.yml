@@ -54,6 +54,18 @@
   tags:
     - openntpd
 
+- name: create file openntpd.nft
+  template:
+    src: "{{file_src_openntpd_nft}}"
+    dest: "{{file_dst_openntpd_nft}}"
+    mode: "{{file_mode_openntpd_nft}}"
+    owner: "{{file_owner_openntpd_nft}}"
+    group: "{{file_group_openntpd_nft}}"
+  notify: reload service nftables
+  when: (openntpd_nftables_state is match('true|yes|enable'))
+  tags:
+    - openntpd
+
 - name: stop service openntpd
   service:
     state: 'stopped'
