@@ -20,6 +20,14 @@
   tags:
     - monit
 
+- name: remove file monit.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_nft}}"
+  notify: reload service nftables
+  tags:
+    - monit
+
 - name: remove package monit
   package:
     state: 'absent'

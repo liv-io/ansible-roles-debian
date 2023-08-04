@@ -466,6 +466,32 @@ vars:
                  {address: 'itops@domain.tld', filter: 'not on', events: ['instance', 'action']}]
       None    : []
 
+`monit_nftables_filter_rule`
+
+    Description: Define the 'monit_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 2812 counter accept comment "monit from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 2812 counter accept comment "monit from unique local addresses"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 2812 counter accept comment "monit from internal-networks"
+
+`monit_nftables_state`
+
+    Description: Control the 'monit_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `monit_web_server_address`
 
     Description: Define the 'monit_web_server_address' option.
