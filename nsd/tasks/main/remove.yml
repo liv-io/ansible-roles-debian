@@ -18,6 +18,14 @@
   tags:
     - nsd
 
+- name: remove file nsd.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_nsd_nft}}"
+  notify: reload service nftables
+  tags:
+    - nsd
+
 - name: remove file nsd.cfg
   file:
     state: 'absent'

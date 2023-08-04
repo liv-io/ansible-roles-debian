@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-08-04)
+
+### Features
+
+- Add parameter `nsd_nftables_filter_rule`
+- Add parameter `nsd_nftables_state`
+
 ## 1.1.0 (2023-06-25)
 
 ### Features

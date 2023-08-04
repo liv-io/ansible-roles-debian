@@ -33,6 +33,18 @@
   tags:
     - nsd
 
+- name: create file nsd.nft
+  template:
+    src: "{{file_src_nsd_nft}}"
+    dest: "{{file_dst_nsd_nft}}"
+    mode: "{{file_mode_nsd_nft}}"
+    owner: "{{file_owner_nsd_nft}}"
+    group: "{{file_group_nsd_nft}}"
+  notify: reload service nftables
+  when: (nsd_nftables_state is match('true|yes|enable'))
+  tags:
+    - nsd
+
 - name: stop service nsd
   service:
     state: 'stopped'

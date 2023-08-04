@@ -24,6 +24,12 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
 # nsd.cfg
 file_src_nsd_cfg: 'templates/main/nsd.cfg'
 file_dst_nsd_cfg: '/etc/monit.d/nsd.cfg'
@@ -31,11 +37,24 @@ file_mode_nsd_cfg: '0640'
 file_owner_nsd_cfg: 'root'
 file_group_nsd_cfg: 'root'
 
+# nsd.nft
+file_src_nsd_nft: 'templates/main/nsd.nft'
+file_dst_nsd_nft: '/etc/nftables.d/nsd.conf'
+file_mode_nsd_nft: '0640'
+file_owner_nsd_nft: 'root'
+file_group_nsd_nft: 'root'
+
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+
 # monit
 service_name_monit: 'monit'
+
+# nftables
+service_name_nftables: 'nftables'
 
 # nsd
 service_name_nsd: 'nsd'
