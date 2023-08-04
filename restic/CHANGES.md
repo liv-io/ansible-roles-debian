@@ -10,6 +10,28 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.0 (2023-08-04)
+
+### Changes
+
+- Remove default value for parameter `restic_password`
+- Remove default value for parameter `restic_server_address`
+- Remove default value for parameter `restic_server_password`
+- Remove default value for parameter `restic_server_username`
+
+### Enhancements
+
+- Overhaul script
+
+### Features
+
+- Update restic to version 0.16.0
+- Add parameter `restic_http_proxy`
+- Add parameter `restic_https_proxy`
+- Add parameter `restic_nftables_filter_rule`
+- Add parameter `restic_nftables_state`
+- Add parameter `restic_repository_name`
+
 ## 1.6.1 (2023-06-26)
 
 ### Enhancements

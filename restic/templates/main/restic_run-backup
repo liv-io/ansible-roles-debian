@@ -33,16 +33,11 @@ SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute.
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_restic_run_backup}}'
 LOCKFILE='/var/tmp/restic_run-backup.lock'
-
-SERVER_USERNAME='{{restic_server_username}}'
-SERVER_PASSWORD='{{restic_server_password}}'
-SERVER_ADDRESS='{{restic_server_address}}'
-SERVER_PORT='{{restic_server_port}}'
-REPO="rest:https://${SERVER_USERNAME}:${SERVER_PASSWORD}@${SERVER_ADDRESS}:${SERVER_PORT}/$(${HOSTNAME} -s)"
-PASSWORD='{{file_dst_password_conf}}'
-INCLUDE='{{file_dst_include_conf}}'
 EXCLUDE='{{file_dst_exclude_conf}}'
+INCLUDE='{{file_dst_include_conf}}'
 LOG_FILE='{{file_dst_restic_log}}'
+PASSWORD='{{file_dst_password_conf}}'
+REPOSITORY='{{file_dst_repository_conf}}'
 {% if not (restic_cacert == '') %}
 CA_FILE='{{restic_cacert}}'
 {% endif %}
@@ -53,6 +48,13 @@ KEEP_MONTHLY='{{restic_keep_monthly}}'
 LIMIT_DOWNLOAD='{{restic_limit_download}}'
 LIMIT_UPLOAD='{{restic_limit_upload}}'
 TEXTFILE_COLLECTOR='{{restic_monitor_prom_textfile_collector}}'
+
+{% if not (restic_http_proxy == '') %}
+export HTTP_PROXY='{{restic_http_proxy}}'
+{% endif %}
+{% if not (restic_https_proxy == '') %}
+export HTTPS_PROXY='{{restic_https_proxy}}'
+{% endif %}
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
 MAIL_FROM_ADDRESS='{{restic_monitor_mail_from_address}}'
@@ -200,26 +202,43 @@ add_log_header() {
 
 create_backup_repository() {
     # Get stats to verify backup repository
-    ${RESTIC} stats -r ${REPO} -p ${PASSWORD} {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >/dev/null 2>&1
+    ${RESTIC} stats --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
+        {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
+        >>${LOG_FILE} 2>&1
     if [ ${?} -ne 0 ]; then
         # Initialize backup repository if inexistent
-        ${RESTIC} init -r ${REPO} -p ${PASSWORD} {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >/dev/null 2>&1
+        ${RESTIC} init --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
+            {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
+            >>${LOG_FILE} 2>&1
         log_and_exit_on_error "${?}" 'Unable to create backup repository.'
     fi
 }
 
 create_new_backup() {
-    ${RESTIC} backup -r ${REPO} -p ${PASSWORD} --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --files-from ${INCLUDE} --exclude-caches --exclude-file ${EXCLUDE} --compression auto {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >>${LOG_FILE} 2>&1
+    ${RESTIC} backup --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
+        --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --files-from ${INCLUDE} \
+        --exclude-caches --exclude-file ${EXCLUDE} --compression auto \
+        {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
+        >>${LOG_FILE} 2>&1
     log_and_exit_on_error "${?}" 'Unable to create new backup.'
 }
 
 remove_old_backups() {
-    ${RESTIC} forget -r ${REPO} -p ${PASSWORD} --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --keep-hourly ${KEEP_HOURLY} --keep-daily ${KEEP_DAILY} --keep-weekly ${KEEP_WEEKLY} --keep-monthly ${KEEP_MONTHLY} --prune --compression auto {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >>${LOG_FILE} 2>&1
+    ${RESTIC} forget --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
+        --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} \
+        --keep-hourly ${KEEP_HOURLY} --keep-daily ${KEEP_DAILY} --keep-weekly ${KEEP_WEEKLY} --keep-monthly ${KEEP_MONTHLY} --prune \
+        --compression auto \
+        {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
+        >>${LOG_FILE} 2>&1
     log_and_exit_on_error "${?}" 'Unable to remove old backups.'
 }
 
 check_backup_repository() {
-    ${RESTIC} check -r ${REPO} -p ${PASSWORD} --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --with-cache {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} >>${LOG_FILE} 2>&1
+    ${RESTIC} check --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
+        --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} \
+        --with-cache \
+        {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
+        >>${LOG_FILE} 2>&1
     log_and_exit_on_error "${?}" 'Unable to check backup repository.'
 }
 

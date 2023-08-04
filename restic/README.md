@@ -103,6 +103,30 @@ consult the following sections.
       Examples: ['/tmp', '/data/example/*.tmp']
       None    : []
 
+`restic_http_proxy`
+
+    Description: Define the 'restic_http_proxy' option.
+    Implemented: 2.0.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
+
+`restic_https_proxy`
+
+    Description: Define the 'restic_https_proxy' option.
+    Implemented: 2.0.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
+
 `restic_include`
 
     Description: Define the 'restic_include' option.
@@ -239,16 +263,53 @@ consult the following sections.
     Options    :
       Examples: '/var/local/node_exporter/textfile_collector'
 
+`restic_nftables_filter_rule`
+
+    Description: Define the 'restic_nftables_filter_rule' option.
+    Implemented: 2.0.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter OUTPUT ct state new tcp dport 443 counter accept comment "restic to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 443 counter accept comment "restic to any"
+    Options    :
+      Examples: |
+        add rule ip filter OUTPUT ip daddr 10.0.0.0/8 ct state new tcp dport 443 counter accept comment "restic to internal-networks"
+
+`restic_nftables_state`
+
+    Description: Control the 'restic_nftables_state' option.
+    Implemented: 2.0.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `restic_password`
 
     Description: Define the 'restic_password' option.
     Implemented: 0.1.0
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+
+`restic_repository_name`
+
+    Description: Define the 'restic_repository_name' option.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
+    Default    : "{{ansible_hostname}}"
     Options    :
-      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+      Examples: 'hostname' | 'pretty-name'
 
 `restic_run_backup_day`
 
@@ -309,10 +370,10 @@ consult the following sections.
 
     Description: Define the 'restic_server_address' option.
     Implemented: 0.1.0
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : "backup.{{ansible_domain}}"
+    Default    : ''
     Options    :
       Examples: 'backup.domain.tld' | 'restic.domain.tld'
 
@@ -320,10 +381,10 @@ consult the following sections.
 
     Description: Define the 'restic_server_password' option.
     Implemented: 0.1.0
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : 'GV4ajws_aG4nKR.7bgn3'
+    Default    : ''
     Options    :
       Examples: 'vHK.kQ9bsWrL4ePaDn_5' | 'm2wL.E57MdnrSgFSP_AC'
 
@@ -342,10 +403,10 @@ consult the following sections.
 
     Description: Define the 'restic_server_username' option.
     Implemented: 0.1.0
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : 'restic'
+    Default    : ''
     Options    :
       Examples: 'restic' | 'backup'
 
@@ -356,7 +417,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.15.2'
+    Default    : '0.16.0'
     Options    :
       Examples: '0.9.3' | '0.9.2'
 

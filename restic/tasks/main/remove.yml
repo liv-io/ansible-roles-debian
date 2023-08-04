@@ -10,6 +10,14 @@
   tags:
     - restic
 
+- name: remove file restic.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_restic_nft}}"
+  notify: reload service nftables
+  tags:
+    - restic
+
 - name: remove cron restic_run-backup
   cron:
     state: 'absent'

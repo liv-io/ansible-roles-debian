@@ -1,0 +1,24 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - restic
+
+- name: verify required parameters
+  fail:
+    msg: "Please define all required parameters. See README.md for help."
+  no_log: True
+  when: (item == '')
+  loop:
+    - "{{restic_password}}"
+    - "{{restic_server_address}}"
+    - "{{restic_server_password}}"
+    - "{{restic_server_username}}"
+  tags:
+    - restic

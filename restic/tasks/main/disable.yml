@@ -25,3 +25,15 @@
     job: "{{cron_job_restic_run_backup}}"
   tags:
     - restic
+
+- name: create file restic.nft
+  template:
+    src: "{{file_src_restic_nft}}"
+    dest: "{{file_dst_restic_nft}}"
+    mode: "{{file_mode_restic_nft}}"
+    owner: "{{file_owner_restic_nft}}"
+    group: "{{file_group_restic_nft}}"
+  notify: reload service nftables
+  when: (restic_nftables_state is match('true|yes|enable'))
+  tags:
+    - restic

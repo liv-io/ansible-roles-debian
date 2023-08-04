@@ -106,6 +106,17 @@
   tags:
     - restic
 
+- name: create file repository.conf
+  template:
+    src: "{{file_src_repository_conf}}"
+    dest: "{{file_dst_repository_conf}}"
+    mode: "{{file_mode_repository_conf}}"
+    owner: "{{file_owner_repository_conf}}"
+    group: "{{file_group_repository_conf}}"
+  no_log: 'true'
+  tags:
+    - restic
+
 - name: create file restic.log
   copy:
     content: ''
@@ -125,5 +136,34 @@
     owner: "{{file_owner_restic_run_backup}}"
     group: "{{file_group_restic_run_backup}}"
   no_log: 'true'
+  tags:
+    - restic
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (restic_nftables_state is match('true|yes|enable'))
+  tags:
+    - restic
+
+- name: create file nftables.d
+  file:
+    state: 'directory'
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (restic_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  tags:
+    - restic
+
+- name: check service nftables
+  shell: "{{command_cmd_check_service_nftables}}"
+  register: register_check_service_nftables
+  changed_when: (register_check_service_nftables.rc > 1)
+  failed_when: (register_check_service_nftables.rc > 1)
+  check_mode: 'no'
+  when: (restic_nftables_state is match('true|yes|enable'))
   tags:
     - restic

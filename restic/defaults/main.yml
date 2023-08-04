@@ -10,6 +10,10 @@ restic_exclude:
   - '/tmp'
   - '/var/tmp'
 
+restic_http_proxy: ''
+
+restic_https_proxy: ''
+
 restic_include:
   - '/app'
   - '/backup'
@@ -45,7 +49,15 @@ restic_monitor_prom_state: 'false'
 
 restic_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
-restic_password: '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
+restic_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new tcp dport 443 counter accept comment "restic to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 443 counter accept comment "restic to any"
+
+restic_nftables_state: 'false'
+
+restic_password: ''
+
+restic_repository_name: "{{ansible_hostname}}"
 
 restic_run_backup_day: '*'
 
@@ -57,12 +69,12 @@ restic_run_backup_month: '*'
 
 restic_run_backup_weekday: '*'
 
-restic_server_address: "backup.{{ansible_domain}}"
+restic_server_address: ''
 
-restic_server_password: 'GV4ajws_aG4nKR.7bgn3'
+restic_server_password: ''
 
 restic_server_port: '443'
 
-restic_server_username: 'restic'
+restic_server_username: ''
 
-restic_version: '0.15.2'
+restic_version: '0.16.0'

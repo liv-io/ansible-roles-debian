@@ -51,6 +51,13 @@ file_mode_password_conf: '0600'
 file_owner_password_conf: 'root'
 file_group_password_conf: 'root'
 
+# repository.conf
+file_src_repository_conf: 'templates/main/repository.conf'
+file_dst_repository_conf: '/etc/restic/repository.conf'
+file_mode_repository_conf: '0600'
+file_owner_repository_conf: 'root'
+file_group_repository_conf: 'root'
+
 # restic
 file_dst_restic: '/usr/local/sbin/restic'
 file_mode_restic: '0755'
@@ -70,6 +77,19 @@ file_mode_restic_run_backup: '0754'
 file_owner_restic_run_backup: 'root'
 file_group_restic_run_backup: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
+# restic.nft
+file_src_restic_nft: 'templates/main/restic.nft'
+file_dst_restic_nft: '/etc/nftables.d/restic.conf'
+file_mode_restic_nft: '0640'
+file_owner_restic_nft: 'root'
+file_group_restic_nft: 'root'
+
 # restic_run-backup
 cron_name_restic_run_backup: 'restic: Run Backup'
 cron_cron_file_restic_run_backup: 'restic_run-backup'
@@ -80,3 +100,9 @@ cron_month_restic_run_backup: "{{restic_run_backup_month}}"
 cron_weekday_restic_run_backup: "{{restic_run_backup_weekday}}"
 cron_user_restic_run_backup: "{{file_owner_restic_run_backup}}"
 cron_job_restic_run_backup: "{{file_dst_restic_run_backup}}"
+
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+
+# nftables
+service_name_nftables: 'nftables'
