@@ -13,16 +13,6 @@ file_mode_systemd_timesyncd_check_time: '0754'
 file_owner_systemd_timesyncd_check_time: 'root'
 file_group_systemd_timesyncd_check_time: 'root'
 
-# systemd-timesyncd_check-time
-cron_name_systemd_timesyncd_check_time: 'systemd-timesyncd: Check Time'
-cron_day_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_day}}"
-cron_hour_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_hour}}"
-cron_minute_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_minute}}"
-cron_month_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_month}}"
-cron_weekday_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_weekday}}"
-cron_user_systemd_timesyncd_check_time: "{{file_owner_systemd_timesyncd_check_time}}"
-cron_job_systemd_timesyncd_check_time: "{{file_dst_systemd_timesyncd_check_time}}"
-
 # timesyncd.conf
 file_src_timesyncd_conf: "templates/{{ansible_distribution_major_version}}/timesyncd.conf"
 file_dst_timesyncd_conf: '/etc/systemd/timesyncd.conf'
@@ -42,6 +32,16 @@ file_dst_systemd_timesyncd_cfg: '/etc/monit.d/systemd-timesyncd.cfg'
 file_mode_systemd_timesyncd_cfg: '0640'
 file_owner_systemd_timesyncd_cfg: 'root'
 file_group_systemd_timesyncd_cfg: 'root'
+
+# systemd-timesyncd_check-time
+cron_name_systemd_timesyncd_check_time: 'systemd-timesyncd: Check Time'
+cron_day_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_day}}"
+cron_hour_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_hour}}"
+cron_minute_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_minute}}"
+cron_month_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_month}}"
+cron_weekday_systemd_timesyncd_check_time: "{{systemd_timesyncd_check_time_weekday}}"
+cron_user_systemd_timesyncd_check_time: "{{file_owner_systemd_timesyncd_check_time}}"
+cron_job_systemd_timesyncd_check_time: "{{file_dst_systemd_timesyncd_check_time}}"
 
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'

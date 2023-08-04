@@ -33,26 +33,6 @@ file_mode_chrony_update_time: '0754'
 file_owner_chrony_update_time: 'root'
 file_group_chrony_update_time: 'root'
 
-# chrony_check-time
-cron_name_chrony_check_time: 'chrony: Check Time'
-cron_day_chrony_check_time: "{{chrony_check_time_day}}"
-cron_hour_chrony_check_time: "{{chrony_check_time_hour}}"
-cron_minute_chrony_check_time: "{{chrony_check_time_minute}}"
-cron_month_chrony_check_time: "{{chrony_check_time_month}}"
-cron_weekday_chrony_check_time: "{{chrony_check_time_weekday}}"
-cron_user_chrony_check_time: "{{file_owner_chrony_check_time}}"
-cron_job_chrony_check_time: "{{file_dst_chrony_check_time}}"
-
-# chrony_update-time
-cron_name_chrony_update_time: 'chrony: Update Time'
-cron_day_chrony_update_time: "{{chrony_update_time_day}}"
-cron_hour_chrony_update_time: "{{chrony_update_time_hour}}"
-cron_minute_chrony_update_time: "{{chrony_update_time_minute}}"
-cron_month_chrony_update_time: "{{chrony_update_time_month}}"
-cron_weekday_chrony_update_time: "{{chrony_update_time_weekday}}"
-cron_user_chrony_update_time: "{{file_owner_chrony_update_time}}"
-cron_job_chrony_update_time: "{{file_dst_chrony_update_time}}"
-
 # monit.d
 file_dst_monit_d: '/etc/monit.d'
 file_mode_monit_d: '0750'
@@ -78,6 +58,26 @@ file_dst_chronyd_nft: '/etc/nftables.d/chronyd.conf'
 file_mode_chronyd_nft: '0640'
 file_owner_chronyd_nft: 'root'
 file_group_chronyd_nft: 'root'
+
+# chrony_check-time
+cron_name_chrony_check_time: 'chrony: Check Time'
+cron_day_chrony_check_time: "{{chrony_check_time_day}}"
+cron_hour_chrony_check_time: "{{chrony_check_time_hour}}"
+cron_minute_chrony_check_time: "{{chrony_check_time_minute}}"
+cron_month_chrony_check_time: "{{chrony_check_time_month}}"
+cron_weekday_chrony_check_time: "{{chrony_check_time_weekday}}"
+cron_user_chrony_check_time: "{{file_owner_chrony_check_time}}"
+cron_job_chrony_check_time: "{{file_dst_chrony_check_time}}"
+
+# chrony_update-time
+cron_name_chrony_update_time: 'chrony: Update Time'
+cron_day_chrony_update_time: "{{chrony_update_time_day}}"
+cron_hour_chrony_update_time: "{{chrony_update_time_hour}}"
+cron_minute_chrony_update_time: "{{chrony_update_time_minute}}"
+cron_month_chrony_update_time: "{{chrony_update_time_month}}"
+cron_weekday_chrony_update_time: "{{chrony_update_time_weekday}}"
+cron_user_chrony_update_time: "{{file_owner_chrony_update_time}}"
+cron_job_chrony_update_time: "{{file_dst_chrony_update_time}}"
 
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'

@@ -81,17 +81,6 @@ file_mode_50_server_cnf: '0644'
 file_owner_50_server_cnf: 'root'
 file_group_50_server_cnf: 'root'
 
-# mariadb_run-backup
-cron_name_mariadb_run_backup: 'MariaDB: Run Backup'
-cron_cron_file_mariadb_run_backup: 'mariadb_run-backup'
-cron_day_mariadb_run_backup: "{{mariadb_run_backup_day}}"
-cron_hour_mariadb_run_backup: "{{mariadb_run_backup_hour}}"
-cron_minute_mariadb_run_backup: "{{mariadb_run_backup_minute}}"
-cron_month_mariadb_run_backup: "{{mariadb_run_backup_month}}"
-cron_weekday_mariadb_run_backup: "{{mariadb_run_backup_weekday}}"
-cron_user_mariadb_run_backup: "{{file_owner_mariadb_run_backup}}"
-cron_job_mariadb_run_backup: "{{file_dst_mariadb_run_backup}}"
-
 # monit.d
 file_dst_monit_d: '/etc/monit.d'
 file_mode_monit_d: '0750'
@@ -104,6 +93,17 @@ file_dst_mariadb_cfg: '/etc/monit.d/mariadb.cfg'
 file_mode_mariadb_cfg: '0640'
 file_owner_mariadb_cfg: 'root'
 file_group_mariadb_cfg: 'root'
+
+# mariadb_run-backup
+cron_name_mariadb_run_backup: 'MariaDB: Run Backup'
+cron_cron_file_mariadb_run_backup: 'mariadb_run-backup'
+cron_day_mariadb_run_backup: "{{mariadb_run_backup_day}}"
+cron_hour_mariadb_run_backup: "{{mariadb_run_backup_hour}}"
+cron_minute_mariadb_run_backup: "{{mariadb_run_backup_minute}}"
+cron_month_mariadb_run_backup: "{{mariadb_run_backup_month}}"
+cron_weekday_mariadb_run_backup: "{{mariadb_run_backup_weekday}}"
+cron_user_mariadb_run_backup: "{{file_owner_mariadb_run_backup}}"
+cron_job_mariadb_run_backup: "{{file_dst_mariadb_run_backup}}"
 
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
