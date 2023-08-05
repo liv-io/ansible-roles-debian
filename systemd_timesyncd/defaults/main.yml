@@ -28,6 +28,12 @@ systemd_timesyncd_monitor_prom_state: 'false'
 
 systemd_timesyncd_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
+systemd_timesyncd_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+  add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+
+systemd_timesyncd_nftables_state: 'false'
+
 systemd_timesyncd_poll_interval_max_sec: 2048
 
 systemd_timesyncd_poll_interval_min_sec: 32

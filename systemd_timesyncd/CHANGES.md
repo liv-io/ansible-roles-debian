@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.4.0 (2023-08-05)
+
+### Features
+
+- Add parameter `systemd_timesyncd_nftables_filter_rule`
+- Add parameter `systemd_timesyncd_nftables_state`
+
 ## 1.3.3 (2023-07-28)
 
 ### Enhancements

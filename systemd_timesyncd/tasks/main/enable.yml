@@ -58,6 +58,18 @@
   tags:
     - systemd_timesyncd
 
+- name: create file systemd-timesyncd.nft
+  template:
+    src: "{{file_src_systemd_timesyncd_nft}}"
+    dest: "{{file_dst_systemd_timesyncd_nft}}"
+    mode: "{{file_mode_systemd_timesyncd_nft}}"
+    owner: "{{file_owner_systemd_timesyncd_nft}}"
+    group: "{{file_group_systemd_timesyncd_nft}}"
+  notify: reload service nftables
+  when: (systemd_timesyncd_nftables_state is match('true|yes|enable'))
+  tags:
+    - systemd_timesyncd
+
 - name: start service systemd-timesyncd
   service:
     state: 'started'

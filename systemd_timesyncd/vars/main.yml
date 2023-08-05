@@ -26,12 +26,25 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
 # systemd-timesyncd.cfg
 file_src_systemd_timesyncd_cfg: 'templates/main/systemd-timesyncd.cfg'
 file_dst_systemd_timesyncd_cfg: '/etc/monit.d/systemd-timesyncd.cfg'
 file_mode_systemd_timesyncd_cfg: '0640'
 file_owner_systemd_timesyncd_cfg: 'root'
 file_group_systemd_timesyncd_cfg: 'root'
+
+# systemd-timesyncd.nft
+file_src_systemd_timesyncd_nft: 'templates/main/systemd-timesyncd.nft'
+file_dst_systemd_timesyncd_nft: '/etc/nftables.d/systemd-timesyncd.conf'
+file_mode_systemd_timesyncd_nft: '0640'
+file_owner_systemd_timesyncd_nft: 'root'
+file_group_systemd_timesyncd_nft: 'root'
 
 # systemd-timesyncd_check-time
 cron_name_systemd_timesyncd_check_time: 'systemd-timesyncd: Check Time'
@@ -46,8 +59,14 @@ cron_job_systemd_timesyncd_check_time: "{{file_dst_systemd_timesyncd_check_time}
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+
 # monit
 service_name_monit: 'monit'
+
+# nftables
+service_name_nftables: 'nftables'
 
 # systemd-timesyncd
 service_name_systemd_timesyncd: 'systemd-timesyncd'

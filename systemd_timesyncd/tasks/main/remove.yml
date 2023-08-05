@@ -18,6 +18,14 @@
   tags:
     - systemd_timesyncd
 
+- name: remove file systemd-timesyncd.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_systemd_timesyncd_nft}}"
+  notify: reload service nftables
+  tags:
+    - systemd_timesyncd
+
 - name: remove file systemd-timesyncd.cfg
   file:
     state: 'absent'
