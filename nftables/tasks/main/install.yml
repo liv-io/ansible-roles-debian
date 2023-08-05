@@ -12,15 +12,15 @@
 
 - name: install package nftables
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_nftables}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - nftables
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"

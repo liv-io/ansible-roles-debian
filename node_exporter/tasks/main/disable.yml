@@ -46,9 +46,9 @@
 
 - name: stop service node_exporter
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_node_exporter}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - node_exporter

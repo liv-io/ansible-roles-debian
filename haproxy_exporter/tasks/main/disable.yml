@@ -46,9 +46,9 @@
 
 - name: stop service haproxy_exporter
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_haproxy_exporter}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - haproxy_exporter

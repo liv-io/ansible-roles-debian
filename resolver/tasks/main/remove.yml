@@ -12,7 +12,7 @@
 
 - name: remove file resolver.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_resolver_nft}}"
   notify: reload service nftables
   tags:

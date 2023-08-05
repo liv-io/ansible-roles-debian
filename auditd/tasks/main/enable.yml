@@ -46,8 +46,8 @@
 
 - name: start service auditd
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_auditd}}"
   tags:
     - auditd

@@ -12,15 +12,15 @@
 
 - name: install package curl
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_curl}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - unbound_adblock
 
 - name: create group unbound-adblock
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_unbound_adblock}}"
     system: "{{group_system_unbound_adblock}}"
   tags:
@@ -28,7 +28,7 @@
 
 - name: create user unbound-adblock
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_unbound_adblock}}"
     comment: "{{user_comment_unbound_adblock}}"
     group: "{{user_group_unbound_adblock}}"
@@ -47,7 +47,7 @@
 
 - name: create file data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_data_dir}}"
     mode: "{{file_mode_data_dir}}"
     owner: "{{file_owner_data_dir}}"
@@ -57,7 +57,7 @@
 
 - name: create file unbound-adblock_data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_unbound_adblock_data_dir}}"
     mode: "{{file_mode_unbound_adblock_data_dir}}"
     owner: "{{file_owner_unbound_adblock_data_dir}}"

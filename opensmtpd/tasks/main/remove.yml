@@ -12,19 +12,19 @@
 
 - name: remove package opensmtpd
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_opensmtpd}}"
     default_release: 'bullseye-backports'
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('11'))
   tags:
     - opensmtpd
 
 - name: remove package opensmtpd
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_opensmtpd}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('12'))
 
   tags:
@@ -32,7 +32,7 @@
 
 - name: remove file opensmtpd.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_opensmtpd_nft}}"
   notify: reload service nftables
   tags:
@@ -40,7 +40,7 @@
 
 - name: remove file opensmtpd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
   notify: reload service monit
   tags:
@@ -48,14 +48,14 @@
 
 - name: remove file smtpd.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_smtpd_conf}}"
   tags:
     - opensmtpd
 
 - name: remove file smtpd.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_smtpd_dir}}"
   tags:
     - opensmtpd

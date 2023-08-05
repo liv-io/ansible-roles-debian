@@ -12,17 +12,17 @@
 
 - name: install package openssl
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_openssl}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - haproxy
 
 - name: install package haproxy
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_haproxy}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - haproxy
 
@@ -35,7 +35,7 @@
 
 - name: generate dhparam
   shell: "{{command_cmd_generate_dhparam}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_dhparam_pem.stat.exists == False)
   tags:
     - haproxy
@@ -50,7 +50,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -64,7 +64,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (haproxy_monitor_monit_state is match('true|yes|enable'))
   tags:
     - haproxy
@@ -79,7 +79,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -93,7 +93,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (haproxy_nftables_state is match('true|yes|enable'))
   tags:
     - haproxy

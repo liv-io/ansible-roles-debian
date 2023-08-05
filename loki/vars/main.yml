@@ -150,21 +150,21 @@ command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 
 
 # loki
 group_name_loki: 'loki'
-group_system_loki: 'yes'
+group_system_loki: True
 
 # loki
 user_name_loki: 'loki'
 user_comment_loki: 'Loki'
 user_group_loki: 'loki'
-user_append_loki: 'no'
-user_home_create_loki: 'no'
-user_home_move_loki: 'no'
-user_home_remove_loki: 'yes'
-user_home_force_loki: 'no'
+user_append_loki: False
+user_home_create_loki: False
+user_home_move_loki: False
+user_home_remove_loki: True
+user_home_force_loki: False
 user_password_loki: '!'
 user_password_update_loki: 'always'
 user_shell_loki: '/usr/sbin/nologin'
-user_system_loki: 'yes'
+user_system_loki: True
 
 # grafana-server
 service_name_grafana: 'grafana-server'

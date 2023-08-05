@@ -27,7 +27,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"
   loop: "{{nginx_config}}"
   notify:

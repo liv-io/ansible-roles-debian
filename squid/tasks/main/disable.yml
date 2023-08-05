@@ -109,15 +109,15 @@
 
 - name: create cache.dir
   shell: "{{command_cmd_create_cache_dir}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_cache_dir.stat.exists == False)
   tags:
     - squid
 
 - name: stop service squid
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_squid}}"
   tags:
     - squid

@@ -12,8 +12,8 @@
 
 - name: install package modsecurity-crs
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_modsecurity_crs}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - modsecurity_crs

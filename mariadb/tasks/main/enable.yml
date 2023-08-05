@@ -67,7 +67,7 @@
 
 - name: create cron mariadb_run-backup
   cron:
-    state: 'present'
+    state: present
     disabled: "{{'yes' if (mariadb_run_backup_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_mariadb_run_backup}}"
     cron_file: "{{cron_cron_file_mariadb_run_backup}}"
@@ -107,8 +107,8 @@
 
 - name: start service mariadb
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_mariadb}}"
   tags:
     - mariadb
@@ -117,7 +117,7 @@
 #        are properly supported
 - name: set mariadb-root-password
   command: "{{command_cmd_mariadb_root_password}}"
-  check_mode: 'no'
+  check_mode: False
   notify: flush privileges
   when: (register_package_install_mariadb_server is changed)
   tags:
@@ -125,7 +125,7 @@
 
 - name: remove anonymous-users
   command: "{{command_cmd_remove_anonymous_users}}"
-  check_mode: 'no'
+  check_mode: False
   changed_when: False
   notify: flush privileges
   tags:
@@ -133,7 +133,7 @@
 
 - name: remove root-remote-access
   command: "{{command_cmd_remove_root_remote_access}}"
-  check_mode: 'no'
+  check_mode: False
   changed_when: False
   notify: flush privileges
   tags:
@@ -141,14 +141,14 @@
 
 - name: remove test-database
   command: "{{command_cmd_remove_test_database}}"
-  check_mode: 'no'
+  check_mode: False
   changed_when: False
   tags:
     - mariadb
 
 - name: remove test-database
   command: "{{command_cmd_remove_test_database}}"
-  check_mode: 'no'
+  check_mode: False
   changed_when: False
   notify: flush privileges
   tags:
@@ -156,7 +156,7 @@
 
 - name: remove test-database-access
   command: "{{command_cmd_remove_test_database_access}}"
-  check_mode: 'no'
+  check_mode: False
   changed_when: False
   notify: flush privileges
   tags:

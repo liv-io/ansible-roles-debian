@@ -12,15 +12,15 @@
 
 - name: remove package grafana
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_grafana}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - grafana
 
 - name: remove file grafana.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_grafana_nft}}"
   notify: reload service nftables
   tags:
@@ -28,7 +28,7 @@
 
 - name: remove file grafana.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_grafana_cfg}}"
   notify: reload service monit
   tags:
@@ -36,7 +36,7 @@
 
 - name: remove file grafana.gpg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_grafana_gpg}}"
   register: register_grafana_gpg
   tags:
@@ -44,21 +44,21 @@
 
 - name: remove file grafana.list
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_grafana_list}}"
   tags:
     - grafana
 
 - name: remove file grafana.ini
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_grafana_ini}}"
   tags:
     - grafana
 
 - name: del grafana.key
   shell: "{{command_cmd_del_grafana_key}}"
-  check_mode: 'no'
+  check_mode: False
   when: register_grafana_gpg.changed
   tags:
     - grafana

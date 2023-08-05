@@ -12,14 +12,14 @@
 
 - name: remove file bash.bash
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_bash_bash}}"
   tags:
     - bash
 
 - name: remove file zz_bash.bash
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_zz_bash_bash}}"
   tags:
     - bash

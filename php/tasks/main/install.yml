@@ -12,8 +12,8 @@
 
 - name: install package php
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_php}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - php

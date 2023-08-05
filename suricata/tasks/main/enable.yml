@@ -47,18 +47,18 @@
 
 - name: start service promiscuous_mode@.service
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "promiscuous_mode@{{suricata_interface}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - suricata
 
 - name: start service suricata
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_suricata}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - suricata

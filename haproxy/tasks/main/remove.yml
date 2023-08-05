@@ -12,15 +12,15 @@
 
 - name: remove package haproxy
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_haproxy}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - haproxy
 
 - name: remove file haproxy.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_haproxy_nft}}"
   notify: reload service nftables
   tags:
@@ -28,7 +28,7 @@
 
 - name: remove file haproxy.monit
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_haproxy_monit}}"
   notify: reload service monit
   tags:
@@ -36,14 +36,14 @@
 
 - name: remove file haproxy.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_haproxy_cfg}}"
   tags:
     - haproxy
 
 - name: remove file dhparam.pem
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_dhparam_pem}}"
   tags:
     - haproxy

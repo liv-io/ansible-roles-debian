@@ -12,7 +12,7 @@
 
 - name: create group root
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_root}}"
     gid: "{{group_gid_root}}"
     system: "{{group_system_root}}"
@@ -21,7 +21,7 @@
 
 - name: create user root
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_root}}"
     comment: "{{user_comment_root}}"
     uid: "{{user_uid_root}}"
@@ -41,7 +41,7 @@
 
 - name: create file root.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_root_dir}}"
     mode: "{{file_mode_root_dir}}"
     owner: "{{file_owner_root_dir}}"

@@ -12,15 +12,15 @@
 
 - name: remove package systemd-timesyncd
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_systemd_timesyncd}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - systemd_timesyncd
 
 - name: remove file systemd-timesyncd.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_systemd_timesyncd_nft}}"
   notify: reload service nftables
   tags:
@@ -28,7 +28,7 @@
 
 - name: remove file systemd-timesyncd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_systemd_timesyncd_cfg}}"
   notify: reload service monit
   tags:
@@ -36,7 +36,7 @@
 
 - name: remove cron systemd-timesyncd_check-time
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_systemd_timesyncd_check_time}}"
     user: "{{cron_user_systemd_timesyncd_check_time}}"
   tags:
@@ -44,7 +44,7 @@
 
 - name: remove file systemd-timesyncd_check-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_systemd_timesyncd_check_time}}"
   tags:
     - systemd_timesyncd

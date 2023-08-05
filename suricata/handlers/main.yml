@@ -13,11 +13,11 @@
 
 - name: reload service monit
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 
 - name: reload service suricata
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_suricata}}"

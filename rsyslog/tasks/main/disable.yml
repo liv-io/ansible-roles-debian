@@ -46,8 +46,8 @@
 
 - name: stop service rsyslog
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_rsyslog}}"
   tags:
     - rsyslog

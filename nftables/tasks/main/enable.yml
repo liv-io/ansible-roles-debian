@@ -56,8 +56,8 @@
 
 - name: start service nftables
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_nftables}}"
   tags:
     - nftables

@@ -27,7 +27,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_rules_d}}/{{(item.name|default('config'))}}.rules"
   loop: "{{auditd_config_all + auditd_config_group + auditd_config_host}}"
   notify:

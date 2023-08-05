@@ -48,8 +48,8 @@
 
 - name: start service nsd
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_nsd}}"
   tags:
     - nsd

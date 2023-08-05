@@ -12,7 +12,7 @@
 
 - name: remove file apt.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_apt_nft}}"
   notify: reload service nftables
   tags:
@@ -20,7 +20,7 @@
 
 - name: remove cron apt_check-update
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_apt_check_update}}"
     cron_file: "{{cron_cron_file_apt_check_update}}"
     user: "{{cron_user_apt_check_update}}"
@@ -29,7 +29,7 @@
 
 - name: remove file apt_check-update
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_apt_check_update}}"
   tags:
     - apt

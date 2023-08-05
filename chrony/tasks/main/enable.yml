@@ -33,7 +33,7 @@
 
 - name: create cron chrony_check-time
   cron:
-    state: 'present'
+    state: present
     disabled: "{{'yes' if (chrony_check_time_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_chrony_check_time}}"
     day: "{{cron_day_chrony_check_time}}"
@@ -48,14 +48,14 @@
 
 - name: remove file chrony_update-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_chrony_update_time}}"
   tags:
     - chrony
 
 - name: remove cron chrony_update-time
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_chrony_update_time}}"
     user: "{{cron_user_chrony_update_time}}"
   tags:
@@ -87,8 +87,8 @@
 
 - name: start service chronyd
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_chronyd}}"
   tags:
     - chrony

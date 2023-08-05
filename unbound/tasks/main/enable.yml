@@ -59,8 +59,8 @@
 
 - name: start service unbound
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_unbound}}"
   tags:
     - unbound

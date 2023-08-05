@@ -49,20 +49,20 @@
   register: register_status_auditd
   changed_when: (register_status_auditd.rc > 1)
   failed_when: (register_status_auditd.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - auditd
 
 - name: disable auditd
   command: "{{command_cmd_disable_auditd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_auditd.rc != 3)
   tags:
     - auditd
 
 - name: stop auditd
   command: "{{command_cmd_stop_auditd}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_status_auditd.rc != 3)
   args:
     warn: False

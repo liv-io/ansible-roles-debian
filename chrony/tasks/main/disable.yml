@@ -22,15 +22,15 @@
 
 - name: remove file chrony_check-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_chrony_check_time}}"
   tags:
     - chrony
 
 - name: create cron chrony_check-time
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_chrony_check_time}}"
     day: "{{cron_day_chrony_check_time}}"
     hour: "{{cron_hour_chrony_check_time}}"
@@ -44,14 +44,14 @@
 
 - name: remove file chrony_update-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_chrony_update_time}}"
   tags:
     - chrony
 
 - name: remove cron chrony_update-time
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_chrony_update_time}}"
     user: "{{cron_user_chrony_update_time}}"
   tags:
@@ -83,8 +83,8 @@
 
 - name: stop service chronyd
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_chronyd}}"
   tags:
     - chrony

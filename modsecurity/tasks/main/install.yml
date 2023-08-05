@@ -12,15 +12,15 @@
 
 - name: install package modsecurity
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_modsecurity}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - modsecurity
 
 - name: create file security2.load
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_security2_load}}"
     path: "{{file_dst_security2_load}}"
     owner: "{{file_owner_module_load}}"

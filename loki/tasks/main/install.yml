@@ -12,15 +12,15 @@
 
 - name: install package unzip
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_unzip}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - haproxy
 
 - name: create group loki
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_loki}}"
     system: "{{group_system_loki}}"
   tags:
@@ -28,7 +28,7 @@
 
 - name: create user loki
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_loki}}"
     comment: "{{user_comment_loki}}"
     group: "{{user_group_loki}}"
@@ -46,7 +46,7 @@
 
 - name: create file data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_data_dir}}"
     mode: "{{file_mode_data_dir}}"
     owner: "{{file_owner_data_dir}}"
@@ -56,7 +56,7 @@
 
 - name: create file loki_data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_loki_data_dir}}"
     mode: "{{file_mode_loki_data_dir}}"
     owner: "{{file_owner_loki_data_dir}}"
@@ -66,7 +66,7 @@
 
 - name: create file chunks.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_chunks_dir}}"
     mode: "{{file_mode_chunks_dir}}"
     owner: "{{file_owner_chunks_dir}}"
@@ -76,7 +76,7 @@
 
 - name: create file boltdb-shipper-active.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_boltdb_shipper_active_dir}}"
     mode: "{{file_mode_boltdb_shipper_active_dir}}"
     owner: "{{file_owner_boltdb_shipper_active_dir}}"
@@ -86,7 +86,7 @@
 
 - name: create file boltdb-shipper-cache.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_boltdb_shipper_cache_dir}}"
     mode: "{{file_mode_boltdb_shipper_cache_dir}}"
     owner: "{{file_owner_boltdb_shipper_cache_dir}}"
@@ -96,7 +96,7 @@
 
 - name: create file boltdb-shipper-compactor.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_boltdb_shipper_compactor_dir}}"
     mode: "{{file_mode_boltdb_shipper_compactor_dir}}"
     owner: "{{file_owner_boltdb_shipper_compactor_dir}}"
@@ -106,7 +106,7 @@
 
 - name: create file rules.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_rules_dir}}"
     mode: "{{file_mode_rules_dir}}"
     owner: "{{file_owner_rules_dir}}"
@@ -116,7 +116,7 @@
 
 - name: create file rules-temp.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_rules_temp_dir}}"
     mode: "{{file_mode_rules_temp_dir}}"
     owner: "{{file_owner_rules_temp_dir}}"
@@ -126,7 +126,7 @@
 
 - name: create file wal.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_wal_dir}}"
     mode: "{{file_mode_wal_dir}}"
     owner: "{{file_owner_wal_dir}}"
@@ -136,7 +136,7 @@
 
 - name: create file loki_etc.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_loki_etc_dir}}"
     mode: "{{file_mode_loki_etc_dir}}"
     owner: "{{file_owner_loki_etc_dir}}"
@@ -161,7 +161,7 @@
     dest: "{{file_dst_loki}}"
     owner: "{{file_owner_loki}}"
     group: "{{file_group_loki}}"
-    remote_src: 'yes'
+    remote_src: True
   tags:
     - loki
 
@@ -185,7 +185,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -199,7 +199,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (loki_monitor_monit_state is match('true|yes|enable'))
   tags:
     - loki
@@ -214,7 +214,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -228,7 +228,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (loki_nftables_state is match('true|yes|enable'))
   tags:
     - loki

@@ -25,7 +25,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_config}}/{{item.name}}.conf"
   loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
   notify: restart service rsyslog

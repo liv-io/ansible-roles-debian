@@ -12,7 +12,7 @@
 
 - name: create file prometheus-current.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_prometheus_current_link}}"
     path: "{{file_dst_prometheus_current_link}}"
     owner: "{{file_owner_prometheus_current_link}}"
@@ -188,9 +188,9 @@
 
 - name: start service prometheus
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_prometheus}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - prometheus

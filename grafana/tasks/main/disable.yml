@@ -46,8 +46,8 @@
 
 - name: stop service grafana
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_grafana}}"
   tags:
     - grafana

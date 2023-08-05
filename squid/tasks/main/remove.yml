@@ -12,15 +12,15 @@
 
 - name: remove package squid
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_squid}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - squid
 
 - name: remove file squid.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_squid_nft}}"
   notify: reload service nftables
   tags:
@@ -28,7 +28,7 @@
 
 - name: remove file squid.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_squid_cfg}}"
   notify: reload service monit
   tags:
@@ -36,14 +36,14 @@
 
 - name: remove file squid.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_squid_conf}}"
   tags:
     - squid
 
 - name: remove file acl.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_acl_dir}}"
   tags:
     - squid

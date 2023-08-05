@@ -12,15 +12,15 @@
 
 - name: remove package nsd
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_nsd}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - nsd
 
 - name: remove file nsd.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_nsd_nft}}"
   notify: reload service nftables
   tags:
@@ -28,7 +28,7 @@
 
 - name: remove file nsd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_nsd_cfg}}"
   notify: reload service monit
   tags:
@@ -36,7 +36,7 @@
 
 - name: remove file nsd.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_nsd_conf}}"
   tags:
     - nsd

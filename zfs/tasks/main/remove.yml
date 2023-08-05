@@ -12,7 +12,7 @@
 
 - name: remove cron zfs_check-pools
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_zfs_check_pools}}"
     cron_file: "{{cron_cron_file_zfs_check_pools}}"
     user: "{{cron_user_zfs_scrub_pools}}"
@@ -21,14 +21,14 @@
 
 - name: remove file zfs_check-pools
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_zfs_check_pools}}"
   tags:
     - zfs
 
 - name: remove cron zfs_scrub-pools
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_zfs_scrub_pools}}"
     cron_file: "{{cron_cron_file_zfs_scrub_pools}}"
     user: "{{cron_user_zfs_scrub_pools}}"
@@ -37,14 +37,14 @@
 
 - name: remove file zfs_scrub-pools
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_src_zfs_scrub_pools}}"
   tags:
     - zfs
 
 - name: remove cron zfs_trim-pools
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_zfs_trim_pools}}"
     cron_file: "{{cron_cron_file_zfs_trim_pools}}"
     user: "{{cron_user_zfs_trim_pools}}"
@@ -53,7 +53,7 @@
 
 - name: remove file zfs_trim-pools
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_src_zfs_trim_pools}}"
   tags:
     - zfs

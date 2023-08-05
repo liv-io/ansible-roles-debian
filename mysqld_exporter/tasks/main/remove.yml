@@ -15,23 +15,23 @@
   register: register_check_service_mysqld_exporter
   changed_when: (register_check_service_mysqld_exporter.rc == 0)
   failed_when: (register_check_service_mysqld_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - mysqld_exporter
 
 - name: stop service mysqld_exporter
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_mysqld_exporter}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_check_service_mysqld_exporter.rc == 0)
   tags:
     - mysqld_exporter
 
 - name: remove user mysqld_exporter
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_mysqld_exporter}}"
     remove: "{{user_home_remove_mysqld_exporter}}"
     force: "{{user_home_force_mysqld_exporter}}"
@@ -40,14 +40,14 @@
 
 - name: remove group mysqld_exporter
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_mysqld_exporter}}"
   tags:
     - mysqld_exporter
 
 - name: remove file mysqld_exporter.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysqld_exporter_nft}}"
   notify: reload service nftables
   tags:
@@ -55,7 +55,7 @@
 
 - name: remove file mysqld_exporter.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysqld_exporter_cfg}}"
   notify: reload service monit
   tags:
@@ -63,35 +63,35 @@
 
 - name: remove file mysqld_exporter.default
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysqld_exporter_default}}"
   tags:
     - mysqld_exporter
 
 - name: remove file mysqld_exporter.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysqld_exporter_service}}"
   tags:
     - mysqld_exporter
 
 - name: remove file mysqld_exporter_etc.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysqld_exporter_etc_dir}}"
   tags:
     - mysqld_exporter
 
 - name: remove file mysqld_exporter
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_mysqld_exporter}}"
   tags:
     - mysqld_exporter
 
 - name: remove file mysqld_exporter.tar.gz
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysqld_exporter_tar_gz}}"
   tags:
     - mysqld_exporter

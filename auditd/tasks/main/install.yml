@@ -12,17 +12,17 @@
 
 - name: install package audispd-plugins
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_audispd_plugins}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - auditd
 
 - name: install package audit
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_audit}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - auditd
 
@@ -36,7 +36,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -50,7 +50,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (auditd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - auditd

@@ -12,55 +12,55 @@
 
 - name: remove package podman
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_podman}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - podman
 
 - name: remove package catatonit
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_catatonit}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - podman
 
 - name: remove package dbus_user_session
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_dbus_user_session}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - podman
 
 - name: remove package fuse_overlayfs
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_fuse_overlayfs}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - podman
 
 - name: remove package rootlesskit
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_rootlesskit}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - podman
 
 - name: remove package slirp4netns
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_slirp4netns}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - podman
 
 - name: remove file storage.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_storage_conf}}"
   tags:
     - podman

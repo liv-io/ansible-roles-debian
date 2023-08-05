@@ -12,9 +12,9 @@
 
 - name: install package bash
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_bash}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - bash
 

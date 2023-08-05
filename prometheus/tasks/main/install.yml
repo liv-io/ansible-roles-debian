@@ -12,7 +12,7 @@
 
 - name: create group prometheus
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_prometheus}}"
     system: "{{group_system_prometheus}}"
   tags:
@@ -20,7 +20,7 @@
 
 - name: create user prometheus
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_prometheus}}"
     comment: "{{user_comment_prometheus}}"
     group: "{{user_group_prometheus}}"
@@ -38,7 +38,7 @@
 
 - name: create file app.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_app_dir}}"
     mode: "{{file_mode_app_dir}}"
     owner: "{{file_owner_app_dir}}"
@@ -48,7 +48,7 @@
 
 - name: create file prometheus_app.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_prometheus_app_dir}}"
     mode: "{{file_mode_prometheus_app_dir}}"
     owner: "{{file_owner_prometheus_app_dir}}"
@@ -58,7 +58,7 @@
 
 - name: create file prometheus_etc.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_prometheus_etc_dir}}"
     mode: "{{file_mode_prometheus_etc_dir}}"
     owner: "{{file_owner_prometheus_etc_dir}}"
@@ -68,7 +68,7 @@
 
 - name: create file data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_data_dir}}"
     mode: "{{file_mode_data_dir}}"
     owner: "{{file_owner_data_dir}}"
@@ -78,7 +78,7 @@
 
 - name: create file prometheus_data.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_prometheus_data_dir}}"
     mode: "{{file_mode_prometheus_data_dir}}"
     owner: "{{file_owner_prometheus_data_dir}}"
@@ -104,13 +104,13 @@
     owner: "{{file_owner_prometheus}}"
     group: "{{file_group_prometheus}}"
     exclude: "{{file_exclude_prometheus}}"
-    remote_src: 'yes'
+    remote_src: True
   tags:
     - prometheus
 
 - name: create file dashboards.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_dashboards_dir}}"
     mode: "{{file_mode_dashboards_dir}}"
     owner: "{{file_owner_dashboards_dir}}"
@@ -120,7 +120,7 @@
 
 - name: create file builtin_dashboards.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_builtin_dashboards_dir}}"
     mode: "{{file_mode_builtin_dashboards_dir}}"
     owner: "{{file_owner_builtin_dashboards_dir}}"
@@ -149,7 +149,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -163,7 +163,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (prometheus_monitor_monit_state is match('true|yes|enable'))
   tags:
     - prometheus
@@ -178,7 +178,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -192,7 +192,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (prometheus_nftables_state is match('true|yes|enable'))
   tags:
     - prometheus

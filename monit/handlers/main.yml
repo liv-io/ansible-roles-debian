@@ -14,7 +14,7 @@
 
 - name: restart service monit
   service:
-    state: 'restarted'
+    state: restarted
     name: "{{service_name_monit}}"
 
 - name: reload service nftables

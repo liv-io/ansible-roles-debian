@@ -12,7 +12,7 @@
 
 - name: ensure file shadow
   file:
-    state: 'file'
+    state: file
     dest: "{{file_dst_shadow}}"
     mode: "{{file_mode_shadow}}"
     owner: "{{file_owner_shadow}}"

@@ -58,9 +58,9 @@
 
 - name: start service promtail
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_promtail}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - promtail

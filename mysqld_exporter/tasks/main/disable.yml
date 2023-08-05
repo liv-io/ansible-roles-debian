@@ -56,8 +56,8 @@
 
 - name: stop service mysqld_exporter
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_mysqld_exporter}}"
   tags:
     - mysqld_exporter

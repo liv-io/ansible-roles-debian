@@ -47,8 +47,8 @@
 
 - name: stop service nsd
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_nsd}}"
   tags:
     - nsd

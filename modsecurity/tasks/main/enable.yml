@@ -25,7 +25,7 @@
 
 - name: create file modsecurity.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_modsecurity_link}}"
     path: "{{file_dst_modsecurity_link}}"
     owner: "{{file_owner_modsecurity_link}}"
@@ -51,7 +51,7 @@
 
 - name: create file security2.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_security2_link}}"
     path: "{{file_dst_security2_link}}"
     owner: "{{file_owner_security2_link}}"

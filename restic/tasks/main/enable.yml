@@ -12,8 +12,8 @@
 
 - name: create cron restic_run-backup
   cron:
-    state: 'present'
-    disabled: 'no'
+    state: present
+    disabled: False
     name: "{{cron_name_restic_run_backup}}"
     cron_file: "{{cron_cron_file_restic_run_backup}}"
     day: "{{cron_day_restic_run_backup}}"

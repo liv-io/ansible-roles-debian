@@ -52,8 +52,8 @@
 
 - name: stop service nftables
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_nftables}}"
   tags:
     - nftables

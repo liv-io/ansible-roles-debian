@@ -12,7 +12,7 @@
 
 - name: remove cron fstrim_discard-blocks
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_fstrim_discard_blocks}}"
     cron_file: "{{cron_cron_file_fstrim_discard_blocks}}"
     user: "{{cron_user_fstrim_discard_blocks}}"
@@ -21,7 +21,7 @@
 
 - name: remove file fstrim_discard-blocks
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_fstrim_discard_blocks}}"
   tags:
     - fstrim

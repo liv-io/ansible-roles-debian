@@ -15,23 +15,23 @@
   register: register_check_service_smokeping_prober
   changed_when: (register_check_service_smokeping_prober.rc == 0)
   failed_when: (register_check_service_smokeping_prober.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - smokeping_prober
 
 - name: stop service smokeping_prober
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_smokeping_prober}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_check_service_smokeping_prober.rc == 0)
   tags:
     - smokeping_prober
 
 - name: remove user smokeping_prober
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_smokeping_prober}}"
     remove: "{{user_home_remove_smokeping_prober}}"
     force: "{{user_home_force_smokeping_prober}}"
@@ -40,14 +40,14 @@
 
 - name: remove group smokeping_prober
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_smokeping_prober}}"
   tags:
     - smokeping_prober
 
 - name: remove file smokeping_prober.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_smokeping_prober_nft}}"
   notify: reload service nftables
   tags:
@@ -55,7 +55,7 @@
 
 - name: remove file smokeping_prober.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_smokeping_prober_cfg}}"
   notify: reload service monit
   tags:
@@ -63,14 +63,14 @@
 
 - name: remove file smokeping_prober.default
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_smokeping_prober_default}}"
   tags:
     - smokeping_prober
 
 - name: remove file smokeping_prober.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_smokeping_prober_service}}"
   tags:
     - smokeping_prober

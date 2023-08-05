@@ -27,7 +27,7 @@
     mode: "{{file_mode_secrets}}"
     owner: "{{file_owner_secrets}}"
     group: "{{file_group_secrets}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - opensmtpd
 
@@ -67,8 +67,8 @@
 
 - name: stop service opensmtpd
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_opensmtpd}}"
   tags:
     - opensmtpd

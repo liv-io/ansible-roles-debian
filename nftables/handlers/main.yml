@@ -10,5 +10,5 @@
 
 - name: reload service nftables
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_nftables}}"

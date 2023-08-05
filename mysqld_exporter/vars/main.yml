@@ -81,21 +81,21 @@ command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 
 
 # mysqld_exporter
 group_name_mysqld_exporter: 'mysqld_exporter'
-group_system_mysqld_exporter: 'yes'
+group_system_mysqld_exporter: True
 
 # mysqld_exporter
 user_name_mysqld_exporter: 'mysqld_exporter'
 user_comment_mysqld_exporter: 'MySQL Exporter'
 user_group_mysqld_exporter: 'mysqld_exporter'
-user_append_mysqld_exporter: 'no'
-user_home_create_mysqld_exporter: 'no'
-user_home_move_mysqld_exporter: 'no'
-user_home_remove_mysqld_exporter: 'yes'
-user_home_force_mysqld_exporter: 'no'
+user_append_mysqld_exporter: False
+user_home_create_mysqld_exporter: False
+user_home_move_mysqld_exporter: False
+user_home_remove_mysqld_exporter: True
+user_home_force_mysqld_exporter: False
 user_password_mysqld_exporter: '!'
 user_password_update_mysqld_exporter: 'always'
 user_shell_mysqld_exporter: '/usr/sbin/nologin'
-user_system_mysqld_exporter: 'yes'
+user_system_mysqld_exporter: True
 
 # monit
 service_name_monit: 'monit'

@@ -12,15 +12,15 @@
 
 - name: remove file unbound-adblock_update-list
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_adblock_update_list}}"
   tags:
     - unbound_adblock
 
 - name: create cron unbound-adblock_update-list
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_unbound_adblock_update_list}}"
     day: "{{cron_day_unbound_adblock_update_list}}"
     hour: "{{cron_hour_unbound_adblock_update_list}}"

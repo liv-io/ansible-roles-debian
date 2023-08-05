@@ -12,7 +12,7 @@
 
 - name: install grafana_plugin plugin
   grafana_plugin:
-    state: 'present'
+    state: present
     name: "{{item.name}}"
     grafana_plugins_dir: "{{(item.dst|default('/var/lib/grafana/plugins'))}}"
     grafana_plugin_url: "{{(item.src|default(omit))}}"
@@ -26,7 +26,7 @@
 
 - name: remove grafana_plugin plugin
   grafana_plugin:
-    state: 'absent'
+    state: absent
     name: "{{item.name}}"
     grafana_plugins_dir: "{{(item.dst|default('/var/lib/grafana/plugins'))}}"
   loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"

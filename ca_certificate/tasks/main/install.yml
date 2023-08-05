@@ -12,8 +12,8 @@
 
 - name: install package ca-certificates
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_ca_certificates}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - ca_certificate

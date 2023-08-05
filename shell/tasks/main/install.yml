@@ -12,7 +12,7 @@
 
 - name: create file profile.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_profile_d}}"
     mode: "{{file_mode_profile_d}}"
     owner: "{{file_owner_profile_d}}"

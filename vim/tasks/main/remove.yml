@@ -12,15 +12,15 @@
 
 - name: remove package vim
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_vim}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - vim
 
 - name: remove file vimrc
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_vimrc}}"
   tags:
     - vim

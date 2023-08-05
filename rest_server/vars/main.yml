@@ -80,22 +80,22 @@ command_cmd_check_service_rest_server: 'systemctl cat rest-server.service > /dev
 
 # rest-server
 group_name_rest_server: 'rest-server'
-group_system_rest_server: 'yes'
+group_system_rest_server: True
 
 # rest-server
 user_name_rest_server: 'rest-server'
 user_comment_rest_server: 'Rest Server'
 user_group_rest_server: 'rest-server'
-user_append_rest_server: 'no'
+user_append_rest_server: False
 user_home_rest_server: '/nonexistent'
-user_home_create_rest_server: 'no'
-user_home_move_rest_server: 'no'
-user_home_remove_rest_server: 'no'
-user_home_force_rest_server: 'no'
+user_home_create_rest_server: False
+user_home_move_rest_server: False
+user_home_remove_rest_server: False
+user_home_force_rest_server: False
 user_password_rest_server: '!'
 user_password_update_rest_server: 'always'
 user_shell_rest_server: '/usr/sbin/nologin'
-user_system_rest_server: 'yes'
+user_system_rest_server: True
 
 # monit
 service_name_monit: 'monit'

@@ -12,8 +12,8 @@
 
 - name: create cron fstrim_discard-blocks
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_fstrim_discard_blocks}}"
     cron_file: "{{cron_cron_file_fstrim_discard_blocks}}"
     day: "{{cron_day_fstrim_discard_blocks}}"

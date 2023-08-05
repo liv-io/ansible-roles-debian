@@ -15,23 +15,23 @@
   register: register_check_service_node_exporter
   changed_when: (register_check_service_node_exporter.rc == 0)
   failed_when: (register_check_service_node_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - node_exporter
 
 - name: stop service node_exporter
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_node_exporter}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_check_service_node_exporter.rc == 0)
   tags:
     - node_exporter
 
 - name: remove user node_exporter
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_node_exporter}}"
     remove: "{{user_home_remove_node_exporter}}"
     force: "{{user_home_force_node_exporter}}"
@@ -40,14 +40,14 @@
 
 - name: remove group node_exporter
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_node_exporter}}"
   tags:
     - node_exporter
 
 - name: remove file node_exporter.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_nft}}"
   notify: reload service nftables
   tags:
@@ -55,7 +55,7 @@
 
 - name: remove file node_exporter.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_cfg}}"
   notify: reload service monit
   tags:
@@ -63,35 +63,35 @@
 
 - name: remove file node_exporter_var.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_var_dir}}"
   tags:
     - node_exporter
 
 - name: remove file node_exporter.default
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_default}}"
   tags:
     - node_exporter
 
 - name: remove file node_exporter.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_service}}"
   tags:
     - node_exporter
 
 - name: remove file node_exporter
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_node_exporter}}"
   tags:
     - node_exporter
 
 - name: remove file node_exporter.tar.gz
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_node_exporter_tar_gz}}"
   tags:
     - node_exporter

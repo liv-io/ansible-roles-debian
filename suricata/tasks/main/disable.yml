@@ -45,18 +45,18 @@
 
 - name: stop service suricata
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_suricata}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - suricata
 
 - name: stop service promiscuous_mode@.service
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "promiscuous_mode@{{suricata_interface}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - suricata

@@ -22,15 +22,15 @@
 
 - name: remove file openntpd_check-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_openntpd_check_time}}"
   tags:
     - openntpd
 
 - name: create cron openntpd_check-time
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_openntpd_check_time}}"
     day: "{{cron_day_openntpd_check_time}}"
     hour: "{{cron_hour_openntpd_check_time}}"
@@ -68,8 +68,8 @@
 
 - name: stop service openntpd
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_openntpd}}"
   tags:
     - openntpd

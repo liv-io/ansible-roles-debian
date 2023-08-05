@@ -58,9 +58,9 @@
 
 - name: start service alertmanager
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_alertmanager}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - alertmanager

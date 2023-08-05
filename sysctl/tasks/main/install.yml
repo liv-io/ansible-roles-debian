@@ -12,7 +12,7 @@
 
 - name: create file sysctl.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_sysctl_d}}"
     mode: "{{file_mode_sysctl_d}}"
     owner: "{{file_owner_sysctl_d}}"

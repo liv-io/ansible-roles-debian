@@ -47,8 +47,8 @@
 
 - name: stop service haproxy
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_haproxy}}"
   tags:
     - haproxy

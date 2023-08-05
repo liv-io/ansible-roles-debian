@@ -12,7 +12,7 @@
 
 - name: ensure file group
   file:
-    state: 'file'
+    state: file
     dest: "{{file_dst_group}}"
     mode: "{{file_mode_group}}"
     owner: "{{file_owner_group}}"

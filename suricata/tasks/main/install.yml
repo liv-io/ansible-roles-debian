@@ -12,10 +12,10 @@
 
 - name: install package suricata
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_suricata}}"
     default_release: 'bullseye-backports'
-    install_recommends: 'no'
+    install_recommends: False
   register: register_package_install_suricata
   when: (ansible_distribution_major_version is match('11'))
   tags:
@@ -23,9 +23,9 @@
 
 - name: install package suricata
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_suricata}}"
-    install_recommends: 'no'
+    install_recommends: False
   register: register_package_install_suricata
   when: (ansible_distribution_major_version is match('12'))
   tags:
@@ -33,36 +33,36 @@
 
 - name: install package suricata-update
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_suricata_update}}"
     default_release: 'bullseye-backports'
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('11'))
   tags:
     - suricata
 
 - name: install package suricata-update
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_suricata_update}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('12'))
   tags:
     - suricata
 
 - name: stop service suricata
   service:
-    state: 'stopped'
-    enabled: 'yes'
+    state: stopped
+    enabled: True
     name: "{{service_name_suricata}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_package_install_suricata is changed)
   tags:
     - suricata
 
 - name: create group suricata
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_suricata}}"
     system: "{{group_system_suricata}}"
   tags:
@@ -70,7 +70,7 @@
 
 - name: create user suricata
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_suricata}}"
     comment: "{{user_comment_suricata}}"
     group: "{{user_group_suricata}}"
@@ -88,7 +88,7 @@
 
 - name: create file log.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_log_dir}}"
     mode: "{{file_mode_log_dir}}"
     owner: "{{file_owner_log_dir}}"
@@ -99,7 +99,7 @@
 - name: create file eve.json
   copy:
     content: ''
-    force: 'no'
+    force: False
     dest: "{{file_dst_eve_json}}"
     mode: "{{file_mode_eve_json}}"
     owner: "{{file_owner_eve_json}}"
@@ -110,7 +110,7 @@
 - name: create file fast.log
   copy:
     content: ''
-    force: 'no'
+    force: False
     dest: "{{file_dst_fast_log}}"
     mode: "{{file_mode_fast_log}}"
     owner: "{{file_owner_fast_log}}"
@@ -121,7 +121,7 @@
 - name: create file stats.log
   copy:
     content: ''
-    force: 'no'
+    force: False
     dest: "{{file_dst_stats_log}}"
     mode: "{{file_mode_stats_log}}"
     owner: "{{file_owner_stats_log}}"
@@ -132,7 +132,7 @@
 - name: create file suricata.log
   copy:
     content: ''
-    force: 'no'
+    force: False
     dest: "{{file_dst_suricata_log}}"
     mode: "{{file_mode_suricata_log}}"
     owner: "{{file_owner_suricata_log}}"
@@ -187,7 +187,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -201,21 +201,21 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
     - suricata
 
 - name: update permissions
   shell: "{{command_cmd_update_permissions}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_package_install_suricata is changed)
   tags:
     - suricata
 
 - name: update suricata
   shell: "{{command_cmd_update_suricata}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_suricata_rules.stat.exists == False)
   tags:
     - suricata

@@ -165,9 +165,9 @@
 
 - name: stop service prometheus
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_prometheus}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - prometheus

@@ -12,23 +12,23 @@
 
 - name: remove package audit
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_audit}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - auditd
 
 - name: remove package audispd-plugins
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_audispd_plugins}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - auditd
 
 - name: remove file auditd.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_auditd_cfg}}"
   notify: reload service monit
   tags:
@@ -36,14 +36,14 @@
 
 - name: remove file auditd.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_auditd_conf}}"
   tags:
     - auditd
 
 - name: remove file syslog.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_syslog_conf}}"
   tags:
     - auditd

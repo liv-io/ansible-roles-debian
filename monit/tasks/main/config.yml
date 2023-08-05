@@ -27,7 +27,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
   loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   notify:

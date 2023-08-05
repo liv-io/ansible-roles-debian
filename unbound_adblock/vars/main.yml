@@ -54,22 +54,22 @@ cron_job_unbound_adblock_update_list: "{{file_dst_unbound_adblock_update_list}}"
 
 # unbound-adblock
 group_name_unbound_adblock: 'unbound-adblock'
-group_system_unbound_adblock: 'yes'
+group_system_unbound_adblock: True
 
 # unbound-adblock
 user_name_unbound_adblock: 'unbound-adblock'
 user_comment_unbound_adblock: 'Unbound AdBlock'
 user_group_unbound_adblock: 'unbound-adblock'
-user_append_unbound_adblock: 'no'
+user_append_unbound_adblock: False
 user_home_unbound_adblock: '/var/empty/unbound_adblock'
-user_home_create_unbound_adblock: 'no'
-user_home_move_unbound_adblock: 'no'
-user_home_remove_unbound_adblock: 'yes'
-user_home_force_unbound_adblock: 'no'
+user_home_create_unbound_adblock: False
+user_home_move_unbound_adblock: False
+user_home_remove_unbound_adblock: True
+user_home_force_unbound_adblock: False
 user_password_unbound_adblock: '!'
 user_password_update_unbound_adblock: 'always'
 user_shell_unbound_adblock: '/usr/bin/sh'
-user_system_unbound_adblock: 'yes'
+user_system_unbound_adblock: True
 
 # unbound
 service_name_unbound: 'unbound'

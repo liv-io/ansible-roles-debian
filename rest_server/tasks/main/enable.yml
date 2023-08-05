@@ -47,9 +47,9 @@
 
 - name: start service rest-server
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_rest_server}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - rest_server

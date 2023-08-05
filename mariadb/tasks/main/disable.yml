@@ -62,8 +62,8 @@
 
 - name: create cron mariadb_run-backup
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_mariadb_run_backup}}"
     cron_file: "{{cron_cron_file_mariadb_run_backup}}"
     day: "{{cron_day_mariadb_run_backup}}"
@@ -102,8 +102,8 @@
 
 - name: stop service mariadb
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_mariadb}}"
   tags:
     - mariadb

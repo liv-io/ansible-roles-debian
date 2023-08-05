@@ -27,7 +27,7 @@
 
 - name: create file module.load
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_mods_available}}/{{item.name}}.load"
     path: "{{file_dst_mods_enabled}}/{{item.name}}.load"
     owner: "{{file_owner_module_load}}"
@@ -42,7 +42,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_sites_enabled}}/{{item.name}}-{{(item.port|int)}}.conf"
   loop: "{{apache2_config}}"
   notify:
@@ -54,7 +54,7 @@
 
 - name: remove file module.load
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mods_enabled}}/{{item.name}}.load"
   loop: "{{apache2_modules}}"
   notify:

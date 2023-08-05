@@ -10,12 +10,12 @@
 
 - name: restart service haproxy_exporter
   service:
-    state: 'restarted'
+    state: restarted
     name: "{{service_name_haproxy_exporter}}"
 
 - name: reload service monit
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 

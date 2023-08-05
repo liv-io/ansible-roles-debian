@@ -84,21 +84,21 @@ command_cmd_set_cap_net_raw: 'setcap cap_net_raw+ep /usr/local/bin/blackbox_expo
 
 # blackbox_exporter
 group_name_blackbox_exporter: 'blackbox_exporter'
-group_system_blackbox_exporter: 'yes'
+group_system_blackbox_exporter: True
 
 # blackbox_exporter
 user_name_blackbox_exporter: 'blackbox_exporter'
 user_comment_blackbox_exporter: 'Blackbox Exporter'
 user_group_blackbox_exporter: 'blackbox_exporter'
-user_append_blackbox_exporter: 'no'
-user_home_create_blackbox_exporter: 'no'
-user_home_move_blackbox_exporter: 'no'
-user_home_remove_blackbox_exporter: 'yes'
-user_home_force_blackbox_exporter: 'no'
+user_append_blackbox_exporter: False
+user_home_create_blackbox_exporter: False
+user_home_move_blackbox_exporter: False
+user_home_remove_blackbox_exporter: True
+user_home_force_blackbox_exporter: False
 user_password_blackbox_exporter: '!'
 user_password_update_blackbox_exporter: 'always'
 user_shell_blackbox_exporter: '/usr/sbin/nologin'
-user_system_blackbox_exporter: 'yes'
+user_system_blackbox_exporter: True
 
 # blackbox_exporter
 service_name_blackbox_exporter: 'blackbox_exporter'

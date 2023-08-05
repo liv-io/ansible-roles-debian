@@ -68,21 +68,21 @@ command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 
 
 # haproxy_exporter
 group_name_haproxy_exporter: 'haproxy_exporter'
-group_system_haproxy_exporter: 'yes'
+group_system_haproxy_exporter: True
 
 # haproxy_exporter
 user_name_haproxy_exporter: 'haproxy_exporter'
 user_comment_haproxy_exporter: 'HAProxy Exporter'
 user_group_haproxy_exporter: 'haproxy_exporter'
-user_append_haproxy_exporter: 'no'
-user_home_create_haproxy_exporter: 'no'
-user_home_move_haproxy_exporter: 'no'
-user_home_remove_haproxy_exporter: 'yes'
-user_home_force_haproxy_exporter: 'no'
+user_append_haproxy_exporter: False
+user_home_create_haproxy_exporter: False
+user_home_move_haproxy_exporter: False
+user_home_remove_haproxy_exporter: True
+user_home_force_haproxy_exporter: False
 user_password_haproxy_exporter: '!'
 user_password_update_haproxy_exporter: 'always'
 user_shell_haproxy_exporter: '/usr/sbin/nologin'
-user_system_haproxy_exporter: 'yes'
+user_system_haproxy_exporter: True
 
 # haproxy_exporter
 service_name_haproxy_exporter: 'haproxy_exporter'

@@ -10,17 +10,17 @@
 
 - name: restart service grafana
   service:
-    state: 'restarted'
+    state: restarted
     name: "{{service_name_grafana}}"
 
 - name: restart service loki
   service:
-    state: 'restarted'
+    state: restarted
     name: "{{service_name_loki}}"
 
 - name: reload service monit
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 

@@ -12,24 +12,24 @@
 
 - name: install package bzip2
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_bzip2}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - restic
 
 - name: install package mailx
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_mailx}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (restic_monitor_mail_state is match('true|yes|enable'))
   tags:
     - restic
 
 - name: create file restic_etc.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_restic_etc_dir}}"
     mode: "{{file_mode_restic_etc_dir}}"
     owner: "{{file_owner_restic_etc_dir}}"
@@ -39,7 +39,7 @@
 
 - name: create file restic_log.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_restic_log_dir}}"
     mode: "{{file_mode_restic_log_dir}}"
     owner: "{{file_owner_restic_log_dir}}"
@@ -67,7 +67,7 @@
 
 - name: ensure file restic
   file:
-    state: 'file'
+    state: file
     path: "{{file_dst_restic}}"
     mode: "{{file_mode_restic}}"
     owner: "{{file_owner_restic}}"
@@ -102,7 +102,7 @@
     mode: "{{file_mode_password_conf}}"
     owner: "{{file_owner_password_conf}}"
     group: "{{file_group_password_conf}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - restic
 
@@ -113,14 +113,14 @@
     mode: "{{file_mode_repository_conf}}"
     owner: "{{file_owner_repository_conf}}"
     group: "{{file_group_repository_conf}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - restic
 
 - name: create file restic.log
   copy:
     content: ''
-    force: 'no'
+    force: False
     dest: "{{file_dst_restic_log}}"
     mode: "{{file_mode_restic_log}}"
     owner: "{{file_owner_restic_log}}"
@@ -135,7 +135,7 @@
     mode: "{{file_mode_restic_run_backup}}"
     owner: "{{file_owner_restic_run_backup}}"
     group: "{{file_group_restic_run_backup}}"
-  no_log: 'true'
+  no_log: True
   tags:
     - restic
 
@@ -149,7 +149,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -163,7 +163,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (restic_nftables_state is match('true|yes|enable'))
   tags:
     - restic

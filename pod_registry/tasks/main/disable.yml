@@ -56,9 +56,9 @@
 
 - name: stop service pod_registry
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_pod_registry}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   tags:
     - pod_registry

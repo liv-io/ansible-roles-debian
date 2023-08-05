@@ -23,7 +23,7 @@
 
 - name: remove file 000-default.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_000_default_link}}"
   notify: check apache2
   tags:
@@ -42,7 +42,7 @@
 
 - name: create file alias.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_alias_link}}"
     path: "{{file_dst_alias_link}}"
     owner: "{{file_owner_alias_link}}"
@@ -75,7 +75,7 @@
 
 - name: create file autoindex.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_autoindex_link}}"
     path: "{{file_dst_autoindex_link}}"
     owner: "{{file_owner_autoindex_link}}"
@@ -97,7 +97,7 @@
 
 - name: remove file default-ssl.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_default_ssl_link}}"
   notify: check apache2
   tags:
@@ -116,7 +116,7 @@
 
 - name: create file dir.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_dir_link}}"
     path: "{{file_dst_dir_link}}"
     owner: "{{file_owner_dir_link}}"
@@ -138,7 +138,7 @@
 
 - name: create file info.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_info_link}}"
     path: "{{file_dst_info_link}}"
     owner: "{{file_owner_info_link}}"
@@ -171,7 +171,7 @@
 
 - name: create file security.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_security_link}}"
     path: "{{file_dst_security_link}}"
     owner: "{{file_owner_security_link}}"
@@ -193,7 +193,7 @@
 
 - name: create file ssl.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_ssl_link}}"
     path: "{{file_dst_ssl_link}}"
     owner: "{{file_owner_ssl_link}}"
@@ -215,7 +215,7 @@
 
 - name: create file status.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_status_link}}"
     path: "{{file_dst_status_link}}"
     owner: "{{file_owner_status_link}}"
@@ -237,7 +237,7 @@
 
 - name: create file userdir.link
   file:
-    state: 'link'
+    state: link
     src: "{{file_src_userdir_link}}"
     path: "{{file_dst_userdir_link}}"
     owner: "{{file_owner_userdir_link}}"
@@ -272,8 +272,8 @@
 
 - name: stop service apache2
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_apache2}}"
   tags:
     - apache2

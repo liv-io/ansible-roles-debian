@@ -12,9 +12,9 @@
 
 - name: install package vim
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_vim}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - vim
 

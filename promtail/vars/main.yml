@@ -79,21 +79,21 @@ command_cmd_check_service_promtail: 'systemctl cat promtail.service > /dev/null 
 
 # promtail
 group_name_promtail: 'promtail'
-group_system_promtail: 'yes'
+group_system_promtail: True
 
 # promtail
 user_name_promtail: 'promtail'
 user_comment_promtail: 'Promtail'
 user_group_promtail: 'promtail'
-user_append_promtail: 'no'
-user_home_create_promtail: 'no'
-user_home_move_promtail: 'no'
-user_home_remove_promtail: 'yes'
-user_home_force_promtail: 'no'
+user_append_promtail: False
+user_home_create_promtail: False
+user_home_move_promtail: False
+user_home_remove_promtail: True
+user_home_force_promtail: False
 user_password_promtail: '!'
 user_password_update_promtail: 'always'
 user_shell_promtail: '/usr/sbin/nologin'
-user_system_promtail: 'yes'
+user_system_promtail: True
 
 # monit
 service_name_monit: 'monit'

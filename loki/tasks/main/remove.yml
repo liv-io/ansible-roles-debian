@@ -15,23 +15,23 @@
   register: register_check_service_loki
   changed_when: (register_check_service_loki.rc == 0)
   failed_when: (register_check_service_loki.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - loki
 
 - name: stop service loki
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_loki}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_check_service_loki.rc == 0)
   tags:
     - loki
 
 - name: remove user loki
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_loki}}"
     remove: "{{user_home_remove_loki}}"
     force: "{{user_home_force_loki}}"
@@ -40,14 +40,14 @@
 
 - name: remove group loki
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_loki}}"
   tags:
     - loki
 
 - name: remove file loki.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_nft}}"
   notify: reload service nftables
   tags:
@@ -55,7 +55,7 @@
 
 - name: remove file loki.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_cfg}}"
   notify: reload service monit
   tags:
@@ -63,49 +63,49 @@
 
 - name: remove file loki_datasource.yaml
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_datasource_yaml}}"
   tags:
     - loki
 
 - name: remove file loki_prometheus_datasource.yaml
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_prometheus_datasource_yaml}}"
   tags:
     - loki
 
 - name: remove file loki_etc.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_etc_dir}}"
   tags:
     - loki
 
 - name: remove file loki.default
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_default}}"
   tags:
     - loki
 
 - name: remove file loki.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_service}}"
   tags:
     - loki
 
 - name: remove file loki
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_loki}}"
   tags:
     - loki
 
 - name: remove file loki.zip
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_loki_zip}}"
   tags:
     - loki

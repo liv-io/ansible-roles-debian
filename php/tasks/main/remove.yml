@@ -12,15 +12,15 @@
 
 - name: remove package php
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_php}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - php
 
 - name: remove file php.ini
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_php_ini}}"
   tags:
     - php

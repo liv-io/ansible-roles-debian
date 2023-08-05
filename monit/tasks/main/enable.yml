@@ -37,8 +37,8 @@
 
 - name: start service monit
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_monit}}"
   tags:
     - monit

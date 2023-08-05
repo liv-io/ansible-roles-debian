@@ -12,26 +12,26 @@
 
 - name: install package monit
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_monit}}"
     default_release: 'bullseye-backports'
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('11'))
   tags:
     - monit
 
 - name: install package monit
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_monit}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('12'))
   tags:
     - monit
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -41,14 +41,14 @@
 
 - name: remove file conf.d
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_conf_d}}"
   tags:
     - monit
 
 - name: remove file conf-enabled
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_conf_enabled}}"
   tags:
     - monit
@@ -63,7 +63,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -77,7 +77,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (monit_nftables_state is match('true|yes|enable'))
   tags:
     - monit

@@ -90,21 +90,21 @@ command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 
 
 # alertmanager
 group_name_alertmanager: 'alertmanager'
-group_system_alertmanager: 'yes'
+group_system_alertmanager: True
 
 # alertmanager
 user_name_alertmanager: 'alertmanager'
 user_comment_alertmanager: 'Prometheus Alertmanager'
 user_group_alertmanager: 'alertmanager'
-user_append_alertmanager: 'no'
-user_home_create_alertmanager: 'no'
-user_home_move_alertmanager: 'no'
-user_home_remove_alertmanager: 'yes'
-user_home_force_alertmanager: 'no'
+user_append_alertmanager: False
+user_home_create_alertmanager: False
+user_home_move_alertmanager: False
+user_home_remove_alertmanager: True
+user_home_force_alertmanager: False
 user_password_alertmanager: '!'
 user_password_update_alertmanager: 'always'
 user_shell_alertmanager: '/usr/sbin/nologin'
-user_system_alertmanager: 'yes'
+user_system_alertmanager: True
 
 # alertmanager
 service_name_alertmanager: 'alertmanager'

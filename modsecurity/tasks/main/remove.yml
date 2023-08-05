@@ -12,43 +12,43 @@
 
 - name: remove package modsecurity
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_modsecurity}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - modsecurity
 
 - name: remove file modsecurity.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_modsecurity_link}}"
   tags:
     - modsecurity
 
 - name: remove file modsecurity.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_modsecurity_conf}}"
   tags:
     - modsecurity
 
 - name: remove file security2.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_security2_link}}"
   tags:
     - modsecurity
 
 - name: remove file security2.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_security2_conf}}"
   tags:
     - modsecurity
 
 - name: remove file security2.load
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_security2_load}}"
   tags:
     - modsecurity

@@ -71,21 +71,21 @@ command_cmd_set_capability: "setcap cap_net_raw=+ep /usr/local/bin/smokeping_pro
 
 # smokeping_prober
 group_name_smokeping_prober: 'smokeping_prober'
-group_system_smokeping_prober: 'yes'
+group_system_smokeping_prober: True
 
 # smokeping_prober
 user_name_smokeping_prober: 'smokeping_prober'
 user_comment_smokeping_prober: 'Smokeping Prober'
 user_group_smokeping_prober: 'smokeping_prober'
-user_append_smokeping_prober: 'no'
-user_home_create_smokeping_prober: 'no'
-user_home_move_smokeping_prober: 'no'
-user_home_remove_smokeping_prober: 'yes'
-user_home_force_smokeping_prober: 'no'
+user_append_smokeping_prober: False
+user_home_create_smokeping_prober: False
+user_home_move_smokeping_prober: False
+user_home_remove_smokeping_prober: True
+user_home_force_smokeping_prober: False
 user_password_smokeping_prober: '!'
 user_password_update_smokeping_prober: 'always'
 user_shell_smokeping_prober: '/usr/sbin/nologin'
-user_system_smokeping_prober: 'yes'
+user_system_smokeping_prober: True
 
 # monit
 service_name_monit: 'monit'

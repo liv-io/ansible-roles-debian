@@ -27,7 +27,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_config}}/{{item.name}}.rules"
   loop: "{{suricata_config}}"
   notify: reload service suricata
@@ -40,14 +40,14 @@
   register: register_list_enabled_rulesets
   changed_when: (register_list_enabled_rulesets.rc > 1)
   failed_when: (register_list_enabled_rulesets.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   loop: "{{suricata_ruleset}}"
   tags:
     - suricata
 
 - name: install ruleset
   shell: "{{command_cmd_install_ruleset}} {{item.item.name}} {{item.item.link}}"
-  check_mode: 'no'
+  check_mode: False
   loop: "{{register_list_enabled_rulesets.results}}"
   notify:
     - update suricata
@@ -58,7 +58,7 @@
 
 - name: enable ruleset
   shell: "{{command_cmd_enable_ruleset}} {{item.item.name}}"
-  check_mode: 'no'
+  check_mode: False
   loop: "{{register_list_enabled_rulesets.results}}"
   notify:
     - update suricata
@@ -69,7 +69,7 @@
 
 - name: remove ruleset
   shell: "{{command_cmd_remove_ruleset}} {{item.item.name}}"
-  check_mode: 'no'
+  check_mode: False
   loop: "{{register_list_enabled_rulesets.results}}"
   notify:
     - update suricata

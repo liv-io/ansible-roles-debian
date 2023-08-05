@@ -12,15 +12,15 @@
 
 - name: remove package modsecurity-crs
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_modsecurity_crs}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - modsecurity_crs
 
 - name: remove file crs-setup.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_crs_setup_conf}}"
   tags:
     - modsecurity_crs

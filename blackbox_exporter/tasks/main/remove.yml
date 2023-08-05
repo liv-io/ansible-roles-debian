@@ -15,23 +15,23 @@
   register: register_check_service_blackbox_exporter
   changed_when: (register_check_service_blackbox_exporter.rc == 0)
   failed_when: (register_check_service_blackbox_exporter.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - blackbox_exporter
 
 - name: stop service blackbox_exporter
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_blackbox_exporter}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_check_service_blackbox_exporter.rc == 0)
   tags:
     - blackbox_exporter
 
 - name: remove user blackbox_exporter
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_blackbox_exporter}}"
     remove: "{{user_home_remove_blackbox_exporter}}"
     force: "{{user_home_force_blackbox_exporter}}"
@@ -40,14 +40,14 @@
 
 - name: remove group blackbox_exporter
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_blackbox_exporter}}"
   tags:
     - blackbox_exporter
 
 - name: remove file blackbox_exporter.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_blackbox_exporter_nft}}"
   notify: reload service nftables
   tags:
@@ -55,7 +55,7 @@
 
 - name: remove file blackbox_exporter.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_blackbox_exporter_cfg}}"
   notify: reload service monit
   tags:
@@ -63,35 +63,35 @@
 
 - name: remove file blackbox_exporter.default
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_blackbox_exporter_default}}"
   tags:
     - blackbox_exporter
 
 - name: remove file blackbox_exporter.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_blackbox_exporter_service}}"
   tags:
     - blackbox_exporter
 
 - name: remove file blackbox_exporter_etc.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_blackbox_exporter_etc_dir}}"
   tags:
     - blackbox_exporter
 
 - name: remove file blackbox_exporter
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_blackbox_exporter}}"
   tags:
     - blackbox_exporter
 
 - name: remove file blackbox_exporter.tar.gz
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_blackbox_exporter_tar_gz}}"
   tags:
     - blackbox_exporter

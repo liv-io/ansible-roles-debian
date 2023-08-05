@@ -22,15 +22,15 @@
 
 - name: remove file systemd-timesyncd_check-time
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_systemd_timesyncd_check_time}}"
   tags:
     - systemd_timesyncd
 
 - name: create cron systemd-timesyncd_check-time
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_systemd_timesyncd_check_time}}"
     day: "{{cron_day_systemd_timesyncd_check_time}}"
     hour: "{{cron_hour_systemd_timesyncd_check_time}}"
@@ -68,8 +68,8 @@
 
 - name: stop service systemd-timesyncd
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_systemd_timesyncd}}"
   tags:
     - systemd_timesyncd

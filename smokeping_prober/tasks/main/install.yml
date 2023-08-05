@@ -12,7 +12,7 @@
 
 - name: create group smokeping_prober
   group:
-    state: 'present'
+    state: present
     name: "{{group_name_smokeping_prober}}"
     system: "{{group_system_smokeping_prober}}"
   tags:
@@ -20,7 +20,7 @@
 
 - name: create user smokeping_prober
   user:
-    state: 'present'
+    state: present
     name: "{{user_name_smokeping_prober}}"
     comment: "{{user_comment_smokeping_prober}}"
     group: "{{user_group_smokeping_prober}}"
@@ -55,7 +55,7 @@
     group: "{{file_group_smokeping_prober}}"
     exclude: "{{file_exclude_smokeping_prober}}"
     extra_opts: "{{file_extra_opts_smokeping_prober}}"
-    remote_src: 'yes'
+    remote_src: True
   register: register_file_unarchive_smokeping_prober
   tags:
     - smokeping_prober
@@ -72,7 +72,7 @@
 
 - name: set capability
   shell: "{{command_cmd_set_capability}}"
-  check_mode: 'no'
+  check_mode: False
   when: (register_file_unarchive_smokeping_prober is changed)
   tags:
     - smokeping_prober
@@ -87,7 +87,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -101,7 +101,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
   tags:
     - smokeping_prober
@@ -116,7 +116,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -130,7 +130,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (smokeping_prober_nftables_state is match('true|yes|enable'))
   tags:
     - smokeping_prober

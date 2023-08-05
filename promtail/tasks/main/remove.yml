@@ -15,23 +15,23 @@
   register: register_check_service_promtail
   changed_when: (register_check_service_promtail.rc == 0)
   failed_when: (register_check_service_promtail.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   tags:
     - promtail
 
 - name: stop service promtail
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: stopped
+    enabled: False
     name: "{{service_name_promtail}}"
-    daemon_reload: 'yes'
+    daemon_reload: True
   when: (register_check_service_promtail.rc == 0)
   tags:
     - promtail
 
 - name: remove user promtail
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_promtail}}"
     remove: "{{user_home_remove_promtail}}"
     force: "{{user_home_force_promtail}}"
@@ -40,14 +40,14 @@
 
 - name: remove group promtail
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_promtail}}"
   tags:
     - promtail
 
 - name: remove file promtail.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_promtail_nft}}"
   notify: reload service nftables
   tags:
@@ -55,7 +55,7 @@
 
 - name: remove file promtail.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_promtail_cfg}}"
   notify: reload service monit
   tags:
@@ -63,35 +63,35 @@
 
 - name: remove file promtail_etc.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_promtail_etc_dir}}"
   tags:
     - promtail
 
 - name: remove file promtail.default
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_promtail_default}}"
   tags:
     - promtail
 
 - name: remove file promtail.service
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_promtail_service}}"
   tags:
     - promtail
 
 - name: remove file promtail
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_creates_promtail}}"
   tags:
     - promtail
 
 - name: remove file promtail.zip
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_promtail_zip}}"
   tags:
     - promtail

@@ -14,7 +14,7 @@
   shell: "{{command_cmd_get_timezone}}"
   register: register_timezone
   changed_when: False
-  check_mode: 'no'
+  check_mode: False
   tags:
     - timezone
 

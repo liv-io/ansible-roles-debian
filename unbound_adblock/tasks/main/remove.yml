@@ -12,7 +12,7 @@
 
 - name: remove cron unbound-adblock_update-list
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_unbound_adblock_update_list}}"
     user: "{{cron_user_unbound_adblock_update_list}}"
   tags:
@@ -20,28 +20,28 @@
 
 - name: remove file unbound-adblock_update-list
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_adblock_update_list}}"
   tags:
     - unbound_adblock
 
 - name: remove file unbound-adblock.sudo
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_adblock_sudo}}"
   tags:
     - unbound_adblock
 
 - name: remove file unbound-adblock_data.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_adblock_data_dir}}"
   tags:
     - unbound_adblock
 
 - name: remove user unbound-adblock
   user:
-    state: 'absent'
+    state: absent
     name: "{{user_name_unbound_adblock}}"
     remove: "{{user_home_remove_unbound_adblock}}"
     force: "{{user_home_force_unbound_adblock}}"
@@ -50,7 +50,7 @@
 
 - name: remove group unbound-adblock
   group:
-    state: 'absent'
+    state: absent
     name: "{{group_name_unbound_adblock}}"
   tags:
     - unbound_adblock

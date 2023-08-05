@@ -12,9 +12,9 @@
 
 - name: install package mailx
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_mailx}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (zfs_monitor_mail_state is match('true|yes|enable'))
   tags:
     - zfs

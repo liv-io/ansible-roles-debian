@@ -12,7 +12,7 @@
 
 - name: create file ca-certificates.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_ca_certificates_dir}}"
     mode: "{{file_mode_ca_certificates_dir}}"
     owner: "{{file_owner_ca_certificates_dir}}"
@@ -35,7 +35,7 @@
 
 - name: remove file ca-certificate.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_certs_dir}}/{{item.name|basename|splitext|first}}.pem"
   loop: "{{ca_certificate_config}}"
   notify: update-ca-certificates
@@ -45,7 +45,7 @@
 
 - name: remove file ca-certificate
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_ca_certificates_dir}}/{{item.name}}"
   loop: "{{ca_certificate_config}}"
   notify: update-ca-certificates

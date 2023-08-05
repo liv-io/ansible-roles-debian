@@ -12,23 +12,23 @@
 
 - name: remove package apache2
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_apache2}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - apache2
 
 - name: remove package apache2_utils
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_apache2_utils}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - apache2
 
 - name: remove file apache2.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_apache2_nft}}"
   notify: reload service nftables
   tags:
@@ -36,7 +36,7 @@
 
 - name: remove file apache2.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_apache2_cfg}}"
   notify: reload service monit
   tags:
@@ -44,161 +44,161 @@
 
 - name: remove file 000-default.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_000_default_link}}"
   tags:
     - apache2
 
 - name: remove file 000-default.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_000_default_conf}}"
   tags:
     - apache2
 
 - name: remove file alias.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_alias_link}}"
   tags:
     - apache2
 
 - name: remove file alias.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_alias_conf}}"
   tags:
     - apache2
 
 - name: remove file apache2.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_apache2_conf}}"
   tags:
     - apache2
 
 - name: remove file autoindex.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_autoindex_link}}"
   tags:
     - apache2
 
 - name: remove file autoindex.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_autoindex_conf}}"
   tags:
     - apache2
 
 - name: remove file default-ssl.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_default_ssl_link}}"
   tags:
     - apache2
 
 - name: remove file default-ssl.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_default_ssl_conf}}"
   tags:
     - apache2
 
 - name: remove file dir.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_dir_link}}"
   tags:
     - apache2
 
 - name: remove file dir.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_dir_conf}}"
   tags:
     - apache2
 
 - name: remove file info.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_info_link}}"
   tags:
     - apache2
 
 - name: remove file info.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_info_conf}}"
   tags:
     - apache2
 
 - name: remove file ports.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_ports_link}}"
   tags:
     - apache2
 
 - name: remove file ports.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_ports_conf}}"
   tags:
     - apache2
 
 - name: remove file security.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_security_link}}"
   tags:
     - apache2
 
 - name: remove file security.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_security_conf}}"
   tags:
     - apache2
 
 - name: remove file ssl.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_ssl_link}}"
   tags:
     - apache2
 
 - name: remove file ssl.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_ssl_conf}}"
   tags:
     - apache2
 
 - name: remove file status.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_status_link}}"
   tags:
     - apache2
 
 - name: remove file status.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_status_conf}}"
   tags:
     - apache2
 
 - name: remove file userdir.link
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_userdir_link}}"
   tags:
     - apache2
 
 - name: remove file userdir.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_userdir_conf}}"
   tags:
     - apache2

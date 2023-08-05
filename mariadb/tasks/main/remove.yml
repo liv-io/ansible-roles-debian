@@ -12,23 +12,23 @@
 
 - name: remove package mariadb-client
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_mariadb_client}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - mariadb
 
 - name: remove package mariadb-server
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_mariadb_server}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - mariadb
 
 - name: remove file mariadb.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mariadb_nft}}"
   notify: reload service nftables
   tags:
@@ -36,7 +36,7 @@
 
 - name: remove file mariadb.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mariadb_cfg}}"
   notify: reload service monit
   tags:
@@ -44,7 +44,7 @@
 
 - name: remove cron mariadb_run-backup
   cron:
-    state: 'absent'
+    state: absent
     name: "{{cron_name_mariadb_run_backup}}"
     cron_file: "{{cron_cron_file_mariadb_run_backup}}"
     user: "{{cron_user_mariadb_run_backup}}"
@@ -53,14 +53,14 @@
 
 - name: remove file mariadb_run-backup
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mariadb_run_backup}}"
   tags:
     - mariadb
 
 - name: remove file mysql-etc.dir
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_mysql_etc_dir}}"
   tags:
     - mariadb

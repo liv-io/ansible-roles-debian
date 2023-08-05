@@ -80,21 +80,21 @@ command_cmd_check_service_node_exporter: 'systemctl cat node_exporter.service > 
 
 # node_exporter
 group_name_node_exporter: 'node_exporter'
-group_system_node_exporter: 'yes'
+group_system_node_exporter: True
 
 # node_exporter
 user_name_node_exporter: 'node_exporter'
 user_comment_node_exporter: 'Node Exporter'
 user_group_node_exporter: 'node_exporter'
-user_append_node_exporter: 'no'
-user_home_create_node_exporter: 'no'
-user_home_move_node_exporter: 'no'
-user_home_remove_node_exporter: 'yes'
-user_home_force_node_exporter: 'no'
+user_append_node_exporter: False
+user_home_create_node_exporter: False
+user_home_move_node_exporter: False
+user_home_remove_node_exporter: True
+user_home_force_node_exporter: False
 user_password_node_exporter: '!'
 user_password_update_node_exporter: 'always'
 user_shell_node_exporter: '/usr/sbin/nologin'
-user_system_node_exporter: 'yes'
+user_system_node_exporter: True
 
 # monit
 service_name_monit: 'monit'

@@ -12,7 +12,7 @@
 
 - name: create mysql database
   mysql_db:
-    state: 'present'
+    state: present
     name: "{{item.name}}"
     collation: "{{(item.collation|default(''))}}"
     encoding: "{{(item.encoding|default(''))}}"
@@ -25,7 +25,7 @@
 
 - name: remove mysql database
   mysql_db:
-    state: 'absent'
+    state: absent
     name: "{{item.name}}"
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
@@ -36,7 +36,7 @@
 
 - name: create mysql user
   mysql_user:
-    state: 'present'
+    state: present
     name: "{{item.name}}"
     host: "{{(item.host|default('localhost'))}}"
     password: "{{item.password}}"
@@ -46,7 +46,7 @@
     append_privs: "{{'yes' if (item.privileges_append|default('false') is match('true|yes|enable')) else 'no'}}"
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
-  no_log: 'true'
+  no_log: True
   loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
@@ -54,7 +54,7 @@
 
 - name: remove mysql user
   mysql_user:
-    state: 'absent'
+    state: absent
     name: "{{item.name}}"
     host: "{{(item.host|default('localhost'))}}"
     login_host: 'localhost'

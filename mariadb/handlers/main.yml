@@ -13,12 +13,12 @@
 
 - name: restart service mariadb
   service:
-    state: 'restarted'
+    state: restarted
     name: "{{service_name_mariadb}}"
 
 - name: reload service monit
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 

@@ -192,21 +192,21 @@ command_cmd_check_service_prometheus: 'systemctl cat prometheus.service > /dev/n
 
 # prometheus
 group_name_prometheus: 'prometheus'
-group_system_prometheus: 'yes'
+group_system_prometheus: True
 
 # prometheus
 user_name_prometheus: 'prometheus'
 user_comment_prometheus: 'Prometheus'
 user_group_prometheus: 'prometheus'
-user_append_prometheus: 'no'
-user_home_create_prometheus: 'no'
-user_home_move_prometheus: 'no'
-user_home_remove_prometheus: 'yes'
-user_home_force_prometheus: 'no'
+user_append_prometheus: False
+user_home_create_prometheus: False
+user_home_move_prometheus: False
+user_home_remove_prometheus: True
+user_home_force_prometheus: False
 user_password_prometheus: '!'
 user_password_update_prometheus: 'always'
 user_shell_prometheus: '/usr/sbin/nologin'
-user_system_prometheus: 'yes'
+user_system_prometheus: True
 
 # grafana-server
 service_name_grafana: 'grafana-server'

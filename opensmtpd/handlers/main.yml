@@ -13,7 +13,7 @@
 
 - name: reload service monit
   service:
-    state: 'reloaded'
+    state: reloaded
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 
@@ -25,10 +25,10 @@
 
 - name: start service opensmtpd
   service:
-    state: 'started'
+    state: started
     name: "{{service_name_opensmtpd}}"
 
 - name: restart service opensmtpd
   service:
-    state: 'restarted'
+    state: restarted
     name: "{{service_name_opensmtpd}}"

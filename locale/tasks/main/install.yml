@@ -14,7 +14,7 @@
   shell: "{{command_cmd_get_keymap_vc}}"
   register: register_keymap_vc
   changed_when: False
-  check_mode: 'no'
+  check_mode: False
   tags:
     - locale
 
@@ -28,7 +28,7 @@
   shell: "{{command_cmd_get_keymap_x11}}"
   register: register_keymap_x11
   changed_when: False
-  check_mode: 'no'
+  check_mode: False
   tags:
     - locale
 
@@ -42,7 +42,7 @@
   shell: "{{command_cmd_get_locale_system}}"
   register: register_locale_system
   changed_when: False
-  check_mode: 'no'
+  check_mode: False
   tags:
     - locale
 

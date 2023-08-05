@@ -12,8 +12,8 @@
 
 - name: create cron zfs_check-pools
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_zfs_check_pools}}"
     cron_file: "{{cron_cron_file_zfs_check_pools}}"
     day: "{{cron_day_zfs_check_pools}}"
@@ -28,8 +28,8 @@
 
 - name: create cron zfs_scrub-pools
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_zfs_scrub_pools}}"
     cron_file: "{{cron_cron_file_zfs_scrub_pools}}"
     day: "{{cron_day_zfs_scrub_pools}}"
@@ -44,8 +44,8 @@
 
 - name: create cron zfs_trim-pools
   cron:
-    state: 'present'
-    disabled: 'yes'
+    state: present
+    disabled: True
     name: "{{cron_name_zfs_trim_pools}}"
     cron_file: "{{cron_cron_file_zfs_trim_pools}}"
     day: "{{cron_day_zfs_trim_pools}}"

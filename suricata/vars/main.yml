@@ -124,21 +124,21 @@ command_cmd_update_suricata: 'suricata-update --local /etc/suricata/rules/ --out
 
 # suricata
 group_name_suricata: 'suricata'
-group_system_suricata: 'yes'
+group_system_suricata: True
 
 # suricata
 user_name_suricata: 'suricata'
 user_comment_suricata: 'Suricata'
 user_group_suricata: 'suricata'
-user_append_suricata: 'no'
-user_home_create_suricata: 'no'
-user_home_move_suricata: 'no'
-user_home_remove_suricata: 'yes'
-user_home_force_suricata: 'no'
+user_append_suricata: False
+user_home_create_suricata: False
+user_home_move_suricata: False
+user_home_remove_suricata: True
+user_home_force_suricata: False
 user_password_suricata: '!'
 user_password_update_suricata: 'always'
 user_shell_suricata: '/usr/sbin/nologin'
-user_system_suricata: 'yes'
+user_system_suricata: True
 
 # monit
 service_name_monit: 'monit'

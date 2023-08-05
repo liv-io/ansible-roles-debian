@@ -12,15 +12,15 @@
 
 - name: install package sudo
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_sudo}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - sudo
 
 - name: create file sudoers.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_sudoers_d}}"
     mode: "{{file_mode_sudoers_d}}"
     owner: "{{file_owner_sudoers_d}}"

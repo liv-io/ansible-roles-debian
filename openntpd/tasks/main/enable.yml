@@ -33,7 +33,7 @@
 
 - name: create cron openntpd_check-time
   cron:
-    state: 'present'
+    state: present
     disabled: "{{'yes' if (openntpd_check_time_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_openntpd_check_time}}"
     day: "{{cron_day_openntpd_check_time}}"
@@ -72,8 +72,8 @@
 
 - name: start service openntpd
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: started
+    enabled: True
     name: "{{service_name_openntpd}}"
   tags:
     - openntpd

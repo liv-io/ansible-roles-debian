@@ -12,23 +12,23 @@
 
 - name: remove package unbound-anchor
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_unbound_anchor}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - unbound
 
 - name: remove package unbound
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_unbound}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - unbound
 
 - name: remove file unbound.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_nft}}"
   notify: reload service nftables
   tags:
@@ -36,7 +36,7 @@
 
 - name: remove file unbound.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_cfg}}"
   notify: reload service monit
   tags:
@@ -44,21 +44,21 @@
 
 - name: remove file unbound.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_unbound_conf}}"
   tags:
     - unbound
 
 - name: remove file root.hints
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_root_hints}}"
   tags:
     - unbound
 
 - name: remove file root.key
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_root_key}}"
   tags:
     - unbound

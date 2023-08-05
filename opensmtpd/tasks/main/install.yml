@@ -12,26 +12,26 @@
 
 - name: install package opensmtpd
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_opensmtpd}}"
     default_release: 'bullseye-backports'
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('11'))
   tags:
     - opensmtpd
 
 - name: install package opensmtpd
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_opensmtpd}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (ansible_distribution_major_version is match('12'))
   tags:
     - opensmtpd
 
 - name: create file smtpd.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_smtpd_dir}}"
     mode: "{{file_mode_smtpd_dir}}"
     owner: "{{file_owner_smtpd_dir}}"
@@ -49,7 +49,7 @@
 
 - name: create file monit.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
@@ -63,7 +63,7 @@
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - opensmtpd
@@ -78,7 +78,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -92,7 +92,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (opensmtpd_nftables_state is match('true|yes|enable'))
   tags:
     - opensmtpd

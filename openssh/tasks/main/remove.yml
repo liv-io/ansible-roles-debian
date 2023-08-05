@@ -12,15 +12,15 @@
 
 - name: remove package openssh
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_openssh}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - openssh
 
 - name: remove file openssh.nft
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_openssh_nft}}"
   notify: reload service nftables
   tags:
@@ -28,7 +28,7 @@
 
 - name: remove file openssh.cfg
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_openssh_cfg}}"
   notify: reload service monit
   tags:
@@ -36,28 +36,28 @@
 
 - name: remove file banner
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_banner}}"
   tags:
     - openssh
 
 - name: remove file moduli
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_moduli}}"
   tags:
     - openssh
 
 - name: remove file ssh_config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_ssh_config}}"
   tags:
     - openssh
 
 - name: remove file sshd_config
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_sshd_config}}"
   tags:
     - openssh

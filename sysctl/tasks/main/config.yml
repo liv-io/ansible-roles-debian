@@ -25,7 +25,7 @@
 
 - name: remove file config
   file:
-    state: 'absent'
+    state: absent
     dest: "{{file_dst_sysctl_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}.conf"
   loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
   when: (item.state is match('false|no|remove'))

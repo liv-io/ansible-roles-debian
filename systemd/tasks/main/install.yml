@@ -12,8 +12,8 @@
 
 - name: install package systemd
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_systemd}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - systemd

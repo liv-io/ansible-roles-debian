@@ -12,14 +12,14 @@
 
 - name: remove file shell.sh
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_shell_shell}}"
   tags:
     - shell
 
 - name: remove file z_shell.sh
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_z_shell_shell}}"
   tags:
     - shell

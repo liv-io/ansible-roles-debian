@@ -12,26 +12,26 @@
 
 - name: install package gnupg1
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_gnupg1}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - apt
 
 - name: install package mailx
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_mailx}}"
-    install_recommends: 'no'
+    install_recommends: False
   when: (apt_monitor_mail_state is match('true|yes|enable'))
   tags:
     - apt
 
 - name: install package apt
   package:
-    state: 'present'
+    state: present
     name: "{{package_name_apt}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - apt
 
@@ -47,7 +47,7 @@
 
 - name: create file local_sbin.dir
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_local_sbin_dir}}"
     mode: "{{file_mode_local_sbin_dir}}"
     owner: "{{file_owner_local_sbin_dir}}"
@@ -67,7 +67,7 @@
 
 - name: create cron apt_check-update
   cron:
-    state: 'present'
+    state: present
     disabled: "{{'yes' if (apt_check_update_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_apt_check_update}}"
     cron_file: "{{cron_cron_file_apt_check_update}}"
@@ -91,7 +91,7 @@
 
 - name: create file nftables.d
   file:
-    state: 'directory'
+    state: directory
     path: "{{file_dst_nftables_d}}"
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
@@ -105,7 +105,7 @@
   register: register_check_service_nftables
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: 'no'
+  check_mode: False
   when: (apt_nftables_state is match('true|yes|enable'))
   tags:
     - apt

@@ -12,22 +12,22 @@
 
 - name: remove package sudo
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_sudo}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - sudo
 
 - name: remove file sudoers
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_sudoers}}"
   tags:
     - sudo
 
 - name: remove file sudoers.d
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_sudoers_d}}"
   tags:
     - sudo

@@ -113,21 +113,21 @@ command_cmd_usermod_add_sub: "usermod --add-subuids 100000-165535 --add-subgids 
 
 # pod_registry
 group_name_pod_registry: 'pod_registry'
-group_system_pod_registry: 'yes'
+group_system_pod_registry: True
 
 # pod_registry
 user_name_pod_registry: 'pod_registry'
 user_comment_pod_registry: 'Pod Registry'
 user_group_pod_registry: 'pod_registry'
-user_append_pod_registry: 'no'
-user_home_create_pod_registry: 'yes'
-user_home_move_pod_registry: 'no'
-user_home_remove_pod_registry: 'yes'
-user_home_force_pod_registry: 'no'
+user_append_pod_registry: False
+user_home_create_pod_registry: True
+user_home_move_pod_registry: False
+user_home_remove_pod_registry: True
+user_home_force_pod_registry: False
 user_password_pod_registry: '!'
 user_password_update_pod_registry: 'always'
 user_shell_pod_registry: '/bin/bash'
-user_system_pod_registry: 'yes'
+user_system_pod_registry: True
 
 # monit
 service_name_monit: 'monit'

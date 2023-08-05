@@ -12,15 +12,15 @@
 
 - name: remove package tmux
   package:
-    state: 'absent'
+    state: absent
     name: "{{package_name_tmux}}"
-    install_recommends: 'no'
+    install_recommends: False
   tags:
     - tmux
 
 - name: remove file tmux.conf
   file:
-    state: 'absent'
+    state: absent
     path: "{{file_dst_tmux_conf}}"
   tags:
     - tmux
