@@ -102,7 +102,7 @@ consult the following sections.
     Description: Define the 'root_password' option.
                  Warning: Define 'root_password' option before applying role.
     Implemented: 0.1.0
-    Required   : True
+    Required   : False
     Value      : Arbitrary cryptographic hash
     Type       : String
     Default    : '!'

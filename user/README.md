@@ -110,7 +110,7 @@ vars:
 
     Description: Set the UID of the user.
     Implemented: 0.1.0
-    Required   : True
+    Required   : False
     Value      : Arbitrary
     Type       : String
     Default    : ''
