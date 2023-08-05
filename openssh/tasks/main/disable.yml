@@ -62,6 +62,18 @@
   tags:
     - openssh
 
+- name: create file openssh.nft
+  template:
+    src: "{{file_src_openssh_nft}}"
+    dest: "{{file_dst_openssh_nft}}"
+    mode: "{{file_mode_openssh_nft}}"
+    owner: "{{file_owner_openssh_nft}}"
+    group: "{{file_group_openssh_nft}}"
+  notify: reload service nftables
+  when: (openssh_nftables_state is match('true|yes|enable'))
+  tags:
+    - openssh
+
 - name: stop service openssh
   service:
     state: 'stopped'

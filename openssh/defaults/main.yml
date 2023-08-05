@@ -32,6 +32,12 @@ openssh_match: []
 
 openssh_monitor_monit_state: 'false'
 
+openssh_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 22 counter accept comment "ssh from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 22 counter accept comment "ssh from unique local addresses"
+
+openssh_nftables_state: 'false'
+
 openssh_password_authentication: 'yes'
 
 openssh_permit_root_login: 'no'

@@ -18,6 +18,14 @@
   tags:
     - openssh
 
+- name: remove file openssh.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_openssh_nft}}"
+  notify: reload service nftables
+  tags:
+    - openssh
+
 - name: remove file openssh.cfg
   file:
     state: 'absent'

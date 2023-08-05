@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{openssh_nftables_filter_rule}}
