@@ -43,6 +43,18 @@
   tags:
     - unbound
 
+- name: create file unbound.nft
+  template:
+    src: "{{file_src_unbound_nft}}"
+    dest: "{{file_dst_unbound_nft}}"
+    mode: "{{file_mode_unbound_nft}}"
+    owner: "{{file_owner_unbound_nft}}"
+    group: "{{file_group_unbound_nft}}"
+  notify: reload service nftables
+  when: (unbound_nftables_state is match('true|yes|enable'))
+  tags:
+    - unbound
+
 - name: stop service unbound
   service:
     state: 'stopped'

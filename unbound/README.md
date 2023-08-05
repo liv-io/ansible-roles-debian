@@ -377,6 +377,41 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+`unbound_nftables_filter_rule`
+
+    Description: Define the 'unbound_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 53 counter accept comment "dns from internal private addresses"
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new udp dport 53 counter accept comment "dns from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 53 counter accept comment "dns from unique local addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new udp dport 53 counter accept comment "dns from unique local addresses"
+      add rule ip filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+      add rule ip filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+      add rule ip6 filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 53 counter accept comment "dns from internal-networks"
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new udp dport 53 counter accept comment "dns from internal-networks"
+        add rule ip filter OUTPUT ct state new tcp dport 53 counter accept comment "dns to any"
+        add rule ip filter OUTPUT ct state new udp dport 53 counter accept comment "dns to any"
+
+`unbound_nftables_state`
+
+    Description: Control the 'unbound_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `unbound_prefer_ip6`
 
     Description: Control the 'unbound_prefer_ip6' option.
