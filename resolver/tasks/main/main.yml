@@ -5,3 +5,9 @@
   when: not (resolver_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - resolver
+
+- name: import tasks remove
+  import_tasks: remove.yml
+  when: (resolver_state is match('false|no|remove'))
+  tags:
+    - resolver

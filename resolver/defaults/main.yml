@@ -6,4 +6,10 @@ resolver_domain: "{{ansible_domain}}"
 
 resolver_nameserver: [{address: "{{ansible_default_ipv4.gateway}}", comment: 'Default IPv4 gateway'}]
 
+resolver_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+  add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
+
+resolver_nftables_state: 'false'
+
 resolver_search: ["{{ansible_domain}}"]
