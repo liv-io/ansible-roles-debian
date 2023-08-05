@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.4.0 (2023-08-05)
+
+### Features
+
+- Add parameter `rest_server_nftables_filter_rule`
+- Add parameter `rest_server_nftables_state`
+
 ## 1.3.0 (2023-06-11)
 
 ### Features

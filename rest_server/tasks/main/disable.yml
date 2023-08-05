@@ -32,6 +32,18 @@
   tags:
     - rest_server
 
+- name: create file rest-server.nft
+  template:
+    src: "{{file_src_rest_server_nft}}"
+    dest: "{{file_dst_rest_server_nft}}"
+    mode: "{{file_mode_rest_server_nft}}"
+    owner: "{{file_owner_rest_server_nft}}"
+    group: "{{file_group_rest_server_nft}}"
+  notify: reload service nftables
+  when: (rest_server_nftables_state is match('true|yes|enable'))
+  tags:
+    - rest_server
+
 - name: stop service rest-server
   service:
     state: 'stopped'
