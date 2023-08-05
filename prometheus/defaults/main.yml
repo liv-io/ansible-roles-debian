@@ -42,6 +42,24 @@ prometheus_node_exporter_target_ansible_groups: ['all']
 
 prometheus_node_exporter_target_manual_hosts: []
 
+prometheus_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9090 counter accept comment "prometheus from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9090 counter accept comment "prometheus from unique local addresses"
+  add rule ip filter OUTPUT ct state new tcp dport 9100 counter accept comment "node_exporter to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9100 counter accept comment "node_exporter to any"
+  add rule ip filter OUTPUT ct state new tcp dport 9101 counter accept comment "haproxy_exporter to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9101 counter accept comment "haproxy_exporter to any"
+  add rule ip filter OUTPUT ct state new tcp dport 9104 counter accept comment "mysqld_exporter to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9104 counter accept comment "mysqld_exporter to any"
+  add rule ip filter OUTPUT ct state new tcp dport 9115 counter accept comment "blackbox_exporter to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9115 counter accept comment "blackbox_exporter to any"
+  add rule ip filter OUTPUT ct state new tcp dport 9388 counter accept comment "monit_exporter to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 9388 counter accept comment "monit_exporter to any"
+  add rule ip filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
+
+prometheus_nftables_state: 'false'
+
 prometheus_prometheus_url: "https://prometheus.{{ansible_domain}}"
 
 prometheus_smokeping_prober_state: 'false'

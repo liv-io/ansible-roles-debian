@@ -333,6 +333,57 @@ consult the following sections.
                  {address: '10.1.1.15', hostname: 'host03'}]
       None    : []
 
+`prometheus_nftables_filter_rule`
+
+    Description: Define the 'prometheus_nftables_filter_rule' option.
+    Implemented: 1.31.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9090 counter accept comment "prometheus from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9090 counter accept comment "prometheus from unique local addresses"
+      add rule ip filter OUTPUT ct state new tcp dport 9100 counter accept comment "node_exporter to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9100 counter accept comment "node_exporter to any"
+      add rule ip filter OUTPUT ct state new tcp dport 9101 counter accept comment "haproxy_exporter to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9101 counter accept comment "haproxy_exporter to any"
+      add rule ip filter OUTPUT ct state new tcp dport 9104 counter accept comment "mysqld_exporter to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9104 counter accept comment "mysqld_exporter to any"
+      add rule ip filter OUTPUT ct state new tcp dport 9115 counter accept comment "blackbox_exporter to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9115 counter accept comment "blackbox_exporter to any"
+      add rule ip filter OUTPUT ct state new tcp dport 9388 counter accept comment "monit_exporter to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 9388 counter accept comment "monit_exporter to any"
+      add rule ip filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 9090 counter accept comment "prometheus from internal-networks"
+        add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9090 counter accept comment "prometheus from unique local addresses"
+        add rule ip filter OUTPUT ct state new tcp dport 9100 counter accept comment "node_exporter to any"
+        add rule ip6 filter OUTPUT ct state new tcp dport 9100 counter accept comment "node_exporter to any"
+        add rule ip filter OUTPUT ct state new tcp dport 9101 counter accept comment "haproxy_exporter to any"
+        add rule ip6 filter OUTPUT ct state new tcp dport 9101 counter accept comment "haproxy_exporter to any"
+        add rule ip filter OUTPUT ct state new tcp dport 9104 counter accept comment "mysqld_exporter to any"
+        add rule ip6 filter OUTPUT ct state new tcp dport 9104 counter accept comment "mysqld_exporter to any"
+        add rule ip filter OUTPUT ct state new tcp dport 9115 counter accept comment "blackbox_exporter to any"
+        add rule ip6 filter OUTPUT ct state new tcp dport 9115 counter accept comment "blackbox_exporter to any"
+        add rule ip filter OUTPUT ct state new tcp dport 9388 counter accept comment "monit_exporter to any"
+        add rule ip6 filter OUTPUT ct state new tcp dport 9388 counter accept comment "monit_exporter to any"
+        add rule ip filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
+        add rule ip6 filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
+
+`prometheus_nftables_state`
+
+    Description: Control the 'prometheus_nftables_state' option.
+    Implemented: 1.31.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `prometheus_node_exporter_target_ansible_groups`
 
     Description: Define the 'prometheus_node_exporter_target_ansible_groups' option.

@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.31.0 (2023-08-05)
+
+### Features
+
+- Add parameter `prometheus_nftables_filter_rule`
+- Add parameter `prometheus_nftables_state`
+
 ## 1.30.0 (2023-07-26)
 
 ### Features

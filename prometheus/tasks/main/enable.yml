@@ -174,6 +174,18 @@
   tags:
     - prometheus
 
+- name: create file prometheus.nft
+  template:
+    src: "{{file_src_prometheus_nft}}"
+    dest: "{{file_dst_prometheus_nft}}"
+    mode: "{{file_mode_prometheus_nft}}"
+    owner: "{{file_owner_prometheus_nft}}"
+    group: "{{file_group_prometheus_nft}}"
+  notify: reload service nftables
+  when: (prometheus_nftables_state is match('true|yes|enable'))
+  tags:
+    - prometheus
+
 - name: start service prometheus
   service:
     state: 'started'

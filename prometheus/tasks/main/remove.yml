@@ -45,6 +45,14 @@
   tags:
     - prometheus
 
+- name: remove file prometheus.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_prometheus_nft}}"
+  notify: reload service nftables
+  tags:
+    - prometheus
+
 - name: remove file prometheus.cfg
   file:
     state: 'absent'
