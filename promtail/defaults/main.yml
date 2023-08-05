@@ -4,6 +4,12 @@ promtail_state: 'enable'
 
 promtail_monitor_monit_state: 'false'
 
+promtail_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 1514, 9080 } counter accept comment "promtail from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 1514, 9080 } counter accept comment "promtail from unique local addresses"
+
+promtail_nftables_state: 'false'
+
 promtail_pipeline_stages_all: |
   {% raw %}
   # Extract SSH user and source IP address and generate metrics

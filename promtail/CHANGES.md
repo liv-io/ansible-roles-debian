@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.5.0 (2023-08-05)
+
+### Features
+
+- Add parameter `promtail_nftables_filter_rule`
+- Add parameter `promtail_nftables_state`
+
 ## 1.4.0 (2023-07-22)
 
 ### Enhancements

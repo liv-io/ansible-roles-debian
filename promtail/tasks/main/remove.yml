@@ -45,6 +45,14 @@
   tags:
     - promtail
 
+- name: remove file promtail.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_promtail_nft}}"
+  notify: reload service nftables
+  tags:
+    - promtail
+
 - name: remove file promtail.cfg
   file:
     state: 'absent'
