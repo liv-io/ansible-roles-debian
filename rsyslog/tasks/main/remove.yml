@@ -18,6 +18,14 @@
   tags:
     - rsyslog
 
+- name: remove file rsyslog.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_nft}}"
+  notify: reload service nftables
+  tags:
+    - rsyslog
+
 - name: remove file rsyslog.cfg
   file:
     state: 'absent'

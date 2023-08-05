@@ -33,6 +33,18 @@
   tags:
     - rsyslog
 
+- name: create file rsyslog.nft
+  template:
+    src: "{{file_src_rsyslog_nft}}"
+    dest: "{{file_dst_rsyslog_nft}}"
+    mode: "{{file_mode_rsyslog_nft}}"
+    owner: "{{file_owner_rsyslog_nft}}"
+    group: "{{file_group_rsyslog_nft}}"
+  notify: reload service nftables
+  when: (rsyslog_nftables_state is match('true|yes|enable'))
+  tags:
+    - rsyslog
+
 - name: start service rsyslog
   service:
     state: 'started'
