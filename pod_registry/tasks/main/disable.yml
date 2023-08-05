@@ -42,6 +42,18 @@
   tags:
     - pod_registry
 
+- name: create file pod_registry.nft
+  template:
+    src: "{{file_src_pod_registry_nft}}"
+    dest: "{{file_dst_pod_registry_nft}}"
+    mode: "{{file_mode_pod_registry_nft}}"
+    owner: "{{file_owner_pod_registry_nft}}"
+    group: "{{file_group_pod_registry_nft}}"
+  notify: reload service nftables
+  when: (pod_registry_nftables_state is match('true|yes|enable'))
+  tags:
+    - pod_registry
+
 - name: stop service pod_registry
   service:
     state: 'stopped'

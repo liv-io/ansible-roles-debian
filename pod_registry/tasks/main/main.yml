@@ -1,5 +1,11 @@
 ---
 
+- name: import tasks verify
+  import_tasks: verify.yml
+  when: not (pod_registry_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - pod_registry
+
 - name: import tasks install
   import_tasks: install.yml
   when: not (pod_registry_state is match('false|no|remove|quiesce|inactive'))

@@ -97,16 +97,42 @@ consult the following sections.
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+`pod_registry_nftables_filter_rule`
+
+    Description: Define the 'pod_registry_nftables_filter_rule' option.
+    Implemented: 0.3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 5000 counter accept comment "registry from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 5000 counter accept comment "registry from unique local addresses"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 5000 counter accept comment "registry from internal-networks"
+
+`pod_registry_nftables_state`
+
+    Description: Control the 'pod_registry_nftables_state' option.
+    Implemented: 0.3.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `pod_registry_password`
 
     Description: Define the 'pod_registry_password' option.
     Implemented: 0.1.0
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : 'registry'
+    Default    : ''
     Options    :
-      Examples: 'podman' | 'docker'
+      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
 
 `pod_registry_proxy`
 
@@ -124,12 +150,12 @@ consult the following sections.
 
     Description: Define the 'pod_registry_username' option.
     Implemented: 0.1.0
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
+    Default    : ''
     Options    :
-      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+      Examples: 'podman' | 'docker'
 
 `pod_registry_version`
 

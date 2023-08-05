@@ -10,6 +10,18 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.0 (2023-08-05)
+
+### Changes
+
+- Remove default value for parameter `pod_registry_password`
+- Remove default value for parameter `pod_registry_username`
+
+### Features
+
+- Add parameter `pod_registry_nftables_filter_rule`
+- Add parameter `pod_registry_nftables_state`
+
 ## 0.2.1 (2023-06-26)
 
 ### Enhancements

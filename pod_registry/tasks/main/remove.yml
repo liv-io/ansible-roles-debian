@@ -45,6 +45,14 @@
   tags:
     - pod_registry
 
+- name: remove file pod_registry.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_pod_registry_nft}}"
+  notify: reload service nftables
+  tags:
+    - pod_registry
+
 - name: remove file pod_registry.cfg
   file:
     state: 'absent'
