@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2023-08-05)
+
+### Features
+
+- Add parameter `squid_nftables_filter_rule`
+- Add parameter `squid_nftables_state`
+
 ## 1.1.0 (2023-06-14)
 
 ### Features

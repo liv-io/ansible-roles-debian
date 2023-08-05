@@ -95,6 +95,18 @@
   tags:
     - squid
 
+- name: create file squid.nft
+  template:
+    src: "{{file_src_squid_nft}}"
+    dest: "{{file_dst_squid_nft}}"
+    mode: "{{file_mode_squid_nft}}"
+    owner: "{{file_owner_squid_nft}}"
+    group: "{{file_group_squid_nft}}"
+  notify: reload service nftables
+  when: (squid_nftables_state is match('true|yes|enable'))
+  tags:
+    - squid
+
 - name: create cache.dir
   shell: "{{command_cmd_create_cache_dir}}"
   check_mode: 'no'

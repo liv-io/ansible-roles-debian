@@ -57,6 +57,14 @@ squid_network_blocked:
 
 squid_network_unrestricted: []
 
+squid_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3128 counter accept comment "squid from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3128 counter accept comment "squid from unique local addresses"
+  add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+
+squid_nftables_state: 'false'
+
 squid_quick_abort_max: '0 KB'
 
 squid_quick_abort_min: '0 KB'

@@ -376,6 +376,35 @@ consult the following sections.
                  {name: '10.1.1.12', comment: 'registry'}]
       None    : []
 
+`squid_nftables_filter_rule`
+
+    Description: Define the 'squid_nftables_filter_rule' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3128 counter accept comment "squid from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3128 counter accept comment "squid from unique local addresses"
+      add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 3128 counter accept comment "http, https from internal-networks"
+        add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+
+`squid_nftables_state`
+
+    Description: Control the 'squid_nftables_state' option.
+    Implemented: 1.2.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 `squid_quick_abort_max`
 
     Description: Define the 'squid_quick_abort_max' option.

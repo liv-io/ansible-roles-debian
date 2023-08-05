@@ -18,6 +18,14 @@
   tags:
     - squid
 
+- name: remove file squid.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_squid_nft}}"
+  notify: reload service nftables
+  tags:
+    - squid
+
 - name: remove file squid.cfg
   file:
     state: 'absent'
