@@ -12,6 +12,10 @@ The headers are:
 
 ## 1.0.0 (2023-08-05)
 
+### Bugs
+
+- Fix monit process check
+
 ### Changes
 
 - Remove default value for parameter `pod_registry_password`
