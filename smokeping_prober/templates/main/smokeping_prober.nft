@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{smokeping_prober_nftables_filter_rule}}

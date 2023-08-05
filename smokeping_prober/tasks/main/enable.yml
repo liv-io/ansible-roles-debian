@@ -33,6 +33,18 @@
   tags:
     - smokeping_prober
 
+- name: create file smokeping_prober.nft
+  template:
+    src: "{{file_src_smokeping_prober_nft}}"
+    dest: "{{file_dst_smokeping_prober_nft}}"
+    mode: "{{file_mode_smokeping_prober_nft}}"
+    owner: "{{file_owner_smokeping_prober_nft}}"
+    group: "{{file_group_smokeping_prober_nft}}"
+  notify: reload service nftables
+  when: (smokeping_prober_nftables_state is match('true|yes|enable'))
+  tags:
+    - smokeping_prober
+
 - name: start service smokeping_prober
   service:
     state: 'started'

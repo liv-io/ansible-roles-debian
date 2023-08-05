@@ -45,6 +45,14 @@
   tags:
     - smokeping_prober
 
+- name: remove file smokeping_prober.nft
+  file:
+    state: 'absent'
+    path: "{{file_dst_smokeping_prober_nft}}"
+  notify: reload service nftables
+  tags:
+    - smokeping_prober
+
 - name: remove file smokeping_prober.cfg
   file:
     state: 'absent'

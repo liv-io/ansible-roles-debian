@@ -78,18 +78,6 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`smokeping_prober_monitor_monit_state`
-
-    Description: Control the 'smokeping_prober_monitor_monit_state' option.
-    Implemented: 0.1.0
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
 `smokeping_prober_hosts`
 
     Description: Define the 'smokeping_prober_hosts' option.
@@ -102,6 +90,47 @@ consult the following sections.
       Examples: ['host.domain.tld'] | ['host01.domain.tld', 'host02.domain.tld'] |
                 ['host01.domain01.tld', 'host02.domain02.tld', 'host01.domain03.tld']
       None    : []
+
+`smokeping_prober_monitor_monit_state`
+
+    Description: Control the 'smokeping_prober_monitor_monit_state' option.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+`smokeping_prober_nftables_filter_rule`
+
+    Description: Define the 'smokeping_prober_nftables_filter_rule' option.
+    Implemented: 1.7.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9374 counter accept comment "smokeping_prober from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9374 counter accept comment "smokeping_prober from unique local addresses"
+      add rule ip filter OUTPUT ct state new tcp dport 1-65535 counter accept comment "tcp to any"
+      add rule ip6 filter OUTPUT ct state new tcp dport 1-65535 counter accept comment "tcp to any"
+    Options    :
+      Examples: |
+        add rule ip filter INPUT ip saddr 10.0.0.0/8 ct state new tcp dport 9374 counter accept comment "smokeping_prober from internal-networks"
+        add rule ip filter OUTPUT ct state new tcp dport 1-65535 counter accept comment "tcp to any"
+
+`smokeping_prober_nftables_state`
+
+    Description: Control the 'smokeping_prober_nftables_state' option.
+    Implemented: 1.7.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 `smokeping_prober_version`
 

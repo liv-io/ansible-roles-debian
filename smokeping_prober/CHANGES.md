@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 1.7.0 (2023-08-05)
+
+### Features
+
+- Add parameter `smokeping_prober_nftables_filter_rule`
+- Add parameter `smokeping_prober_nftables_state`
+
 ## 1.6.0 (2023-07-12)
 
 ### Bugs

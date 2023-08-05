@@ -37,6 +37,12 @@ file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
 # smokeping_prober.cfg
 file_src_smokeping_prober_cfg: 'templates/main/smokeping_prober.cfg'
 file_dst_smokeping_prober_cfg: '/etc/monit.d/smokeping_prober.cfg'
@@ -44,8 +50,18 @@ file_mode_smokeping_prober_cfg: '0640'
 file_owner_smokeping_prober_cfg: 'root'
 file_group_smokeping_prober_cfg: 'root'
 
+# smokeping_prober.nft
+file_src_smokeping_prober_nft: 'templates/main/smokeping_prober.nft'
+file_dst_smokeping_prober_nft: '/etc/nftables.d/smokeping_prober.conf'
+file_mode_smokeping_prober_nft: '0640'
+file_owner_smokeping_prober_nft: 'root'
+file_group_smokeping_prober_nft: 'root'
+
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
+
+# check service nftables
+command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
 
 # check service smokeping_prober
 command_cmd_check_service_smokeping_prober: 'systemctl cat smokeping_prober.service > /dev/null 2>&1'
@@ -73,6 +89,9 @@ user_system_smokeping_prober: 'yes'
 
 # monit
 service_name_monit: 'monit'
+
+# nftables
+service_name_nftables: 'nftables'
 
 # smokeping_prober
 service_name_smokeping_prober: 'smokeping_prober'
