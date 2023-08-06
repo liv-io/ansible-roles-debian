@@ -10,6 +10,6 @@ resolver_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
   add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
 
-resolver_nftables_state: 'false'
+resolver_nftables_state: False
 
 resolver_search: ["{{ansible_domain}}"]

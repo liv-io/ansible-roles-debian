@@ -2,7 +2,7 @@
 
 # COLOR SUPPORT
 
-{% if not (shell_color_support is match('false|no|disable')) %}
+{% if not (shell_color_support == False) %}
 if [ -x /usr/bin/dircolors ]; then
   # ls
   alias ls='ls -F --color=auto --time-style="+{{shell_ls_time_style}}"'
@@ -28,7 +28,7 @@ fi
 # cls
 alias cls='printf "\033c"'
 
-{% if not (shell_safety is match('false|no|disable')) %}
+{% if not (shell_safety == False) %}
 # Shell safety
 alias cp='cp -i'
 alias mv='mv -i'
@@ -77,7 +77,7 @@ PAGER='{{shell_pager}}'
 export PAGER
 {% endif %}
 
-{% if not (shell_color_prompt is match('false|no|disable')) %}
+{% if not (shell_color_prompt == False) %}
 # COLOR PROMPT
 
 PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'

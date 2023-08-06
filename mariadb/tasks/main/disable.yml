@@ -84,7 +84,7 @@
     owner: "{{file_owner_mariadb_cfg}}"
     group: "{{file_group_mariadb_cfg}}"
   notify: reload service monit
-  when: (mariadb_monitor_monit_state is match('true|yes|enable'))
+  when: (mariadb_monitor_monit_state == True)
   tags:
     - mariadb
 
@@ -96,7 +96,7 @@
     owner: "{{file_owner_mariadb_nft}}"
     group: "{{file_group_mariadb_nft}}"
   notify: reload service nftables
-  when: (mariadb_nftables_state is match('true|yes|enable'))
+  when: (mariadb_nftables_state == True)
   tags:
     - mariadb
 

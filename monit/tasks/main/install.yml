@@ -57,7 +57,7 @@
   stat:
     path: "{{file_dst_nftables_d}}"
   register: register_nftables_d
-  when: (monit_nftables_state is match('true|yes|enable'))
+  when: (monit_nftables_state == True)
   tags:
     - monit
 
@@ -68,7 +68,7 @@
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
-  when: (monit_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  when: (monit_nftables_state == True) and (register_nftables_d.stat.exists == False)
   tags:
     - monit
 
@@ -78,6 +78,6 @@
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: False
-  when: (monit_nftables_state is match('true|yes|enable'))
+  when: (monit_nftables_state == True)
   tags:
     - monit

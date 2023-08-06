@@ -32,7 +32,7 @@ consult the following sections.
     - role: unbound
   vars:
     unbound_state: 'enable'
-    unbound_do_not_query_localhost: 'no'
+    unbound_do_not_query_localhost: False
     unbound_local_zone:
       - {zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}
     unbound_stub_zone:
@@ -48,7 +48,7 @@ consult the following sections.
     - role: unbound
   vars:
     unbound_state: 'disable'
-    unbound_do_not_query_localhost: 'no'
+    unbound_do_not_query_localhost: False
     unbound_local_zone:
       - {zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}
     unbound_stub_zone:
@@ -118,11 +118,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_default_port`
 
@@ -141,11 +141,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_algo_downgrade`
 
@@ -153,11 +153,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_below_nxdomain`
 
@@ -165,11 +165,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_dnssec_stripped`
 
@@ -177,11 +177,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_glue`
 
@@ -189,11 +189,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_large_queries`
 
@@ -201,11 +201,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_referral_path`
 
@@ -213,11 +213,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_harden_short_bufsize`
 
@@ -225,11 +225,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_hide_identity`
 
@@ -237,11 +237,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_hide_trustanchor`
 
@@ -249,11 +249,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_hide_version`
 
@@ -261,11 +261,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_identity`
 
@@ -310,11 +310,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_ip6_state`
 
@@ -322,11 +322,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_local_data`
 
@@ -371,11 +371,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_nftables_filter_rule`
 
@@ -406,11 +406,11 @@ consult the following sections.
     Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_prefer_ip6`
 
@@ -418,11 +418,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_stub_zone`
 
@@ -442,11 +442,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_udp_state`
 
@@ -454,11 +454,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `unbound_version`
 

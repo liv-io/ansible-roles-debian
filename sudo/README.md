@@ -52,39 +52,39 @@ consult the following sections.
 vars:
   sudo_config_all:
     - name: 'root'
-      state: 'true'
+      state: True
       config: |
         # root
         root ALL=(ALL) ALL
 
     - name: 'ansible'
-      state: 'true'
+      state: True
       config: |
         # Ansible Configuration Management
         ansible ALL=(root) NOPASSWD: ALL
 
   sudo_config_group:
     - name: 'sysadmin'
-      state: 'true'
+      state: True
       config: |
         # System Administrators
         %sysadmin ALL=(ALL) ALL
 
     - name: 'dbadmin'
-      state: 'true'
+      state: True
       config: |
         # Database Administrators
         %dbadmin ALL=(root) service mysqld restart, service mysql restart
 
     - name: 'appadmin'
-      state: 'true'
+      state: True
       config: |
         # Application Administrators
         %appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful
 
   sudo_config_host:
     - name: 'obsolete'
-      state: 'false'
+      state: False
 ```
 
 ## Parameters
@@ -97,11 +97,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `name`
 
@@ -171,12 +171,12 @@ vars:
     Default    : []
     Options    :
       Examples: - name: 'root'
-                  state: 'true'
+                  state: True
                   order: '10'
                   config: |
                     root ALL=(ALL) ALL
                 - name: 'sysadmin'
-                  state: 'true'
+                  state: True
                   order: '50'
                   config: |
                     %sysadmin ALL=(ALL) ALL
@@ -192,12 +192,12 @@ vars:
     Default    : []
     Options    :
       Examples: - name: 'root'
-                  state: 'true'
+                  state: True
                   order: '10'
                   config: |
                     root ALL=(ALL) ALL
                 - name: 'sysadmin'
-                  state: 'true'
+                  state: True
                   order: '50'
                   config: |
                     %sysadmin ALL=(ALL) ALL
@@ -213,12 +213,12 @@ vars:
     Default    : []
     Options    :
       Examples: - name: 'root'
-                  state: 'true'
+                  state: True
                   order: '10'
                   config: |
                     root ALL=(ALL) ALL
                 - name: 'sysadmin'
-                  state: 'true'
+                  state: True
                   order: '50'
                   config: |
                     %sysadmin ALL=(ALL) ALL
@@ -230,11 +230,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `sudo_lecture`
 
@@ -242,11 +242,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

@@ -19,17 +19,17 @@ chrony_check_time_weekday: '*'
 
 chrony_check_time_offset_limit: 1
 
-chrony_check_time_state: 'enable'
+chrony_check_time_state: True
 
 chrony_monitor_mail_from_address: "root@{{ansible_domain}}"
 
 chrony_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
-chrony_monitor_mail_state: 'false'
+chrony_monitor_mail_state: False
 
-chrony_monitor_monit_state: 'false'
+chrony_monitor_monit_state: False
 
-chrony_monitor_prom_state: 'false'
+chrony_monitor_prom_state: False
 
 chrony_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
@@ -37,7 +37,7 @@ chrony_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
   add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
 
-chrony_nftables_state: 'false'
+chrony_nftables_state: False
 
 chrony_pool: []
 

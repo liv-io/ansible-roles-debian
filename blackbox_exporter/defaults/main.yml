@@ -28,12 +28,12 @@ blackbox_exporter_config:
       tls_config: {insecure_skip_verify: true}
       preferred_ip_protocol: "ip4"
 
-blackbox_exporter_monitor_monit_state: 'false'
+blackbox_exporter_monitor_monit_state: False
 
 blackbox_exporter_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9115 counter accept comment "blackbox_exporter from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9115 counter accept comment "blackbox_exporter from unique local addresses"
 
-blackbox_exporter_nftables_state: 'false'
+blackbox_exporter_nftables_state: False
 
 blackbox_exporter_version: '0.24.0'

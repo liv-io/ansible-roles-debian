@@ -4,9 +4,9 @@ apache2_state: 'enable'
 
 apache2_config: []
 
-apache2_enable_mmap: 'true'
+apache2_enable_mmap: True
 
-apache2_enable_sendfile: 'true'
+apache2_enable_sendfile: True
 
 apache2_global_config: ''
 
@@ -25,25 +25,25 @@ apache2_log_format_common: '%h %l %u %t \"%r\" %>s %b'
 apache2_log_format_vhost_combined: '%v:%p %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"'
 
 apache2_modules:
-  - {name: 'auth_basic', state: 'true'}
-  - {name: 'headers', state: 'true'}
-  - {name: 'proxy', state: 'true'}
-  - {name: 'proxy_wstunnel', state: 'true'}
-  - {name: 'socache_shmcb', state: 'true'}
-  - {name: 'ssl', state: 'true'}
+  - {name: 'auth_basic', state: True}
+  - {name: 'headers', state: True}
+  - {name: 'proxy', state: True}
+  - {name: 'proxy_wstunnel', state: True}
+  - {name: 'socache_shmcb', state: True}
+  - {name: 'ssl', state: True}
 
-apache2_monitor_monit_state: 'false'
+apache2_monitor_monit_state: False
 
 apache2_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "apache2 from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 80, 443 } counter accept comment "apache2 from unique local addresses"
 
-apache2_nftables_state: 'false'
+apache2_nftables_state: False
 
 apache2_server_admin: "admin@{{ansible_domain}}"
 
-apache2_server_signature: 'true'
+apache2_server_signature: True
 
 apache2_server_tokens: 'prod'
 
-apache2_trace_enable: 'false'
+apache2_trace_enable: False

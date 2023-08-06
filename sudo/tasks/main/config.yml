@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
     validate: "{{file_validate_config}}"
   loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - sudo
 
@@ -28,6 +28,6 @@
     state: absent
     path: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
   loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - sudo

@@ -35,13 +35,13 @@ consult the following sections.
 vars:
   user_config_all:
     - name: 'user01'
-      state: 'true'
+      state: True
       comment: 'Example User 01'
       uid: '1001'
       groups: ['group01', 'group02']
-      groups_append: 'true'
+      groups_append: True
       password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
-      password_update: 'true'
+      password_update: True
       shell: '/bin/bash'
       authorized_keys:
         - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01'
@@ -49,22 +49,22 @@ vars:
 
   user_config_group:
     - name: 'user02'
-      state: 'true'
+      state: True
       comment: 'Example User 02'
       uid: '1002'
       groups: ['group02']
-      groups_append: 'true'
+      groups_append: True
       password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
-      password_update: 'true'
+      password_update: True
       shell: '/bin/bash'
       authorized_keys: []
 
   user_config_host:
     - name: 'user03'
-      state: 'false'
+      state: False
       uid: '1003'
-      home_remove: 'true'
-      home_force: 'true'
+      home_remove: True
+      home_force: True
       authorized_keys: []
 ```
 
@@ -78,11 +78,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `name`
 
@@ -148,11 +148,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `home`
 
@@ -171,11 +171,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `home_move`
 
@@ -183,11 +183,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `home_remove`
 
@@ -196,11 +196,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `home_force`
 
@@ -209,11 +209,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `password`
 
@@ -235,11 +235,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `system`
 
@@ -247,11 +247,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `authorized_keys`
 
@@ -289,9 +289,9 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
-                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_keys: []}]
+      Examples: [{name: 'user01', state: True, comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: True, password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: True, shell: '/bin/bash', authorized_keys: []}]
       None    : []
 
 `user_config_group`
@@ -303,9 +303,9 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
-                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_keys: []}]
+      Examples: [{name: 'user01', state: True, comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: True, password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: True, shell: '/bin/bash', authorized_keys: []}]
       None    : []
 
 `user_config_host`
@@ -317,9 +317,9 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
-                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_keys: []}]
+      Examples: [{name: 'user01', state: True, comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: True, password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: True, shell: '/bin/bash', authorized_keys: []}]
       None    : []
 
 ## Conflicts

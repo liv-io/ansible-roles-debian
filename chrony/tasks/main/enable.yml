@@ -34,7 +34,7 @@
 - name: create cron chrony_check-time
   cron:
     state: present
-    disabled: "{{'yes' if (chrony_check_time_state is match('false|no|disable')) else 'no'}}"
+    disabled: "{{True if (chrony_check_time_state == False) else False}}"
     name: "{{cron_name_chrony_check_time}}"
     day: "{{cron_day_chrony_check_time}}"
     hour: "{{cron_hour_chrony_check_time}}"
@@ -69,7 +69,7 @@
     owner: "{{file_owner_chronyd_cfg}}"
     group: "{{file_group_chronyd_cfg}}"
   notify: reload service monit
-  when: (chrony_monitor_monit_state is match('true|yes|enable'))
+  when: (chrony_monitor_monit_state == True)
   tags:
     - chrony
 
@@ -81,7 +81,7 @@
     owner: "{{file_owner_chronyd_nft}}"
     group: "{{file_group_chronyd_nft}}"
   notify: reload service nftables
-  when: (chrony_nftables_state is match('true|yes|enable'))
+  when: (chrony_nftables_state == True)
   tags:
     - chrony
 

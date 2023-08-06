@@ -28,7 +28,7 @@
     owner: "{{file_owner_rest_server_cfg}}"
     group: "{{file_group_rest_server_cfg}}"
   notify: reload service monit
-  when: (rest_server_monitor_monit_state is match('true|yes|enable'))
+  when: (rest_server_monitor_monit_state == True)
   tags:
     - rest_server
 
@@ -40,7 +40,7 @@
     owner: "{{file_owner_rest_server_nft}}"
     group: "{{file_group_rest_server_nft}}"
   notify: reload service nftables
-  when: (rest_server_nftables_state is match('true|yes|enable'))
+  when: (rest_server_nftables_state == True)
   tags:
     - rest_server
 

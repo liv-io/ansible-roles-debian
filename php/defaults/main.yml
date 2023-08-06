@@ -6,7 +6,7 @@ php_curl_cainfo: ''
 
 php_date_timezone: 'Europe/Zurich'
 
-php_expose_php: 'false'
+php_expose_php: False
 
 php_max_input_vars: 1000
 

@@ -38,7 +38,7 @@
     owner: "{{file_owner_blackbox_exporter_cfg}}"
     group: "{{file_group_blackbox_exporter_cfg}}"
   notify: reload service monit
-  when: (blackbox_exporter_monitor_monit_state is match('true|yes|enable'))
+  when: (blackbox_exporter_monitor_monit_state == True)
   tags:
     - blackbox_exporter
 
@@ -50,7 +50,7 @@
     owner: "{{file_owner_blackbox_exporter_nft}}"
     group: "{{file_group_blackbox_exporter_nft}}"
   notify: reload service nftables
-  when: (blackbox_exporter_nftables_state is match('true|yes|enable'))
+  when: (blackbox_exporter_nftables_state == True)
   tags:
     - blackbox_exporter
 

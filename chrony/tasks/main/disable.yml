@@ -65,7 +65,7 @@
     owner: "{{file_owner_chronyd_cfg}}"
     group: "{{file_group_chronyd_cfg}}"
   notify: reload service monit
-  when: (chrony_monitor_monit_state is match('true|yes|enable'))
+  when: (chrony_monitor_monit_state == True)
   tags:
     - chrony
 
@@ -77,7 +77,7 @@
     owner: "{{file_owner_chronyd_nft}}"
     group: "{{file_group_chronyd_nft}}"
   notify: reload service nftables
-  when: (chrony_nftables_state is match('true|yes|enable'))
+  when: (chrony_nftables_state == True)
   tags:
     - chrony
 

@@ -10,11 +10,11 @@ For proper functioning please also create the following user in MariaDB:
 ```
 vars:
   mariadb_user_all:
-    - state: 'true'
+    - state: True
       name: 'mysqld_exporter'
       host: 'localhost'
       password: 'ruK.JSj23aN,48vbhELQ2-tUAu3.J5sB'
-      password_encrypted: 'false'
+      password_encrypted: False
       privileges: '*.*:PROCESS,REPLICATION CLIENT'
 ```
 
@@ -100,11 +100,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mysqld_exporter_mysql_password`
 
@@ -137,11 +137,11 @@ consult the following sections.
     Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mysqld_exporter_version`
 

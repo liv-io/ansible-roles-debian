@@ -2,17 +2,17 @@
 
 bash_state: 'install'
 
-bash_checkwinsize: 'true'
+bash_checkwinsize: True
 
-bash_histappend: 'true'
+bash_histappend: True
 
-bash_histcontrol: 'false'
+bash_histcontrol: ''
 
 bash_histfilesize: '262144'
 
-bash_histignore: 'false'
+bash_histignore: ''
 
-bash_history_readonly: 'true'
+bash_history_readonly: True
 
 bash_histsize: '262144'
 
@@ -22,4 +22,4 @@ bash_prompt_command: 'history -a'
 
 bash_tmout: '1800'
 
-bash_tmout_readonly: 'true'
+bash_tmout_readonly: True

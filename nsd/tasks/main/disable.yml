@@ -29,7 +29,7 @@
     owner: "{{file_owner_nsd_cfg}}"
     group: "{{file_group_nsd_cfg}}"
   notify: reload service monit
-  when: (nsd_monitor_monit_state is match('true|yes|enable'))
+  when: (nsd_monitor_monit_state == True)
   tags:
     - nsd
 
@@ -41,7 +41,7 @@
     owner: "{{file_owner_nsd_nft}}"
     group: "{{file_group_nsd_nft}}"
   notify: reload service nftables
-  when: (nsd_nftables_state is match('true|yes|enable'))
+  when: (nsd_nftables_state == True)
   tags:
     - nsd
 

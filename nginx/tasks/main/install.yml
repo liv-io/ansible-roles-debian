@@ -54,7 +54,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  when: (nginx_monitor_monit_state == True)
   tags:
     - nginx
 
@@ -65,7 +65,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (nginx_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  when: (nginx_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - nginx
 
@@ -75,7 +75,7 @@
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: False
-  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  when: (nginx_monitor_monit_state == True)
   tags:
     - nginx
 
@@ -83,7 +83,7 @@
   stat:
     path: "{{file_dst_nftables_d}}"
   register: register_nftables_d
-  when: (nginx_nftables_state is match('true|yes|enable'))
+  when: (nginx_nftables_state == True)
   tags:
     - nginx
 
@@ -94,7 +94,7 @@
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
-  when: (nginx_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  when: (nginx_nftables_state == True) and (register_nftables_d.stat.exists == False)
   tags:
     - nginx
 
@@ -104,6 +104,6 @@
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: False
-  when: (nginx_nftables_state is match('true|yes|enable'))
+  when: (nginx_nftables_state == True)
   tags:
     - nginx

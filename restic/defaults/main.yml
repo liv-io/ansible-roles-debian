@@ -43,9 +43,9 @@ restic_monitor_mail_from_address: "root@{{ansible_domain}}"
 
 restic_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
-restic_monitor_mail_state: 'false'
+restic_monitor_mail_state: False
 
-restic_monitor_prom_state: 'false'
+restic_monitor_prom_state: False
 
 restic_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
@@ -53,7 +53,7 @@ restic_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new tcp dport 443 counter accept comment "restic to any"
   add rule ip6 filter OUTPUT ct state new tcp dport 443 counter accept comment "restic to any"
 
-restic_nftables_state: 'false'
+restic_nftables_state: False
 
 restic_password: ''
 

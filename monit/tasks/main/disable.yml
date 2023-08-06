@@ -28,7 +28,7 @@
     owner: "{{file_owner_monit_nft}}"
     group: "{{file_group_monit_nft}}"
   notify: reload service nftables
-  when: (monit_nftables_state is match('true|yes|enable'))
+  when: (monit_nftables_state == True)
   tags:
     - monit
 

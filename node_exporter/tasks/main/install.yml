@@ -93,7 +93,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
+  when: (node_exporter_monitor_monit_state == True)
   tags:
     - node_exporter
 
@@ -104,7 +104,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (node_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  when: (node_exporter_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - node_exporter
 
@@ -114,7 +114,7 @@
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: False
-  when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
+  when: (node_exporter_monitor_monit_state == True)
   tags:
     - node_exporter
 
@@ -122,7 +122,7 @@
   stat:
     path: "{{file_dst_nftables_d}}"
   register: register_nftables_d
-  when: (node_exporter_nftables_state is match('true|yes|enable'))
+  when: (node_exporter_nftables_state == True)
   tags:
     - node_exporter
 
@@ -133,7 +133,7 @@
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
-  when: (node_exporter_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  when: (node_exporter_nftables_state == True) and (register_nftables_d.stat.exists == False)
   tags:
     - node_exporter
 
@@ -143,6 +143,6 @@
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: False
-  when: (node_exporter_nftables_state is match('true|yes|enable'))
+  when: (node_exporter_nftables_state == True)
   tags:
     - node_exporter

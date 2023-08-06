@@ -21,7 +21,7 @@
   notify:
     - check apache2
     - reload apache2
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - apache2
 
@@ -36,7 +36,7 @@
   notify:
     - check apache2
     - reload apache2
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - apache2
 
@@ -48,7 +48,7 @@
   notify:
     - check apache2
     - reload apache2
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - apache2
 
@@ -60,6 +60,6 @@
   notify:
     - check apache2
     - reload apache2
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - apache2

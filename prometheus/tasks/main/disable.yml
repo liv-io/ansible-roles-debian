@@ -27,7 +27,7 @@
     mode: "{{file_mode_alerting_rules_yml}}"
     owner: "{{file_owner_alerting_rules_yml}}"
     group: "{{file_group_alerting_rules_yml}}"
-  when: (prometheus_alertmanager_state is match('true|yes|enable'))
+  when: (prometheus_alertmanager_state == True)
   tags:
     - prometheus
 
@@ -48,7 +48,7 @@
     mode: "{{file_mode_prometheus_alertmanager_datasource_yaml}}"
     owner: "{{file_owner_prometheus_alertmanager_datasource_yaml}}"
     group: "{{file_group_prometheus_alertmanager_datasource_yaml}}"
-  when: (prometheus_alertmanager_state is match('true|yes|enable'))
+  when: (prometheus_alertmanager_state == True)
   tags:
     - prometheus
 
@@ -69,7 +69,7 @@
     mode: "{{file_mode_builtin_dashboards_yaml}}"
     owner: "{{file_owner_builtin_dashboards_yaml}}"
     group: "{{file_group_builtin_dashboards_yaml}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 
@@ -80,7 +80,7 @@
     mode: "{{file_mode_network_traffic_json}}"
     owner: "{{file_owner_network_traffic_json}}"
     group: "{{file_group_network_traffic_json}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 
@@ -91,7 +91,7 @@
     mode: "{{file_mode_node_exporter_json}}"
     owner: "{{file_owner_node_exporter_json}}"
     group: "{{file_group_node_exporter_json}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 
@@ -102,7 +102,7 @@
     mode: "{{file_mode_ping_prober_json}}"
     owner: "{{file_owner_ping_prober_json}}"
     group: "{{file_group_ping_prober_json}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable')) and (prometheus_blackbox_exporter_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True) and (prometheus_blackbox_exporter_state == True)
   tags:
     - prometheus
 
@@ -113,7 +113,7 @@
     mode: "{{file_mode_script_status_json}}"
     owner: "{{file_owner_script_status_json}}"
     group: "{{file_group_script_status_json}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 
@@ -124,7 +124,7 @@
     mode: "{{file_mode_smokeping_prober_json}}"
     owner: "{{file_owner_smokeping_prober_json}}"
     group: "{{file_group_smokeping_prober_json}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable')) and (prometheus_smokeping_prober_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True) and (prometheus_smokeping_prober_state == True)
   tags:
     - prometheus
 
@@ -135,7 +135,7 @@
     mode: "{{file_mode_system_status_json}}"
     owner: "{{file_owner_system_status_json}}"
     group: "{{file_group_system_status_json}}"
-  when: (prometheus_builtin_dashboards_state is match('true|yes|enable'))
+  when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 
@@ -147,7 +147,7 @@
     owner: "{{file_owner_prometheus_cfg}}"
     group: "{{file_group_prometheus_cfg}}"
   notify: reload service monit
-  when: (prometheus_monitor_monit_state is match('true|yes|enable'))
+  when: (prometheus_monitor_monit_state == True)
   tags:
     - prometheus
 
@@ -159,7 +159,7 @@
     owner: "{{file_owner_prometheus_nft}}"
     group: "{{file_group_prometheus_nft}}"
   notify: reload service nftables
-  when: (prometheus_nftables_state is match('true|yes|enable'))
+  when: (prometheus_nftables_state == True)
   tags:
     - prometheus
 

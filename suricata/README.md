@@ -40,7 +40,7 @@ consult the following sections.
       - {state: 'install', name: 'hunting', link: 'https://github.com/travisbgreen/hunting-rules/blob/master/hunting.rules'}
     suricata_config:
       - name: 'liv'
-        state: 'true'
+        state: True
         comment: 'liv policies'
         rules:
           - {action: 'alert', protocol: 'ip', srcaddr: '$HOME_NET', srcport: 'any', direction: '->', dstaddr: '6.6.6.6', dstport: 'any', msg: 'LIV Potential Trojan Activity', options: 'threshold:type limit,track by_src,seconds 3600,count 1;', classtype: 'trojan-activity', reference: {'url,doc.liv.io/suricata/5000001', 'url,liv.io'}, metadata: 'created 20201008, updated 20201008', sid: '5000001', rev: '1'}
@@ -77,7 +77,7 @@ consult the following sections.
       - {state: 'install', name: 'hunting', link: 'https://github.com/travisbgreen/hunting-rules/blob/master/hunting.rules'}
     suricata_config:
       - name: 'liv'
-        state: 'true'
+        state: True
         comment: 'liv policies'
         rules:
           - {action: 'alert', protocol: 'ip', srcaddr: '$HOME_NET', srcport: 'any', direction: '->', dstaddr: '6.6.6.6', dstport: 'any', msg: 'LIV Potential Trojan Activity', options: 'threshold:type limit,track by_src,seconds 3600,count 1;', classtype: 'trojan-activity', reference: {'url,doc.liv.io/suricata/5000001', 'url,liv.io'}, metadata: 'created 20201008, updated 20201008', sid: '5000001', rev: '1'}
@@ -146,7 +146,7 @@ consult the following sections.
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: liv, state: 'true', comment: liv policies, rules: [{action: alert, protocol: dns, srcaddr: any, srcport: any, direction: '->', dstaddr: any, dstport: any, msg: LIV DNS Query to Malicious Domain, options: 'dns_query; content:"example.com"; nocase; isdataat:!1,relative;', classtype: bad-unknown, reference: {'url,doc.liv.io/suricata/5000006': null, 'url,liv.io': null}, metadata: 'created 20201008, updated 20201008', sid: '5000006', rev: '1'}]}]
+      Examples: [{name: liv, state: True, comment: liv policies, rules: [{action: alert, protocol: dns, srcaddr: any, srcport: any, direction: '->', dstaddr: any, dstport: any, msg: LIV DNS Query to Malicious Domain, options: 'dns_query; content:"example.com"; nocase; isdataat:!1,relative;', classtype: bad-unknown, reference: {'url,doc.liv.io/suricata/5000006': null, 'url,liv.io': null}, metadata: 'created 20201008, updated 20201008', sid: '5000006', rev: '1'}]}]
       None    : []
 
 `suricata_external_net`
@@ -188,11 +188,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `suricata_ruleset`
 

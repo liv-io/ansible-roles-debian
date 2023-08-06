@@ -3,7 +3,7 @@
 auditd_state: 'enable'
 
 auditd_config_all:
-  - state: 'true'
+  - state: True
     name: 'audit'
     config: |
       # First rule - delete all
@@ -19,6 +19,6 @@ auditd_config_group: []
 
 auditd_config_host: []
 
-auditd_monitor_monit_state: 'false'
+auditd_monitor_monit_state: False
 
-auditd_syslog_active: 'true'
+auditd_syslog_active: True

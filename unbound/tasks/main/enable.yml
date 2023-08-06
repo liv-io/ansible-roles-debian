@@ -41,7 +41,7 @@
     owner: "{{file_owner_unbound_cfg}}"
     group: "{{file_group_unbound_cfg}}"
   notify: reload service monit
-  when: (unbound_monitor_monit_state is match('true|yes|enable'))
+  when: (unbound_monitor_monit_state == True)
   tags:
     - unbound
 
@@ -53,7 +53,7 @@
     owner: "{{file_owner_unbound_nft}}"
     group: "{{file_group_unbound_nft}}"
   notify: reload service nftables
-  when: (unbound_nftables_state is match('true|yes|enable'))
+  when: (unbound_nftables_state == True)
   tags:
     - unbound
 

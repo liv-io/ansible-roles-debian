@@ -8,6 +8,6 @@ sudo_config_group: []
 
 sudo_config_host: []
 
-sudo_insults: 'false'
+sudo_insults: False
 
-sudo_lecture: 'false'
+sudo_lecture: False

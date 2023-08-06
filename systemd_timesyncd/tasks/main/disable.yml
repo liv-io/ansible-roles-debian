@@ -50,7 +50,7 @@
     owner: "{{file_owner_systemd_timesyncd_cfg}}"
     group: "{{file_group_systemd_timesyncd_cfg}}"
   notify: reload service monit
-  when: (systemd_timesyncd_monitor_monit_state is match('true|yes|enable'))
+  when: (systemd_timesyncd_monitor_monit_state == True)
   tags:
     - systemd_timesyncd
 
@@ -62,7 +62,7 @@
     owner: "{{file_owner_systemd_timesyncd_nft}}"
     group: "{{file_group_systemd_timesyncd_nft}}"
   notify: reload service nftables
-  when: (systemd_timesyncd_nftables_state is match('true|yes|enable'))
+  when: (systemd_timesyncd_nftables_state == True)
   tags:
     - systemd_timesyncd
 

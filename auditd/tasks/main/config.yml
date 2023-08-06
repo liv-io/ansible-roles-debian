@@ -21,7 +21,7 @@
   notify:
     - run augenrules
     - restart auditd
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - auditd
 
@@ -33,6 +33,6 @@
   notify:
     - run augenrules
     - restart auditd
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - auditd

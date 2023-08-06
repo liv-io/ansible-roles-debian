@@ -34,6 +34,6 @@
     owner: "{{file_owner_restic_nft}}"
     group: "{{file_group_restic_nft}}"
   notify: reload service nftables
-  when: (restic_nftables_state is match('true|yes|enable'))
+  when: (restic_nftables_state == True)
   tags:
     - restic

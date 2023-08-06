@@ -21,7 +21,7 @@
   notify:
     - update suricata
     - reload service suricata
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: not (item.state|default('true') == False)
   tags:
     - suricata
 
@@ -31,7 +31,7 @@
     path: "{{file_dst_config}}/{{item.name}}.rules"
   loop: "{{suricata_config}}"
   notify: reload service suricata
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default('true') == False)
   tags:
     - suricata
 

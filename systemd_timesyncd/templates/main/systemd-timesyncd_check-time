@@ -17,7 +17,7 @@ expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (systemd_timesyncd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_mail_state == True) %}
 mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
@@ -41,7 +41,7 @@ message='Please check log files for more information.'
 poll_interval_max_sec={{ systemd_timesyncd_poll_interval_max_sec }}
 textfile_collector='{{systemd_timesyncd_monitor_prom_textfile_collector}}'
 
-{% if (systemd_timesyncd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_mail_state == True) %}
 mail_from_address='{{systemd_timesyncd_monitor_mail_from_address}}'
 mail_to_address='{% for item in systemd_timesyncd_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 mail_subject='systemd-timesyncd: Check Time - Error ({{ansible_hostname}})'
@@ -49,7 +49,7 @@ mail_subject='systemd-timesyncd: Check Time - Error ({{ansible_hostname}})'
 
 # FUNCTIONS
 
-{% if (systemd_timesyncd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_mail_state == True) %}
 mail_error() {
   retval="$1"
   severity="$2"
@@ -76,7 +76,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (systemd_timesyncd_monitor_prom_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_prom_state == True) %}
 update_prom() {
   retval="$1"
   time_start="$2"
@@ -145,11 +145,11 @@ log_and_exit_on_error() {
 
     ${logger} -t "${script}" "${severity}: ${message}"
 
-{% if (systemd_timesyncd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_mail_state == True) %}
     mail_error "${retval}" "${severity}" "${message}"
 {% endif %}
 
-{% if (systemd_timesyncd_monitor_prom_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_prom_state == True) %}
     update_prom "${retval}" "${time_start}" "${time_exec}"
 {% endif %}
 
@@ -167,7 +167,7 @@ log_and_exit() {
   message='System time is synchronized.'
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
 
-{% if (systemd_timesyncd_monitor_prom_state is match('true|yes|enable')) %}
+{% if (systemd_timesyncd_monitor_prom_state == True) %}
   update_prom "${retval}" "${time_start}" "${time_exec}"
 {% endif %}
 

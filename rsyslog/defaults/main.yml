@@ -8,7 +8,7 @@ rsyslog_config_group: []
 
 rsyslog_config_host: []
 
-rsyslog_monitor_monit_state: 'false'
+rsyslog_monitor_monit_state: False
 
 rsyslog_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 514 counter accept comment "syslog from internal private addresses"
@@ -20,7 +20,7 @@ rsyslog_nftables_filter_rule: |
   add rule ip6 filter OUTPUT ip6 daddr fc00::/7 ct state new tcp dport 514 counter accept comment "syslog to internal private addresses"
   add rule ip6 filter OUTPUT ip6 daddr fc00::/7 ct state new udp dport 514 counter accept comment "syslog to unique local addresses"
 
-rsyslog_nftables_state: 'false'
+rsyslog_nftables_state: False
 
 rsyslog_role: 'client'
 

@@ -39,7 +39,7 @@
     owner: "{{file_owner_suricata_cfg}}"
     group: "{{file_group_suricata_cfg}}"
   notify: reload service monit
-  when: (suricata_monitor_monit_state is match('true|yes|enable'))
+  when: (suricata_monitor_monit_state == True)
   tags:
     - suricata
 

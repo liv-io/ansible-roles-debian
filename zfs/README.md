@@ -28,12 +28,12 @@ consult the following sections.
     - role: zfs
   vars:
     zfs_state: 'enable'
-    zfs_check_pools_state: 'enable'
-    zfs_scrub_pools_state: 'enable'
+    zfs_check_pools_state: True
+    zfs_scrub_pools_state: True
     zfs_scrub_pools_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
     zfs_monitor_mail_from_address: 'root@domain.tld'
     zfs_monitor_mail_to_address: ["user@domain.tld"]
-    zfs_monitor_mail_state: 'true'
+    zfs_monitor_mail_state: True
 ```
 
 ### Disable
@@ -44,12 +44,12 @@ consult the following sections.
     - role: zfs
   vars:
     zfs_state: 'disable'
-    zfs_check_pools_state: 'enable'
-    zfs_scrub_pools_state: 'disable'
+    zfs_check_pools_state: True
+    zfs_scrub_pools_state: False
     zfs_scrub_pools_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
     zfs_monitor_mail_from_address: 'root@domain.tld'
     zfs_monitor_mail_to_address: ["user@domain.tld"]
-    zfs_monitor_mail_state: 'true'
+    zfs_monitor_mail_state: True
 ```
 
 ### Remove
@@ -152,11 +152,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `zfs_monitor_mail_from_address`
 
@@ -187,11 +187,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `zfs_monitor_prom_state`
 
@@ -199,11 +199,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `zfs_monitor_prom_textfile_collector`
 
@@ -290,11 +290,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
+      True : True
+      False: False
 
 `zfs_trim_pools_day`
 
@@ -370,11 +370,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

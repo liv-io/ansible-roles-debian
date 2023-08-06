@@ -38,7 +38,7 @@ vars:
   sysctl_config_all:
     - name: 'network-hardening'
       order: '10'
-      state: 'true'
+      state: True
       sysctl:
         - key: 'net.ipv4.tcp_syncookies'
           value: '1'
@@ -58,7 +58,7 @@ vars:
 
     - name: 'ip-forwarding'
       order: '10'
-      state: 'true'
+      state: True
       sysctl:
         - key: 'net.ipv4.ip_forward'
           value: '1'
@@ -70,7 +70,7 @@ vars:
   sysctl_config_group:
     - name: 'kernel-security'
       order: '00'
-      state: 'true'
+      state: True
       sysctl:
         - key: 'kernel.exec-shield'
           value: '1'
@@ -82,7 +82,7 @@ vars:
   sysctl_config_host:
     - name: 'pids'
       order: '10'
-      state: 'false'
+      state: False
       sysctl:
         - key: 'fs.file-max'
           value: '65535'
@@ -114,7 +114,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'network-hardening', order: '10',
+      Examples: [{state: True, name: 'network-hardening', order: '10',
                   sysctl: [{key: 'net.ipv4.tcp_syncookies', value: '1', comment: 'TCP SYN cookie protection'},
                            {key: 'net.ipv4.tcp_rfc1337', value: '1', comment: 'TCP time-wait assassination hazards'},
                            {key: 'net.ipv4.conf.all.rp_filter', value: '1', comment: 'Reverse path filtering'},
@@ -131,7 +131,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'network-hardening', order: '10',
+      Examples: [{state: True, name: 'network-hardening', order: '10',
                   sysctl: [{key: 'net.ipv4.tcp_syncookies', value: '1', comment: 'TCP SYN cookie protection'},
                            {key: 'net.ipv4.tcp_rfc1337', value: '1', comment: 'TCP time-wait assassination hazards'},
                            {key: 'net.ipv4.conf.all.rp_filter', value: '1', comment: 'Reverse path filtering'},
@@ -148,7 +148,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'network-hardening', order: '10',
+      Examples: [{state: True, name: 'network-hardening', order: '10',
                   sysctl: [{key: 'net.ipv4.tcp_syncookies', value: '1', comment: 'TCP SYN cookie protection'},
                            {key: 'net.ipv4.tcp_rfc1337', value: '1', comment: 'TCP time-wait assassination hazards'},
                            {key: 'net.ipv4.conf.all.rp_filter', value: '1', comment: 'Reverse path filtering'},

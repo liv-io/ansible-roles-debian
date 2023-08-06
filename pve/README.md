@@ -36,45 +36,45 @@ vars:
   pve_acl_config_all:
     - groups: ['sysadmin']
       roles: ['Administrator']
-      state: 'true'
+      state: True
 
     - groups: ['appadmin']
       roles: ['PVEAdmin']
-      state: 'true'
+      state: True
 
     - groups: ['auditor']
       roles: ['PVEAuditor']
-      state: 'true'
+      state: True
 
   pve_group_config_all:
     - name: 'sysadmin'
-      state: 'true'
+      state: True
 
     - name: 'appadmin'
-      state: 'true'
+      state: True
 
     - name: 'auditor'
-      state: 'true'
+      state: True
 
     - name: 'pvevmuser'
-      state: 'true'
+      state: True
 
   pve_user_config_all:
     - name: 'user01@pam'
       groups: ['sysadmin']
-      state: 'true'
+      state: True
 
     - name: 'user02@pam'
       groups: ['appadmin']
-      state: 'true'
+      state: True
 
     - name: 'user03@pam'
       groups: ['auditor']
-      state: 'true'
+      state: True
 
     - name: 'user04@pam'
       groups: ['pvevmuser', 'auditor']
-      state: 'false'
+      state: False
 ```
 
 ## Parameters
@@ -102,8 +102,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{groups: ['sysadmin'], roles: ['Administrator'], state: 'true'}] |
-                [{groups: ['appadmin'], roles: ['PVEAdmin'], state: 'true'}]
+      Examples: [{groups: ['sysadmin'], roles: ['Administrator'], state: True}] |
+                [{groups: ['appadmin'], roles: ['PVEAdmin'], state: True}]
       None    : []
 
 `pve_acl_config_group`
@@ -115,8 +115,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{groups: ['sysadmin'], roles: ['Administrator'], state: 'true'}] |
-                [{groups: ['appadmin'], roles: ['PVEAdmin'], state: 'true'}]
+      Examples: [{groups: ['sysadmin'], roles: ['Administrator'], state: True}] |
+                [{groups: ['appadmin'], roles: ['PVEAdmin'], state: True}]
       None    : []
 
 `pve_acl_config_host`
@@ -128,8 +128,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{groups: ['sysadmin'], roles: ['Administrator'], state: 'true'}] |
-                [{groups: ['appadmin'], roles: ['PVEAdmin'], state: 'true'}]
+      Examples: [{groups: ['sysadmin'], roles: ['Administrator'], state: True}] |
+                [{groups: ['appadmin'], roles: ['PVEAdmin'], state: True}]
       None    : []
 
 `pve_group_config_all`
@@ -141,8 +141,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'sysadmin', state: 'true'},
-                 {name: 'appadmin', state: 'true'}]
+      Examples: [{name: 'sysadmin', state: True},
+                 {name: 'appadmin', state: True}]
       None    : []
 
 `pve_group_config_group`
@@ -154,8 +154,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'sysadmin', state: 'true'},
-                 {name: 'appadmin', state: 'true'}]
+      Examples: [{name: 'sysadmin', state: True},
+                 {name: 'appadmin', state: True}]
       None    : []
 
 `pve_group_config_host`
@@ -167,8 +167,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'sysadmin', state: 'true'},
-                 {name: 'appadmin', state: 'true'}]
+      Examples: [{name: 'sysadmin', state: True},
+                 {name: 'appadmin', state: True}]
       None    : []
 
 `pve_user_config_all`
@@ -180,8 +180,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'user01@pam', groups: ['sysadmin'], state: 'true'},
-                 {name: 'user02@pam', groups: ['appadmin'], state: 'true'}]
+      Examples: [{name: 'user01@pam', groups: ['sysadmin'], state: True},
+                 {name: 'user02@pam', groups: ['appadmin'], state: True}]
       None    : []
 
 `pve_user_config_group`
@@ -193,8 +193,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'user01@pam', groups: ['sysadmin'], state: 'true'},
-                 {name: 'user02@pam', groups: ['appadmin'], state: 'true'}]
+      Examples: [{name: 'user01@pam', groups: ['sysadmin'], state: True},
+                 {name: 'user02@pam', groups: ['appadmin'], state: True}]
       None    : []
 
 `pve_user_config_host`
@@ -206,8 +206,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'user01@pam', groups: ['sysadmin'], state: 'true'},
-                 {name: 'user02@pam', groups: ['appadmin'], state: 'true'}]
+      Examples: [{name: 'user01@pam', groups: ['sysadmin'], state: True},
+                 {name: 'user02@pam', groups: ['appadmin'], state: True}]
       None    : []
 
 ## Conflicts

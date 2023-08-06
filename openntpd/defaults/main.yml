@@ -14,7 +14,7 @@ openntpd_check_time_weekday: '*'
 
 openntpd_check_time_offset_limit: 1000
 
-openntpd_check_time_state: 'enable'
+openntpd_check_time_state: True
 
 openntpd_listen: []
 
@@ -22,11 +22,11 @@ openntpd_monitor_mail_from_address: "root@{{ansible_domain}}"
 
 openntpd_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
-openntpd_monitor_mail_state: 'false'
+openntpd_monitor_mail_state: False
 
-openntpd_monitor_monit_state: 'false'
+openntpd_monitor_monit_state: False
 
-openntpd_monitor_prom_state: 'false'
+openntpd_monitor_prom_state: False
 
 openntpd_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
@@ -36,7 +36,7 @@ openntpd_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
   add rule ip6 filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
 
-openntpd_nftables_state: 'false'
+openntpd_nftables_state: False
 
 openntpd_server:
   - {address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}

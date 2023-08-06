@@ -19,7 +19,7 @@
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   loop: "{{mariadb_database_all + mariadb_database_group + mariadb_database_host}}"
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - mariadb
 
@@ -30,7 +30,7 @@
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   loop: "{{mariadb_database_all + mariadb_database_group + mariadb_database_host}}"
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - mariadb
 
@@ -40,15 +40,15 @@
     name: "{{item.name}}"
     host: "{{(item.host|default('localhost'))}}"
     password: "{{item.password}}"
-    update_password: "{{'on_create' if (item.password_update|default('true') is match('false|no|disable')) else 'always'}}"
-    encrypted: "{{'yes' if (item.password_encrypted|default('false') is match('true|yes|enable')) else 'no'}}"
+    update_password: "{{'on_create' if (item.password_update|default(True) == False) else 'always'}}"
+    encrypted: "{{True if (item.password_encrypted|default(False) == True) else False}}"
     priv: "{{(item.privileges|default('*.*:ALL'))}}"
-    append_privs: "{{'yes' if (item.privileges_append|default('false') is match('true|yes|enable')) else 'no'}}"
+    append_privs: "{{True if (item.privileges_append|default(False) == True) else False}}"
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   no_log: True
   loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - mariadb
 
@@ -60,6 +60,6 @@
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - mariadb

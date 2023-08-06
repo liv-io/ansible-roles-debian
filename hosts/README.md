@@ -36,27 +36,27 @@ consult the following sections.
 vars:
   hosts_config_all:
     - name: 'host01.domain.tld'
-      state: 'true'
+      state: True
       ip: '192.168.1.1'
       aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
       comment: 'host01'
 
     - name: 'host02.domain.tld'
-      state: 'true'
+      state: True
       ip: '192.168.1.2'
       aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
       comment: 'host02'
 
   hosts_config_group:
     - name: 'host03.domain.tld'
-      state: 'true'
+      state: True
       ip: '192.168.1.3'
       aliases: ['host03', 'hostname03.domain.tld', 'hostname03']
       comment: 'host03'
 
   hosts_config_host:
     - name: 'host04.domain.tld'
-      state: 'false'
+      state: False
       ip: '192.168.1.4'
       aliases: ['host04', 'hostname04.domain.tld', 'hostname04']
       comment: 'host04'
@@ -72,11 +72,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `name`
 
@@ -161,9 +161,9 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+      Examples: [{name: 'host01.domain.tld', state: True, ip: '192.168.1.1',
                   aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
-                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                 {name: 'host02.domain.tld', state: True, ip: '192.168.1.2',
                   aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
       None    : []
 
@@ -176,9 +176,9 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+      Examples: [{name: 'host01.domain.tld', state: True, ip: '192.168.1.1',
                   aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
-                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                 {name: 'host02.domain.tld', state: True, ip: '192.168.1.2',
                   aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
       None    : []
 
@@ -191,9 +191,9 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+      Examples: [{name: 'host01.domain.tld', state: True, ip: '192.168.1.1',
                   aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
-                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                 {name: 'host02.domain.tld', state: True, ip: '192.168.1.2',
                   aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
       None    : []
 

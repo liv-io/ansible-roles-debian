@@ -29,7 +29,7 @@
     owner: "{{file_owner_rsyslog_cfg}}"
     group: "{{file_group_rsyslog_cfg}}"
   notify: reload service monit
-  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  when: (rsyslog_monitor_monit_state == True)
   tags:
     - rsyslog
 
@@ -41,7 +41,7 @@
     owner: "{{file_owner_rsyslog_nft}}"
     group: "{{file_group_rsyslog_nft}}"
   notify: reload service nftables
-  when: (rsyslog_nftables_state is match('true|yes|enable'))
+  when: (rsyslog_nftables_state == True)
   tags:
     - rsyslog
 

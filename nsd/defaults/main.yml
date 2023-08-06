@@ -2,23 +2,23 @@
 
 nsd_state: 'enable'
 
-nsd_control_enable: 'false'
+nsd_control_enable: False
 
 nsd_default_port: 53
 
-nsd_hide_identity: 'true'
+nsd_hide_identity: True
 
-nsd_hide_version: 'true'
+nsd_hide_version: True
 
 nsd_identity: ''
 
 nsd_interface: []
 
-nsd_ip4_state: 'true'
+nsd_ip4_state: True
 
-nsd_ip6_state: 'false'
+nsd_ip6_state: False
 
-nsd_monitor_monit_state: 'false'
+nsd_monitor_monit_state: False
 
 nsd_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 53 counter accept comment "dns from internal private addresses"
@@ -26,7 +26,7 @@ nsd_nftables_filter_rule: |
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 53 counter accept comment "dns from unique local addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new udp dport 53 counter accept comment "dns from unique local addresses"
 
-nsd_nftables_state: 'false'
+nsd_nftables_state: False
 
 nsd_version: ''
 

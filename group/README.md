@@ -35,21 +35,21 @@ consult the following sections.
 vars:
   group_config_all:
     - name: 'group01'
-      state: 'true'
+      state: True
       gid: '2001'
 
     - name: 'group02'
-      state: 'true'
-      system: 'true'
+      state: True
+      system: True
 
   group_config_group:
     - name: 'group03'
-      state: 'false'
+      state: False
       gid: '2003'
 
   group_config_host:
     - name: 'group04'
-      state: 'false'
+      state: False
 ```
 
 ## Parameters
@@ -96,11 +96,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ### Role
 
@@ -125,8 +125,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'group01', state: 'true', gid: '2001'},
-                 {name: 'group02', state: 'true', gid: '2002'}]
+      Examples: [{name: 'group01', state: True, gid: '2001'},
+                 {name: 'group02', state: True, gid: '2002'}]
       None    : []
 
 `group_config_group`
@@ -138,8 +138,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'group01', state: 'true', gid: '2001'},
-                 {name: 'group02', state: 'true', gid: '2002'}]
+      Examples: [{name: 'group01', state: True, gid: '2001'},
+                 {name: 'group02', state: True, gid: '2002'}]
       None    : []
 
 `group_config_host`
@@ -151,8 +151,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'group01', state: 'true', gid: '2001'},
-                 {name: 'group02', state: 'true', gid: '2002'}]
+      Examples: [{name: 'group01', state: True, gid: '2001'},
+                 {name: 'group02', state: True, gid: '2002'}]
       None    : []
 
 ## Conflicts

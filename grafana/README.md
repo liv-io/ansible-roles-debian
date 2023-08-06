@@ -85,11 +85,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `grafana_nftables_filter_rule`
 
@@ -118,11 +118,11 @@ consult the following sections.
     Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `grafana_plugins_all`
 
@@ -131,13 +131,13 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{name: 'camptocamp-prometheus-alertmanager-datasource', state: 'true', version: 'latest'},
-                  {name: 'grafana-piechart-panel', state: 'true', version: 'latest'},
-                  {name: 'grafana-worldmap-panel', state: 'true', version: 'latest'}]
+    Default    : [{name: 'camptocamp-prometheus-alertmanager-datasource', state: True, version: 'latest'},
+                  {name: 'grafana-piechart-panel', state: True, version: 'latest'},
+                  {name: 'grafana-worldmap-panel', state: True, version: 'latest'}]
     Options    :
-      Examples: [{name: 'grafana-piechart-panel', state: 'true', version: 'latest'},
-                 {name: 'grafana-clock-panel', state: 'true', version: '1.0.0'},
-                 {name: 'grafana-obsolete', state: 'false'}]
+      Examples: [{name: 'grafana-piechart-panel', state: True, version: 'latest'},
+                 {name: 'grafana-clock-panel', state: True, version: '1.0.0'},
+                 {name: 'grafana-obsolete', state: False}]
       None    : []
 
 `grafana_plugins_group`
@@ -149,9 +149,9 @@ consult the following sections.
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'grafana-piechart-panel', state: 'true', version: 'latest'},
-                 {name: 'grafana-clock-panel', state: 'true', version: '1.0.0'},
-                 {name: 'grafana-obsolete', state: 'false'}]
+      Examples: [{name: 'grafana-piechart-panel', state: True, version: 'latest'},
+                 {name: 'grafana-clock-panel', state: True, version: '1.0.0'},
+                 {name: 'grafana-obsolete', state: False}]
       None    : []
 
 `grafana_plugins_host`
@@ -163,9 +163,9 @@ consult the following sections.
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'grafana-piechart-panel', state: 'true', version: 'latest'},
-                 {name: 'grafana-clock-panel', state: 'true', version: '1.0.0'},
-                 {name: 'grafana-obsolete', state: 'false'}]
+      Examples: [{name: 'grafana-piechart-panel', state: True, version: 'latest'},
+                 {name: 'grafana-clock-panel', state: True, version: '1.0.0'},
+                 {name: 'grafana-obsolete', state: False}]
       None    : []
 
 `grafana_smtp_from_address`
@@ -232,11 +232,11 @@ consult the following sections.
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `grafana_smtp_user`
 

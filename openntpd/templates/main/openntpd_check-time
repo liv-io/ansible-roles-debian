@@ -18,7 +18,7 @@ expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (openntpd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_mail_state == True) %}
 mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 ntpctl=$(${which} ntpctl) || { echo "Error: Command 'ntpctl' not found."; exit 127; }
@@ -42,7 +42,7 @@ message='Please check log files for more information.'
 offset_limit='{{openntpd_check_time_offset_limit}}'
 textfile_collector='{{openntpd_monitor_prom_textfile_collector}}'
 
-{% if (openntpd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_mail_state == True) %}
 mail_from_address='{{openntpd_monitor_mail_from_address}}'
 mail_to_address='{% for item in openntpd_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 mail_subject='openntpd: Check Time - Error ({{ansible_hostname}})'
@@ -50,7 +50,7 @@ mail_subject='openntpd: Check Time - Error ({{ansible_hostname}})'
 
 # FUNCTIONS
 
-{% if (openntpd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_mail_state == True) %}
 mail_error() {
   retval="$1"
   severity="$2"
@@ -76,7 +76,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (openntpd_monitor_prom_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_prom_state == True) %}
 update_prom() {
   retval="$1"
   time_start="$2"
@@ -150,11 +150,11 @@ log_and_exit_on_error() {
       ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
     fi
     ${logger} -t "${script}" "${severity}: ${message}"
-{% if (openntpd_monitor_mail_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_mail_state == True) %}
     mail_error "${retval}" "${severity}" "${message}"
 {% endif %}
 
-{% if (openntpd_monitor_prom_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_prom_state == True) %}
     update_prom "${retval}" "${time_start}" "${time_exec}"
 {% endif %}
 
@@ -172,7 +172,7 @@ log_and_exit() {
   message='System time is synchronized.'
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
 
-{% if (openntpd_monitor_prom_state is match('true|yes|enable')) %}
+{% if (openntpd_monitor_prom_state == True) %}
   update_prom "${retval}" "${time_start}" "${time_exec}"
 {% endif %}
 

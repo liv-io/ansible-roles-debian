@@ -20,7 +20,7 @@ expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_mail_state == True) %}
 mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
@@ -43,7 +43,7 @@ message='Please check log files for more information.'
 
 textfile_collector='{{unbound_adblock_monitor_prom_textfile_collector}}'
 
-{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_mail_state == True) %}
 mail_from_address='{{unbound_adblock_monitor_mail_from_address}}'
 mail_to_address='{% for item in unbound_adblock_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 mail_subject='Unbound AdBlock: Update List - Error ({{ansible_hostname}})'
@@ -51,7 +51,7 @@ mail_subject='Unbound AdBlock: Update List - Error ({{ansible_hostname}})'
 
 # FUNCTIONS
 
-{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_mail_state == True) %}
 mail_error() {
   retval="$1"
   severity="$2"
@@ -77,7 +77,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (unbound_adblock_monitor_prom_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_prom_state == True) %}
 update_prom() {
   retval="$1"
   time_start="$2"
@@ -144,11 +144,11 @@ log_and_exit_on_error() {
       ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
     fi
     ${logger} -t "${script}" "${severity}: ${message}"
-{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_mail_state == True) %}
     mail_error "${retval}" "${severity}" "${message}"
 {% endif %}
 
-{% if (unbound_adblock_monitor_prom_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_prom_state == True) %}
     update_prom "${retval}" "${time_start}" "${time_exec}"
 {% endif %}
 
@@ -166,7 +166,7 @@ log_and_exit() {
   message='Unbound AdBlock list has been updated.'
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
 
-{% if (unbound_adblock_monitor_prom_state is match('true|yes|enable')) %}
+{% if (unbound_adblock_monitor_prom_state == True) %}
   update_prom "${retval}" "${time_start}" "${time_exec}"
 {% endif %}
 

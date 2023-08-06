@@ -18,7 +18,7 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{systemd_config_all + systemd_config_group + systemd_config_host}}"
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - systemd
 
@@ -27,6 +27,6 @@
     state: absent
     dest: "{{file_dst_systemd}}/{{(item.mode|default('system'))}}/{{(item.name|default('config'))}}.{{(item.type|default('target'))}}"
   loop: "{{systemd_config_all + systemd_config_group + systemd_config_host}}"
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - systemd

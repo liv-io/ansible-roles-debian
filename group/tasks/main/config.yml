@@ -12,10 +12,10 @@
 
 - name: config group group
   group:
-    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if (item.state|default(True) == False) else 'present'}}"
     name: "{{item.name}}"
     gid: "{{(item.gid|default(omit))}}"
-    system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
+    system: "{{True if (item.system|default(False) == True) else False}}"
   loop: "{{group_config_all + group_config_group + group_config_host}}"
   tags:
     - group

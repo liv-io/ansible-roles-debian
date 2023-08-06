@@ -46,7 +46,7 @@ consult the following sections.
 vars:
   ca_certificate_config:
   - name: 'root-ca.example.com.crt'
-    state: 'true'
+    state: True
     content: |
       -----BEGIN CERTIFICATE-----
       MIIKMzCCBhugAwIBAgIJAO93j1VvN+Y1MA0GCSqGSIb3DQEBCwUAMIGOMQswCQYD
@@ -55,7 +55,7 @@ vars:
       -----END CERTIFICATE-----
 
   - name: 'root-ca.domain.tld.crt'
-    state: 'true'
+    state: True
     content: |
       -----BEGIN CERTIFICATE-----
       MIIKTzCCBjegAwIBAgIJAJ+iOsEGhwYYMA0GCSqGSIb3DQEBCwUAMIGaMQswCQYD
@@ -74,11 +74,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `name`
 
@@ -133,7 +133,7 @@ vars:
     Options    :
       Examples: |
         - name: 'root-ca.example.com.crt'
-          state: 'true'
+          state: True
           content: |
             -----BEGIN CERTIFICATE-----
             MIIKMzCCBhugAwIBAgIJAO93j1VvN+Y1MA0GCSqGSIb3DQEBCwUAMIGOMQswCQYD
@@ -142,7 +142,7 @@ vars:
             -----END CERTIFICATE-----
 
         - name: 'root-ca.domain.tld.crt'
-          state: 'true'
+          state: True
           content: |
             -----BEGIN CERTIFICATE-----
             MIIKTzCCBjegAwIBAgIJAJ+iOsEGhwYYMA0GCSqGSIb3DQEBCwUAMIGaMQswCQYD

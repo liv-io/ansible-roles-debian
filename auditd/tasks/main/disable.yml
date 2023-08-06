@@ -38,7 +38,7 @@
     owner: "{{file_owner_auditd_cfg}}"
     group: "{{file_group_auditd_cfg}}"
   notify: reload service monit
-  when: (auditd_monitor_monit_state is match('true|yes|enable'))
+  when: (auditd_monitor_monit_state == True)
   tags:
     - auditd
 

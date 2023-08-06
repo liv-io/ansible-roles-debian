@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
   notify: update sources
-  when: not (item.state|default('false') is match('false|no|remove'))
+  when: not (item.state|default(False) == False)
   tags:
     - apt
 
@@ -29,7 +29,7 @@
     path: "{{(item.path|default('/etc/apt/sources.list'))}}"
   loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
   notify: update sources
-  when: (item.state|default('false') is match('false|no|remove'))
+  when: (item.state|default(False) == False)
   tags:
     - apt
 

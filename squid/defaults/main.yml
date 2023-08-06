@@ -32,7 +32,7 @@ squid_http_access:
   - {action: 'allow', source: 'src_network_unrestricted', protocol: 'http', destination: 'all', comment: 'Allow unrestricted hosts to access any resource via http'}
   - {action: 'allow', source: 'src_network_unrestricted', protocol: 'https SSL_ports', destination: 'all', comment: 'Allow unrestricted hosts to access any resource via https'}
 
-squid_httpd_suppress_version_string: 'true'
+squid_httpd_suppress_version_string: True
 
 squid_mail_from: "admin@{{ansible_domain}}"
 
@@ -46,7 +46,7 @@ squid_memory_replacement_policy: 'lru'
 
 squid_minimum_object_size: '0 KB'
 
-squid_monitor_monit_state: 'false'
+squid_monitor_monit_state: False
 
 squid_network_allowed: []
 
@@ -63,7 +63,7 @@ squid_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
   add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
 
-squid_nftables_state: 'false'
+squid_nftables_state: False
 
 squid_quick_abort_max: '0 KB'
 

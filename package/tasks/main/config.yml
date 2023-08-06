@@ -15,7 +15,7 @@
     state: present
     name: "{{item.name}}"
     install_recommends: False
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   loop: "{{package_config_all + package_config_group + package_config_host}}"
   tags:
     - package
@@ -25,7 +25,7 @@
     state: absent
     name: "{{item.name}}"
     install_recommends: False
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   loop: "{{package_config_all + package_config_group + package_config_host}}"
   tags:
     - package

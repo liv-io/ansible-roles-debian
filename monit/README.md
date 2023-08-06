@@ -99,7 +99,7 @@ consult the following sections.
 vars:
   monit_config_all:
     - name: 'system'
-      state: 'true'
+      state: True
       comment: 'system'
       config: |
         check system {{ansible_hostname}}
@@ -114,7 +114,7 @@ vars:
           if swap usage > 30% for 5 cycles then alert
 
     - name: 'storage'
-      state: 'true'
+      state: True
       comment: 'boot'
       config: |
         check filesystem "boot" with path /boot
@@ -132,7 +132,7 @@ vars:
           if does not exist then unmonitor
 
     - name: 'ntpd'
-      state: 'true'
+      state: True
       comment: 'ntpd'
       config: |
         check process ntpd matching "/usr/sbin/ntpd.*"
@@ -141,7 +141,7 @@ vars:
           if failed host 127.0.0.1 port 123 type udp then alert
 
     - name: 'openssh'
-      state: 'true'
+      state: True
       comment: 'openssh'
       config: |
         check process openssh with pidfile "/run/sshd.pid"
@@ -152,7 +152,7 @@ vars:
 
   monit_config_group:
     - name: 'nsd'
-      state: 'true'
+      state: True
       comment: 'nsd'
       config: |
         check process nsd with pidfile "/run/nsd/nsd.pid"
@@ -173,11 +173,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `name`
 
@@ -252,7 +252,7 @@ vars:
     Default    : []
     Options    :
       Examples: name: 'openssh'
-                state: 'true'
+                state: True
                 comment: 'OpenSSH'
                 config: |
                   check process openssh with pidfile "/run/sshd.pid"
@@ -277,7 +277,7 @@ vars:
     Default    : []
     Options    :
       Examples: name: 'apache'
-                state: 'true'
+                state: True
                 comment: 'Apache HTTP'
                 config: |
                   check process apache with pidfile "/run/apache2.pid"
@@ -302,7 +302,7 @@ vars:
     Default    : []
     Options    :
       Examples: name: 'apache'
-                state: 'true'
+                state: True
                 comment: 'Apache HTTP'
                 config: |
                   check process apache with pidfile "/run/apache2.pid"
@@ -486,11 +486,11 @@ vars:
     Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `monit_web_server_address`
 

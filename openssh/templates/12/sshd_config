@@ -87,7 +87,7 @@ MACs hmac-sha2-512,hmac-sha2-256
 # Authentication:
 
 #LoginGraceTime 2m
-{% if (openssh_permit_root_login is match('true|yes|enable')) %}
+{% if (openssh_permit_root_login == True) %}
 PermitRootLogin yes
 {% else %}
 PermitRootLogin no
@@ -96,7 +96,7 @@ PermitRootLogin no
 #MaxAuthTries 6
 #MaxSessions 10
 
-{% if (openssh_pubkey_authentication is match('false|no|disable')) %}
+{% if (openssh_pubkey_authentication == False) %}
 PubkeyAuthentication no
 {% else %}
 PubkeyAuthentication yes
@@ -119,7 +119,7 @@ PubkeyAuthentication yes
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-{% if (openssh_password_authentication is match('false|no|disable')) %}
+{% if (openssh_password_authentication == False) %}
 PasswordAuthentication no
 {% else %}
 PasswordAuthentication yes
@@ -157,44 +157,44 @@ UsePAM yes
 #AllowTcpForwarding yes
 #GatewayPorts no
 
-{% if (openssh_x11_forwarding is match('true|yes|enable')) %}
+{% if (openssh_x11_forwarding == True) %}
 X11Forwarding yes
 {% else %}
 X11Forwarding no
 {% endif %}
-{% if (openssh_x11_forwarding is match('true|yes|enable')) %}
+{% if (openssh_x11_forwarding == True) %}
 X11DisplayOffset {{(openssh_x11_display_offset|int(10))}}
-{% if (openssh_x11_use_localhost is match('true|yes|enable')) %}
+{% if (openssh_x11_use_localhost == True) %}
 X11UseLocalhost yes
 {% else %}
 X11UseLocalhost no
 {% endif %}
 {% endif %}
 #PermitTTY yes
-{% if (openssh_print_motd is match('true|yes|enable')) %}
+{% if (openssh_print_motd == True) %}
 PrintMotd yes
 {% else %}
 PrintMotd no
 {% endif %}
-{% if (openssh_print_last_log is match('false|no|disable')) %}
+{% if (openssh_print_last_log == False) %}
 PrintLastLog no
 {% else %}
 PrintLastLog yes
 {% endif %}
-{% if (openssh_tcp_keep_alive is match('false|no|disable')) %}
+{% if (openssh_tcp_keep_alive == False) %}
 TCPKeepAlive no
 {% else %}
 TCPKeepAlive yes
 {% endif %}
 #PermitUserEnvironment no
-{% if (openssh_compression is match('false|no|disable')) %}
+{% if (openssh_compression == False) %}
 Compression no
 {% else %}
 Compression yes
 {% endif %}
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-{% if (openssh_use_dns is match('true|yes|enable')) %}
+{% if (openssh_use_dns == True) %}
 UseDNS yes
 {% else %}
 UseDNS no
@@ -206,7 +206,7 @@ UseDNS no
 VersionAddendum {{openssh_version_addendum}}
 
 # no default banner path
-{% if (openssh_banner is match('false|no|disable')) %}
+{% if (openssh_banner == False) %}
 Banner none
 {% else %}
 Banner {{file_dst_banner}}

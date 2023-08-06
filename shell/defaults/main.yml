@@ -2,9 +2,9 @@
 
 shell_state: 'install'
 
-shell_color_prompt: 'true'
+shell_color_prompt: True
 
-shell_color_support: 'true'
+shell_color_support: True
 
 shell_ftp_proxy: ''
 
@@ -20,4 +20,4 @@ shell_no_proxy: ['localhost', '127.0.0.1', '::1']
 
 shell_pager: 'less'
 
-shell_safety: 'true'
+shell_safety: True

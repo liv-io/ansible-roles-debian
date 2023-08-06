@@ -29,7 +29,7 @@
     owner: "{{file_owner_smokeping_prober_cfg}}"
     group: "{{file_group_smokeping_prober_cfg}}"
   notify: reload service monit
-  when: (smokeping_prober_monitor_monit_state is match('true|yes|enable'))
+  when: (smokeping_prober_monitor_monit_state == True)
   tags:
     - smokeping_prober
 
@@ -41,7 +41,7 @@
     owner: "{{file_owner_smokeping_prober_nft}}"
     group: "{{file_group_smokeping_prober_nft}}"
   notify: reload service nftables
-  when: (smokeping_prober_nftables_state is match('true|yes|enable'))
+  when: (smokeping_prober_nftables_state == True)
   tags:
     - smokeping_prober
 

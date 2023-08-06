@@ -50,7 +50,7 @@
     owner: "{{file_owner_openntpd_cfg}}"
     group: "{{file_group_openntpd_cfg}}"
   notify: reload service monit
-  when: (openntpd_monitor_monit_state is match('true|yes|enable'))
+  when: (openntpd_monitor_monit_state == True)
   tags:
     - openntpd
 
@@ -62,7 +62,7 @@
     owner: "{{file_owner_openntpd_nft}}"
     group: "{{file_group_openntpd_nft}}"
   notify: reload service nftables
-  when: (openntpd_nftables_state is match('true|yes|enable'))
+  when: (openntpd_nftables_state == True)
   tags:
     - openntpd
 

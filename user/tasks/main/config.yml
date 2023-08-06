@@ -12,39 +12,39 @@
 
 - name: config primary group
   group:
-    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if (item.state|default(True) == False) else 'present'}}"
     name: "{{item.name}}"
     gid: "{{(item.gid|default(omit))}}"
-    system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
+    system: "{{True if (item.system|default(False) == True) else False}}"
   loop: "{{user_config_all + user_config_group + user_config_host}}"
   tags:
     - user
 
 - name: config user
   user:
-    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if (item.state|default(True) == False) else 'present'}}"
     name: "{{item.name}}"
     comment: "{{(item.comment|default(item.name))}}"
     uid: "{{(item.uid|default(omit))}}"
     group: "{{(item.group|default('nobody'))}}"
     groups: "{{(item.groups|default([])|join(','))}}"
-    append: "{{'yes' if (item.groups_append|default('false') is match('true|yes|enable')) else 'no'}}"
+    append: "{{True if (item.groups_append|default(False) == True) else False }}"
     home: "{{(item.home|default('/home/'+item.name))}}"
-    createhome: "{{'no' if (item.home_create|default('true') is match('false|no|disable')) else 'yes'}}"
-    move_home: "{{'yes' if (item.home_move|default('false') is match('true|yes|enable')) else 'no'}}"
-    remove: "{{'yes' if (item.home_remove|default('false') is match('true|yes|enable')) else 'no'}}"
-    force: "{{'yes' if (item.home_force|default('false') is match('true|yes|enable')) else 'no'}}"
+    createhome: "{{False  if (item.home_create|default(True) == False) else True}}"
+    move_home: "{{True if (item.home_move|default(False) == True) else False }}"
+    remove: "{{True if (item.home_remove|default(False) == True) else False }}"
+    force: "{{True if (item.home_force|default(False) == True) else False }}"
     password: "{{(item.password|default('!'))}}"
-    update_password: "{{'on_create' if (item.password_update|default('true') is match('false|no|disable')) else 'always'}}"
+    update_password: "{{'on_create' if (item.password_update|default(True) == False) else 'always'}}"
     shell: "{{(item.shell|default('/bin/bash'))}}"
-    system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
+    system: "{{True if (item.system|default(False) == True) else False }}"
   loop: "{{user_config_all + user_config_group + user_config_host}}"
   tags:
     - user
 
 - name: config .ssh.dir
   file:
-    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'directory'}}"
+    state: "{{'absent' if (item.state|default(True) == False) else 'directory'}}"
     path: "{{item.home|default('/home/'+item.name+'/.ssh')}}"
     mode: "{{file_mode_ssh_dir}}"
     owner: "{{item.name}}"
@@ -61,6 +61,6 @@
     owner: "{{item.name}}"
     group: "{{item.group|default(item.name)}}"
   loop: "{{user_config_all + user_config_group + user_config_host}}"
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - user

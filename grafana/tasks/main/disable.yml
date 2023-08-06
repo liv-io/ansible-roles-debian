@@ -28,7 +28,7 @@
     owner: "{{file_owner_grafana_cfg}}"
     group: "{{file_group_grafana_cfg}}"
   notify: reload service monit
-  when: (grafana_monitor_monit_state is match('true|yes|enable'))
+  when: (grafana_monitor_monit_state == True)
   tags:
     - grafana
 
@@ -40,7 +40,7 @@
     owner: "{{file_owner_grafana_nft}}"
     group: "{{file_group_grafana_nft}}"
   notify: reload service nftables
-  when: (grafana_nftables_state is match('true|yes|enable'))
+  when: (grafana_nftables_state == True)
   tags:
     - grafana
 

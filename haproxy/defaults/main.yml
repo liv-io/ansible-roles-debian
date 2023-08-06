@@ -4,7 +4,7 @@ haproxy_state: 'enable'
 
 haproxy_config: ''
 
-haproxy_monitor_monit_state: 'false'
+haproxy_monitor_monit_state: False
 
 haproxy_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "http, https from internal private addresses"
@@ -12,15 +12,15 @@ haproxy_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new udp dport { 80, 443 } counter accept comment "http, https to any"
   add rule ip6 filter OUTPUT ct state new udp dport { 80, 443 } counter accept comment "http, https to any"
 
-haproxy_nftables_state: 'false'
+haproxy_nftables_state: False
 
 haproxy_stats_auth: []
 
-haproxy_stats_defaults_state: 'disable'
+haproxy_stats_defaults_state: False
 
-haproxy_stats_hide_version: 'true'
+haproxy_stats_hide_version: True
 
-haproxy_stats_listen_state: 'disable'
+haproxy_stats_listen_state: False
 
 haproxy_stats_realm: 'Haproxy\ Statistics'
 
@@ -28,8 +28,8 @@ haproxy_stats_refresh: 5
 
 haproxy_stats_show_desc: ''
 
-haproxy_stats_show_legends: 'true'
+haproxy_stats_show_legends: True
 
-haproxy_stats_show_node: 'true'
+haproxy_stats_show_node: True
 
 haproxy_stats_uri: '/haproxy?stats'

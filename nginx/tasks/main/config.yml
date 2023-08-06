@@ -21,7 +21,7 @@
   notify:
     - check nginx
     - reload service nginx
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - nginx
 
@@ -33,6 +33,6 @@
   notify:
     - check nginx
     - reload service nginx
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - nginx

@@ -2,13 +2,13 @@
 
 rest_server_state: 'enable'
 
-rest_server_monitor_monit_state: 'false'
+rest_server_monitor_monit_state: False
 
 rest_server_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 443 counter accept comment "http, https from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 443 counter accept comment "http, https from unique local addresses"
 
-rest_server_nftables_state: 'false'
+rest_server_nftables_state: False
 
 rest_server_options:
   - '--path /data/rest-server'

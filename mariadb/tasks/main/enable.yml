@@ -68,7 +68,7 @@
 - name: create cron mariadb_run-backup
   cron:
     state: present
-    disabled: "{{'yes' if (mariadb_run_backup_state is match('false|no|disable')) else 'no'}}"
+    disabled: "{{True if (mariadb_run_backup_state == False) else False}}"
     name: "{{cron_name_mariadb_run_backup}}"
     cron_file: "{{cron_cron_file_mariadb_run_backup}}"
     day: "{{cron_day_mariadb_run_backup}}"
@@ -89,7 +89,7 @@
     owner: "{{file_owner_mariadb_cfg}}"
     group: "{{file_group_mariadb_cfg}}"
   notify: reload service monit
-  when: (mariadb_monitor_monit_state is match('true|yes|enable'))
+  when: (mariadb_monitor_monit_state == True)
   tags:
     - mariadb
 
@@ -101,7 +101,7 @@
     owner: "{{file_owner_mariadb_nft}}"
     group: "{{file_group_mariadb_nft}}"
   notify: reload service nftables
-  when: (mariadb_nftables_state is match('true|yes|enable'))
+  when: (mariadb_nftables_state == True)
   tags:
     - mariadb
 

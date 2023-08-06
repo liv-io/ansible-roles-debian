@@ -28,7 +28,7 @@
     owner: "{{file_owner_haproxy_exporter_cfg}}"
     group: "{{file_group_haproxy_exporter_cfg}}"
   notify: reload service monit
-  when: (haproxy_exporter_monitor_monit_state is match('true|yes|enable'))
+  when: (haproxy_exporter_monitor_monit_state == True)
   tags:
     - haproxy_exporter
 
@@ -40,7 +40,7 @@
     owner: "{{file_owner_haproxy_exporter_nft}}"
     group: "{{file_group_haproxy_exporter_nft}}"
   notify: reload service nftables
-  when: (haproxy_exporter_nftables_state is match('true|yes|enable'))
+  when: (haproxy_exporter_nftables_state == True)
   tags:
     - haproxy_exporter
 

@@ -254,7 +254,7 @@
     owner: "{{file_owner_apache2_cfg}}"
     group: "{{file_group_apache2_cfg}}"
   notify: reload service monit
-  when: (apache2_monitor_monit_state is match('true|yes|enable'))
+  when: (apache2_monitor_monit_state == True)
   tags:
     - apache2
 
@@ -266,7 +266,7 @@
     owner: "{{file_owner_apache2_nft}}"
     group: "{{file_group_apache2_nft}}"
   notify: reload service nftables
-  when: (apache2_nftables_state is match('true|yes|enable'))
+  when: (apache2_nftables_state == True)
   tags:
     - apache2
 

@@ -6,7 +6,7 @@ root_comment: 'root'
 
 root_groups: []
 
-root_groups_append: 'true'
+root_groups_append: True
 
 root_password: '!'
 

@@ -20,7 +20,7 @@
     version: "{{(item.version|default('latest'))}}"
   loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"
   notify: restart service grafana
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: not (item.state|default(True) == False)
   tags:
     - grafana
 
@@ -31,6 +31,6 @@
     grafana_plugins_dir: "{{(item.dst|default('/var/lib/grafana/plugins'))}}"
   loop: "{{grafana_plugins_all + grafana_plugins_group + grafana_plugins_host}}"
   notify: restart service grafana
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == False)
   tags:
     - grafana

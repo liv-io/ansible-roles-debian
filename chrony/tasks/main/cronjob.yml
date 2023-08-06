@@ -61,7 +61,7 @@
     owner: "{{file_owner_chronyd_nft}}"
     group: "{{file_group_chronyd_nft}}"
   notify: reload service nftables
-  when: (chrony_nftables_state is match('true|yes|enable'))
+  when: (chrony_nftables_state == True)
   tags:
     - chrony
 

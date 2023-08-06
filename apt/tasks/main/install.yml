@@ -23,7 +23,7 @@
     state: present
     name: "{{package_name_mailx}}"
     install_recommends: False
-  when: (apt_monitor_mail_state is match('true|yes|enable'))
+  when: (apt_monitor_mail_state == True)
   tags:
     - apt
 
@@ -68,7 +68,7 @@
 - name: create cron apt_check-update
   cron:
     state: present
-    disabled: "{{'yes' if (apt_check_update_state is match('false|no|disable')) else 'no'}}"
+    disabled: "{{True if (apt_check_update_state == False) else False}}"
     name: "{{cron_name_apt_check_update}}"
     cron_file: "{{cron_cron_file_apt_check_update}}"
     day: "{{cron_day_apt_check_update}}"
@@ -85,7 +85,7 @@
   stat:
     path: "{{file_dst_nftables_d}}"
   register: register_nftables_d
-  when: (apt_nftables_state is match('true|yes|enable'))
+  when: (apt_nftables_state == True)
   tags:
     - apt
 
@@ -96,7 +96,7 @@
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
-  when: (apt_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  when: (apt_nftables_state == True) and (register_nftables_d.stat.exists == False)
   tags:
     - apt
 
@@ -106,7 +106,7 @@
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: False
-  when: (apt_nftables_state is match('true|yes|enable'))
+  when: (apt_nftables_state == True)
   tags:
     - apt
 
@@ -118,6 +118,6 @@
     owner: "{{file_owner_apt_nft}}"
     group: "{{file_group_apt_nft}}"
   notify: reload service nftables
-  when: (apt_nftables_state is match('true|yes|enable'))
+  when: (apt_nftables_state == True)
   tags:
     - apt

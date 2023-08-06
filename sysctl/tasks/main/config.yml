@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   register: register_config
   loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
-  when: not (item.state is match('false|no|remove'))
+  when: not (item.state == False)
   tags:
     - sysctl
 
@@ -28,7 +28,7 @@
     state: absent
     dest: "{{file_dst_sysctl_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}.conf"
   loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
-  when: (item.state is match('false|no|remove'))
+  when: (item.state == False)
   tags:
     - sysctl
 

@@ -2,7 +2,7 @@
 
 grafana_state: 'enable'
 
-grafana_monitor_monit_state: 'false'
+grafana_monitor_monit_state: False
 
 grafana_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3000 counter accept comment "grafana from internal private addresses"
@@ -14,12 +14,12 @@ grafana_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new tcp dport 9093 counter accept comment "grafana to alertmanager"
   add rule ip6 filter OUTPUT ct state new tcp dport 9093 counter accept comment "grafana to alertmanager"
 
-grafana_nftables_state: 'false'
+grafana_nftables_state: False
 
 grafana_plugins_all:
-  - {name: 'camptocamp-prometheus-alertmanager-datasource', state: 'true', version: 'latest'}
-  - {name: 'grafana-piechart-panel', state: 'true', version: 'latest'}
-  - {name: 'grafana-worldmap-panel', state: 'true', version: 'latest'}
+  - {name: 'camptocamp-prometheus-alertmanager-datasource', state: True, version: 'latest'}
+  - {name: 'grafana-piechart-panel', state: True, version: 'latest'}
+  - {name: 'grafana-worldmap-panel', state: True, version: 'latest'}
 
 grafana_plugins_group: []
 
@@ -35,6 +35,6 @@ grafana_smtp_password: ''
 
 grafana_smtp_port: ''
 
-grafana_smtp_state: 'false'
+grafana_smtp_state: False
 
 grafana_smtp_user: ''

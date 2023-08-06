@@ -23,7 +23,7 @@
 - name: create cron unbound-adblock_update-list
   cron:
     state: present
-    disabled: "{{'yes' if (unbound_adblock_update_list_state is match('false|no|disable')) else 'no'}}"
+    disabled: "{{True if (unbound_adblock_update_list_state == False) else False}}"
     name: "{{cron_name_unbound_adblock_update_list}}"
     day: "{{cron_day_unbound_adblock_update_list}}"
     hour: "{{cron_hour_unbound_adblock_update_list}}"

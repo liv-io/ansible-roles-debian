@@ -22,7 +22,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (nsd_monitor_monit_state is match('true|yes|enable'))
+  when: (nsd_monitor_monit_state == True)
   tags:
     - nsd
 
@@ -33,7 +33,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (nsd_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  when: (nsd_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - nsd
 
@@ -43,7 +43,7 @@
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: False
-  when: (nsd_monitor_monit_state is match('true|yes|enable'))
+  when: (nsd_monitor_monit_state == True)
   tags:
     - nsd
 
@@ -51,7 +51,7 @@
   stat:
     path: "{{file_dst_nftables_d}}"
   register: register_nftables_d
-  when: (nsd_nftables_state is match('true|yes|enable'))
+  when: (nsd_nftables_state == True)
   tags:
     - nsd
 
@@ -62,7 +62,7 @@
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
-  when: (nsd_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  when: (nsd_nftables_state == True) and (register_nftables_d.stat.exists == False)
   tags:
     - nsd
 
@@ -72,6 +72,6 @@
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: False
-  when: (nsd_nftables_state is match('true|yes|enable'))
+  when: (nsd_nftables_state == True)
   tags:
     - nsd

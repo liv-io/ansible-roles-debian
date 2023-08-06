@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
   notify: restart service rsyslog
-  when: not (item.state|default('true') is match('false|no|remove'))
+  when: not (item.state|default(True) == False)
   tags:
     - rsyslog
 
@@ -29,6 +29,6 @@
     path: "{{file_dst_config}}/{{item.name}}.conf"
   loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
   notify: restart service rsyslog
-  when: (item.state|default('true') is match('false|no|remove'))
+  when: (item.state|default(True) == False)
   tags:
     - rsyslog

@@ -34,7 +34,7 @@
 - name: create cron openntpd_check-time
   cron:
     state: present
-    disabled: "{{'yes' if (openntpd_check_time_state is match('false|no|disable')) else 'no'}}"
+    disabled: "{{True if (openntpd_check_time_state == False) else False}}"
     name: "{{cron_name_openntpd_check_time}}"
     day: "{{cron_day_openntpd_check_time}}"
     hour: "{{cron_hour_openntpd_check_time}}"
@@ -54,7 +54,7 @@
     owner: "{{file_owner_openntpd_cfg}}"
     group: "{{file_group_openntpd_cfg}}"
   notify: reload service monit
-  when: (openntpd_monitor_monit_state is match('true|yes|enable'))
+  when: (openntpd_monitor_monit_state == True)
   tags:
     - openntpd
 
@@ -66,7 +66,7 @@
     owner: "{{file_owner_openntpd_nft}}"
     group: "{{file_group_openntpd_nft}}"
   notify: reload service nftables
-  when: (openntpd_nftables_state is match('true|yes|enable'))
+  when: (openntpd_nftables_state == True)
   tags:
     - openntpd
 

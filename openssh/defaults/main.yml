@@ -8,11 +8,11 @@ openssh_allow_groups: []
 
 openssh_allow_users: []
 
-openssh_banner: 'enable'
+openssh_banner: True
 
 openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
 
-openssh_compression: 'yes'
+openssh_compression: True
 
 openssh_deny_groups: []
 
@@ -30,36 +30,36 @@ openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
 
 openssh_match: []
 
-openssh_monitor_monit_state: 'false'
+openssh_monitor_monit_state: False
 
 openssh_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 22 counter accept comment "ssh from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 22 counter accept comment "ssh from unique local addresses"
 
-openssh_nftables_state: 'false'
+openssh_nftables_state: False
 
-openssh_password_authentication: 'yes'
+openssh_password_authentication: True
 
-openssh_permit_root_login: 'no'
+openssh_permit_root_login: False
 
 openssh_port: ['22']
 
-openssh_print_motd: 'no'
+openssh_print_motd: False
 
-openssh_print_last_log: 'yes'
+openssh_print_last_log: True
 
-openssh_pubkey_authentication: 'yes'
+openssh_pubkey_authentication: True
 
-openssh_rsa_authentication: 'yes'
+openssh_rsa_authentication: True
 
-openssh_tcp_keep_alive: 'yes'
+openssh_tcp_keep_alive: True
 
-openssh_use_dns: 'no'
+openssh_use_dns: False
 
 openssh_version_addendum: 'none'
 
 openssh_x11_display_offset: 10
 
-openssh_x11_forwarding: 'no'
+openssh_x11_forwarding: False
 
-openssh_x11_use_localhost: 'yes'
+openssh_x11_use_localhost: True

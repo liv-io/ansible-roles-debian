@@ -8,7 +8,7 @@ modsecurity_sec_pcre_match_limit: 1000000
 
 modsecurity_sec_pcre_match_limit_recursion: 1000000
 
-modsecurity_sec_request_body_access: 'true'
+modsecurity_sec_request_body_access: True
 
 modsecurity_sec_request_body_limit: 41943040
 
@@ -16,7 +16,7 @@ modsecurity_sec_request_body_limit_action: 'reject'
 
 modsecurity_sec_request_body_no_files_limit: 13107200
 
-modsecurity_sec_response_body_access: 'false'
+modsecurity_sec_response_body_access: False
 
 modsecurity_sec_response_body_limit_action: 'reject'
 

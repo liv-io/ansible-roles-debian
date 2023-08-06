@@ -41,14 +41,14 @@ consult the following sections.
 vars:
   systemd_config_all:
     - name: 'ctrl-alt-del'
-      state: 'true'
+      state: True
       mode: 'system'
       type: 'target'
       comment: "Disable 'ctrl+alt+del' hotkey"
       options: []
 
     - name: 'emergency-net'
-      state: 'true'
+      state: True
       mode: 'system'
       type: 'target'
       comment: 'Emergency Mode with Networking'
@@ -65,7 +65,7 @@ vars:
 
   systemd_config_group:
     - name: 'opensmtpd'
-      state: 'true'
+      state: True
       mode: 'system'
       type: 'target'
       comment: 'OpenSMTPD mail daemon'
@@ -92,7 +92,7 @@ vars:
 
   systemd_config_host:
     - name: 'crond'
-      state: 'true'
+      state: True
       mode: 'system'
       type: 'target'
       comment: 'Command Scheduler'
@@ -128,11 +128,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      True : True
+      False: False
 
 `mode`
 
@@ -223,10 +223,10 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{name: 'ctrl-alt-del', state: 'true', mode: 'system', type: 'target',
+    Default    : [{name: 'ctrl-alt-del', state: True, mode: 'system', type: 'target',
                   comment: "Disable 'ctrl+alt+del' hotkey", options: []}]
     Options    :
-      Examples: [{name: 'ctrl-alt-del', state: 'true', mode: 'system', type: 'target',
+      Examples: [{name: 'ctrl-alt-del', state: True, mode: 'system', type: 'target',
                   comment: "Disable 'ctrl+alt+del' hotkey", options: []}]
       None    : []
 
@@ -239,7 +239,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'ctrl-alt-del', state: 'true', mode: 'system', type: 'target',
+      Examples: [{name: 'ctrl-alt-del', state: True, mode: 'system', type: 'target',
                   comment: "Disable 'ctrl+alt+del' hotkey", options: []}]
       None    : []
 
@@ -252,7 +252,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'ctrl-alt-del', state: 'true', mode: 'system', type: 'target',
+      Examples: [{name: 'ctrl-alt-del', state: True, mode: 'system', type: 'target',
                   comment: "Disable 'ctrl+alt+del' hotkey", options: []}]
       None    : []
 

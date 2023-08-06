@@ -55,7 +55,7 @@
     owner: "{{file_owner_opensmtpd_cfg}}"
     group: "{{file_group_opensmtpd_cfg}}"
   notify: reload service monit
-  when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
+  when: (opensmtpd_monitor_monit_state == True)
   tags:
     - opensmtpd
 
@@ -67,7 +67,7 @@
     owner: "{{file_owner_opensmtpd_nft}}"
     group: "{{file_group_opensmtpd_nft}}"
   notify: reload service nftables
-  when: (opensmtpd_nftables_state is match('true|yes|enable'))
+  when: (opensmtpd_nftables_state == True)
   tags:
     - opensmtpd
 

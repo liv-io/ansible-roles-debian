@@ -65,7 +65,7 @@ consult the following sections.
 vars:
   apache2_config:
     - name: 'host.domain.tld'
-      state: 'true'
+      state: True
       listen: '*'
       port: 80
       document_root: '/data/host'
@@ -85,12 +85,12 @@ vars:
         Redirect permanent /  https://host.domain.tld/
 
     - name: 'host.domain.tld'
-      state: 'true'
+      state: True
       listen: '*'
       port: 443
       document_root: '/data/host'
-      hsts_state: 'true'
-      ssl_state: 'true'
+      hsts_state: True
+      ssl_state: True
       ssl_certificate: '/etc/ssl/host/host.domain.tld.crt'
       ssl_certificate_key: '/etc/ssl/host/host.domain.tld.key'
       ssl_ca_certificate: '/etc/ssl/host/ca.domain.tld.crt'
@@ -181,11 +181,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `listen`
 
@@ -309,11 +309,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'talse'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `ssl_honor_cipher_order`
 
@@ -321,11 +321,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `ssl_protocols`
 
@@ -344,11 +344,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `ssl_state`
 
@@ -356,11 +356,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `xss_protection_state`
 
@@ -368,11 +368,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ### Role
 

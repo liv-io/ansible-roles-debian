@@ -13,14 +13,14 @@ Defaults	mail_badpass
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Uncomment to disable the insults for incorrect passwords
-{% if (sudo_insults is match('true|yes|enable')) %}
+{% if (sudo_insults == True) %}
 Defaults insults
 {% else %}
 Defaults !insults
 {% endif %}
 
 # Uncomment to disable the lecture the first time you run sudo
-{% if (sudo_lecture is match('true|yes|enable')) %}
+{% if (sudo_lecture == True) %}
 Defaults lecture
 {% else %}
 Defaults !lecture

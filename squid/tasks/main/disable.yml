@@ -91,7 +91,7 @@
     owner: "{{file_owner_squid_cfg}}"
     group: "{{file_group_squid_cfg}}"
   notify: reload service monit
-  when: (squid_monitor_monit_state is match('true|yes|enable'))
+  when: (squid_monitor_monit_state == True)
   tags:
     - squid
 
@@ -103,7 +103,7 @@
     owner: "{{file_owner_squid_nft}}"
     group: "{{file_group_squid_nft}}"
   notify: reload service nftables
-  when: (squid_nftables_state is match('true|yes|enable'))
+  when: (squid_nftables_state == True)
   tags:
     - squid
 

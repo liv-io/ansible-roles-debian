@@ -8,7 +8,7 @@ global:
   evaluation_interval: {{prometheus_global_evaluation_interval}}
   # scrape_timeout is set to the global default (10s).
 
-{% if (prometheus_alertmanager_state is match('true|yes|enable')) %}
+{% if (prometheus_alertmanager_state == True) %}
 # Alertmanager configuration
 alerting:
   alertmanagers:
@@ -25,7 +25,7 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
 
-{% if (prometheus_alertmanager_state is match('true|yes|enable')) %}
+{% if (prometheus_alertmanager_state == True) %}
   # ALERTMANAGER
 
   - job_name: 'alertmanager'
@@ -47,7 +47,7 @@ scrape_configs:
       labels:
         instance: '{{ansible_hostname}}'
 
-{% if (prometheus_smokeping_prober_state is match('true|yes|enable')) %}
+{% if (prometheus_smokeping_prober_state == True) %}
   # SMOKEPING_PROBER
 
   - job_name: 'smokeping'
@@ -81,7 +81,7 @@ scrape_configs:
 {% endif %}
 {% endif %}
 
-{% if (prometheus_blackbox_exporter_state is match('true|yes|enable')) %}
+{% if (prometheus_blackbox_exporter_state == True) %}
   # BLACKBOX_EXPORTER
 
   - job_name: 'http_ip4_basic'

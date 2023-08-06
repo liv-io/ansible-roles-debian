@@ -17,7 +17,7 @@
   failed_when: (register_create_group.rc > 0) and (register_create_group.rc < 255)
   check_mode: False
   loop: "{{pve_group_config_all + pve_group_config_group + pve_group_config_host}}"
-  when: not ((item.state|default('true')) is match('false|no|remove'))
+  when: not ((item.state|default(True)) == False)
   tags:
     - pve
 
@@ -28,7 +28,7 @@
   failed_when: (register_create_user.rc > 0) and (register_create_user.rc < 255)
   check_mode: False
   loop: "{{pve_user_config_all + pve_user_config_group + pve_user_config_host}}"
-  when: not ((item.state|default('true')) is match('false|no|remove'))
+  when: not ((item.state|default(True)) == False)
   tags:
     - pve
 
@@ -38,7 +38,7 @@
   changed_when: (register_create_acl.rc > 0)
   check_mode: False
   loop: "{{pve_acl_config_all + pve_acl_config_group + pve_acl_config_host}}"
-  when: not ((item.state|default('true')) is match('false|no|remove'))
+  when: not ((item.state|default(True)) == False)
   tags:
     - pve
 
@@ -49,7 +49,7 @@
   failed_when: (register_remove_group.rc > 0) and (register_remove_group.rc < 255)
   check_mode: False
   loop: "{{pve_group_config_all + pve_group_config_group + pve_group_config_host}}"
-  when: ((item.state|default('true')) is match('false|no|remove'))
+  when: ((item.state|default(True)) == False)
   tags:
     - pve
 
@@ -60,6 +60,6 @@
   failed_when: (register_remove_user.rc > 0) and (register_remove_user.rc < 255)
   check_mode: False
   loop: "{{pve_user_config_all + pve_user_config_group + pve_user_config_host}}"
-  when: ((item.state|default('true')) is match('false|no|remove'))
+  when: ((item.state|default(True)) == False)
   tags:
     - pve

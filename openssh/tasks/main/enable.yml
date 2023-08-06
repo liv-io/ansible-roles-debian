@@ -70,7 +70,7 @@
     owner: "{{file_owner_openssh_cfg}}"
     group: "{{file_group_openssh_cfg}}"
   notify: reload service monit
-  when: (openssh_monitor_monit_state is match('true|yes|enable'))
+  when: (openssh_monitor_monit_state == True)
   tags:
     - openssh
 
@@ -82,7 +82,7 @@
     owner: "{{file_owner_openssh_nft}}"
     group: "{{file_group_openssh_nft}}"
   notify: reload service nftables
-  when: (openssh_nftables_state is match('true|yes|enable'))
+  when: (openssh_nftables_state == True)
   tags:
     - openssh
 

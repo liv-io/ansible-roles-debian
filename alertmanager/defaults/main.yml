@@ -4,7 +4,7 @@ alertmanager_state: 'enable'
 
 alertmanager_config: []
 
-alertmanager_monitor_monit_state: 'false'
+alertmanager_monitor_monit_state: False
 
 alertmanager_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 9093, 9093 } counter accept comment "alertmanager from internal private addresses"
@@ -14,7 +14,7 @@ alertmanager_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new tcp dport { 465, 587 } counter accept comment "smtps to any"
   add rule ip6 filter OUTPUT ct state new tcp dport { 465, 587 } counter accept comment "smtps to any"
 
-alertmanager_nftables_state: 'false'
+alertmanager_nftables_state: False
 
 alertmanager_version: '0.25.0'
 

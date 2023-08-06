@@ -36,28 +36,28 @@ consult the following sections.
 vars:
   apt_config_all:
     - path: '/etc/apt/sources.list'
-      state: 'true'
+      state: True
       repositories:
         - url: 'http://ftp.ch.debian.org/debian'
-          state: 'true'
+          state: True
           comment: 'Debian - Base'
           distribution: "{{ansible_distribution_release}}"
           components: ['main']
 
         - url: 'http://ftp.ch.debian.org/debian'
-          state: 'true'
+          state: True
           comment: 'Debian - Updates'
           distribution: "{{ansible_distribution_release}}-updates"
           components: ['main']
 
         - url: 'http://security.debian.org/debian-security'
-          state: 'true'
+          state: True
           comment: 'Debian - Security'
           distribution: "{{ansible_distribution_release}}-security"
           components: ['main']
 
         - url: 'http://ftp.ch.debian.org/debian'
-          state: 'true'
+          state: True
           comment: 'Debian - Backports'
           distribution: "{{ansible_distribution_release}}-backports"
           components: ['main']
@@ -129,11 +129,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `apt_check_update_weekday`
 
@@ -153,9 +153,9 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Backports, distribution: {{ansible_distribution_release}}-backports, components: [main]}]
+    Default    : [{url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: True, comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Backports, distribution: {{ansible_distribution_release}}-backports, components: [main]}]
     Options    :
-      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: True, comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
       None    : []
 
 `apt_config_group`
@@ -167,7 +167,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: True, comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
       None    : []
 
 `apt_config_host`
@@ -179,7 +179,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: 'true', comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: 'true', comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
+      Examples: [{url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Base, distribution: {{ansible_distribution_release}}, components: [main]}, {url: 'http://ftp.ch.debian.org/debian', state: True, comment: Debian - Updates, distribution: {{ansible_distribution_release}}-updates, components: [main]}, {url: 'http://security.debian.org/debian-security', state: True, comment: Debian - Security, distribution: {{ansible_distribution_release}}-security, components: [main]}]
       None    : []
 
 `apt_http_proxy`
@@ -235,11 +235,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `apt_nftables_filter_rule`
 
@@ -261,11 +261,11 @@ vars:
     Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `apt_monitor_prom_state`
 
@@ -273,11 +273,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `apt_monitor_prom_textfile_collector`
 

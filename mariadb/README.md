@@ -71,41 +71,41 @@ consult the following sections.
 ```
 vars:
   mariadb_database_group:
-    - state: 'true'
+    - state: True
       name: 'db01'
 
   mariadb_database_host:
-    - state: 'false'
+    - state: False
       name: 'db02'
 
   mariadb_user_group:
-    - state: 'true'
+    - state: True
       name: 'admin01'
       host: 'localhost'
       password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174'
-      password_encrypted: 'true'
+      password_encrypted: True
       privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW'
 
-    - state: 'true'
+    - state: True
       name: 'user01'
       host: 'localhost'
       password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A'
-      password_encrypted: 'true'
+      password_encrypted: True
       privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE'
 
   mariadb_user_host:
-    - state: 'false'
+    - state: False
       name: 'admin02'
       host: '%'
       password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf'
-      password_encrypted: 'false'
+      password_encrypted: False
       privileges: 'db02.*:ALL'
 
-    - state: 'false'
+    - state: False
       name: 'user02'
       host: '%'
       password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f'
-      password_encrypted: 'false'
+      password_encrypted: False
       privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE'
 ```
 
@@ -137,8 +137,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'db01'},
-                 {state: 'false', name: 'db02'}]
+      Examples: [{state: True, name: 'db01'},
+                 {state: False, name: 'db02'}]
       None    : []
 
 `mariadb_database_group`
@@ -150,8 +150,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'db01'},
-                 {state: 'false', name: 'db02'}]
+      Examples: [{state: True, name: 'db01'},
+                 {state: False, name: 'db02'}]
       None    : []
 
 `mariadb_database_host`
@@ -163,8 +163,8 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'db01'},
-                 {state: 'false', name: 'db02'}]
+      Examples: [{state: True, name: 'db01'},
+                 {state: False, name: 'db02'}]
       None    : []
 
 `mariadb_config_server`
@@ -218,11 +218,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mariadb_monitor_monit_state`
 
@@ -230,11 +230,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mariadb_monitor_prom_state`
 
@@ -242,11 +242,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mariadb_monitor_prom_textfile_collector`
 
@@ -279,11 +279,11 @@ vars:
     Implemented: 2.0.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mariadb_root_password`
 
@@ -358,11 +358,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `mariadb_run_backup_weekday`
 
@@ -384,10 +384,10 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'admin01', host: 'localhost', password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW' },
-                 {state: 'true', name: 'user01', host: 'localhost', password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE' },
-                 {state: 'false', name: 'admin02', host: '%', password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf', password_encrypted: 'false', privileges: 'db02.*:ALL' },
-                 {state: 'false', name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
+      Examples: [{state: True, name: 'admin01', host: 'localhost', password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW' },
+                 {state: True, name: 'user01', host: 'localhost', password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE' },
+                 {state: False, name: 'admin02', host: '%', password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf', password_encrypted: 'false', privileges: 'db02.*:ALL' },
+                 {state: False, name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
       None    : []
 
 `mariadb_user_group`
@@ -399,10 +399,10 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'admin01', host: 'localhost', password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW' },
-                 {state: 'true', name: 'user01', host: 'localhost', password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE' },
-                 {state: 'false', name: 'admin02', host: '%', password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf', password_encrypted: 'false', privileges: 'db02.*:ALL' },
-                 {state: 'false', name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
+      Examples: [{state: True, name: 'admin01', host: 'localhost', password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW' },
+                 {state: True, name: 'user01', host: 'localhost', password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE' },
+                 {state: False, name: 'admin02', host: '%', password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf', password_encrypted: 'false', privileges: 'db02.*:ALL' },
+                 {state: False, name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
       None    : []
 
 `mariadb_user_host`
@@ -414,10 +414,10 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{state: 'true', name: 'admin01', host: 'localhost', password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW' },
-                 {state: 'true', name: 'user01', host: 'localhost', password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE' },
-                 {state: 'false', name: 'admin02', host: '%', password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf', password_encrypted: 'false', privileges: 'db02.*:ALL' },
-                 {state: 'false', name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
+      Examples: [{state: True, name: 'admin01', host: 'localhost', password: '*56EC0CB80AF97B7EDA3E7A19E10C55B708FC7174', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP,CREATE VIEW' },
+                 {state: True, name: 'user01', host: 'localhost', password: '*2CACC4AEFC023EF42E02069AAB74A6DCBBBEC11A', password_encrypted: 'true', privileges: 'db01.*:SELECT,INSERT,UPDATE,DELETE' },
+                 {state: False, name: 'admin02', host: '%', password: 'd9xXjPoe3nhQoLQcevWCHm,9Hs97T5rf', password_encrypted: 'false', privileges: 'db02.*:ALL' },
+                 {state: False, name: 'user02', host: '%', password: 'XFjFXxD5ei_qj267uWsgn2,FJtQood!f', password_encrypted: 'false', privileges: 'db02.*:SELECT,INSERT,UPDATE,DELETE' }]
       None    : []
 
 ## Conflicts

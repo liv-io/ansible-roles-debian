@@ -4,7 +4,7 @@ systemd_state: 'install'
 
 systemd_config_all:
   - name: 'ctrl-alt-del'
-    state: 'true'
+    state: True
     mode: 'system'
     type: 'target'
     comment: "Disable 'ctrl+alt+del' hotkey"

@@ -181,7 +181,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (suricata_monitor_monit_state is match('true|yes|enable'))
+  when: (suricata_monitor_monit_state == True)
   tags:
     - suricata
 
@@ -192,7 +192,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (suricata_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  when: (suricata_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - suricata
 
@@ -202,7 +202,7 @@
   changed_when: (register_check_service_monit.rc > 1)
   failed_when: (register_check_service_monit.rc > 1)
   check_mode: False
-  when: (suricata_monitor_monit_state is match('true|yes|enable'))
+  when: (suricata_monitor_monit_state == True)
   tags:
     - suricata
 

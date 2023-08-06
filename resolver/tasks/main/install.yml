@@ -24,7 +24,7 @@
   stat:
     path: "{{file_dst_nftables_d}}"
   register: register_nftables_d
-  when: (resolver_nftables_state is match('true|yes|enable'))
+  when: (resolver_nftables_state == True)
   tags:
     - resolver
 
@@ -35,7 +35,7 @@
     mode: "{{file_mode_nftables_d}}"
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
-  when: (resolver_nftables_state is match('true|yes|enable')) and (register_nftables_d.stat.exists == False)
+  when: (resolver_nftables_state == True) and (register_nftables_d.stat.exists == False)
   tags:
     - resolver
 
@@ -45,7 +45,7 @@
   changed_when: (register_check_service_nftables.rc > 1)
   failed_when: (register_check_service_nftables.rc > 1)
   check_mode: False
-  when: (resolver_nftables_state is match('true|yes|enable'))
+  when: (resolver_nftables_state == True)
   tags:
     - resolver
 
@@ -57,6 +57,6 @@
     owner: "{{file_owner_resolver_nft}}"
     group: "{{file_group_resolver_nft}}"
   notify: reload service nftables
-  when: (resolver_nftables_state is match('true|yes|enable'))
+  when: (resolver_nftables_state == True)
   tags:
     - resolver

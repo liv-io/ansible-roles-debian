@@ -68,7 +68,7 @@ consult the following sections.
 vars:
   auditd_config_all:
     - name: 'audit'
-      state: 'true'
+      state: True
       config: |
         # First rule - delete all
         -D
@@ -87,7 +87,7 @@ vars:
 
   auditd_config_group:
     - name: 'audit'
-      state: 'true'
+      state: True
       config: |
         # First rule - delete all
         -D
@@ -108,7 +108,7 @@ vars:
 
   auditd_config_host:
     - name: 'home'
-      state: 'true'
+      state: True
       config: |
         # Log if an admin is accessing files of other users
         -a exit,always -F dir=/home/ -F uid=0 -C auid!=obj_uid
@@ -140,7 +140,7 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : - state: 'true'
+    Default    : - state: True
                    name: 'audit'
                    config: |
                      # First rule - delete all
@@ -152,7 +152,7 @@ vars:
                      # Set failure mode to syslog
                      -f 1
     Options    :
-      Examples: - state: 'true'
+      Examples: - state: True
                   name: 'file'
                   config: |
                     # Watch '/etc/shadow' for changes
@@ -168,7 +168,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: - state: 'true'
+      Examples: - state: True
                   name: 'file'
                   config: |
                     # Watch '/etc/shadow' for changes
@@ -184,7 +184,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: - state: 'true'
+      Examples: - state: True
                   name: 'file'
                   config: |
                     # Watch '/etc/shadow' for changes
@@ -197,11 +197,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'false'
+    Type       : Boolean
+    Default    : False
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 `auditd_syslog_active`
 
@@ -209,11 +209,11 @@ vars:
     Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
-    Type       : String
-    Default    : 'true'
+    Type       : Boolean
+    Default    : True
     Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
+      True : True
+      False: False
 
 ## Conflicts
 

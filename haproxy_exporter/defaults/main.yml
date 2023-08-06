@@ -4,12 +4,12 @@ haproxy_exporter_state: 'enable'
 
 haproxy_exporter_haproxy_scrape_uri: []
 
-haproxy_exporter_monitor_monit_state: 'false'
+haproxy_exporter_monitor_monit_state: False
 
 haproxy_exporter_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9101 counter accept comment "haproxy_exporter from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9101 counter accept comment "haproxy_exporter from unique local addresses"
 
-haproxy_exporter_nftables_state: 'false'
+haproxy_exporter_nftables_state: False
 
 haproxy_exporter_version: '0.14.0'

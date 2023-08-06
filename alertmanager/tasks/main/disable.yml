@@ -38,7 +38,7 @@
     owner: "{{file_owner_alertmanager_cfg}}"
     group: "{{file_group_alertmanager_cfg}}"
   notify: reload service monit
-  when: (alertmanager_monitor_monit_state is match('true|yes|enable'))
+  when: (alertmanager_monitor_monit_state == True)
   tags:
     - alertmanager
 
@@ -50,7 +50,7 @@
     owner: "{{file_owner_alertmanager_nft}}"
     group: "{{file_group_alertmanager_nft}}"
   notify: reload service nftables
-  when: (alertmanager_nftables_state is match('true|yes|enable'))
+  when: (alertmanager_nftables_state == True)
   tags:
     - alertmanager
 

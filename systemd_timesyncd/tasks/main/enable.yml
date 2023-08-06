@@ -34,7 +34,7 @@
 - name: create cron systemd-timesyncd_check-time
   cron:
     state: present
-    disabled: "{{'yes' if (systemd_timesyncd_check_time_state is match('false|no|disable')) else 'no'}}"
+    disabled: "{{True if (systemd_timesyncd_check_time_state == False) else False}}"
     name: "{{cron_name_systemd_timesyncd_check_time}}"
     day: "{{cron_day_systemd_timesyncd_check_time}}"
     hour: "{{cron_hour_systemd_timesyncd_check_time}}"
@@ -54,7 +54,7 @@
     owner: "{{file_owner_systemd_timesyncd_cfg}}"
     group: "{{file_group_systemd_timesyncd_cfg}}"
   notify: reload service monit
-  when: (systemd_timesyncd_monitor_monit_state is match('true|yes|enable'))
+  when: (systemd_timesyncd_monitor_monit_state == True)
   tags:
     - systemd_timesyncd
 
@@ -66,7 +66,7 @@
     owner: "{{file_owner_systemd_timesyncd_nft}}"
     group: "{{file_group_systemd_timesyncd_nft}}"
   notify: reload service nftables
-  when: (systemd_timesyncd_nftables_state is match('true|yes|enable'))
+  when: (systemd_timesyncd_nftables_state == True)
   tags:
     - systemd_timesyncd
 

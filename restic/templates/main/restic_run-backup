@@ -16,7 +16,7 @@ ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
 EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (restic_monitor_mail_state is match('true|yes|enable')) %}
+{% if (restic_monitor_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
@@ -56,7 +56,7 @@ export HTTP_PROXY='{{restic_http_proxy}}'
 export HTTPS_PROXY='{{restic_https_proxy}}'
 {% endif %}
 
-{% if (restic_monitor_mail_state is match('true|yes|enable')) %}
+{% if (restic_monitor_mail_state == True) %}
 MAIL_FROM_ADDRESS='{{restic_monitor_mail_from_address}}'
 MAIL_TO_ADDRESS='{% for item in restic_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='restic: Run Backup - Error ({{ansible_hostname}})'
@@ -64,7 +64,7 @@ MAIL_SUBJECT='restic: Run Backup - Error ({{ansible_hostname}})'
 
 # Functions
 
-{% if (restic_monitor_mail_state is match('true|yes|enable')) %}
+{% if (restic_monitor_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -89,7 +89,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (restic_monitor_prom_state is match('true|yes|enable')) %}
+{% if (restic_monitor_prom_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -159,11 +159,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (restic_monitor_mail_state is match('true|yes|enable')) %}
+{% if (restic_monitor_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (restic_monitor_prom_state is match('true|yes|enable')) %}
+{% if (restic_monitor_prom_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -186,7 +186,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (restic_monitor_prom_state is match('true|yes|enable')) %}
+{% if (restic_monitor_prom_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 

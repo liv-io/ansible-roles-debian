@@ -4,7 +4,7 @@ smokeping_prober_state: 'enable'
 
 smokeping_prober_hosts: []
 
-smokeping_prober_monitor_monit_state: 'false'
+smokeping_prober_monitor_monit_state: False
 
 smokeping_prober_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9374 counter accept comment "smokeping_prober from internal private addresses"
@@ -12,6 +12,6 @@ smokeping_prober_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new tcp dport 1-65535 counter accept comment "tcp to any"
   add rule ip6 filter OUTPUT ct state new tcp dport 1-65535 counter accept comment "tcp to any"
 
-smokeping_prober_nftables_state: 'false'
+smokeping_prober_nftables_state: False
 
 smokeping_prober_version: '0.7.1'
