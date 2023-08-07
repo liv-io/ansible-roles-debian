@@ -40,7 +40,7 @@
     name: "{{item.name}}"
     host: "{{(item.host|default('localhost'))}}"
     password: "{{item.password}}"
-    update_password: "{{'on_create' if (item.password_update|default(True) == False) else 'always'}}"
+    update_password: "{{on_create if (item.password_update|default(True) == False) else always}}"
     encrypted: "{{True if (item.password_encrypted|default(False) == True) else False}}"
     priv: "{{(item.privileges|default('*.*:ALL'))}}"
     append_privs: "{{True if (item.privileges_append|default(False) == True) else False}}"
