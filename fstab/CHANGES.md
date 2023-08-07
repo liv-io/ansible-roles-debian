@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.1 (2023-08-07)
+
+### Bugs
+
+- Fix state parameter inside of if-statement
+
 ## 2.0.0 (2023-08-06)
 
 ### Changes

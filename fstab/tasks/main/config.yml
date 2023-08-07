@@ -12,7 +12,7 @@
 
 - name: config line fstab
   lineinfile:
-    state: "{{absent if ((item.state|default(True)) == False) else present}}"
+    state: "{{'absent' if ((item.state|default(True)) == False) else 'present'}}"
     line: "{{item.filesystem}}  {{item.mountpoint}}  {{item.type}}  {{(item.options|join(',')) if not ((item.options|default([])) == []) else 'defaults'}}  {{(item.dump|int(0)) if not ((item.dump|default('')) == '') else 0}} {{(item.pass|int(0)) if not ((item.pass|default('')) == '') else 0}} # {{(item.comment|default(''))}} | Ansible: {{(item.mountpoint|md5)}}"
     regexp: '{{(item.mountpoint|md5)}}$'
     dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_fstab}}"

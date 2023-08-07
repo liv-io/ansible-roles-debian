@@ -12,7 +12,7 @@
 
 - name: config group group
   group:
-    state: "{{absent if (item.state|default(True) == False) else present}}"
+    state: "{{'absent' if (item.state|default(True) == False) else 'present'}}"
     name: "{{item.name}}"
     gid: "{{(item.gid|default(omit))}}"
     system: "{{True if (item.system|default(False) == True) else False}}"
