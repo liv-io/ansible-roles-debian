@@ -34,7 +34,7 @@ consult the following sections.
   vars:
     openssh_state: 'enable'
     openssh_allow_users: ['user01', 'user02', 'user03']
-    openssh_password_authentication: 'no'
+    openssh_password_authentication: False
     openssh_listen_address: ['0.0.0.0']
 ```
 
@@ -47,7 +47,7 @@ consult the following sections.
   vars:
     openssh_state: 'disable'
     openssh_allow_users: ['user01', 'user02', 'user03']
-    openssh_password_authentication: 'no'
+    openssh_password_authentication: False
     openssh_listen_address: ['0.0.0.0']
 ```
 
