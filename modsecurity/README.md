@@ -192,7 +192,7 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'reject'
+    Default    : 'DetectionOnly'
     Options    :
       Enable       : 'true' | 'yes' | 'enable'
       Disable      : 'false' | 'no' | 'disable'
