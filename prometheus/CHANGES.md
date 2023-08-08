@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.1 (2023-08-08)
+
+### Enhancements
+
+- Do not show legend for heatmaps in `script_status.json`
+
 ## 2.1.0 (2023-08-08)
 
 ### Enhancements
