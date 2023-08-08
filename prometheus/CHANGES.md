@@ -10,6 +10,19 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.0 (2023-08-08)
+
+### Enhancements
+
+- Update `script_status.json` schema version from 26 to 38
+
+### Features
+
+- Add graphs for script `chrony_update-time` to `script_status.json`
+- Add graphs for script `systemd-timesyncd_check-time` to `script_status.json`
+- Add graphs for script `zfs_scrub-pools` to `script_status.json`
+- Add graphs for script `zfs_trim-pools` to `script_status.json`
+
 ## 2.0.0 (2023-08-06)
 
 ### Changes
