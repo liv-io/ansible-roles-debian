@@ -42,7 +42,7 @@ apache2_nftables_state: False
 
 apache2_server_admin: "admin@{{ansible_domain}}"
 
-apache2_server_signature: True
+apache2_server_signature: 'true'
 
 apache2_server_tokens: 'prod'
 
