@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.2 (2023-08-08)
+
+### Bugs
+
+- Do not make `script_status.json` editable
+- Fix `chrony_check_time_duration` source
+
 ## 2.1.1 (2023-08-08)
 
 ### Enhancements

@@ -15,7 +15,7 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
@@ -676,7 +676,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "apt_check_update_duration",
+          "expr": "chrony_check_time_duration",
           "instant": false,
           "legendFormat": "{{instance}}",
           "range": true,
