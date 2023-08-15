@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.4 (2023-08-15)
+
+### Bugs
+
+- Add missing `prometheus.nft` file variables
+
 ## 2.1.3 (2023-08-15)
 
 ### Bugs

@@ -181,6 +181,13 @@ file_mode_nginx_nft: '0640'
 file_owner_nginx_nft: 'root'
 file_group_nginx_nft: 'root'
 
+# prometheus.nft
+file_src_prometheus_nft: 'templates/main/prometheus.nft'
+file_dst_prometheus_nft: '/etc/nftables.d/prometheus.conf'
+file_mode_prometheus_nft: '0640'
+file_owner_prometheus_nft: 'root'
+file_group_prometheus_nft: 'root'
+
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
