@@ -2,204 +2,209 @@
 
 {{ansible_managed|comment(decoration='#')}}
 
-# SHELL VARIABLES
+# Shell variables
 
 SHELL='/bin/sh'
 PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 
-# COMMANDS
+# Commands
 
-which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
-basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
-date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
-echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
-expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
-grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
-hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
-logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (apt_monitor_mail_state == True) %}
-mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
-{% endif %}
-rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-tr=$(${which} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
-touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
-wc=$(${which} wc) || { echo "Error: Command 'wc' not found."; exit 127; }
-whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
+WHICH='/usr/bin/which' && [ -x ${WHICH} ] || { echo "Error: Command 'which' not found."; exit 127; }
+BASENAME=$(${WHICH} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
+DATE=$(${WHICH} date) || { echo "Error: Command 'date' not found."; exit 127; }
+ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
+EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
+LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
+RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
+WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
-apt_get=$(${which} apt-get) || { echo "Error: Command 'apt-get' not found."; exit 127; }
-
-# VARIABLES
-
-host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
-script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
-time_start=$(${date} '+%s')
-user='{{file_owner_apt_check_update}}'
-lockfile='/var/tmp/apt_check-update.lock'
-retval=0
-severity='Debug'
-message='Please check log files for more information.'
-
-textfile_collector='{{apt_monitor_prom_textfile_collector}}'
+APT_GET=$(${WHICH} apt-get) || { echo "Error: Command 'apt-get' not found."; exit 127; }
+GREP=$(${WHICH} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
+TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
+WC=$(${WHICH} wc) || { echo "Error: Command 'wc' not found."; exit 127; }
 
 {% if (apt_monitor_mail_state == True) %}
-mail_from_address='{{apt_monitor_mail_from_address}}'
-mail_to_address='{% for item in apt_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='apt: Check Update - Error ({{ansible_hostname}})'
+MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
-# FUNCTIONS
+# Environment variables
+
+HOST=$(${HOSTNAME} -s) || { echo "Error: Host name unknown."; exit 68; }
+SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute."; exit 126; }
+TIME_START=$(${DATE} '+%s')
+USER='{{file_owner_apt_check_update}}'
+LOCKFILE='/var/tmp/apt_check-update.lock'
+TEXTFILE_COLLECTOR='{{apt_monitor_prom_textfile_collector}}'
+
+{% if (apt_monitor_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{apt_monitor_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in apt_monitor_mail_to_address%}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+MAIL_SUBJECT='apt: Check Update - Error ({{ansible_hostname}})'
+{% endif %}
+
+# Functions
 
 {% if (apt_monitor_mail_state == True) %}
 mail_error() {
-  retval="$1"
-  severity="$2"
-  message="$3"
-  mail_body="ERROR
+    local exit_code=${1}
+    local message=${2}
+    local mail_body="ERROR
 
 Message     : ${message}
-Severity    : ${severity}
-Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
+Exit Code   : ${exit_code}
+Date & Time : $(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
 
 SCRIPT
 
-Name        : apt_check-update
+Name        : ${SCRIPT_NAME}
 Type        : Shell script
-PID         : $$
+PID         : ${$}
 
 SYSTEM
 
 Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}"
 
-  ${echo} "${mail_body}" | ${mailx} -r "${mail_from_address}" -s "${mail_subject}" "${mail_to_address}" > /dev/null 2>&1
+    ${ECHO} "${mail_body}" | ${MAILX} -r "${MAIL_FROM_ADDRESS}" -s "${MAIL_SUBJECT}" "${MAIL_TO_ADDRESS}" >/dev/null 2>&1
 }
 {% endif %}
 
 {% if (apt_monitor_prom_state == True) %}
 update_prom() {
-  retval="$1"
-  time_start="$2"
-  time_exec="$3"
+    local exit_code=${1}
+    local time_exec=${2}
 
-  if [ -w "${textfile_collector}" ]; then
-    ${echo} -e "# HELP apt_check_update_exit The script's exit code.\n"\
+    if [ -w "${TEXTFILE_COLLECTOR}" ]; then
+        ${ECHO} -e "# HELP apt_check_update_exit The script's exit code.\n"\
 "# TYPE apt_check_update_exit counter\n"\
-"apt_check_update_exit ${retval}" > "${textfile_collector}/apt_check_update_exit.prom"
+"apt_check_update_exit ${exit_code}" >"${TEXTFILE_COLLECTOR}/apt_check_update_exit.prom"
 
-    if [ -z "${time_start}" ] ; then
-      ${rm} -f "${textfile_collector}/apt_check_update_start.prom"
-    else
-      ${echo} -e "# HELP apt_check_update_start The script's start time in epoch.\n"\
+        if [ -z "${TIME_START}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/apt_check_update_start.prom"
+        else
+            ${ECHO} -e "# HELP apt_check_update_start The script's start time in epoch.\n"\
 "# TYPE apt_check_update_start counter\n"\
-"apt_check_update_start ${time_start}" > "${textfile_collector}/apt_check_update_start.prom"
-    fi
+"apt_check_update_start ${TIME_START}" >"${TEXTFILE_COLLECTOR}/apt_check_update_start.prom"
+        fi
 
-    if [ -z "${time_exec}" ] ; then
-      ${rm} -f "${textfile_collector}/apt_check_update_duration.prom"
-    else
-      ${echo} -e "# HELP apt_check_update_duration The script's execution duration in seconds.\n"\
+        if [ -z "${time_exec}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/apt_check_update_duration.prom"
+        else
+            ${ECHO} -e "# HELP apt_check_update_duration The script's execution duration in seconds.\n"\
 "# TYPE apt_check_update_duration counter\n"\
-"apt_check_update_duration ${time_exec}" > "${textfile_collector}/apt_check_update_duration.prom"
-    fi
+"apt_check_update_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/apt_check_update_duration.prom"
+        fi
 
-    if [ -z "${packages}" ] ; then
-      ${rm} -f "${textfile_collector}/apt_check_update_packages.prom"
-    else
-      ${echo} -e "# HELP apt_check_update_packages The number of pending updates in packages.\n"\
+        if [ -z "${PACKAGES}" ] ; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/apt_check_update_packages.prom"
+        else
+            ${ECHO} -e "# HELP apt_check_update_packages The number of pending updates in packages.\n"\
 "# TYPE apt_check_update_packages counter\n"\
-"apt_check_update_packages ${packages}" > "${textfile_collector}/apt_check_update_packages.prom"
+"apt_check_update_packages ${PACKAGES}" >"${TEXTFILE_COLLECTOR}/apt_check_update_packages.prom"
+        fi
     fi
-  fi
 }
 {% endif %}
 
 check_script_user() {
-  if [ "$(${whoami})" != "${user}" ]; then
-    retval=77
-    severity='Error'
-    message="Please run script as user '${user}'"
-    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
-    exit "${retval}"
-  fi
+    if [ "$(${WHOAMI})" != "${USER}" ]; then
+        local exit_code=77
+        local message="Please run script as user '${USER}'"
+
+        if [ -t 1 ]; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        exit ${exit_code}
+    fi
 }
 
 create_lockfile() {
-  if [ ! -e "${lockfile}" ]; then
-    ${touch} "${lockfile}" || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
-  else
-    log_and_exit_on_error "$?" 'Warning' 'Lockfile does already exist. Please investigate.'
-  fi
+    if [ ! -e "${LOCKFILE}" ]; then
+        ${TOUCH} ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not create lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile does already exist. Please investigate.'
+    fi
 }
 
 remove_lockfile() {
-  if [ -e "${lockfile}" ]; then
-    ${rm} -f "${lockfile}" || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
-  else
-    log_and_exit_on_error "$?" 'Warning' 'Lockfile did not exist. Please investigate.'
-  fi
+    if [ -e "${LOCKFILE}" ]; then
+        ${RM} -f ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not remove lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile did not exist. Please investigate.'
+    fi
 }
 
 log_and_exit_on_error() {
-  retval="$1"
-  severity="$2"
-  message="$3"
-  if [ "${retval}" -ne 0 ]; then
-    ${rm} -f "${lockfile}"
+    local exit_code=${1}
+    local message=${2}
 
-    if [ -t 1 ] ; then
-      ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
-    fi
+    if [ ${exit_code} -ne 0 ]; then
+        ${RM} -f ${LOCKFILE}
 
-    ${logger} -t "${script}" "${severity}: ${message}"
+        if [ -t 1 ]; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        ${LOGGER} -t ${SCRIPT} "${message}"
 
 {% if (apt_monitor_mail_state == True) %}
-    mail_error "${retval}" "${severity}" "${message}"
+        mail_error ${exit_code} "${message}"
 {% endif %}
 
 {% if (apt_monitor_prom_state == True) %}
-    update_prom "${retval}" "${time_start}" "${time_exec}"
+        update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
-    exit "${retval}"
-  fi
+        exit ${exit_code}
+    fi
 }
 
 log_and_exit() {
-  retval="$1"
-  severity="$2"
-  message="$3"
+    local time_end=$(${DATE} '+%s')
+    local time_exec=$(${EXPR} ${time_end} - ${TIME_START})
+    local time_hr=$(${DATE} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    local exit_code=${1}
+    local message=${2}
 
-  time_end=$(${date} '+%s')
-  time_exec=$(${expr} "${time_end}" - "${time_start}")
-  time_hr=$(${date} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    if [ -t 1 ]; then
+        ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}"
+    fi
 
-  ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+    ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
 {% if (apt_monitor_prom_state == True) %}
-  update_prom "${retval}" "${time_start}" "${time_exec}"
+    update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
-  exit "${retval}"
+    exit ${exit_code}
 }
 
-# SCRIPT
+resync_package_index() {
+    ${APT_GET} --quiet update >/dev/null 2>&1
+    log_and_exit_on_error "${?}" 'Error' 'Unable to resynchronize package index files.'
+}
 
-check_script_user
+get_pending_updates() {
+    PACKAGES=$(${APT_GET} --quiet --simulate dist-upgrade | ${GREP} '^Inst ' | ${WC} -l)
+    log_and_exit_on_error "${?}" 'Error' 'Unable to check for updates.'
+}
 
-create_lockfile
+# Establish run order
+main() {
+    check_script_user
+    create_lockfile
+    resync_package_index
+    get_pending_updates
+    remove_lockfile
+    if [ "${PACKAGES}" -ne 0 ]; then
+        log_and_exit '100' "System has pending updates (${PACKAGES})."
+    else
+        log_and_exit '0' 'System is up-to-date.'
+    fi
+}
 
-# Resynchronize package index files
-${apt_get} --quiet update > /dev/null 2>&1
-log_and_exit_on_error "$?" 'Error' 'Unable to resynchronize package index files.'
-
-# Check for pending updates
-packages=$(${apt_get} --quiet --simulate dist-upgrade | ${grep} '^Inst ' | ${wc} -l)
-log_and_exit_on_error "$?" 'Error' 'Unable to check for updates.'
-
-remove_lockfile
-
-if [ "${packages}" -ne 0 ]; then
-  log_and_exit '100' 'Warn' "System has pending updates (${packages})."
-else
-  log_and_exit '0' 'Info' 'System is up-to-date.'
-fi
+main

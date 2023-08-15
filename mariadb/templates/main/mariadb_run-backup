@@ -2,235 +2,248 @@
 
 {{ansible_managed|comment(decoration='#')}}
 
-# SHELL VARIABLES
+# Shell variables
 
 SHELL='/bin/sh'
 PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 
-# COMMANDS
+# Commands
 
-which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
-basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
-chmod=$(${which} chmod) || { echo "Error: Command 'chmod' not found."; exit 127; }
-chown=$(${which} chown) || { echo "Error: Command 'chown' not found."; exit 127; }
-date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
-echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
-expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
-find=$(${which} find) || { echo "Error: Command 'find' not found."; exit 127; }
-grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
-gzip=$(${which} gzip) || { echo "Error: Command 'gzip' not found."; exit 127; }
-hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
-logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (mariadb_monitor_mail_state == True) %}
-mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
-{% endif %}
-rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-service=$(${which} service) || { echo "Error: Command 'service' not found."; exit 127; }
-tar=$(${which} tar) || { echo "Error: Command 'tar' not found."; exit 127; }
-touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
-whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
+WHICH='/usr/bin/which' && [ -x ${WHICH} ] || { echo "Error: Command 'which' not found."; exit 127; }
+BASENAME=$(${WHICH} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
+DATE=$(${WHICH} date) || { echo "Error: Command 'date' not found."; exit 127; }
+ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
+EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
+LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
+RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
+WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
-mysql=$(${which} mysql) || { echo "Error: Command 'mysql' not found."; exit 127; }
-mysqldump=$(${which} mysqldump) || { echo "Error: Command 'mysqldump' not found."; exit 127; }
-
-# VARIABLES
-
-host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
-script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
-time_start=$(${date} '+%s')
-user='{{file_owner_mariadb_run_backup}}'
-lockfile='/var/tmp/mariadb_run-backup.lock'
-retval=0
-severity='Debug'
-message='Please check log files for more information.'
-
-mariadb_service_name='{{service_name_mariadb}}'
-credentials_cnf='{{file_dst_credentials_cnf}}'
-backup_dir='{{file_dst_mariadb_backup_dir}}'
-backup_timestamp=$(${date} '+%Y%m%d-%H%M%S%z')
-backup_file_owner='{{file_owner_mariadb_backup_file}}'
-backup_file_group='{{file_group_mariadb_backup_file}}'
-backup_file_mode='{{file_mode_mariadb_backup_file}}'
-backup_exclude="{% if not (mariadb_run_backup_exclude == []) %}{% for item in mariadb_run_backup_exclude %}{{item}}{% if not loop.last %}|{% endif %}{% endfor %}{% else %} {% endif %}"
-keep_days={{(mariadb_run_backup_keep_days|int(2))}}
-textfile_collector='{{mariadb_monitor_prom_textfile_collector}}'
+CHMOD=$(${WHICH} chmod) || { echo "Error: Command 'chmod' not found."; exit 127; }
+CHOWN=$(${WHICH} chown) || { echo "Error: Command 'chown' not found."; exit 127; }
+FIND=$(${WHICH} find) || { echo "Error: Command 'find' not found."; exit 127; }
+GREP=$(${WHICH} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
+GZIP=$(${WHICH} gzip) || { echo "Error: Command 'gzip' not found."; exit 127; }
+MYSQL=$(${WHICH} mysql) || { echo "Error: Command 'mysql' not found."; exit 127; }
+MYSQLDUMP=$(${WHICH} mysqldump) || { echo "Error: Command 'mysqldump' not found."; exit 127; }
+SERVICE=$(${WHICH} service) || { echo "Error: Command 'service' not found."; exit 127; }
+TAR=$(${WHICH} tar) || { echo "Error: Command 'tar' not found."; exit 127; }
 
 {% if (mariadb_monitor_mail_state == True) %}
-mail_from_address='{{mariadb_monitor_mail_from_address}}'
-mail_to_address='{% for item in mariadb_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='MariaDB: Run Backup - Error ({{ansible_hostname}})'
+MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
-# FUNCTIONS
+# Environment variables
+
+HOST=$(${HOSTNAME} -s) || { echo "Error: Host name unknown."; exit 68; }
+SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute."; exit 126; }
+TIME_START=$(${DATE} '+%s')
+USER='{{file_owner_mariadb_run_backup}}'
+LOCKFILE='/var/tmp/mariadb_run-backup.lock'
+TEXTFILE_COLLECTOR='{{mariadb_monitor_prom_textfile_collector}}'
+
+MARIADB_SERVICE_NAME='{{service_name_mariadb}}'
+CREDENTIALS_CNF='{{file_dst_credentials_cnf}}'
+BACKUP_DIR='{{file_dst_mariadb_backup_dir}}'
+BACKUP_TIMESTAMP=$(${DATE} '+%Y%m%d-%H%M%S%z')
+BACKUP_FILE_OWNER='{{file_owner_mariadb_backup_file}}'
+BACKUP_FILE_GROUP='{{file_group_mariadb_backup_file}}'
+BACKUP_FILE_MODE='{{file_mode_mariadb_backup_file}}'
+BACKUP_EXCLUDE="{% if not (mariadb_run_backup_exclude == []) %}{% for item in mariadb_run_backup_exclude %}{{item}}{% if not loop.last %}|{% endif %}{% endfor %}{% else %} {% endif %}"
+KEEP_DAYS={{mariadb_run_backup_keep_days|int(2)}}
+
+{% if (mariadb_monitor_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{mariadb_monitor_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in mariadb_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+MAIL_SUBJECT='MariaDB: Run Backup - Error ({{ansible_hostname}})'
+{% endif %}
+
+# Functions
 
 {% if (mariadb_monitor_mail_state == True) %}
 mail_error() {
-  retval="$"1
-  severity="$2"
-  message="$3"
-  mail_body="ERROR
+    local exit_code=${1}
+    local message=${2}
+    local mail_body="ERROR
 
 Message     : ${message}
-Severity    : ${severity}
-Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
+Exit Code   : ${exit_code}
+Date & Time : $(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
 
 SCRIPT
 
-Name        : mariadb_run-backup
+Name        : ${SCRIPT_NAME}
 Type        : Shell script
-PID         : $$
+PID         : ${$}
 
 SYSTEM
 
 Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}"
 
-  ${echo} "${mail_body}" | ${mailx} -r "${mail_from_address}" -s "${mail_subject}" "${mail_to_address}" > /dev/null 2>&1
+    ${ECHO} "${mail_body}" | ${MAILX} -r "${MAIL_FROM_ADDRESS}" -s "${MAIL_SUBJECT}" "${MAIL_TO_ADDRESS}" >/dev/null 2>&1
 }
 {% endif %}
 
 {% if (mariadb_monitor_prom_state == True) %}
 update_prom() {
-  retval="$1"
-  time_start="$2"
-  time_exec="$3"
+    local exit_code=${1}
+    local time_exec=${2}
 
-  if [ -w "${textfile_collector}" ]; then
-    ${echo} -e "# HELP mariadb_run_backup_exit The script's exit code.\n"\
+    if [ -w "${TEXTFILE_COLLECTOR}" ]; then
+        ${ECHO} -e "# HELP mariadb_run_backup_exit The script's exit code.\n"\
 "# TYPE mariadb_run_backup_exit counter\n"\
-"mariadb_run_backup_exit ${retval}" > "${textfile_collector}/mariadb_run_backup_exit.prom"
+"mariadb_run_backup_exit ${exit_code}" >"${TEXTFILE_COLLECTOR}/mariadb_run_backup_exit.prom"
 
-    if [ -z "${time_start}" ] ; then
-      ${rm} -f "${textfile_collector}/mariadb_run_backup_start.prom"
-    else
-      ${echo} -e "# HELP mariadb_run_backup_start The script's start time in epoch.\n"\
+        if [ -z "${TIME_START}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/mariadb_run_backup_start.prom"
+        else
+            ${ECHO} -e "# HELP mariadb_run_backup_start The script's start time in epoch.\n"\
 "# TYPE mariadb_run_backup_start counter\n"\
-"mariadb_run_backup_start ${time_start}" > "${textfile_collector}/mariadb_run_backup_start.prom"
-    fi
+"mariadb_run_backup_start ${TIME_START}" >"${TEXTFILE_COLLECTOR}/mariadb_run_backup_start.prom"
+        fi
 
-    if [ -z "${time_exec}" ] ; then
-      ${rm} -f "${textfile_collector}/mariadb_run_backup_duration.prom"
-    else
-      ${echo} -e "# HELP mariadb_run_backup_duration The script's execution duration in seconds.\n"\
+        if [ -z "${time_exec}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/mariadb_run_backup_duration.prom"
+        else
+            ${ECHO} -e "# HELP mariadb_run_backup_duration The script's execution duration in seconds.\n"\
 "# TYPE mariadb_run_backup_duration counter\n"\
-"mariadb_run_backup_duration ${time_exec}" > "${textfile_collector}/mariadb_run_backup_duration.prom"
+"mariadb_run_backup_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/mariadb_run_backup_duration.prom"
+        fi
     fi
-  fi
 }
 {% endif %}
 
 check_script_user() {
-  if [ "$(${whoami})" != "${user}" ]; then
-    retval=77
-    severity='Error'
-    message="Please run script as user '${user}'"
-    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
-    exit "${retval}"
-  fi
+    if [ "$(${WHOAMI})" != "${USER}" ]; then
+        local exit_code=77
+        local message="Please run script as user '${USER}'"
+
+        if [ -t 1 ]; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        exit ${exit_code}
+    fi
 }
 
 create_lockfile() {
-  if [ ! -e "${lockfile}" ]; then
-    ${touch} "${lockfile}" || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
-  else
-    log_and_exit_on_error "$?" 'Warning' 'Lockfile does already exist. Please investigate.'
-  fi
+    if [ ! -e "${LOCKFILE}" ]; then
+        ${TOUCH} ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not create lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile does already exist. Please investigate.'
+    fi
 }
 
 remove_lockfile() {
-  if [ -e "${lockfile}" ]; then
-    ${rm} -f "${lockfile}" || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
-  else
-    log_and_exit_on_error "$?" 'Warning' 'Lockfile did not exist. Please investigate.'
-  fi
+    if [ -e "${LOCKFILE}" ]; then
+        ${RM} -f ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not remove lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile did not exist. Please investigate.'
+    fi
 }
 
 log_and_exit_on_error() {
-  retval="$1"
-  severity="$2"
-  message="$3"
-  if [ "${retval}" -ne 0 ]; then
-    ${rm} -f "${lockfile}"
+    local exit_code=${1}
+    local message=${2}
 
-    if [ -t 1 ] ; then
-      ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
-    fi
+    if [ ${exit_code} -ne 0 ]; then
+        ${RM} -f ${LOCKFILE}
 
-    ${logger} -t "${script}" "${severity}: ${message}"
+        if [ -t 1 ]; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        ${LOGGER} -t ${SCRIPT} "${message}"
 
 {% if (mariadb_monitor_mail_state == True) %}
-    mail_error "${retval}" "${severity}" "${message}"
+        mail_error ${exit_code} "${message}"
 {% endif %}
 
 {% if (mariadb_monitor_prom_state == True) %}
-    update_prom "${retval}" "${time_start}" "${time_exec}"
+        update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
-    exit "${retval}"
-  fi
+        exit ${exit_code}
+    fi
 }
 
 log_and_exit() {
-  time_end=$(${date} '+%s')
-  time_exec=$(${expr} "${time_end}" - "${time_start}")
-  time_hr=$(${date} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    local time_end=$(${DATE} '+%s')
+    local time_exec=$(${EXPR} ${time_end} - ${TIME_START})
+    local time_hr=$(${DATE} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    local exit_code=${1}
+    local message=${2}
 
-  retval=0
-  severity='Info'
-  message='Backup created successfully.'
-  ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+    if [ -t 1 ]; then
+        ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}"
+    fi
+
+    ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
 {% if (mariadb_monitor_prom_state == True) %}
-  update_prom "${retval}" "${time_start}" "${time_exec}"
+    update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
-  exit "${retval}"
+    exit ${exit_code}
 }
 
-# SCRIPT
+check_mariadb_service() {
+    ${SERVICE} ${MARIADB_SERVICE_NAME} status >/dev/null 2>&1
+    log_and_exit_on_error "${?}" 'MariaDB server is not running.'
+}
 
-check_script_user
+get_mariadb_databases() {
+    DATABASES=$(${MYSQL} --defaults-file=${CREDENTIALS_CNF} --execute='show databases' --skip-column-names | ${GREP} -vE "${BACKUP_EXCLUDE}")
+    log_and_exit_on_error "${?}" 'Unable to get individual MariaDB databases.'
+}
 
-create_lockfile
+dump_and_compress_database_dumps() {
+    for db in ${DATABASES} ; do
+        ${MYSQLDUMP} --defaults-file=${CREDENTIALS_CNF} --add-drop-database --add-drop-table --allow-keywords --quote-names --single-transaction --events --routines \
+            --log-error="${BACKUP_DIR}/${db}_${BACKUP_TIMESTAMP}-error.log" "${db}" | ${GZIP} -c >"${BACKUP_DIR}/${db}_${BACKUP_TIMESTAMP}.gz"
+        if [ "${?}" -eq 0 ]; then
+            local message="'${db}' dumped and compressed."
+            ${LOGGER} -t ${SCRIPT} "${message}"
+        else
+            log_and_exit_on_error "${?}" "Unable to dump and compress '${db}'."
+        fi
 
-# Check if MariaDB server is running
-${service} ${mariadb_service_name} status > /dev/null 2>&1
-log_and_exit_on_error "$?" 'Warning' 'MariaDB server is not running.'
+        ${TAR} -C${BACKUP_DIR} -c -f"${BACKUP_DIR}/${HOST}_${db}_${BACKUP_TIMESTAMP}.tar" "${db}_${BACKUP_TIMESTAMP}-error.log" "${db}_${BACKUP_TIMESTAMP}.gz"
+        log_and_exit_on_error "${?}" "Unable to archive '${db}'."
 
-# Get individual MariaDB databases
-databases=$(${mysql} --defaults-file=${credentials_cnf} --execute='show databases' --skip-column-names | ${grep} -vE "${backup_exclude}")
-log_and_exit_on_error "$?" 'Error' 'Unable to get individual MariaDB databases.'
+        ${RM} -f "${BACKUP_DIR}/${db}_${BACKUP_TIMESTAMP}-error.log" "${BACKUP_DIR}/${db}_${BACKUP_TIMESTAMP}.gz"
+        log_and_exit_on_error "${?}" "Unable to remove unpacked '${db}'."
+    done
+}
 
-# Dump and compress individual MariaDB databases
-for db in ${databases} ; do
-  ${mysqldump} --defaults-file=${credentials_cnf} --add-drop-database --add-drop-table --allow-keywords --quote-names --single-transaction --events --routines --log-error="${backup_dir}/${db}_${backup_timestamp}-error.log" "${db}" | ${gzip} -c > "${backup_dir}/${db}_${backup_timestamp}.gz"
-  if [ "$?" -eq 0 ]; then
-    severity='Info'
-    message="'${db}' dumped and compressed."
-    ${logger} -t "${script}" "${severity}: ${message}"
-  else
-    log_and_exit_on_error "$?" 'Error' "Unable to dump and compress '${db}'."
-  fi
+update_database_dumps_permissions() {
+    ${FIND} "${BACKUP_DIR}" -type f -name "${HOST}_*_${BACKUP_TIMESTAMP}.tar" -exec ${CHOWN} ${BACKUP_FILE_OWNER}:${BACKUP_FILE_GROUP} '{}' ';'
+    log_and_exit_on_error "${?}" 'Unable to ensure proper file owner and group.'
 
-  ${tar} -C${backup_dir} -c -f"${backup_dir}/${host}_${db}_${backup_timestamp}.tar" "${db}_${backup_timestamp}-error.log" "${db}_${backup_timestamp}.gz"
-  log_and_exit_on_error "$?" 'Error' "Unable to archive '${db}'."
+    ${FIND} "${BACKUP_DIR}" -type f -name "${HOST}_*_${BACKUP_TIMESTAMP}.tar" -exec ${CHMOD} ${BACKUP_FILE_MODE} '{}' ';'
+    log_and_exit_on_error "${?}" 'Unable to ensure proper file permission.'
+}
 
-  ${rm} -f "${backup_dir}/${db}_${backup_timestamp}-error.log" "${backup_dir}/${db}_${backup_timestamp}.gz"
-  log_and_exit_on_error "$?" 'Error' "Unable to remove unpacked '${db}'."
-done
+remove_old_database_dumps() {
+    ${FIND} "${BACKUP_DIR}" -type f -name "${HOST}_*.tar" -mtime +${KEEP_DAYS} -exec ${RM} -f '{}' ';'
+    log_and_exit_on_error "${?}" 'Unable to remove old MariaDB database dumps.'
+}
 
-# Ensure proper file owner and group
-${find} "${backup_dir}" -type f -name "${host}_*_${backup_timestamp}.tar" -exec ${chown} ${backup_file_owner}:${backup_file_group} '{}' ';'
-log_and_exit_on_error "$?" 'Error' 'Unable to ensure proper file owner and group.'
+# Establish run order
+main() {
+    check_script_user
+    create_lockfile
+    check_mariadb_service
+    get_mariadb_databases
+    dump_and_compress_database_dumps
+    update_database_dumps_permissions
+    remove_old_database_dumps
+    remove_lockfile
+    log_and_exit '0' 'Backup created successfully.'
 
-# Ensure proper file permission
-${find} "${backup_dir}" -type f -name "${host}_*_${backup_timestamp}.tar" -exec ${chmod} ${backup_file_mode} '{}' ';'
-log_and_exit_on_error "$?" 'Error' 'Unable to ensure proper file permission.'
+}
 
-# Remove old MariaDB database dumps
-${find} "${backup_dir}" -type f -name "${host}_*.tar" -mtime +${keep_days} -exec ${rm} -f '{}' ';'
-log_and_exit_on_error "$?" 'Error' 'Unable to remove old MariaDB database dumps.'
-
-remove_lockfile
-
-log_and_exit
+main
