@@ -21,15 +21,11 @@
   tags:
     - nginx
 
-- name: create file nginx.cfg
-  template:
-    src: "{{file_src_nginx_cfg}}"
-    dest: "{{file_dst_nginx_cfg}}"
-    mode: "{{file_mode_nginx_cfg}}"
-    owner: "{{file_owner_nginx_cfg}}"
-    group: "{{file_group_nginx_cfg}}"
+- name: remove file nginx.cfg
+  file:
+    state: absent
+    path: "{{file_dst_nginx_cfg}}"
   notify: reload service monit
-  when: (nginx_monitor_monit_state == True)
   tags:
     - nginx
 
@@ -42,6 +38,15 @@
     group: "{{file_group_nginx_nft}}"
   notify: reload service nftables
   when: (nginx_nftables_state == True)
+  tags:
+    - nginx
+
+- name: remove file nginx.nft
+  file:
+    state: absent
+    path: "{{file_dst_nginx_nft}}"
+  notify: reload service nftables
+  when: (nginx_nftables_state == False)
   tags:
     - nginx
 

@@ -53,6 +53,14 @@
   tags:
     - chrony
 
+- name: remove file chronyd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_chronyd_cfg}}"
+  notify: reload service monit
+  tags:
+    - chrony
+
 - name: create file chronyd.nft
   template:
     src: "{{file_src_chronyd_nft}}"
@@ -62,6 +70,15 @@
     group: "{{file_group_chronyd_nft}}"
   notify: reload service nftables
   when: (chrony_nftables_state == True)
+  tags:
+    - chrony
+
+- name: remove file chronyd.nft
+  file:
+    state: absent
+    path: "{{file_dst_chronyd_nft}}"
+  notify: reload service nftables
+  when: (chrony_nftables_state == False)
   tags:
     - chrony
 

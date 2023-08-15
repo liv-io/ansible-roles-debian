@@ -44,6 +44,15 @@
   tags:
     - alertmanager
 
+- name: remove file alertmanager.cfg
+  file:
+    state: absent
+    path: "{{file_dst_alertmanager_cfg}}"
+  notify: reload service monit
+  when: (alertmanager_monitor_monit_state == False)
+  tags:
+    - alertmanager
+
 - name: create file alertmanager.nft
   template:
     src: "{{file_src_alertmanager_nft}}"
@@ -53,6 +62,15 @@
     group: "{{file_group_alertmanager_nft}}"
   notify: reload service nftables
   when: (alertmanager_nftables_state == True)
+  tags:
+    - alertmanager
+
+- name: remove file alertmanager.nft
+  file:
+    state: absent
+    path: "{{file_dst_alertmanager_nft}}"
+  notify: reload service nftables
+  when: (alertmanager_nftables_state == False)
   tags:
     - alertmanager
 

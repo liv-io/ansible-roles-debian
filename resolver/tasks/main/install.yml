@@ -60,3 +60,12 @@
   when: (resolver_nftables_state == True)
   tags:
     - resolver
+
+- name: remove file resolver.nft
+  file:
+    state: absent
+    path: "{{file_dst_resolver_nft}}"
+  notify: reload service nftables
+  when: (resolver_nftables_state == False)
+  tags:
+    - resolver

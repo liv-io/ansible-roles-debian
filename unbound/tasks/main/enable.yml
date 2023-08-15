@@ -45,6 +45,15 @@
   tags:
     - unbound
 
+- name: remove file unbound.cfg
+  file:
+    state: absent
+    path: "{{file_dst_unbound_cfg}}"
+  notify: reload service monit
+  when: (unbound_monitor_monit_state == False)
+  tags:
+    - unbound
+
 - name: create file unbound.nft
   template:
     src: "{{file_src_unbound_nft}}"
@@ -54,6 +63,15 @@
     group: "{{file_group_unbound_nft}}"
   notify: reload service nftables
   when: (unbound_nftables_state == True)
+  tags:
+    - unbound
+
+- name: remove file unbound.nft
+  file:
+    state: absent
+    path: "{{file_dst_unbound_nft}}"
+  notify: reload service nftables
+  when: (unbound_nftables_state == False)
   tags:
     - unbound
 

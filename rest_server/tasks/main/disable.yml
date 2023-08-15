@@ -20,15 +20,11 @@
   tags:
     - rest_server
 
-- name: create file rest-server.cfg
-  template:
-    src: "{{file_src_rest_server_cfg}}"
-    dest: "{{file_dst_rest_server_cfg}}"
-    mode: "{{file_mode_rest_server_cfg}}"
-    owner: "{{file_owner_rest_server_cfg}}"
-    group: "{{file_group_rest_server_cfg}}"
+- name: remove file rest-server.cfg
+  file:
+    state: absent
+    path: "{{file_dst_rest_server_cfg}}"
   notify: reload service monit
-  when: (rest_server_monitor_monit_state == True)
   tags:
     - rest_server
 
@@ -41,6 +37,15 @@
     group: "{{file_group_rest_server_nft}}"
   notify: reload service nftables
   when: (rest_server_nftables_state == True)
+  tags:
+    - rest_server
+
+- name: remove file rest-server.nft
+  file:
+    state: absent
+    path: "{{file_dst_rest_server_nft}}"
+  notify: reload service nftables
+  when: (rest_server_nftables_state == False)
   tags:
     - rest_server
 

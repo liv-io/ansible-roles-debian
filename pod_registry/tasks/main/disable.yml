@@ -30,15 +30,11 @@
   tags:
     - pod_registry
 
-- name: create file pod_registry.cfg
-  template:
-    src: "{{file_src_pod_registry_cfg}}"
-    dest: "{{file_dst_pod_registry_cfg}}"
-    mode: "{{file_mode_pod_registry_cfg}}"
-    owner: "{{file_owner_pod_registry_cfg}}"
-    group: "{{file_group_pod_registry_cfg}}"
+- name: remove file pod_registry.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_registry_cfg}}"
   notify: reload service monit
-  when: (pod_registry_monitor_monit_state == True)
   tags:
     - pod_registry
 
@@ -51,6 +47,15 @@
     group: "{{file_group_pod_registry_nft}}"
   notify: reload service nftables
   when: (pod_registry_nftables_state == True)
+  tags:
+    - pod_registry
+
+- name: remove file pod_registry.nft
+  file:
+    state: absent
+    path: "{{file_dst_pod_registry_nft}}"
+  notify: reload service nftables
+  when: (pod_registry_nftables_state == False)
   tags:
     - pod_registry
 

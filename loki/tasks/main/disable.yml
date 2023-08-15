@@ -50,15 +50,11 @@
   tags:
     - loki
 
-- name: create file loki.cfg
-  template:
-    src: "{{file_src_loki_cfg}}"
-    dest: "{{file_dst_loki_cfg}}"
-    mode: "{{file_mode_loki_cfg}}"
-    owner: "{{file_owner_loki_cfg}}"
-    group: "{{file_group_loki_cfg}}"
+- name: remove file loki.cfg
+  file:
+    state: absent
+    path: "{{file_dst_loki_cfg}}"
   notify: reload service monit
-  when: (loki_monitor_monit_state == True)
   tags:
     - loki
 
@@ -71,6 +67,15 @@
     group: "{{file_group_loki_nft}}"
   notify: reload service nftables
   when: (loki_nftables_state == True)
+  tags:
+    - loki
+
+- name: remove file loki.nft
+  file:
+    state: absent
+    path: "{{file_dst_loki_nft}}"
+  notify: reload service nftables
+  when: (loki_nftables_state == False)
   tags:
     - loki
 

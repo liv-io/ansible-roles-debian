@@ -58,6 +58,15 @@
   tags:
     - systemd_timesyncd
 
+- name: remove file systemd-timesyncd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_systemd_timesyncd_cfg}}"
+  notify: reload service monit
+  when: (systemd_timesyncd_monitor_monit_state == False)
+  tags:
+    - systemd_timesyncd
+
 - name: create file systemd-timesyncd.nft
   template:
     src: "{{file_src_systemd_timesyncd_nft}}"
@@ -67,6 +76,15 @@
     group: "{{file_group_systemd_timesyncd_nft}}"
   notify: reload service nftables
   when: (systemd_timesyncd_nftables_state == True)
+  tags:
+    - systemd_timesyncd
+
+- name: remove file systemd-timesyncd.nft
+  file:
+    state: absent
+    path: "{{file_dst_systemd_timesyncd_nft}}"
+  notify: reload service nftables
+  when: (systemd_timesyncd_nftables_state == False)
   tags:
     - systemd_timesyncd
 

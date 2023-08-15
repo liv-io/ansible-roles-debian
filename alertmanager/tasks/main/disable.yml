@@ -30,15 +30,11 @@
   tags:
     - alertmanager
 
-- name: create file alertmanager.cfg
-  template:
-    src: "{{file_src_alertmanager_cfg}}"
-    dest: "{{file_dst_alertmanager_cfg}}"
-    mode: "{{file_mode_alertmanager_cfg}}"
-    owner: "{{file_owner_alertmanager_cfg}}"
-    group: "{{file_group_alertmanager_cfg}}"
+- name: remove file alertmanager.cfg
+  file:
+    state: absent
+    path: "{{file_dst_alertmanager_cfg}}"
   notify: reload service monit
-  when: (alertmanager_monitor_monit_state == True)
   tags:
     - alertmanager
 
@@ -51,6 +47,15 @@
     group: "{{file_group_alertmanager_nft}}"
   notify: reload service nftables
   when: (alertmanager_nftables_state == True)
+  tags:
+    - alertmanager
+
+- name: remove file alertmanager.nft
+  file:
+    state: absent
+    path: "{{file_dst_alertmanager_nft}}"
+  notify: reload service nftables
+  when: (alertmanager_nftables_state == False)
   tags:
     - alertmanager
 

@@ -33,6 +33,15 @@
   tags:
     - rsyslog
 
+- name: remove file rsyslog.cfg
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_cfg}}"
+  notify: reload service monit
+  when: (rsyslog_monitor_monit_state == False)
+  tags:
+    - rsyslog
+
 - name: create file rsyslog.nft
   template:
     src: "{{file_src_rsyslog_nft}}"
@@ -42,6 +51,15 @@
     group: "{{file_group_rsyslog_nft}}"
   notify: reload service nftables
   when: (rsyslog_nftables_state == True)
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.nft
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_nft}}"
+  notify: reload service nftables
+  when: (rsyslog_nftables_state == False)
   tags:
     - rsyslog
 

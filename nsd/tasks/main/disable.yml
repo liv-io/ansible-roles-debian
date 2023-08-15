@@ -21,15 +21,11 @@
   tags:
     - nsd
 
-- name: create file nsd.cfg
-  template:
-    src: "{{file_src_nsd_cfg}}"
-    dest: "{{file_dst_nsd_cfg}}"
-    mode: "{{file_mode_nsd_cfg}}"
-    owner: "{{file_owner_nsd_cfg}}"
-    group: "{{file_group_nsd_cfg}}"
+- name: remove file nsd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_nsd_cfg}}"
   notify: reload service monit
-  when: (nsd_monitor_monit_state == True)
   tags:
     - nsd
 
@@ -42,6 +38,15 @@
     group: "{{file_group_nsd_nft}}"
   notify: reload service nftables
   when: (nsd_nftables_state == True)
+  tags:
+    - nsd
+
+- name: remove file nsd.nft
+  file:
+    state: absent
+    path: "{{file_dst_nsd_nft}}"
+  notify: reload service nftables
+  when: (nsd_nftables_state == False)
   tags:
     - nsd
 

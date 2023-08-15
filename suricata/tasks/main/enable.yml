@@ -45,6 +45,15 @@
   tags:
     - suricata
 
+- name: remove file suricata.cfg
+  file:
+    state: absent
+    path: "{{file_dst_suricata_cfg}}"
+  notify: reload service monit
+  when: (suricata_monitor_monit_state == False)
+  tags:
+    - suricata
+
 - name: start service promiscuous_mode@.service
   service:
     state: started

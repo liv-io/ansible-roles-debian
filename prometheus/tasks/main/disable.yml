@@ -139,15 +139,11 @@
   tags:
     - prometheus
 
-- name: create file prometheus.cfg
-  template:
-    src: "{{file_src_prometheus_cfg}}"
-    dest: "{{file_dst_prometheus_cfg}}"
-    mode: "{{file_mode_prometheus_cfg}}"
-    owner: "{{file_owner_prometheus_cfg}}"
-    group: "{{file_group_prometheus_cfg}}"
+- name: remove file prometheus.cfg
+  file:
+    state: absent
+    path: "{{file_dst_prometheus_cfg}}"
   notify: reload service monit
-  when: (prometheus_monitor_monit_state == True)
   tags:
     - prometheus
 
@@ -160,6 +156,15 @@
     group: "{{file_group_prometheus_nft}}"
   notify: reload service nftables
   when: (prometheus_nftables_state == True)
+  tags:
+    - prometheus
+
+- name: remove file prometheus.nft
+  file:
+    state: absent
+    path: "{{file_dst_prometheus_nft}}"
+  notify: reload service nftables
+  when: (prometheus_nftables_state == False)
   tags:
     - prometheus
 

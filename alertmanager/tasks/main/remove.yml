@@ -45,7 +45,6 @@
   tags:
     - alertmanager
 
-
 - name: remove file alertmanager.nft
   file:
     state: absent

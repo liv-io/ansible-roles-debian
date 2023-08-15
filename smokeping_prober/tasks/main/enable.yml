@@ -33,6 +33,15 @@
   tags:
     - smokeping_prober
 
+- name: remove file smokeping_prober.cfg
+  file:
+    state: absent
+    path: "{{file_dst_smokeping_prober_cfg}}"
+  notify: reload service monit
+  when: (smokeping_prober_monitor_monit_state == False)
+  tags:
+    - smokeping_prober
+
 - name: create file smokeping_prober.nft
   template:
     src: "{{file_src_smokeping_prober_nft}}"
@@ -42,6 +51,15 @@
     group: "{{file_group_smokeping_prober_nft}}"
   notify: reload service nftables
   when: (smokeping_prober_nftables_state == True)
+  tags:
+    - smokeping_prober
+
+- name: remove file smokeping_prober.nft
+  file:
+    state: absent
+    path: "{{file_dst_smokeping_prober_nft}}"
+  notify: reload service nftables
+  when: (smokeping_prober_nftables_state == False)
   tags:
     - smokeping_prober
 

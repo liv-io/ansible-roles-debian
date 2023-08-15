@@ -30,15 +30,11 @@
   tags:
     - mysqld_exporter
 
-- name: create file mysqld_exporter.cfg
-  template:
-    src: "{{file_src_mysqld_exporter_cfg}}"
-    dest: "{{file_dst_mysqld_exporter_cfg}}"
-    mode: "{{file_mode_mysqld_exporter_cfg}}"
-    owner: "{{file_owner_mysqld_exporter_cfg}}"
-    group: "{{file_group_mysqld_exporter_cfg}}"
+- name: remove file mysqld_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_mysqld_exporter_cfg}}"
   notify: reload service monit
-  when: (mysqld_exporter_monitor_monit_state == True)
   tags:
     - mysqld_exporter
 
@@ -51,6 +47,15 @@
     group: "{{file_group_mysqld_exporter_nft}}"
   notify: reload service nftables
   when: (mysqld_exporter_nftables_state == True)
+  tags:
+    - mysqld_exporter
+
+- name: remove file mysqld_exporter.nft
+  file:
+    state: absent
+    path: "{{file_dst_mysqld_exporter_nft}}"
+  notify: reload service nftables
+  when: (mysqld_exporter_nftables_state == False)
   tags:
     - mysqld_exporter
 

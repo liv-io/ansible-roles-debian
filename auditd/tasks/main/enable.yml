@@ -44,6 +44,15 @@
   tags:
     - auditd
 
+- name: remove file auditd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_auditd_cfg}}"
+  notify: reload service monit
+  when: (auditd_monitor_monit_state == False)
+  tags:
+    - auditd
+
 - name: start service auditd
   service:
     state: started

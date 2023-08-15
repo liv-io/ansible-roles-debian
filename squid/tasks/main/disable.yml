@@ -83,15 +83,11 @@
   tags:
     - squid
 
-- name: create file squid.cfg
-  template:
-    src: "{{file_src_squid_cfg}}"
-    dest: "{{file_dst_squid_cfg}}"
-    mode: "{{file_mode_squid_cfg}}"
-    owner: "{{file_owner_squid_cfg}}"
-    group: "{{file_group_squid_cfg}}"
+- name: remove file squid.cfg
+  file:
+    state: absent
+    path: "{{file_dst_squid_cfg}}"
   notify: reload service monit
-  when: (squid_monitor_monit_state == True)
   tags:
     - squid
 
@@ -104,6 +100,15 @@
     group: "{{file_group_squid_nft}}"
   notify: reload service nftables
   when: (squid_nftables_state == True)
+  tags:
+    - squid
+
+- name: remove file squid.nft
+  file:
+    state: absent
+    path: "{{file_dst_squid_nft}}"
+  notify: reload service nftables
+  when: (squid_nftables_state == False)
   tags:
     - squid
 

@@ -30,15 +30,11 @@
   tags:
     - blackbox_exporter
 
-- name: create file blackbox_exporter.cfg
-  template:
-    src: "{{file_src_blackbox_exporter_cfg}}"
-    dest: "{{file_dst_blackbox_exporter_cfg}}"
-    mode: "{{file_mode_blackbox_exporter_cfg}}"
-    owner: "{{file_owner_blackbox_exporter_cfg}}"
-    group: "{{file_group_blackbox_exporter_cfg}}"
+- name: remove file blackbox_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_blackbox_exporter_cfg}}"
   notify: reload service monit
-  when: (blackbox_exporter_monitor_monit_state == True)
   tags:
     - blackbox_exporter
 
@@ -51,6 +47,15 @@
     group: "{{file_group_blackbox_exporter_nft}}"
   notify: reload service nftables
   when: (blackbox_exporter_nftables_state == True)
+  tags:
+    - blackbox_exporter
+
+- name: remove file blackbox_exporter.nft
+  file:
+    state: absent
+    path: "{{file_dst_blackbox_exporter_nft}}"
+  notify: reload service nftables
+  when: (blackbox_exporter_nftables_state == False)
   tags:
     - blackbox_exporter
 

@@ -32,6 +32,15 @@
   tags:
     - monit
 
+- name: remove file monit.nft
+  file:
+    state: absent
+    path: "{{file_dst_monit_nft}}"
+  notify: reload service nftables
+  when: (monit_nftables_state == False)
+  tags:
+    - monit
+
 - name: stop service monit
   service:
     state: stopped

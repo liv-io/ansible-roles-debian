@@ -20,15 +20,11 @@
   tags:
     - rsyslog
 
-- name: create file rsyslog.cfg
-  template:
-    src: "{{file_src_rsyslog_cfg}}"
-    dest: "{{file_dst_rsyslog_cfg}}"
-    mode: "{{file_mode_rsyslog_cfg}}"
-    owner: "{{file_owner_rsyslog_cfg}}"
-    group: "{{file_group_rsyslog_cfg}}"
+- name: remove file rsyslog.cfg
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_cfg}}"
   notify: reload service monit
-  when: (rsyslog_monitor_monit_state == True)
   tags:
     - rsyslog
 
@@ -41,6 +37,15 @@
     group: "{{file_group_rsyslog_nft}}"
   notify: reload service nftables
   when: (rsyslog_nftables_state == True)
+  tags:
+    - rsyslog
+
+- name: remove file rsyslog.nft
+  file:
+    state: absent
+    path: "{{file_dst_rsyslog_nft}}"
+  notify: reload service nftables
+  when: (rsyslog_nftables_state == False)
   tags:
     - rsyslog
 

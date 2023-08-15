@@ -302,6 +302,15 @@
   tags:
     - apache2
 
+- name: remove file apache2.cfg
+  file:
+    state: absent
+    path: "{{file_dst_apache2_cfg}}"
+  notify: reload service monit
+  when: (apache2_monitor_monit_state == False)
+  tags:
+    - apache2
+
 - name: create file apache2.nft
   template:
     src: "{{file_src_apache2_nft}}"
@@ -311,6 +320,15 @@
     group: "{{file_group_apache2_nft}}"
   notify: reload service nftables
   when: (apache2_nftables_state == True)
+  tags:
+    - apache2
+
+- name: remove file apache2.nft
+  file:
+    state: absent
+    path: "{{file_dst_apache2_nft}}"
+  notify: reload service nftables
+  when: (apache2_nftables_state == False)
   tags:
     - apache2
 

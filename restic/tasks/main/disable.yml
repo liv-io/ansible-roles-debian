@@ -37,3 +37,12 @@
   when: (restic_nftables_state == True)
   tags:
     - restic
+
+- name: remove file restic.nft
+  file:
+    state: absent
+    path: "{{file_dst_restic_nft}}"
+  notify: reload service nftables
+  when: (restic_nftables_state == False)
+  tags:
+    - restic

@@ -93,6 +93,15 @@
   tags:
     - mariadb
 
+- name: remove file mariadb.cfg
+  file:
+    state: absent
+    path: "{{file_dst_mariadb_cfg}}"
+  notify: reload service monit
+  when: (mariadb_monitor_monit_state == False)
+  tags:
+    - mariadb
+
 - name: create file mariadb.nft
   template:
     src: "{{file_src_mariadb_nft}}"
@@ -102,6 +111,15 @@
     group: "{{file_group_mariadb_nft}}"
   notify: reload service nftables
   when: (mariadb_nftables_state == True)
+  tags:
+    - mariadb
+
+- name: remove file mariadb.nft
+  file:
+    state: absent
+    path: "{{file_dst_mariadb_nft}}"
+  notify: reload service nftables
+  when: (mariadb_nftables_state == False)
   tags:
     - mariadb
 

@@ -121,3 +121,12 @@
   when: (apt_nftables_state == True)
   tags:
     - apt
+
+- name: remove file apt.nft
+  file:
+    state: absent
+    path: "{{file_dst_apt_nft}}"
+  notify: reload service nftables
+  when: (apt_nftables_state == False)
+  tags:
+    - apt

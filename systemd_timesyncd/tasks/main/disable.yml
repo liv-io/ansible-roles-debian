@@ -42,15 +42,11 @@
   tags:
     - systemd_timesyncd
 
-- name: create file systemd-timesyncd.cfg
-  template:
-    src: "{{file_src_systemd_timesyncd_cfg}}"
-    dest: "{{file_dst_systemd_timesyncd_cfg}}"
-    mode: "{{file_mode_systemd_timesyncd_cfg}}"
-    owner: "{{file_owner_systemd_timesyncd_cfg}}"
-    group: "{{file_group_systemd_timesyncd_cfg}}"
+- name: remove file systemd-timesyncd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_systemd_timesyncd_cfg}}"
   notify: reload service monit
-  when: (systemd_timesyncd_monitor_monit_state == True)
   tags:
     - systemd_timesyncd
 
@@ -63,6 +59,15 @@
     group: "{{file_group_systemd_timesyncd_nft}}"
   notify: reload service nftables
   when: (systemd_timesyncd_nftables_state == True)
+  tags:
+    - systemd_timesyncd
+
+- name: remove file systemd-timesyncd.nft
+  file:
+    state: absent
+    path: "{{file_dst_systemd_timesyncd_nft}}"
+  notify: reload service nftables
+  when: (systemd_timesyncd_nftables_state == False)
   tags:
     - systemd_timesyncd
 

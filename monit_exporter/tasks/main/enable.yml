@@ -44,6 +44,15 @@
   tags:
     - monit_exporter
 
+- name: remove file monit_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_monit_exporter_cfg}}"
+  notify: reload service monit
+  when: (monit_exporter_monitor_monit_state == False)
+  tags:
+    - monit_exporter
+
 - name: create file monit_exporter.nft
   template:
     src: "{{file_src_monit_exporter_nft}}"
@@ -53,6 +62,15 @@
     group: "{{file_group_monit_exporter_nft}}"
   notify: reload service nftables
   when: (monit_exporter_nftables_state == True)
+  tags:
+    - monit_exporter
+
+- name: remove file monit_exporter.nft
+  file:
+    state: absent
+    path: "{{file_dst_monit_exporter_nft}}"
+  notify: reload service nftables
+  when: (monit_exporter_nftables_state == False)
   tags:
     - monit_exporter
 

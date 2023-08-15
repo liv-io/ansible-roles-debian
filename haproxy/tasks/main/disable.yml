@@ -21,15 +21,11 @@
   tags:
     - haproxy
 
-- name: create file haproxy.monit
-  template:
-    src: "{{file_src_haproxy_monit}}"
-    dest: "{{file_dst_haproxy_monit}}"
-    mode: "{{file_mode_haproxy_monit}}"
-    owner: "{{file_owner_haproxy_monit}}"
-    group: "{{file_group_haproxy_monit}}"
+- name: remove file haproxy.monit
+  file:
+    state: absent
+    path: "{{file_dst_haproxy_monit}}"
   notify: reload service monit
-  when: (haproxy_monitor_monit_state == True)
   tags:
     - haproxy
 
@@ -42,6 +38,15 @@
     group: "{{file_group_haproxy_nft}}"
   notify: reload service nftables
   when: (haproxy_nftables_state == True)
+  tags:
+    - haproxy
+
+- name: remove file haproxy.nft
+  file:
+    state: absent
+    path: "{{file_dst_haproxy_nft}}"
+  notify: reload service nftables
+  when: (haproxy_nftables_state == False)
   tags:
     - haproxy
 

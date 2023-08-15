@@ -58,6 +58,15 @@
   tags:
     - openntpd
 
+- name: remove file openntpd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_openntpd_cfg}}"
+  notify: reload service monit
+  when: (openntpd_monitor_monit_state == False)
+  tags:
+    - openntpd
+
 - name: create file openntpd.nft
   template:
     src: "{{file_src_openntpd_nft}}"
@@ -67,6 +76,15 @@
     group: "{{file_group_openntpd_nft}}"
   notify: reload service nftables
   when: (openntpd_nftables_state == True)
+  tags:
+    - openntpd
+
+- name: remove file openntpd.nft
+  file:
+    state: absent
+    path: "{{file_dst_openntpd_nft}}"
+  notify: reload service nftables
+  when: (openntpd_nftables_state == False)
   tags:
     - openntpd
 

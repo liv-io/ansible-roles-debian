@@ -34,6 +34,15 @@
   tags:
     - nsd
 
+- name: remove file nsd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_nsd_cfg}}"
+  notify: reload service monit
+  when: (nsd_monitor_monit_state == False)
+  tags:
+    - nsd
+
 - name: create file nsd.nft
   template:
     src: "{{file_src_nsd_nft}}"
@@ -43,6 +52,15 @@
     group: "{{file_group_nsd_nft}}"
   notify: reload service nftables
   when: (nsd_nftables_state == True)
+  tags:
+    - nsd
+
+- name: remove file nsd.nft
+  file:
+    state: absent
+    path: "{{file_dst_nsd_nft}}"
+  notify: reload service nftables
+  when: (nsd_nftables_state == False)
   tags:
     - nsd
 

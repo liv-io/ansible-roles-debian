@@ -31,15 +31,11 @@
   tags:
     - suricata
 
-- name: create file suricata.cfg
-  template:
-    src: "{{file_src_suricata_cfg}}"
-    dest: "{{file_dst_suricata_cfg}}"
-    mode: "{{file_mode_suricata_cfg}}"
-    owner: "{{file_owner_suricata_cfg}}"
-    group: "{{file_group_suricata_cfg}}"
+- name: remove file suricata.cfg
+  file:
+    state: absent
+    path: "{{file_dst_suricata_cfg}}"
   notify: reload service monit
-  when: (suricata_monitor_monit_state == True)
   tags:
     - suricata
 

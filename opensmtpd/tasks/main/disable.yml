@@ -41,15 +41,11 @@
   tags:
     - opensmtpd
 
-- name: create file opensmtpd.cfg
-  template:
-    src: "{{file_src_opensmtpd_cfg}}"
-    dest: "{{file_dst_opensmtpd_cfg}}"
-    mode: "{{file_mode_opensmtpd_cfg}}"
-    owner: "{{file_owner_opensmtpd_cfg}}"
-    group: "{{file_group_opensmtpd_cfg}}"
+- name: remove file opensmtpd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_opensmtpd_cfg}}"
   notify: reload service monit
-  when: (opensmtpd_monitor_monit_state == True)
   tags:
     - opensmtpd
 
@@ -62,6 +58,15 @@
     group: "{{file_group_opensmtpd_nft}}"
   notify: reload service nftables
   when: (opensmtpd_nftables_state == True)
+  tags:
+    - opensmtpd
+
+- name: remove file opensmtpd.nft
+  file:
+    state: absent
+    path: "{{file_dst_opensmtpd_nft}}"
+  notify: reload service nftables
+  when: (opensmtpd_nftables_state == False)
   tags:
     - opensmtpd
 

@@ -44,6 +44,15 @@
   tags:
     - promtail
 
+- name: remove file promtail.cfg
+  file:
+    state: absent
+    path: "{{file_dst_promtail_cfg}}"
+  notify: reload service monit
+  when: (promtail_monitor_monit_state == False)
+  tags:
+    - promtail
+
 - name: create file promtail.nft
   template:
     src: "{{file_src_promtail_nft}}"
@@ -53,6 +62,15 @@
     group: "{{file_group_promtail_nft}}"
   notify: reload service nftables
   when: (promtail_nftables_state == True)
+  tags:
+    - promtail
+
+- name: remove file promtail.nft
+  file:
+    state: absent
+    path: "{{file_dst_promtail_nft}}"
+  notify: reload service nftables
+  when: (promtail_nftables_state == False)
   tags:
     - promtail
 

@@ -66,6 +66,15 @@
   tags:
     - loki
 
+- name: remove file loki.cfg
+  file:
+    state: absent
+    path: "{{file_dst_loki_cfg}}"
+  notify: reload service monit
+  when: (loki_monitor_monit_state == False)
+  tags:
+    - loki
+
 - name: create file loki.nft
   template:
     src: "{{file_src_loki_nft}}"
@@ -75,6 +84,15 @@
     group: "{{file_group_loki_nft}}"
   notify: reload service nftables
   when: (loki_nftables_state == True)
+  tags:
+    - loki
+
+- name: remove file loki.nft
+  file:
+    state: absent
+    path: "{{file_dst_loki_nft}}"
+  notify: reload service nftables
+  when: (loki_nftables_state == False)
   tags:
     - loki
 

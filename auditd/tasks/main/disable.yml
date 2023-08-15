@@ -30,15 +30,11 @@
   tags:
     - auditd
 
-- name: create file auditd.cfg
-  template:
-    src: "{{file_src_auditd_cfg}}"
-    dest: "{{file_dst_auditd_cfg}}"
-    mode: "{{file_mode_auditd_cfg}}"
-    owner: "{{file_owner_auditd_cfg}}"
-    group: "{{file_group_auditd_cfg}}"
+- name: remove file auditd.cfg
+  file:
+    state: absent
+    path: "{{file_dst_auditd_cfg}}"
   notify: reload service monit
-  when: (auditd_monitor_monit_state == True)
   tags:
     - auditd
 
