@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.1 (2023-08-15)
+
+### Enhancements
+
+- Minor script improvement
+
 ## 3.0.0 (2023-08-06)
 
 ### Changes

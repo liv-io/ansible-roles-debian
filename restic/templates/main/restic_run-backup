@@ -16,20 +16,22 @@ ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
 EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (restic_monitor_mail_state == True) %}
-MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
-{% endif %}
 RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
 RESTIC='{{file_dst_restic}}' && [ -x ${RESTIC} ] || { echo "Error: Command 'restic' not found."; exit 127; }
+TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
+
+{% if (restic_monitor_mail_state == True) %}
+MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
+{% endif %}
 
 # Environment variables
 
 HOST=$(${HOSTNAME} -s) || { echo "Error: Host name unknown."; exit 68; }
 SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute."; exit 126; }
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_restic_run_backup}}'
 LOCKFILE='/var/tmp/restic_run-backup.lock'
@@ -76,7 +78,7 @@ Date & Time : $(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
 
 SCRIPT
 
-Name        : restic_run-backup
+Name        : ${SCRIPT_NAME}
 Type        : Shell script
 PID         : ${$}
 
@@ -177,8 +179,8 @@ log_and_exit() {
     local time_end=$(${DATE} '+%s')
     local time_exec=$(${EXPR} ${time_end} - ${TIME_START})
     local time_hr=$(${DATE} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
-    local exit_code=0
-    local message='Backup created successfully.'
+    local exit_code=${1}
+    local message=${2}
 
     if [ -t 1 ]; then
         ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}"
@@ -253,7 +255,7 @@ main() {
     check_backup_repository
     add_log_header 'backup successful'
     remove_lockfile
-    log_and_exit
+    log_and_exit '0' 'Backup created successfully.'
 }
 
 main
