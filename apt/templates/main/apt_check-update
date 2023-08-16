@@ -98,7 +98,7 @@ update_prom() {
 "apt_check_update_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/apt_check_update_duration.prom"
         fi
 
-        if [ -z "${PACKAGES}" ] ; then
+        if [ -z "${PACKAGES}" ]; then
             ${RM} -f "${TEXTFILE_COLLECTOR}/apt_check_update_packages.prom"
         else
             ${ECHO} -e "# HELP apt_check_update_packages The number of pending updates in packages.\n"\
@@ -142,7 +142,7 @@ log_and_exit_on_error() {
     local exit_code=${1}
     local message=${2}
 
-    if [ ${exit_code} -ne 0 ]; then
+    if [ "${exit_code}" -ne 0 ]; then
         ${RM} -f ${LOCKFILE}
 
         if [ -t 1 ]; then

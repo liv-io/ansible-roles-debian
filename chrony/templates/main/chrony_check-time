@@ -102,7 +102,7 @@ update_prom() {
 "chrony_check_time_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/chrony_check_time_duration.prom"
         fi
 
-        if [ -z "${OFFSET_RAW}" ] ; then
+        if [ -z "${OFFSET_RAW}" ]; then
             ${RM} -f "${TEXTFILE_COLLECTOR}/chrony_check_time_offset.prom"
         else
             ${ECHO} -e "# HELP chrony_check_time_offset The system time offset in seconds.\n"\
@@ -146,7 +146,7 @@ log_and_exit_on_error() {
     local exit_code=${1}
     local message=${2}
 
-    if [ ${exit_code} -ne 0 ]; then
+    if [ "${exit_code}" -ne 0 ]; then
         ${RM} -f ${LOCKFILE}
 
         if [ -t 1 ]; then
@@ -213,7 +213,7 @@ convert_system_time_offset() {
 }
 
 check_system_time_offset() {
-    if [ -z "${OFFSET}" ] ; then
+    if [ -z "${OFFSET}" ]; then
         log_and_exit_on_error '1' 'System time is not synchronized with any peer.'
     elif [ $(${ECHO} "${OFFSET} >= ${OFFSET_LIMIT}" | ${BC} -l) -ne 0 ]; then
         log_and_exit_on_error '1' "System time offset limit exceeded (${OFFSET} s / ${OFFSET_LIMIT} s)."

@@ -152,7 +152,7 @@ remove_lockfile() {
 log_and_exit_on_error() {
     local exit_code=${1}
     local message=${2}
-    if [ ${exit_code} -ne 0 ]; then
+    if [ "${exit_code}" -ne 0 ]; then
         ${RM} -f ${LOCKFILE}
 
         if [ -t 1 ]; then
@@ -207,7 +207,7 @@ create_backup_repository() {
     ${RESTIC} stats --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
         {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
         >>${LOG_FILE} 2>&1
-    if [ ${?} -ne 0 ]; then
+    if [ "${?}" -ne 0 ]; then
         # Initialize backup repository if inexistent
         ${RESTIC} init --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
             {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
