@@ -149,7 +149,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.8.3'
+    Default    : '2.8.4'
     Options    :
       Examples: '1.5.0' | '1.6.0'
 
