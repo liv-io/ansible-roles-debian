@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.2 (2023-08-17)
+
+### Enhancements
+
+- Increase monit protocol check timeout
+
 ## 2.0.1 (2023-08-15)
 
 ### Bugs
