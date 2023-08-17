@@ -131,9 +131,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `prometheus_alertmanager_url`
 
@@ -154,9 +152,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `prometheus_blackbox_exporter_http_ip4_basic_manual_hosts`
 
@@ -206,9 +202,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `prometheus_global_evaluation_interval`
 
@@ -303,9 +297,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `prometheus_mysqld_exporter_target_ansible_groups`
 
@@ -380,9 +372,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `prometheus_node_exporter_target_ansible_groups`
 
@@ -429,9 +419,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `prometheus_smokeping_prober_target_ansible_groups`
 

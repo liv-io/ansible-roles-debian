@@ -131,9 +131,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `apt_check_update_weekday`
 
@@ -237,9 +235,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `apt_nftables_filter_rule`
 
@@ -263,9 +259,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `apt_monitor_prom_state`
 
@@ -275,9 +269,7 @@ vars:
     Value      : Predetermined
     Type       : Boolean
     Default    : False
-    Options    :
-      True : True
-      False: False
+    Options    : True | False
 
 `apt_monitor_prom_textfile_collector`
 
