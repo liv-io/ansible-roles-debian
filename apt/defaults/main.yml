@@ -24,7 +24,6 @@ apt_config_all:
         distribution: "{{ansible_distribution_release}}"
         components: "{% if (ansible_distribution_major_version == '12') %}['main', 'non-free-firmware']{% else %}['main']{% endif %}"
 
-
       - url: 'http://ftp.ch.debian.org/debian'
         state: True
         comment: 'Debian - Updates'
