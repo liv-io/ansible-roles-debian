@@ -1,8 +1,6 @@
 {{ansible_managed|comment(decoration='#')}}
 
-{% if (haproxy_state is match('start|on|enable')) %}
 check process haproxy with pidfile "/run/haproxy.pid"
   start program = "/bin/systemctl start {{service_name_haproxy}}"
   stop program = "/bin/systemctl stop {{service_name_haproxy}}"
   if 5 restarts within 5 cycles then unmonitor
-{% endif %}
