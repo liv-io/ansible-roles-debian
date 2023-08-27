@@ -220,7 +220,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.25.0'
+    Default    : '0.26.0'
     Options    :
       Examples: '0.15.3' | '0.16.0'
 
