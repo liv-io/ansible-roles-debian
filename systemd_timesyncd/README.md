@@ -227,6 +227,17 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`systemd_timesyncd_offset_limit`
+
+    Description: Set the 'systemd_timesyncd_offset_limit' option.
+    Implemented: 2.1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 1
+    Options    :
+      Examples: 0.2 | 0.5 | 1 | 1.5
+
 `systemd_timesyncd_poll_interval_max_sec`
 
     Description: Define the 'systemd_timesyncd_poll_interval_max_sec' option.

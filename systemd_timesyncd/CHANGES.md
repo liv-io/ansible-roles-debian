@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.0 (2023-09-31)
+
+### Features
+
+- Add parameter `systemd_timesyncd_offset_limit`
+
+### Enhancements
+
+- Add offset calculation to `systemd-timesyncd_check-time` script
+
 ## 2.0.2 (2023-08-15)
 
 ### Bugs

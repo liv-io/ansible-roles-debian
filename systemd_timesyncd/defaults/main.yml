@@ -34,6 +34,8 @@ systemd_timesyncd_nftables_filter_rule: |
 
 systemd_timesyncd_nftables_state: False
 
+systemd_timesyncd_offset_limit: 1
+
 systemd_timesyncd_poll_interval_max_sec: 2048
 
 systemd_timesyncd_poll_interval_min_sec: 32

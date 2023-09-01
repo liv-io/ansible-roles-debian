@@ -20,10 +20,14 @@ RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
 TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
+AWK=$(${WHICH} awk) || { echo "Error: Command 'awk' not found."; exit 127; }
+BC=$(${WHICH} bc) || { echo "Error: Command 'bc' not found."; exit 127; }
 GREP=$(${WHICH} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
+SED=$(${WHICH} sed) || { echo "Error: Command 'sed' not found."; exit 127; }
 SLEEP=$(${WHICH} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
 STAT=$(${WHICH} stat) || { echo "Error: Command 'stat' not found."; exit 127; }
 TIMEDATECTL=$(${WHICH} timedatectl) || { echo "Error: Command 'timedatectl' not found."; exit 127; }
+TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 
 {% if (systemd_timesyncd_monitor_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
@@ -39,6 +43,7 @@ USER='{{file_owner_systemd_timesyncd_check_time}}'
 LOCKFILE='/var/tmp/systemd-timesyncd_check-time.lock'
 TEXTFILE_COLLECTOR='{{systemd_timesyncd_monitor_prom_textfile_collector}}'
 
+OFFSET_LIMIT='{{ systemd_timesyncd_offset_limit}}'
 POLL_INTERVAL_MAX_SEC={{ systemd_timesyncd_poll_interval_max_sec }}
 
 {% if (systemd_timesyncd_monitor_mail_state == True) %}
@@ -98,6 +103,14 @@ update_prom() {
             ${ECHO} -e "# HELP systemd_timesyncd_check_time_duration The script's execution duration in seconds.\n"\
 "# TYPE systemd_timesyncd_check_time_duration counter\n"\
 "systemd_timesyncd_check_time_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/systemd_timesyncd_check_time_duration.prom"
+        fi
+
+        if [ -z "${OFFSET_RAW_S}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/systemd_timesyncd_check_time_offset.prom"
+        else
+            ${ECHO} -e "# HELP systemd_timesyncd_check_time_offset The system time offset in seconds.\n"\
+"# TYPE systemd_timesyncd_check_time_offset counter\n"\
+"systemd_timesyncd_check_time_offset{limit=\"${OFFSET_LIMIT}\"} ${OFFSET_RAW_S}" >"${TEXTFILE_COLLECTOR}/systemd_timesyncd_check_time_offset.prom"
         fi
     fi
 }
@@ -192,6 +205,49 @@ get_system_time_status() {
     done
 }
 
+get_system_time_unit() {
+    OFFSET_UNIT=$(${TIMEDATECTL} timesync-status | ${GREP} 'Offset:' | ${AWK} -F': ' '{print $2}' | ${TR} -cd [:alpha:])
+    log_and_exit_on_error "${?}" 'Unable to get system time offset unit.'
+}
+
+get_system_time_offset() {
+    OFFSET_RAW=$(${TIMEDATECTL} timesync-status | ${GREP} 'Offset:' | ${AWK} -F': ' '{print $2}' | ${TR} -d [:alpha:] | ${SED} 's@[+]@@g')
+    log_and_exit_on_error "${?}" 'Unable to get system time offset.'
+
+    if [ "${OFFSET_UNIT}" = "ms" ]; then
+        OFFSET_RAW_S=$(${ECHO} "${OFFSET_RAW} / 1000" | ${BC} -l | ${AWK} '{printf "%f", $0}')
+        log_and_exit_on_error "${?}" 'Unable to convert system time offset raw from milliseconds to seconds.'
+    elif [ "${OFFSET_UNIT}" = "us" ]; then
+        OFFSET_RAW_S=$(${ECHO} "${OFFSET_RAW} / 1000000" | ${BC} -l | ${AWK} '{printf "%f", $0}')
+        log_and_exit_on_error "${?}" 'Unable to convert system time offset raw from microseconds to seconds.'
+    else
+        log_and_exit_on_error "1" 'Unable to convert system time offset raw (unit unknown).'
+    fi
+}
+
+convert_system_time_offset() {
+    OFFSET=$(${ECHO} "${OFFSET_RAW}" | ${SED} 's@[-]@@g')
+    log_and_exit_on_error "${?}" 'Unable to convert system time offset.'
+
+    if [ "${OFFSET_UNIT}" = "ms" ]; then
+        OFFSET=$(${ECHO} "${OFFSET_RAW} / 1000" | ${BC} -l | ${AWK} '{printf "%f", $0}')
+        log_and_exit_on_error "${?}" 'Unable to convert system time offset from milliseconds to seconds.'
+    elif [ "${OFFSET_UNIT}" = "us" ]; then
+        OFFSET=$(${ECHO} "${OFFSET_RAW} / 1000000" | ${BC} -l | ${AWK} '{printf "%f", $0}')
+        log_and_exit_on_error "${?}" 'Unable to convert system time offset from microseconds to seconds.'
+    else
+        log_and_exit_on_error "1" 'Unable to convert system time offset (unit unknown).'
+    fi
+}
+
+check_system_time_offset() {
+    if [ -z "${OFFSET}" ]; then
+        log_and_exit_on_error '1' 'System time is not synchronized with any peer.'
+    elif [ $(${ECHO} "${OFFSET} >= ${OFFSET_LIMIT}" | ${BC} -l) -ne 0 ]; then
+        log_and_exit_on_error '1' "System time offset limit exceeded (${OFFSET} s / ${OFFSET_LIMIT} s)."
+    fi
+}
+
 get_clock_mtime() {
     TIME_CLOCK=$(${STAT} --format=%Y /var/lib/systemd/timesync/clock)
     log_and_exit_on_error "${?}" 'Unable to get clock mtime.'
@@ -202,14 +258,9 @@ calculate_last_sync() {
     log_and_exit_on_error "${?}" 'Unable to calculate last synchronization.'
 }
 
-alert_over_margin() {
-    TIME_MAX=$(${EXPR} "${POLL_INTERVAL_MAX_SEC}" \* 3)
+calculate_max_sync() {
+    MAX_SYNC=$(${EXPR} "${POLL_INTERVAL_MAX_SEC}" \* 3)
     log_and_exit_on_error "${?}" 'Unable to calculate maximum synchronization margin.'
-
-    # Alert if time since last successful synchronization is greater than 3x PollIntervalMaxSec
-    if [ "${LAST_SYNC}" -gt "${TIME_MAX}" ]; then
-        log_and_exit_on_error '1' "System time has not been synchronized for more than ${TIME_MAX} seconds."
-    fi
 }
 
 # Establish run order
@@ -217,11 +268,21 @@ main() {
     check_script_user
     create_lockfile
     get_system_time_status
+    get_system_time_unit
+    get_system_time_offset
+    convert_system_time_offset
+    check_system_time_offset
     get_clock_mtime
     calculate_last_sync
-    alert_over_margin
+    calculate_max_sync
     remove_lockfile
     log_and_exit '0' 'System time is synchronized.'
+    if [ "${LAST_SYNC}" -gt "${MAX_SYNC}" ]; then
+        # Log if time since last successful synchronization is greater than 3x PollIntervalMaxSec
+        log_and_exit '0' "System time is synchronized, but not renewed for more than ${TIME_MAX} seconds."
+    else
+        log_and_exit '0' 'System time is synchronized.'
+    fi
 }
 
 main
