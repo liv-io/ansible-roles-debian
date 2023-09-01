@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.5 (2023-09-01)
+
+### Enhancements
+
+- Add `systemd_timesyncd_check_time_offset` to `Script Status` dashboard
+
 ## 2.1.4 (2023-08-15)
 
 ### Bugs
