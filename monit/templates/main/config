@@ -1,8 +1,8 @@
 {{ansible_managed|comment(decoration='#')}}
 
-{% if not ((item.comment|default('')) == '') %}
+{% if not (item.comment|default('') == '') %}
 # {{item.comment}}
 {% endif %}
-{% if not ((item.config|default('')) == '') %}
+{% if not (item.config|default('') == '') %}
 {{item.config}}
 {% endif %}

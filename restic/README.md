@@ -334,7 +334,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : "{{(10|random(seed=inventory_hostname))}}"
+    Default    : "{{10|random(seed=inventory_hostname)}}"
     Options    :
       Examples: '42' | '*/30'
 

@@ -1,5 +1,5 @@
 {{ansible_managed|comment(decoration='#')}}
 
-{% if not ((item.config|default('')) == '') %}
+{% if not (item.config|default('') == '') %}
 {{item.config}}
 {% endif %}

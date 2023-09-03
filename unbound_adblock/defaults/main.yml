@@ -18,7 +18,7 @@ unbound_adblock_update_list_day: '*'
 
 unbound_adblock_update_list_hour: '5'
 
-unbound_adblock_update_list_minute: "{{(20|random(seed=inventory_hostname))}}"
+unbound_adblock_update_list_minute: "{{20|random(seed=inventory_hostname)}}"
 
 unbound_adblock_update_list_month: '*'
 

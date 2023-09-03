@@ -13,7 +13,7 @@
 - name: create file config
   template:
     src: "{{file_src_config}}"
-    dest: "{{file_dst_systemd}}/{{(item.mode|default('system'))}}/{{(item.name|default('config'))}}.{{(item.type|default('target'))}}"
+    dest: "{{file_dst_systemd}}/{{item.mode|default('system')}}/{{item.name|default('config')}}.{{item.type|default('target')}}"
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
@@ -25,7 +25,7 @@
 - name: remove file config
   file:
     state: absent
-    dest: "{{file_dst_systemd}}/{{(item.mode|default('system'))}}/{{(item.name|default('config'))}}.{{(item.type|default('target'))}}"
+    dest: "{{file_dst_systemd}}/{{item.mode|default('system')}}/{{item.name|default('config')}}.{{item.type|default('target')}}"
   loop: "{{systemd_config_all + systemd_config_group + systemd_config_host}}"
   when: (item.state == False)
   tags:

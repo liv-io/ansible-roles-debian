@@ -26,7 +26,7 @@
     comment: "{{user_comment_root}}"
     uid: "{{user_uid_root}}"
     group: "{{user_group_root}}"
-    groups: "{{(user_groups_root|join(','))}}"
+    groups: "{{user_groups_root|join(',')}}"
     append: "{{user_append_root}}"
     createhome: "{{user_home_create_root}}"
     move_home: "{{user_home_move_root}}"

@@ -4,7 +4,7 @@
 {% if (item.comment|default('')) %}
 # {{item.comment}}
 {% endif %}
-{% if (item.state|default(True) == False) %}#{% endif %}{{(item.type|default('deb'))}} {{item.url}} {{(item.distribution|default('stretch'))}} {% for component in item.components %}{{component}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if (item.state|default(True) == False) %}#{% endif %}{{item.type|default('deb')}} {{item.url}} {{item.distribution|default('stretch')}} {% for component in item.components %}{{component}}{% if not loop.last %} {% endif %}{% endfor %}
 
 
 {% endfor %}

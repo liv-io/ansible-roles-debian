@@ -1,10 +1,10 @@
 {{ansible_managed|comment(decoration='#')}}
 
 <VirtualHost 
-{%- if not ((item.listen|default('')) == '') %}
- {{item.listen}}:{{(item.port|int)}}
+{%- if not (item.listen|default('') == '') %}
+ {{item.listen}}:{{item.port|int}}
 {%- else %}
- *:{{(item.port|int)}}
+ *:{{item.port|int}}
 {%- endif %}>
 
   # GENERAL
@@ -12,38 +12,38 @@
   # Server hostname and port
   ServerName {{item.name}}
   # Server aliases
-{% if not ((item.alias|default([])) == []) %}
+{% if not (item.alias|default([]) == []) %}
 {% for alias in item.alias %}
   ServerAlias {{alias}}
 {% endfor %}
 {% endif %}
   # Server admin
-{% if not ((item.server_admin|default([])) == []) %}
+{% if not (item.server_admin|default([]) == []) %}
   ServerAdmin {{item.server_admin}}
 {% endif %}
   # Main document tree
-{% if not ((item.document_root|default('')) == '') %}
+{% if not (item.document_root|default('') == '') %}
   DocumentRoot '{{item.document_root}}'
 {% endif %}
 
   # LOGGING
 
-{% if ((item.ssl_state|default(False)) == True) %}
+{% if (item.ssl_state|default(False) == True) %}
   # Combined Log Format (CLF) + SSL/TLS Information
   LogFormat "{{apache2_log_format_combined_ssl}}" combinedssl
 {% endif %}
 
   # Logging options
-  ErrorLog ${APACHE_LOG_DIR}/{{item.name}}-{{(item.port|int)}}_error_log
-  CustomLog ${APACHE_LOG_DIR}/{{item.name}}-{{(item.port|int)}}_access_log
-{%- if ((item.ssl_state|default(False)) == True) %}
+  ErrorLog ${APACHE_LOG_DIR}/{{item.name}}-{{item.port|int}}_error_log
+  CustomLog ${APACHE_LOG_DIR}/{{item.name}}-{{item.port|int}}_access_log
+{%- if (item.ssl_state|default(False) == True) %}
  combinedssl
 {% else %}
  combined
 {% endif %}
 
   # Log level
-{% if not ((item.log_level|default('')) == '') %}
+{% if not (item.log_level|default('') == '') %}
   LogLevel {{item.log_level}}
 {% else %}
   LogLevel warn
@@ -51,12 +51,12 @@
 
   # HTTP HEADER
 
-{% if ((item.hsts_state|default(False)) == True) %}
+{% if (item.hsts_state|default(False) == True) %}
   # HTTP Strict Transport Security (HSTS)
-  Header always set Strict-Transport-Security 'max-age={% if not ((item.hsts_max_age|default('')) == '') %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{apache2_hsts_max_age}}{% endif %}'
+  Header always set Strict-Transport-Security 'max-age={% if not (item.hsts_max_age|default('') == '') %}{{item.hsts_max_age|int(31536000)}}{% else %}{{apache2_hsts_max_age}}{% endif %}'
 {% endif %}
 
-{% if ((item.xss_protection_state|default(False)) == True) %}
+{% if (item.xss_protection_state|default(False) == True) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
   Header always set X-Frame-Options 'deny'
   # X-Content-Type-Options: Disable MIME-sniffing (drive-by download attacks prevention)
@@ -65,59 +65,59 @@
   Header always set X-XSS-Protection '1; mode=block'
 {% endif %}
 
-{% if ((item.ssl_state|default(False)) == True) %}
+{% if (item.ssl_state|default(False) == True) %}
   # SSL
 
   # Enable SSL/TLS protocol engine
   SSLEngine On
   # Disable compression on the SSL level
-{% if ((item.ssl_compression|default(False)) == True) %}
+{% if (item.ssl_compression|default(False) == True) %}
   SSLCompression On
 {% else %}
   SSLCompression Off
 {% endif %}
   # SSL/TLS protocol versions
-{% if not ((item.ssl_protocols|default([])) == []) %}
+{% if not (item.ssl_protocols|default([]) == []) %}
   SSLProtocol {% for ssl_protocols in item.ssl_protocols %}{{ssl_protocols}}{% if not loop.last %} {% endif %}{% endfor %}
 {% else %}
   SSLProtocol -ALL +TLSv1.2 +TLSv1.3
 {% endif %}
   # Option to prefer the server's cipher preference order
-{% if ((item.ssl_honor_cipher_order|default(True)) == False) %}
+{% if (item.ssl_honor_cipher_order|default(True) == False) %}
   SSLHonorCipherOrder Off
 {% else %}
   SSLHonorCipherOrder On
 {% endif %}
   # Cipher Suite available for negotiation in SSL handshake
-{% if not ((item.ssl_ciphers|default([])) == []) %}
+{% if not (item.ssl_ciphers|default([]) == []) %}
   SSLCipherSuite '{{item.ssl_ciphers}}'
 {% else %}
   SSLCipherSuite 'TLS_AES_256_GCM_SHA384:AES256+EECDH'
 {% endif %}
-{% if ((item.ssl_session_tickets|default(True)) == False) %}
+{% if (item.ssl_session_tickets|default(True) == False) %}
   # Disable use of TLS session tickets
   SSLSessionTickets Off
 {% endif %}
   # Server PEM-encoded X.509 certificate file
-{% if not ((item.ssl_certificate|default('')) == '') %}
+{% if not (item.ssl_certificate|default('') == '') %}
   SSLCertificateFile '{{item.ssl_certificate}}'
 {% else %}
   #SSLCertificateFile ''
 {% endif %}
   # Server PEM-encoded private key file
-{% if not ((item.ssl_certificate_key|default('')) == '') %}
+{% if not (item.ssl_certificate_key|default('') == '') %}
   SSLCertificateKeyFile '{{item.ssl_certificate_key}}'
 {% else %}
   #SSLCertificateKeyFile ''
 {% endif %}
   # PEM-encoded server CA certificate file
-{% if not ((item.ssl_certificate_chain|default('')) == '') %}
+{% if not (item.ssl_certificate_chain|default('') == '') %}
   SSLCertificateChainFile '{{item.ssl_certificate_chain}}'
 {% else %}
   #SSLCertificateChainFile ''
 {% endif %}
   # Concatenated, PEM-encoded CA Certificates for Client Auth
-{% if not ((item.ssl_ca_certificate|default('')) == '') %}
+{% if not (item.ssl_ca_certificate|default('') == '') %}
   SSLCACertificateFile '{{item.ssl_ca_certificate}}'
 {% else %}
   #SSLCACertificateFile ''
@@ -127,7 +127,7 @@
   # CONFIG
 
 {% if not (item.config == '') %}
-{{(item.config|indent(width=2, first=True))}}
+{{item.config|indent(width=2, first=True)}}
 {% endif %}
 
 </VirtualHost>

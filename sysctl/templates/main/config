@@ -1,10 +1,10 @@
 {{ansible_managed|comment(decoration='#')}}
 
 {% for item in (item.sysctl|default([])) %}
-{% if not ((item.comment|default('')) == '') %}
+{% if not (item.comment|default('') == '') %}
 # {{item.comment}}
 {% endif %}
-{%- if not ((item.key|default('')) == '') %}{{item.key}}{% endif %}=
-{%- if not ((item.value|default('')) == '') %}{{item.value}}{% endif %}
+{%- if not (item.key|default('') == '') %}{{item.key}}{% endif %}=
+{%- if not (item.value|default('') == '') %}{{item.value}}{% endif %}
 
 {% endfor %}

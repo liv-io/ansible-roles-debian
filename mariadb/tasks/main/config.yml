@@ -14,8 +14,8 @@
   mysql_db:
     state: present
     name: "{{item.name}}"
-    collation: "{{(item.collation|default(''))}}"
-    encoding: "{{(item.encoding|default(''))}}"
+    collation: "{{item.collation|default('')}}"
+    encoding: "{{item.encoding|default('')}}"
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   loop: "{{mariadb_database_all + mariadb_database_group + mariadb_database_host}}"
@@ -38,11 +38,11 @@
   mysql_user:
     state: present
     name: "{{item.name}}"
-    host: "{{(item.host|default('localhost'))}}"
+    host: "{{item.host|default('localhost')}}"
     password: "{{item.password}}"
     update_password: "{{'on_create' if (item.password_update|default(True) == False) else 'always'}}"
     encrypted: "{{True if (item.password_encrypted|default(False) == True) else False}}"
-    priv: "{{(item.privileges|default('*.*:ALL'))}}"
+    priv: "{{item.privileges|default('*.*:ALL')}}"
     append_privs: "{{True if (item.privileges_append|default(False) == True) else False}}"
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
@@ -56,7 +56,7 @@
   mysql_user:
     state: absent
     name: "{{item.name}}"
-    host: "{{(item.host|default('localhost'))}}"
+    host: "{{item.host|default('localhost')}}"
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"

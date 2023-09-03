@@ -29,7 +29,7 @@ export HISTCONTROL
 
 {% if not (bash_histfilesize == '') %}
 # HISTFILESIZE
-HISTFILESIZE={{(bash_histfilesize|int)}}
+HISTFILESIZE={{bash_histfilesize|int}}
 {% if (bash_history_readonly == True) %}
 readonly HISTFILESIZE
 {% endif %}
@@ -47,7 +47,7 @@ export HISTIGNORE
 
 {% if not (bash_histsize == '') %}
 # HISTSIZE
-HISTSIZE={{(bash_histsize|int)}}
+HISTSIZE={{bash_histsize|int}}
 {% if (bash_history_readonly == True) %}
 readonly HISTSIZE
 {% endif %}
@@ -70,7 +70,7 @@ export PROMPT_COMMAND
 
 {% if not (bash_tmout == '') %}
 # TMOUT
-TMOUT={{(bash_tmout|int)}}
+TMOUT={{bash_tmout|int}}
 {% if (bash_tmout_readonly == True) %}
 readonly TMOUT
 {% endif %}

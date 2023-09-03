@@ -14,7 +14,7 @@
   group:
     state: "{{'absent' if (item.state|default(True) == False) else 'present'}}"
     name: "{{item.name}}"
-    gid: "{{(item.gid|default(omit))}}"
+    gid: "{{item.gid|default(omit)}}"
     system: "{{True if (item.system|default(False) == True) else False}}"
   loop: "{{group_config_all + group_config_group + group_config_host}}"
   tags:

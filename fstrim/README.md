@@ -109,7 +109,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : "{{(15|random(seed=inventory_hostname))}}"
+    Default    : "{{15|random(seed=inventory_hostname)}}"
     Options    :
       Examples: '42' | '*/30'
 

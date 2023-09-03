@@ -2,15 +2,15 @@
 
 modules:
 {% for item in (blackbox_exporter_config|default([])) %}
-{% if not ((item.comment|default('')) == '') %}
+{% if not (item.comment|default('') == '') %}
   # {{item.comment}}
 {% endif %}
   {{item.name}}:
     prober: {{item.prober}}
-    timeout: {{(item.timeout|default('5s'))}}
+    timeout: {{item.timeout|default('5s')}}
     {{item.prober}}:
 {% if not (item.config == '') %}
-{{(item.config|indent(width=6, first=True))}}
+{{item.config|indent(width=6, first=True)}}
 {% endif %}
 {% if not loop.last %}
 

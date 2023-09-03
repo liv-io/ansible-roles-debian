@@ -329,7 +329,7 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : "{{(30|random(seed=inventory_hostname))}}"
+    Default    : "{{30|random(seed=inventory_hostname)}}"
     Options    :
       Examples: '42' | '*/30'
 

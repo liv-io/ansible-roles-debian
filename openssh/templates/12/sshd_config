@@ -14,7 +14,7 @@
 
 {% if not (openssh_port == []) %}
 {% for item in openssh_port %}
-Port {{(item|int(22))}}
+Port {{item|int(22)}}
 {% endfor %}
 {% else %}
 Port 22
@@ -163,7 +163,7 @@ X11Forwarding yes
 X11Forwarding no
 {% endif %}
 {% if (openssh_x11_forwarding == True) %}
-X11DisplayOffset {{(openssh_x11_display_offset|int(10))}}
+X11DisplayOffset {{openssh_x11_display_offset|int(10)}}
 {% if (openssh_x11_use_localhost == True) %}
 X11UseLocalhost yes
 {% else %}

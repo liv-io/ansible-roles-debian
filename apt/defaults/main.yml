@@ -6,7 +6,7 @@ apt_check_update_day: '*'
 
 apt_check_update_hour: '5'
 
-apt_check_update_minute: "{{(30|random(seed=inventory_hostname))}}"
+apt_check_update_minute: "{{30|random(seed=inventory_hostname)}}"
 
 apt_check_update_month: '*'
 

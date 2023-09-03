@@ -18,9 +18,9 @@
 ##
 ## Start Monit in the background (run as a daemon):
 #
-set daemon {{(monit_daemon_interval|int(60))}}
+set daemon {{monit_daemon_interval|int(60)}}
 {% if not (monit_daemon_delay == '') %}
-  with start delay {{(monit_daemon_delay|int(3))}}
+  with start delay {{monit_daemon_delay|int(3)}}
 {% endif %}
 #
 #
@@ -85,20 +85,20 @@ set statefile /var/lib/monit/state
 {% if not (monit_mail_server == []) %}
 {% for item in monit_mail_server %}
 set mailserver {{item.address}}
-{% if not ((item.port|default('')) == '') %}
-  port {{(item.port|default(25))}}
+{% if not (item.port|default('') == '') %}
+  port {{item.port|default(25)}}
 {% endif %}
-{% if not ((item.username|default('')) == '') %}
+{% if not (item.username|default('') == '') %}
   username '{{item.username}}'
 {% endif %}
-{% if not ((item.password|default('')) == '') %}
+{% if not (item.password|default('') == '') %}
   password '{{item.password}}'
 {% endif %}
-{% if not ((item.tls|default('')) == '') %}
+{% if not (item.tls|default('') == '') %}
   using {{item.tls}}
 {% endif %}
-{% if not ((item.timeout|default('')) == '') %}
-  with timeout {{(item.timeout|default(30))}} seconds
+{% if not (item.timeout|default('') == '') %}
+  with timeout {{item.timeout|default(30)}} seconds
 {% endif %}
 {% endfor %}
 {% endif %}
@@ -185,7 +185,7 @@ FQDN        : {{ansible_fqdn}}
 #
 {% if not (monit_mail_to == []) %}
 {% for item in monit_mail_to %}
-set alert {{item.address}} {% if not ((item.filter|default('')) == '') %}{{item.filter}} {% endif %}{% if not ((item.events|default([]))== []) %}{ {% for event in item.events %}{{event}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+set alert {{item.address}} {% if not (item.filter|default('') == '') %}{{item.filter}} {% endif %}{% if not ((item.events|default([]))== []) %}{ {% for event in item.events %}{{event}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
 
 {% endfor %}
 
@@ -200,10 +200,10 @@ set alert {{item.address}} {% if not ((item.filter|default('')) == '') %}{{item.
 ## commands to a running Monit daemon. See the Monit Wiki if you want to
 ## enable SSL for the HTTP interface.
 #
-set httpd port {{(monit_web_server_port|int(2812))}} and
+set httpd port {{monit_web_server_port|int(2812)}} and
   use address {{monit_web_server_address}}
 {% for item in monit_web_server_allow %}
-  allow {{item.user}}{% if not ((item.password|default('')) == '') %}:"{{item.password}}"{% endif %}
+  allow {{item.user}}{% if not (item.password|default('') == '') %}:"{{item.password}}"{% endif %}
 
 {% endfor %}
 #

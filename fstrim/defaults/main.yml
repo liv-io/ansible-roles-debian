@@ -6,7 +6,7 @@ fstrim_discard_blocks_day: '*'
 
 fstrim_discard_blocks_hour: '1'
 
-fstrim_discard_blocks_minute: "{{(15|random(seed=inventory_hostname))}}"
+fstrim_discard_blocks_minute: "{{15|random(seed=inventory_hostname)}}"
 
 fstrim_discard_blocks_month: '*'
 

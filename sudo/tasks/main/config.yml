@@ -13,7 +13,7 @@
 - name: create file config
   template:
     src: "{{file_src_config}}"
-    dest: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
+    dest: "{{file_dst_sudoers_d}}/{{item.order|default('')}}{{'-' if not (item.order|default('') == '') else ''}}{{item.name|default('config')}}"
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
@@ -26,7 +26,7 @@
 - name: remove file config
   file:
     state: absent
-    path: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
+    path: "{{file_dst_sudoers_d}}/{{item.order|default('')}}{{'-' if not (item.order|default('') == '') else ''}}{{item.name|default('config')}}"
   loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
   when: (item.state == False)
   tags:

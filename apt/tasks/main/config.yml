@@ -13,7 +13,7 @@
 - name: create file config
   template:
     src: "{{file_src_config}}"
-    dest: "{{(item.path|default('/etc/apt/sources.list'))}}"
+    dest: "{{item.path|default('/etc/apt/sources.list')}}"
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
@@ -26,7 +26,7 @@
 - name: remove file config
   file:
     state: absent
-    path: "{{(item.path|default('/etc/apt/sources.list'))}}"
+    path: "{{item.path|default('/etc/apt/sources.list')}}"
   loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
   notify: update sources
   when: (item.state|default(False) == False)
