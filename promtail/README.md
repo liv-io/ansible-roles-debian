@@ -139,7 +139,7 @@ consult the following sections.
                 source: ssh_user
                 config:
                   action: inc
-  
+
       # Extract SSH user and session status (opened or closed)
       - match:
           selector: '{job="syslog"}'
@@ -156,7 +156,7 @@ consult the following sections.
                 source: ssh_session_state
                 config:
                   action: inc
-  
+
       # Extract name for users called su or sudo
       - match:
           selector: '{job="syslog"}'
