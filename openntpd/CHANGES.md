@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.0.3 (2023-09-11)
+
+### Bugs
+
+- Fix `command_cmd_check_service_monit` variable name
+
 ## 2.0.2 (2023-08-15)
 
 ### Bugs

@@ -59,8 +59,8 @@ cron_job_openntpd_check_time: "{{file_dst_openntpd_check_time}}"
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
-# check service monit_exporter
-command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
+# check service monit
+command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
 # check service nftables
 command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
