@@ -3620,14 +3620,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "zfs_check_pools_exit",
+          "expr": "zfs_trim_pools_exit",
           "instant": false,
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "zfs_check_pools_exit",
+      "title": "zfs_trim_pools_exit",
       "type": "timeseries"
     },
     {
@@ -3709,14 +3709,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "zfs_check_pools_start * 1000",
+          "expr": "zfs_trim_pools_start * 1000",
           "instant": false,
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "zfs_check_pools_start",
+      "title": "zfs_trim_pools_start",
       "type": "timeseries"
     },
     {
@@ -3799,14 +3799,14 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "zfs_check_pools_duration",
+          "expr": "zfs_trim_pools_duration",
           "instant": false,
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "zfs_check_pools_duration",
+      "title": "zfs_trim_pools_duration",
       "type": "timeseries"
     }
   ],

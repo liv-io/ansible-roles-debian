@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.2.1 (2023-09-14)
+
+### Bugs
+
+- Fix `zfs_trim-pools` source and title
+
 ## 2.2.0 (2023-09-06)
 
 ### Features
