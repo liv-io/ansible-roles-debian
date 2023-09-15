@@ -273,7 +273,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.9.0'
+    Default    : '2.9.1'
     Options    :
       Examples: '1.5.0' | '1.6.0'
 
