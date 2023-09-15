@@ -65,7 +65,7 @@ groups:
           description: "CPU 'user' load above 90% for at least 10 minutes: {% raw %}{{$value}}{% endraw %}%"
 
       - alert: "CPU 'user' Utilization (60mAVG)"
-        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[10m])) * 100 > 60
+        expr: avg by (instance)(irate(node_cpu_seconds_total{job="node",mode="system"}[60m])) * 100 > 60
         for: 30s
         labels:
           severity: warning
@@ -184,6 +184,14 @@ groups:
           summary: "Chrony: Check Time (script_status)"
           description: "Chrony time unsynchronized for at least 1 hour"
 
+      - alert: "fstrim Discarding Blocks Failed"
+        expr: fstrim_discard_blocks_exit != 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "fstrim: Discard Blocks (script_status)"
+
       - alert: "MariaDB Backup Failed"
         expr: mariadb_run_backup_exit != 0
         for: 30s
@@ -220,6 +228,15 @@ groups:
           summary: "Restic: Run Backup (script_status)"
           description: "Restic backup failed"
 
+      - alert: "systemd-timesyncd Time Unsynchronized"
+        expr: systemd_timesyncd_check_time_exit != 0
+        for: 1h
+        labels:
+          severity: info
+        annotations:
+          summary: "systemd-timesyncd: Check Time (script_status)"
+          description: "systemd-timesyncd time unsynchronized for at least 1 hour"
+
       - alert: "ZFS Disk Failure"
         expr: zfs_check_pools_exit != 0
         for: 30s
@@ -230,7 +247,7 @@ groups:
           description: "ZFS pool with faulty disk"
 
       - alert: "ZFS Scrub Failed"
-        expr: zfs_check_pools_exit != 0
+        expr: zfs_scrub_pools_exit != 0
         for: 30s
         labels:
           severity: warning

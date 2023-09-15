@@ -10,6 +10,18 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.0 (2023-09-15)
+
+### Bugs
+
+- Fix alert `CPU 'user' Utilization (60mAVG)`
+- Fix source of alert `zfs_scrub-pools`
+
+### Features
+
+- Add alert for script `fstrim_discard-blocks`
+- Add alert for script `systemd-timesyncd_check-time`
+
 ## 2.2.1 (2023-09-14)
 
 ### Bugs
