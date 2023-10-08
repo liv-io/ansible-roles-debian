@@ -10,6 +10,10 @@ The headers are:
 - enhancements
 - features
 
+## 2.4.0 (2023-10-08)
+
+- Update Prometheus to version 2.47.1
+
 ## 2.3.0 (2023-09-15)
 
 ### Bugs
