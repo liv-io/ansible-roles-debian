@@ -4,7 +4,7 @@
 package_name_php: 'php'
 
 # php.ini
-file_src_php_ini: 'templates/main/php.ini'
+file_src_php_ini: 'php.ini'
 file_dst_php_ini: '/etc/php/7.4/apache2/php.ini'
 file_mode_php_ini: '0644'
 file_owner_php_ini: 'root'

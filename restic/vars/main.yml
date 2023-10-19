@@ -31,28 +31,28 @@ command_cmd_unarchive_restic_bz2: "bzip2 -qcdk /usr/local/src/restic_{{restic_ve
 command_creates_unarchive_restic_bz2: '/usr/local/sbin/restic'
 
 # include.conf
-file_src_include_conf: 'templates/main/include.conf'
+file_src_include_conf: 'include.conf'
 file_dst_include_conf: '/etc/restic/include.conf'
 file_mode_include_conf: '0600'
 file_owner_include_conf: 'root'
 file_group_include_conf: 'root'
 
 # exclude.conf
-file_src_exclude_conf: 'templates/main/exclude.conf'
+file_src_exclude_conf: 'exclude.conf'
 file_dst_exclude_conf: '/etc/restic/exclude.conf'
 file_mode_exclude_conf: '0600'
 file_owner_exclude_conf: 'root'
 file_group_exclude_conf: 'root'
 
 # password.conf
-file_src_password_conf: 'templates/main/password.conf'
+file_src_password_conf: 'password.conf'
 file_dst_password_conf: '/etc/restic/password.conf'
 file_mode_password_conf: '0600'
 file_owner_password_conf: 'root'
 file_group_password_conf: 'root'
 
 # repository.conf
-file_src_repository_conf: 'templates/main/repository.conf'
+file_src_repository_conf: 'repository.conf'
 file_dst_repository_conf: '/etc/restic/repository.conf'
 file_mode_repository_conf: '0600'
 file_owner_repository_conf: 'root'
@@ -71,7 +71,7 @@ file_owner_restic_log: 'root'
 file_group_restic_log: 'root'
 
 # restic_run-backup
-file_src_restic_run_backup: 'templates/main/restic_run-backup'
+file_src_restic_run_backup: 'restic_run-backup'
 file_dst_restic_run_backup: '/usr/local/sbin/restic_run-backup'
 file_mode_restic_run_backup: '0754'
 file_owner_restic_run_backup: 'root'
@@ -84,7 +84,7 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # restic.nft
-file_src_restic_nft: 'templates/main/restic.nft'
+file_src_restic_nft: 'restic.nft'
 file_dst_restic_nft: '/etc/nftables.d/restic.conf'
 file_mode_restic_nft: '0640'
 file_owner_restic_nft: 'root'

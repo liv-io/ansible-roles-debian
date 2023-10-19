@@ -18,14 +18,14 @@ file_exclude_smokeping_prober: ['LICENSE']
 file_extra_opts_smokeping_prober: ['--strip-components=1']
 
 # smokeping_prober.default
-file_src_smokeping_prober_default: 'templates/main/smokeping_prober.default'
+file_src_smokeping_prober_default: 'smokeping_prober.default'
 file_dst_smokeping_prober_default: '/etc/default/smokeping_prober'
 file_mode_smokeping_prober_default: '0644'
 file_owner_smokeping_prober_default: 'root'
 file_group_smokeping_prober_default: 'root'
 
 # smokeping_prober.service
-file_src_smokeping_prober_service: 'templates/main/smokeping_prober.service'
+file_src_smokeping_prober_service: 'smokeping_prober.service'
 file_dst_smokeping_prober_service: '/lib/systemd/system/smokeping_prober.service'
 file_mode_smokeping_prober_service: '0644'
 file_owner_smokeping_prober_service: 'root'
@@ -44,14 +44,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # smokeping_prober.cfg
-file_src_smokeping_prober_cfg: 'templates/main/smokeping_prober.cfg'
+file_src_smokeping_prober_cfg: 'smokeping_prober.cfg'
 file_dst_smokeping_prober_cfg: '/etc/monit.d/smokeping_prober.cfg'
 file_mode_smokeping_prober_cfg: '0640'
 file_owner_smokeping_prober_cfg: 'root'
 file_group_smokeping_prober_cfg: 'root'
 
 # smokeping_prober.nft
-file_src_smokeping_prober_nft: 'templates/main/smokeping_prober.nft'
+file_src_smokeping_prober_nft: 'smokeping_prober.nft'
 file_dst_smokeping_prober_nft: '/etc/nftables.d/smokeping_prober.conf'
 file_mode_smokeping_prober_nft: '0640'
 file_owner_smokeping_prober_nft: 'root'

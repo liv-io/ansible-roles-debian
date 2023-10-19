@@ -6,25 +6,25 @@ package_name_gnupg1: 'gnupg1'
 # grafana
 package_name_grafana: 'grafana'
 
-file_src_grafana_asc: "files/{{ansible_distribution_major_version}}/grafana.asc"
+file_src_grafana_asc: "{{ansible_distribution_major_version}}/grafana.asc"
 file_dst_grafana_asc: '/etc/apt/trusted.gpg.d/grafana.asc'
 file_mode_grafana_asc: '0644'
 file_owner_grafana_asc: 'root'
 file_group_grafana_asc: 'root'
 
-file_src_grafana_gpg: "files/{{ansible_distribution_major_version}}/grafana.gpg"
+file_src_grafana_gpg: "{{ansible_distribution_major_version}}/grafana.gpg"
 file_dst_grafana_gpg: '/usr/local/src/grafana.gpg'
 file_mode_grafana_gpg: '0644'
 file_owner_grafana_gpg: 'root'
 file_group_grafana_gpg: 'root'
 
-file_src_grafana_list: 'files/main/grafana.list'
+file_src_grafana_list: 'grafana.list'
 file_dst_grafana_list: '/etc/apt/sources.list.d/grafana.list'
 file_mode_grafana_list: '0644'
 file_owner_grafana_list: 'root'
 file_group_grafana_list: 'root'
 
-file_src_grafana_ini: 'templates/main/grafana.ini'
+file_src_grafana_ini: 'grafana.ini'
 file_dst_grafana_ini: '/etc/grafana/grafana.ini'
 file_mode_grafana_ini: '0640'
 file_owner_grafana_ini: 'root'
@@ -43,14 +43,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # grafana.cfg
-file_src_grafana_cfg: 'templates/main/grafana.cfg'
+file_src_grafana_cfg: 'grafana.cfg'
 file_dst_grafana_cfg: '/etc/monit.d/grafana.cfg'
 file_mode_grafana_cfg: '0640'
 file_owner_grafana_cfg: 'root'
 file_group_grafana_cfg: 'root'
 
 # grafana.nft
-file_src_grafana_nft: 'templates/main/grafana.nft'
+file_src_grafana_nft: 'grafana.nft'
 file_dst_grafana_nft: '/etc/nftables.d/grafana.conf'
 file_mode_grafana_nft: '0640'
 file_owner_grafana_nft: 'root'

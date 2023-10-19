@@ -7,14 +7,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # resolv.conf
-file_src_resolv_conf: 'templates/main/resolv.conf'
+file_src_resolv_conf: 'resolv.conf'
 file_dst_resolv_conf: '/etc/resolv.conf'
 file_mode_resolv_conf: '0644'
 file_owner_resolv_conf: 'root'
 file_group_resolv_conf: 'root'
 
 # resolver.nft
-file_src_resolver_nft: 'templates/main/resolver.nft'
+file_src_resolver_nft: 'resolver.nft'
 file_dst_resolver_nft: '/etc/nftables.d/resolver.conf'
 file_mode_resolver_nft: '0640'
 file_owner_resolver_nft: 'root'

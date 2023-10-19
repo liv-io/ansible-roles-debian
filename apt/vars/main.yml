@@ -10,13 +10,13 @@ package_name_gnupg1: 'gnupg1'
 package_name_mailx: 'bsd-mailx'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'root'
 
 # apt.conf
-file_src_apt_conf: 'templates/main/apt.conf'
+file_src_apt_conf: 'apt.conf'
 file_dst_apt_conf: '/etc/apt/apt.conf'
 file_mode_apt_conf: '0644'
 file_owner_apt_conf: 'root'
@@ -35,14 +35,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # apt.nft
-file_src_apt_nft: 'templates/main/apt.nft'
+file_src_apt_nft: 'apt.nft'
 file_dst_apt_nft: '/etc/nftables.d/apt.conf'
 file_mode_apt_nft: '0640'
 file_owner_apt_nft: 'root'
 file_group_apt_nft: 'root'
 
 # apt_check-update
-file_src_apt_check_update: 'templates/main/apt_check-update'
+file_src_apt_check_update: 'apt_check-update'
 file_dst_apt_check_update: '/usr/local/sbin/apt_check-update'
 file_mode_apt_check_update: '0754'
 file_owner_apt_check_update: 'root'

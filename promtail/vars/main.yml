@@ -22,21 +22,21 @@ file_group_promtail: 'root'
 file_creates_promtail: '/usr/local/bin/promtail-linux-amd64'
 
 # promtail.default
-file_src_promtail_default: 'templates/main/promtail.default'
+file_src_promtail_default: 'promtail.default'
 file_dst_promtail_default: '/etc/default/promtail'
 file_mode_promtail_default: '0644'
 file_owner_promtail_default: 'root'
 file_group_promtail_default: 'root'
 
 # promtail.service
-file_src_promtail_service: 'templates/main/promtail.service'
+file_src_promtail_service: 'promtail.service'
 file_dst_promtail_service: '/lib/systemd/system/promtail.service'
 file_mode_promtail_service: '0644'
 file_owner_promtail_service: 'root'
 file_group_promtail_service: 'root'
 
 # promtail.yaml
-file_src_promtail_yaml: 'templates/main/promtail.yaml'
+file_src_promtail_yaml: 'promtail.yaml'
 file_dst_promtail_yaml: '/etc/promtail/promtail.yaml'
 file_mode_promtail_yaml: '0644'
 file_owner_promtail_yaml: 'root'
@@ -55,14 +55,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # promtail.cfg
-file_src_promtail_cfg: 'templates/main/promtail.cfg'
+file_src_promtail_cfg: 'promtail.cfg'
 file_dst_promtail_cfg: '/etc/monit.d/promtail.cfg'
 file_mode_promtail_cfg: '0640'
 file_owner_promtail_cfg: 'root'
 file_group_promtail_cfg: 'root'
 
 # promtail.nft
-file_src_promtail_nft: 'templates/main/promtail.nft'
+file_src_promtail_nft: 'promtail.nft'
 file_dst_promtail_nft: '/etc/nftables.d/promtail.conf'
 file_mode_promtail_nft: '0640'
 file_owner_promtail_nft: 'root'

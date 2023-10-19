@@ -7,13 +7,13 @@ package_name_audit: 'auditd'
 package_name_audispd_plugins: 'audispd-plugins'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0600'
 file_owner_config: 'root'
 file_group_config: 'root'
 
 # auditd.conf
-file_src_auditd_conf: "templates/{{ansible_distribution_major_version}}/auditd.conf"
+file_src_auditd_conf: "{{ansible_distribution_major_version}}/auditd.conf"
 file_dst_auditd_conf: '/etc/audit/auditd.conf'
 file_mode_auditd_conf: '0640'
 file_owner_auditd_conf: 'root'
@@ -26,7 +26,7 @@ file_owner_rules_d: 'root'
 file_group_rules_d: 'root'
 
 # syslog.conf
-file_src_syslog_conf: 'templates/main/syslog.conf'
+file_src_syslog_conf: 'syslog.conf'
 file_dst_syslog_conf: '/etc/audit/plugins.d/syslog.conf'
 file_mode_syslog_conf: '0640'
 file_owner_syslog_conf: 'root'
@@ -39,7 +39,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
 # auditd.cfg
-file_src_auditd_cfg: 'templates/main/auditd.cfg'
+file_src_auditd_cfg: 'auditd.cfg'
 file_dst_auditd_cfg: '/etc/monit.d/auditd.cfg'
 file_mode_auditd_cfg: '0640'
 file_owner_auditd_cfg: 'root'

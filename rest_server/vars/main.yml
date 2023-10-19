@@ -30,14 +30,14 @@ file_exclude_rest_server: ['CHANGELOG.md', 'LICENSE', 'README.md']
 file_extra_opts_rest_server: ['--strip-components=1']
 
 # rest-server.default
-file_src_rest_server_default: 'templates/main/rest-server.default'
+file_src_rest_server_default: 'rest-server.default'
 file_dst_rest_server_default: '/etc/default/rest-server'
 file_mode_rest_server_default: '0644'
 file_owner_rest_server_default: 'root'
 file_group_rest_server_default: 'root'
 
 # rest-server.service
-file_src_rest_server_service: 'templates/main/rest-server.service'
+file_src_rest_server_service: 'rest-server.service'
 file_dst_rest_server_service: '/lib/systemd/system/rest-server.service'
 file_mode_rest_server_service: '0644'
 file_owner_rest_server_service: 'root'
@@ -56,14 +56,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # rest-server.cfg
-file_src_rest_server_cfg: 'templates/main/rest-server.cfg'
+file_src_rest_server_cfg: 'rest-server.cfg'
 file_dst_rest_server_cfg: '/etc/monit.d/rest-server.cfg'
 file_mode_rest_server_cfg: '0640'
 file_owner_rest_server_cfg: 'root'
 file_group_rest_server_cfg: 'root'
 
 # rest-server.nft
-file_src_rest_server_nft: 'templates/main/rest-server.nft'
+file_src_rest_server_nft: 'rest-server.nft'
 file_dst_rest_server_nft: '/etc/nftables.d/rest-server.conf'
 file_mode_rest_server_nft: '0640'
 file_owner_rest_server_nft: 'root'

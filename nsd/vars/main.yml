@@ -4,14 +4,14 @@
 package_name_nsd: 'nsd'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_dst_config: '/etc/nsd'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'root'
 
 # nsd.conf
-file_src_nsd_conf: "templates/{{ansible_distribution_major_version}}/nsd.conf"
+file_src_nsd_conf: "{{ansible_distribution_major_version}}/nsd.conf"
 file_dst_nsd_conf: '/etc/nsd/nsd.conf'
 file_mode_nsd_conf: '0644'
 file_owner_nsd_conf: 'root'
@@ -31,14 +31,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # nsd.cfg
-file_src_nsd_cfg: 'templates/main/nsd.cfg'
+file_src_nsd_cfg: 'nsd.cfg'
 file_dst_nsd_cfg: '/etc/monit.d/nsd.cfg'
 file_mode_nsd_cfg: '0640'
 file_owner_nsd_cfg: 'root'
 file_group_nsd_cfg: 'root'
 
 # nsd.nft
-file_src_nsd_nft: 'templates/main/nsd.nft'
+file_src_nsd_nft: 'nsd.nft'
 file_dst_nsd_nft: '/etc/nftables.d/nsd.conf'
 file_mode_nsd_nft: '0640'
 file_owner_nsd_nft: 'root'

@@ -4,7 +4,7 @@
 package_name_systemd: 'systemd'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'root'

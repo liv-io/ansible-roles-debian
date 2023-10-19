@@ -7,14 +7,14 @@ package_name_mailx: 'bsd-mailx'
 package_name_openntpd: 'openntpd'
 
 # ntpd.conf
-file_src_ntpd_conf: 'templates/main/ntpd.conf'
+file_src_ntpd_conf: 'ntpd.conf'
 file_dst_ntpd_conf: '/etc/openntpd/ntpd.conf'
 file_mode_ntpd_conf: '0644'
 file_owner_ntpd_conf: 'root'
 file_group_ntpd_conf: 'root'
 
 # openntpd_check-time
-file_src_openntpd_check_time: 'templates/main/openntpd_check-time'
+file_src_openntpd_check_time: 'openntpd_check-time'
 file_dst_openntpd_check_time: '/usr/local/sbin/openntpd_check-time'
 file_mode_openntpd_check_time: '0754'
 file_owner_openntpd_check_time: 'root'
@@ -33,14 +33,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # openntpd.cfg
-file_src_openntpd_cfg: 'templates/main/openntpd.cfg'
+file_src_openntpd_cfg: 'openntpd.cfg'
 file_dst_openntpd_cfg: '/etc/monit.d/openntpd.cfg'
 file_mode_openntpd_cfg: '0640'
 file_owner_openntpd_cfg: 'root'
 file_group_openntpd_cfg: 'root'
 
 # openntpd.nft
-file_src_openntpd_nft: 'templates/main/openntpd.nft'
+file_src_openntpd_nft: 'openntpd.nft'
 file_dst_openntpd_nft: '/etc/nftables.d/openntpd.conf'
 file_mode_openntpd_nft: '0640'
 file_owner_openntpd_nft: 'root'

@@ -7,7 +7,7 @@ package_name_nginx: 'nginx'
 package_name_openssl: 'openssl'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'root'
@@ -16,7 +16,7 @@ file_group_config: 'root'
 file_dst_dhparam_pem: '/etc/nginx/dhparam.pem'
 
 # nginx.conf
-file_src_nginx_conf: 'templates/main/nginx.conf'
+file_src_nginx_conf: 'nginx.conf'
 file_dst_nginx_conf: '/etc/nginx/nginx.conf'
 file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'
@@ -41,14 +41,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # nginx.cfg
-file_src_nginx_cfg: 'templates/main/nginx.cfg'
+file_src_nginx_cfg: 'nginx.cfg'
 file_dst_nginx_cfg: '/etc/monit.d/nginx.cfg'
 file_mode_nginx_cfg: '0640'
 file_owner_nginx_cfg: 'root'
 file_group_nginx_cfg: 'root'
 
 # nginx.nft
-file_src_nginx_nft: 'templates/main/nginx.nft'
+file_src_nginx_nft: 'nginx.nft'
 file_dst_nginx_nft: '/etc/nftables.d/nginx.conf'
 file_mode_nginx_nft: '0640'
 file_owner_nginx_nft: 'root'

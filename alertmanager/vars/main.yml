@@ -30,21 +30,21 @@ file_exclude_alertmanager: ['LICENSE', 'NOTICE', 'alertmanager.yml']
 file_extra_opts_alertmanager: ['--strip-components=1']
 
 # alertmanager.default
-file_src_alertmanager_default: 'templates/main/alertmanager.default'
+file_src_alertmanager_default: 'alertmanager.default'
 file_dst_alertmanager_default: '/etc/default/alertmanager'
 file_mode_alertmanager_default: '0644'
 file_owner_alertmanager_default: 'root'
 file_group_alertmanager_default: 'root'
 
 # alertmanager.service
-file_src_alertmanager_service: 'templates/main/alertmanager.service'
+file_src_alertmanager_service: 'alertmanager.service'
 file_dst_alertmanager_service: '/lib/systemd/system/alertmanager.service'
 file_mode_alertmanager_service: '0644'
 file_owner_alertmanager_service: 'root'
 file_group_alertmanager_service: 'root'
 
 # alertmanager.yml
-file_src_alertmanager_yml: 'templates/main/alertmanager.yml'
+file_src_alertmanager_yml: 'alertmanager.yml'
 file_dst_alertmanager_yml: '/etc/alertmanager/alertmanager.yml'
 file_mode_alertmanager_yml: '0644'
 file_owner_alertmanager_yml: 'root'
@@ -66,14 +66,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # alertmanager.cfg
-file_src_alertmanager_cfg: 'templates/main/alertmanager.cfg'
+file_src_alertmanager_cfg: 'alertmanager.cfg'
 file_dst_alertmanager_cfg: '/etc/monit.d/alertmanager.cfg'
 file_mode_alertmanager_cfg: '0640'
 file_owner_alertmanager_cfg: 'root'
 file_group_alertmanager_cfg: 'root'
 
 # alertmanager.nft
-file_src_alertmanager_nft: 'templates/main/alertmanager.nft'
+file_src_alertmanager_nft: 'alertmanager.nft'
 file_dst_alertmanager_nft: '/etc/nftables.d/alertmanager.conf'
 file_mode_alertmanager_nft: '0640'
 file_owner_alertmanager_nft: 'root'

@@ -40,14 +40,14 @@ file_owner_loki_data_dir: 'loki'
 file_group_loki_data_dir: 'loki'
 
 # loki_datasource.yaml
-file_src_loki_datasource_yaml: 'templates/main/loki_datasource.yaml'
+file_src_loki_datasource_yaml: 'loki_datasource.yaml'
 file_dst_loki_datasource_yaml: '/etc/grafana/provisioning/datasources/loki_datasource.yaml'
 file_mode_loki_datasource_yaml: '0640'
 file_owner_loki_datasource_yaml: 'root'
 file_group_loki_datasource_yaml: 'grafana'
 
 # loki_prometheus_datasource.yaml
-file_src_loki_prometheus_datasource_yaml: 'templates/main/loki_prometheus_datasource.yaml'
+file_src_loki_prometheus_datasource_yaml: 'loki_prometheus_datasource.yaml'
 file_dst_loki_prometheus_datasource_yaml: '/etc/grafana/provisioning/datasources/loki_prometheus_datasource.yaml'
 file_mode_loki_prometheus_datasource_yaml: '0640'
 file_owner_loki_prometheus_datasource_yaml: 'root'
@@ -75,21 +75,21 @@ file_group_loki: 'root'
 file_creates_loki: '/usr/local/bin/loki-linux-amd64'
 
 # loki.default
-file_src_loki_default: 'templates/main/loki.default'
+file_src_loki_default: 'loki.default'
 file_dst_loki_default: '/etc/default/loki'
 file_mode_loki_default: '0644'
 file_owner_loki_default: 'root'
 file_group_loki_default: 'root'
 
 # loki.service
-file_src_loki_service: 'templates/main/loki.service'
+file_src_loki_service: 'loki.service'
 file_dst_loki_service: '/lib/systemd/system/loki.service'
 file_mode_loki_service: '0644'
 file_owner_loki_service: 'root'
 file_group_loki_service: 'root'
 
 # loki.yaml
-file_src_loki_yaml: 'templates/main/loki.yaml'
+file_src_loki_yaml: 'loki.yaml'
 file_dst_loki_yaml: '/etc/loki/loki.yaml'
 file_mode_loki_yaml: '0644'
 file_owner_loki_yaml: 'root'
@@ -120,14 +120,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # loki.cfg
-file_src_loki_cfg: 'templates/main/loki.cfg'
+file_src_loki_cfg: 'loki.cfg'
 file_dst_loki_cfg: '/etc/monit.d/loki.cfg'
 file_mode_loki_cfg: '0640'
 file_owner_loki_cfg: 'root'
 file_group_loki_cfg: 'root'
 
 # loki.nft
-file_src_loki_nft: 'templates/main/loki.nft'
+file_src_loki_nft: 'loki.nft'
 file_dst_loki_nft: '/etc/nftables.d/loki.conf'
 file_mode_loki_nft: '0640'
 file_owner_loki_nft: 'root'

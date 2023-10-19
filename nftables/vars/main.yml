@@ -4,7 +4,7 @@
 package_name_nftables: 'nftables'
 
 # nftables.conf
-file_src_nftables_conf: 'templates/main/nftables.conf'
+file_src_nftables_conf: 'nftables.conf'
 file_dst_nftables_conf: '/etc/nftables.conf'
 file_mode_nftables_conf: '0640'
 file_owner_nftables_conf: 'root'
@@ -17,21 +17,21 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # 00-filter-table.conf
-file_src_00_filter_table_conf: 'templates/main/00-filter-table.conf'
+file_src_00_filter_table_conf: '00-filter-table.conf'
 file_dst_00_filter_table_conf: '/etc/nftables.d/00-filter-table.conf'
 file_mode_00_filter_table_conf: '0640'
 file_owner_00_filter_table_conf: 'root'
 file_group_00_filter_table_conf: 'root'
 
 # 01-filter-chain.conf
-file_src_01_filter_chain_conf: 'templates/main/01-filter-chain.conf'
+file_src_01_filter_chain_conf: '01-filter-chain.conf'
 file_dst_01_filter_chain_conf: '/etc/nftables.d/01-filter-chain.conf'
 file_mode_01_filter_chain_conf: '0640'
 file_owner_01_filter_chain_conf: 'root'
 file_group_01_filter_chain_conf: 'root'
 
 # 02-filter-rule.conf
-file_src_02_filter_rule_conf: 'templates/main/02-filter-rule.conf'
+file_src_02_filter_rule_conf: '02-filter-rule.conf'
 file_dst_02_filter_rule_conf: '/etc/nftables.d/02-filter-rule.conf'
 file_mode_02_filter_rule_conf: '0640'
 file_owner_02_filter_rule_conf: 'root'

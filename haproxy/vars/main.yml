@@ -10,7 +10,7 @@ package_name_openssl: 'openssl'
 file_dst_dhparam_pem: '/etc/haproxy/dhparam.pem'
 
 # haproxy.cfg
-file_src_haproxy_cfg: "templates/{{ansible_distribution_major_version}}/haproxy.cfg"
+file_src_haproxy_cfg: "{{ansible_distribution_major_version}}/haproxy.cfg"
 file_dst_haproxy_cfg: '/etc/haproxy/haproxy.cfg'
 file_mode_haproxy_cfg: '0644'
 file_owner_haproxy_cfg: 'root'
@@ -30,14 +30,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # haproxy.monit
-file_src_haproxy_monit: 'templates/main/haproxy.monit'
+file_src_haproxy_monit: 'haproxy.monit'
 file_dst_haproxy_monit: '/etc/monit.d/haproxy.cfg'
 file_mode_haproxy_monit: '0640'
 file_owner_haproxy_monit: 'root'
 file_group_haproxy_monit: 'root'
 
 # haproxy.nft
-file_src_haproxy_nft: 'templates/main/haproxy.nft'
+file_src_haproxy_nft: 'haproxy.nft'
 file_dst_haproxy_nft: '/etc/nftables.d/haproxy.conf'
 file_mode_haproxy_nft: '0640'
 file_owner_haproxy_nft: 'root'

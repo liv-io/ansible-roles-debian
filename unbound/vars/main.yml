@@ -7,14 +7,14 @@ package_name_unbound: 'unbound'
 package_name_unbound_anchor: 'unbound-anchor'
 
 # root.hints
-file_src_root_hints: 'files/main/root.hints'
+file_src_root_hints: 'root.hints'
 file_dst_root_hints: '/etc/unbound/root.hints'
 file_mode_root_hints: '0644'
 file_owner_root_hints: 'root'
 file_group_root_hints: 'root'
 
 # unbound.conf
-file_src_unbound_conf: "templates/{{ansible_distribution_major_version}}/unbound.conf"
+file_src_unbound_conf: "{{ansible_distribution_major_version}}/unbound.conf"
 file_dst_unbound_conf: '/etc/unbound/unbound.conf'
 file_mode_unbound_conf: '0644'
 file_owner_unbound_conf: 'root'
@@ -34,14 +34,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # unbound.cfg
-file_src_unbound_cfg: 'templates/main/unbound.cfg'
+file_src_unbound_cfg: 'unbound.cfg'
 file_dst_unbound_cfg: '/etc/monit.d/unbound.cfg'
 file_mode_unbound_cfg: '0640'
 file_owner_unbound_cfg: 'root'
 file_group_unbound_cfg: 'root'
 
 # unbound.nft
-file_src_unbound_nft: 'templates/main/unbound.nft'
+file_src_unbound_nft: 'unbound.nft'
 file_dst_unbound_nft: '/etc/nftables.d/unbound.conf'
 file_mode_unbound_nft: '0640'
 file_owner_unbound_nft: 'root'

@@ -4,7 +4,7 @@
 package_name_apache2_utils: 'apache2-utils'
 
 # htpasswd
-file_src_htpasswd: 'templates/main/htpasswd'
+file_src_htpasswd: 'htpasswd'
 file_dst_htpasswd: '/etc/podman/pod_registry/auth/htpasswd'
 file_mode_htpasswd: '0640'
 file_owner_htpasswd: 'root'
@@ -47,21 +47,21 @@ file_owner_pod_registry_data_dir: 'pod_registry'
 file_group_pod_registry_data_dir: 'pod_registry'
 
 # pod_registry.default
-file_src_pod_registry_default: 'templates/main/pod_registry.default'
+file_src_pod_registry_default: 'pod_registry.default'
 file_dst_pod_registry_default: '/etc/default/pod_registry'
 file_mode_pod_registry_default: '0640'
 file_owner_pod_registry_default: 'root'
 file_group_pod_registry_default: 'pod_registry'
 
 # pod_registry.service
-file_src_pod_registry_service: 'templates/main/pod_registry.service'
+file_src_pod_registry_service: 'pod_registry.service'
 file_dst_pod_registry_service: '/lib/systemd/system/pod_registry.service'
 file_mode_pod_registry_service: '0644'
 file_owner_pod_registry_service: 'root'
 file_group_pod_registry_service: 'root'
 
 # pod_registry.yaml
-file_src_pod_registry_yaml: 'templates/main/pod_registry.yaml'
+file_src_pod_registry_yaml: 'pod_registry.yaml'
 file_dst_pod_registry_yaml: '/etc/podman/pod_registry/pod_registry.yaml'
 file_mode_pod_registry_yaml: '0640'
 file_owner_pod_registry_yaml: 'root'
@@ -80,14 +80,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # pod_registry.cfg
-file_src_pod_registry_cfg: 'templates/main/pod_registry.cfg'
+file_src_pod_registry_cfg: 'pod_registry.cfg'
 file_dst_pod_registry_cfg: '/etc/monit.d/pod_registry.cfg'
 file_mode_pod_registry_cfg: '0640'
 file_owner_pod_registry_cfg: 'root'
 file_group_pod_registry_cfg: 'root'
 
 # pod_registry.nft
-file_src_pod_registry_nft: 'templates/main/pod_registry.nft'
+file_src_pod_registry_nft: 'pod_registry.nft'
 file_dst_pod_registry_nft: '/etc/nftables.d/pod_registry.conf'
 file_mode_pod_registry_nft: '0640'
 file_owner_pod_registry_nft: 'root'

@@ -4,7 +4,7 @@
 package_name_modsecurity_crs: 'modsecurity-crs'
 
 # crs-setup.conf
-file_src_crs_setup_conf: "templates/{{ansible_distribution_major_version}}/crs-setup.conf"
+file_src_crs_setup_conf: "{{ansible_distribution_major_version}}/crs-setup.conf"
 file_dst_crs_setup_conf: '/etc/modsecurity/crs/crs-setup.conf'
 file_mode_crs_setup_conf: '0644'
 file_owner_crs_setup_conf: 'root'

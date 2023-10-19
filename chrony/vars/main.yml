@@ -13,21 +13,21 @@ package_name_chrony: 'chrony'
 package_name_mailx: 'bsd-mailx'
 
 # chrony.conf
-file_src_chrony_conf: 'templates/main/chrony.conf'
+file_src_chrony_conf: 'chrony.conf'
 file_dst_chrony_conf: '/etc/chrony/chrony.conf'
 file_mode_chrony_conf: '0644'
 file_owner_chrony_conf: 'root'
 file_group_chrony_conf: 'root'
 
 # chrony_check-time
-file_src_chrony_check_time: 'templates/main/chrony_check-time'
+file_src_chrony_check_time: 'chrony_check-time'
 file_dst_chrony_check_time: '/usr/local/sbin/chrony_check-time'
 file_mode_chrony_check_time: '0754'
 file_owner_chrony_check_time: 'root'
 file_group_chrony_check_time: 'root'
 
 # chrony_update-time
-file_src_chrony_update_time: 'templates/main/chrony_update-time'
+file_src_chrony_update_time: 'chrony_update-time'
 file_dst_chrony_update_time: '/usr/local/sbin/chrony_update-time'
 file_mode_chrony_update_time: '0754'
 file_owner_chrony_update_time: 'root'
@@ -46,14 +46,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # chronyd.cfg
-file_src_chronyd_cfg: 'templates/main/chronyd.cfg'
+file_src_chronyd_cfg: 'chronyd.cfg'
 file_dst_chronyd_cfg: '/etc/monit.d/chronyd.cfg'
 file_mode_chronyd_cfg: '0640'
 file_owner_chronyd_cfg: 'root'
 file_group_chronyd_cfg: 'root'
 
 # chronyd.nft
-file_src_chronyd_nft: 'templates/main/chronyd.nft'
+file_src_chronyd_nft: 'chronyd.nft'
 file_dst_chronyd_nft: '/etc/nftables.d/chronyd.conf'
 file_mode_chronyd_nft: '0640'
 file_owner_chronyd_nft: 'root'

@@ -19,7 +19,7 @@ package_name_rootlesskit: 'rootlesskit'
 package_name_slirp4netns: 'slirp4netns'
 
 # storage.yaml
-file_src_storage_conf: 'templates/main/storage.conf'
+file_src_storage_conf: 'storage.conf'
 file_dst_storage_conf: '/etc/containers/storage.conf'
 file_mode_storage_conf: '0644'
 file_owner_storage_conf: 'root'

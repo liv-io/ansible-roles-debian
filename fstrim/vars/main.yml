@@ -16,7 +16,7 @@ file_owner_fstrim_log: 'root'
 file_group_fstrim_log: 'root'
 
 # fstrim_discard-blocks
-file_src_fstrim_discard_blocks: 'templates/main/fstrim_discard-blocks'
+file_src_fstrim_discard_blocks: 'fstrim_discard-blocks'
 file_dst_fstrim_discard_blocks: '/usr/local/sbin/fstrim_discard-blocks'
 file_mode_fstrim_discard_blocks: '0754'
 file_owner_fstrim_discard_blocks: 'root'

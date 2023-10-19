@@ -7,14 +7,14 @@ package_name_mailx: 'bsd-mailx'
 package_name_systemd_timesyncd: 'systemd-timesyncd'
 
 # systemd-timesyncd_check-time
-file_src_systemd_timesyncd_check_time: 'templates/main/systemd-timesyncd_check-time'
+file_src_systemd_timesyncd_check_time: 'systemd-timesyncd_check-time'
 file_dst_systemd_timesyncd_check_time: '/usr/local/sbin/systemd-timesyncd_check-time'
 file_mode_systemd_timesyncd_check_time: '0754'
 file_owner_systemd_timesyncd_check_time: 'root'
 file_group_systemd_timesyncd_check_time: 'root'
 
 # timesyncd.conf
-file_src_timesyncd_conf: "templates/{{ansible_distribution_major_version}}/timesyncd.conf"
+file_src_timesyncd_conf: "{{ansible_distribution_major_version}}/timesyncd.conf"
 file_dst_timesyncd_conf: '/etc/systemd/timesyncd.conf'
 file_mode_timesyncd_conf: '0644'
 file_owner_timesyncd_conf: 'root'
@@ -33,14 +33,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # systemd-timesyncd.cfg
-file_src_systemd_timesyncd_cfg: 'templates/main/systemd-timesyncd.cfg'
+file_src_systemd_timesyncd_cfg: 'systemd-timesyncd.cfg'
 file_dst_systemd_timesyncd_cfg: '/etc/monit.d/systemd-timesyncd.cfg'
 file_mode_systemd_timesyncd_cfg: '0640'
 file_owner_systemd_timesyncd_cfg: 'root'
 file_group_systemd_timesyncd_cfg: 'root'
 
 # systemd-timesyncd.nft
-file_src_systemd_timesyncd_nft: 'templates/main/systemd-timesyncd.nft'
+file_src_systemd_timesyncd_nft: 'systemd-timesyncd.nft'
 file_dst_systemd_timesyncd_nft: '/etc/nftables.d/systemd-timesyncd.conf'
 file_mode_systemd_timesyncd_nft: '0640'
 file_owner_systemd_timesyncd_nft: 'root'

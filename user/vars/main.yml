@@ -4,5 +4,5 @@
 file_mode_ssh_dir: '0700'
 
 # authorized_keys
-file_src_authorized_keys: 'templates/main/authorized_keys'
+file_src_authorized_keys: 'authorized_keys'
 file_mode_authorized_keys: '0600'

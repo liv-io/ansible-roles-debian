@@ -30,14 +30,14 @@ file_exclude_node_exporter: ['LICENSE', 'NOTICE']
 file_extra_opts_node_exporter: ['--strip-components=1']
 
 # node_exporter.default
-file_src_node_exporter_default: 'templates/main/node_exporter.default'
+file_src_node_exporter_default: 'node_exporter.default'
 file_dst_node_exporter_default: '/etc/default/node_exporter'
 file_mode_node_exporter_default: '0644'
 file_owner_node_exporter_default: 'root'
 file_group_node_exporter_default: 'root'
 
 # node_exporter.service
-file_src_node_exporter_service: 'templates/main/node_exporter.service'
+file_src_node_exporter_service: 'node_exporter.service'
 file_dst_node_exporter_service: '/lib/systemd/system/node_exporter.service'
 file_mode_node_exporter_service: '0644'
 file_owner_node_exporter_service: 'root'
@@ -56,14 +56,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # node_exporter.cfg
-file_src_node_exporter_cfg: 'templates/main/node_exporter.cfg'
+file_src_node_exporter_cfg: 'node_exporter.cfg'
 file_dst_node_exporter_cfg: '/etc/monit.d/node_exporter.cfg'
 file_mode_node_exporter_cfg: '0640'
 file_owner_node_exporter_cfg: 'root'
 file_group_node_exporter_cfg: 'root'
 
 # node_exporter.nft
-file_src_node_exporter_nft: 'templates/main/node_exporter.nft'
+file_src_node_exporter_nft: 'node_exporter.nft'
 file_dst_node_exporter_nft: '/etc/nftables.d/node_exporter.conf'
 file_mode_node_exporter_nft: '0640'
 file_owner_node_exporter_nft: 'root'

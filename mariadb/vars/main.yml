@@ -28,14 +28,14 @@ file_owner_mysql_etc_dir: 'root'
 file_group_mysql_etc_dir: 'root'
 
 # credentials.cnf
-file_src_credentials_cnf: 'templates/main/credentials.cnf'
+file_src_credentials_cnf: 'credentials.cnf'
 file_dst_credentials_cnf: '/etc/mysql/credentials.cnf'
 file_mode_credentials_cnf: '0600'
 file_owner_credentials_cnf: 'root'
 file_group_credentials_cnf: 'root'
 
 # mariadb.cnf
-file_src_mariadb_cnf: 'templates/main/mariadb.cnf'
+file_src_mariadb_cnf: 'mariadb.cnf'
 file_dst_mariadb_cnf: '/etc/mysql/mariadb.cnf'
 file_mode_mariadb_cnf: '0644'
 file_owner_mariadb_cnf: 'root'
@@ -47,35 +47,35 @@ file_owner_mariadb_backup_file: 'root'
 file_group_mariadb_backup_file: 'root'
 
 # mariadb_run-backup
-file_src_mariadb_run_backup: 'templates/main/mariadb_run-backup'
+file_src_mariadb_run_backup: 'mariadb_run-backup'
 file_dst_mariadb_run_backup: '/usr/local/sbin/mariadb_run-backup'
 file_mode_mariadb_run_backup: '0700'
 file_owner_mariadb_run_backup: 'root'
 file_group_mariadb_run_backup: 'root'
 
 # 50-client.cnf
-file_src_50_client_cnf: 'templates/main/50-client.cnf'
+file_src_50_client_cnf: '50-client.cnf'
 file_dst_50_client_cnf: '/etc/mysql/mariadb.conf.d/50-client.cnf'
 file_mode_50_client_cnf: '0644'
 file_owner_50_client_cnf: 'root'
 file_group_50_client_cnf: 'root'
 
 # 50-mysql-clients.cnf
-file_src_50_mysql_clients_cnf: 'templates/main/50-mysql-clients.cnf'
+file_src_50_mysql_clients_cnf: '50-mysql-clients.cnf'
 file_dst_50_mysql_clients_cnf: '/etc/mysql/mariadb.conf.d/50-mysql-clients.cnf'
 file_mode_50_mysql_clients_cnf: '0644'
 file_owner_50_mysql_clients_cnf: 'root'
 file_group_50_mysql_clients_cnf: 'root'
 
 # 50-mysqld_safe.cnf
-file_src_50_mysqld_safe_cnf: 'templates/main/50-mysqld_safe.cnf'
+file_src_50_mysqld_safe_cnf: '50-mysqld_safe.cnf'
 file_dst_50_mysqld_safe_cnf: '/etc/mysql/mariadb.conf.d/50-mysqld_safe.cnf'
 file_mode_50_mysqld_safe_cnf: '0644'
 file_owner_50_mysqld_safe_cnf: 'root'
 file_group_50_mysqld_safe_cnf: 'root'
 
 # 50-server.cnf
-file_src_50_server_cnf: "templates/{{ansible_distribution_major_version}}/50-server.cnf"
+file_src_50_server_cnf: "{{ansible_distribution_major_version}}/50-server.cnf"
 file_dst_50_server_cnf: '/etc/mysql/mariadb.conf.d/50-server.cnf'
 file_mode_50_server_cnf: '0644'
 file_owner_50_server_cnf: 'root'
@@ -94,14 +94,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # mariadb.cfg
-file_src_mariadb_cfg: 'templates/main/mariadb.cfg'
+file_src_mariadb_cfg: 'mariadb.cfg'
 file_dst_mariadb_cfg: '/etc/monit.d/mariadb.cfg'
 file_mode_mariadb_cfg: '0640'
 file_owner_mariadb_cfg: 'root'
 file_group_mariadb_cfg: 'root'
 
 # mariadb.nft
-file_src_mariadb_nft: 'templates/main/mariadb.nft'
+file_src_mariadb_nft: 'mariadb.nft'
 file_dst_mariadb_nft: '/etc/nftables.d/mariadb.conf'
 file_mode_mariadb_nft: '0640'
 file_owner_mariadb_nft: 'root'

@@ -10,14 +10,14 @@ file_dst_conf_d: '/etc/monit/conf.d'
 file_dst_conf_enabled: '/etc/monit/conf-enabled'
 
 # monitrc
-file_src_monitrc: "templates/{{ansible_distribution_major_version}}/monitrc"
+file_src_monitrc: "{{ansible_distribution_major_version}}/monitrc"
 file_dst_monitrc: '/etc/monit/monitrc'
 file_mode_monitrc: '0600'
 file_owner_monitrc: 'root'
 file_group_monitrc: 'root'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0640'
 file_owner_config: 'root'
 file_group_config: 'root'
@@ -35,7 +35,7 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # monit.nft
-file_src_monit_nft: 'templates/main/monit.nft'
+file_src_monit_nft: 'monit.nft'
 file_dst_monit_nft: '/etc/nftables.d/monit.conf'
 file_mode_monit_nft: '0640'
 file_owner_monit_nft: 'root'

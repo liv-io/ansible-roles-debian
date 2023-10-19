@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.5.0 (2023-10-19)
+
+### Enhancements
+
+- Minor Ansible style improvements
+
 ## 2.4.0 (2023-10-08)
 
 - Update Prometheus to version 2.47.1

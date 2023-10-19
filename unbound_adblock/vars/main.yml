@@ -23,7 +23,7 @@ file_src_hosts: "{{unbound_adblock_source}}"
 file_dst_hosts: '/data/unbound-adblock/hosts'
 
 # unbound-adblock.sudo
-file_src_unbound_adblock_sudo: 'templates/main/unbound-adblock.sudo'
+file_src_unbound_adblock_sudo: 'unbound-adblock.sudo'
 file_dst_unbound_adblock_sudo: '/etc/sudoers.d/unbound-adblock'
 file_mode_unbound_adblock_sudo: '0440'
 file_owner_unbound_adblock_sudo: 'root'
@@ -36,7 +36,7 @@ file_owner_unbound_adblock_data_dir: 'unbound-adblock'
 file_group_unbound_adblock_data_dir: 'unbound-adblock'
 
 # unbound-adblock_update-list
-file_src_unbound_adblock_update_list: 'templates/main/unbound-adblock_update-list'
+file_src_unbound_adblock_update_list: 'unbound-adblock_update-list'
 file_dst_unbound_adblock_update_list: '/usr/local/bin/unbound-adblock_update-list'
 file_mode_unbound_adblock_update_list: '0554'
 file_owner_unbound_adblock_update_list: 'unbound-adblock'

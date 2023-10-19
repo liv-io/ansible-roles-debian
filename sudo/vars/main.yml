@@ -4,14 +4,14 @@
 package_name_sudo: 'sudo'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_mode_config: '0440'
 file_owner_config: 'root'
 file_group_config: 'root'
 file_validate_config: 'visudo -cf %s'
 
 # sudoers
-file_src_sudoers: "templates/{{ansible_distribution_major_version}}/sudoers"
+file_src_sudoers: "{{ansible_distribution_major_version}}/sudoers"
 file_dst_sudoers: '/etc/sudoers'
 file_mode_sudoers: '0440'
 file_owner_sudoers: 'root'

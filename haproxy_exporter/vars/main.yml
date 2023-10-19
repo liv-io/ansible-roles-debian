@@ -18,14 +18,14 @@ file_exclude_haproxy_exporter: ['LICENSE', 'NOTICE']
 file_extra_opts_haproxy_exporter: ['--strip-components=1']
 
 # haproxy_exporter.default
-file_src_haproxy_exporter_default: 'templates/main/haproxy_exporter.default'
+file_src_haproxy_exporter_default: 'haproxy_exporter.default'
 file_dst_haproxy_exporter_default: '/etc/default/haproxy_exporter'
 file_mode_haproxy_exporter_default: '0644'
 file_owner_haproxy_exporter_default: 'root'
 file_group_haproxy_exporter_default: 'root'
 
 # haproxy_exporter.service
-file_src_haproxy_exporter_service: 'templates/main/haproxy_exporter.service'
+file_src_haproxy_exporter_service: 'haproxy_exporter.service'
 file_dst_haproxy_exporter_service: '/lib/systemd/system/haproxy_exporter.service'
 file_mode_haproxy_exporter_service: '0644'
 file_owner_haproxy_exporter_service: 'root'
@@ -44,14 +44,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # haproxy_exporter.cfg
-file_src_haproxy_exporter_cfg: 'templates/main/haproxy_exporter.cfg'
+file_src_haproxy_exporter_cfg: 'haproxy_exporter.cfg'
 file_dst_haproxy_exporter_cfg: '/etc/monit.d/haproxy_exporter.cfg'
 file_mode_haproxy_exporter_cfg: '0640'
 file_owner_haproxy_exporter_cfg: 'root'
 file_group_haproxy_exporter_cfg: 'root'
 
 # haproxy_exporter.nft
-file_src_haproxy_exporter_nft: 'templates/main/haproxy_exporter.nft'
+file_src_haproxy_exporter_nft: 'haproxy_exporter.nft'
 file_dst_haproxy_exporter_nft: '/etc/nftables.d/haproxy_exporter.conf'
 file_mode_haproxy_exporter_nft: '0640'
 file_owner_haproxy_exporter_nft: 'root'

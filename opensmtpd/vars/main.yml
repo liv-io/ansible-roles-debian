@@ -4,21 +4,21 @@
 package_name_opensmtpd: 'opensmtpd'
 
 # aliases
-file_src_aliases: 'templates/main/aliases'
+file_src_aliases: 'aliases'
 file_dst_aliases: '/etc/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'
 file_group_aliases: 'root'
 
 # secrets
-file_src_secrets: 'templates/main/secrets'
+file_src_secrets: 'secrets'
 file_dst_secrets: '/etc/smtpd/secrets'
 file_mode_secrets: '0640'
 file_owner_secrets: 'root'
 file_group_secrets: 'opensmtpd'
 
 # smtpd.conf
-file_src_smtpd_conf: 'templates/main/smtpd.conf'
+file_src_smtpd_conf: 'smtpd.conf'
 file_dst_smtpd_conf: '/etc/smtpd.conf'
 file_mode_smtpd_conf: '0644'
 file_owner_smtpd_conf: 'root'
@@ -43,14 +43,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # opensmtpd.cfg
-file_src_opensmtpd_cfg: 'templates/main/opensmtpd.cfg'
+file_src_opensmtpd_cfg: 'opensmtpd.cfg'
 file_dst_opensmtpd_cfg: '/etc/monit.d/opensmtpd.cfg'
 file_mode_opensmtpd_cfg: '0640'
 file_owner_opensmtpd_cfg: 'root'
 file_group_opensmtpd_cfg: 'root'
 
 # opensmtpd.nft
-file_src_opensmtpd_nft: 'templates/main/opensmtpd.nft'
+file_src_opensmtpd_nft: 'opensmtpd.nft'
 file_dst_opensmtpd_nft: '/etc/nftables.d/opensmtpd.conf'
 file_mode_opensmtpd_nft: '0640'
 file_owner_opensmtpd_nft: 'root'

@@ -4,28 +4,28 @@
 package_name_openssh: 'openssh-server'
 
 # banner
-file_src_banner: 'templates/main/banner'
+file_src_banner: 'banner'
 file_dst_banner: '/etc/ssh/banner'
 file_mode_banner: '0644'
 file_owner_banner: 'root'
 file_group_banner: 'root'
 
 # moduli
-file_src_moduli: "files/{{ansible_distribution_major_version}}/moduli"
+file_src_moduli: "{{ansible_distribution_major_version}}/moduli"
 file_dst_moduli: '/etc/ssh/moduli'
 file_mode_moduli: '0600'
 file_owner_moduli: 'root'
 file_group_moduli: 'root'
 
 # ssh_config
-file_src_ssh_config: "templates/{{ansible_distribution_major_version}}/ssh_config"
+file_src_ssh_config: "{{ansible_distribution_major_version}}/ssh_config"
 file_dst_ssh_config: '/etc/ssh/ssh_config'
 file_mode_ssh_config: '0644'
 file_owner_ssh_config: 'root'
 file_group_ssh_config: 'root'
 
 # sshd_config
-file_src_sshd_config: "templates/{{ansible_distribution_major_version}}/sshd_config"
+file_src_sshd_config: "{{ansible_distribution_major_version}}/sshd_config"
 file_dst_sshd_config: '/etc/ssh/sshd_config'
 file_mode_sshd_config: '0600'
 file_owner_sshd_config: 'root'
@@ -44,14 +44,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # openssh.cfg
-file_src_openssh_cfg: 'templates/main/openssh.cfg'
+file_src_openssh_cfg: 'openssh.cfg'
 file_dst_openssh_cfg: '/etc/monit.d/openssh.cfg'
 file_mode_openssh_cfg: '0640'
 file_owner_openssh_cfg: 'root'
 file_group_openssh_cfg: 'root'
 
 # openssh.nft
-file_src_openssh_nft: 'templates/main/openssh.nft'
+file_src_openssh_nft: 'openssh.nft'
 file_dst_openssh_nft: '/etc/nftables.d/openssh.conf'
 file_mode_openssh_nft: '0640'
 file_owner_openssh_nft: 'root'

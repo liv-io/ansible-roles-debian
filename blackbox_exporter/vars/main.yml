@@ -7,7 +7,7 @@ file_owner_blackbox_exporter_etc_dir: 'root'
 file_group_blackbox_exporter_etc_dir: 'root'
 
 # blackbox.yml
-file_src_blackbox_yml: 'templates/main/blackbox.yml'
+file_src_blackbox_yml: 'blackbox.yml'
 file_dst_blackbox_yml: '/etc/blackbox_exporter/blackbox.yml'
 file_mode_blackbox_yml: '0644'
 file_owner_blackbox_yml: 'root'
@@ -31,14 +31,14 @@ file_exclude_blackbox_exporter: ['LICENSE', 'NOTICE', 'blackbox.yml']
 file_extra_opts_blackbox_exporter: ['--strip-components=1']
 
 # blackbox_exporter.default
-file_src_blackbox_exporter_default: 'templates/main/blackbox_exporter.default'
+file_src_blackbox_exporter_default: 'blackbox_exporter.default'
 file_dst_blackbox_exporter_default: '/etc/default/blackbox_exporter'
 file_mode_blackbox_exporter_default: '0644'
 file_owner_blackbox_exporter_default: 'root'
 file_group_blackbox_exporter_default: 'root'
 
 # blackbox_exporter.service
-file_src_blackbox_exporter_service: 'templates/main/blackbox_exporter.service'
+file_src_blackbox_exporter_service: 'blackbox_exporter.service'
 file_dst_blackbox_exporter_service: '/lib/systemd/system/blackbox_exporter.service'
 file_mode_blackbox_exporter_service: '0644'
 file_owner_blackbox_exporter_service: 'root'
@@ -57,14 +57,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # blackbox_exporter.cfg
-file_src_blackbox_exporter_cfg: 'templates/main/blackbox_exporter.cfg'
+file_src_blackbox_exporter_cfg: 'blackbox_exporter.cfg'
 file_dst_blackbox_exporter_cfg: '/etc/monit.d/blackbox_exporter.cfg'
 file_mode_blackbox_exporter_cfg: '0640'
 file_owner_blackbox_exporter_cfg: 'root'
 file_group_blackbox_exporter_cfg: 'root'
 
 # blackbox_exporter.nft
-file_src_blackbox_exporter_nft: 'templates/main/blackbox_exporter.nft'
+file_src_blackbox_exporter_nft: 'blackbox_exporter.nft'
 file_dst_blackbox_exporter_nft: '/etc/nftables.d/blackbox_exporter.conf'
 file_mode_blackbox_exporter_nft: '0640'
 file_owner_blackbox_exporter_nft: 'root'

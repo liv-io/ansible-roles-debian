@@ -1,7 +1,7 @@
 ---
 
 # config.toml
-file_src_config_toml: 'templates/main/config.toml'
+file_src_config_toml: 'config.toml'
 file_dst_config_toml: '/etc/monit_exporter/config.toml'
 file_mode_config_toml: '0644'
 file_owner_config_toml: 'root'
@@ -30,14 +30,14 @@ file_creates_monit_exporter: '/usr/local/bin/monit_exporter'
 file_exclude_monit_exporter: ['LICENSE', 'README.md']
 
 # monit_exporter.default
-file_src_monit_exporter_default: 'templates/main/monit_exporter.default'
+file_src_monit_exporter_default: 'monit_exporter.default'
 file_dst_monit_exporter_default: '/etc/default/monit_exporter'
 file_mode_monit_exporter_default: '0644'
 file_owner_monit_exporter_default: 'root'
 file_group_monit_exporter_default: 'root'
 
 # monit_exporter.service
-file_src_monit_exporter_service: 'templates/main/monit_exporter.service'
+file_src_monit_exporter_service: 'monit_exporter.service'
 file_dst_monit_exporter_service: '/lib/systemd/system/monit_exporter.service'
 file_mode_monit_exporter_service: '0644'
 file_owner_monit_exporter_service: 'root'
@@ -56,14 +56,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # monit_exporter.cfg
-file_src_monit_exporter_cfg: 'templates/main/monit_exporter.cfg'
+file_src_monit_exporter_cfg: 'monit_exporter.cfg'
 file_dst_monit_exporter_cfg: '/etc/monit.d/monit_exporter.cfg'
 file_mode_monit_exporter_cfg: '0640'
 file_owner_monit_exporter_cfg: 'root'
 file_group_monit_exporter_cfg: 'root'
 
 # monit_exporter.nft
-file_src_monit_exporter_nft: 'templates/main/monit_exporter.nft'
+file_src_monit_exporter_nft: 'monit_exporter.nft'
 file_dst_monit_exporter_nft: '/etc/nftables.d/monit_exporter.conf'
 file_mode_monit_exporter_nft: '0640'
 file_owner_monit_exporter_nft: 'root'

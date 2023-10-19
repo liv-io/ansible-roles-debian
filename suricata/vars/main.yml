@@ -7,7 +7,7 @@ package_name_suricata: 'suricata'
 package_name_suricata_update: 'suricata-update'
 
 # config
-file_src_config: 'templates/main/config'
+file_src_config: 'config'
 file_dst_config: '/etc/suricata/rules'
 file_mode_config: '0640'
 file_owner_config: 'root'
@@ -47,14 +47,14 @@ file_group_suricata_log: 'suricata'
 file_dst_sources_dir: '/var/lib/suricata/update/sources/'
 
 # promiscuous_mode@.service
-file_src_promiscuous_mode_service: 'templates/main/promiscuous_mode.service'
+file_src_promiscuous_mode_service: 'promiscuous_mode.service'
 file_dst_promiscuous_mode_service: '/usr/lib/systemd/system/promiscuous_mode@.service'
 file_mode_promiscuous_mode_service: '0644'
 file_owner_promiscuous_mode_service: 'root'
 file_group_promiscuous_mode_service: 'root'
 
 # suricata.logrotate
-file_src_suricata_logrotate: 'templates/main/suricata.logrotate'
+file_src_suricata_logrotate: 'suricata.logrotate'
 file_dst_suricata_logrotate: '/etc/logrotate.d/suricata'
 file_mode_suricata_logrotate: '0644'
 file_owner_suricata_logrotate: 'root'
@@ -64,21 +64,21 @@ file_group_suricata_logrotate: 'root'
 file_dst_suricata_rules: '/var/lib/suricata/rules/suricata.rules'
 
 # suricata.default
-file_src_suricata_default: "templates/{{ansible_distribution_major_version}}/suricata.default"
+file_src_suricata_default: "{{ansible_distribution_major_version}}/suricata.default"
 file_dst_suricata_default: '/etc/default/suricata'
 file_mode_suricata_default: '0640'
 file_owner_suricata_default: 'root'
 file_group_suricata_default: 'suricata'
 
 # suricata.service
-file_src_suricata_service: 'templates/main/suricata.service'
+file_src_suricata_service: 'suricata.service'
 file_dst_suricata_service: '/lib/systemd/system/suricata.service'
 file_mode_suricata_service: '0644'
 file_owner_suricata_service: 'root'
 file_group_suricata_service: 'root'
 
 # suricata.yaml
-file_src_suricata_yaml: "templates/{{ansible_distribution_major_version}}/suricata.yaml"
+file_src_suricata_yaml: "{{ansible_distribution_major_version}}/suricata.yaml"
 file_dst_suricata_yaml: '/etc/suricata/suricata.yaml'
 file_mode_suricata_yaml: '0640'
 file_owner_suricata_yaml: 'root'
@@ -92,7 +92,7 @@ file_owner_monit_d: 'root'
 file_group_monit_d: 'root'
 
 # suricata.cfg
-file_src_suricata_cfg: 'templates/main/suricata.cfg'
+file_src_suricata_cfg: 'suricata.cfg'
 file_dst_suricata_cfg: '/etc/monit.d/suricata.cfg'
 file_mode_suricata_cfg: '0640'
 file_owner_suricata_cfg: 'root'

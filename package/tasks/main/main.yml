@@ -1,7 +1,0 @@
----
-
-- name: import tasks config
-  import_tasks: config.yml
-  when: not (package_state is match('false|no|remove|quiesce|inactive'))
-  tags:
-    - package

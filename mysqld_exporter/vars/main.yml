@@ -7,7 +7,7 @@ file_owner_mysqld_exporter_etc_dir: 'root'
 file_group_mysqld_exporter_etc_dir: 'root'
 
 # credentials.cnf
-file_src_credentials_cnf: 'templates/main/credentials.cnf'
+file_src_credentials_cnf: 'credentials.cnf'
 file_dst_credentials_cnf: '/etc/mysqld_exporter/credentials.cnf'
 file_mode_credentials_cnf: '0400'
 file_owner_credentials_cnf: 'mysqld_exporter'
@@ -31,14 +31,14 @@ file_exclude_mysqld_exporter: ['LICENSE', 'NOTICE']
 file_extra_opts_mysqld_exporter: ['--strip-components=1']
 
 # mysqld_exporter.default
-file_src_mysqld_exporter_default: 'templates/main/mysqld_exporter.default'
+file_src_mysqld_exporter_default: 'mysqld_exporter.default'
 file_dst_mysqld_exporter_default: '/etc/default/mysqld_exporter'
 file_mode_mysqld_exporter_default: '0644'
 file_owner_mysqld_exporter_default: 'root'
 file_group_mysqld_exporter_default: 'root'
 
 # mysqld_exporter.service
-file_src_mysqld_exporter_service: 'templates/main/mysqld_exporter.service'
+file_src_mysqld_exporter_service: 'mysqld_exporter.service'
 file_dst_mysqld_exporter_service: '/lib/systemd/system/mysqld_exporter.service'
 file_mode_mysqld_exporter_service: '0644'
 file_owner_mysqld_exporter_service: 'root'
@@ -57,14 +57,14 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # mysqld_exporter.cfg
-file_src_mysqld_exporter_cfg: 'templates/main/mysqld_exporter.cfg'
+file_src_mysqld_exporter_cfg: 'mysqld_exporter.cfg'
 file_dst_mysqld_exporter_cfg: '/etc/monit.d/mysqld_exporter.cfg'
 file_mode_mysqld_exporter_cfg: '0640'
 file_owner_mysqld_exporter_cfg: 'root'
 file_group_mysqld_exporter_cfg: 'root'
 
 # mysqld_exporter.nft
-file_src_mysqld_exporter_nft: 'templates/main/mysqld_exporter.nft'
+file_src_mysqld_exporter_nft: 'mysqld_exporter.nft'
 file_dst_mysqld_exporter_nft: '/etc/nftables.d/mysqld_exporter.conf'
 file_mode_mysqld_exporter_nft: '0640'
 file_owner_mysqld_exporter_nft: 'root'

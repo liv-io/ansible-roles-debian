@@ -65,91 +65,91 @@ file_owner_prometheus_current_link: 'root'
 file_group_prometheus_current_link: 'root'
 
 # builtin_dashboards.yaml
-file_src_builtin_dashboards_yaml: 'templates/main/builtin_dashboards.yaml'
+file_src_builtin_dashboards_yaml: 'builtin_dashboards.yaml'
 file_dst_builtin_dashboards_yaml: '/etc/grafana/provisioning/dashboards/builtin.yaml'
 file_mode_builtin_dashboards_yaml: '0640'
 file_owner_builtin_dashboards_yaml: 'root'
 file_group_builtin_dashboards_yaml: 'grafana'
 
 # prometheus_alertmanager_datasource.yaml
-file_src_prometheus_alertmanager_datasource_yaml: 'templates/main/prometheus_alertmanager_datasource.yaml'
+file_src_prometheus_alertmanager_datasource_yaml: 'prometheus_alertmanager_datasource.yaml'
 file_dst_prometheus_alertmanager_datasource_yaml: '/etc/grafana/provisioning/datasources/prometheus_alertmanager_datasource.yaml'
 file_mode_prometheus_alertmanager_datasource_yaml: '0640'
 file_owner_prometheus_alertmanager_datasource_yaml: 'root'
 file_group_prometheus_alertmanager_datasource_yaml: 'grafana'
 
 # prometheus_datasource.yaml
-file_src_prometheus_datasource_yaml: 'templates/main/prometheus_datasource.yaml'
+file_src_prometheus_datasource_yaml: 'prometheus_datasource.yaml'
 file_dst_prometheus_datasource_yaml: '/etc/grafana/provisioning/datasources/prometheus_datasource.yaml'
 file_mode_prometheus_datasource_yaml: '0640'
 file_owner_prometheus_datasource_yaml: 'root'
 file_group_prometheus_datasource_yaml: 'grafana'
 
 # prometheus.default
-file_src_prometheus_default: 'templates/main/prometheus.default'
+file_src_prometheus_default: 'prometheus.default'
 file_dst_prometheus_default: '/etc/default/prometheus'
 file_mode_prometheus_default: '0644'
 file_owner_prometheus_default: 'root'
 file_group_prometheus_default: 'root'
 
 # prometheus.service
-file_src_prometheus_service: 'templates/main/prometheus.service'
+file_src_prometheus_service: 'prometheus.service'
 file_dst_prometheus_service: '/lib/systemd/system/prometheus.service'
 file_mode_prometheus_service: '0644'
 file_owner_prometheus_service: 'root'
 file_group_prometheus_service: 'root'
 
 # prometheus.yml
-file_src_prometheus_yml: 'templates/main/prometheus.yml'
+file_src_prometheus_yml: 'prometheus.yml'
 file_dst_prometheus_yml: '/etc/prometheus/prometheus.yml'
 file_mode_prometheus_yml: '0644'
 file_owner_prometheus_yml: 'root'
 file_group_prometheus_yml: 'root'
 
 # alerting_rules.yml
-file_src_alerting_rules_yml: 'templates/main/alerting_rules.yml'
+file_src_alerting_rules_yml: 'alerting_rules.yml'
 file_dst_alerting_rules_yml: '/etc/prometheus/alerting_rules.yml'
 file_mode_alerting_rules_yml: '0644'
 file_owner_alerting_rules_yml: 'root'
 file_group_alerting_rules_yml: 'root'
 
 # network_traffic.json
-file_src_network_traffic_json: 'files/main/network_traffic.json'
+file_src_network_traffic_json: 'network_traffic.json'
 file_dst_network_traffic_json: '/var/lib/grafana/dashboards/builtin/network_traffic.json'
 file_mode_network_traffic_json: '0640'
 file_owner_network_traffic_json: 'grafana'
 file_group_network_traffic_json: 'grafana'
 
 # node_exporter.json
-file_src_node_exporter_json: 'files/main/node_exporter.json'
+file_src_node_exporter_json: 'node_exporter.json'
 file_dst_node_exporter_json: '/var/lib/grafana/dashboards/builtin/node_exporter.json'
 file_mode_node_exporter_json: '0640'
 file_owner_node_exporter_json: 'grafana'
 file_group_node_exporter_json: 'grafana'
 
 # ping_prober.json
-file_src_ping_prober_json: 'files/main/ping_prober.json'
+file_src_ping_prober_json: 'ping_prober.json'
 file_dst_ping_prober_json: '/var/lib/grafana/dashboards/builtin/ping_prober.json'
 file_mode_ping_prober_json: '0640'
 file_owner_ping_prober_json: 'grafana'
 file_group_ping_prober_json: 'grafana'
 
 # script_status.json
-file_src_script_status_json: 'files/main/script_status.json'
+file_src_script_status_json: 'script_status.json'
 file_dst_script_status_json: '/var/lib/grafana/dashboards/builtin/script_status.json'
 file_mode_script_status_json: '0640'
 file_owner_script_status_json: 'grafana'
 file_group_script_status_json: 'grafana'
 
 # smokeping_prober.json
-file_src_smokeping_prober_json: 'files/main/smokeping_prober.json'
+file_src_smokeping_prober_json: 'smokeping_prober.json'
 file_dst_smokeping_prober_json: '/var/lib/grafana/dashboards/builtin/smokeping_prober.json'
 file_mode_smokeping_prober_json: '0640'
 file_owner_smokeping_prober_json: 'grafana'
 file_group_smokeping_prober_json: 'grafana'
 
 # system_status.json
-file_src_system_status_json: 'templates/main/system_status.json'
+file_src_system_status_json: 'system_status.json'
 file_dst_system_status_json: '/var/lib/grafana/dashboards/builtin/system_status.json'
 file_mode_system_status_json: '0640'
 file_owner_system_status_json: 'grafana'
@@ -168,21 +168,21 @@ file_owner_nftables_d: 'root'
 file_group_nftables_d: 'root'
 
 # prometheus.cfg
-file_src_prometheus_cfg: 'templates/main/prometheus.cfg'
+file_src_prometheus_cfg: 'prometheus.cfg'
 file_dst_prometheus_cfg: '/etc/monit.d/prometheus.cfg'
 file_mode_prometheus_cfg: '0640'
 file_owner_prometheus_cfg: 'root'
 file_group_prometheus_cfg: 'root'
 
 # nginx.nft
-file_src_nginx_nft: 'templates/main/nginx.nft'
+file_src_nginx_nft: 'nginx.nft'
 file_dst_nginx_nft: '/etc/nftables.d/nginx.conf'
 file_mode_nginx_nft: '0640'
 file_owner_nginx_nft: 'root'
 file_group_nginx_nft: 'root'
 
 # prometheus.nft
-file_src_prometheus_nft: 'templates/main/prometheus.nft'
+file_src_prometheus_nft: 'prometheus.nft'
 file_dst_prometheus_nft: '/etc/nftables.d/prometheus.conf'
 file_mode_prometheus_nft: '0640'
 file_owner_prometheus_nft: 'root'
