@@ -87,18 +87,16 @@ consult the following sections.
 
 `motd_motd_template`
 
-    Description: Define the template source for 'motd'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'motd/templates/example/motd'
-    Implemented: 0.1.0
+    Description: Define the template source for '/etc/motd'.
+                 Any value other than 'default' or 'empty' requires a Jinja2
+                 file in the templates folder.
+    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'main'
+    Default    : 'default'
     Options    :
-      Examples: 'example' | 'environment' | 'hostname'
+      Examples: 'empty' | 'environment' | 'hostname'
 
 ## Conflicts
 

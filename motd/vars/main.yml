@@ -4,7 +4,7 @@
 motd_os_color: '1;31m'
 
 # motd
-file_src_motd: "templates/{{motd_motd_template}}/motd"
+file_src_motd: "{{motd_motd_template}}"
 file_dst_motd: '/etc/motd'
 file_mode_motd: '0644'
 file_owner_motd: 'root'
