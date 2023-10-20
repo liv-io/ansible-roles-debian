@@ -366,13 +366,13 @@ consult the following sections.
 
 `ansible`
 
-    Version: >= 2.5
+    Version: >= 2.15.0
 
 ### Managed Node
 
 `python`
 
-    Version: >= 2.7.0
+    Version: >= 3.10.0
 
 ## Support
 
