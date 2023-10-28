@@ -144,7 +144,7 @@ file_owner_ssl_link: 'root'
 file_group_ssl_link: 'root'
 
 # status.conf
-file_src_status_conf: "/{{ansible_distribution_major_version}}/status.conf"
+file_src_status_conf: "{{ansible_distribution_major_version}}/status.conf"
 file_dst_status_conf: '/etc/apache2/mods-available/status.conf'
 file_mode_status_conf: '0644'
 file_owner_status_conf: 'root'

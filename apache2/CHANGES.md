@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.1 (2023-10-28)
+
+### Bugs
+
+- Fix source path of `status.conf` template
+
 ## 2.1.0 (2023-10-19)
 
 ### Enhancements
