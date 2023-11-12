@@ -13,8 +13,6 @@
 
 - name: restart auditd
   command: "{{command_cmd_restart_auditd}}"
-  args:
-    warn: False
 
 - name: reload service monit
   service:

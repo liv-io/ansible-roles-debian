@@ -60,7 +60,5 @@
   command: "{{command_cmd_stop_auditd}}"
   check_mode: False
   when: (register_status_auditd.rc != 3)
-  args:
-    warn: False
   tags:
     - auditd

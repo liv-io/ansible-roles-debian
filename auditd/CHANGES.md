@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.1 (2023-11-12)
+
+### Bugs
+
+- Remove unsupported `warn` parameter from `command` module/task
+
 ## 2.1.0 (2023-10-19)
 
 ### Enhancements
