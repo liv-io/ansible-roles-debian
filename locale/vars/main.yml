@@ -1,5 +1,27 @@
 ---
 
+# kbd.tar.gz
+file_src_kbd_tar_gz: "https://mirrors.kernel.org/pub/linux/utils/kbd/kbd-{{locale_kbd_version}}.tar.gz"
+file_dst_kbd_tar_gz: "/usr/local/src/kbd-{{locale_kbd_version}}.tar.gz"
+file_mode_kbd_tar_gz: '0644'
+file_owner_kbd_tar_gz: 'root'
+file_group_kbd_tar_gz: 'root'
+file_checksum_kbd_tar_gz: "sha256:https://mirrors.kernel.org/pub/linux/utils/kbd/sha256sums.asc"
+
+# kbd
+file_src_kbd: "/usr/local/src/kbd-{{locale_kbd_version}}.tar.gz"
+file_dst_kbd: '/usr/local/share'
+file_owner_kbd: 'root'
+file_group_kbd: 'root'
+file_creates_kbd: "/usr/local/share/kbd-{{locale_kbd_version}}"
+file_include_kbd: ["kbd-{{locale_kbd_version}}/data/keymaps"]
+
+# keymaps.link
+file_src_keymaps_link: "/usr/local/share/kbd-{{locale_kbd_version}}/data/keymaps"
+file_dst_keymaps_link: '/usr/share/keymaps'
+file_owner_keymaps_link: 'root'
+file_group_keymaps_link: 'root'
+
 # get keymap-vc
 command_cmd_get_keymap_vc: "localectl status | grep '^.*VC Keymap: ' | sed 's/^.*VC Keymap: //'"
 

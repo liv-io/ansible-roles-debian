@@ -48,6 +48,17 @@ consult the following sections.
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
+`locale_kbd_version`
+
+    Description: Define the 'locale_kbd_version' option.
+    Implemented: 1.2.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2.6.3'
+    Options    :
+      Examples: '2.6.0' | '2.6.1'
+
 `locale_keymap_vc`
 
     Description: Define the 'locale_keymap_vc' option.
@@ -84,6 +95,10 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
+
+### Archives
+
+`kbd`
 
 ## Parameters
 

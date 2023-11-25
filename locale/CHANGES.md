@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.1 (2023-11-25)
+
+### Bugs
+
+- Add fix for missing keymaps in Debian [790955](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=790955)
+
 ## 1.2.0 (2023-10-19)
 
 ### Enhancements

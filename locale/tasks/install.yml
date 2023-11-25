@@ -10,6 +10,38 @@
   tags:
     - locale
 
+- name: download file kbd.tar.gz
+  get_url:
+    url: "{{file_src_kbd_tar_gz}}"
+    dest: "{{file_dst_kbd_tar_gz}}"
+    mode: "{{file_mode_kbd_tar_gz}}"
+    owner: "{{file_owner_kbd_tar_gz}}"
+    group: "{{file_group_kbd_tar_gz}}"
+    checksum: "{{file_checksum_kbd_tar_gz}}"
+  tags:
+    - locale
+
+- name: unarchive file kbd
+  unarchive:
+    src: "{{file_src_kbd}}"
+    dest: "{{file_dst_kbd}}"
+    owner: "{{file_owner_kbd}}"
+    group: "{{file_group_kbd}}"
+    include: "{{file_include_kbd}}"
+    remote_src: True
+  tags:
+    - locale
+
+- name: create file keymaps.link
+  file:
+    state: link
+    src: "{{file_src_keymaps_link}}"
+    path: "{{file_dst_keymaps_link}}"
+    owner: "{{file_owner_keymaps_link}}"
+    group: "{{file_group_keymaps_link}}"
+  tags:
+    - locale
+
 - name: get keymap-vc
   shell: "{{command_cmd_get_keymap_vc}}"
   register: register_keymap_vc
