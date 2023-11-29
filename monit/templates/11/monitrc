@@ -184,7 +184,7 @@ FQDN        : {{ansible_fqdn}}
 #
 {% if not (monit_mail_to == []) %}
 {% for item in monit_mail_to %}
-set alert {{item.address}} {% if not (item.filter|default('') == '') %}{{item.filter}} {% endif %}{% if not ((item.events|default([]))== []) %}{ {% for event in item.events %}{{event}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+set alert {{item.address}} {% if not (item.filter|default('') == '') %}{{item.filter}} {% endif %}{% if not (item.events|default([]) == []) %}{ {% for event in item.events %}{{event}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
 
 {% endfor %}
 
