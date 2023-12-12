@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.2 (2023-12-12)
+
+### Changes
+
+- Update kbd to version 2.6.4
+
 ## 1.2.1 (2023-11-25)
 
 ### Bugs

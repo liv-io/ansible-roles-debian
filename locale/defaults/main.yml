@@ -2,7 +2,7 @@
 
 locale_state: 'install'
 
-locale_kbd_version: '2.6.3'
+locale_kbd_version: '2.6.4'
 
 locale_keymap_vc: 'us'
 
