@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2023-12-25)
+
+### Enhancements
+
+- Use fact `ansible_distribution_major_version` instead of `ansible_distribution_version`
+
 ## 0.1.0 (2023-12-24)
 
 ### Features

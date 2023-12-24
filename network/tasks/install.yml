@@ -5,7 +5,7 @@
   vars:
     params:
       files:
-        - "vars/{{ansible_distribution_version}}.yml"
+        - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
   tags:
     - network
