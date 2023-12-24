@@ -1,0 +1,8 @@
+---
+
+# interfaces
+file_src_interfaces: 'interfaces'
+file_dst_interfaces: '/etc/network/interfaces'
+file_mode_interfaces: '0644'
+file_owner_interfaces: 'root'
+file_group_interfaces: 'root'

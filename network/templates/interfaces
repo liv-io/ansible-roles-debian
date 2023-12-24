@@ -1,0 +1,44 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% for item in network_config|default([]) %}
+
+{% if not (item.comment|default('') == '') %}
+# {{item.comment}}
+{% endif %}
+auto {{item.name}}
+iface {{item.name}} inet {{item.type}}
+{% if not (item.address|default('') == '') %}
+        address {{item.address}}
+{% endif %}
+{% if not (item.netmask|default('') == '') %}
+        netmask {{item.netmask}}
+{% endif %}
+{% if not (item.gateway|default('') == '') %}
+        gateway {{item.gateway}}
+{% endif %}
+{% if not (item.ovs_type|default('') == '') %}
+        ovs_type {{item.ovs_type}}
+{% endif %}
+{% if not (item.ovs_bridge|default('') == '') %}
+        ovs_bridge {{item.ovs_bridge}}
+{% endif %}
+{% if not (item.mtu|default('') == '') %}
+        mtu {{item.mtu}}
+{% endif %}
+{% if not (item.ovs_bonds|default([]) == []) %}
+        ovs_bonds {% endif %}{% for ovs_bond in item.ovs_bonds|default([]) %}{{ovs_bond}}{% if not loop.last %} {% endif %}
+{% if loop.last %}
+
+{% endif %}{% endfor %}
+{% if not (item.ovs_options|default([]) == []) %}
+        ovs_options {% endif %}{% for ovs_option in item.ovs_options|default([]) %}{{ovs_option}}{% if not loop.last %} {% endif %}
+{% if loop.last %}
+
+{% endif %}{% endfor %}
+{% if not (item.ovs_ports|default([]) == []) %}
+        ovs_ports {% endif %}{% for ovs_port in item.ovs_ports|default([]) %}{{ovs_port}}{% if not loop.last %} {% endif %}
+{% if loop.last %}
+
+{% endif %}{% endfor %}
+
+{% endfor %}

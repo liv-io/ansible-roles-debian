@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - network
+
+- name: create file interfaces
+  template:
+    src: "{{file_src_interfaces}}"
+    dest: "{{file_dst_interfaces}}"
+    mode: "{{file_mode_interfaces}}"
+    owner: "{{file_owner_interfaces}}"
+    group: "{{file_group_interfaces}}"
+  tags:
+    - network
