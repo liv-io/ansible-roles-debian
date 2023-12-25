@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.1.1 (2023-12-25)
+
+### Bugs
+
+- Support empty `authorized_keys` parameter
+
 ## 3.1.0 (2023-10-19)
 
 ### Enhancements
