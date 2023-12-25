@@ -121,6 +121,18 @@ consult the following sections.
       Examples: 'lo' | 'eno1' | 'eno2' | 'eno3' | 'eno4' | 'bond0' | 'vmbr0' | 'mgmt' | 'dmz'
       None    : ''
 
+`comment`
+
+    Description: Define a comment for the network interface.
+    Implemented: 0.1.0
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'primary interface' | 'bond interface'
+      None    : ''
+
 `type`
 
     Description: Define the network interface type.
