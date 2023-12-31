@@ -108,7 +108,6 @@ vars:
 `alias`
 
     Description: Define the 'alias' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -120,7 +119,6 @@ vars:
 `config`
 
     Description: Define the 'config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -139,7 +137,6 @@ vars:
 `hsts_max_age`
 
     Description: Set the 'hsts_max_age' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -150,7 +147,6 @@ vars:
 `hsts_state`
 
     Description: Control the 'hsts_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -160,7 +156,6 @@ vars:
 `listen`
 
     Description: Define the 'listen' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -171,7 +166,6 @@ vars:
 `name`
 
     Description: Define the 'name' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -182,7 +176,6 @@ vars:
 `port`
 
     Description: Set the 'port' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : Integer, String
@@ -193,7 +186,6 @@ vars:
 `ssl_certificate`
 
     Description: Define the 'ssl_certificate_file' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -205,7 +197,6 @@ vars:
 `ssl_certificate_key`
 
     Description: Define the 'ssl_certificate_key' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -217,7 +208,6 @@ vars:
 `ssl_ciphers`
 
     Description: Define the 'ssl_ciphers' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -228,7 +218,6 @@ vars:
 `ssl_client_certificate`
 
     Description: Define the 'ssl_client_certificate' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -240,7 +229,6 @@ vars:
 `ssl_ecdh_curve`
 
     Description: Define the 'ssl_ecdh_curve' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -251,7 +239,6 @@ vars:
 `ssl_prefer_server_ciphers`
 
     Description: Control the 'ssl_prefer_server_ciphers' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -261,7 +248,6 @@ vars:
 `ssl_protocols`
 
     Description: Define the 'ssl_protocols' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -272,7 +258,6 @@ vars:
 `ssl_state`
 
     Description: Control the 'ssl_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -282,7 +267,6 @@ vars:
 `ssl_verify_client`
 
     Description: Control the 'ssl_verify_client' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -292,7 +276,6 @@ vars:
 `ssl_verify_depth`
 
     Description: Set the 'ssl_verify_depth' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -303,7 +286,6 @@ vars:
 `xss_protection_state`
 
     Description: Control the 'xss_protection_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -315,7 +297,6 @@ vars:
 `nginx_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -330,7 +311,6 @@ vars:
 `nginx_config`
 
     Description: Define the 'nginx_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -349,7 +329,6 @@ vars:
 `nginx_hsts_max_age`
 
     Description: Set the 'nginx_hsts_max_age' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -360,7 +339,6 @@ vars:
 `nginx_log_format_main`
 
     Description: Define the 'nginx_log_format_main' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -377,7 +355,6 @@ vars:
 `nginx_log_format_main_ssl`
 
     Description: Define the 'nginx_log_format_main_ssl' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -396,7 +373,6 @@ vars:
 `nginx_monitor_monit_state`
 
     Description: Control the 'nginx_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -406,7 +382,6 @@ vars:
 `nginx_nftables_filter_rule`
 
     Description: Define the 'nginx_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -420,7 +395,6 @@ vars:
 `nginx_nftables_state`
 
     Description: Control the 'nginx_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -430,7 +404,6 @@ vars:
 `nginx_vhosts_d`
 
     Description: Define the 'nginx_vhosts_d' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -441,7 +414,6 @@ vars:
 `nginx_worker_connections`
 
     Description: Set the 'nginx_worker_connections' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -468,8 +440,6 @@ vars:
     Name   :
       Debian 11: 'openssl'
       Debian 12: 'openssl'
-
-## Parameters
 
 ## Requirements
 

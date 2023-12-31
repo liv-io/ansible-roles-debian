@@ -48,7 +48,6 @@ consult the following sections.
 `tmux_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -70,8 +69,6 @@ consult the following sections.
     Name   :
       Debian 11: 'tmux'
       Debian 12: 'tmux'
-
-## Parameters
 
 ## Requirements
 

@@ -37,7 +37,6 @@ consult the following sections.
 
     Description: Control the state of the role.
                  'issue' is a core file and can therefore not be removed.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -49,7 +48,6 @@ consult the following sections.
 `issue_issue_net_template`
 
     Description: Define the 'issue_issue_net_template' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -78,7 +76,6 @@ consult the following sections.
 `issue_issue_template`
 
     Description: Define the 'issue_issue_template' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -107,8 +104,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

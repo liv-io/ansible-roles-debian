@@ -43,7 +43,6 @@ consult the following sections.
 `hostname_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -55,7 +54,6 @@ consult the following sections.
 `hostname_chassis`
 
     Description: Define the chassis type of the system.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -68,7 +66,6 @@ consult the following sections.
 `hostname_deployment`
 
     Description: Define the deployment environment of the system.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -80,7 +77,6 @@ consult the following sections.
 `hostname_hostname`
 
     Description: Define the hostname of the system.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -91,7 +87,6 @@ consult the following sections.
 `hostname_icon_name`
 
     Description: Define the icon of the system.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -103,7 +98,6 @@ consult the following sections.
 `hostname_location`
 
     Description: Define the location of the system.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -115,7 +109,6 @@ consult the following sections.
 `hostname_pretty_hostname`
 
     Description: Define the pretty hostname of the system.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -136,8 +129,6 @@ consult the following sections.
     Name   :
       Debian 11: 'hostname'
       Debian 12: 'hostname'
-
-## Parameters
 
 ## Requirements
 

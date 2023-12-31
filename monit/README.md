@@ -170,7 +170,6 @@ vars:
 `state`
 
     Description: Control the 'state' of the monit file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -181,7 +180,6 @@ vars:
 
     Description: Define the 'name' of the monit file.
                  For more details see 'man monit' or 'monit --help'.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -192,7 +190,6 @@ vars:
 `comment`
 
     Description: Define a 'comment' for the monit file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -204,7 +201,6 @@ vars:
 `config`
 
     Description: Define the 'config' entry/entries.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -228,7 +224,6 @@ vars:
 `monit_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -243,7 +238,6 @@ vars:
 `monit_config_all`
 
     Description: Define the 'monit_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -268,7 +262,6 @@ vars:
 `monit_config_group`
 
     Description: Define the 'monit_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -293,7 +286,6 @@ vars:
 `monit_config_host`
 
     Description: Define the 'monit_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -318,7 +310,6 @@ vars:
 `monit_daemon_delay`
 
     Description: Set the 'monit_daemon_delay' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -329,7 +320,6 @@ vars:
 `monit_daemon_interval`
 
     Description: Set the 'monit_daemon_interval' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -341,7 +331,6 @@ vars:
 `monit_include`
 
     Description: Define the 'monit_include' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -352,7 +341,6 @@ vars:
 `monit_mail_from`
 
     Description: Define the 'monit_mail_from' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -363,7 +351,6 @@ vars:
 `monit_mail_message_action`
 
     Description: Define the 'monit_mail_message_action' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -374,7 +361,6 @@ vars:
 `monit_mail_message_date`
 
     Description: Define the 'monit_mail_message_date' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -385,7 +371,6 @@ vars:
 `monit_mail_message_description`
 
     Description: Define the 'monit_mail_message_description' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -396,7 +381,6 @@ vars:
 `monit_mail_message_event`
 
     Description: Define the 'monit_mail_message_event' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -407,7 +391,6 @@ vars:
 `monit_mail_message_host`
 
     Description: Define the 'monit_mail_message_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -418,7 +401,6 @@ vars:
 `monit_mail_message_service`
 
     Description: Define the 'monit_mail_message_service' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -429,7 +411,6 @@ vars:
 `monit_mail_server`
 
     Description: Define the 'monit_mail_server' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -442,7 +423,6 @@ vars:
 `monit_mail_subject`
 
     Description: Define the 'monit_mail_subject' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -453,7 +433,6 @@ vars:
 `monit_mail_to`
 
     Description: Define the 'monit_mail_to' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -467,7 +446,6 @@ vars:
 `monit_nftables_filter_rule`
 
     Description: Define the 'monit_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -481,7 +459,6 @@ vars:
 `monit_nftables_state`
 
     Description: Control the 'monit_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -491,7 +468,6 @@ vars:
 `monit_web_server_address`
 
     Description: Define the 'monit_web_server_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -502,7 +478,6 @@ vars:
 `monit_web_server_allow`
 
     Description: Define the 'monit_web_server_allow' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -514,7 +489,6 @@ vars:
 `monit_web_server_port`
 
     Description: Set the 'monit_web_server_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -534,8 +508,6 @@ vars:
     Name   :
       Debian 11: 'monit'
       Debian 12: 'monit'
-
-## Parameters
 
 ## Requirements
 

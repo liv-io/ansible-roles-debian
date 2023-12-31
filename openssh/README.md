@@ -80,7 +80,6 @@ consult the following sections.
     Description: Control the state of the role.
                  'openssh' is a core service and should therefore not be
                  disabled.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -95,7 +94,6 @@ consult the following sections.
 `openssh_address_family`
 
     Description: Set the 'openssh_address_family' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -108,7 +106,6 @@ consult the following sections.
 `openssh_allow_groups`
 
     Description: Define the 'openssh_allow_groups' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -120,7 +117,6 @@ consult the following sections.
 `openssh_allow_users`
 
     Description: Define the 'openssh_allow_users' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -132,7 +128,6 @@ consult the following sections.
 `openssh_banner`
 
     Description: Control the 'openssh_banner' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -142,7 +137,6 @@ consult the following sections.
 `openssh_ciphers`
 
     Description: Define the 'openssh_ciphers' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -153,7 +147,6 @@ consult the following sections.
 `openssh_compression`
 
     Description: Control the 'openssh_compression' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -163,7 +156,6 @@ consult the following sections.
 `openssh_deny_groups`
 
     Description: Define the 'openssh_deny_groups' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -175,7 +167,6 @@ consult the following sections.
 `openssh_deny_users`
 
     Description: Define the 'openssh_deny_users' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -187,7 +178,6 @@ consult the following sections.
 `openssh_host_key`
 
     Description: Define the 'openssh_host_key' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -198,7 +188,6 @@ consult the following sections.
 `openssh_host_key_algorithms`
 
     Description: Define the 'openssh_host_key_algorithms' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -209,7 +198,6 @@ consult the following sections.
 `openssh_kex_algorithms`
 
     Description: Define the 'openssh_kex_algorithms' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -220,7 +208,6 @@ consult the following sections.
 `openssh_listen_address`
 
     Description: Define the 'openssh_listen_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -232,7 +219,6 @@ consult the following sections.
 `openssh_macs`
 
     Description: Define the 'openssh_macs' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -243,7 +229,6 @@ consult the following sections.
 `openssh_match`
 
     Description: Define the 'openssh_match' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -256,7 +241,6 @@ consult the following sections.
 `openssh_monitor_monit_state`
 
     Description: Control the 'openssh_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -266,7 +250,6 @@ consult the following sections.
 `openssh_nftables_filter_rule`
 
     Description: Define the 'openssh_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -280,7 +263,6 @@ consult the following sections.
 `openssh_nftables_state`
 
     Description: Control the 'openssh_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -290,7 +272,6 @@ consult the following sections.
 `openssh_password_authentication`
 
     Description: Control the 'openssh_password_authentication' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -300,7 +281,6 @@ consult the following sections.
 `openssh_permit_root_login`
 
     Description: Control the 'openssh_permit_root_login' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -310,7 +290,6 @@ consult the following sections.
 `openssh_port`
 
     Description: Define the 'openssh_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array, Integer, String
@@ -321,7 +300,6 @@ consult the following sections.
 `openssh_print_motd`
 
     Description: Control the 'openssh_print_motd' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -331,7 +309,6 @@ consult the following sections.
 `openssh_print_last_log`
 
     Description: Control the 'openssh_print_last_log' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -341,7 +318,6 @@ consult the following sections.
 `openssh_pubkey_authentication`
 
     Description: Control the 'openssh_pubkey_authentication' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -351,7 +327,6 @@ consult the following sections.
 `openssh_rsa_authentication`
 
     Description: Control the 'openssh_rsa_authentication' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -361,7 +336,6 @@ consult the following sections.
 `openssh_tcp_keep_alive`
 
     Description: Control the 'openssh_tcp_keep_alive' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -371,7 +345,6 @@ consult the following sections.
 `openssh_use_dns`
 
     Description: Control the 'openssh_use_dns' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -381,7 +354,6 @@ consult the following sections.
 `openssh_version_addendum`
 
     Description: Define the 'openssh_version_addendum' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -392,7 +364,6 @@ consult the following sections.
 `openssh_x11_display_offset`
 
     Description: Define the 'openssh_x11_display_offset' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -403,7 +374,6 @@ consult the following sections.
 `openssh_x11_forwarding`
 
     Description: Control the 'openssh_x11_forwarding' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -413,7 +383,6 @@ consult the following sections.
 `openssh_x11_use_localhost`
 
     Description: Control the 'openssh_x11_use_localhost' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -432,8 +401,6 @@ consult the following sections.
     Name   :
       Debian 11: 'openssh-server'
       Debian 12: 'openssh-server'
-
-## Parameters
 
 ## Requirements
 

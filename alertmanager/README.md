@@ -139,7 +139,6 @@ consult the following sections.
 `alertmanager_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -154,7 +153,6 @@ consult the following sections.
 `alertmanager_config`
 
     Description: Define the 'alertmanager_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -178,7 +176,6 @@ consult the following sections.
 `alertmanager_monitor_monit_state`
 
     Description: Control the 'alertmanager_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -188,7 +185,6 @@ consult the following sections.
 `alertmanager_nftables_filter_rule`
 
     Description: Define the 'alertmanager_nftables_filter_rule' option.
-    Implemented: 1.4.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -206,7 +202,6 @@ consult the following sections.
 `alertmanager_nftables_state`
 
     Description: Control the 'alertmanager_nftables_state' option.
-    Implemented: 1.4.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -216,7 +211,6 @@ consult the following sections.
 `alertmanager_version`
 
     Description: Define the 'alertmanager_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -227,7 +221,6 @@ consult the following sections.
 `alertmanager_web_external_url`
 
     Description: Define the 'alertmanager_web_external_url' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -242,8 +235,6 @@ consult the following sections.
 ### Archives
 
 `alertmanager`
-
-## Parameters
 
 ## Requirements
 

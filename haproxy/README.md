@@ -111,7 +111,6 @@ consult the following sections.
 `haproxy_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -126,7 +125,6 @@ consult the following sections.
 `haproxy_config`
 
     Description: Define the 'haproxy_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -151,7 +149,6 @@ consult the following sections.
 `haproxy_monitor_monit_state`
 
     Description: Control the 'haproxy_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -161,7 +158,6 @@ consult the following sections.
 `haproxy_nftables_filter_rule`
 
     Description: Define the 'haproxy_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -178,7 +174,6 @@ consult the following sections.
 `haproxy_nftables_state`
 
     Description: Control the 'haproxy_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -188,7 +183,6 @@ consult the following sections.
 `haproxy_stats_auth`
 
     Description: Define the 'haproxy_stats_auth' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -202,7 +196,6 @@ consult the following sections.
 `haproxy_stats_defaults_state`
 
     Description: Control the 'haproxy_stats_defaults_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -212,7 +205,6 @@ consult the following sections.
 `haproxy_stats_hide_version`
 
     Description: Control the 'haproxy_stats_hide_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -222,7 +214,6 @@ consult the following sections.
 `haproxy_stats_listen_state`
 
     Description: Control the 'haproxy_stats_listen_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -232,7 +223,6 @@ consult the following sections.
 `haproxy_stats_realm`
 
     Description: Define the 'haproxy_stats_realm' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -244,7 +234,6 @@ consult the following sections.
 `haproxy_stats_refresh`
 
     Description: Set the 'haproxy_stats_refresh' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -256,7 +245,6 @@ consult the following sections.
 `haproxy_stats_show_desc`
 
     Description: Define the 'haproxy_stats_show_desc' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -268,7 +256,6 @@ consult the following sections.
 `haproxy_stats_show_legends`
 
     Description: Control the 'haproxy_stats_show_legends' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -278,7 +265,6 @@ consult the following sections.
 `haproxy_stats_uri`
 
     Description: Define the 'haproxy_stats_uri' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -306,8 +292,6 @@ consult the following sections.
     Name   :
       Debian 11: 'openssl'
       Debian 12: 'openssl'
-
-## Parameters
 
 ## Requirements
 

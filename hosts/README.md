@@ -69,7 +69,6 @@ vars:
 `state`
 
     Description: Control the state of the hosts entry.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -79,7 +78,6 @@ vars:
 `name`
 
     Description: Define the hostname of the hosts entry.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -90,7 +88,6 @@ vars:
 `aliases`
 
     Description: Define the aliases for the hosts entry.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -105,7 +102,6 @@ vars:
 `comment`
 
     Description: Define a comment for the hosts entry.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -117,7 +113,6 @@ vars:
 `ip`
 
     Description: Define the ip of the hosts entry.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -128,7 +123,6 @@ vars:
 `path`
 
     Description: Define the path of the hosts file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -141,7 +135,6 @@ vars:
 `hosts_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -153,7 +146,6 @@ vars:
 `hosts_config_all`
 
     Description: Define the 'hosts_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -168,7 +160,6 @@ vars:
 `hosts_config_group`
 
     Description: Define the 'hosts_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -183,7 +174,6 @@ vars:
 `hosts_config_host`
 
     Description: Define the 'hosts_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -198,8 +188,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

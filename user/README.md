@@ -75,7 +75,6 @@ vars:
 `state`
 
     Description: Control the state of the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -85,7 +84,6 @@ vars:
 `name`
 
     Description: Define the name of the user.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -96,7 +94,6 @@ vars:
 `comment`
 
     Description: Define a comment for the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -107,7 +104,6 @@ vars:
 `uid`
 
     Description: Set the UID of the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -119,7 +115,6 @@ vars:
 
     Description: Define the primary group of the user.
                  Ensure the group exists before specifing
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -130,7 +125,6 @@ vars:
 `groups`
 
     Description: Define the groups of the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -143,7 +137,6 @@ vars:
 `groups_append`
 
     Description: Control whether to append or overwrite the group membership.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -153,7 +146,6 @@ vars:
 `home`
 
     Description: Define the home of the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -164,7 +156,6 @@ vars:
 `home_create`
 
     Description: Control whether to create the home directory.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -174,7 +165,6 @@ vars:
 `home_move`
 
     Description: Control whether to move the home directory.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -185,7 +175,6 @@ vars:
 
     Description: Control whether to remove the home directory when removing the
                  user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -196,7 +185,6 @@ vars:
 
     Description: Control whether to force the removal of the home directory when
                  removing the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -206,7 +194,6 @@ vars:
 `password`
 
     Description: Define the password for the user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary cryptographic hash
     Type       : String
@@ -220,7 +207,6 @@ vars:
 
     Description: Control whether to initially set or continuously update the
                  password.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -230,7 +216,6 @@ vars:
 `system`
 
     Description: Control whether to create a system user.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -240,7 +225,6 @@ vars:
 `authorized_keys`
 
     Description: Define the authorized_keys of the user.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -255,7 +239,6 @@ vars:
 `user_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -267,7 +250,6 @@ vars:
 `user_config_all`
 
     Description: Define the 'user_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -281,7 +263,6 @@ vars:
 `user_config_group`
 
     Description: Define the 'user_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -295,7 +276,6 @@ vars:
 `user_config_host`
 
     Description: Define the 'user_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -315,8 +295,6 @@ vars:
 `passwd`
 
 `shadow`
-
-## Parameters
 
 ## Requirements
 

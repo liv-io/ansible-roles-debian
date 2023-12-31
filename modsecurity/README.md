@@ -70,7 +70,6 @@ consult the following sections.
 `modsecurity_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -85,7 +84,6 @@ consult the following sections.
 `modsecurity_sec_audit_log_parts`
 
     Description: Define the 'modsecurity_sec_audit_log_parts' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -96,7 +94,6 @@ consult the following sections.
 `modsecurity_sec_pcre_match_limit`
 
     Description: Set the 'modsecurity_sec_pcre_match_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -107,7 +104,6 @@ consult the following sections.
 `modsecurity_sec_pcre_match_limit_recursion`
 
     Description: Set the 'modsecurity_sec_pcre_match_limit_recursion' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -118,7 +114,6 @@ consult the following sections.
 `modsecurity_sec_request_body_access`
 
     Description: Control the 'modsecurity_sec_request_body_access' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -128,7 +123,6 @@ consult the following sections.
 `modsecurity_sec_request_body_limit`
 
     Description: Set the 'modsecurity_sec_request_body_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -139,7 +133,6 @@ consult the following sections.
 `modsecurity_sec_request_body_limit_action`
 
     Description: Define the 'modsecurity_sec_request_body_limit_action' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -151,7 +144,6 @@ consult the following sections.
 `modsecurity_sec_request_body_no_files_limit`
 
     Description: Set the 'modsecurity_sec_request_body_no_files_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -162,7 +154,6 @@ consult the following sections.
 `modsecurity_sec_response_body_access`
 
     Description: Control the 'modsecurity_sec_response_body_access' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -172,7 +163,6 @@ consult the following sections.
 `modsecurity_sec_response_body_limit_action`
 
     Description: Define the 'modsecurity_sec_response_body_limit_action' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -184,7 +174,6 @@ consult the following sections.
 `modsecurity_sec_rule_engine`
 
     Description: Define the 'modsecurity_sec_rule_engine' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -197,7 +186,6 @@ consult the following sections.
 `modsecurity_sec_server_signature`
 
     Description: Define the 'modsecurity_sec_server_signature' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -218,8 +206,6 @@ consult the following sections.
     Name   :
       Debian 11: 'libmodsecurity3'
       Debian 12: 'libmodsecurity3'
-
-## Parameters
 
 ## Requirements
 

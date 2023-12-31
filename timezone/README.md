@@ -37,7 +37,6 @@ consult the following sections.
 `timezone_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -49,7 +48,6 @@ consult the following sections.
 `timezone_timezone`
 
     Description: Define the 'timezone_timezone' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -60,8 +58,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

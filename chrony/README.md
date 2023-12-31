@@ -90,7 +90,6 @@ consult the following sections.
 `chrony_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -106,7 +105,6 @@ consult the following sections.
 `chrony_access`
 
     Description: Define the 'chrony_access' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -124,7 +122,6 @@ consult the following sections.
 `chrony_bind_address`
 
     Description: Define the 'chrony_bind_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -137,7 +134,6 @@ consult the following sections.
 `chrony_check_time_day`
 
     Description: Define the 'chrony_check_time_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -148,7 +144,6 @@ consult the following sections.
 `chrony_check_time_hour`
 
     Description: Define the 'chrony_check_time_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -159,7 +154,6 @@ consult the following sections.
 `chrony_check_time_minute`
 
     Description: Define the 'chrony_check_time_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -170,7 +164,6 @@ consult the following sections.
 `chrony_check_time_month`
 
     Description: Define the 'chrony_check_time_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -181,7 +174,6 @@ consult the following sections.
 `chrony_check_time_weekday`
 
     Description: Define the 'chrony_check_time_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -192,7 +184,6 @@ consult the following sections.
 `chrony_check_time_offset_limit`
 
     Description: Set the 'chrony_check_time_offset_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -203,7 +194,6 @@ consult the following sections.
 `chrony_check_time_state`
 
     Description: Control the 'chrony_check_time_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -213,7 +203,6 @@ consult the following sections.
 `chrony_monitor_mail_from_address`
 
     Description: Define the 'chrony_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -224,7 +213,6 @@ consult the following sections.
 `chrony_monitor_mail_to_address`
 
     Description: Define the 'chrony_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -236,7 +224,6 @@ consult the following sections.
 `chrony_monitor_mail_state`
 
     Description: Control the 'chrony_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -246,7 +233,6 @@ consult the following sections.
 `chrony_monitor_monit_state`
 
     Description: Control the 'chrony_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -256,7 +242,6 @@ consult the following sections.
 `chrony_monitor_prom_state`
 
     Description: Control the 'chrony_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -266,7 +251,6 @@ consult the following sections.
 `chrony_monitor_prom_textfile_collector`
 
     Description: Define the 'chrony_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -277,7 +261,6 @@ consult the following sections.
 `chrony_nftables_filter_rule`
 
     Description: Define the 'chrony_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -291,7 +274,6 @@ consult the following sections.
 `chrony_nftables_state`
 
     Description: Control the 'chrony_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -301,7 +283,6 @@ consult the following sections.
 `chrony_pool`
 
     Description: Define the 'chrony_pool' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -313,7 +294,6 @@ consult the following sections.
 `chrony_server`
 
     Description: Define the 'chrony_server' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -329,7 +309,6 @@ consult the following sections.
 `chrony_update_time_day`
 
     Description: Define the 'chrony_update_time_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -340,7 +319,6 @@ consult the following sections.
 `chrony_update_time_hour`
 
     Description: Define the 'chrony_update_time_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -351,7 +329,6 @@ consult the following sections.
 `chrony_update_time_minute`
 
     Description: Define the 'chrony_update_time_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -362,7 +339,6 @@ consult the following sections.
 `chrony_update_time_month`
 
     Description: Define the 'chrony_update_time_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -373,7 +349,6 @@ consult the following sections.
 `chrony_update_time_weekday`
 
     Description: Define the 'chrony_update_time_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -411,8 +386,6 @@ consult the following sections.
     Name   :
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
-
-## Parameters
 
 ## Requirements
 

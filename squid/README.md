@@ -90,7 +90,6 @@ consult the following sections.
 `squid_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -105,7 +104,6 @@ consult the following sections.
 `squid_acl`
 
     Description: Define the 'squid_acl' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -118,7 +116,6 @@ consult the following sections.
 `squid_acl_ssl_ports`
 
     Description: Define the 'squid_acl_ssl_ports' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -129,7 +126,6 @@ consult the following sections.
 `squid_cache_dir`
 
     Description: Define the 'squid_cache_dir' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -140,7 +136,6 @@ consult the following sections.
 `squid_cache_mem`
 
     Description: Define the 'squid_cache_mem' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -151,7 +146,6 @@ consult the following sections.
 `squid_cache_mgr`
 
     Description: Define the 'squid_cache_mgr' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -162,7 +156,6 @@ consult the following sections.
 `squid_cache_replacement_policy`
 
     Description: Define the 'squid_cache_replacement_policy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -173,7 +166,6 @@ consult the following sections.
 `squid_cachemgr_passwd`
 
     Description: Define the 'squid_cachemgr_passwd' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -186,7 +178,6 @@ consult the following sections.
 `squid_domain_allowed`
 
     Description: Define the 'squid_domain_allowed' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -199,7 +190,6 @@ consult the following sections.
 `squid_domain_blocked`
 
     Description: Define the 'squid_domain_blocked' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -212,7 +202,6 @@ consult the following sections.
 `squid_http_port`
 
     Description: Set the 'squid_http_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -223,7 +212,6 @@ consult the following sections.
 `squid_http_access`
 
     Description: Define the 'squid_http_access' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -247,7 +235,6 @@ consult the following sections.
 `squid_httpd_suppress_version_string`
 
     Description: Control the 'squid_httpd_suppress_version_string' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -257,7 +244,6 @@ consult the following sections.
 `squid_mail_from`
 
     Description: Define the 'squid_mail_from' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -269,7 +255,6 @@ consult the following sections.
 `squid_max_filedescriptors`
 
     Description: Set the 'squid_max_filedescriptors' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -280,7 +265,6 @@ consult the following sections.
 `squid_maximum_object_size`
 
     Description: Define the 'squid_maximum_object_size' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -291,7 +275,6 @@ consult the following sections.
 `squid_maximum_object_size_in_memory`
 
     Description: Define the 'squid_maximum_object_size_in_memory' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -302,7 +285,6 @@ consult the following sections.
 `squid_memory_replacement_policy`
 
     Description: Define the 'squid_memory_replacement_policy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -313,7 +295,6 @@ consult the following sections.
 `squid_minimum_object_size`
 
     Description: Define the 'squid_minimum_object_size' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -324,7 +305,6 @@ consult the following sections.
 `squid_monitor_monit_state`
 
     Description: Control the 'squid_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -334,7 +314,6 @@ consult the following sections.
 `squid_network_allowed`
 
     Description: Define the 'squid_network_allowed' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -347,7 +326,6 @@ consult the following sections.
 `squid_network_blocked`
 
     Description: Define the 'squid_network_blocked' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -362,7 +340,6 @@ consult the following sections.
 `squid_network_unrestricted`
 
     Description: Define the 'squid_network_unrestricted' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -375,7 +352,6 @@ consult the following sections.
 `squid_nftables_filter_rule`
 
     Description: Define the 'squid_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -392,7 +368,6 @@ consult the following sections.
 `squid_nftables_state`
 
     Description: Control the 'squid_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -402,7 +377,6 @@ consult the following sections.
 `squid_quick_abort_max`
 
     Description: Define the 'squid_quick_abort_max' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -413,7 +387,6 @@ consult the following sections.
 `squid_quick_abort_min`
 
     Description: Define the 'squid_quick_abort_min' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -424,7 +397,6 @@ consult the following sections.
 `squid_shutdown_lifetime`
 
     Description: Set the 'squid_shutdown_lifetime' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -435,7 +407,6 @@ consult the following sections.
 `squid_visible_hostname`
 
     Description: Define the 'squid_visible_hostname' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -456,8 +427,6 @@ consult the following sections.
     Name   :
       Debian 11: 'squid'
       Debian 12: 'squid'
-
-## Parameters
 
 ## Requirements
 

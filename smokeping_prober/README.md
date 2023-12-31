@@ -66,7 +66,6 @@ consult the following sections.
 `smokeping_prober_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -81,7 +80,6 @@ consult the following sections.
 `smokeping_prober_hosts`
 
     Description: Define the 'smokeping_prober_hosts' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -94,7 +92,6 @@ consult the following sections.
 `smokeping_prober_monitor_monit_state`
 
     Description: Control the 'smokeping_prober_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -104,7 +101,6 @@ consult the following sections.
 `smokeping_prober_nftables_filter_rule`
 
     Description: Define the 'smokeping_prober_nftables_filter_rule' option.
-    Implemented: 1.7.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -121,7 +117,6 @@ consult the following sections.
 `smokeping_prober_nftables_state`
 
     Description: Control the 'smokeping_prober_nftables_state' option.
-    Implemented: 1.7.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -131,7 +126,6 @@ consult the following sections.
 `smokeping_prober_version`
 
     Description: Define the 'smokeping_prober_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -146,8 +140,6 @@ consult the following sections.
 ### Packages
 
 `smokeping_prober`
-
-## Parameters
 
 ## Requirements
 

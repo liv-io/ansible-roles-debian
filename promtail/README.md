@@ -68,7 +68,6 @@ consult the following sections.
 `promtail_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -83,7 +82,6 @@ consult the following sections.
 `promtail_monitor_monit_state`
 
     Description: Control the 'promtail_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -93,7 +91,6 @@ consult the following sections.
 `promtail_nftables_filter_rule`
 
     Description: Define the 'promtail_nftables_filter_rule' option.
-    Implemented: 1.5.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -107,7 +104,6 @@ consult the following sections.
 `promtail_nftables_state`
 
     Description: Control the 'promtail_nftables_state' option.
-    Implemented: 1.5.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -117,7 +113,6 @@ consult the following sections.
 `promtail_pipeline_stages_all`
 
     Description: Define the 'promtail_pipeline_stages_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -207,7 +202,6 @@ consult the following sections.
 `promtail_pipeline_stages_group`
 
     Description: Define the 'promtail_pipeline_stages_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -238,7 +232,6 @@ consult the following sections.
 `promtail_pipeline_stages_host`
 
     Description: Define the 'promtail_pipeline_stages_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -269,7 +262,6 @@ consult the following sections.
 `promtail_version`
 
     Description: Define the 'promtail_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -284,8 +276,6 @@ consult the following sections.
 ### Archives
 
 `promtail`
-
-## Parameters
 
 ## Requirements
 

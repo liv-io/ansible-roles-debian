@@ -125,7 +125,6 @@ consult the following sections.
 `suricata_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -140,7 +139,6 @@ consult the following sections.
 `suricata_config`
 
     Description: Define the 'suricata_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -152,7 +150,6 @@ consult the following sections.
 `suricata_external_net`
 
     Description: Define the 'suricata_external_net' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -163,7 +160,6 @@ consult the following sections.
 `suricata_home_net`
 
     Description: Define the 'suricata_home_net' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -174,7 +170,6 @@ consult the following sections.
 `suricata_interface`
 
     Description: Define the 'suricata_interface' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -185,7 +180,6 @@ consult the following sections.
 `suricata_monitor_monit_state`
 
     Description: Control the 'suricata_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -195,7 +189,6 @@ consult the following sections.
 `suricata_ruleset`
 
     Description: Define the 'suricata_ruleset' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -219,8 +212,6 @@ consult the following sections.
     Name   :
       Debian 11: 'suricata'
       Debian 12: 'suricata'
-
-## Parameters
 
 ## Requirements
 

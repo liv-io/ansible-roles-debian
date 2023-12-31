@@ -90,7 +90,6 @@ consult the following sections.
 `nftables_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -105,7 +104,6 @@ consult the following sections.
 `nftables_filter_table`
 
     Description: Define the 'nftables_filter_table' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -121,7 +119,6 @@ consult the following sections.
 `nftables_filter_chain`
 
     Description: Define the 'nftables_filter_chain' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -149,7 +146,6 @@ consult the following sections.
 `nftables_filter_rule_default`
 
     Description: Define the 'nftables_filter_rule_default' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -203,7 +199,6 @@ consult the following sections.
 `nftables_filter_rule_all`
 
     Description: Define the 'nftables_filter_rule_all' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -234,7 +229,6 @@ consult the following sections.
 `nftables_filter_rule_group`
 
     Description: Define the 'nftables_filter_rule_group' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -250,7 +244,6 @@ consult the following sections.
 `nftables_filter_rule_host`
 
     Description: Define the 'nftables_filter_rule_host' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -273,8 +266,6 @@ consult the following sections.
     Name   :
       Debian 11: 'nftables'
       Debian 12: 'nftables'
-
-## Parameters
 
 ## Requirements
 

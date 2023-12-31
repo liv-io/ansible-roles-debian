@@ -40,7 +40,6 @@ consult the following sections.
 
     Description: Control the state of the role.
                  'motd' is a core file and can therefore not be removed.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -52,7 +51,6 @@ consult the following sections.
 `motd_env_name`
 
     Description: Define the 'motd_env_name' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -64,7 +62,6 @@ consult the following sections.
 `motd_host_description`
 
     Description: Define the 'motd_host_description' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -76,7 +73,6 @@ consult the following sections.
 `motd_host_ip_address`
 
     Description: Define the 'motd_host_ip_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -90,7 +86,6 @@ consult the following sections.
     Description: Define the template source for '/etc/motd'.
                  Any value other than 'default' or 'empty' requires a Jinja2
                  file in the templates folder.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -101,8 +96,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

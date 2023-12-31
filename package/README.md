@@ -101,7 +101,6 @@ vars:
 `state`
 
     Description: Control the package state.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -111,7 +110,6 @@ vars:
 `name`
 
     Description: Define the package name.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -124,7 +122,6 @@ vars:
 `package_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -136,7 +133,6 @@ vars:
 `package_config_all`
 
     Description: Define the 'package_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -148,7 +144,6 @@ vars:
 `package_config_group`
 
     Description: Define the 'package_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -160,7 +155,6 @@ vars:
 `package_config_host`
 
     Description: Define the 'package_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -172,8 +166,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

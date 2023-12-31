@@ -68,7 +68,6 @@ consult the following sections.
 `fstrim_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -83,7 +82,6 @@ consult the following sections.
 `fstrim_discard_blocks_day`
 
     Description: Define the 'fstrim_discard_blocks_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -94,7 +92,6 @@ consult the following sections.
 `fstrim_discard_blocks_hour`
 
     Description: Define the 'fstrim_discard_blocks_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -105,7 +102,6 @@ consult the following sections.
 `fstrim_discard_blocks_minute`
 
     Description: Define the 'fstrim_discard_blocks_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -116,7 +112,6 @@ consult the following sections.
 `fstrim_discard_blocks_month`
 
     Description: Define the 'fstrim_discard_blocks_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -127,7 +122,6 @@ consult the following sections.
 `fstrim_discard_blocks_weekday`
 
     Description: Define the 'fstrim_discard_blocks_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -138,7 +132,6 @@ consult the following sections.
 `fstrim_monitor_mail_from_address`
 
     Description: Define the 'fstrim_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -149,7 +142,6 @@ consult the following sections.
 `fstrim_monitor_mail_to_address`
 
     Description: Define the 'fstrim_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -161,7 +153,6 @@ consult the following sections.
 `fstrim_monitor_mail_state`
 
     Description: Control the 'fstrim_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -171,7 +162,6 @@ consult the following sections.
 `fstrim_monitor_prom_state`
 
     Description: Control the 'fstrim_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -181,7 +171,6 @@ consult the following sections.
 `fstrim_monitor_prom_textfile_collector`
 
     Description: Define the 'fstrim_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -201,8 +190,6 @@ consult the following sections.
     Name   :
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
-
-## Parameters
 
 ## Requirements
 

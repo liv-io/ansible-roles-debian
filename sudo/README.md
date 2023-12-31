@@ -94,7 +94,6 @@ vars:
 `state`
 
     Description: Control the 'state' of the sudo file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -105,7 +104,6 @@ vars:
 
     Description: Define the 'name' of the sudo file.
                  For more details see 'man sudo' or 'sudo --help'.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -116,7 +114,6 @@ vars:
 `config`
 
     Description: Define the 'config' entry/entries.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -134,7 +131,6 @@ vars:
 `order`
 
     Description: Define the 'order' of the sudo file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -149,7 +145,6 @@ vars:
 
     Description: Control the state of the role.
                  'sudo' is a core package and should therefore not be removed.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -162,7 +157,6 @@ vars:
 `sudo_config_all`
 
     Description: Define the 'sudo_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -183,7 +177,6 @@ vars:
 `sudo_config_group`
 
     Description: Define the 'sudo_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -204,7 +197,6 @@ vars:
 `sudo_config_host`
 
     Description: Define the 'sudo_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -225,7 +217,6 @@ vars:
 `sudo_insults`
 
     Description: Control the 'sudo_insults' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -235,7 +226,6 @@ vars:
 `sudo_lecture`
 
     Description: Control the 'sudo_lecture' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -254,8 +244,6 @@ vars:
     Name   :
       Debian 11: 'sudo'
       Debian 12: 'sudo'
-
-## Parameters
 
 ## Requirements
 

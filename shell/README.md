@@ -46,7 +46,6 @@ consult the following sections.
 `shell_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -59,7 +58,6 @@ consult the following sections.
 `shell_color_prompt`
 
     Description: Control the 'shell_color_prompt' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -69,7 +67,6 @@ consult the following sections.
 `shell_color_support`
 
     Description: Control the 'shell_color_support' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -79,7 +76,6 @@ consult the following sections.
 `shell_ftp_proxy`
 
     Description: Define the 'shell_ftp_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -91,7 +87,6 @@ consult the following sections.
 `shell_histsize`
 
     Description: Set the size of the 'shell' history variable.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -103,7 +98,6 @@ consult the following sections.
 `shell_http_proxy`
 
     Description: Define the 'shell_http_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -115,7 +109,6 @@ consult the following sections.
 `shell_https_proxy`
 
     Description: Define the 'shell_https_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -127,7 +120,6 @@ consult the following sections.
 `shell_ls_time_style`
 
     Description: Define the time format of the 'ls' command.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -139,7 +131,6 @@ consult the following sections.
 `shell_no_proxy`
 
     Description: Define the 'shell_no_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -151,7 +142,6 @@ consult the following sections.
 `shell_pager`
 
     Description: Define the default 'PAGER' variable.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -164,7 +154,6 @@ consult the following sections.
 
     Description: Control the safety of various shell commands
                  (chmod, chown, ln, mv, rm...).
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -174,8 +163,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

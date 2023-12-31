@@ -71,7 +71,6 @@ vars:
 `state`
 
     Description: Control the state of the ca-certificate.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -81,7 +80,6 @@ vars:
 `name`
 
     Description: Define the name of the ca-certificate.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -92,7 +90,6 @@ vars:
 `content`
 
     Description: Define the content of the ca-certificate.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -110,7 +107,6 @@ vars:
 `ca_certificate_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -123,7 +119,6 @@ vars:
 `ca_certificate_config`
 
     Description: Define the 'ca_certificate_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -161,8 +156,6 @@ vars:
     Name   :
       Debian 11: 'ca-certificates'
       Debian 12: 'ca-certificates'
-
-## Parameters
 
 ## Requirements
 

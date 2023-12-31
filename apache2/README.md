@@ -128,7 +128,6 @@ vars:
 `alias`
 
     Description: Define the 'alias' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -140,7 +139,6 @@ vars:
 `config`
 
     Description: Define the 'config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -156,7 +154,6 @@ vars:
 `document_root`
 
     Description: Define the 'document_root' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -167,7 +164,6 @@ vars:
 `hsts_max_age`
 
     Description: Set the 'hsts_max_age' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -178,7 +174,6 @@ vars:
 `hsts_state`
 
     Description: Control the 'hsts_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -188,7 +183,6 @@ vars:
 `listen`
 
     Description: Define the 'listen' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -199,7 +193,6 @@ vars:
 `log_level`
 
     Description: Define the 'log_level' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -211,7 +204,6 @@ vars:
 `name`
 
     Description: Define the 'name' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -222,7 +214,6 @@ vars:
 `port`
 
     Description: Set the 'port' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : Integer, String
@@ -233,7 +224,6 @@ vars:
 `server_admin`
 
     Description: Define the 'server_admin' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -245,7 +235,6 @@ vars:
 `ssl_ca_certificate`
 
     Description: Define the 'ssl_ca_certificate' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -257,7 +246,6 @@ vars:
 `ssl_certificate`
 
     Description: Define the 'ssl_certificate_file' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -269,7 +257,6 @@ vars:
 `ssl_certificate_chain`
 
     Description: Define the 'ssl_certificate_chain' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -281,7 +268,6 @@ vars:
 `ssl_certificate_key`
 
     Description: Define the 'ssl_certificate_key' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -293,7 +279,6 @@ vars:
 `ssl_ciphers`
 
     Description: Define the 'ssl_ciphers' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -304,7 +289,6 @@ vars:
 `ssl_compression`
 
     Description: Control the 'ssl_compression' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -314,7 +298,6 @@ vars:
 `ssl_honor_cipher_order`
 
     Description: Control the 'ssl_honor_cipher_order' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -324,7 +307,6 @@ vars:
 `ssl_protocols`
 
     Description: Define the 'ssl_protocols' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -335,7 +317,6 @@ vars:
 `ssl_session_tickets`
 
     Description: Control the 'ssl_session_tickets' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -345,7 +326,6 @@ vars:
 `ssl_state`
 
     Description: Control the 'ssl_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -355,7 +335,6 @@ vars:
 `xss_protection_state`
 
     Description: Control the 'xss_protection_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -367,7 +346,6 @@ vars:
 `apache2_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -382,7 +360,6 @@ vars:
 `apache2_config`
 
     Description: Define the 'apache2_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -401,7 +378,6 @@ vars:
 `apache2_enable_mmap`
 
     Description: Control the 'apache2_enable_mmap' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -411,7 +387,6 @@ vars:
 `apache2_enable_sendfile`
 
     Description: Control the 'apache2_enable_sendfile' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -421,7 +396,6 @@ vars:
 `apache2_global_config`
 
     Description: Define the 'apache2_global_config' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -439,7 +413,6 @@ vars:
 `apache2_hsts_max_age`
 
     Description: Set the 'apache2_hsts_max_age' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -450,7 +423,6 @@ vars:
 `apache2_listen`
 
     Description: Set the 'apache2_listen' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -462,7 +434,6 @@ vars:
 `apache2_log_format_combined`
 
     Description: Define the 'apache2_log_format_combined' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -473,7 +444,6 @@ vars:
 `apache2_log_format_combined_io`
 
     Description: Define the 'apache2_log_format_combined_io' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -484,7 +454,6 @@ vars:
 `apache2_log_format_combined_ssl`
 
     Description: Define the 'apache2_log_format_combined_ssl' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -495,7 +464,6 @@ vars:
 `apache2_log_format_common`
 
     Description: Define the 'apache2_log_format_common' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -506,7 +474,6 @@ vars:
 `apache2_log_format_vhost_combined`
 
     Description: Define the 'apache2_log_format_vhost_combined' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -517,7 +484,6 @@ vars:
 `apache2_modules`
 
     Description: Control the 'apache2_modules' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Array/Hash
@@ -529,7 +495,6 @@ vars:
 `apache2_monitor_monit_state`
 
     Description: Control the 'apache2_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -539,7 +504,6 @@ vars:
 `apache2_nftables_filter_rule`
 
     Description: Define the 'apache2_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -553,7 +517,6 @@ vars:
 `apache2_nftables_state`
 
     Description: Control the 'apache2_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -563,7 +526,6 @@ vars:
 `apache2_server_admin`
 
     Description: Define the 'apache2_server_admin' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -575,7 +537,6 @@ vars:
 `apache2_server_signature`
 
     Description: Control the 'apache2_server_signature' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -588,7 +549,6 @@ vars:
 `apache2_server_tokens`
 
     Description: Control the 'apache2_server_tokens' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -604,7 +564,6 @@ vars:
 `apache2_trace_enable`
 
     Description: Control the 'apache2_trace_enable' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -630,8 +589,6 @@ vars:
     Name   :
       Debian 11: 'apache2-utils'
       Debian 12: 'apache2-utils'
-
-## Parameters
 
 ## Requirements
 

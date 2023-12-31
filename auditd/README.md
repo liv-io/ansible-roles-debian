@@ -121,7 +121,6 @@ vars:
 `auditd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -136,7 +135,6 @@ vars:
 `auditd_config_all:`
 
     Description: Define the 'auditd_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -162,7 +160,6 @@ vars:
 `auditd_config_group`
 
     Description: Define the 'auditd_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -178,7 +175,6 @@ vars:
 `auditd_config_host`
 
     Description: Define the 'auditd_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -194,7 +190,6 @@ vars:
 `auditd_monitor_monit_state`
 
     Description: Control the 'auditd_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -204,7 +199,6 @@ vars:
 `auditd_syslog_active`
 
     Description: Control the 'auditd_syslog_active' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -230,8 +224,6 @@ vars:
     Name   :
       Debian 11: 'audispd-plugins'
       Debian 12: 'audispd-plugins'
-
-## Parameters
 
 ## Requirements
 

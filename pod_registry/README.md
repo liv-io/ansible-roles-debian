@@ -73,7 +73,6 @@ consult the following sections.
 `pod_registry_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -88,7 +87,6 @@ consult the following sections.
 `pod_registry_monitor_monit_state`
 
     Description: Control the 'pod_registry_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -98,7 +96,6 @@ consult the following sections.
 `pod_registry_nftables_filter_rule`
 
     Description: Define the 'pod_registry_nftables_filter_rule' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -112,7 +109,6 @@ consult the following sections.
 `pod_registry_nftables_state`
 
     Description: Control the 'pod_registry_nftables_state' option.
-    Implemented: 0.3.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -122,7 +118,6 @@ consult the following sections.
 `pod_registry_password`
 
     Description: Define the 'pod_registry_password' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -133,7 +128,6 @@ consult the following sections.
 `pod_registry_proxy`
 
     Description: Define the 'pod_registry_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -145,7 +139,6 @@ consult the following sections.
 `pod_registry_username`
 
     Description: Define the 'pod_registry_username' option.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -156,7 +149,6 @@ consult the following sections.
 `pod_registry_version`
 
     Description: Define the 'pod_registry_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -186,8 +178,6 @@ consult the following sections.
 ### Roles
 
 `podman`
-
-## Parameters
 
 ## Requirements
 

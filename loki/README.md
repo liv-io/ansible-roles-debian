@@ -69,7 +69,6 @@ consult the following sections.
 `loki_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -84,7 +83,6 @@ consult the following sections.
 `loki_alertmanager_state`
 
     Description: Control the 'loki_alertmanager_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -94,7 +92,6 @@ consult the following sections.
 `loki_monitor_monit_state`
 
     Description: Control the 'loki_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -104,7 +101,6 @@ consult the following sections.
 `loki_nftables_filter_rule`
 
     Description: Define the 'loki_nftables_filter_rule' option.
-    Implemented: 1.11.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -118,7 +114,6 @@ consult the following sections.
 `loki_nftables_state`
 
     Description: Control the 'loki_nftables_state' option.
-    Implemented: 1.11.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -128,7 +123,6 @@ consult the following sections.
 `loki_retention_period`
 
     Description: Define the 'loki_retention_period' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -139,7 +133,6 @@ consult the following sections.
 `loki_version`
 
     Description: Define the 'loki_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -169,8 +162,6 @@ consult the following sections.
 `alertmanager`
 
 `grafana`
-
-## Parameters
 
 ## Requirements
 

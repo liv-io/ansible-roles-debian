@@ -47,7 +47,6 @@ consult the following sections.
 `podman_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -104,8 +103,6 @@ consult the following sections.
     Name   :
       Debian 11: 'slirp4netns'
       Debian 12: 'slirp4netns'
-
-## Parameters
 
 ## Requirements
 

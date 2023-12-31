@@ -116,7 +116,6 @@ vars:
 `mariadb_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -131,7 +130,6 @@ vars:
 `mariadb_database_all`
 
     Description: Define the 'mariadb_database_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -144,7 +142,6 @@ vars:
 `mariadb_database_group`
 
     Description: Define the 'mariadb_database_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -157,7 +154,6 @@ vars:
 `mariadb_database_host`
 
     Description: Define the 'mariadb_database_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -170,7 +166,6 @@ vars:
 `mariadb_config_server`
 
     Description: Define the 'mariadb_config_server' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -192,7 +187,6 @@ vars:
 `mariadb_monitor_mail_from_address`
 
     Description: Define the 'mariadb_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -203,7 +197,6 @@ vars:
 `mariadb_monitor_mail_to_address`
 
     Description: Define the 'mariadb_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -215,7 +208,6 @@ vars:
 `mariadb_monitor_mail_state`
 
     Description: Control the 'mariadb_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -225,7 +217,6 @@ vars:
 `mariadb_monitor_monit_state`
 
     Description: Control the 'mariadb_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -235,7 +226,6 @@ vars:
 `mariadb_monitor_prom_state`
 
     Description: Control the 'mariadb_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -245,7 +235,6 @@ vars:
 `mariadb_monitor_prom_textfile_collector`
 
     Description: Define the 'mariadb_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -256,7 +245,6 @@ vars:
 `mariadb_nftables_filter_rule`
 
     Description: Define the 'mariadb_nftables_filter_rule' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -270,7 +258,6 @@ vars:
 `mariadb_nftables_state`
 
     Description: Control the 'mariadb_nftables_state' option.
-    Implemented: 2.0.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -280,7 +267,6 @@ vars:
 `mariadb_root_password`
 
     Description: Define the 'mariadb_root_password' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -291,7 +277,6 @@ vars:
 `mariadb_run_backup_day`
 
     Description: Define the 'mariadb_run_backup_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -302,7 +287,6 @@ vars:
 `mariadb_run_backup_exclude`
 
     Description: Define the 'mariadb_run_backup_exclude' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -314,7 +298,6 @@ vars:
 `mariadb_run_backup_hour`
 
     Description: Define the 'mariadb_run_backup_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -325,7 +308,6 @@ vars:
 `mariadb_run_backup_minute`
 
     Description: Define the 'mariadb_run_backup_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -336,7 +318,6 @@ vars:
 `mariadb_run_backup_month`
 
     Description: Define the 'mariadb_run_backup_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -347,7 +328,6 @@ vars:
 `mariadb_run_backup_state`
 
     Description: Control the 'mariadb_run_backup_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -357,7 +337,6 @@ vars:
 `mariadb_run_backup_weekday`
 
     Description: Define the 'mariadb_run_backup_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -368,7 +347,6 @@ vars:
 `mariadb_user_all`
 
     Description: Define the 'mariadb_user_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -383,7 +361,6 @@ vars:
 `mariadb_user_group`
 
     Description: Define the 'mariadb_user_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -398,7 +375,6 @@ vars:
 `mariadb_user_host`
 
     Description: Define the 'mariadb_user_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -436,8 +412,6 @@ vars:
     Name   :
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
-
-## Parameters
 
 ## Requirements
 

@@ -74,7 +74,6 @@ consult the following sections.
 `php_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -89,7 +88,6 @@ consult the following sections.
 `php_curl_cainfo`
 
     Description: Define the 'php_curl_cainfo' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -101,7 +99,6 @@ consult the following sections.
 `php_date_timezone`
 
     Description: Define the 'php_date_timezone' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -112,7 +109,6 @@ consult the following sections.
 `php_expose_php`
 
     Description: Control the 'php_expose_php' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -122,7 +118,6 @@ consult the following sections.
 `php_max_input_vars`
 
     Description: Set the 'php_max_input_vars' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -133,7 +128,6 @@ consult the following sections.
 `php_memory_limit`
 
     Description: Set the 'php_memory_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -144,7 +138,6 @@ consult the following sections.
 `php_post_max_size`
 
     Description: Set the 'php_post_max_size' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -155,7 +148,6 @@ consult the following sections.
 `php_upload_max_filesize`
 
     Description: Set the 'php_upload_max_filesize' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -175,8 +167,6 @@ consult the following sections.
     Name   :
       Debian 11: 'php'
       Debian 12: 'php'
-
-## Parameters
 
 ## Requirements
 

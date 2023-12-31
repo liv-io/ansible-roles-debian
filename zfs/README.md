@@ -79,7 +79,6 @@ consult the following sections.
 `zfs_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -94,7 +93,6 @@ consult the following sections.
 `zfs_check_pools_day`
 
     Description: Define the 'zfs_check_pools_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -105,7 +103,6 @@ consult the following sections.
 `zfs_check_pools_hour`
 
     Description: Define the 'zfs_check_pools_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -116,7 +113,6 @@ consult the following sections.
 `zfs_check_pools_minute`
 
     Description: Define the 'zfs_check_pools_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -127,7 +123,6 @@ consult the following sections.
 `zfs_check_pools_month`
 
     Description: Define the 'zfs_check_pools_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -138,7 +133,6 @@ consult the following sections.
 `zfs_check_pools_weekday`
 
     Description: Define the 'zfs_check_pools_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -149,7 +143,6 @@ consult the following sections.
 `zfs_check_pools_state`
 
     Description: Control the 'zfs_check_pools_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -159,7 +152,6 @@ consult the following sections.
 `zfs_monitor_mail_from_address`
 
     Description: Define the 'zfs_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -170,7 +162,6 @@ consult the following sections.
 `zfs_monitor_mail_to_address`
 
     Description: Define the 'zfs_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -182,7 +173,6 @@ consult the following sections.
 `zfs_monitor_mail_state`
 
     Description: Control the 'zfs_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -192,7 +182,6 @@ consult the following sections.
 `zfs_monitor_prom_state`
 
     Description: Control the 'zfs_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -202,7 +191,6 @@ consult the following sections.
 `zfs_monitor_prom_textfile_collector`
 
     Description: Define the 'zfs_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -213,7 +201,6 @@ consult the following sections.
 `zfs_scrub_pools_day`
 
     Description: Define the 'zfs_scrub_pools_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -224,7 +211,6 @@ consult the following sections.
 `zfs_scrub_pools_hour`
 
     Description: Define the 'zfs_scrub_pools_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -235,7 +221,6 @@ consult the following sections.
 `zfs_scrub_pools_minute`
 
     Description: Define the 'zfs_scrub_pools_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -246,7 +231,6 @@ consult the following sections.
 `zfs_scrub_pools_month`
 
     Description: Define the 'zfs_scrub_pools_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -257,7 +241,6 @@ consult the following sections.
 `zfs_scrub_pools_weekday`
 
     Description: Define the 'zfs_scrub_pools_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -268,7 +251,6 @@ consult the following sections.
 `zfs_scrub_pools_pools`
 
     Description: Define the 'zfs_scrub_pools_pools' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -281,7 +263,6 @@ consult the following sections.
 `zfs_scrub_pools_state`
 
     Description: Control the 'zfs_scrub_pools_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -291,7 +272,6 @@ consult the following sections.
 `zfs_trim_pools_day`
 
     Description: Define the 'zfs_trim_pools_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -302,7 +282,6 @@ consult the following sections.
 `zfs_trim_pools_hour`
 
     Description: Define the 'zfs_trim_pools_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -313,7 +292,6 @@ consult the following sections.
 `zfs_trim_pools_minute`
 
     Description: Define the 'zfs_trim_pools_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -324,7 +302,6 @@ consult the following sections.
 `zfs_trim_pools_month`
 
     Description: Define the 'zfs_trim_pools_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -335,7 +312,6 @@ consult the following sections.
 `zfs_trim_pools_weekday`
 
     Description: Define the 'zfs_trim_pools_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -346,7 +322,6 @@ consult the following sections.
 `zfs_trim_pools_pools`
 
     Description: Define the 'zfs_trim_pools_pools' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -359,7 +334,6 @@ consult the following sections.
 `zfs_trim_pools_state`
 
     Description: Control the 'zfs_trim_pools_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -378,8 +352,6 @@ consult the following sections.
     Name   :
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
-
-## Parameters
 
 ## Requirements
 

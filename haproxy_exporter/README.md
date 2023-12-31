@@ -82,7 +82,6 @@ consult the following sections.
 `haproxy_exporter_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -97,7 +96,6 @@ consult the following sections.
 `haproxy_exporter_haproxy_scrape_uri`
 
     Description: Define the 'haproxy_exporter_haproxy_scrape_uri' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -110,7 +108,6 @@ consult the following sections.
 `haproxy_exporter_monitor_monit_state`
 
     Description: Control the 'haproxy_exporter_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -120,7 +117,6 @@ consult the following sections.
 `haproxy_exporter_nftables_filter_rule`
 
     Description: Define the 'haproxy_exporter_nftables_filter_rule' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -134,7 +130,6 @@ consult the following sections.
 `haproxy_exporter_nftables_state`
 
     Description: Control the 'haproxy_exporter_nftables_state' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -144,7 +139,6 @@ consult the following sections.
 `haproxy_exporter_version`
 
     Description: Define the 'haproxy_exporter_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -159,8 +153,6 @@ consult the following sections.
 ### Packages
 
 `haproxy_exporter`
-
-## Parameters
 
 ## Requirements
 

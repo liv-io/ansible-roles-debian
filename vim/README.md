@@ -51,7 +51,6 @@ consult the following sections.
 `vim_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -73,8 +72,6 @@ consult the following sections.
     Name   :
       Debian 11: 'vim'
       Debian 12: 'vim'
-
-## Parameters
 
 ## Requirements
 

@@ -39,7 +39,6 @@ consult the following sections.
 `locale_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -51,7 +50,6 @@ consult the following sections.
 `locale_kbd_version`
 
     Description: Define the 'locale_kbd_version' option.
-    Implemented: 1.2.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -62,7 +60,6 @@ consult the following sections.
 `locale_keymap_vc`
 
     Description: Define the 'locale_keymap_vc' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -73,7 +70,6 @@ consult the following sections.
 `locale_keymap_x11`
 
     Description: Define the 'locale_keymap_x11' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -84,7 +80,6 @@ consult the following sections.
 `locale_locale_system`
 
     Description: Define the 'locale_locale_system' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -99,8 +94,6 @@ consult the following sections.
 ### Archives
 
 `kbd`
-
-## Parameters
 
 ## Requirements
 

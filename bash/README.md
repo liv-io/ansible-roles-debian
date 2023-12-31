@@ -49,7 +49,6 @@ consult the following sections.
 `bash_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -62,7 +61,6 @@ consult the following sections.
 `bash_checkwinsize`
 
     Description: Control the state of the 'checkwinsize' Bash option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -72,7 +70,6 @@ consult the following sections.
 `bash_histappend`
 
     Description: Control the state of the 'histappend' Bash option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -83,7 +80,6 @@ consult the following sections.
 
     Description: Define values to control how commands are saved in the Bash
                  history.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -95,7 +91,6 @@ consult the following sections.
 `bash_histfilesize`
 
     Description: Set the size of the Bash history file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -108,7 +103,6 @@ consult the following sections.
 
     Description: Define patterns to decide which command lines should not be
                  saved in the Bash history.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -120,7 +114,6 @@ consult the following sections.
 `bash_history_readonly`
 
     Description: Control the readonly state of the Bash history variable.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -130,7 +123,6 @@ consult the following sections.
 `bash_histsize`
 
     Description: Set the size of the Bash history variable.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -142,7 +134,6 @@ consult the following sections.
 `bash_histtimeformat`
 
     Description: Define the time format of the Bash history.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -154,7 +145,6 @@ consult the following sections.
 `bash_prompt_command`
 
     Description: Define the 'bash_prompt_command' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -166,7 +156,6 @@ consult the following sections.
 
     Description: Set the number of seconds after Bash terminates its session
                  if no input arrives.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -178,7 +167,6 @@ consult the following sections.
 `bash_tmout_readonly`
 
     Description: Control the readonly state of the Bash 'TMOUT' variable.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -201,8 +189,6 @@ consult the following sections.
 ### Roles
 
 `shell`
-
-## Parameters
 
 ## Requirements
 

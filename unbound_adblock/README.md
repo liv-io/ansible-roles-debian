@@ -69,7 +69,6 @@ consult the following sections.
 `unbound_adblock_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -84,7 +83,6 @@ consult the following sections.
 `unbound_adblock_monitor_mail_from_address`
 
     Description: Define the 'unbound_adblock_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -95,7 +93,6 @@ consult the following sections.
 `unbound_adblock_monitor_mail_to_address`
 
     Description: Define the 'unbound_adblock_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -107,7 +104,6 @@ consult the following sections.
 `unbound_adblock_monitor_mail_state`
 
     Description: Control the 'unbound_adblock_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -117,7 +113,6 @@ consult the following sections.
 `unbound_adblock_monitor_prom_state`
 
     Description: Control the 'unbound_adblock_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -127,7 +122,6 @@ consult the following sections.
 `unbound_adblock_monitor_prom_textfile_collector`
 
     Description: Define the 'unbound_adblock_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -138,7 +132,6 @@ consult the following sections.
 `unbound_adblock_source`
 
     Description: Define the 'unbound_adblock_source' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -149,7 +142,6 @@ consult the following sections.
 `unbound_adblock_update_list_day`
 
     Description: Define the 'unbound_adblock_update_list_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -160,7 +152,6 @@ consult the following sections.
 `unbound_adblock_update_list_hour`
 
     Description: Define the 'unbound_adblock_update_list_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -171,7 +162,6 @@ consult the following sections.
 `unbound_adblock_update_list_minute`
 
     Description: Define the 'unbound_adblock_update_list_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -182,7 +172,6 @@ consult the following sections.
 `unbound_adblock_update_list_month`
 
     Description: Define the 'unbound_adblock_update_list_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -193,7 +182,6 @@ consult the following sections.
 `unbound_adblock_update_list_weekday`
 
     Description: Define the 'unbound_adblock_update_list_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -204,7 +192,6 @@ consult the following sections.
 `unbound_adblock_update_list_offset_limit`
 
     Description: Set the 'unbound_adblock_update_list_offset_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -215,7 +202,6 @@ consult the following sections.
 `unbound_adblock_update_list_state`
 
     Description: Control the 'unbound_adblock_update_list_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -240,8 +226,6 @@ consult the following sections.
 `sudo`
 
 `unbound`
-
-## Parameters
 
 ## Requirements
 

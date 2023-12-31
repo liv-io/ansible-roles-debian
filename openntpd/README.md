@@ -72,7 +72,6 @@ consult the following sections.
 `openntpd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -87,7 +86,6 @@ consult the following sections.
 `openntpd_check_time_day`
 
     Description: Define the 'openntpd_check_time_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -98,7 +96,6 @@ consult the following sections.
 `openntpd_check_time_hour`
 
     Description: Define the 'openntpd_check_time_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -109,7 +106,6 @@ consult the following sections.
 `openntpd_check_time_minute`
 
     Description: Define the 'openntpd_check_time_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -120,7 +116,6 @@ consult the following sections.
 `openntpd_check_time_month`
 
     Description: Define the 'openntpd_check_time_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -131,7 +126,6 @@ consult the following sections.
 `openntpd_check_time_weekday`
 
     Description: Define the 'openntpd_check_time_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -142,7 +136,6 @@ consult the following sections.
 `openntpd_check_time_offset_limit`
 
     Description: Set the 'openntpd_check_time_offset_limit' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -153,7 +146,6 @@ consult the following sections.
 `openntpd_check_time_state`
 
     Description: Control the 'openntpd_check_time_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -163,7 +155,6 @@ consult the following sections.
 `openntpd_listen`
 
     Description: Define the 'openntpd_listen' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -178,7 +169,6 @@ consult the following sections.
 `openntpd_monitor_mail_from_address`
 
     Description: Define the 'openntpd_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -189,7 +179,6 @@ consult the following sections.
 `openntpd_monitor_mail_to_address`
 
     Description: Define the 'openntpd_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -201,7 +190,6 @@ consult the following sections.
 `openntpd_monitor_mail_state`
 
     Description: Control the 'openntpd_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -211,7 +199,6 @@ consult the following sections.
 `openntpd_monitor_monit_state`
 
     Description: Control the 'openntpd_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -221,7 +208,6 @@ consult the following sections.
 `openntpd_monitor_prom_state`
 
     Description: Control the 'openntpd_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -231,7 +217,6 @@ consult the following sections.
 `openntpd_monitor_prom_textfile_collector`
 
     Description: Define the 'openntpd_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -242,7 +227,6 @@ consult the following sections.
 `openntpd_nftables_filter_rule`
 
     Description: Define the 'openntpd_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -259,7 +243,6 @@ consult the following sections.
 `openntpd_nftables_state`
 
     Description: Control the 'openntpd_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -269,7 +252,6 @@ consult the following sections.
 `openntpd_server`
 
     Description: Define the 'openntpd_server' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -285,7 +267,6 @@ consult the following sections.
 `openntpd_servers`
 
     Description: Define the 'openntpd_servers' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -317,8 +298,6 @@ consult the following sections.
     Name   :
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
-
-## Parameters
 
 ## Requirements
 

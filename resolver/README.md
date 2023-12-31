@@ -46,7 +46,6 @@ consult the following sections.
 
     Description: Control the state of the role.
                  'resolv.conf' is a core file and can therefore not be removed.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -58,7 +57,6 @@ consult the following sections.
 `resolver_domain`
 
     Description: Define the 'resolver_domain' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -70,7 +68,6 @@ consult the following sections.
 `resolver_nameserver`
 
     Description: Define the 'resolver_nameserver' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -83,7 +80,6 @@ consult the following sections.
 `resolver_nftables_filter_rule`
 
     Description: Define the 'resolver_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -97,7 +93,6 @@ consult the following sections.
 `resolver_nftables_state`
 
     Description: Control the 'resolver_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -107,7 +102,6 @@ consult the following sections.
 `resolver_search`
 
     Description: Define the 'resolver_search' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -120,8 +114,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

@@ -137,7 +137,6 @@ vars:
 `nsd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -152,7 +151,6 @@ vars:
 `nsd_control_enable`
 
     Description: Control the 'nsd_control_enable' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -162,7 +160,6 @@ vars:
 `nsd_default_port`
 
     Description: Set the 'nsd_default_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -173,7 +170,6 @@ vars:
 `nsd_hide_identity`
 
     Description: Control the 'nsd_hide_identity' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -183,7 +179,6 @@ vars:
 `nsd_hide_version`
 
     Description: Control the 'nsd_hide_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -193,7 +188,6 @@ vars:
 `nsd_identity`
 
     Description: Define the 'nsd_identity' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -205,7 +199,6 @@ vars:
 `nsd_interface`
 
     Description: Define the 'nsd_interface' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -218,7 +211,6 @@ vars:
 `nsd_ip4_state`
 
     Description: Control the 'nsd_ip4_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -228,7 +220,6 @@ vars:
 `nsd_ip6_state`
 
     Description: Control the 'nsd_ip6_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -238,7 +229,6 @@ vars:
 `nsd_monitor_monit_state`
 
     Description: Control the 'nsd_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -248,7 +238,6 @@ vars:
 `nsd_nftables_filter_rule`
 
     Description: Define the 'nsd_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -265,7 +254,6 @@ vars:
 `nsd_nftables_state`
 
     Description: Control the 'nsd_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -275,7 +263,6 @@ vars:
 `nsd_version`
 
     Description: Define the 'nsd_version' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -287,7 +274,6 @@ vars:
 `nsd_zone`
 
     Description: Define the 'nsd_zone' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -333,8 +319,6 @@ vars:
     Name   :
       Debian 11: 'nsd'
       Debian 12: 'nsd'
-
-## Parameters
 
 ## Requirements
 

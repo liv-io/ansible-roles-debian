@@ -52,7 +52,6 @@ consult the following sections.
 `systemd_timesyncd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -65,7 +64,6 @@ consult the following sections.
 `systemd_timesyncd_check_time_day`
 
     Description: Define the 'systemd_timesyncd_check_time_day' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -76,7 +74,6 @@ consult the following sections.
 `systemd_timesyncd_check_time_hour`
 
     Description: Define the 'systemd_timesyncd_check_time_hour' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -87,7 +84,6 @@ consult the following sections.
 `systemd_timesyncd_check_time_minute`
 
     Description: Define the 'systemd_timesyncd_check_time_minute' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -98,7 +94,6 @@ consult the following sections.
 `systemd_timesyncd_check_time_month`
 
     Description: Define the 'systemd_timesyncd_check_time_month' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -109,7 +104,6 @@ consult the following sections.
 `systemd_timesyncd_check_time_weekday`
 
     Description: Define the 'systemd_timesyncd_check_time_weekday' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -120,7 +114,6 @@ consult the following sections.
 `systemd_timesyncd_check_time_state`
 
     Description: Control the 'systemd_timesyncd_check_time_state' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -130,7 +123,6 @@ consult the following sections.
 `systemd_timesyncd_fallback`
 
     Description: Define the 'systemd_timesyncd_fallback' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -142,7 +134,6 @@ consult the following sections.
 `systemd_timesyncd_monitor_mail_from_address`
 
     Description: Define the 'systemd_timesyncd_monitor_mail_from_address' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -153,7 +144,6 @@ consult the following sections.
 `systemd_timesyncd_monitor_mail_to_address`
 
     Description: Define the 'systemd_timesyncd_monitor_mail_to_address' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -165,7 +155,6 @@ consult the following sections.
 `systemd_timesyncd_monitor_mail_state`
 
     Description: Control the 'systemd_timesyncd_monitor_mail_state' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -175,7 +164,6 @@ consult the following sections.
 `systemd_timesyncd_monitor_monit_state`
 
     Description: Control the 'systemd_timesyncd_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -185,7 +173,6 @@ consult the following sections.
 `systemd_timesyncd_monitor_prom_state`
 
     Description: Control the 'systemd_timesyncd_monitor_prom_state' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -195,7 +182,6 @@ consult the following sections.
 `systemd_timesyncd_monitor_prom_textfile_collector`
 
     Description: Define the 'systemd_timesyncd_monitor_prom_textfile_collector' option.
-    Implemented: 1.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -206,7 +192,6 @@ consult the following sections.
 `systemd_timesyncd_nftables_filter_rule`
 
     Description: Define the 'systemd_timesyncd_nftables_filter_rule' option.
-    Implemented: 1.4.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -220,7 +205,6 @@ consult the following sections.
 `systemd_timesyncd_nftables_state`
 
     Description: Control the 'systemd_timesyncd_nftables_state' option.
-    Implemented: 1.4.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -230,7 +214,6 @@ consult the following sections.
 `systemd_timesyncd_offset_limit`
 
     Description: Set the 'systemd_timesyncd_offset_limit' option.
-    Implemented: 2.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -241,7 +224,6 @@ consult the following sections.
 `systemd_timesyncd_poll_interval_max_sec`
 
     Description: Define the 'systemd_timesyncd_poll_interval_max_sec' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -252,7 +234,6 @@ consult the following sections.
 `systemd_timesyncd_poll_interval_min_sec`
 
     Description: Define the 'systemd_timesyncd_poll_interval_min_sec' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -263,7 +244,6 @@ consult the following sections.
 `systemd_timesyncd_server`
 
     Description: Define the 'systemd_timesyncd_server' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -284,8 +264,6 @@ consult the following sections.
     Name   :
       Debian 11: 'systemd-timesyncd'
       Debian 12: 'systemd-timesyncd'
-
-## Parameters
 
 ## Requirements
 

@@ -72,7 +72,6 @@ consult the following sections.
 `modsecurity_crs_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -87,7 +86,6 @@ consult the following sections.
 `modsecurity_crs_sec_default_action`
 
     Description: Define the 'modsecurity_crs_sec_default_action' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -110,8 +108,6 @@ consult the following sections.
     Name   :
       Debian 11: 'modsecurity-crs'
       Debian 12: 'modsecurity-crs'
-
-## Parameters
 
 ## Requirements
 

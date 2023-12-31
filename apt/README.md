@@ -70,7 +70,6 @@ vars:
 `apt_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -82,7 +81,6 @@ vars:
 `apt_check_update_day`
 
     Description: Define the 'apt_check_update_day' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -93,7 +91,6 @@ vars:
 `apt_check_update_hour`
 
     Description: Define the 'apt_check_update_hour' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -104,7 +101,6 @@ vars:
 `apt_check_update_minute`
 
     Description: Define the 'apt_check_update_minute' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -115,7 +111,6 @@ vars:
 `apt_check_update_month`
 
     Description: Define the 'apt_check_update_month' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -126,7 +121,6 @@ vars:
 `apt_check_update_state`
 
     Description: Control the 'apt_check_update_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -136,7 +130,6 @@ vars:
 `apt_check_update_weekday`
 
     Description: Define the 'apt_check_update_weekday' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -147,7 +140,6 @@ vars:
 `apt_config_all`
 
     Description: Define the 'apt_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -159,7 +151,6 @@ vars:
 `apt_config_group`
 
     Description: Define the 'apt_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -171,7 +162,6 @@ vars:
 `apt_config_host`
 
     Description: Define the 'apt_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -183,7 +173,6 @@ vars:
 `apt_http_proxy`
 
     Description: Define the 'apt_http_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -195,7 +184,6 @@ vars:
 `apt_https_proxy`
 
     Description: Define the 'apt_https_proxy' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -207,7 +195,6 @@ vars:
 `apt_monitor_mail_from_address`
 
     Description: Define the 'apt_monitor_mail_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -218,7 +205,6 @@ vars:
 `apt_monitor_mail_to_address`
 
     Description: Define the 'apt_monitor_mail_to_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -230,7 +216,6 @@ vars:
 `apt_monitor_mail_state`
 
     Description: Control the 'apt_monitor_mail_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -240,7 +225,6 @@ vars:
 `apt_nftables_filter_rule`
 
     Description: Define the 'apt_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -254,7 +238,6 @@ vars:
 `apt_nftables_state`
 
     Description: Control the 'apt_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -264,7 +247,6 @@ vars:
 `apt_monitor_prom_state`
 
     Description: Control the 'apt_monitor_prom_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -274,7 +256,6 @@ vars:
 `apt_monitor_prom_textfile_collector`
 
     Description: Define the 'apt_monitor_prom_textfile_collector' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -308,8 +289,6 @@ vars:
     Name   :
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
-
-## Parameters
 
 ## Requirements
 

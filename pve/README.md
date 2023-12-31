@@ -84,7 +84,6 @@ vars:
 `pve_user_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -96,7 +95,6 @@ vars:
 `pve_acl_config_all`
 
     Description: Define the 'pve_acl_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -109,7 +107,6 @@ vars:
 `pve_acl_config_group`
 
     Description: Define the 'pve_acl_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -122,7 +119,6 @@ vars:
 `pve_acl_config_host`
 
     Description: Define the 'pve_acl_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -135,7 +131,6 @@ vars:
 `pve_group_config_all`
 
     Description: Define the 'pve_group_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -148,7 +143,6 @@ vars:
 `pve_group_config_group`
 
     Description: Define the 'pve_group_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -161,7 +155,6 @@ vars:
 `pve_group_config_host`
 
     Description: Define the 'pve_group_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -174,7 +167,6 @@ vars:
 `pve_user_config_all`
 
     Description: Define the 'pve_user_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -187,7 +179,6 @@ vars:
 `pve_user_config_group`
 
     Description: Define the 'pve_user_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -200,7 +191,6 @@ vars:
 `pve_user_config_host`
 
     Description: Define the 'pve_user_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -213,8 +203,6 @@ vars:
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

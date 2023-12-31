@@ -125,7 +125,6 @@ vars:
 `state`
 
     Description: Control the 'state' of the systemd file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -135,7 +134,6 @@ vars:
 `mode`
 
     Description: Define the 'mode' of the systemd file.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -146,7 +144,6 @@ vars:
 `name`
 
     Description: Define the 'name' of the systemd file.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -157,7 +154,6 @@ vars:
 `comment`
 
     Description: Define a 'comment' for the systemd file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -169,7 +165,6 @@ vars:
 `options`
 
     Description: Define the systemd 'options'.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -190,7 +185,6 @@ vars:
 `type`
 
     Description: Define the 'type' of the systemd file.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -205,7 +199,6 @@ vars:
 `systemd_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -217,7 +210,6 @@ vars:
 `systemd_config_all`
 
     Description: Define the 'systemd_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -231,7 +223,6 @@ vars:
 `systemd_config_group`
 
     Description: Define the 'systemd_config_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -244,7 +235,6 @@ vars:
 `systemd_config_host`
 
     Description: Define the 'systemd_config_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -266,8 +256,6 @@ vars:
     Name   :
       Debian 11: 'systemd'
       Debian 12: 'systemd'
-
-## Parameters
 
 ## Requirements
 

@@ -51,7 +51,6 @@ consult the following sections.
 
     Description: Control the state of the role.
                  'root' is a core role and should therefore not be removed.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -64,7 +63,6 @@ consult the following sections.
 `root_comment`
 
     Description: Define the 'root_comment' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -75,7 +73,6 @@ consult the following sections.
 `root_groups`
 
     Description: Define the 'root_groups' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -88,7 +85,6 @@ consult the following sections.
 `root_groups_append`
 
     Description: Control the 'root_groups_append' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -99,7 +95,6 @@ consult the following sections.
 
     Description: Define the 'root_password' option.
                  Warning: Define 'root_password' option before applying role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary cryptographic hash
     Type       : String
@@ -112,7 +107,6 @@ consult the following sections.
 `root_root_dir_group`
 
     Description: Define the 'root_root_dir_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -123,7 +117,6 @@ consult the following sections.
 `root_root_dir_mode`
 
     Description: Define the 'root_root_dir_mode' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -134,7 +127,6 @@ consult the following sections.
 `root_root_dir_owner`
 
     Description: Define the 'root_root_dir_owner' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -145,7 +137,6 @@ consult the following sections.
 `root_shell`
 
     Description: Define the 'root_shell' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -156,8 +147,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

@@ -112,7 +112,6 @@ consult the following sections.
 `name`
 
     Description: Define the network interface name.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -124,7 +123,6 @@ consult the following sections.
 `comment`
 
     Description: Define a comment for the network interface.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -136,7 +134,6 @@ consult the following sections.
 `type`
 
     Description: Define the network interface type.
-    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -148,7 +145,6 @@ consult the following sections.
 `mtu`
 
     Description: Define the network interface mtu.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -160,7 +156,6 @@ consult the following sections.
 `ovs_type`
 
     Description: Define the Open vSwitch type.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -172,7 +167,6 @@ consult the following sections.
 `ovs_bridge`
 
     Description: Define the Open vSwitch bridge.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -184,7 +178,6 @@ consult the following sections.
 `ovs_bonds`
 
     Description: Define the Open vSwitch bonds.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -196,7 +189,6 @@ consult the following sections.
 `ovs_options`
 
     Description: Define the Open vSwitch options.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -208,7 +200,6 @@ consult the following sections.
 `ovs_ports`
 
     Description: Define the Open vSwitch ports.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -220,7 +211,6 @@ consult the following sections.
 `address`
 
     Description: Define the network interface address.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -232,7 +222,6 @@ consult the following sections.
 `netmask`
 
     Description: Define the network interface netmask.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -244,7 +233,6 @@ consult the following sections.
 `gateway`
 
     Description: Define the network interface gateway.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -258,7 +246,6 @@ consult the following sections.
 `network_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -270,7 +257,6 @@ consult the following sections.
 `network_config`
 
     Description: Define the 'network_config_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -282,8 +268,6 @@ consult the following sections.
 ## Conflicts
 
 ## Dependencies
-
-## Parameters
 
 ## Requirements
 

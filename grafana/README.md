@@ -67,7 +67,6 @@ consult the following sections.
 `grafana_state`
 
     Description: Control the state of the role.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -82,7 +81,6 @@ consult the following sections.
 `grafana_monitor_monit_state`
 
     Description: Control the 'grafana_monitor_monit_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -92,7 +90,6 @@ consult the following sections.
 `grafana_nftables_filter_rule`
 
     Description: Define the 'grafana_nftables_filter_rule' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -113,7 +110,6 @@ consult the following sections.
 `grafana_nftables_state`
 
     Description: Control the 'grafana_nftables_state' option.
-    Implemented: 1.2.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -123,7 +119,6 @@ consult the following sections.
 `grafana_plugins_all`
 
     Description: Define the 'grafana_plugins_all' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -139,7 +134,6 @@ consult the following sections.
 `grafana_plugins_group`
 
     Description: Define the 'grafana_plugins_group' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -153,7 +147,6 @@ consult the following sections.
 `grafana_plugins_host`
 
     Description: Define the 'grafana_plugins_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -167,7 +160,6 @@ consult the following sections.
 `grafana_smtp_from_address`
 
     Description: Define the 'grafana_smtp_from_address' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -178,7 +170,6 @@ consult the following sections.
 `grafana_smtp_from_name`
 
     Description: Define the 'grafana_smtp_from_name' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -189,7 +180,6 @@ consult the following sections.
 `grafana_smtp_host`
 
     Description: Define the 'grafana_smtp_host' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -201,7 +191,6 @@ consult the following sections.
 `grafana_smtp_password`
 
     Description: Define the 'grafana_smtp_password' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -213,7 +202,6 @@ consult the following sections.
 `grafana_smtp_port`
 
     Description: Set the 'grafana_smtp_port' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String/Integer
@@ -225,7 +213,6 @@ consult the following sections.
 `grafana_smtp_state`
 
     Description: Control the 'grafana_smtp_state' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -235,7 +222,6 @@ consult the following sections.
 `grafana_smtp_user`
 
     Description: Define the 'grafana_smtp_user' option.
-    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -263,8 +249,6 @@ consult the following sections.
     Name   :
       Debian 11: 'gnupg1'
       Debian 12: 'gnupg1'
-
-## Parameters
 
 ## Requirements
 
