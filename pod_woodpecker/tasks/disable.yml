@@ -1,0 +1,56 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker.yaml
+  template:
+    src: "{{file_src_pod_woodpecker_yaml}}"
+    dest: "{{file_dst_pod_woodpecker_yaml}}"
+    mode: "{{file_mode_pod_woodpecker_yaml}}"
+    owner: "{{file_owner_pod_woodpecker_yaml}}"
+    group: "{{file_group_pod_woodpecker_yaml}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker.default
+  template:
+    src: "{{file_src_pod_woodpecker_default}}"
+    dest: "{{file_dst_pod_woodpecker_default}}"
+    mode: "{{file_mode_pod_woodpecker_default}}"
+    owner: "{{file_owner_pod_woodpecker_default}}"
+    group: "{{file_group_pod_woodpecker_default}}"
+  tags:
+    - pod_woodpecker
+
+- name: remove file pod_woodpecker-woodpecker-agent.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_woodpecker_woodpecker_agent_cfg}}"
+  notify: reload service monit
+  tags:
+    - pod_woodpecker
+
+- name: remove file pod_woodpecker-woodpecker-server.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_woodpecker_woodpecker_server_cfg}}"
+  notify: reload service monit
+  tags:
+    - pod_woodpecker
+
+- name: stop service pod_woodpecker
+  service:
+    state: stopped
+    enabled: False
+    name: "{{service_name_pod_woodpecker}}"
+    daemon_reload: True
+  tags:
+    - pod_woodpecker

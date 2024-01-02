@@ -1,0 +1,185 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_woodpecker
+
+- name: install package iptables
+  package:
+    state: present
+    name: "{{package_name_iptables}}"
+    install_recommends: False
+  tags:
+    - pod_woodpecker
+
+- name: copy file subuid
+  copy:
+    src: "{{file_src_subuid}}"
+    dest: "{{file_dst_subuid}}"
+    mode: "{{file_mode_subuid}}"
+    owner: "{{file_owner_subuid}}"
+    group: "{{file_group_subuid}}"
+  tags:
+    - pod_woodpecker
+
+- name: copy file subgid
+  copy:
+    src: "{{file_src_subgid}}"
+    dest: "{{file_dst_subgid}}"
+    mode: "{{file_mode_subgid}}"
+    owner: "{{file_owner_subgid}}"
+    group: "{{file_group_subgid}}"
+  tags:
+    - pod_woodpecker
+
+- name: create group pod_woodpecker
+  group:
+    state: present
+    name: "{{group_name_pod_woodpecker}}"
+    gid: "{{group_gid_pod_woodpecker}}"
+    system: "{{group_system_pod_woodpecker}}"
+  tags:
+    - pod_woodpecker
+
+- name: create user pod_woodpecker
+  user:
+    state: present
+    name: "{{user_name_pod_woodpecker}}"
+    comment: "{{user_comment_pod_woodpecker}}"
+    uid: "{{user_uid_pod_woodpecker}}"
+    group: "{{user_group_pod_woodpecker}}"
+    groups: "{{user_groups_pod_woodpecker}}"
+    append: "{{user_append_pod_woodpecker}}"
+    createhome: "{{user_home_create_pod_woodpecker}}"
+    move_home: "{{user_home_move_pod_woodpecker}}"
+    remove: "{{user_home_remove_pod_woodpecker}}"
+    force: "{{user_home_force_pod_woodpecker}}"
+    password: "{{user_password_pod_woodpecker}}"
+    update_password: "{{user_password_update_pod_woodpecker}}"
+    shell: "{{user_shell_pod_woodpecker}}"
+    system: "{{user_system_pod_woodpecker}}"
+  register: register_create_user_pod_woodpecker
+  tags:
+    - pod_woodpecker
+
+- name: loginctl enable-linger
+  shell: "{{command_cmd_loginctl_enable_linger}}"
+  check_mode: False
+  when: register_create_user_pod_woodpecker.changed
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_woodpecker_etc_dir}}"
+    mode: "{{file_mode_pod_woodpecker_etc_dir}}"
+    owner: "{{file_owner_pod_woodpecker_etc_dir}}"
+    group: "{{file_group_pod_woodpecker_etc_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_opt_dir}}"
+    mode: "{{file_mode_opt_dir}}"
+    owner: "{{file_owner_opt_dir}}"
+    group: "{{file_group_opt_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker_opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_woodpecker_opt_dir}}"
+    mode: "{{file_mode_pod_woodpecker_opt_dir}}"
+    owner: "{{file_owner_pod_woodpecker_opt_dir}}"
+    group: "{{file_group_pod_woodpecker_opt_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file woodpecker-agent.dir
+  file:
+    state: directory
+    path: "{{file_dst_woodpecker_agent_dir}}"
+    mode: "{{file_mode_woodpecker_agent_dir}}"
+    owner: "{{file_owner_woodpecker_agent_dir}}"
+    group: "{{file_group_woodpecker_agent_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file woodpecker-agent-tmp.dir
+  file:
+    state: directory
+    path: "{{file_dst_woodpecker_agent_tmp_dir}}"
+    mode: "{{file_mode_woodpecker_agent_tmp_dir}}"
+    owner: "{{file_owner_woodpecker_agent_tmp_dir}}"
+    group: "{{file_group_woodpecker_agent_tmp_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file woodpecker-server.dir
+  file:
+    state: directory
+    path: "{{file_dst_woodpecker_server_dir}}"
+    mode: "{{file_mode_woodpecker_server_dir}}"
+    owner: "{{file_owner_woodpecker_server_dir}}"
+    group: "{{file_group_woodpecker_server_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file woodpecker-server_db.dir
+  file:
+    state: directory
+    path: "{{file_dst_woodpecker_server_db_dir}}"
+    mode: "{{file_mode_woodpecker_server_db_dir}}"
+    owner: "{{file_owner_woodpecker_server_db_dir}}"
+    group: "{{file_group_woodpecker_server_db_dir}}"
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker.service
+  template:
+    src: "{{file_src_pod_woodpecker_service}}"
+    dest: "{{file_dst_pod_woodpecker_service}}"
+    mode: "{{file_mode_pod_woodpecker_service}}"
+    owner: "{{file_owner_pod_woodpecker_service}}"
+    group: "{{file_group_pod_woodpecker_service}}"
+  tags:
+    - pod_woodpecker
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (pod_woodpecker_monitor_monit_state == True)
+  tags:
+    - pod_woodpecker
+
+- name: create file monit.d
+  file:
+    state: directory
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (pod_woodpecker_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  tags:
+    - pod_woodpecker
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: False
+  when: (pod_woodpecker_monitor_monit_state == True)
+  tags:
+    - pod_woodpecker

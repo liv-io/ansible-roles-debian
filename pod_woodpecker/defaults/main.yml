@@ -1,0 +1,54 @@
+---
+
+pod_woodpecker_state: 'enable'
+
+pod_woodpecker_monitor_monit_state: False
+
+pod_woodpecker_log_driver: 'journald'
+
+pod_woodpecker_proxy: ''
+
+pod_woodpecker_registry_address: ''
+pod_woodpecker_registry_password: ''
+pod_woodpecker_registry_username: ''
+
+pod_woodpecker_woodpecker_agent_read_only_root_filesystem: True
+pod_woodpecker_woodpecker_agent_version: '2.1.1-1'
+pod_woodpecker_woodpecker_agent_woodpecker_agent_secret: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_cert_path: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_enable_ipv6: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_host: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_network: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_tls_verify: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_volumes: ''
+pod_woodpecker_woodpecker_agent_woodpecker_backend_local_temp_dir: ''
+pod_woodpecker_woodpecker_agent_woodpecker_grpc_secure: ''
+pod_woodpecker_woodpecker_agent_woodpecker_grpc_verify: ''
+pod_woodpecker_woodpecker_agent_woodpecker_healthcheck: ''
+pod_woodpecker_woodpecker_agent_woodpecker_healthcheck_addr: ''
+pod_woodpecker_woodpecker_agent_woodpecker_hostname: ''
+pod_woodpecker_woodpecker_agent_woodpecker_log_level: ''
+pod_woodpecker_woodpecker_agent_woodpecker_server: ''
+
+pod_woodpecker_woodpecker_server_read_only_root_filesystem: True
+pod_woodpecker_woodpecker_server_version: '2.1.1-1'
+pod_woodpecker_woodpecker_server_woodpecker_admin: []
+pod_woodpecker_woodpecker_server_woodpecker_agent_secret: ''
+pod_woodpecker_woodpecker_server_woodpecker_backend_http_proxy: ''
+pod_woodpecker_woodpecker_server_woodpecker_backend_https_proxy: ''
+pod_woodpecker_woodpecker_server_woodpecker_backend_no_proxy: ''
+pod_woodpecker_woodpecker_server_woodpecker_github: ''
+pod_woodpecker_woodpecker_server_woodpecker_github_client: ''
+pod_woodpecker_woodpecker_server_woodpecker_github_secret: ''
+pod_woodpecker_woodpecker_server_woodpecker_github_url: ''
+pod_woodpecker_woodpecker_server_woodpecker_grpc_addr: ''
+pod_woodpecker_woodpecker_server_woodpecker_grpc_secret: ''
+pod_woodpecker_woodpecker_server_woodpecker_host: ''
+pod_woodpecker_woodpecker_server_woodpecker_log_level: ''
+pod_woodpecker_woodpecker_server_woodpecker_metrics_server_addr: ''
+pod_woodpecker_woodpecker_server_woodpecker_open: ''
+pod_woodpecker_woodpecker_server_woodpecker_orgs: ''
+pod_woodpecker_woodpecker_server_woodpecker_repo_owners: ''
+pod_woodpecker_woodpecker_server_woodpecker_server_addr: ''

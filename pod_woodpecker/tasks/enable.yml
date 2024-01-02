@@ -1,0 +1,84 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker.yaml
+  template:
+    src: "{{file_src_pod_woodpecker_yaml}}"
+    dest: "{{file_dst_pod_woodpecker_yaml}}"
+    mode: "{{file_mode_pod_woodpecker_yaml}}"
+    owner: "{{file_owner_pod_woodpecker_yaml}}"
+    group: "{{file_group_pod_woodpecker_yaml}}"
+  notify: restart service pod_woodpecker
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker.default
+  template:
+    src: "{{file_src_pod_woodpecker_default}}"
+    dest: "{{file_dst_pod_woodpecker_default}}"
+    mode: "{{file_mode_pod_woodpecker_default}}"
+    owner: "{{file_owner_pod_woodpecker_default}}"
+    group: "{{file_group_pod_woodpecker_default}}"
+  notify: restart service pod_woodpecker
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker-woodpecker-agent.cfg
+  template:
+    src: "{{file_src_pod_woodpecker_woodpecker_agent_cfg}}"
+    dest: "{{file_dst_pod_woodpecker_woodpecker_agent_cfg}}"
+    mode: "{{file_mode_pod_woodpecker_woodpecker_agent_cfg}}"
+    owner: "{{file_owner_pod_woodpecker_woodpecker_agent_cfg}}"
+    group: "{{file_group_pod_woodpecker_woodpecker_agent_cfg}}"
+  notify: reload service monit
+  when: (pod_woodpecker_monitor_monit_state == True)
+  tags:
+    - pod_woodpecker
+
+- name: remove file pod_woodpecker-woodpecker-agent.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_woodpecker_woodpecker_agent_cfg}}"
+  notify: reload service monit
+  when: (pod_woodpecker_monitor_monit_state == False)
+  tags:
+    - pod_woodpecker
+
+- name: create file pod_woodpecker-woodpecker-server.cfg
+  template:
+    src: "{{file_src_pod_woodpecker_woodpecker_server_cfg}}"
+    dest: "{{file_dst_pod_woodpecker_woodpecker_server_cfg}}"
+    mode: "{{file_mode_pod_woodpecker_woodpecker_server_cfg}}"
+    owner: "{{file_owner_pod_woodpecker_woodpecker_server_cfg}}"
+    group: "{{file_group_pod_woodpecker_woodpecker_server_cfg}}"
+  notify: reload service monit
+  when: (pod_woodpecker_monitor_monit_state == True)
+  tags:
+    - pod_woodpecker
+
+- name: remove file pod_woodpecker-woodpecker-server.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_woodpecker_woodpecker_server_cfg}}"
+  notify: reload service monit
+  when: (pod_woodpecker_monitor_monit_state == False)
+  tags:
+    - pod_woodpecker
+
+- name: start service pod_woodpecker
+  service:
+    state: started
+    enabled: True
+    name: "{{service_name_pod_woodpecker}}"
+    daemon_reload: True
+  tags:
+    - pod_woodpecker
