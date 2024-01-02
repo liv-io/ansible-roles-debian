@@ -84,6 +84,17 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`pod_registry_log_driver`
+
+    Description: Define the 'pod_registry_proxy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'journald'
+    Options    :
+      Examples: 'journald'
+      None    : ''
+
 `pod_registry_monitor_monit_state`
 
     Description: Control the 'pod_registry_monitor_monit_state' option.
@@ -136,6 +147,15 @@ consult the following sections.
       Examples: 'http://proxy.domain.tld:3128'
       None    : ''
 
+`pod_registry_read_only_root_filesystem`
+
+    Description: Define the readOnlyRootFilesystem option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : True
+    Options    : True | False
+
 `pod_registry_username`
 
     Description: Define the 'pod_registry_username' option.
@@ -144,7 +164,7 @@ consult the following sections.
     Type       : String
     Default    : ''
     Options    :
-      Examples: 'podman' | 'docker'
+      Examples: 'user' | 'registry'
 
 `pod_registry_version`
 

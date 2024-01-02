@@ -5,46 +5,54 @@ package_name_apache2_utils: 'apache2-utils'
 
 # htpasswd
 file_src_htpasswd: 'htpasswd'
-file_dst_htpasswd: '/etc/podman/pod_registry/auth/htpasswd'
+file_dst_htpasswd: '/opt/pod_registry/auth/htpasswd'
 file_mode_htpasswd: '0640'
 file_owner_htpasswd: 'root'
 file_group_htpasswd: 'pod_registry'
 
-# podman_etc.dir
-file_dst_podman_etc_dir: '/etc/podman'
-file_mode_podman_etc_dir: '0755'
-file_owner_podman_etc_dir: 'root'
-file_group_podman_etc_dir: 'root'
+# subgid
+file_src_subgid: 'subgid'
+file_dst_subgid: '/etc/subgid'
+file_mode_subgid: '0644'
+file_owner_subgid: 'root'
+file_group_subgid: 'root'
+
+# subuid
+file_src_subuid: 'subuid'
+file_dst_subuid: '/etc/subuid'
+file_mode_subuid: '0644'
+file_owner_subuid: 'root'
+file_group_subuid: 'root'
 
 # pod_registry_etc.dir
-file_dst_pod_registry_etc_dir: '/etc/podman/pod_registry'
+file_dst_pod_registry_etc_dir: '/etc/pod_registry'
 file_mode_pod_registry_etc_dir: '0750'
 file_owner_pod_registry_etc_dir: 'root'
 file_group_pod_registry_etc_dir: 'pod_registry'
 
-# pod_registry_auth.dir
-file_dst_pod_registry_auth_dir: '/etc/podman/pod_registry/auth'
-file_mode_pod_registry_auth_dir: '0750'
-file_owner_pod_registry_auth_dir: 'root'
-file_group_pod_registry_auth_dir: 'pod_registry'
+# opt.dir
+file_dst_opt_dir: '/opt'
+file_mode_opt_dir: '0755'
+file_owner_opt_dir: 'root'
+file_group_opt_dir: 'root'
 
-# data.dir
-file_dst_data_dir: '/data'
-file_mode_data_dir: '0755'
-file_owner_data_dir: 'root'
-file_group_data_dir: 'root'
+# pod_registry_opt.dir
+file_dst_pod_registry_opt_dir: '/opt/pod_registry'
+file_mode_pod_registry_opt_dir: '0755'
+file_owner_pod_registry_opt_dir: 'pod_registry'
+file_group_pod_registry_opt_dir: 'pod_registry'
 
-# podman_data.dir
-file_dst_podman_data_dir: '/data/podman'
-file_mode_podman_data_dir: '0755'
-file_owner_podman_data_dir: 'root'
-file_group_podman_data_dir: 'root'
+# registry_auth.dir
+file_dst_registry_auth_dir: '/opt/pod_registry/auth'
+file_mode_registry_auth_dir: '0750'
+file_owner_registry_auth_dir: '29999'
+file_group_registry_auth_dir: '29999'
 
-# pod_registry_data.dir
-file_dst_pod_registry_data_dir: '/data/podman/pod_registry'
-file_mode_pod_registry_data_dir: '0750'
-file_owner_pod_registry_data_dir: 'pod_registry'
-file_group_pod_registry_data_dir: 'pod_registry'
+# registry_data.dir
+file_dst_registry_data_dir: '/opt/pod_registry/data'
+file_mode_registry_data_dir: '0750'
+file_owner_registry_data_dir: '29999'
+file_group_registry_data_dir: '29999'
 
 # pod_registry.default
 file_src_pod_registry_default: 'pod_registry.default'
@@ -62,7 +70,7 @@ file_group_pod_registry_service: 'root'
 
 # pod_registry.yaml
 file_src_pod_registry_yaml: 'pod_registry.yaml'
-file_dst_pod_registry_yaml: '/etc/podman/pod_registry/pod_registry.yaml'
+file_dst_pod_registry_yaml: '/etc/pod_registry/pod_registry.yaml'
 file_mode_pod_registry_yaml: '0640'
 file_owner_pod_registry_yaml: 'root'
 file_group_pod_registry_yaml: 'pod_registry'
@@ -103,23 +111,23 @@ command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 
 command_cmd_check_service_pod_registry: 'systemctl cat pod_registry.service > /dev/null 2>&1'
 
 # create htpasswd
-command_cmd_create_htpasswd: "htpasswd -cbB /etc/podman/pod_registry/auth/htpasswd {{pod_registry_username}} {{pod_registry_password}}"
+command_cmd_create_htpasswd: "htpasswd -cbB /opt/pod_registry/auth/htpasswd {{pod_registry_username}} {{pod_registry_password}}"
 
 # loginctl enable_linger
 command_cmd_loginctl_enable_linger: "loginctl enable-linger pod_registry"
 
-# usermod add_sub
-command_cmd_usermod_add_sub: "usermod --add-subuids 100000-165535 --add-subgids 100000-165535 pod_registry"
-
 # pod_registry
 group_name_pod_registry: 'pod_registry'
-group_system_pod_registry: True
+group_gid_pod_registry: '10000'
+group_system_pod_registry: False
 
 # pod_registry
 user_name_pod_registry: 'pod_registry'
 user_comment_pod_registry: 'Pod Registry'
+user_uid_pod_registry: '10000'
 user_group_pod_registry: 'pod_registry'
-user_append_pod_registry: False
+user_groups_pod_registry: ['systemd-journal']
+user_append_pod_registry: True
 user_home_create_pod_registry: True
 user_home_move_pod_registry: False
 user_home_remove_pod_registry: True
@@ -127,7 +135,7 @@ user_home_force_pod_registry: False
 user_password_pod_registry: '!'
 user_password_update_pod_registry: 'always'
 user_shell_pod_registry: '/bin/bash'
-user_system_pod_registry: True
+user_system_pod_registry: False
 
 # monit
 service_name_monit: 'monit'

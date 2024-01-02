@@ -10,6 +10,21 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2024-01-02)
+
+### Changes
+
+- Move configuration files and persistent data
+
+### Enhancements
+
+- Several small Pod improvements
+
+### Features
+
+- Add parameter `pod_registry_log_driver`
+- Add parameter `pod_registry_read_only_root_filesystem`
+
 ## 2.1.0 (2023-10-19)
 
 ### Enhancements

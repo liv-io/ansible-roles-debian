@@ -18,10 +18,31 @@
   tags:
     - pod_registry
 
+- name: copy file subuid
+  copy:
+    src: "{{file_src_subuid}}"
+    dest: "{{file_dst_subuid}}"
+    mode: "{{file_mode_subuid}}"
+    owner: "{{file_owner_subuid}}"
+    group: "{{file_group_subuid}}"
+  tags:
+    - pod_registry
+
+- name: copy file subgid
+  copy:
+    src: "{{file_src_subgid}}"
+    dest: "{{file_dst_subgid}}"
+    mode: "{{file_mode_subgid}}"
+    owner: "{{file_owner_subgid}}"
+    group: "{{file_group_subgid}}"
+  tags:
+    - pod_registry
+
 - name: create group pod_registry
   group:
     state: present
     name: "{{group_name_pod_registry}}"
+    gid: "{{group_gid_pod_registry}}"
     system: "{{group_system_pod_registry}}"
   tags:
     - pod_registry
@@ -31,7 +52,9 @@
     state: present
     name: "{{user_name_pod_registry}}"
     comment: "{{user_comment_pod_registry}}"
+    uid: "{{user_uid_pod_registry}}"
     group: "{{user_group_pod_registry}}"
+    groups: "{{user_groups_pod_registry}}"
     append: "{{user_append_pod_registry}}"
     createhome: "{{user_home_create_pod_registry}}"
     move_home: "{{user_home_move_pod_registry}}"
@@ -52,22 +75,6 @@
   tags:
     - pod_registry
 
-- name: usermod add-sub
-  shell: "{{command_cmd_usermod_add_sub}}"
-  check_mode: False
-  when: register_create_user_pod_registry.changed
-  tags:
-    - pod_registry
-
-- name: create file podman_etc.dir
-  file:
-    state: directory
-    path: "{{file_dst_podman_etc_dir}}"
-    mode: "{{file_mode_podman_etc_dir}}"
-    owner: "{{file_owner_podman_etc_dir}}"
-    group: "{{file_group_podman_etc_dir}}"
-  tags:
-    - pod_registry
 
 - name: create file pod_registry_etc.dir
   file:
@@ -79,43 +86,44 @@
   tags:
     - pod_registry
 
-- name: create file data.dir
+- name: create file opt.dir
   file:
     state: directory
-    path: "{{file_dst_data_dir}}"
-    mode: "{{file_mode_data_dir}}"
-    owner: "{{file_owner_data_dir}}"
-    group: "{{file_group_data_dir}}"
+    path: "{{file_dst_opt_dir}}"
+    mode: "{{file_mode_opt_dir}}"
+    owner: "{{file_owner_opt_dir}}"
+    group: "{{file_group_opt_dir}}"
   tags:
     - pod_registry
 
-- name: create file podman_data.dir
+- name: create file pod_registry_opt.dir
   file:
     state: directory
-    path: "{{file_dst_podman_data_dir}}"
-    mode: "{{file_mode_podman_data_dir}}"
-    owner: "{{file_owner_podman_data_dir}}"
-    group: "{{file_group_podman_data_dir}}"
+    path: "{{file_dst_pod_registry_opt_dir}}"
+    mode: "{{file_mode_pod_registry_opt_dir}}"
+    owner: "{{file_owner_pod_registry_opt_dir}}"
+    group: "{{file_group_pod_registry_opt_dir}}"
   tags:
     - pod_registry
 
-- name: create file pod_registry_auth.dir
+
+- name: create file registry-auth.dir
   file:
     state: directory
-    path: "{{file_dst_pod_registry_auth_dir}}"
-    mode: "{{file_mode_pod_registry_auth_dir}}"
-    owner: "{{file_owner_pod_registry_auth_dir}}"
-    group: "{{file_group_pod_registry_auth_dir}}"
+    path: "{{file_dst_registry_auth_dir}}"
+    mode: "{{file_mode_registry_auth_dir}}"
+    owner: "{{file_owner_registry_auth_dir}}"
+    group: "{{file_group_registry_auth_dir}}"
   tags:
     - pod_registry
 
-- name: create file pod_registry_data.dir
+- name: create file registry-data.dir
   file:
     state: directory
-    path: "{{file_dst_pod_registry_data_dir}}"
-    mode: "{{file_mode_pod_registry_data_dir}}"
-    owner: "{{file_owner_pod_registry_data_dir}}"
-    group: "{{file_group_pod_registry_data_dir}}"
+    path: "{{file_dst_registry_data_dir}}"
+    mode: "{{file_mode_registry_data_dir}}"
+    owner: "{{file_owner_registry_data_dir}}"
+    group: "{{file_group_registry_data_dir}}"
   tags:
     - pod_registry
 
