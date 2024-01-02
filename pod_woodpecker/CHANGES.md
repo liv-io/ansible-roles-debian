@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.2 (2024-01-02)
+
+### Changes
+
+- Change parameter `pod_woodpecker_woodpecker_server_woodpecker_admin` from array to string
+- Update `pod_woodpecker_woodpecker_server_version` from 2.1.1-1 to 2.1.1-2
+
+### Features
+
+- Add parameter `pod_woodpecker_woodpecker_server_woodpecker_environment` (--environment | WOODPECKER_ENVIRONMENT)
+
 ## 0.1.1 (2024-01-02)
 
 ### Enhancements

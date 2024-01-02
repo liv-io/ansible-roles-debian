@@ -19,7 +19,7 @@ ExecStartPre=+/usr/bin/chmod o+rw /run/podman
 ExecStartPre=+/usr/bin/chmod o+rw /run/podman/podman.sock
 ExecStart=/usr/bin/podman play kube \
 {% if not (pod_woodpecker_registry_username == "") %}
-    --creds {{ pod_woodpecker_registry_username }}:'{{ pod_woodpecker_registry_password }}' \
+    --creds {{pod_woodpecker_registry_username}}:'{{pod_woodpecker_registry_password}}' \
 {% endif %}
 {% if (pod_woodpecker_log_driver == "journald") %}
     --log-driver journald \

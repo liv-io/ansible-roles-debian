@@ -33,8 +33,8 @@ pod_woodpecker_woodpecker_agent_woodpecker_log_level: ''
 pod_woodpecker_woodpecker_agent_woodpecker_server: ''
 
 pod_woodpecker_woodpecker_server_read_only_root_filesystem: True
-pod_woodpecker_woodpecker_server_version: '2.1.1-1'
-pod_woodpecker_woodpecker_server_woodpecker_admin: []
+pod_woodpecker_woodpecker_server_version: '2.1.1-2'
+pod_woodpecker_woodpecker_server_woodpecker_admin: ''
 pod_woodpecker_woodpecker_server_woodpecker_agent_secret: ''
 pod_woodpecker_woodpecker_server_woodpecker_backend_http_proxy: ''
 pod_woodpecker_woodpecker_server_woodpecker_backend_https_proxy: ''

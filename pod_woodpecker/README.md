@@ -428,6 +428,17 @@ consult the following sections.
       Examples: 'localhost 127.0.0.1 ::1' | 'example.org example.com'
       None    : ''
 
+`pod_woodpecker_woodpecker_server_woodpecker_environment`
+
+    Description: --environment | WOODPECKER_ENVIRONMENT
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ""
+    Options    :
+      Examples: "first_var:value1,second_var:value2"
+      None    : ""
+
 `pod_woodpecker_woodpecker_server_woodpecker_github`
 
     Description: --github | WOODPECKER_GITHUB

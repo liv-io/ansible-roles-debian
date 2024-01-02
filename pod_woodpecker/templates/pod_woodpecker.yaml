@@ -44,9 +44,9 @@ spec:
       mountPath: /var/local/woodpecker-server/db
     workingDir: /
     env:
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_admin == []) %}
+{% if not (pod_woodpecker_woodpecker_server_woodpecker_admin == "") %}
     - name: WOODPECKER_ADMIN
-      value: "{% for item in pod_woodpecker_woodpecker_server_woodpecker_admin %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}"
+      value: "{{pod_woodpecker_woodpecker_server_woodpecker_admin}}"
 {% endif %}
 {% if not (pod_woodpecker_woodpecker_server_woodpecker_agent_secret == "") %}
     - name: WOODPECKER_AGENT_SECRET
