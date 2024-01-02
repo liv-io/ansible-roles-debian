@@ -112,7 +112,7 @@ command_cmd_loginctl_enable_linger: 'loginctl enable-linger pod_woodpecker'
 # pod_woodpecker
 group_name_pod_woodpecker: 'pod_woodpecker'
 group_gid_pod_woodpecker: '10000'
-group_system_pod_woodpecker: True
+group_system_pod_woodpecker: False
 
 # pod_woodpecker
 user_name_pod_woodpecker: 'pod_woodpecker'
@@ -128,7 +128,7 @@ user_home_force_pod_woodpecker: False
 user_password_pod_woodpecker: '!'
 user_password_update_pod_woodpecker: 'always'
 user_shell_pod_woodpecker: '/bin/bash'
-user_system_pod_woodpecker: True
+user_system_pod_woodpecker: False
 
 # monit
 service_name_monit: 'monit'

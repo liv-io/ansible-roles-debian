@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2024-01-02)
+
+### Enhancements
+
+- Set `no_log` to True
+- User and group is not a `system account`
+
 ## 0.1.0 (2024-01-02)
 
 ### Features

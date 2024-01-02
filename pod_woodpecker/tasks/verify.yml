@@ -13,7 +13,7 @@
 - name: verify required parameters
   fail:
     msg: "Please define all required parameters. See README.md for help."
-  no_log: False
+  no_log: True
   when: (item == '')
   loop:
     - "{{pod_woodpecker_registry_address}}"

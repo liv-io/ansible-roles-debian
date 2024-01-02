@@ -175,7 +175,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    : true | false
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_agent_version`
 
@@ -233,8 +233,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : false
-    Options    : true | false
+    Default    : False
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_host`
 
@@ -263,8 +263,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : true
-    Options    : true | false
+    Default    : True
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_volumes`
 
@@ -293,8 +293,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : false
-    Options    : true | false
+    Default    : False
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_agent_woodpecker_grpc_verify`
 
@@ -302,8 +302,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : true
-    Options    : true | false
+    Default    : True
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_agent_woodpecker_healthcheck`
 
@@ -311,8 +311,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : true
-    Options    : true | false
+    Default    : True
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_agent_woodpecker_healthcheck_addr`
 
@@ -361,7 +361,7 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
-    Options    : true | false
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_server_version`
 
@@ -434,8 +434,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : true
-    Options    : true | false
+    Default    : True
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_server_woodpecker_github_client`
 
@@ -524,8 +524,8 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : true
-    Options    : true | false
+    Default    : True
+    Options    : True | False
 
 `pod_woodpecker_woodpecker_server_woodpecker_orgs`
 
