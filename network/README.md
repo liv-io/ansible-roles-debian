@@ -33,7 +33,6 @@ consult the following sections.
         ovs_options: ['bond_mode=balance-slb', 'lacp=active', 'other_config:lacp-time=fast']
 
       - name: 'vmbr0'
-        auto: True
         type: 'manual'
         mtu: 1500
         ovs_type: 'OVSBridge'
@@ -81,7 +80,6 @@ consult the following sections.
         ovs_options: ['bond_mode=balance-slb', 'lacp=active', 'other_config:lacp-time=fast']
 
       - name: 'vmbr0'
-        auto: True
         type: 'manual'
         mtu: 1500
         ovs_type: 'OVSBridge'
@@ -262,7 +260,7 @@ consult the following sections.
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: lo, type: loopback}, {name: eno1, type: manual}, {name: eno2, type: manual}, {name: eno3, type: manual}, {name: eno4, type: manual}, {name: bond0, type: manual, mtu: 1500, ovs_type: OVSBond, ovs_bridge: vmbr0, ovs_bonds: [eno1, eno2, eno3, eno4], ovs_options: [bond_mode=balance-slb, lacp=active, 'other_config:lacp-time=fast']}, {name: vmbr0, auto: true, type: manual, mtu: 1500, ovs_type: OVSBridge, ovs_ports: [bond0, mgmt, dmz]}, {name: mgmt, type: static, mtu: 1500, ovs_type: OVSIntPort, ovs_bridge: vmbr0, ovs_options: [tag=10], address: 10.1.10.10, netmask: 255.255.255.0, gateway: 10.1.10.1}, {name: dmz, type: static, mtu: 1500, ovs_type: OVSIntPort, ovs_bridge: vmbr0, ovs_options: [tag=11]}]
+      Examples: [{name: lo, type: loopback}, {name: eno1, type: manual}, {name: eno2, type: manual}, {name: eno3, type: manual}, {name: eno4, type: manual}, {name: bond0, type: manual, mtu: 1500, ovs_type: OVSBond, ovs_bridge: vmbr0, ovs_bonds: [eno1, eno2, eno3, eno4], ovs_options: [bond_mode=balance-slb, lacp=active, 'other_config:lacp-time=fast']}, {name: vmbr0, type: manual, mtu: 1500, ovs_type: OVSBridge, ovs_ports: [bond0, mgmt, dmz]}, {name: mgmt, type: static, mtu: 1500, ovs_type: OVSIntPort, ovs_bridge: vmbr0, ovs_options: [tag=10], address: 10.1.10.10, netmask: 255.255.255.0, gateway: 10.1.10.1}, {name: dmz, type: static, mtu: 1500, ovs_type: OVSIntPort, ovs_bridge: vmbr0, ovs_options: [tag=11]}]
       None    : []
 
 ## Conflicts
