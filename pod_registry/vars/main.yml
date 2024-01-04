@@ -7,7 +7,7 @@ package_name_apache2_utils: 'apache2-utils'
 file_src_htpasswd: 'htpasswd'
 file_dst_htpasswd: '/opt/pod_registry/auth/htpasswd'
 file_mode_htpasswd: '0640'
-file_owner_htpasswd: 'root'
+file_owner_htpasswd: 'pod_registry'
 file_group_htpasswd: 'pod_registry'
 
 # subgid
@@ -45,14 +45,14 @@ file_group_pod_registry_opt_dir: 'pod_registry'
 # registry_auth.dir
 file_dst_registry_auth_dir: '/opt/pod_registry/auth'
 file_mode_registry_auth_dir: '0750'
-file_owner_registry_auth_dir: '29999'
-file_group_registry_auth_dir: '29999'
+file_owner_registry_auth_dir: 'pod_registry'
+file_group_registry_auth_dir: 'pod_registry'
 
 # registry_data.dir
 file_dst_registry_data_dir: '/opt/pod_registry/data'
 file_mode_registry_data_dir: '0750'
-file_owner_registry_data_dir: '29999'
-file_group_registry_data_dir: '29999'
+file_owner_registry_data_dir: 'pod_registry'
+file_group_registry_data_dir: 'pod_registry'
 
 # pod_registry.default
 file_src_pod_registry_default: 'pod_registry.default'

@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.1 (2024-01-04)
+
+### Bugs
+
+- Correct `runAsUser` and `runAsGroup` (up-stream image `docker.io/library/registry` runs as user `root`)
+- Update file permissions
+
 ## 3.0.0 (2024-01-02)
 
 ### Changes
