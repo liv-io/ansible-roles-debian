@@ -21,7 +21,7 @@
   notify:
     - validate monit
     - restart service monit
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - monit
 

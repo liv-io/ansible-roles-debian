@@ -15,7 +15,7 @@
     state: present
     name: "{{item.name}}"
     install_recommends: False
-  when: not (item.state == False)
+  when: (item.state == True)
   loop: "{{package_config_all + package_config_group + package_config_host}}"
   tags:
     - package

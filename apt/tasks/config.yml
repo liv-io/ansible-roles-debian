@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   loop: "{{apt_config_all + apt_config_group + apt_config_host}}"
   notify: update sources
-  when: not (item.state|default(False) == False)
+  when: (item.state|default(False) == True)
   tags:
     - apt
 

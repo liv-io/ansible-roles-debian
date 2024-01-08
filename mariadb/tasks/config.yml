@@ -19,7 +19,7 @@
     login_host: 'localhost'
     config_file: "{{file_dst_credentials_cnf}}"
   loop: "{{mariadb_database_all + mariadb_database_group + mariadb_database_host}}"
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - mariadb
 
@@ -48,7 +48,7 @@
     config_file: "{{file_dst_credentials_cnf}}"
   no_log: True
   loop: "{{mariadb_user_all + mariadb_user_group + mariadb_user_host}}"
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - mariadb
 

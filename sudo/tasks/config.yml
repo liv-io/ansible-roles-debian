@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
     validate: "{{file_validate_config}}"
   loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - sudo
 

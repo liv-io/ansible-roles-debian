@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   register: register_config
   loop: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - sysctl
 

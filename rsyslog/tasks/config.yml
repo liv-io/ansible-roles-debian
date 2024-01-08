@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
   notify: restart service rsyslog
-  when: not (item.state|default(True) == False)
+  when: (item.state|default(True) == True)
   tags:
     - rsyslog
 

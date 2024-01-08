@@ -21,7 +21,7 @@
   notify:
     - check nginx
     - reload service nginx
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - nginx
 

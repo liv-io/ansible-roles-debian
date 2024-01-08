@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.1 (2024-01-04)
+
+### Enhancements
+
+- Minor cosmetic if-statement improvement
+
 ## 1.1.0 (2023-10-19)
 
 ### Enhancements

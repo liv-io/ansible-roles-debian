@@ -18,7 +18,7 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{systemd_config_all + systemd_config_group + systemd_config_host}}"
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - systemd
 

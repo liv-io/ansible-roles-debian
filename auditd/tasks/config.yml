@@ -21,7 +21,7 @@
   notify:
     - run augenrules
     - restart auditd
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - auditd
 

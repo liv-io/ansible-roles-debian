@@ -21,7 +21,7 @@
   notify:
     - check apache2
     - reload apache2
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - apache2
 
@@ -36,7 +36,7 @@
   notify:
     - check apache2
     - reload apache2
-  when: not (item.state == False)
+  when: (item.state == True)
   tags:
     - apache2
 

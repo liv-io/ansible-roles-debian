@@ -19,7 +19,7 @@
     group: "{{file_group_config}}"
   loop: "{{nsd_zone}}"
   notify: restart service nsd
-  when: not (item.state|default(True) == False)
+  when: (item.state|default(True) == True)
   tags:
     - nsd
 

@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.2 (2024-01-04)
+
+### Enhancements
+
+- Minor cosmetic if-statement improvement
+
 ## 2.1.1 (2023-11-29)
 
 - Minor Ansible style improvements
