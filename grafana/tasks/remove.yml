@@ -34,11 +34,11 @@
   tags:
     - grafana
 
-- name: remove file grafana.gpg
+- name: remove file grafana.asc
   file:
     state: absent
-    path: "{{file_dst_grafana_gpg}}"
-  register: register_grafana_gpg
+    path: "{{file_dst_grafana_asc}}"
+  register: register_grafana_asc
   tags:
     - grafana
 
@@ -53,12 +53,5 @@
   file:
     state: absent
     path: "{{file_dst_grafana_ini}}"
-  tags:
-    - grafana
-
-- name: del grafana.key
-  shell: "{{command_cmd_del_grafana_key}}"
-  check_mode: False
-  when: register_grafana_gpg.changed
   tags:
     - grafana

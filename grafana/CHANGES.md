@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.2 (2024-01-09)
+
+### Bugs
+
+- Fix installation instructions for Debian 11
+- Update APT repository GPG key file
+
 ## 2.1.1 (2024-01-04)
 
 ### Enhancements

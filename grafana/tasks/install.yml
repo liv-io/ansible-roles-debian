@@ -26,19 +26,6 @@
     owner: "{{file_owner_grafana_asc}}"
     group: "{{file_group_grafana_asc}}"
   register: register_grafana_asc
-  when: (ansible_distribution_major_version is match('12'))
-  tags:
-    - grafana
-
-- name: copy file grafana.gpg
-  copy:
-    src: "{{file_src_grafana_gpg}}"
-    dest: "{{file_dst_grafana_gpg}}"
-    mode: "{{file_mode_grafana_gpg}}"
-    owner: "{{file_owner_grafana_gpg}}"
-    group: "{{file_group_grafana_gpg}}"
-  register: register_grafana_gpg
-  when: (ansible_distribution_major_version is match('11'))
   tags:
     - grafana
 
@@ -100,17 +87,10 @@
   tags:
     - grafana
 
-- name: add grafana.key
-  shell: "{{command_cmd_add_grafana_key}}"
-  check_mode: False
-  when: register_grafana_gpg.changed
-  tags:
-    - grafana
-
 - name: apt update
   shell: "{{command_cmd_apt_update}}"
   check_mode: False
-  when: (register_grafana_gpg.changed) or (register_grafana_asc.changed)
+  when: (register_grafana_asc.changed)
   tags:
     - grafana
 
