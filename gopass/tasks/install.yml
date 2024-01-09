@@ -1,0 +1,92 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - gopass
+
+- name: install package gnupg1
+  package:
+    state: present
+    name: "{{package_name_gnupg1}}"
+    install_recommends: False
+  tags:
+    - gopass
+
+- name: install package rng-tools
+  package:
+    state: present
+    name: "{{package_name_rng_tools}}"
+    install_recommends: False
+  tags:
+    - gopass
+
+- name: copy file gopass.asc
+  copy:
+    src: "{{file_src_gopass_asc}}"
+    dest: "{{file_dst_gopass_asc}}"
+    mode: "{{file_mode_gopass_asc}}"
+    owner: "{{file_owner_gopass_asc}}"
+    group: "{{file_group_gopass_asc}}"
+  register: register_gopass_asc
+  tags:
+    - gopass
+
+- name: copy file gopass.list
+  copy:
+    src: "{{file_src_gopass_list}}"
+    dest: "{{file_dst_gopass_list}}"
+    mode: "{{file_mode_gopass_list}}"
+    owner: "{{file_owner_gopass_list}}"
+    group: "{{file_group_gopass_list}}"
+  tags:
+    - gopass
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (gopass_nftables_state == True)
+  tags:
+    - gopass
+
+- name: create file nftables.d
+  file:
+    state: directory
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (gopass_nftables_state == True) and (register_nftables_d.stat.exists == False)
+  tags:
+    - gopass
+
+- name: check service nftables
+  shell: "{{command_cmd_check_service_nftables}}"
+  register: register_check_service_nftables
+  changed_when: (register_check_service_nftables.rc > 1)
+  failed_when: (register_check_service_nftables.rc > 1)
+  check_mode: False
+  when: (gopass_nftables_state == True)
+  tags:
+    - gopass
+
+- name: apt update
+  shell: "{{command_cmd_apt_update}}"
+  check_mode: False
+  when: (register_gopass_asc.changed)
+  tags:
+    - gopass
+
+- name: install package gopass
+  package:
+    state: present
+    name: "{{package_name_gopass}}"
+    install_recommends: False
+  tags:
+    - gopass

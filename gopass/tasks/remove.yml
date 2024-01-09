@@ -1,0 +1,49 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - gopass
+
+- name: remove package gopass
+  package:
+    state: absent
+    name: "{{package_name_gopass}}"
+    install_recommends: False
+  tags:
+    - gopass
+
+- name: remove file gopass.nft
+  file:
+    state: absent
+    path: "{{file_dst_gopass_nft}}"
+  notify: reload service nftables
+  tags:
+    - gopass
+
+- name: remove file gopass.asc
+  file:
+    state: absent
+    path: "{{file_dst_gopass_asc}}"
+  register: register_gopass_asc
+  tags:
+    - gopass
+
+- name: remove file gopass.list
+  file:
+    state: absent
+    path: "{{file_dst_gopass_list}}"
+  tags:
+    - gopass
+
+- name: apt update
+  shell: "{{command_cmd_apt_update}}"
+  check_mode: False
+  when: (register_gopass_asc.changed)
+  tags:
+    - gopass

@@ -1,0 +1,9 @@
+---
+
+gopass_state: 'install'
+
+gopass_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new tcp dport 22 counter accept comment "git to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport 22 counter accept comment "git to any"
+
+gopass_nftables_state: False

@@ -1,0 +1,7 @@
+#
+# This file is managed by Ansible. Do not edit.
+#
+
+# GOPASS
+
+deb https://packages.gopass.pw/repos/gopass stable main
