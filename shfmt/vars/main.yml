@@ -1,0 +1,8 @@
+---
+
+# shfmt
+file_src_shfmt: "https://github.com/mvdan/sh/releases/download/v{{shfmt_version}}/shfmt_v{{shfmt_version}}_linux_amd64"
+file_dst_shfmt: '/usr/local/bin/shfmt'
+file_mode_shfmt: '0755'
+file_owner_shfmt: 'root'
+file_group_shfmt: 'root'

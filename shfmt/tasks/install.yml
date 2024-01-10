@@ -1,0 +1,21 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - shfmt
+
+- name: download file shfmt
+  get_url:
+    url: "{{file_src_shfmt}}"
+    dest: "{{file_dst_shfmt}}"
+    mode: "{{file_mode_shfmt}}"
+    owner: "{{file_owner_shfmt}}"
+    group: "{{file_group_shfmt}}"
+  tags:
+    - shfmt
