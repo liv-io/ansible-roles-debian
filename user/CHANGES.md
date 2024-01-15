@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.1.2 (2024-01-15)
+
+### Bugs
+
+- Remove all `authorized_keys` if `authorized_keys` parameter is empty or undefined
+
 ## 3.1.1 (2023-12-25)
 
 ### Bugs

@@ -61,6 +61,6 @@
     owner: "{{item.name}}"
     group: "{{item.group|default(item.name)}}"
   loop: "{{user_config_all + user_config_group + user_config_host}}"
-  when: (item.state == True) and not (item.authorized_keys|default([]) == [])
+  when: (item.state == True)
   tags:
     - user
