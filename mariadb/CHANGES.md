@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.1.2 (2024-01-24)
+
+### Bugs
+
+- Add missing `python3-mysqldb` package/dependency
+
 ## 3.1.1 (2024-01-04)
 
 ### Enhancements

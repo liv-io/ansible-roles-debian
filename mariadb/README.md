@@ -413,6 +413,13 @@ vars:
       Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
 
+`python3-mysqldb`
+
+    Version: >= 1.2
+    Name   :
+      Debian 11: 'python3-mysqldb'
+      Debian 12: 'python3-mysqldb'
+
 ## Requirements
 
 ### Control Node
@@ -426,9 +433,6 @@ vars:
 `python`
 
     Version: >= 3.10.0
-
-  Python-MySQL
-    Version: >= 1.2.0
 
 ## Support
 

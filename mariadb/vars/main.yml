@@ -9,6 +9,9 @@ package_name_mariadb_client: 'mariadb-client'
 # mariadb-server
 package_name_mariadb_server: 'mariadb-server'
 
+# python3-mysqldb
+package_name_python3_mysqldb: 'python3-mysqldb'
+
 # backup.dir
 file_dst_backup_dir: '/backup'
 file_mode_backup_dir: '0700'

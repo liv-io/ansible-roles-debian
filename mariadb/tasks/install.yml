@@ -19,6 +19,14 @@
   tags:
     - mariadb
 
+- name: install package python3-mysqldb
+  package:
+    state: present
+    name: "{{package_name_python3_mysqldb}}"
+    install_recommends: False
+  tags:
+    - mariadb
+
 - name: install package mariadb-client
   package:
     state: present
