@@ -13,7 +13,7 @@ pod_woodpecker_registry_password: ''
 pod_woodpecker_registry_username: ''
 
 pod_woodpecker_woodpecker_agent_read_only_root_filesystem: True
-pod_woodpecker_woodpecker_agent_version: '2.2.2-1'
+pod_woodpecker_woodpecker_agent_version: '2.2.2-2'
 pod_woodpecker_woodpecker_agent_woodpecker_agent_secret: ''
 pod_woodpecker_woodpecker_agent_woodpecker_backend: ''
 pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version: ''
@@ -33,7 +33,7 @@ pod_woodpecker_woodpecker_agent_woodpecker_log_level: ''
 pod_woodpecker_woodpecker_agent_woodpecker_server: ''
 
 pod_woodpecker_woodpecker_server_read_only_root_filesystem: True
-pod_woodpecker_woodpecker_server_version: '2.2.2-1'
+pod_woodpecker_woodpecker_server_version: '2.2.2-2'
 pod_woodpecker_woodpecker_server_woodpecker_admin: ''
 pod_woodpecker_woodpecker_server_woodpecker_agent_secret: ''
 pod_woodpecker_woodpecker_server_woodpecker_backend_http_proxy: ''
