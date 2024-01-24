@@ -1,0 +1,167 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_forgejo
+
+- name: copy file subuid
+  copy:
+    src: "{{file_src_subuid}}"
+    dest: "{{file_dst_subuid}}"
+    mode: "{{file_mode_subuid}}"
+    owner: "{{file_owner_subuid}}"
+    group: "{{file_group_subuid}}"
+  tags:
+    - pod_forgejo
+
+- name: copy file subgid
+  copy:
+    src: "{{file_src_subgid}}"
+    dest: "{{file_dst_subgid}}"
+    mode: "{{file_mode_subgid}}"
+    owner: "{{file_owner_subgid}}"
+    group: "{{file_group_subgid}}"
+  tags:
+    - pod_forgejo
+
+- name: create group pod_forgejo
+  group:
+    state: present
+    name: "{{group_name_pod_forgejo}}"
+    gid: "{{group_gid_pod_forgejo}}"
+    system: "{{group_system_pod_forgejo}}"
+  tags:
+    - pod_forgejo
+
+- name: create user pod_forgejo
+  user:
+    state: present
+    name: "{{user_name_pod_forgejo}}"
+    comment: "{{user_comment_pod_forgejo}}"
+    uid: "{{user_uid_pod_forgejo}}"
+    group: "{{user_group_pod_forgejo}}"
+    groups: "{{user_groups_pod_forgejo}}"
+    append: "{{user_append_pod_forgejo}}"
+    createhome: "{{user_home_create_pod_forgejo}}"
+    move_home: "{{user_home_move_pod_forgejo}}"
+    remove: "{{user_home_remove_pod_forgejo}}"
+    force: "{{user_home_force_pod_forgejo}}"
+    password: "{{user_password_pod_forgejo}}"
+    update_password: "{{user_password_update_pod_forgejo}}"
+    shell: "{{user_shell_pod_forgejo}}"
+    system: "{{user_system_pod_forgejo}}"
+  register: register_create_user_pod_forgejo
+  tags:
+    - pod_forgejo
+
+- name: loginctl enable-linger
+  shell: "{{command_cmd_loginctl_enable_linger}}"
+  check_mode: False
+  when: register_create_user_pod_forgejo.changed
+  tags:
+    - pod_forgejo
+
+- name: create file pod_forgejo_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_forgejo_etc_dir}}"
+    mode: "{{file_mode_pod_forgejo_etc_dir}}"
+    owner: "{{file_owner_pod_forgejo_etc_dir}}"
+    group: "{{file_group_pod_forgejo_etc_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: create file opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_opt_dir}}"
+    mode: "{{file_mode_opt_dir}}"
+    owner: "{{file_owner_opt_dir}}"
+    group: "{{file_group_opt_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: create file pod_forgejo_opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_forgejo_opt_dir}}"
+    mode: "{{file_mode_pod_forgejo_opt_dir}}"
+    owner: "{{file_owner_pod_forgejo_opt_dir}}"
+    group: "{{file_group_pod_forgejo_opt_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo.dir
+  file:
+    state: directory
+    path: "{{file_dst_forgejo_dir}}"
+    mode: "{{file_mode_forgejo_dir}}"
+    owner: "{{file_owner_forgejo_dir}}"
+    group: "{{file_group_forgejo_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo_ssh.dir
+  file:
+    state: directory
+    path: "{{file_dst_forgejo_ssh_dir}}"
+    mode: "{{file_mode_forgejo_ssh_dir}}"
+    owner: "{{file_owner_forgejo_ssh_dir}}"
+    group: "{{file_group_forgejo_ssh_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo_work.dir
+  file:
+    state: directory
+    path: "{{file_dst_forgejo_work_dir}}"
+    mode: "{{file_mode_forgejo_work_dir}}"
+    owner: "{{file_owner_forgejo_work_dir}}"
+    group: "{{file_group_forgejo_work_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: create file pod_forgejo.service
+  template:
+    src: "{{file_src_pod_forgejo_service}}"
+    dest: "{{file_dst_pod_forgejo_service}}"
+    mode: "{{file_mode_pod_forgejo_service}}"
+    owner: "{{file_owner_pod_forgejo_service}}"
+    group: "{{file_group_pod_forgejo_service}}"
+  tags:
+    - pod_forgejo
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (pod_forgejo_monitor_monit_state == True)
+  tags:
+    - pod_forgejo
+
+- name: create file monit.d
+  file:
+    state: directory
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (pod_forgejo_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  tags:
+    - pod_forgejo
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: False
+  when: (pod_forgejo_monitor_monit_state == True)
+  tags:
+    - pod_forgejo

@@ -1,0 +1,22 @@
+---
+
+pod_forgejo_state: 'enable'
+
+pod_forgejo_forgejo_config: ''
+pod_forgejo_forgejo_custom_path: ''
+pod_forgejo_forgejo_install_port: ''
+pod_forgejo_forgejo_pid: ''
+pod_forgejo_forgejo_port: ''
+pod_forgejo_forgejo_read_only_root_filesystem: True
+pod_forgejo_forgejo_version: '1.21.4-0-2'
+pod_forgejo_forgejo_work_path: ''
+
+pod_forgejo_log_driver: 'journald'
+
+pod_forgejo_monitor_monit_state: False
+
+pod_forgejo_proxy: ''
+
+pod_forgejo_registry_address: ''
+pod_forgejo_registry_password: ''
+pod_forgejo_registry_username: ''

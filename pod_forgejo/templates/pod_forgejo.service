@@ -1,0 +1,30 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Pod Forgejo
+Documentation=man:podman-generate-systemd(1)
+Wants=network.target
+After=network-online.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+User=pod_forgejo
+Group=pod_forgejo
+EnvironmentFile={{file_dst_pod_forgejo_default}}
+Restart=always
+TimeoutStartSec=60
+TimeoutStopSec=60
+ExecStart=/usr/bin/podman play kube \
+{% if not (pod_forgejo_registry_username == "") %}
+    --creds {{pod_forgejo_registry_username}}:'{{pod_forgejo_registry_password}}' \
+{% endif %}
+{% if (pod_forgejo_log_driver == "journald") %}
+    --log-driver journald \
+{% endif %}
+    {{file_dst_pod_forgejo_yaml}}
+ExecStop=/usr/bin/podman stop --time 15 pod_forgejo
+ExecStopPost=/usr/bin/podman pod rm --force pod_forgejo
+
+[Install]
+WantedBy=multi-user.target

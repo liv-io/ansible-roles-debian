@@ -1,0 +1,79 @@
+---
+
+{{ansible_managed|comment(decoration='#')}}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: forgejo
+  name: pod_forgejo
+spec:
+  containers:
+  - name: forgejo
+    image: {{pod_forgejo_registry_address}}/forgejo:{{pod_forgejo_forgejo_version}}
+    ports:
+    - name: forgejo-main
+      containerPort: 3000
+      hostPort: 3000
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: {{pod_forgejo_forgejo_read_only_root_filesystem|lower}}
+      runAsGroup: 10000
+      runAsUser: 10000
+      seLinuxOptions:
+        type: spc_t
+    volumeMounts:
+    - name: forgejo-ssh
+      mountPath: /var/local/forgejo/ssh
+    - name: forgejo-work
+      mountPath: /var/local/forgejo/work
+    workingDir: /
+    env:
+{% if not (pod_forgejo_forgejo_config == "") %}
+    - name: CONFIG
+      value: "{{pod_forgejo_forgejo_config}}"
+{% endif %}
+{% if not (pod_forgejo_forgejo_custom_path == "") %}
+    - name: CUSTOM_PATH
+      value: "{{pod_forgejo_forgejo_custom_path}}"
+{% endif %}
+{% if not (pod_forgejo_forgejo_install_port == "") %}
+    - name: INSTALL_PORT
+      value: "{{pod_forgejo_forgejo_install_port}}"
+{% endif %}
+{% if not (pod_forgejo_forgejo_pid == "") %}
+    - name: PID
+      value: "{{pod_forgejo_forgejo_pid}}"
+{% endif %}
+{% if not (pod_forgejo_forgejo_port == "") %}
+    - name: PORT
+      value: "{{pod_forgejo_forgejo_port}}"
+{% endif %}
+{% if not ( pod_forgejo_forgejo_work_path == "") %}
+    - name: WORK_PATH
+      value: "{{pod_forgejo_forgejo_work_path}}"
+{% endif %}
+
+  dnsConfig: {}
+  restartPolicy: Always
+
+  volumes:
+  - name: forgejo-ssh
+    hostPath:
+      type: Directory
+      path: {{file_dst_forgejo_ssh_dir}}
+  - name: forgejo-work
+    hostPath:
+      type: Directory
+      path: {{file_dst_forgejo_work_dir}}
+
+status: {}
