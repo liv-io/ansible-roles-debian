@@ -2,6 +2,8 @@
 
 mariadb_state: 'enable'
 
+mariadb_bind_address: '127.0.0.1'
+
 mariadb_database_all: []
 
 mariadb_database_group: []

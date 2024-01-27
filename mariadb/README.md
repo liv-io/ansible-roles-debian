@@ -127,6 +127,16 @@ vars:
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`mariadb_bind_address`
+
+    Description: Define the 'mariadb_bind_address' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '127.0.0.1'
+    Options    :
+      Examples: '0.0.0.0' | '10.10.10.10'
+
 `mariadb_database_all`
 
     Description: Define the 'mariadb_database_all' option.

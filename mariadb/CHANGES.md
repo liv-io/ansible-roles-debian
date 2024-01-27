@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.2.0 (2024-01-27)
+
+### Features
+
+- Add parameter `mariadb_bind_address`
+
 ## 3.1.2 (2024-01-24)
 
 ### Bugs
