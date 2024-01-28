@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.0 (2024-01-28)
+
+### Features
+
+- Add rudimentary Git SSH support
+
 ## 0.1.0 (2024-01-24)
 
 ### Features

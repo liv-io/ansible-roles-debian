@@ -67,6 +67,53 @@
   tags:
     - pod_forgejo
 
+- name: create group forgejo
+  group:
+    state: present
+    name: "{{group_name_forgejo}}"
+    system: "{{group_system_forgejo}}"
+  tags:
+    - pod_forgejo
+
+- name: create user forgejo
+  user:
+    state: present
+    name: "{{user_name_forgejo}}"
+    comment: "{{user_comment_forgejo}}"
+    group: "{{user_group_forgejo}}"
+    groups: "{{user_groups_forgejo}}"
+    append: "{{user_append_forgejo}}"
+    createhome: "{{user_home_create_forgejo}}"
+    move_home: "{{user_home_move_forgejo}}"
+    remove: "{{user_home_remove_forgejo}}"
+    force: "{{user_home_force_forgejo}}"
+    password: "{{user_password_forgejo}}"
+    update_password: "{{user_password_update_forgejo}}"
+    shell: "{{user_shell_forgejo}}"
+    system: "{{user_system_forgejo}}"
+  tags:
+    - pod_forgejo
+
+- name: create file ssh.dir
+  file:
+    state: directory
+    path: "{{file_dst_ssh_dir}}"
+    mode: "{{file_mode_ssh_dir}}"
+    owner: "{{file_owner_ssh_dir}}"
+    group: "{{file_group_ssh_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: config authorized_keys
+  template:
+    src: "{{file_src_authorized_keys}}"
+    dest: "{{file_dst_authorized_keys}}"
+    mode: "{{file_mode_authorized_keys}}"
+    owner: "{{file_owner_authorized_keys}}"
+    group: "{{file_group_authorized_keys}}"
+  tags:
+    - pod_forgejo
+
 - name: create file pod_forgejo_etc.dir
   file:
     state: directory
@@ -134,6 +181,27 @@
     mode: "{{file_mode_pod_forgejo_service}}"
     owner: "{{file_owner_pod_forgejo_service}}"
     group: "{{file_group_pod_forgejo_service}}"
+  tags:
+    - pod_forgejo
+
+
+- name: create file forgejo-shell
+  template:
+    src: "{{file_src_forgejo_shell}}"
+    dest: "{{file_dst_forgejo_shell}}"
+    mode: "{{file_mode_forgejo_shell}}"
+    owner: "{{file_owner_forgejo_shell}}"
+    group: "{{file_group_forgejo_shell}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo.sudo
+  template:
+    src: "{{file_src_forgejo_sudo}}"
+    dest: "{{file_dst_forgejo_sudo}}"
+    mode: "{{file_mode_forgejo_sudo}}"
+    owner: "{{file_owner_forgejo_sudo}}"
+    group: "{{file_group_forgejo_sudo}}"
   tags:
     - pod_forgejo
 

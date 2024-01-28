@@ -71,6 +71,33 @@ file_mode_pod_forgejo_yaml: '0640'
 file_owner_pod_forgejo_yaml: 'root'
 file_group_pod_forgejo_yaml: 'pod_forgejo'
 
+# ssh.dir
+file_dst_ssh_dir: '/home/forgejo/.ssh'
+file_mode_ssh_dir: '0700'
+file_owner_ssh_dir: 'forgejo'
+file_group_ssh_dir: 'forgejo'
+
+# authorized_keys
+file_src_authorized_keys: 'authorized_keys'
+file_dst_authorized_keys: '/home/forgejo/.ssh/authorized_keys'
+file_mode_authorized_keys: '0644'
+file_owner_authorized_keys: 'forgejo'
+file_group_authorized_keys: 'forgejo'
+
+# forgejo-shell
+file_src_forgejo_shell: 'forgejo-shell'
+file_dst_forgejo_shell: '/usr/local/bin/forgejo-shell'
+file_mode_forgejo_shell: '0755'
+file_owner_forgejo_shell: 'root'
+file_group_forgejo_shell: 'root'
+
+# forgejo.sudo
+file_src_forgejo_sudo: 'forgejo.sudo'
+file_dst_forgejo_sudo: '/etc/sudoers.d/forgejo'
+file_mode_forgejo_sudo: '0444'
+file_owner_forgejo_sudo: 'root'
+file_group_forgejo_sudo: 'root'
+
 # monit.d
 file_dst_monit_d: '/etc/monit.d'
 file_mode_monit_d: '0750'
@@ -113,6 +140,25 @@ user_password_pod_forgejo: '!'
 user_password_update_pod_forgejo: 'always'
 user_shell_pod_forgejo: '/bin/bash'
 user_system_pod_forgejo: False
+
+# forgejo
+group_name_forgejo: 'forgejo'
+group_system_forgejo: True
+
+# forgejo
+user_name_forgejo: 'forgejo'
+user_comment_forgejo: 'Forgejo'
+user_group_forgejo: 'forgejo'
+user_groups_forgejo: ['pod_forgejo']
+user_append_forgejo: True
+user_home_create_forgejo: True
+user_home_move_forgejo: False
+user_home_remove_forgejo: True
+user_home_force_forgejo: False
+user_password_forgejo: '!'
+user_password_update_forgejo: 'always'
+user_shell_forgejo: '/usr/local/bin/forgejo-shell'
+user_system_forgejo: True
 
 # monit
 service_name_monit: 'monit'

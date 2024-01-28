@@ -1,4 +1,6 @@
 ---
 
 dependencies:
+  - {role: openssh, when: not (pod_forgejo_state is match('false|no|remove|quiesce|inactive'))}
+  - {role: sudo, when: not (pod_forgejo_state is match('false|no|remove|quiesce|inactive'))}
   - {role: podman, when: not (pod_forgejo_state is match('false|no|remove|quiesce|inactive'))}

@@ -28,10 +28,15 @@ consult the following sections.
     - role: pod_forgejo
   vars:
     pod_forgejo_state: 'enable'
+    pod_forgejo_authorized_keys:
+      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01'
+      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02'
     pod_forgejo_proxy: 'http://proxy.example.com:3128'
     pod_forgejo_registry_address: 'registry.example.com'
     pod_forgejo_registry_password: 'sUlJr0kPZ1S0TX44aUdOVdQ90GbOBk6L'
     pod_forgejo_registry_username: 'registry'
+    openssh_match:
+      - {name: 'forgejo', type: 'User', config: {'AuthorizedKeysCommandUser': 'forgejo', 'AuthorizedKeysCommand': '/usr/bin/podman exec -i pod_forgejo-forgejo /usr/local/bin/forgejo keys -e git -u %u -t %t -k %k'}}
 ```
 
 ### Disable
@@ -42,10 +47,15 @@ consult the following sections.
     - role: pod_forgejo
   vars:
     pod_forgejo_state: 'disable'
+    pod_forgejo_authorized_keys:
+      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01'
+      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02'
     pod_forgejo_proxy: 'http://proxy.example.com:3128'
     pod_forgejo_registry_address: 'registry.example.com'
     pod_forgejo_registry_password: 'sUlJr0kPZ1S0TX44aUdOVdQ90GbOBk6L'
     pod_forgejo_registry_username: 'registry'
+    openssh_match:
+      - {name: 'forgejo', type: 'User', config: {'AuthorizedKeysCommandUser': 'forgejo', 'AuthorizedKeysCommand': '/usr/bin/podman exec -i pod_forgejo-forgejo /usr/local/bin/forgejo keys -e git -u %u -t %t -k %k'}}
 ```
 
 ### Remove
@@ -86,6 +96,17 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`pod_forgejo_authorized_keys`
+
+    Description: Define the authorized_keys for the forgejo user.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01',
+                 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02']
+      None    : []
 
 `pod_forgejo_forgejo_config`
 
@@ -237,6 +258,10 @@ consult the following sections.
 ## Dependencies
 
 ### Roles
+
+`openssh`
+
+`sudo`
 
 `podman`
 

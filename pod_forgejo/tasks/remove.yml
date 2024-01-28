@@ -45,6 +45,22 @@
   tags:
     - pod_forgejo
 
+- name: remove user forgejo
+  user:
+    state: absent
+    name: "{{user_name_forgejo}}"
+    remove: "{{user_home_remove_forgejo}}"
+    force: "{{user_home_force_forgejo}}"
+  tags:
+    - pod_forgejo
+
+- name: remove group forgejo
+  group:
+    state: absent
+    name: "{{group_name_forgejo}}"
+  tags:
+    - pod_forgejo
+
 - name: remove file pod_forgejo-forgejo.cfg
   file:
     state: absent
@@ -71,5 +87,26 @@
   file:
     state: absent
     path: "{{file_dst_pod_forgejo_service}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file ssh.dir
+  file:
+    state: absent
+    path: "{{file_dst_ssh_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file forgejo.sudo
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_sudo}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file forgejo-shell
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_shell}}"
   tags:
     - pod_forgejo

@@ -2,6 +2,8 @@
 
 pod_forgejo_state: 'enable'
 
+pod_forgejo_authorized_keys: []
+
 pod_forgejo_forgejo_config: ''
 pod_forgejo_forgejo_custom_path: ''
 pod_forgejo_forgejo_install_port: ''
