@@ -38,6 +38,27 @@
   tags:
     - pod_forgejo
 
+- name: create file pod_forgejo.nft
+  template:
+    src: "{{file_src_pod_forgejo_nft}}"
+    dest: "{{file_dst_pod_forgejo_nft}}"
+    mode: "{{file_mode_pod_forgejo_nft}}"
+    owner: "{{file_owner_pod_forgejo_nft}}"
+    group: "{{file_group_pod_forgejo_nft}}"
+  notify: reload service nftables
+  when: (pod_forgejo_nftables_state == True)
+  tags:
+    - pod_forgejo
+
+- name: remove file pod_forgejo.nft
+  file:
+    state: absent
+    path: "{{file_dst_pod_forgejo_nft}}"
+  notify: reload service nftables
+  when: (pod_forgejo_nftables_state == False)
+  tags:
+    - pod_forgejo
+
 - name: stop service pod_forgejo
   service:
     state: stopped

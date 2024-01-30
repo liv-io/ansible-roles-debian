@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.0 (2024-01-30)
+
+### Features
+
+- Add parameter `pod_forgejo_nftables_filter_rule`
+- Add parameter `pod_forgejo_nftables_state`
+
 ## 0.2.0 (2024-01-28)
 
 ### Features
