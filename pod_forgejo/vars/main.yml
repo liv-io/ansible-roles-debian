@@ -127,11 +127,11 @@ file_group_pod_forgejo_nft: 'root'
 # check service monit
 command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
 
-# check service pod_forgejo
-command_cmd_check_service_pod_forgejo: 'systemctl cat pod_forgejo.service > /dev/null 2>&1'
-
 # check service nftables
 command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+
+# check service pod_forgejo
+command_cmd_check_service_pod_forgejo: 'systemctl cat pod_forgejo.service > /dev/null 2>&1'
 
 # loginctl enable_linger
 command_cmd_loginctl_enable_linger: 'loginctl enable-linger pod_forgejo'
