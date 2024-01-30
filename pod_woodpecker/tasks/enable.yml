@@ -74,6 +74,27 @@
   tags:
     - pod_woodpecker
 
+- name: create file pod_woodpecker.nft
+  template:
+    src: "{{file_src_pod_woodpecker_nft}}"
+    dest: "{{file_dst_pod_woodpecker_nft}}"
+    mode: "{{file_mode_pod_woodpecker_nft}}"
+    owner: "{{file_owner_pod_woodpecker_nft}}"
+    group: "{{file_group_pod_woodpecker_nft}}"
+  notify: reload service nftables
+  when: (pod_woodpecker_nftables_state == True)
+  tags:
+    - pod_woodpecker
+
+- name: remove file pod_woodpecker.nft
+  file:
+    state: absent
+    path: "{{file_dst_pod_woodpecker_nft}}"
+  notify: reload service nftables
+  when: (pod_woodpecker_nftables_state == False)
+  tags:
+    - pod_woodpecker
+
 - name: start service pod_woodpecker
   service:
     state: started

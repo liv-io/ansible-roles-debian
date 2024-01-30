@@ -14,6 +14,12 @@
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 
+- name: reload service nftables
+  service:
+    state: reloaded
+    name: "{{service_name_nftables}}"
+  when: (register_check_service_nftables.rc == 0)
+
 - name: restart service pod_woodpecker
   service:
     state: restarted

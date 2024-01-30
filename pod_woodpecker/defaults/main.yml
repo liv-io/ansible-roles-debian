@@ -4,6 +4,12 @@ pod_woodpecker_state: 'enable'
 
 pod_woodpecker_monitor_monit_state: False
 
+pod_woodpecker_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 8000 counter accept comment "http from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 8000 counter accept comment "http from unique local addresses"
+
+pod_woodpecker_nftables_state: False
+
 pod_woodpecker_log_driver: 'journald'
 
 pod_woodpecker_proxy: ''

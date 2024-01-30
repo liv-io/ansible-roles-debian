@@ -45,6 +45,14 @@
   tags:
     - pod_woodpecker
 
+- name: remove file pod_woodpecker.nft
+  file:
+    state: absent
+    path: "{{file_dst_pod_woodpecker_nft}}"
+  notify: reload service nftables
+  tags:
+    - pod_woodpecker
+
 - name: remove file pod_woodpecker-woodpecker-agent.cfg
   file:
     state: absent
