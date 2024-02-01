@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 0.4.0 (2024-02-01)
+
+### Bugs
+
+- Update `pod_forgejo_forgejo_version` from 1.21.4-0-2 to 1.21.5-0-1
+
+### Enhancements
+
+- Download latest container image release before stopping container
+
 ## 0.3.0 (2024-01-30)
 
 ### Features
