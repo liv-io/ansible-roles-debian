@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.1 (2024-02-02)
+
+### Enhancements
+
+- Explicitly use `podman pod` command
+
 ## 0.3.0 (2024-01-31)
 
 ### Features

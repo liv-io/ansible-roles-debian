@@ -25,7 +25,7 @@ ExecStart=/usr/bin/podman play kube \
     --log-driver journald \
 {% endif %}
     {{file_dst_pod_woodpecker_yaml}}
-ExecStop=/usr/bin/podman stop --time 15 pod_woodpecker
+ExecStop=/usr/bin/podman pod stop --time 15 pod_woodpecker
 ExecStopPost=/usr/bin/podman pod rm --force pod_woodpecker
 
 [Install]
