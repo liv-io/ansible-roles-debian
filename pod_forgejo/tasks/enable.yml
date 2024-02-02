@@ -74,6 +74,15 @@
   tags:
     - pod_forgejo
 
+- name: start service forgejo_update-authorized_keys.path
+  service:
+    state: started
+    enabled: True
+    name: "{{service_name_forgejo_update_authorized_keys_path}}"
+    daemon_reload: True
+  tags:
+    - pod_forgejo
+
 - name: start service pod_forgejo
   service:
     state: started

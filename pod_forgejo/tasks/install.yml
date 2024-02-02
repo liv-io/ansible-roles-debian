@@ -114,6 +114,36 @@
   tags:
     - pod_forgejo
 
+- name: create file forgejo_update-authorized_keys
+  template:
+    src: "{{file_src_forgejo_update_authorized_keys}}"
+    dest: "{{file_dst_forgejo_update_authorized_keys}}"
+    mode: "{{file_mode_forgejo_update_authorized_keys}}"
+    owner: "{{file_owner_forgejo_update_authorized_keys}}"
+    group: "{{file_group_forgejo_update_authorized_keys}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo_update-authorized_keys.service
+  template:
+    src: "{{file_src_forgejo_update_authorized_keys_service}}"
+    dest: "{{file_dst_forgejo_update_authorized_keys_service}}"
+    mode: "{{file_mode_forgejo_update_authorized_keys_service}}"
+    owner: "{{file_owner_forgejo_update_authorized_keys_service}}"
+    group: "{{file_group_forgejo_update_authorized_keys_service}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo_update-authorized_keys.path
+  template:
+    src: "{{file_src_forgejo_update_authorized_keys_path}}"
+    dest: "{{file_dst_forgejo_update_authorized_keys_path}}"
+    mode: "{{file_mode_forgejo_update_authorized_keys_path}}"
+    owner: "{{file_owner_forgejo_update_authorized_keys_path}}"
+    group: "{{file_group_forgejo_update_authorized_keys_path}}"
+  tags:
+    - pod_forgejo
+
 - name: create file ssh.dir
   file:
     state: directory
@@ -121,16 +151,6 @@
     mode: "{{file_mode_ssh_dir}}"
     owner: "{{file_owner_ssh_dir}}"
     group: "{{file_group_ssh_dir}}"
-  tags:
-    - pod_forgejo
-
-- name: config authorized_keys
-  template:
-    src: "{{file_src_authorized_keys}}"
-    dest: "{{file_dst_authorized_keys}}"
-    mode: "{{file_mode_authorized_keys}}"
-    owner: "{{file_owner_authorized_keys}}"
-    group: "{{file_group_authorized_keys}}"
   tags:
     - pod_forgejo
 

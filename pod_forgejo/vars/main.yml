@@ -77,13 +77,6 @@ file_mode_ssh_dir: '0700'
 file_owner_ssh_dir: 'forgejo'
 file_group_ssh_dir: 'forgejo'
 
-# authorized_keys
-file_src_authorized_keys: 'authorized_keys'
-file_dst_authorized_keys: '/home/forgejo/.ssh/authorized_keys'
-file_mode_authorized_keys: '0644'
-file_owner_authorized_keys: 'forgejo'
-file_group_authorized_keys: 'forgejo'
-
 # forgejo-shell
 file_src_forgejo_shell: 'forgejo-shell'
 file_dst_forgejo_shell: '/usr/local/bin/forgejo-shell'
@@ -97,6 +90,27 @@ file_dst_forgejo_sudo: '/etc/sudoers.d/forgejo'
 file_mode_forgejo_sudo: '0440'
 file_owner_forgejo_sudo: 'root'
 file_group_forgejo_sudo: 'root'
+
+# forgejo_update-authorized_keys
+file_src_forgejo_update_authorized_keys: 'forgejo_update-authorized_keys'
+file_dst_forgejo_update_authorized_keys: '/usr/local/sbin/forgejo_update-authorized_keys'
+file_mode_forgejo_update_authorized_keys: '0755'
+file_owner_forgejo_update_authorized_keys: 'root'
+file_group_forgejo_update_authorized_keys: 'root'
+
+# forgejo_update-authorized_keys.service
+file_src_forgejo_update_authorized_keys_service: 'forgejo_update-authorized_keys.service'
+file_dst_forgejo_update_authorized_keys_service: '/lib/systemd/system/forgejo_update-authorized_keys.service'
+file_mode_forgejo_update_authorized_keys_service: '0644'
+file_owner_forgejo_update_authorized_keys_service: 'root'
+file_group_forgejo_update_authorized_keys_service: 'root'
+
+# forgejo_update-authorized_keys.path
+file_src_forgejo_update_authorized_keys_path: 'forgejo_update-authorized_keys.path'
+file_dst_forgejo_update_authorized_keys_path: '/lib/systemd/system/forgejo_update-authorized_keys.path'
+file_mode_forgejo_update_authorized_keys_path: '0644'
+file_owner_forgejo_update_authorized_keys_path: 'root'
+file_group_forgejo_update_authorized_keys_path: 'root'
 
 # monit.d
 file_dst_monit_d: '/etc/monit.d'
@@ -181,6 +195,9 @@ service_name_monit: 'monit'
 
 # nftables
 service_name_nftables: 'nftables'
+
+# forgejo_update-authorized_keys.path
+service_name_forgejo_update_authorized_keys_path: 'forgejo_update-authorized_keys.path'
 
 # pod_forgejo
 service_name_pod_forgejo: 'pod_forgejo'

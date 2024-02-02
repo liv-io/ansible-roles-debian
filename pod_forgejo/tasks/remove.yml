@@ -82,6 +82,27 @@
   tags:
     - pod_forgejo
 
+- name: remove file forgejo_update-authorized_keys
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_update_authorized_keys}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file forgejo_update-authorized_keys.service
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_update_authorized_keys_service}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file forgejo_update-authorized_keys.path
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_update_authorized_keys_path}}"
+  tags:
+    - pod_forgejo
+
 - name: remove file pod_forgejo.nft
   file:
     state: absent

@@ -28,9 +28,6 @@ consult the following sections.
     - role: pod_forgejo
   vars:
     pod_forgejo_state: 'enable'
-    pod_forgejo_authorized_keys:
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01'
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02'
     pod_forgejo_proxy: 'http://proxy.example.com:3128'
     pod_forgejo_registry_address: 'registry.example.com'
     pod_forgejo_registry_password: 'sUlJr0kPZ1S0TX44aUdOVdQ90GbOBk6L'
@@ -47,9 +44,6 @@ consult the following sections.
     - role: pod_forgejo
   vars:
     pod_forgejo_state: 'disable'
-    pod_forgejo_authorized_keys:
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01'
-      - 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02'
     pod_forgejo_proxy: 'http://proxy.example.com:3128'
     pod_forgejo_registry_address: 'registry.example.com'
     pod_forgejo_registry_password: 'sUlJr0kPZ1S0TX44aUdOVdQ90GbOBk6L'
@@ -95,18 +89,6 @@ consult the following sections.
       Disable : 'stop' | 'off' | 'disable'
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
-
-`pod_forgejo_authorized_keys`
-
-    Description: Define the authorized_keys for the forgejo user.
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : []
-    Options    :
-      Examples: ['ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINy32iAhakwnk2w9uBQgFx8+tJWPgjbz9mjMRXNQM0tp user@host01',
-                 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2yYQ2Q95SKxt71jXDNqtCtBQvcnMd8lqRsIdGZK375 user@host02']
-      None    : []
 
 `pod_forgejo_forgejo_config`
 
@@ -203,6 +185,36 @@ consult the following sections.
       Examples: 'journald'
       None    : ''
 
+`pod_forgejo_monitor_mail_from_address`
+
+    Description: Define the 'pod_forgejo_monitor_mail_from_address' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+`pod_forgejo_monitor_mail_state`
+
+    Description: Control the 'pod_forgejo_monitor_mail_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`pod_forgejo_monitor_mail_to_address`
+
+    Description: Define the 'pod_forgejo_monitor_mail_to_address' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["admin@{{ansible_domain}}"]
+    Options    :
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
+                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+
 `pod_forgejo_monitor_monit_state`
 
     Description: Control the 'pod_forgejo_monitor_monit_state' option.
@@ -211,6 +223,25 @@ consult the following sections.
     Type       : Boolean
     Default    : False
     Options    : True | False
+
+`pod_forgejo_monitor_prom_state`
+
+    Description: Control the 'pod_forgejo_monitor_prom_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`pod_forgejo_monitor_prom_textfile_collector`
+
+    Description: Define the 'pod_forgejo_monitor_prom_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `pod_forgejo_nftables_filter_rule`
 

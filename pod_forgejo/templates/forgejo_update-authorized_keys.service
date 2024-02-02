@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Update forgejo authorized_keys on file change
+Wants=network.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart={{file_dst_forgejo_update_authorized_keys}}
+
+[Install]
+WantedBy=multi-user.target

@@ -59,6 +59,15 @@
   tags:
     - pod_forgejo
 
+- name: stop service forgejo_update-authorized_keys.path
+  service:
+    state: stopped
+    enabled: False
+    name: "{{service_name_forgejo_update_authorized_keys_path}}"
+    daemon_reload: True
+  tags:
+    - pod_forgejo
+
 - name: stop service pod_forgejo
   service:
     state: stopped

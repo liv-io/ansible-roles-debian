@@ -1,0 +1,10 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Update forgejo authorized_keys on file change
+
+[Path]
+PathModified={{file_dst_forgejo_ssh_dir}}/authorized_keys
+
+[Install]
+WantedBy=multi-user.target

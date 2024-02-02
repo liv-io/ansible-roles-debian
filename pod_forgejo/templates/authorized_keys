@@ -1,5 +1,0 @@
-{{ansible_managed|comment(decoration='#')}}
-
-{% for item in pod_forgejo_authorized_keys %}
-command="/usr/local/bin/forgejo --config=/var/local/forgejo/work/custom/conf/app.ini serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict {{item}}
-{% endfor %}

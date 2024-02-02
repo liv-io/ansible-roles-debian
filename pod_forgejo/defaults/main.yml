@@ -2,8 +2,6 @@
 
 pod_forgejo_state: 'enable'
 
-pod_forgejo_authorized_keys: []
-
 pod_forgejo_forgejo_config: ''
 pod_forgejo_forgejo_custom_path: ''
 pod_forgejo_forgejo_install_port: ''
@@ -15,7 +13,12 @@ pod_forgejo_forgejo_work_path: ''
 
 pod_forgejo_log_driver: 'journald'
 
+pod_forgejo_monitor_mail_from_address: "root@{{ansible_domain}}"
+pod_forgejo_monitor_mail_state: False
+pod_forgejo_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 pod_forgejo_monitor_monit_state: False
+pod_forgejo_monitor_prom_state: False
+pod_forgejo_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 pod_forgejo_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3000 counter accept comment "http from internal private addresses"
