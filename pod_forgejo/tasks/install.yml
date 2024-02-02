@@ -67,6 +67,16 @@
   tags:
     - pod_forgejo
 
+- name: create file forgejo-shell
+  template:
+    src: "{{file_src_forgejo_shell}}"
+    dest: "{{file_dst_forgejo_shell}}"
+    mode: "{{file_mode_forgejo_shell}}"
+    owner: "{{file_owner_forgejo_shell}}"
+    group: "{{file_group_forgejo_shell}}"
+  tags:
+    - pod_forgejo
+
 - name: create group forgejo
   group:
     state: present
@@ -91,6 +101,16 @@
     update_password: "{{user_password_update_forgejo}}"
     shell: "{{user_shell_forgejo}}"
     system: "{{user_system_forgejo}}"
+  tags:
+    - pod_forgejo
+
+- name: create file forgejo.sudo
+  template:
+    src: "{{file_src_forgejo_sudo}}"
+    dest: "{{file_dst_forgejo_sudo}}"
+    mode: "{{file_mode_forgejo_sudo}}"
+    owner: "{{file_owner_forgejo_sudo}}"
+    group: "{{file_group_forgejo_sudo}}"
   tags:
     - pod_forgejo
 
@@ -181,27 +201,6 @@
     mode: "{{file_mode_pod_forgejo_service}}"
     owner: "{{file_owner_pod_forgejo_service}}"
     group: "{{file_group_pod_forgejo_service}}"
-  tags:
-    - pod_forgejo
-
-
-- name: create file forgejo-shell
-  template:
-    src: "{{file_src_forgejo_shell}}"
-    dest: "{{file_dst_forgejo_shell}}"
-    mode: "{{file_mode_forgejo_shell}}"
-    owner: "{{file_owner_forgejo_shell}}"
-    group: "{{file_group_forgejo_shell}}"
-  tags:
-    - pod_forgejo
-
-- name: create file forgejo.sudo
-  template:
-    src: "{{file_src_forgejo_sudo}}"
-    dest: "{{file_dst_forgejo_sudo}}"
-    mode: "{{file_mode_forgejo_sudo}}"
-    owner: "{{file_owner_forgejo_sudo}}"
-    group: "{{file_group_forgejo_sudo}}"
   tags:
     - pod_forgejo
 

@@ -94,7 +94,7 @@ file_group_forgejo_shell: 'root'
 # forgejo.sudo
 file_src_forgejo_sudo: 'forgejo.sudo'
 file_dst_forgejo_sudo: '/etc/sudoers.d/forgejo'
-file_mode_forgejo_sudo: '0444'
+file_mode_forgejo_sudo: '0440'
 file_owner_forgejo_sudo: 'root'
 file_group_forgejo_sudo: 'root'
 

@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.4.1 (2024-02-02)
+
+### Enhancements
+
+- Minor task order improvement
+
 ## 0.4.0 (2024-02-01)
 
 ### Bugs

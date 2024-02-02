@@ -23,7 +23,7 @@ ExecStart=/usr/bin/podman play kube \
     --log-driver journald \
 {% endif %}
     {{file_dst_pod_forgejo_yaml}}
-# NOTE: Pull latest image before stopping service to update container registry itself
+# NOTE: Pull latest image before stopping service to allow for container registry update (Forgejo itself)
 ExecStop=/usr/bin/podman image pull \
 {% if not (pod_forgejo_registry_username == "") %}
     --creds {{pod_forgejo_registry_username}}:'{{pod_forgejo_registry_password}}' \

@@ -61,6 +61,27 @@
   tags:
     - pod_forgejo
 
+- name: remove file ssh.dir
+  file:
+    state: absent
+    path: "{{file_dst_ssh_dir}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file forgejo.sudo
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_sudo}}"
+  tags:
+    - pod_forgejo
+
+- name: remove file forgejo-shell
+  file:
+    state: absent
+    path: "{{file_dst_forgejo_shell}}"
+  tags:
+    - pod_forgejo
+
 - name: remove file pod_forgejo.nft
   file:
     state: absent
@@ -95,26 +116,5 @@
   file:
     state: absent
     path: "{{file_dst_pod_forgejo_service}}"
-  tags:
-    - pod_forgejo
-
-- name: remove file ssh.dir
-  file:
-    state: absent
-    path: "{{file_dst_ssh_dir}}"
-  tags:
-    - pod_forgejo
-
-- name: remove file forgejo.sudo
-  file:
-    state: absent
-    path: "{{file_dst_forgejo_sudo}}"
-  tags:
-    - pod_forgejo
-
-- name: remove file forgejo-shell
-  file:
-    state: absent
-    path: "{{file_dst_forgejo_shell}}"
   tags:
     - pod_forgejo
