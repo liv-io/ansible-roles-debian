@@ -48,3 +48,23 @@
     group: "{{file_group_root_dir}}"
   tags:
     - root
+
+- name: config .ssh.dir
+  file:
+    state: directory
+    path: "{{file_dst_ssh_dir}}"
+    mode: "{{file_mode_ssh_dir}}"
+    owner: "{{file_owner_ssh_dir}}"
+    group: "{{file_group_ssh_dir}}"
+  tags:
+    - root
+
+- name: config authorized_keys
+  template:
+    src: "{{file_src_authorized_keys}}"
+    dest: "{{file_dst_authorized_keys}}"
+    mode: "{{file_mode_authorized_keys}}"
+    owner: "{{file_owner_authorized_keys}}"
+    group: "{{file_group_authorized_keys}}"
+  tags:
+    - root

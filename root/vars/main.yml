@@ -6,6 +6,19 @@ file_mode_root_dir: "{{root_root_dir_mode}}"
 file_owner_root_dir: "{{root_root_dir_owner}}"
 file_group_root_dir: "{{root_root_dir_group}}"
 
+# .ssh.dir
+file_dst_ssh_dir: '/root/.ssh'
+file_mode_ssh_dir: '0700'
+file_owner_ssh_dir: 'root'
+file_group_ssh_dir: 'root'
+
+# authorized_keys
+file_src_authorized_keys: 'authorized_keys'
+file_dst_authorized_keys: '/root/.ssh/authorized_keys'
+file_mode_authorized_keys: '0600'
+file_owner_authorized_keys: 'root'
+file_group_authorized_keys: 'root'
+
 # root
 group_name_root: 'root'
 group_gid_root: '0'
