@@ -1,3 +1,5 @@
+---
+
 {{ansible_managed|comment(decoration='#')}}
 
 # my global config
@@ -161,6 +163,33 @@ scrape_configs:
 {% for group in prometheus_haproxy_exporter_target_ansible_groups %}
 {% for item in (groups[group]|sort) %}
     - targets: ['{{hostvars[item].inventory_hostname}}:9101']
+      labels:
+        instance: '{{hostvars[item].inventory_hostname_short}}'
+
+{% endfor %}
+{% endfor %}
+{% endif %}
+
+  # IPMI
+
+  - job_name: 'ipmi'
+    static_configs:
+
+    # Manual Hosts
+{% if not (prometheus_ipmi_exporter_target_manual_hosts == []) %}
+{% for item in prometheus_ipmi_exporter_target_manual_hosts %}
+    - targets: ['{{item.address}}:9290']
+      labels:
+        instance: '{{item.hostname}}'
+
+{% endfor %}
+{% endif %}
+
+    # Ansible Groups
+{% if not (prometheus_ipmi_exporter_target_ansible_groups == []) %}
+{% for group in prometheus_ipmi_exporter_target_ansible_groups %}
+{% for item in (groups[group]|sort) %}
+    - targets: ['{{hostvars[item].inventory_hostname}}:9290']
       labels:
         instance: '{{hostvars[item].inventory_hostname_short}}'
 

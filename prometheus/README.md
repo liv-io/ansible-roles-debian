@@ -249,6 +249,30 @@ consult the following sections.
                  {address: '10.1.1.15', hostname: 'host03'}]
       None    : []
 
+`prometheus_ipmi_exporter_target_ansible_groups`
+
+    Description: Define the 'prometheus_ipmi_exporter_target_ansible_groups' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: ['all'] | ['group01', 'group02', 'group03']
+      None    : []
+
+`prometheus_ipmi_exporter_target_manual_hosts`
+
+    Description: Define the 'prometheus_ipmi_exporter_target_manual_hosts' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '10.1.1.11', hostname: 'host01'},
+                 {address: '10.1.1.13', hostname: 'host02'},
+                 {address: '10.1.1.15', hostname: 'host03'}]
+      None    : []
+
 `prometheus_monit_exporter_target_ansible_groups`
 
     Description: Define the 'prometheus_monit_exporter_target_ansible_groups' option.

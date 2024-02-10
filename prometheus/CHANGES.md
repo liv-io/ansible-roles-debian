@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 2.9.0 (2024-02-10)
+
+### Enhancements
+
+- Add optional YAML document start marker
+
+### Features
+
+- Add support for `ipmi_exporter`
+
 ## 2.8.0 (2023-12-09)
 
 ### Bugs
