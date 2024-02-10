@@ -1,0 +1,26 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+
+- name: restart service ipmi_exporter
+  service:
+    state: restarted
+    name: "{{service_name_ipmi_exporter}}"
+
+- name: reload service monit
+  service:
+    state: reloaded
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)
+
+- name: reload service nftables
+  service:
+    state: reloaded
+    name: "{{service_name_nftables}}"
+  when: (register_check_service_nftables.rc == 0)

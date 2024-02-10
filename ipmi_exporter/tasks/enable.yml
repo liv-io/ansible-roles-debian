@@ -1,0 +1,84 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi.yml
+  template:
+    src: "{{file_src_ipmi_yml}}"
+    dest: "{{file_dst_ipmi_yml}}"
+    mode: "{{file_mode_ipmi_yml}}"
+    owner: "{{file_owner_ipmi_yml}}"
+    group: "{{file_group_ipmi_yml}}"
+  notify: restart service ipmi_exporter
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.default
+  template:
+    src: "{{file_src_ipmi_exporter_default}}"
+    dest: "{{file_dst_ipmi_exporter_default}}"
+    mode: "{{file_mode_ipmi_exporter_default}}"
+    owner: "{{file_owner_ipmi_exporter_default}}"
+    group: "{{file_group_ipmi_exporter_default}}"
+  notify: restart service ipmi_exporter
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.cfg
+  template:
+    src: "{{file_src_ipmi_exporter_cfg}}"
+    dest: "{{file_dst_ipmi_exporter_cfg}}"
+    mode: "{{file_mode_ipmi_exporter_cfg}}"
+    owner: "{{file_owner_ipmi_exporter_cfg}}"
+    group: "{{file_group_ipmi_exporter_cfg}}"
+  notify: reload service monit
+  when: (ipmi_exporter_monitor_monit_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_cfg}}"
+  notify: reload service monit
+  when: (ipmi_exporter_monitor_monit_state == False)
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.nft
+  template:
+    src: "{{file_src_ipmi_exporter_nft}}"
+    dest: "{{file_dst_ipmi_exporter_nft}}"
+    mode: "{{file_mode_ipmi_exporter_nft}}"
+    owner: "{{file_owner_ipmi_exporter_nft}}"
+    group: "{{file_group_ipmi_exporter_nft}}"
+  notify: reload service nftables
+  when: (ipmi_exporter_nftables_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.nft
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_nft}}"
+  notify: reload service nftables
+  when: (ipmi_exporter_nftables_state == False)
+  tags:
+    - ipmi_exporter
+
+- name: start service ipmi_exporter
+  service:
+    state: started
+    enabled: True
+    name: "{{service_name_ipmi_exporter}}"
+    daemon_reload: True
+  tags:
+    - ipmi_exporter

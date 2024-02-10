@@ -1,0 +1,40 @@
+---
+
+ipmi_exporter_state: 'enable'
+
+ipmi_exporter_config: |
+  modules:
+    default:
+      collectors:
+        - bmc
+        - chassis
+        - dcmi
+        - ipmi
+        - sel
+      collector_cmd:
+        bmc: sudo
+        chassis: sudo
+        dcmi: sudo
+        ipmi: sudo
+        sel: sudo
+      custom_args:
+        bmc:
+          - "bmc-info"
+        chassis:
+          - "ipmi-chassis"
+        dcmi:
+          - "ipmi-dcmi"
+        ipmi:
+          - "ipmimonitoring"
+        sel:
+          - "ipmi-sel"
+
+ipmi_exporter_monitor_monit_state: False
+
+ipmi_exporter_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9290 counter accept comment "ipmi_exporter from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 9290 counter accept comment "ipmi_exporter from unique local addresses"
+
+ipmi_exporter_nftables_state: False
+
+ipmi_exporter_version: '1.8.0'

@@ -1,0 +1,165 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ipmi_exporter
+
+- name: install package freeipmi-tools
+  package:
+    state: present
+    name: "{{package_name_freeipmi_tools}}"
+    install_recommends: False
+  tags:
+    - ipmi_exporter
+
+- name: create group ipmi_exporter
+  group:
+    state: present
+    name: "{{group_name_ipmi_exporter}}"
+    system: "{{group_system_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: create user ipmi_exporter
+  user:
+    state: present
+    name: "{{user_name_ipmi_exporter}}"
+    comment: "{{user_comment_ipmi_exporter}}"
+    group: "{{user_group_ipmi_exporter}}"
+    append: "{{user_append_ipmi_exporter}}"
+    createhome: "{{user_home_create_ipmi_exporter}}"
+    move_home: "{{user_home_move_ipmi_exporter}}"
+    remove: "{{user_home_remove_ipmi_exporter}}"
+    force: "{{user_home_force_ipmi_exporter}}"
+    password: "{{user_password_ipmi_exporter}}"
+    update_password: "{{user_password_update_ipmi_exporter}}"
+    shell: "{{user_shell_ipmi_exporter}}"
+    system: "{{user_system_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.sudo
+  template:
+    src: "{{file_src_ipmi_exporter_sudo}}"
+    dest: "{{file_dst_ipmi_exporter_sudo}}"
+    mode: "{{file_mode_ipmi_exporter_sudo}}"
+    owner: "{{file_owner_ipmi_exporter_sudo}}"
+    group: "{{file_group_ipmi_exporter_sudo}}"
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_ipmi_exporter_etc_dir}}"
+    mode: "{{file_mode_ipmi_exporter_etc_dir}}"
+    owner: "{{file_owner_ipmi_exporter_etc_dir}}"
+    group: "{{file_group_ipmi_exporter_etc_dir}}"
+  tags:
+    - ipmi_exporter
+
+- name: download file ipmi_exporter.tar.gz
+  get_url:
+    url: "{{file_src_ipmi_exporter_tar_gz}}"
+    dest: "{{file_dst_ipmi_exporter_tar_gz}}"
+    mode: "{{file_mode_ipmi_exporter_tar_gz}}"
+    owner: "{{file_owner_ipmi_exporter_tar_gz}}"
+    group: "{{file_group_ipmi_exporter_tar_gz}}"
+    checksum: "{{file_checksum_ipmi_exporter_tar_gz}}"
+  tags:
+    - ipmi_exporter
+
+- name: unarchive file ipmi_exporter
+  unarchive:
+    src: "{{file_src_ipmi_exporter}}"
+    dest: "{{file_dst_ipmi_exporter}}"
+    owner: "{{file_owner_ipmi_exporter}}"
+    group: "{{file_group_ipmi_exporter}}"
+    exclude: "{{file_exclude_ipmi_exporter}}"
+    extra_opts: "{{file_extra_opts_ipmi_exporter}}"
+    remote_src: True
+  register: register_unarchive_file_ipmi_exporter
+  tags:
+    - ipmi_exporter
+
+- name: create file ipmi_exporter.service
+  template:
+    src: "{{file_src_ipmi_exporter_service}}"
+    dest: "{{file_dst_ipmi_exporter_service}}"
+    mode: "{{file_mode_ipmi_exporter_service}}"
+    owner: "{{file_owner_ipmi_exporter_service}}"
+    group: "{{file_group_ipmi_exporter_service}}"
+  tags:
+    - ipmi_exporter
+
+- name: set capability cap_net_raw
+  command: "{{command_cmd_set_cap_net_raw}}"
+  register: register_set_cap_net_raw
+  check_mode: False
+  when: register_unarchive_file_ipmi_exporter.changed
+  tags:
+    - ipmi_exporter
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (ipmi_exporter_monitor_monit_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: create file monit.d
+  file:
+    state: directory
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (ipmi_exporter_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  tags:
+    - ipmi_exporter
+
+- name: check service monit
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: False
+  when: (ipmi_exporter_monitor_monit_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (ipmi_exporter_nftables_state == True)
+  tags:
+    - ipmi_exporter
+
+- name: create file nftables.d
+  file:
+    state: directory
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (ipmi_exporter_nftables_state == True) and (register_nftables_d.stat.exists == False)
+  tags:
+    - ipmi_exporter
+
+- name: check service nftables
+  shell: "{{command_cmd_check_service_nftables}}"
+  register: register_check_service_nftables
+  changed_when: (register_check_service_nftables.rc > 1)
+  failed_when: (register_check_service_nftables.rc > 1)
+  check_mode: False
+  when: (ipmi_exporter_nftables_state == True)
+  tags:
+    - ipmi_exporter

@@ -1,0 +1,9 @@
+{{ansible_managed|comment(decoration='#')}}
+
+ipmi_exporter ALL=(root) NOPASSWD: /usr/sbin/bmc-info, \
+                                   /usr/sbin/ipmi-chassis, \
+                                   /usr/sbin/ipmi-dcmi, \
+                                   /usr/sbin/ipmi-raw, \
+                                   /usr/sbin/ipmi-sel, \
+                                   /usr/sbin/ipmi-sensors, \
+                                   /usr/sbin/ipmimonitoring

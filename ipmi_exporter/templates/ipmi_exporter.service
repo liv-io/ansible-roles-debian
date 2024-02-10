@@ -1,0 +1,15 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=IPMI Exporter
+After=syslog.target network.target
+
+[Service]
+User=ipmi_exporter
+Group=ipmi_exporter
+EnvironmentFile={{file_dst_ipmi_exporter_default}}
+ExecStart={{file_creates_ipmi_exporter}} $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

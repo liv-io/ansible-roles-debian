@@ -1,0 +1,112 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - ipmi_exporter
+
+- name: remove package freeipmi-tools
+  package:
+    state: absent
+    name: "{{package_name_freeipmi_tools}}"
+    install_recommends: False
+  tags:
+    - ipmi_exporter
+
+- name: check service ipmi_exporter
+  shell: "{{command_cmd_check_service_ipmi_exporter}}"
+  register: register_check_service_ipmi_exporter
+  changed_when: (register_check_service_ipmi_exporter.rc == 0)
+  failed_when: (register_check_service_ipmi_exporter.rc > 1)
+  check_mode: False
+  tags:
+    - ipmi_exporter
+
+- name: stop service ipmi_exporter
+  service:
+    state: stopped
+    enabled: False
+    name: "{{service_name_ipmi_exporter}}"
+    daemon_reload: True
+  when: (register_check_service_ipmi_exporter.rc == 0)
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.sudo
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_sudo}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove user ipmi_exporter
+  user:
+    state: absent
+    name: "{{user_name_ipmi_exporter}}"
+    remove: "{{user_home_remove_ipmi_exporter}}"
+    force: "{{user_home_force_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove group ipmi_exporter
+  group:
+    state: absent
+    name: "{{group_name_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.nft
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_nft}}"
+  notify: reload service nftables
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.cfg
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_cfg}}"
+  notify: reload service monit
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.default
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_default}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.service
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_service}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter_etc.dir
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_etc_dir}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter
+  file:
+    state: absent
+    path: "{{file_creates_ipmi_exporter}}"
+  tags:
+    - ipmi_exporter
+
+- name: remove file ipmi_exporter.tar.gz
+  file:
+    state: absent
+    path: "{{file_dst_ipmi_exporter_tar_gz}}"
+  tags:
+    - ipmi_exporter
