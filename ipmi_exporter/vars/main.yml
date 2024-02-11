@@ -5,16 +5,16 @@ package_name_freeipmi_tools: 'freeipmi-tools'
 
 # ipmi_exporter_etc.dir
 file_dst_ipmi_exporter_etc_dir: '/etc/ipmi_exporter'
-file_mode_ipmi_exporter_etc_dir: '0755'
+file_mode_ipmi_exporter_etc_dir: '0750'
 file_owner_ipmi_exporter_etc_dir: 'root'
-file_group_ipmi_exporter_etc_dir: 'root'
+file_group_ipmi_exporter_etc_dir: 'ipmi_exporter'
 
 # ipmi.yml
 file_src_ipmi_yml: 'ipmi.yml'
 file_dst_ipmi_yml: '/etc/ipmi_exporter/ipmi.yml'
-file_mode_ipmi_yml: '0644'
+file_mode_ipmi_yml: '0640'
 file_owner_ipmi_yml: 'root'
-file_group_ipmi_yml: 'root'
+file_group_ipmi_yml: 'ipmi_exporter'
 
 # ipmi_exporter.tar.gz
 file_src_ipmi_exporter_tar_gz: "https://github.com/prometheus-community/ipmi_exporter/releases/download/v{{ipmi_exporter_version}}/ipmi_exporter-{{ipmi_exporter_version}}.linux-amd64.tar.gz"

@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2024-02-11)
+
+### Bugs
+
+- Limit POSIX permissions for `/etc/ipmi_exporter` and `ipmi.yml`
+
 ## 0.1.0 (2024-02-10)
 
 ### Features
