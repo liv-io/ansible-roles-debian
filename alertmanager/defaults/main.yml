@@ -2,7 +2,7 @@
 
 alertmanager_state: 'enable'
 
-alertmanager_config: []
+alertmanager_config: ''
 
 alertmanager_monitor_monit_state: False
 

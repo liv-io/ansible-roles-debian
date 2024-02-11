@@ -1,15 +1,3 @@
 {{ansible_managed|comment(decoration='#')}}
 
-{% for item in alertmanager_config %}
-{% if not (item.section|default('') == '') %}
-# {{item.section|upper}}
-
-{% endif %}
-{{item.section}}:
-{% if not (item.config|default('') == '') %}
-{{item.config|indent(width=2,first=True)}}
-{% endif %}
-{% if not loop.last %}
-
-{% endif %}
-{% endfor %}
+{{alertmanager_config}}

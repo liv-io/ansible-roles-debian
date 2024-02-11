@@ -30,41 +30,32 @@ consult the following sections.
     - role: alertmanager
   vars:
     alertmanager_state: 'enable'
-    alertmanager_config:
-      - section: 'global'
-        config: |
-          smtp_from: 'alertmanager@domain.tld'
-          smtp_hello: 'ms.domain.tld'
-          smtp_smarthost: 'mail.domain.tld:587'
-          smtp_auth_username: 'alertmanager@domain.tld'
-          smtp_auth_password: 'TFvPtx-64pUMmBH2HMp5MRW.r_VYx45q'
-          smtp_require_tls: true
-
-      - section: 'route'
-        config: |
-          receiver: 'itops'
-          group_by: ['instance', 'alert']
-          group_wait: 1m
-          group_interval: 30m
-          repeat_interval: 150m
-          routes:
-          - match:
-              severity: 'critical'
-              receiver: 'itops'
-
-      - section: 'inhibit_rules'
-        config: |
-          - source_match:
-              severity: 'critical'
-            target_match:
-              severity: 'warning'
-            equal: ['alertname']
-
-      - section: 'receivers'
-        config: |
-          - name: 'itops'
-            email_configs:
-            - to: 'user01@domain.tld, user02@domain.tld'
+    alertmanager_config: |
+      global:
+        smtp_from: 'ms@example.com'
+        smtp_hello: 'ms.example.com'
+        smtp_smarthost: 'mail.example.com:25'
+        smtp_auth_username: ''
+        smtp_auth_password: ''
+        smtp_require_tls: false
+      route:
+        receiver: 'user'
+        group_by: ['instance', 'alert']
+        group_wait: 1m
+        group_interval: 30m
+        repeat_interval: 3h
+        routes:
+          - matchers:
+              - severity='critical'
+            receiver: 'user'
+      inhibit_rules:
+        - source_matchers: [severity='critical']
+          target_matchers: [severity='warning']
+          equal: ['alertname']
+      receivers:
+        - name: 'user'
+          email_configs:
+            - to: 'user@example.com'
 ```
 
 ### Disable
@@ -75,41 +66,32 @@ consult the following sections.
     - role: alertmanager
   vars:
     alertmanager_state: 'disable'
-    alertmanager_config:
-      - section: 'global'
-        config: |
-          smtp_from: 'alertmanager@domain.tld'
-          smtp_hello: 'ms.example.com'
-          smtp_smarthost: 'mail.domain.tld:587'
-          smtp_auth_username: 'alertmanager@domain.tld'
-          smtp_auth_password: 'TFvPtx-64pUMmBH2HMp5MRW.r_VYx45q'
-          smtp_require_tls: true
-
-      - section: 'route'
-        config: |
-          receiver: 'itops'
-          group_by: ['instance', 'alert']
-          group_wait: 1m
-          group_interval: 30m
-          repeat_interval: 150m
-          routes:
-          - match:
-              severity: 'critical'
-              receiver: 'itops'
-
-      - section: 'inhibit_rules'
-        config: |
-          - source_match:
-              severity: 'critical'
-            target_match:
-              severity: 'warning'
-            equal: ['alertname']
-
-      - section: 'receivers'
-        config: |
-          - name: 'itops'
-            email_configs:
-            - to: 'user01@domain.tld, user02@domain.tld'
+    alertmanager_config: |
+      global:
+        smtp_from: 'ms@example.com'
+        smtp_hello: 'ms.example.com'
+        smtp_smarthost: 'mail.example.com:25'
+        smtp_auth_username: ''
+        smtp_auth_password: ''
+        smtp_require_tls: false
+      route:
+        receiver: 'user'
+        group_by: ['instance', 'alert']
+        group_wait: 1m
+        group_interval: 30m
+        repeat_interval: 3h
+        routes:
+          - matchers:
+              - severity='critical'
+            receiver: 'user'
+      inhibit_rules:
+        - source_matchers: [severity='critical']
+          target_matchers: [severity='warning']
+          equal: ['alertname']
+      receivers:
+        - name: 'user'
+          email_configs:
+            - to: 'user@example.com'
 ```
 
 ### Remove
@@ -155,23 +137,36 @@ consult the following sections.
     Description: Define the 'alertmanager_config' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: section: 'global'
-                config: |
-                  smtp_from: 'alertmanager@domain.tld'
-                  smtp_hello: 'ms.domain.tld'
-                  smtp_smarthost: 'mail.domain.tld:587'
-                  smtp_auth_username: 'alertmanager@domain.tld'
-                  smtp_auth_password: 'TFvPtx-64pUMmBH2HMp5MRW.r_VYx45q'
-                  smtp_require_tls: true
-
-                section: 'receivers'
-                config: |
-                  name: 'itops'
-                  email_configs:
-                    - to: 'user01@domain.tld, user02@domain.tld'
+      Examples: |
+        global:
+          smtp_from: 'ms@example.com'
+          smtp_hello: 'ms.example.com'
+          smtp_smarthost: 'mail.example.com:25'
+          smtp_auth_username: ''
+          smtp_auth_password: ''
+          smtp_require_tls: false
+        route:
+          receiver: 'user'
+          group_by: ['instance', 'alert']
+          group_wait: 1m
+          group_interval: 30m
+          repeat_interval: 3h
+          routes:
+            - matchers:
+                - severity='critical'
+              receiver: 'user'
+        inhibit_rules:
+          - source_matchers: [severity='critical']
+            target_matchers: [severity='warning']
+            equal: ['alertname']
+        receivers:
+          - name: 'user'
+            email_configs:
+              - to: 'user@example.com'
+      None: ''
 
 `alertmanager_monitor_monit_state`
 

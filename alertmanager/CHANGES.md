@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2024-02-11)
+
+### Changes
+
+- Change `alertmanager_config` type from array into string
+
 ## 2.2.0 (2023-10-19)
 
 ### Enhancements
