@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.2 (2024-02-11)
+
+### Bugs
+
+- Do not log output of `ipmi.yml` task
+
 ## 0.1.1 (2024-02-11)
 
 ### Bugs

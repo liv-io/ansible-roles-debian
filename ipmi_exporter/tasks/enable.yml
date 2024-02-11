@@ -17,6 +17,7 @@
     mode: "{{file_mode_ipmi_yml}}"
     owner: "{{file_owner_ipmi_yml}}"
     group: "{{file_group_ipmi_yml}}"
+  no_log: True
   notify: restart service ipmi_exporter
   tags:
     - ipmi_exporter
