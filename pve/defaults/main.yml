@@ -3,19 +3,13 @@
 pve_user_state: 'install'
 
 pve_acl_config_all: []
-
 pve_acl_config_group: []
-
 pve_acl_config_host: []
 
 pve_group_config_all: []
-
 pve_group_config_group: []
-
 pve_group_config_host: []
 
 pve_user_config_all: []
-
 pve_user_config_group: []
-
 pve_user_config_host: []

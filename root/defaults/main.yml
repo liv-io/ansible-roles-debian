@@ -7,15 +7,12 @@ root_authorized_keys: []
 root_comment: 'root'
 
 root_groups: []
-
 root_groups_append: True
 
 root_password: '!'
 
 root_root_dir_group: 'root'
-
 root_root_dir_mode: '0700'
-
 root_root_dir_owner: 'root'
 
 root_shell: '/bin/bash'

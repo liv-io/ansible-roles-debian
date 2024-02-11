@@ -5,23 +5,16 @@ mariadb_state: 'enable'
 mariadb_bind_address: '127.0.0.1'
 
 mariadb_database_all: []
-
 mariadb_database_group: []
-
 mariadb_database_host: []
 
 mariadb_config_server: ''
 
 mariadb_monitor_mail_from_address: "root@{{ansible_domain}}"
-
 mariadb_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-
 mariadb_monitor_mail_state: False
-
 mariadb_monitor_monit_state: False
-
 mariadb_monitor_prom_state: False
-
 mariadb_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 mariadb_nftables_filter_rule: |
@@ -33,23 +26,14 @@ mariadb_nftables_state: False
 mariadb_root_password: ''
 
 mariadb_run_backup_day: '*'
-
 mariadb_run_backup_exclude: []
-
 mariadb_run_backup_hour: '1'
-
 mariadb_run_backup_keep_days: 2
-
 mariadb_run_backup_minute: "{{30|random(seed=inventory_hostname)}}"
-
 mariadb_run_backup_month: '*'
-
 mariadb_run_backup_state: True
-
 mariadb_run_backup_weekday: '*'
 
 mariadb_user_all: []
-
 mariadb_user_group: []
-
 mariadb_user_host: []

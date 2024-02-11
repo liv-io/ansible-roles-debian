@@ -3,7 +3,5 @@
 fstab_state: 'install'
 
 fstab_config_all: []
-
 fstab_config_group: []
-
 fstab_config_host: []

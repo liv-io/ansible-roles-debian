@@ -5,7 +5,6 @@ openssh_state: 'enable'
 openssh_address_family: 'any'
 
 openssh_allow_groups: []
-
 openssh_allow_users: []
 
 openssh_banner: True
@@ -15,11 +14,9 @@ openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
 openssh_compression: True
 
 openssh_deny_groups: []
-
 openssh_deny_users: []
 
 openssh_host_key: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ed25519_key']
-
 openssh_host_key_algorithms: ['ssh-ed25519', 'ssh-rsa']
 
 openssh_kex_algorithms: ['curve25519-sha256', 'curve25519-sha256@libssh.org']
@@ -59,7 +56,5 @@ openssh_use_dns: False
 openssh_version_addendum: 'none'
 
 openssh_x11_display_offset: 10
-
 openssh_x11_forwarding: False
-
 openssh_x11_use_localhost: True

@@ -79,5 +79,4 @@ nftables_filter_rule_all: |
   add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
 
 nftables_filter_rule_group: ''
-
 nftables_filter_rule_host: ''

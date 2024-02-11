@@ -16,7 +16,6 @@ auditd_config_all:
       -f 1
 
 auditd_config_group: []
-
 auditd_config_host: []
 
 auditd_monitor_monit_state: False

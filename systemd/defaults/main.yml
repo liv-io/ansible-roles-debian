@@ -11,5 +11,4 @@ systemd_config_all:
     options: []
 
 systemd_config_group: []
-
 systemd_config_host: []

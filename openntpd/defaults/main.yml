@@ -3,31 +3,20 @@
 openntpd_state: 'enable'
 
 openntpd_check_time_day: '*'
-
 openntpd_check_time_hour: '*'
-
 openntpd_check_time_minute: '*/10'
-
 openntpd_check_time_month: '*'
-
 openntpd_check_time_weekday: '*'
-
 openntpd_check_time_offset_limit: 1000
-
 openntpd_check_time_state: True
 
 openntpd_listen: []
 
 openntpd_monitor_mail_from_address: "root@{{ansible_domain}}"
-
 openntpd_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-
 openntpd_monitor_mail_state: False
-
 openntpd_monitor_monit_state: False
-
 openntpd_monitor_prom_state: False
-
 openntpd_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 openntpd_nftables_filter_rule: |

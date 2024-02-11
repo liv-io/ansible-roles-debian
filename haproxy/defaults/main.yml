@@ -15,21 +15,12 @@ haproxy_nftables_filter_rule: |
 haproxy_nftables_state: False
 
 haproxy_stats_auth: []
-
 haproxy_stats_defaults_state: False
-
 haproxy_stats_hide_version: True
-
 haproxy_stats_listen_state: False
-
 haproxy_stats_realm: 'Haproxy\ Statistics'
-
 haproxy_stats_refresh: 5
-
 haproxy_stats_show_desc: ''
-
 haproxy_stats_show_legends: True
-
 haproxy_stats_show_node: True
-
 haproxy_stats_uri: '/haproxy?stats'

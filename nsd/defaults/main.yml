@@ -7,7 +7,6 @@ nsd_control_enable: False
 nsd_default_port: 53
 
 nsd_hide_identity: True
-
 nsd_hide_version: True
 
 nsd_identity: ''

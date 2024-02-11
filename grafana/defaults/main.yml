@@ -22,19 +22,12 @@ grafana_plugins_all:
   - {name: 'grafana-worldmap-panel', state: True, version: 'latest'}
 
 grafana_plugins_group: []
-
 grafana_plugins_host: []
 
 grafana_smtp_from_address: "grafana@{{ansible_domain}}"
-
 grafana_smtp_from_name: 'Grafana'
-
 grafana_smtp_host: ''
-
 grafana_smtp_password: ''
-
 grafana_smtp_port: ''
-
 grafana_smtp_state: False
-
 grafana_smtp_user: ''

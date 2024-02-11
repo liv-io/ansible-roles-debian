@@ -10,16 +10,13 @@ squid_cache_dir:
   - {type: 'ufs', size: '8192', first_level: '16', second_level: '256'}
 
 squid_cache_mem: '256 MB'
-
 squid_cache_mgr: "admin@{{ansible_domain}}"
-
 squid_cache_replacement_policy: 'lru'
 
 squid_cachemgr_passwd:
   - {password: 'disable', action: 'all', comment: 'disable all actions'}
 
 squid_domain_allowed: []
-
 squid_domain_blocked: []
 
 squid_http_port: 3128
@@ -39,7 +36,6 @@ squid_mail_from: "admin@{{ansible_domain}}"
 squid_max_filedescriptors: 4096
 
 squid_maximum_object_size: '262144 KB'
-
 squid_maximum_object_size_in_memory: '2048 KB'
 
 squid_memory_replacement_policy: 'lru'
@@ -66,7 +62,6 @@ squid_nftables_filter_rule: |
 squid_nftables_state: False
 
 squid_quick_abort_max: '0 KB'
-
 squid_quick_abort_min: '0 KB'
 
 squid_shutdown_lifetime: 1

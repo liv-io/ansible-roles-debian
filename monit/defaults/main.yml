@@ -3,35 +3,23 @@
 monit_state: 'enable'
 
 monit_config_all: []
-
 monit_config_group: []
-
 monit_config_host: []
 
 monit_daemon_delay: 3
-
 monit_daemon_interval: 60
 
 monit_include: '/etc/monit.d/*'
 
 monit_mail_from: "monit@{{ansible_domain}}"
-
 monit_mail_message_action: '$ACTION'
-
 monit_mail_message_date: '$DATE'
-
 monit_mail_message_description: '$DESCRIPTION'
-
 monit_mail_message_event: '$EVENT'
-
 monit_mail_message_host: '$HOST'
-
 monit_mail_message_service: '$SERVICE'
-
 monit_mail_server: []
-
 monit_mail_subject: "Monit: $EVENT '$SERVICE' ($HOST)"
-
 monit_mail_to:
   - {address: "admin@{{ansible_domain}}", filter: 'not on', events: ['instance', 'action']}
 
@@ -42,7 +30,5 @@ monit_nftables_filter_rule: |
 monit_nftables_state: False
 
 monit_web_server_address: 'localhost'
-
 monit_web_server_allow: [{user: 'localhost'}]
-
 monit_web_server_port: 2812

@@ -3,9 +3,7 @@
 rsyslog_state: 'enable'
 
 rsyslog_config_all: []
-
 rsyslog_config_group: []
-
 rsyslog_config_host: []
 
 rsyslog_monitor_monit_state: False

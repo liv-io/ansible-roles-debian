@@ -57,7 +57,6 @@ promtail_pipeline_stages_all: |
   {% endraw %}
 
 promtail_pipeline_stages_group: ''
-
 promtail_pipeline_stages_host: ''
 
 promtail_version: '2.9.4'

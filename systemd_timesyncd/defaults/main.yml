@@ -3,29 +3,19 @@
 systemd_timesyncd_state: 'enable'
 
 systemd_timesyncd_check_time_day: '*'
-
 systemd_timesyncd_check_time_hour: '*'
-
 systemd_timesyncd_check_time_minute: '*/10'
-
 systemd_timesyncd_check_time_month: '*'
-
 systemd_timesyncd_check_time_weekday: '*'
-
 systemd_timesyncd_check_time_state: True
 
 systemd_timesyncd_fallback: []
 
 systemd_timesyncd_monitor_mail_from_address: "root@{{ansible_domain}}"
-
 systemd_timesyncd_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-
 systemd_timesyncd_monitor_mail_state: False
-
 systemd_timesyncd_monitor_monit_state: False
-
 systemd_timesyncd_monitor_prom_state: False
-
 systemd_timesyncd_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 systemd_timesyncd_nftables_filter_rule: |
@@ -37,7 +27,6 @@ systemd_timesyncd_nftables_state: False
 systemd_timesyncd_offset_limit: 1
 
 systemd_timesyncd_poll_interval_max_sec: 2048
-
 systemd_timesyncd_poll_interval_min_sec: 32
 
 systemd_timesyncd_server: ["ntp.{{ansible_domain}}"]
