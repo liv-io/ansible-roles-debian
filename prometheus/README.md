@@ -30,9 +30,6 @@ consult the following sections.
     - role: prometheus
   vars:
     prometheus_state: 'enable'
-    prometheus_alertmanager_url: 'https://alert.example.com'
-    prometheus_grafana_url: 'https://monitor.example.com'
-    prometheus_prometheus_url: 'https://metric.example.com'
     prometheus_monit_exporter_target_manual_hosts:
       - {address: '10.1.1.11', hostname: 'host01'}
       - {address: '10.1.1.13', hostname: 'host02'}
@@ -51,9 +48,6 @@ consult the following sections.
     - role: prometheus
   vars:
     prometheus_state: 'disable'
-    prometheus_alertmanager_url: 'https://alert.example.com'
-    prometheus_grafana_url: 'https://monitor.example.com'
-    prometheus_prometheus_url: 'https://metric.example.com'
     prometheus_monit_exporter_target_manual_hosts:
       - {address: '10.1.1.11', hostname: 'host01'}
       - {address: '10.1.1.13', hostname: 'host02'}
@@ -130,16 +124,6 @@ consult the following sections.
     Default    : True
     Options    : True | False
 
-`prometheus_alertmanager_url`
-
-    Description: Define the 'prometheus_alertmanager_url' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "https://alertmanager.{{ansible_domain}}"
-    Options    :
-      Examples: 'https://alert.domain.tld'
-
 `prometheus_blackbox_exporter_state`
 
     Description: Control the 'prometheus_blackbox_exporter_state' option.
@@ -214,16 +198,6 @@ consult the following sections.
     Default    : '30s'
     Options    :
       Examples: '15s' | '30s' | '60s'
-
-`prometheus_grafana_url`
-
-    Description: Define the 'prometheus_grafana_url' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "https://grafana.{{ansible_domain}}"
-    Options    :
-      Examples: 'https://monitor.domain.tld'
 
 `prometheus_haproxy_exporter_target_ansible_groups`
 
@@ -400,16 +374,6 @@ consult the following sections.
                  {address: '10.1.1.13', hostname: 'host02'},
                  {address: '10.1.1.15', hostname: 'host03'}]
       None    : []
-
-`prometheus_prometheus_url`
-
-    Description: Define the 'prometheus_prometheus_url' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "https://prometheus.{{ansible_domain}}"
-    Options    :
-      Examples: 'https://metric.domain.tld'
 
 `prometheus_smokeping_prober_state`
 

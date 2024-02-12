@@ -1,0 +1,692 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Monit Exporter and Prometheus Alertmanager",
+  "editable": false,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "Monit Exporter",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "OK"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Checksum failed"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Execution failed"
+                      },
+                      "4": {
+                        "index": 3,
+                        "text": "Timeout"
+                      },
+                      "8": {
+                        "index": 4,
+                        "text": "Timestamp failed"
+                      },
+                      "16": {
+                        "index": 5,
+                        "text": "Size failed"
+                      },
+                      "32": {
+                        "index": 6,
+                        "text": "Connection failed"
+                      },
+                      "64": {
+                        "index": 7,
+                        "text": "Permission failed"
+                      },
+                      "128": {
+                        "index": 8,
+                        "text": "UID failed"
+                      },
+                      "256": {
+                        "index": 9,
+                        "text": "GID failed"
+                      },
+                      "512": {
+                        "index": 10,
+                        "text": "Does not exist"
+                      },
+                      "1024": {
+                        "index": 11,
+                        "text": "Invalid type"
+                      },
+                      "2048": {
+                        "index": 12,
+                        "text": "Data access error"
+                      },
+                      "4096": {
+                        "index": 13,
+                        "text": "Execution failed"
+                      },
+                      "8192": {
+                        "index": 14,
+                        "text": "Filesystem flags failed"
+                      },
+                      "16384": {
+                        "index": 15,
+                        "text": "ICMP failed"
+                      },
+                      "32768": {
+                        "index": 16,
+                        "text": "Content failed"
+                      },
+                      "65536": {
+                        "index": 17,
+                        "text": "Monit instance failed"
+                      },
+                      "131072": {
+                        "index": 18,
+                        "text": "Action done"
+                      },
+                      "262144": {
+                        "index": 19,
+                        "text": "PID failed"
+                      },
+                      "524288": {
+                        "index": 20,
+                        "text": "PPID failed"
+                      },
+                      "1048576": {
+                        "index": 21,
+                        "text": "Heartbeat failed"
+                      },
+                      "2097152": {
+                        "index": 22,
+                        "text": "Status failed"
+                      },
+                      "4194304": {
+                        "index": 23,
+                        "text": "Uptime failed"
+                      },
+                      "8388608": {
+                        "index": 24,
+                        "text": "Link down"
+                      },
+                      "16777216": {
+                        "index": 25,
+                        "text": "Speed failed"
+                      },
+                      "33554432": {
+                        "index": 26,
+                        "text": "Saturation exceeded"
+                      },
+                      "67108864": {
+                        "index": 27,
+                        "text": "Download bytes exceeded"
+                      },
+                      "134217728": {
+                        "index": 28,
+                        "text": "Upload bytes exceeded"
+                      },
+                      "268435456": {
+                        "index": 29,
+                        "text": "Download packets exceeded"
+                      },
+                      "536870912": {
+                        "index": 30,
+                        "text": "Upload packets exceeded"
+                      },
+                      "1073741824": {
+                        "index": 31,
+                        "text": "Does not exist"
+                      },
+                      "2147483647": {
+                        "index": 32,
+                        "text": "All errors"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "super-light-green",
+                      "value": null
+                    },
+                    {
+                      "color": "super-light-red",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Host"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Monitored"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "super-light-orange",
+                        "index": 0,
+                        "text": "No"
+                      },
+                      "1": {
+                        "color": "super-light-green",
+                        "index": 1,
+                        "text": "Yes"
+                      },
+                      ">1": {
+                        "color": "super-light-red",
+                        "index": 2,
+                        "text": "Failure"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort (monit_exporter_service_check > 0 or monit_exporter_service_check{monitored=\"0\"})",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Services",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "__name__": true,
+              "check_name": false,
+              "job": true,
+              "type": false
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 0,
+              "Value": 3,
+              "__name__": 6,
+              "check_name": 1,
+              "instance": 4,
+              "job": 7,
+              "monitored": 5,
+              "type": 2
+            },
+            "renameByName": {
+              "Value": "Status",
+              "check_name": "Name",
+              "instance": "Host",
+              "job": "",
+              "monitored": "Monitored",
+              "type": "Type"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "camptocamp-prometheus-alertmanager-datasource",
+        "uid": "P5E1DE37E8890BBFE"
+      },
+      "description": "Prometheus Alertmanager",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "severity"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Severity"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "pattern": "info",
+                      "result": {
+                        "color": "super-light-yellow",
+                        "index": 0
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "warning",
+                      "result": {
+                        "color": "super-light-orange",
+                        "index": 1
+                      }
+                    },
+                    "type": "regex"
+                  },
+                  {
+                    "options": {
+                      "pattern": "critical",
+                      "result": {
+                        "color": "super-light-red",
+                        "index": 2
+                      }
+                    },
+                    "type": "regex"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Host"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Priority"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Priority"
+          }
+        ]
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "annotations": false,
+          "datasource": {
+            "type": "camptocamp-prometheus-alertmanager-datasource",
+            "uid": "P5E1DE37E8890BBFE"
+          },
+          "expr": "",
+          "labelSelector": "*",
+          "legendFormat": "",
+          "refId": "A",
+          "target": "Query",
+          "type": "table"
+        }
+      ],
+      "title": "Alerts",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {
+            "reducers": []
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "SeverityValue": false,
+              "alertstatus": true,
+              "alertstatus_code": true,
+              "check_name": true,
+              "job": true,
+              "monitored": true,
+              "summary": true,
+              "type": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "SeverityValue": 5,
+              "Time": 0,
+              "alertname": 1,
+              "alertstatus": 8,
+              "alertstatus_code": 9,
+              "check_name": 10,
+              "description": 2,
+              "instance": 4,
+              "job": 6,
+              "monitored": 11,
+              "severity": 3,
+              "summary": 7,
+              "type": 12
+            },
+            "renameByName": {
+              "SeverityValue": "Priority",
+              "Time": "",
+              "alertname": "Name",
+              "description": "Description",
+              "instance": "Host",
+              "job": "Exporter",
+              "severity": "Severity"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "tags": [
+    "monit_exporter",
+    "prometheus_alertmanager",
+    "built-in"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "System Status",
+  "version": 2,
+  "weekStart": ""
+}

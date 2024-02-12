@@ -90,75 +90,62 @@
   tags:
     - prometheus
 
-- name: copy file network_traffic.json
+- name: copy file network_traffic.json, node_exporter.json, script_status.json, system_status.json
   copy:
-    src: "{{file_src_network_traffic_json}}"
-    dest: "{{file_dst_network_traffic_json}}"
-    mode: "{{file_mode_network_traffic_json}}"
-    owner: "{{file_owner_network_traffic_json}}"
-    group: "{{file_group_network_traffic_json}}"
+    src: "{{item}}"
+    dest: "{{file_dst_builtin_dashboards_dir}}/{{item}}"
+    mode: "{{file_mode_dashboard_json}}"
+    owner: "{{file_owner_dashboard_json}}"
+    group: "{{file_group_dashboard_json}}"
+  loop:
+    - 'network_traffic.json'
+    - 'node_exporter.json'
+    - 'script_status.json'
+    - 'system_status.json'
   notify: restart service grafana
   when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 
-- name: copy file node_exporter.json
+- name: copy file ipmi_exporter.json
   copy:
-    src: "{{file_src_node_exporter_json}}"
-    dest: "{{file_dst_node_exporter_json}}"
-    mode: "{{file_mode_node_exporter_json}}"
-    owner: "{{file_owner_node_exporter_json}}"
-    group: "{{file_group_node_exporter_json}}"
+    src: 'ipmi_exporter.json'
+    dest: "{{file_dst_builtin_dashboards_dir}}/{{item}}"
+    mode: "{{file_mode_dashboard_json}}"
+    owner: "{{file_owner_dashboard_json}}"
+    group: "{{file_group_dashboard_json}}"
+  loop:
+    - 'ipmi_exporter.json'
   notify: restart service grafana
-  when: (prometheus_builtin_dashboards_state == True)
+  when: (prometheus_builtin_dashboards_state == True) and (prometheus_ipmi_exporter_state == True)
   tags:
     - prometheus
 
 - name: copy file ping_prober.json
   copy:
-    src: "{{file_src_ping_prober_json}}"
-    dest: "{{file_dst_ping_prober_json}}"
-    mode: "{{file_mode_ping_prober_json}}"
-    owner: "{{file_owner_ping_prober_json}}"
-    group: "{{file_group_ping_prober_json}}"
+    src: 'ping_prober.json'
+    dest: "{{file_dst_builtin_dashboards_dir}}/{{item}}"
+    mode: "{{file_mode_dashboard_json}}"
+    owner: "{{file_owner_dashboard_json}}"
+    group: "{{file_group_dashboard_json}}"
+  loop:
+    - 'ping_prober.json'
   notify: restart service grafana
   when: (prometheus_builtin_dashboards_state == True) and (prometheus_blackbox_exporter_state == True)
   tags:
     - prometheus
 
-- name: copy file script_status.json
-  copy:
-    src: "{{file_src_script_status_json}}"
-    dest: "{{file_dst_script_status_json}}"
-    mode: "{{file_mode_script_status_json}}"
-    owner: "{{file_owner_script_status_json}}"
-    group: "{{file_group_script_status_json}}"
-  notify: restart service grafana
-  when: (prometheus_builtin_dashboards_state == True)
-  tags:
-    - prometheus
-
 - name: copy file smokeping_prober.json
   copy:
-    src: "{{file_src_smokeping_prober_json}}"
-    dest: "{{file_dst_smokeping_prober_json}}"
-    mode: "{{file_mode_smokeping_prober_json}}"
-    owner: "{{file_owner_smokeping_prober_json}}"
-    group: "{{file_group_smokeping_prober_json}}"
+    src: 'smokeping_prober.json'
+    dest: "{{file_dst_builtin_dashboards_dir}}/{{item}}"
+    mode: "{{file_mode_dashboard_json}}"
+    owner: "{{file_owner_dashboard_json}}"
+    group: "{{file_group_dashboard_json}}"
+  loop:
+    - 'smokeping_prober.json'
   notify: restart service grafana
   when: (prometheus_builtin_dashboards_state == True) and (prometheus_smokeping_prober_state == True)
-  tags:
-    - prometheus
-
-- name: create file system_status.json
-  template:
-    src: "{{file_src_system_status_json}}"
-    dest: "{{file_dst_system_status_json}}"
-    mode: "{{file_mode_system_status_json}}"
-    owner: "{{file_owner_system_status_json}}"
-    group: "{{file_group_system_status_json}}"
-  notify: restart service grafana
-  when: (prometheus_builtin_dashboards_state == True)
   tags:
     - prometheus
 

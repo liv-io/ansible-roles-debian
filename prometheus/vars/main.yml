@@ -113,47 +113,10 @@ file_mode_alerting_rules_yml: '0644'
 file_owner_alerting_rules_yml: 'root'
 file_group_alerting_rules_yml: 'root'
 
-# network_traffic.json
-file_src_network_traffic_json: 'network_traffic.json'
-file_dst_network_traffic_json: '/var/lib/grafana/dashboards/builtin/network_traffic.json'
-file_mode_network_traffic_json: '0640'
-file_owner_network_traffic_json: 'grafana'
-file_group_network_traffic_json: 'grafana'
-
-# node_exporter.json
-file_src_node_exporter_json: 'node_exporter.json'
-file_dst_node_exporter_json: '/var/lib/grafana/dashboards/builtin/node_exporter.json'
-file_mode_node_exporter_json: '0640'
-file_owner_node_exporter_json: 'grafana'
-file_group_node_exporter_json: 'grafana'
-
-# ping_prober.json
-file_src_ping_prober_json: 'ping_prober.json'
-file_dst_ping_prober_json: '/var/lib/grafana/dashboards/builtin/ping_prober.json'
-file_mode_ping_prober_json: '0640'
-file_owner_ping_prober_json: 'grafana'
-file_group_ping_prober_json: 'grafana'
-
-# script_status.json
-file_src_script_status_json: 'script_status.json'
-file_dst_script_status_json: '/var/lib/grafana/dashboards/builtin/script_status.json'
-file_mode_script_status_json: '0640'
-file_owner_script_status_json: 'grafana'
-file_group_script_status_json: 'grafana'
-
-# smokeping_prober.json
-file_src_smokeping_prober_json: 'smokeping_prober.json'
-file_dst_smokeping_prober_json: '/var/lib/grafana/dashboards/builtin/smokeping_prober.json'
-file_mode_smokeping_prober_json: '0640'
-file_owner_smokeping_prober_json: 'grafana'
-file_group_smokeping_prober_json: 'grafana'
-
-# system_status.json
-file_src_system_status_json: 'system_status.json'
-file_dst_system_status_json: '/var/lib/grafana/dashboards/builtin/system_status.json'
-file_mode_system_status_json: '0640'
-file_owner_system_status_json: 'grafana'
-file_group_system_status_json: 'grafana'
+# ipmi_exporter.json, network_traffic.json, node_exporter.json, ping_prober.json, script_status.json, smokeping_prober.json, system_status.json
+file_mode_dashboard_json: '0640'
+file_owner_dashboard_json: 'grafana'
+file_group_dashboard_json: 'grafana'
 
 # monit.d
 file_dst_monit_d: '/etc/monit.d'

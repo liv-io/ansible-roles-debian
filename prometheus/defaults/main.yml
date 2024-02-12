@@ -4,7 +4,6 @@ prometheus_state: 'enable'
 
 prometheus_alerting_rules: ''
 prometheus_alertmanager_state: True
-prometheus_alertmanager_url: "https://alertmanager.{{ansible_domain}}"
 
 prometheus_blackbox_exporter_state: True
 prometheus_blackbox_exporter_http_ip4_basic_manual_hosts: []
@@ -16,11 +15,10 @@ prometheus_builtin_dashboards_state: True
 prometheus_global_evaluation_interval: '30s'
 prometheus_global_scrape_interval: '30s'
 
-prometheus_grafana_url: "https://grafana.{{ansible_domain}}"
-
 prometheus_haproxy_exporter_target_ansible_groups: []
 prometheus_haproxy_exporter_target_manual_hosts: []
 
+prometheus_ipmi_exporter_state: True
 prometheus_ipmi_exporter_target_ansible_groups: []
 prometheus_ipmi_exporter_target_manual_hosts: []
 
@@ -54,8 +52,6 @@ prometheus_nftables_filter_rule: |
   add rule ip6 filter OUTPUT ct state new tcp dport 12798 counter accept comment "cardano_node_exporter to any"
 
 prometheus_nftables_state: False
-
-prometheus_prometheus_url: "https://prometheus.{{ansible_domain}}"
 
 prometheus_smokeping_prober_state: False
 prometheus_smokeping_prober_target_ansible_groups: []

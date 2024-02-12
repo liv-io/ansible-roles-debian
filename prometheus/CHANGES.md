@@ -10,6 +10,24 @@ The headers are:
 - enhancements
 - features
 
+## 2.10.0 (2024-02-12)
+
+### Changes
+
+- Remove parameter `prometheus_alertmanager_url`
+- Remove parameter `prometheus_grafana_url`
+- Remove parameter `prometheus_prometheus_url`
+
+### Enhancements
+
+- Rework and improve all built-in dashboards
+- Update dashboards to schemaVersion 39
+- Migrate visualizations from AngularJS- to React-based plugin platform
+
+### Features
+
+- Add `ipmi_exporter` dashboard
+
 ## 2.9.0 (2024-02-10)
 
 ### Enhancements

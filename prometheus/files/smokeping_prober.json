@@ -3,7 +3,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -14,82 +17,100 @@
   },
   "description": "Smokeping Prober Ping Duration",
   "editable": false,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "cards": {
-        "cardPadding": null,
-        "cardRound": null
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
-      "color": {
-        "cardColor": "#b4ff00",
-        "colorScale": "sqrt",
-        "colorScheme": "interpolateOranges",
-        "exponent": 0.5,
-        "mode": "opacity"
-      },
-      "dataFormat": "tsbuckets",
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "scaleDistribution": {
+              "type": "linear"
+            }
+          },
+          "fieldMinMax": false,
+          "unitScale": true
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 34,
+        "h": 21,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "heatmap": {},
-      "hideZeroBuckets": false,
-      "highlightCards": true,
-      "id": 2,
-      "legend": {
-        "show": false
+      "id": 1,
+      "options": {
+        "calculate": false,
+        "cellGap": 2,
+        "cellValues": {},
+        "color": {
+          "exponent": 0.5,
+          "fill": "#00ff00",
+          "mode": "opacity",
+          "reverse": false,
+          "scale": "exponential",
+          "scheme": "Oranges",
+          "steps": 128
+        },
+        "exemplars": {
+          "color": "rgba(255,0,255,0.7)"
+        },
+        "filterValues": {
+          "le": 1e-9
+        },
+        "legend": {
+          "show": false
+        },
+        "rowsFrame": {
+          "layout": "auto"
+        },
+        "tooltip": {
+          "mode": "single",
+          "showColorScale": false,
+          "yHistogram": false
+        },
+        "yAxis": {
+          "axisPlacement": "left",
+          "decimals": 0,
+          "reverse": false,
+          "unit": "s"
+        }
       },
-      "links": [],
-      "reverseYBuckets": false,
+      "pluginVersion": "10.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
           "expr": "sum(rate(smokeping_response_duration_seconds_bucket{instance=~\"$prober\",host=\"$target\"}[5m])) by (le)",
           "format": "heatmap",
-          "intervalFactor": 1,
+          "instant": false,
+          "interval": "",
           "legendFormat": "{{le}}",
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "Smokeping Prober",
-      "tooltip": {
-        "show": true,
-        "showHistogram": false
-      },
-      "type": "heatmap",
-      "xAxis": {
-        "show": true
-      },
-      "xBucketNumber": null,
-      "xBucketSize": null,
-      "yAxis": {
-        "decimals": 0,
-        "format": "s",
-        "logBase": 1,
-        "max": null,
-        "min": "0",
-        "show": true,
-        "splitFactor": null
-      },
-      "yBucketBound": "auto",
-      "yBucketNumber": null,
-      "yBucketSize": null
+      "type": "heatmap"
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 26,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [
     "smokeping_prober",
     "built-in"
@@ -97,60 +118,58 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
         "current": {
           "selected": true,
-          "text": [
-          ],
-          "value": [
-          ]
+          "text": [],
+          "value": []
         },
-        "datasource": null,
-        "definition": "",
-        "error": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(smokeping_prober_build_info,instance)",
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": true,
         "name": "prober",
         "options": [],
-        "query": "label_values(smokeping_prober_build_info, instance)",
+        "query": {
+          "qryType": 1,
+          "query": "label_values(smokeping_prober_build_info,instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
-        "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "localhost",
           "value": "localhost"
         },
-        "datasource": null,
-        "definition": "label_values(smokeping_response_duration_seconds_bucket, host)",
-        "error": null,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "label_values(smokeping_response_duration_seconds_bucket,host)",
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "target",
         "options": [],
-        "query": "label_values(smokeping_response_duration_seconds_bucket, host)",
+        "query": {
+          "qryType": 1,
+          "query": "label_values(smokeping_response_duration_seconds_bucket,host)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       }
     ]
   },
@@ -158,31 +177,9 @@
     "from": "now-3h",
     "to": "now"
   },
-  "timepicker": {
-    "refresh_intervals": [
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
-  "timezone": "browser",
+  "timepicker": {},
+  "timezone": "",
   "title": "Smokeping Prober",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }
