@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.10.1 (2024-02-12)
+
+### Enhancements
+
+- Remove current selection in `network_traffic` dashboard
+
 ## 2.10.0 (2024-02-12)
 
 ### Changes

@@ -300,12 +300,8 @@
       {
         "current": {
           "selected": true,
-          "text": [
-            "bs02"
-          ],
-          "value": [
-            "bs02"
-          ]
+          "text": [],
+          "value": []
         },
         "datasource": {
           "type": "prometheus",
