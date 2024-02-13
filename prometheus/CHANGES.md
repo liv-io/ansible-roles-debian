@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.10.2 (2024-02-13)
+
+### Bugs
+
+- Fix variable query regex in `network_traffic` dashboard
+
 ## 2.10.1 (2024-02-12)
 
 ### Enhancements

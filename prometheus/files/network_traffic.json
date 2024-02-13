@@ -292,7 +292,7 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "^fw|firewall\\d-n-.*",
+        "regex": "^fw|firewall.*",
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
@@ -319,7 +319,7 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "^(?!fw|firewall\\d-n-).*",
+        "regex": "^(?!fw|firewall).*",
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
