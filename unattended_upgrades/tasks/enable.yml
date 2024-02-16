@@ -17,7 +17,7 @@
     mode: "{{file_mode_50unattended_upgrades}}"
     owner: "{{file_owner_50unattended_upgrades}}"
     group: "{{file_group_50unattended_upgrades}}"
-  notify: restart service unattended_upgrades
+  notify: restart service unattended-upgrades
   tags:
     - unattended_upgrades
 

@@ -20,7 +20,7 @@
     name: "{{service_name_nftables}}"
   when: (register_check_service_nftables.rc == 0)
 
-- name: restart service unattended_upgrades
+- name: restart service unattended-upgrades
   service:
     state: restarted
     name: "{{service_name_unattended_upgrades}}"

@@ -1,4 +1,4 @@
-{{ansible_managed|comment(decoration='#')}}
+{{ansible_managed|comment(decoration='//')}}
 
 // Unattended-Upgrade::Origins-Pattern controls which packages are
 // upgraded.

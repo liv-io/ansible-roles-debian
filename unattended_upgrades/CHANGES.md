@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2024-02-16)
+
+### Bugs
+
+- Fix Jinja2 comment decoration in template
+
 ## 0.1.0 (2024-02-16)
 
 ### Features
