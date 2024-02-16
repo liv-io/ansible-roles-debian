@@ -1,0 +1,42 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - unattended_upgrades
+
+- name: remove package unattended-upgrades
+  package:
+    state: absent
+    name: "{{package_name_unattended_upgrades}}"
+    install_recommends: False
+  tags:
+    - unattended_upgrades
+
+- name: remove file unattended-upgrades.nft
+  file:
+    state: absent
+    path: "{{file_dst_unattended_upgrades_nft}}"
+  notify: reload service nftables
+  tags:
+    - unattended_upgrades
+
+- name: remove file unattended-upgrades.cfg
+  file:
+    state: absent
+    path: "{{file_dst_unattended_upgrades_cfg}}"
+  notify: reload service monit
+  tags:
+    - unattended_upgrades
+
+- name: remove file 50unattended-upgrades
+  file:
+    state: absent
+    path: "{{file_dst_50unattended_upgrades}}"
+  tags:
+    - unattended_upgrades

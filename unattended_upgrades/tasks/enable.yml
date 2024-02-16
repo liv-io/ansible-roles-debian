@@ -1,0 +1,72 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - unattended_upgrades
+
+- name: create file 50unattended-upgrades
+  template:
+    src: "{{file_src_50unattended_upgrades}}"
+    dest: "{{file_dst_50unattended_upgrades}}"
+    mode: "{{file_mode_50unattended_upgrades}}"
+    owner: "{{file_owner_50unattended_upgrades}}"
+    group: "{{file_group_50unattended_upgrades}}"
+  notify: restart service unattended_upgrades
+  tags:
+    - unattended_upgrades
+
+- name: create file unattended-upgrades.cfg
+  template:
+    src: "{{file_src_unattended_upgrades_cfg}}"
+    dest: "{{file_dst_unattended_upgrades_cfg}}"
+    mode: "{{file_mode_unattended_upgrades_cfg}}"
+    owner: "{{file_owner_unattended_upgrades_cfg}}"
+    group: "{{file_group_unattended_upgrades_cfg}}"
+  notify: reload service monit
+  when: (unattended_upgrades_monitor_monit_state == True)
+  tags:
+    - unattended_upgrades
+
+- name: remove file unattended-upgrades.cfg
+  file:
+    state: absent
+    path: "{{file_dst_unattended_upgrades_cfg}}"
+  notify: reload service monit
+  when: (unattended_upgrades_monitor_monit_state == False)
+  tags:
+    - unattended_upgrades
+
+- name: create file unattended-upgrades.nft
+  template:
+    src: "{{file_src_unattended_upgrades_nft}}"
+    dest: "{{file_dst_unattended_upgrades_nft}}"
+    mode: "{{file_mode_unattended_upgrades_nft}}"
+    owner: "{{file_owner_unattended_upgrades_nft}}"
+    group: "{{file_group_unattended_upgrades_nft}}"
+  notify: reload service nftables
+  when: (unattended_upgrades_nftables_state == True)
+  tags:
+    - unattended_upgrades
+
+- name: remove file unattended-upgrades.nft
+  file:
+    state: absent
+    path: "{{file_dst_unattended_upgrades_nft}}"
+  notify: reload service nftables
+  when: (unattended_upgrades_nftables_state == False)
+  tags:
+    - unattended_upgrades
+
+- name: start service unattended-upgrades
+  service:
+    state: started
+    enabled: True
+    name: "{{service_name_unattended_upgrades}}"
+  tags:
+    - unattended_upgrades

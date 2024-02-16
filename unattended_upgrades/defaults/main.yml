@@ -1,0 +1,20 @@
+---
+
+unattended_upgrades_state: 'enable'
+
+unattended_upgrades_automatic_reboot: True
+unattended_upgrades_automatic_reboot_time_hour: "{{24|random(seed=ansible_default_ipv4.macaddress)}}"
+unattended_upgrades_automatic_reboot_time_minute: "{{59|random(seed=ansible_default_ipv4.macaddress)}}"
+unattended_upgrades_automatic_reboot_with_users: True
+
+unattended_upgrades_monitor_monit_state: False
+
+unattended_upgrades_nftables_filter_rule: |
+  add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+  add rule ip6 filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"
+
+unattended_upgrades_nftables_state: False
+
+unattended_upgrades_remove_new_unused_dependencies: True
+unattended_upgrades_remove_unused_dependencies: True
+unattended_upgrades_remove_unused_kernel_packages: True
