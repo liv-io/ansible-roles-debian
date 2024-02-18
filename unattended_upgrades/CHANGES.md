@@ -10,6 +10,18 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.0 (2024-02-18)
+
+### Bugs
+
+- Add missing `Unattended-Upgrade::Origins-Pattern` configuration
+
+### Features
+
+- Add parameter `unattended_upgrades_origins_pattern_all`
+- Add parameter `unattended_upgrades_origins_pattern_group`
+- Add parameter `unattended_upgrades_origins_pattern_host`
+
 ## 0.1.1 (2024-02-16)
 
 ### Bugs

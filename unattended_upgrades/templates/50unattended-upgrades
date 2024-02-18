@@ -30,9 +30,9 @@ Unattended-Upgrade::Origins-Pattern {
         // but the Debian release itself will not be automatically upgraded.
 //      "origin=Debian,codename=${distro_codename}-updates";
 //      "origin=Debian,codename=${distro_codename}-proposed-updates";
-        "origin=Debian,codename=${distro_codename},label=Debian";
-        "origin=Debian,codename=${distro_codename},label=Debian-Security";
-        "origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
+//      "origin=Debian,codename=${distro_codename},label=Debian";
+//      "origin=Debian,codename=${distro_codename},label=Debian-Security";
+//      "origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
 
         // Archive or Suite based matching:
         // Note that this will silently match a different release after
@@ -42,6 +42,48 @@ Unattended-Upgrade::Origins-Pattern {
 //      "o=Debian,a=stable-updates";
 //      "o=Debian,a=proposed-updates";
 //      "o=Debian Backports,a=${distro_codename}-backports,l=Debian Backports";
+
+        // ALL
+{% for item in unattended_upgrades_origins_pattern_all %}
+{% if not (item.comment|default('') == '') %}
+        // {{item.comment}}
+{% endif %}
+        "origin={{item.origin|default('Debian')}}
+        {%- if not (item.codename|default('') == '') %},codename={{item.codename}}{% endif %}
+        {%- if not (item.archive|default('') == '') %},archive={{item.archive}}{% endif %}
+        {%- if not (item.component|default('') == '') %},component={{item.component}}{% endif %}
+        {%- if not (item.label|default('') == '') %},label={{item.label}}{% endif %}
+        {%- if not (item.site|default('') == '') %},site={{item.site}}{% endif %}
+";
+{% endfor %}
+
+        // GROUP
+{% for item in unattended_upgrades_origins_pattern_group %}
+{% if not (item.comment|default('') == '') %}
+        // {{item.comment}}
+{% endif %}
+        "origin={{item.origin|default('Debian')}}
+        {%- if not (item.codename|default('') == '') %},codename={{item.codename}}{% endif %}
+        {%- if not (item.archive|default('') == '') %},archive={{item.archive}}{% endif %}
+        {%- if not (item.component|default('') == '') %},component={{item.component}}{% endif %}
+        {%- if not (item.label|default('') == '') %},label={{item.label}}{% endif %}
+        {%- if not (item.site|default('') == '') %},site={{item.site}}{% endif %}
+";
+{% endfor %}
+
+        // HOST
+{% for item in unattended_upgrades_origins_pattern_host %}
+{% if not (item.comment|default('') == '') %}
+        // {{item.comment}}
+{% endif %}
+        "origin={{item.origin|default('Debian')}}
+        {%- if not (item.codename|default('') == '') %},codename={{item.codename}}{% endif %}
+        {%- if not (item.archive|default('') == '') %},archive={{item.archive}}{% endif %}
+        {%- if not (item.component|default('') == '') %},component={{item.component}}{% endif %}
+        {%- if not (item.label|default('') == '') %},label={{item.label}}{% endif %}
+        {%- if not (item.site|default('') == '') %},site={{item.site}}{% endif %}
+";
+{% endfor %}
 };
 
 // Python regular expressions, matching packages to exclude from upgrading

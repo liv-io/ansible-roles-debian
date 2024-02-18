@@ -28,6 +28,7 @@ consult the following sections.
   vars:
     unattended_upgrades_state: 'enable'
     unattended_upgrades_automatic_reboot_time_hour: '03'
+    unattended_upgrades_origins_pattern_host: [{origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
 ```
 
 ### Disable
@@ -39,6 +40,7 @@ consult the following sections.
   vars:
     unattended_upgrades_state: 'disable'
     unattended_upgrades_automatic_reboot_time_hour: '03'
+    unattended_upgrades_origins_pattern_host: [{origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
 ```
 
 ### Remove
@@ -147,6 +149,45 @@ consult the following sections.
     Type       : Boolean
     Default    : False
     Options    : True | False
+
+`unattended_upgrades_origins_pattern_all`
+
+    Description: Define the 'unattended_upgrades_origins_pattern_all' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Hash
+    Default    : [{origin: 'Debian', codename: '${distro_codename}'},
+                  {origin: 'Debian', codename: '${distro_codename}-updates'},
+                  {origin: 'Debian', codename: '${distro_codename}-security'},
+                  {origin: 'Debian', codename: '${distro_codename}-backports'}]
+    Options    :
+      Examples: [{origin: 'Debian', site: 'packages.gopass.pw', comment: 'GoPass'},
+                 {origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+      None    : []
+
+`unattended_upgrades_origins_pattern_group`
+
+    Description: Define the 'unattended_upgrades_origins_pattern_group' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Hash
+    Default    : []
+    Options    :
+      Examples: [{origin: 'Debian', site: 'packages.gopass.pw', comment: 'GoPass'},
+                 {origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+      None    : []
+
+`unattended_upgrades_origins_pattern_host`
+
+    Description: Define the 'unattended_upgrades_origins_pattern_host' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Hash
+    Default    : []
+    Options    :
+      Examples: [{origin: 'Debian', site: 'packages.gopass.pw', comment: 'GoPass'},
+                 {origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+      None    : []
 
 `unattended_upgrades_remove_new_unused_dependencies`
 

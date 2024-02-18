@@ -15,6 +15,15 @@ unattended_upgrades_nftables_filter_rule: |
 
 unattended_upgrades_nftables_state: False
 
+unattended_upgrades_origins_pattern_all:
+  - {origin: 'Debian', codename: '${distro_codename}'}
+  - {origin: 'Debian', codename: '${distro_codename}-updates'}
+  - {origin: 'Debian', codename: '${distro_codename}-security'}
+  - {origin: 'Debian', codename: '${distro_codename}-backports'}
+
+unattended_upgrades_origins_pattern_group: []
+unattended_upgrades_origins_pattern_host: []
+
 unattended_upgrades_remove_new_unused_dependencies: True
 unattended_upgrades_remove_unused_dependencies: True
 unattended_upgrades_remove_unused_kernel_packages: True
