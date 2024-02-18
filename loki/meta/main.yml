@@ -2,4 +2,4 @@
 
 dependencies:
   - {role: alertmanager, when: (loki_alertmanager_state == True)}
-  - {role: grafana, when: (loki_state == True)}
+  - {role: grafana, when: (loki_state is match('true|yes|start|on|enable|stop|off|disable'))}

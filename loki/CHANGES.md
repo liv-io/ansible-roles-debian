@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.6.1 (2024-02-18)
+
+### Bugs
+
+- Fix conditional of `grafana` dependency
+
 ## 2.6.0 (2024-01-24)
 
 ### Bugs
