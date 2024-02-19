@@ -62,7 +62,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -249,7 +249,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -343,7 +343,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -454,7 +454,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -641,7 +641,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -831,7 +831,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1018,7 +1018,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1125,7 +1125,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1312,7 +1312,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1419,7 +1419,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1606,7 +1606,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1713,7 +1713,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1900,7 +1900,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -2088,7 +2088,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -2275,7 +2275,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -2382,7 +2382,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -2569,7 +2569,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -2676,7 +2676,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -2863,7 +2863,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -3053,7 +3053,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -3240,7 +3240,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -3347,7 +3347,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -3534,7 +3534,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -3641,7 +3641,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -3828,7 +3828,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },

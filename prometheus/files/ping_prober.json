@@ -53,7 +53,7 @@
               "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "log": 2,
               "type": "log"

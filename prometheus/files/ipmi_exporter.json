@@ -54,7 +54,7 @@
               "fill": "solid"
             },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -120,7 +120,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_up{instance=~\"$host\"}",
+          "expr": "ipmi_up{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{collector}}",
@@ -222,7 +222,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_dcmi_power_consumption_watts{instance=~\"$host\"}",
+          "expr": "ipmi_dcmi_power_consumption_watts{instance=\"$host\"}",
           "instant": false,
           "legendFormat": "{{instance}}",
           "range": true,
@@ -274,7 +274,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -340,7 +340,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_temperature_state{instance=~\"$host\"}",
+          "expr": "ipmi_temperature_state{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -442,7 +442,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_temperature_celsius{instance=~\"$host\"}",
+          "expr": "ipmi_temperature_celsius{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -495,7 +495,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -561,7 +561,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_power_state{instance=~\"$host\"}",
+          "expr": "ipmi_power_state{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -663,7 +663,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_power_watts{instance=~\"$host\"}",
+          "expr": "ipmi_power_watts{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -716,7 +716,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -782,7 +782,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_voltage_state{instance=~\"$host\"}",
+          "expr": "ipmi_voltage_state{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -884,7 +884,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_voltage_volts{instance=~\"$host\"}",
+          "expr": "ipmi_voltage_volts{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -937,7 +937,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1003,7 +1003,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_fan_speed_state{instance=~\"$host\"}",
+          "expr": "ipmi_fan_speed_state{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -1105,7 +1105,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_fan_speed_rpm{instance=~\"$host\"}",
+          "expr": "ipmi_fan_speed_rpm{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -1158,7 +1158,7 @@
             "insertNulls": false,
             "lineInterpolation": "stepBefore",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1224,7 +1224,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "ipmi_sensor_state{instance=~\"$host\"}",
+          "expr": "ipmi_sensor_state{instance=\"$host\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}: {{name}}",
@@ -1250,7 +1250,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [],
           "value": []
         },

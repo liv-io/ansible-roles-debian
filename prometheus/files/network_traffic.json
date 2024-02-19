@@ -36,11 +36,11 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "bits in (-) / bits out (+)",
+            "axisLabel": "out (-) / in (+)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -50,12 +50,12 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -81,7 +81,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/.*_in/"
+              "options": "/.*_out$/"
             },
             "properties": [
               {
@@ -118,7 +118,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=~\"$firewall\"}[5m])*8 or irate(node_network_transmit_bytes{instance=~\"$firewall\"}[5m])*8",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$firewall\"}[5m])*8",
           "instant": false,
           "legendFormat": "{{instance}}_{{device}}_in",
           "range": true,
@@ -130,7 +130,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=~\"$firewall\"}[5m])*8 or irate(node_network_transmit_bytes{instance=~\"$firewall\"}[5m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$firewall\"}[5m])*8",
           "hide": false,
           "instant": false,
           "legendFormat": "{{instance}}_{{device}}_out",
@@ -155,11 +155,11 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "bits in (-) / bits out (+)",
+            "axisLabel": "out (-) / in (+)",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 10,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -169,12 +169,12 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -200,7 +200,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/.*_in/"
+              "options": "/.*_out$/"
             },
             "properties": [
               {
@@ -237,7 +237,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\"}[5m])*8 or irate(node_network_transmit_bytes{instance=~\"$host\"}[5m])*8",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\"}[5m])*8",
           "instant": false,
           "legendFormat": "{{instance}}_{{device}}_in",
           "range": true,
@@ -249,7 +249,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\"}[5m])*8 or irate(node_network_transmit_bytes{instance=~\"$host\"}[5m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$host\"}[5m])*8",
           "hide": false,
           "instant": false,
           "legendFormat": "{{instance}}_{{device}}_out",
@@ -272,7 +272,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [],
           "value": []
         },
@@ -299,7 +299,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [],
           "value": []
         },
@@ -333,6 +333,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Network Traffic",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
