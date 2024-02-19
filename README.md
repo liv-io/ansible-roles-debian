@@ -70,19 +70,23 @@ See `CREDITS` file for more information.
 
 ### Loki/Grafana Dashboards
 
-| Suricata |
-| --- |
-| <img src=https://user-images.githubusercontent.com/19646270/101278206-40784280-37ba-11eb-8108-54231ae62679.png height="200" title="Suricata"> |
+|Suricata|
+|---     |
+|<img src=https://user-images.githubusercontent.com/19646270/101278206-40784280-37ba-11eb-8108-54231ae62679.png height="200" title="Suricata">|
 
 ### Prometheus/Grafana Dashboards
 
-| System Status | Script Status |
-| --- | --- |
-| <img src=https://user-images.githubusercontent.com/19646270/101277238-57fffd00-37b3-11eb-8fc4-3dc013536e37.png height="200" title="System Status"> | <img src=https://user-images.githubusercontent.com/19646270/101277235-546c7600-37b3-11eb-8561-303f2b62d178.png height="200" title="Script Status"> |
+|System Status|Script Status|
+|---          |---          |
+|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/c95f10b9-bd4a-4b86-91b8-e8334505391c height="200" title="System Status">|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/8b974d9f-3a95-4eca-95e0-60657ca54ce7 height="200" title="Script Status">|
 
-| Network Traffic | Ping Prober |
-| --- | --- |
-| <img src=https://user-images.githubusercontent.com/19646270/101277644-32282780-37b6-11eb-9131-5a58aae74f42.png height="200" title="Network Traffic"> | <img src=https://user-images.githubusercontent.com/19646270/101277645-33595480-37b6-11eb-841f-68738ca45693.png height="200" title="Ping Prober"> |
+|Node Exporter|IPMI Exporter|
+|---          |---          |
+|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/77a06411-50db-445c-9b52-7407bc38566d height="200" title="Node Exporter">|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/4ff7a7ea-a6b9-4e95-9da5-b8692aa16cb7 height="200" title="IPMI Exporter">|
+
+|Network Traffic|Ping Prober|
+|---            |---        |
+|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/d1c11581-b253-4ed1-be8a-075191125e3c height="200" title="Network Traffic">|<img src=https://github.com/liv-io/ansible-playbooks-example/assets/19646270/2abe2376-7bf0-40f7-943e-b408599c0f6a height="200" title="Ping Prober">|
 
 <!-- shields.io -->
 [contributors-shield]: https://img.shields.io/github/contributors/liv-io/ansible-roles-debian.svg?style=flat
