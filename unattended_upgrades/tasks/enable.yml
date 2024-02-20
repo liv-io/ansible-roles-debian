@@ -21,6 +21,17 @@
   tags:
     - unattended_upgrades
 
+- name: create file 20auto-upgrades
+  template:
+    src: "{{file_src_20auto_upgrades}}"
+    dest: "{{file_dst_20auto_upgrades}}"
+    mode: "{{file_mode_20auto_upgrades}}"
+    owner: "{{file_owner_20auto_upgrades}}"
+    group: "{{file_group_20auto_upgrades}}"
+  notify: restart service unattended-upgrades
+  tags:
+    - unattended_upgrades
+
 - name: create file unattended-upgrades.cfg
   template:
     src: "{{file_src_unattended_upgrades_cfg}}"

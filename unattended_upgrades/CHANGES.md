@@ -10,6 +10,19 @@ The headers are:
 - enhancements
 - features
 
+## 0.2.1 (2024-02-20)
+
+### Bugs
+
+- Add missing `20auto-upgrades` file
+- Correct `unattended-upgrades.nft` file destination
+
+### Enhancements
+
+- Explicitly set `InstallOnShutdown` to False
+- Explicitly set `OnlyOnACPower` to False
+- Explicitly set `Skip-Updates-On-Metered-Connections` to False
+
 ## 0.2.0 (2024-02-18)
 
 ### Bugs

@@ -129,7 +129,7 @@ Unattended-Upgrade::Package-Blacklist {
 // big step back from the 30 minutes allowed for InstallOnShutdown previously.
 // Users enabling InstallOnShutdown mode are advised to increase
 // InhibitDelayMaxSec even further, possibly to 30 minutes.
-//Unattended-Upgrade::InstallOnShutdown "false";
+Unattended-Upgrade::InstallOnShutdown "false";
 
 // Send email to this address for problems or packages upgrades
 // If empty or unset then no email is sent, make sure that you
@@ -199,11 +199,11 @@ Unattended-Upgrade::Automatic-Reboot-Time "{{unattended_upgrades_automatic_reboo
 
 // Download and install upgrades only on AC power
 // (i.e. skip or gracefully stop updates on battery)
-// Unattended-Upgrade::OnlyOnACPower "true";
+Unattended-Upgrade::OnlyOnACPower "false";
 
 // Download and install upgrades only on non-metered connection
 // (i.e. skip or gracefully stop updates on a metered connection)
-// Unattended-Upgrade::Skip-Updates-On-Metered-Connections "true";
+Unattended-Upgrade::Skip-Updates-On-Metered-Connections "false";
 
 // Verbose logging
 // Unattended-Upgrade::Verbose "false";

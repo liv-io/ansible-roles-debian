@@ -34,6 +34,13 @@
   tags:
     - unattended_upgrades
 
+- name: remove file 20auto-upgrades
+  file:
+    state: absent
+    path: "{{file_dst_20auto_upgrades}}"
+  tags:
+    - unattended_upgrades
+
 - name: remove file 50unattended-upgrades
   file:
     state: absent

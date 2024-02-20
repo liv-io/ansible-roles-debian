@@ -3,6 +3,13 @@
 # unattended-upgrades
 package_name_unattended_upgrades: 'unattended-upgrades'
 
+# 20auto-upgrades
+file_src_20auto_upgrades: '20auto-upgrades'
+file_dst_20auto_upgrades: '/etc/apt/apt.conf.d/20auto-upgrades'
+file_mode_20auto_upgrades: '0644'
+file_owner_20auto_upgrades: 'root'
+file_group_20auto_upgrades: 'root'
+
 # 50unattended-upgrades
 file_src_50unattended_upgrades: '50unattended-upgrades'
 file_dst_50unattended_upgrades: '/etc/apt/apt.conf.d/50unattended-upgrades'
@@ -31,7 +38,7 @@ file_group_unattended_upgrades_cfg: 'root'
 
 # unattended-upgrades.nft
 file_src_unattended_upgrades_nft: 'unattended-upgrades.nft'
-file_dst_unattended_upgrades_nft: '/etc/nftables.d/50unattended-upgrades'
+file_dst_unattended_upgrades_nft: '/etc/nftables.d/unattended-upgrades'
 file_mode_unattended_upgrades_nft: '0640'
 file_owner_unattended_upgrades_nft: 'root'
 file_group_unattended_upgrades_nft: 'root'

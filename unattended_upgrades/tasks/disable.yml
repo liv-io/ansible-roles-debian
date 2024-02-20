@@ -20,6 +20,16 @@
   tags:
     - unattended_upgrades
 
+- name: create file 20auto-upgrades
+  template:
+    src: "{{file_src_20auto_upgrades}}"
+    dest: "{{file_dst_20auto_upgrades}}"
+    mode: "{{file_mode_20auto_upgrades}}"
+    owner: "{{file_owner_20auto_upgrades}}"
+    group: "{{file_group_20auto_upgrades}}"
+  tags:
+    - unattended_upgrades
+
 - name: remove file unattended-upgrades.cfg
   file:
     state: absent
