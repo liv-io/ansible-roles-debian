@@ -45,44 +45,17 @@ Unattended-Upgrade::Origins-Pattern {
 
         // ALL
 {% for item in unattended_upgrades_origins_pattern_all %}
-{% if not (item.comment|default('') == '') %}
-        // {{item.comment}}
-{% endif %}
-        "origin={{item.origin|default('Debian')}}
-        {%- if not (item.codename|default('') == '') %},codename={{item.codename}}{% endif %}
-        {%- if not (item.archive|default('') == '') %},archive={{item.archive}}{% endif %}
-        {%- if not (item.component|default('') == '') %},component={{item.component}}{% endif %}
-        {%- if not (item.label|default('') == '') %},label={{item.label}}{% endif %}
-        {%- if not (item.site|default('') == '') %},site={{item.site}}{% endif %}
-";
+        "{% for key, value in item.items() %}{{key}}={{value}}{{',' if not loop.last}}{% endfor %}";
 {% endfor %}
 
         // GROUP
 {% for item in unattended_upgrades_origins_pattern_group %}
-{% if not (item.comment|default('') == '') %}
-        // {{item.comment}}
-{% endif %}
-        "origin={{item.origin|default('Debian')}}
-        {%- if not (item.codename|default('') == '') %},codename={{item.codename}}{% endif %}
-        {%- if not (item.archive|default('') == '') %},archive={{item.archive}}{% endif %}
-        {%- if not (item.component|default('') == '') %},component={{item.component}}{% endif %}
-        {%- if not (item.label|default('') == '') %},label={{item.label}}{% endif %}
-        {%- if not (item.site|default('') == '') %},site={{item.site}}{% endif %}
-";
+        "{% for key, value in item.items() %}{{key}}={{value}}{{',' if not loop.last}}{% endfor %}";
 {% endfor %}
 
         // HOST
 {% for item in unattended_upgrades_origins_pattern_host %}
-{% if not (item.comment|default('') == '') %}
-        // {{item.comment}}
-{% endif %}
-        "origin={{item.origin|default('Debian')}}
-        {%- if not (item.codename|default('') == '') %},codename={{item.codename}}{% endif %}
-        {%- if not (item.archive|default('') == '') %},archive={{item.archive}}{% endif %}
-        {%- if not (item.component|default('') == '') %},component={{item.component}}{% endif %}
-        {%- if not (item.label|default('') == '') %},label={{item.label}}{% endif %}
-        {%- if not (item.site|default('') == '') %},site={{item.site}}{% endif %}
-";
+        "{% for key, value in item.items() %}{{key}}={{value}}{{',' if not loop.last}}{% endfor %}";
 {% endfor %}
 };
 
@@ -129,7 +102,11 @@ Unattended-Upgrade::Package-Blacklist {
 // big step back from the 30 minutes allowed for InstallOnShutdown previously.
 // Users enabling InstallOnShutdown mode are advised to increase
 // InhibitDelayMaxSec even further, possibly to 30 minutes.
+{% if (unattended_upgrades_install_on_shutdown == True) %}
+Unattended-Upgrade::InstallOnShutdown "true";
+{% else %}
 Unattended-Upgrade::InstallOnShutdown "false";
+{% endif %}
 
 // Send email to this address for problems or packages upgrades
 // If empty or unset then no email is sent, make sure that you
@@ -199,11 +176,19 @@ Unattended-Upgrade::Automatic-Reboot-Time "{{unattended_upgrades_automatic_reboo
 
 // Download and install upgrades only on AC power
 // (i.e. skip or gracefully stop updates on battery)
+{% if (unattended_upgrades_only_on_ac_power == True) %}
+Unattended-Upgrade::OnlyOnACPower "true";
+{% else %}
 Unattended-Upgrade::OnlyOnACPower "false";
+{% endif %}
 
 // Download and install upgrades only on non-metered connection
 // (i.e. skip or gracefully stop updates on a metered connection)
+{% if (unattended_upgrades_skip_updates_on_metered_connections == True) %}
+Unattended-Upgrade::Skip-Updates-On-Metered-Connections "true";
+{% else %}
 Unattended-Upgrade::Skip-Updates-On-Metered-Connections "false";
+{% endif %}
 
 // Verbose logging
 // Unattended-Upgrade::Verbose "false";

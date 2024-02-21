@@ -28,7 +28,7 @@ consult the following sections.
   vars:
     unattended_upgrades_state: 'enable'
     unattended_upgrades_automatic_reboot_time_hour: '03'
-    unattended_upgrades_origins_pattern_host: [{origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+    unattended_upgrades_origins_pattern_host: [{site: 'apt.grafana.com'}]
 ```
 
 ### Disable
@@ -40,7 +40,7 @@ consult the following sections.
   vars:
     unattended_upgrades_state: 'disable'
     unattended_upgrades_automatic_reboot_time_hour: '03'
-    unattended_upgrades_origins_pattern_host: [{origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+    unattended_upgrades_origins_pattern_host: [{site: 'apt.grafana.com'}]
 ```
 
 ### Remove
@@ -119,6 +119,15 @@ consult the following sections.
     Default    : True
     Options    : True | False
 
+`unattended_upgrades_install_on_shutdown`
+
+    Description: Control the 'unattended_upgrades_install_on_shutdown' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `unattended_upgrades_monitor_monit_state`
 
     Description: Control the 'unattended_upgrades_monitor_monit_state' option.
@@ -150,19 +159,27 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
+`unattended_upgrades_only_on_ac_power`
+
+    Description: Control the 'unattended_upgrades_only_on_ac_power' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `unattended_upgrades_origins_pattern_all`
 
     Description: Define the 'unattended_upgrades_origins_pattern_all' option.
     Required   : False
     Value      : Arbitrary
     Type       : Hash
-    Default    : [{origin: 'Debian', codename: '${distro_codename}'},
-                  {origin: 'Debian', codename: '${distro_codename}-updates'},
-                  {origin: 'Debian', codename: '${distro_codename}-security'},
-                  {origin: 'Debian', codename: '${distro_codename}-backports'}]
+    Default    : [{origin: '${distro_id}', codename: '${distro_codename}'},
+                  {origin: '${distro_id}', codename: '${distro_codename}-updates'},
+                  {origin: '${distro_id}', codename: '${distro_codename}-security'},
+                  {origin: '${distro_id}', codename: '${distro_codename}-backports'}]
     Options    :
-      Examples: [{origin: 'Debian', site: 'packages.gopass.pw', comment: 'GoPass'},
-                 {origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+      Examples: [{site: 'packages.gopass.pw'}, {site: 'apt.grafana.com'}]
       None    : []
 
 `unattended_upgrades_origins_pattern_group`
@@ -173,8 +190,7 @@ consult the following sections.
     Type       : Hash
     Default    : []
     Options    :
-      Examples: [{origin: 'Debian', site: 'packages.gopass.pw', comment: 'GoPass'},
-                 {origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+      Examples: [{site: 'packages.gopass.pw'}, {site: 'apt.grafana.com'}]
       None    : []
 
 `unattended_upgrades_origins_pattern_host`
@@ -185,8 +201,7 @@ consult the following sections.
     Type       : Hash
     Default    : []
     Options    :
-      Examples: [{origin: 'Debian', site: 'packages.gopass.pw', comment: 'GoPass'},
-                 {origin: 'Debian', site: 'apt.grafana.com', comment: 'Grafana'}]
+      Examples: [{site: 'packages.gopass.pw'}, {site: 'apt.grafana.com'}]
       None    : []
 
 `unattended_upgrades_remove_new_unused_dependencies`
@@ -214,6 +229,15 @@ consult the following sections.
     Value      : Predetermined
     Type       : Boolean
     Default    : True
+    Options    : True | False
+
+`unattended_upgrades_skip_updates_on_metered_connections`
+
+    Description: Control the 'unattended_upgrades_skip_updates_on_metered_connections' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
     Options    : True | False
 
 ## Conflicts

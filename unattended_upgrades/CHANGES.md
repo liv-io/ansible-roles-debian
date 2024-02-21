@@ -10,6 +10,26 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.0 (2024-02-21)
+
+### Bugs
+
+- Fix comma separation of key/value pairs
+
+### Changes
+
+- Remove `comment` option from `unattended_upgrades_origins_pattern` parameter
+
+### Enhancements
+
+- Use `${distro_id}` as default origin
+
+### Features
+
+- Add parameter `unattended_upgrades_install_on_shutdown`
+- Add parameter `unattended_upgrades_only_on_ac_power`
+- Add parameter `unattended_upgrades_skip_updates_on_metered_connections`
+
 ## 0.2.1 (2024-02-20)
 
 ### Bugs

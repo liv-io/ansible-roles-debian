@@ -7,6 +7,8 @@ unattended_upgrades_automatic_reboot_time_hour: "{{24|random(seed=ansible_defaul
 unattended_upgrades_automatic_reboot_time_minute: "{{59|random(seed=ansible_default_ipv4.macaddress)}}"
 unattended_upgrades_automatic_reboot_with_users: True
 
+unattended_upgrades_install_on_shutdown: False
+
 unattended_upgrades_monitor_monit_state: False
 
 unattended_upgrades_nftables_filter_rule: |
@@ -15,11 +17,13 @@ unattended_upgrades_nftables_filter_rule: |
 
 unattended_upgrades_nftables_state: False
 
+unattended_upgrades_only_on_ac_power: False
+
 unattended_upgrades_origins_pattern_all:
-  - {origin: 'Debian', codename: '${distro_codename}'}
-  - {origin: 'Debian', codename: '${distro_codename}-updates'}
-  - {origin: 'Debian', codename: '${distro_codename}-security'}
-  - {origin: 'Debian', codename: '${distro_codename}-backports'}
+  - {origin: '${distro_id}', codename: '${distro_codename}'}
+  - {origin: '${distro_id}', codename: '${distro_codename}-updates'}
+  - {origin: '${distro_id}', codename: '${distro_codename}-security'}
+  - {origin: '${distro_id}', codename: '${distro_codename}-backports'}
 
 unattended_upgrades_origins_pattern_group: []
 unattended_upgrades_origins_pattern_host: []
@@ -27,3 +31,5 @@ unattended_upgrades_origins_pattern_host: []
 unattended_upgrades_remove_new_unused_dependencies: True
 unattended_upgrades_remove_unused_dependencies: True
 unattended_upgrades_remove_unused_kernel_packages: True
+
+unattended_upgrades_skip_updates_on_metered_connections: False
