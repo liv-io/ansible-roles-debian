@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.12.1 (2024-03-04)
+
+### Enhancements
+
+- Change `info` color in `system_status` dashboard
+
 ## 2.12.0 (2024-02-26)
 
 ### Bugs
