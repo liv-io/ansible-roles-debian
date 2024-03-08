@@ -243,6 +243,12 @@ Banner none
 Banner {{file_dst_banner}}
 {% endif %}
 
+{% if (openssh_debian_banner == True) %}
+DebianBanner yes
+{% else %}
+DebianBanner no
+{% endif %}
+
 # Allow client to pass locale environment variables
 AcceptEnv LANG LC_*
 

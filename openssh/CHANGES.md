@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 2.2.0 (2024-03-08)
+
+### Enhancements
+
+- Reduce monit protocol timeout from 60 to 10 seconds
+
+### Features
+
+- Add parameter `openssh_debian_banner`
+
 ## 2.1.0 (2023-10-19)
 
 ### Enhancements

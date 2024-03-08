@@ -153,6 +153,15 @@ consult the following sections.
     Default    : True
     Options    : True | False
 
+`openssh_debian_banner`
+
+    Description: Control the 'openssh_debian_banner' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
 `openssh_deny_groups`
 
     Description: Define the 'openssh_deny_groups' option.

@@ -13,6 +13,8 @@ openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
 
 openssh_compression: True
 
+openssh_debian_banner: False
+
 openssh_deny_groups: []
 openssh_deny_users: []
 
