@@ -477,7 +477,7 @@
                     "options": {
                       "pattern": "info",
                       "result": {
-                        "color": "super-light-yellow",
+                        "color": "super-light-blue",
                         "index": 0
                       }
                     },
@@ -687,6 +687,6 @@
   },
   "timezone": "browser",
   "title": "System Status",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

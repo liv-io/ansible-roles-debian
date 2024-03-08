@@ -10,10 +10,11 @@ The headers are:
 - enhancements
 - features
 
-## 2.12.1 (2024-03-04)
+## 2.12.1 (2024-03-08)
 
 ### Enhancements
 
+- Change title mode from `markdown` to `html` in `node_exporter` dashboard
 - Change `info` color in `system_status` dashboard
 
 ## 2.12.0 (2024-02-26)

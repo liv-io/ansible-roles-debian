@@ -42,7 +42,7 @@
           "showMiniMap": false
         },
         "content": " ",
-        "mode": "markdown"
+        "mode": "html"
       },
       "pluginVersion": "10.3.3",
       "repeat": "host",
@@ -2925,6 +2925,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Node Exporter",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
