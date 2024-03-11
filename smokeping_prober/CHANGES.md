@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.2.1 (2024-03-11)
+
+### Bugs
+
+- Update smokeping_prober to version 0.7.3
+
 ## 2.2.0 (2024-03-10)
 
 ### Bugs
