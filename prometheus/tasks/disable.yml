@@ -101,7 +101,7 @@
   when: (prometheus_builtin_dashboards_state == True) and (prometheus_ipmi_exporter_state == True)
   tags:
     - prometheus
-    
+
 - name: copy file ping_prober.json
   copy:
     src: 'ping_prober.json'

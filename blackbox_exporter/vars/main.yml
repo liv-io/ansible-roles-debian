@@ -86,7 +86,7 @@ user_home_force_blackbox_exporter: False
 user_password_blackbox_exporter: '!'
 user_password_update_blackbox_exporter: 'always'
 user_shell_blackbox_exporter: '/usr/sbin/nologin'
-user_system_blackbox_exporter: True 
+user_system_blackbox_exporter: True
 
 # check service blackbox_exporter
 command_cmd_check_service_blackbox_exporter: 'systemctl cat blackbox_exporter.service > /dev/null 2>&1'
