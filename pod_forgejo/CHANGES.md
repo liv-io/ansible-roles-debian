@@ -10,17 +10,17 @@ The headers are:
 - enhancements
 - features
 
-## 0.5.3 (2024-03-14)
-
-### Bugs
-
-- Fix `monit` and `nftables` check task
-
 ## 0.5.2 (2024-03-13)
 
 ### Bugs
 
 - Update `pod_forgejo_forgejo_version` from 1.21.6-0-1 to 1.21.7-0-1
+
+## 0.5.2 (2024-03-14)
+
+### Bugs
+
+- Fix `monit` and `nftables` check task
 
 ## 0.5.1 (2024-02-23)
 
