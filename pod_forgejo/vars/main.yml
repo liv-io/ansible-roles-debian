@@ -138,18 +138,6 @@ file_mode_pod_forgejo_nft: '0640'
 file_owner_pod_forgejo_nft: 'root'
 file_group_pod_forgejo_nft: 'root'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
-# check service pod_forgejo
-command_cmd_check_service_pod_forgejo: 'systemctl cat pod_forgejo.service > /dev/null 2>&1'
-
-# loginctl enable_linger
-command_cmd_loginctl_enable_linger: 'loginctl enable-linger pod_forgejo'
-
 # pod_forgejo
 group_name_pod_forgejo: 'pod_forgejo'
 group_gid_pod_forgejo: '10000'
@@ -190,11 +178,23 @@ user_password_update_forgejo: 'always'
 user_shell_forgejo: '/usr/local/bin/forgejo-shell'
 user_system_forgejo: True
 
-# monit
-service_name_monit: 'monit'
+# check service pod_forgejo
+command_cmd_check_service_pod_forgejo: 'systemctl cat pod_forgejo.service > /dev/null 2>&1'
 
-# nftables
-service_name_nftables: 'nftables'
+# loginctl enable_linger
+command_cmd_loginctl_enable_linger: 'loginctl enable-linger pod_forgejo'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
 
 # forgejo_update-authorized_keys.path
 service_name_forgejo_update_authorized_keys_path: 'forgejo_update-authorized_keys.path'

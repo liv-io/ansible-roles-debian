@@ -24,7 +24,7 @@
   file:
     state: absent
     path: "{{file_dst_rest_server_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - rest_server
 
@@ -35,7 +35,9 @@
     mode: "{{file_mode_rest_server_nft}}"
     owner: "{{file_owner_rest_server_nft}}"
     group: "{{file_group_rest_server_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (rest_server_nftables_state == True)
   tags:
     - rest_server
@@ -44,7 +46,7 @@
   file:
     state: absent
     path: "{{file_dst_rest_server_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (rest_server_nftables_state == False)
   tags:
     - rest_server

@@ -22,7 +22,7 @@
   file:
     state: absent
     path: "{{file_dst_nsd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - nsd
 
@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_nsd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - nsd
 

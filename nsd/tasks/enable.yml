@@ -29,7 +29,9 @@
     mode: "{{file_mode_nsd_cfg}}"
     owner: "{{file_owner_nsd_cfg}}"
     group: "{{file_group_nsd_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (nsd_monitor_monit_state == True)
   tags:
     - nsd
@@ -38,7 +40,7 @@
   file:
     state: absent
     path: "{{file_dst_nsd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (nsd_monitor_monit_state == False)
   tags:
     - nsd
@@ -50,7 +52,9 @@
     mode: "{{file_mode_nsd_nft}}"
     owner: "{{file_owner_nsd_nft}}"
     group: "{{file_group_nsd_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (nsd_nftables_state == True)
   tags:
     - nsd
@@ -59,7 +63,7 @@
   file:
     state: absent
     path: "{{file_dst_nsd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (nsd_nftables_state == False)
   tags:
     - nsd

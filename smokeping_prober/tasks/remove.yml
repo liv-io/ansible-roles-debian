@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{file_dst_smokeping_prober_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - smokeping_prober
 
@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_smokeping_prober_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - smokeping_prober
 

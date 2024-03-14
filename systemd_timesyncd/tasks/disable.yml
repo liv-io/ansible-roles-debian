@@ -46,7 +46,7 @@
   file:
     state: absent
     path: "{{file_dst_systemd_timesyncd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - systemd_timesyncd
 
@@ -57,7 +57,9 @@
     mode: "{{file_mode_systemd_timesyncd_nft}}"
     owner: "{{file_owner_systemd_timesyncd_nft}}"
     group: "{{file_group_systemd_timesyncd_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (systemd_timesyncd_nftables_state == True)
   tags:
     - systemd_timesyncd
@@ -66,7 +68,7 @@
   file:
     state: absent
     path: "{{file_dst_systemd_timesyncd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (systemd_timesyncd_nftables_state == False)
   tags:
     - systemd_timesyncd

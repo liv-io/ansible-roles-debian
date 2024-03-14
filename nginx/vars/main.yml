@@ -57,20 +57,20 @@ file_group_nginx_nft: 'root'
 # check nginx
 command_cmd_check_nginx: 'nginx -t'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # generate dhparam.pem
 command_cmd_generate_dhparam_pem: "openssl dhparam -dsaparam -out {{file_dst_dhparam_pem}} 4096"
 
-# monit
-service_name_monit: 'monit'
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
 
-# nftables
-service_name_nftables: 'nftables'
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
 
 # nginx
 service_name_nginx: 'nginx'

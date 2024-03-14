@@ -46,16 +46,6 @@
   tags:
     - openntpd
 
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 2)
-  failed_when: (register_check_service_monit.rc > 2)
-  check_mode: False
-  when: (openntpd_monitor_monit_state == True)
-  tags:
-    - openntpd
-
 - name: stat file nftables.d
   stat:
     path: "{{file_dst_nftables_d}}"
@@ -72,15 +62,5 @@
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
   when: (openntpd_nftables_state == True) and (register_nftables_d.stat.exists == False)
-  tags:
-    - openntpd
-
-- name: check service nftables
-  shell: "{{command_cmd_check_service_nftables}}"
-  register: register_check_service_nftables
-  changed_when: (register_check_service_nftables.rc > 1)
-  failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: False
-  when: (openntpd_nftables_state == True)
   tags:
     - openntpd

@@ -79,15 +79,6 @@ file_mode_alertmanager_nft: '0640'
 file_owner_alertmanager_nft: 'root'
 file_group_alertmanager_nft: 'root'
 
-# check service alertmanager
-command_cmd_check_service_alertmanager: 'systemctl cat alertmanager.service > /dev/null 2>&1'
-
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # alertmanager
 group_name_alertmanager: 'alertmanager'
 group_system_alertmanager: True
@@ -106,11 +97,20 @@ user_password_update_alertmanager: 'always'
 user_shell_alertmanager: '/usr/sbin/nologin'
 user_system_alertmanager: True
 
+# check service alertmanager
+command_cmd_check_service_alertmanager: 'systemctl cat alertmanager.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
 # alertmanager
 service_name_alertmanager: 'alertmanager'
-
-# monit
-service_name_monit: 'monit'
-
-# nftables
-service_name_nftables: 'nftables'

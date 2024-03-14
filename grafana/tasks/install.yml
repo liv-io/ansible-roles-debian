@@ -77,30 +77,10 @@
   tags:
     - grafana
 
-- name: check service nftables
-  shell: "{{command_cmd_check_service_nftables}}"
-  register: register_check_service_nftables
-  changed_when: (register_check_service_nftables.rc > 1)
-  failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: False
-  when: (grafana_nftables_state == True)
-  tags:
-    - grafana
-
 - name: apt update
   shell: "{{command_cmd_apt_update}}"
   check_mode: False
   when: (register_grafana_asc.changed)
-  tags:
-    - grafana
-
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 1)
-  failed_when: (register_check_service_monit.rc > 1)
-  check_mode: False
-  when: (grafana_monitor_monit_state == True)
   tags:
     - grafana
 

@@ -44,13 +44,3 @@
   when: (auditd_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - auditd
-
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 1)
-  failed_when: (register_check_service_monit.rc > 1)
-  check_mode: False
-  when: (auditd_monitor_monit_state == True)
-  tags:
-    - auditd

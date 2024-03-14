@@ -39,16 +39,6 @@
   tags:
     - resolver
 
-- name: check service nftables
-  shell: "{{command_cmd_check_service_nftables}}"
-  register: register_check_service_nftables
-  changed_when: (register_check_service_nftables.rc > 1)
-  failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: False
-  when: (resolver_nftables_state == True)
-  tags:
-    - resolver
-
 - name: create file resolver.nft
   template:
     src: "{{file_src_resolver_nft}}"
@@ -56,7 +46,7 @@
     mode: "{{file_mode_resolver_nft}}"
     owner: "{{file_owner_resolver_nft}}"
     group: "{{file_group_resolver_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (resolver_nftables_state == True)
   tags:
     - resolver
@@ -65,7 +55,7 @@
   file:
     state: absent
     path: "{{file_dst_resolver_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (resolver_nftables_state == False)
   tags:
     - resolver

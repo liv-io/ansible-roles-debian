@@ -18,14 +18,14 @@
     state: restarted
     name: "{{service_name_loki}}"
 
-- name: reload service monit
-  service:
-    state: reloaded
-    name: "{{service_name_monit}}"
-  when: (register_check_service_monit.rc == 0)
+- name: validate monit
+  shell: "{{command_cmd_validate_monit}}"
 
-- name: reload service nftables
-  service:
-    state: reloaded
-    name: "{{service_name_nftables}}"
-  when: (register_check_service_nftables.rc == 0)
+- name: reload monit
+  shell: "{{command_cmd_reload_monit}}"
+
+- name: validate nftables
+  shell: "{{command_cmd_validate_nftables}}"
+
+- name: reload nftables
+  shell: "{{command_cmd_reload_nftables}}"

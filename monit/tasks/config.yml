@@ -20,7 +20,7 @@
   loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   notify:
     - validate monit
-    - restart service monit
+    - reload service monit
   when: (item.state == True)
   tags:
     - monit
@@ -30,9 +30,7 @@
     state: absent
     path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
   loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
-  notify:
-    - validate monit
-    - restart service monit
+  notify: reload service monit
   when: (item.state == False)
   tags:
     - monit

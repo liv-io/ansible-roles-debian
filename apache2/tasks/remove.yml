@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_apache2_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - apache2
 
@@ -38,7 +38,7 @@
   file:
     state: absent
     path: "{{file_dst_apache2_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - apache2
 

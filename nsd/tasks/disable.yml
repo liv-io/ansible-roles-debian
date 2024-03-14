@@ -25,7 +25,7 @@
   file:
     state: absent
     path: "{{file_dst_nsd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - nsd
 
@@ -36,7 +36,9 @@
     mode: "{{file_mode_nsd_nft}}"
     owner: "{{file_owner_nsd_nft}}"
     group: "{{file_group_nsd_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (nsd_nftables_state == True)
   tags:
     - nsd
@@ -45,7 +47,7 @@
   file:
     state: absent
     path: "{{file_dst_nsd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (nsd_nftables_state == False)
   tags:
     - nsd

@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{file_dst_loki_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - loki
 
@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_loki_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - loki
 

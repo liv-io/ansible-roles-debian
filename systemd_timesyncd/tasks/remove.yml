@@ -22,7 +22,7 @@
   file:
     state: absent
     path: "{{file_dst_systemd_timesyncd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - systemd_timesyncd
 
@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_systemd_timesyncd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - systemd_timesyncd
 

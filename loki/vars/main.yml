@@ -139,15 +139,6 @@ file_mode_wal_dir: '0750'
 file_owner_wal_dir: 'loki'
 file_group_wal_dir: 'loki'
 
-# check service loki
-command_cmd_check_service_loki: 'systemctl cat loki.service > /dev/null 2>&1'
-
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # loki
 group_name_loki: 'loki'
 group_system_loki: True
@@ -166,14 +157,23 @@ user_password_update_loki: 'always'
 user_shell_loki: '/usr/sbin/nologin'
 user_system_loki: True
 
+# check service loki
+command_cmd_check_service_loki: 'systemctl cat loki.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
 # grafana-server
 service_name_grafana: 'grafana-server'
 
 # loki
 service_name_loki: 'loki'
-
-# monit
-service_name_monit: 'monit'
-
-# nftables
-service_name_nftables: 'nftables'

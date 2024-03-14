@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{file_dst_rest_server_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - rest_server
 
@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_rest_server_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - rest_server
 

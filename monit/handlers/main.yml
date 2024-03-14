@@ -12,13 +12,13 @@
 - name: validate monit
   command: "{{command_cmd_validate_monit}}"
 
-- name: restart service monit
-  service:
-    state: restarted
-    name: "{{service_name_monit}}"
-
-- name: reload service nftables
+- name: reload service monit
   service:
     state: reloaded
-    name: "{{service_name_nftables}}"
-  when: (register_check_service_nftables.rc == 0)
+    name: "{{service_name_monit}}"
+
+- name: validate nftables
+  shell: "{{command_cmd_validate_nftables}}"
+
+- name: reload nftables
+  shell: "{{command_cmd_reload_nftables}}"

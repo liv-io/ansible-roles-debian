@@ -297,7 +297,9 @@
     mode: "{{file_mode_apache2_cfg}}"
     owner: "{{file_owner_apache2_cfg}}"
     group: "{{file_group_apache2_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (apache2_monitor_monit_state == True)
   tags:
     - apache2
@@ -306,7 +308,7 @@
   file:
     state: absent
     path: "{{file_dst_apache2_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (apache2_monitor_monit_state == False)
   tags:
     - apache2
@@ -318,7 +320,9 @@
     mode: "{{file_mode_apache2_nft}}"
     owner: "{{file_owner_apache2_nft}}"
     group: "{{file_group_apache2_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (apache2_nftables_state == True)
   tags:
     - apache2
@@ -327,7 +331,7 @@
   file:
     state: absent
     path: "{{file_dst_apache2_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (apache2_nftables_state == False)
   tags:
     - apache2

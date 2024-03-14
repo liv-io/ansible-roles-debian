@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_mariadb_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - mariadb
 
@@ -38,7 +38,7 @@
   file:
     state: absent
     path: "{{file_dst_mariadb_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - mariadb
 

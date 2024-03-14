@@ -28,7 +28,9 @@
     mode: "{{file_mode_smokeping_prober_cfg}}"
     owner: "{{file_owner_smokeping_prober_cfg}}"
     group: "{{file_group_smokeping_prober_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (smokeping_prober_monitor_monit_state == True)
   tags:
     - smokeping_prober
@@ -37,7 +39,7 @@
   file:
     state: absent
     path: "{{file_dst_smokeping_prober_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (smokeping_prober_monitor_monit_state == False)
   tags:
     - smokeping_prober
@@ -49,7 +51,9 @@
     mode: "{{file_mode_smokeping_prober_nft}}"
     owner: "{{file_owner_smokeping_prober_nft}}"
     group: "{{file_group_smokeping_prober_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (smokeping_prober_nftables_state == True)
   tags:
     - smokeping_prober
@@ -58,7 +62,7 @@
   file:
     state: absent
     path: "{{file_dst_smokeping_prober_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (smokeping_prober_nftables_state == False)
   tags:
     - smokeping_prober

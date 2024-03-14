@@ -37,5 +37,8 @@ file_mode_02_filter_rule_conf: '0640'
 file_owner_02_filter_rule_conf: 'root'
 file_group_02_filter_rule_conf: 'root'
 
+# validate nftables
+command_cmd_validate_nftables: 'nft --check --file /etc/nftables.conf'
+
 # nftables
 service_name_nftables: 'nftables'

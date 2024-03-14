@@ -66,16 +66,6 @@
   tags:
     - gopass
 
-- name: check service nftables
-  shell: "{{command_cmd_check_service_nftables}}"
-  register: register_check_service_nftables
-  changed_when: (register_check_service_nftables.rc > 1)
-  failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: False
-  when: (gopass_nftables_state == True)
-  tags:
-    - gopass
-
 - name: apt update
   shell: "{{command_cmd_apt_update}}"
   check_mode: False

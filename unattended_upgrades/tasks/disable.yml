@@ -34,7 +34,7 @@
   file:
     state: absent
     path: "{{file_dst_unattended_upgrades_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - unattended_upgrades
 
@@ -45,7 +45,9 @@
     mode: "{{file_mode_unattended_upgrades_nft}}"
     owner: "{{file_owner_unattended_upgrades_nft}}"
     group: "{{file_group_unattended_upgrades_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (unattended_upgrades_nftables_state == True)
   tags:
     - unattended_upgrades
@@ -54,7 +56,7 @@
   file:
     state: absent
     path: "{{file_dst_unattended_upgrades_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (unattended_upgrades_nftables_state == False)
   tags:
     - unattended_upgrades

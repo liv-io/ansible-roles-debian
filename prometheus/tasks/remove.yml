@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{file_dst_prometheus_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - prometheus
 
@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_prometheus_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - prometheus
 

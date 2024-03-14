@@ -151,15 +151,6 @@ file_mode_prometheus_nft: '0640'
 file_owner_prometheus_nft: 'root'
 file_group_prometheus_nft: 'root'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
-# check service prometheus
-command_cmd_check_service_prometheus: 'systemctl cat prometheus.service > /dev/null 2>&1'
-
 # prometheus
 group_name_prometheus: 'prometheus'
 group_system_prometheus: True
@@ -178,14 +169,23 @@ user_password_update_prometheus: 'always'
 user_shell_prometheus: '/usr/sbin/nologin'
 user_system_prometheus: True
 
+# check service prometheus
+command_cmd_check_service_prometheus: 'systemctl cat prometheus.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
 # grafana-server
 service_name_grafana: 'grafana-server'
-
-# monit
-service_name_monit: 'monit'
-
-# nftables
-service_name_nftables: 'nftables'
 
 # prometheus
 service_name_prometheus: 'prometheus'

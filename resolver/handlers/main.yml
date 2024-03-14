@@ -8,8 +8,8 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
-- name: reload service nftables
-  service:
-    state: reloaded
-    name: "{{service_name_nftables}}"
-  when: (register_check_service_nftables.rc == 0)
+- name: validate nftables
+  shell: "{{command_cmd_validate_nftables}}"
+
+- name: reload nftables
+  shell: "{{command_cmd_reload_nftables}}"

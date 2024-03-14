@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_chronyd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - chrony
 
@@ -68,7 +68,9 @@
     mode: "{{file_mode_chronyd_nft}}"
     owner: "{{file_owner_chronyd_nft}}"
     group: "{{file_group_chronyd_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate monit
+    - reload monit
   when: (chrony_nftables_state == True)
   tags:
     - chrony
@@ -77,7 +79,7 @@
   file:
     state: absent
     path: "{{file_dst_chronyd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (chrony_nftables_state == False)
   tags:
     - chrony

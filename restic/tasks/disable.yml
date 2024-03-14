@@ -33,7 +33,9 @@
     mode: "{{file_mode_restic_nft}}"
     owner: "{{file_owner_restic_nft}}"
     group: "{{file_group_restic_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (restic_nftables_state == True)
   tags:
     - restic
@@ -42,7 +44,7 @@
   file:
     state: absent
     path: "{{file_dst_restic_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (restic_nftables_state == False)
   tags:
     - restic

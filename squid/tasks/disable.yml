@@ -87,7 +87,7 @@
   file:
     state: absent
     path: "{{file_dst_squid_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - squid
 
@@ -98,7 +98,9 @@
     mode: "{{file_mode_squid_nft}}"
     owner: "{{file_owner_squid_nft}}"
     group: "{{file_group_squid_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (squid_nftables_state == True)
   tags:
     - squid
@@ -107,7 +109,7 @@
   file:
     state: absent
     path: "{{file_dst_squid_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (squid_nftables_state == False)
   tags:
     - squid

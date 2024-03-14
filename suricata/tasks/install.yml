@@ -196,16 +196,6 @@
   tags:
     - suricata
 
-- name: check service monit
-  shell: "{{command_cmd_check_service_monit}}"
-  register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 1)
-  failed_when: (register_check_service_monit.rc > 1)
-  check_mode: False
-  when: (suricata_monitor_monit_state == True)
-  tags:
-    - suricata
-
 - name: update permissions
   shell: "{{command_cmd_update_permissions}}"
   check_mode: False

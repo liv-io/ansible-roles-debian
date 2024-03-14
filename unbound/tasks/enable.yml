@@ -40,7 +40,9 @@
     mode: "{{file_mode_unbound_cfg}}"
     owner: "{{file_owner_unbound_cfg}}"
     group: "{{file_group_unbound_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (unbound_monitor_monit_state == True)
   tags:
     - unbound
@@ -49,7 +51,7 @@
   file:
     state: absent
     path: "{{file_dst_unbound_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (unbound_monitor_monit_state == False)
   tags:
     - unbound
@@ -61,7 +63,9 @@
     mode: "{{file_mode_unbound_nft}}"
     owner: "{{file_owner_unbound_nft}}"
     group: "{{file_group_unbound_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (unbound_nftables_state == True)
   tags:
     - unbound
@@ -70,7 +74,7 @@
   file:
     state: absent
     path: "{{file_dst_unbound_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (unbound_nftables_state == False)
   tags:
     - unbound

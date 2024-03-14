@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{file_dst_mysqld_exporter_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - mysqld_exporter
 
@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_mysqld_exporter_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - mysqld_exporter
 

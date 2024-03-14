@@ -17,6 +17,7 @@
     mode: "{{file_mode_00_filter_table_conf}}"
     owner: "{{file_owner_00_filter_table_conf}}"
     group: "{{file_group_00_filter_table_conf}}"
+  notify: validate nftables
   tags:
     - nftables
 
@@ -27,6 +28,7 @@
     mode: "{{file_mode_01_filter_chain_conf}}"
     owner: "{{file_owner_01_filter_chain_conf}}"
     group: "{{file_group_01_filter_chain_conf}}"
+  notify: validate nftables
   tags:
     - nftables
 
@@ -37,6 +39,7 @@
     mode: "{{file_mode_02_filter_rule_conf}}"
     owner: "{{file_owner_02_filter_rule_conf}}"
     group: "{{file_group_02_filter_rule_conf}}"
+  notify: validate nftables
   tags:
     - nftables
 
@@ -47,6 +50,7 @@
     mode: "{{file_mode_nftables_conf}}"
     owner: "{{file_owner_nftables_conf}}"
     group: "{{file_group_nftables_conf}}"
+  notify: validate nftables
   tags:
     - nftables
 

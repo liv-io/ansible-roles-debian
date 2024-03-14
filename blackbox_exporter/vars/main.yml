@@ -70,18 +70,6 @@ file_mode_blackbox_exporter_nft: '0640'
 file_owner_blackbox_exporter_nft: 'root'
 file_group_blackbox_exporter_nft: 'root'
 
-# check service blackbox_exporter
-command_cmd_check_service_blackbox_exporter: 'systemctl cat blackbox_exporter.service > /dev/null 2>&1'
-
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
-# set capability cap_net_raw
-command_cmd_set_cap_net_raw: 'setcap cap_net_raw+ep /usr/local/bin/blackbox_exporter'
-
 # blackbox_exporter
 group_name_blackbox_exporter: 'blackbox_exporter'
 group_system_blackbox_exporter: True
@@ -98,13 +86,25 @@ user_home_force_blackbox_exporter: False
 user_password_blackbox_exporter: '!'
 user_password_update_blackbox_exporter: 'always'
 user_shell_blackbox_exporter: '/usr/sbin/nologin'
-user_system_blackbox_exporter: True
+user_system_blackbox_exporter: True 
+
+# check service blackbox_exporter
+command_cmd_check_service_blackbox_exporter: 'systemctl cat blackbox_exporter.service > /dev/null 2>&1'
+
+# set capability cap_net_raw
+command_cmd_set_cap_net_raw: 'setcap cap_net_raw+ep /usr/local/bin/blackbox_exporter'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
 
 # blackbox_exporter
 service_name_blackbox_exporter: 'blackbox_exporter'
-
-# monit
-service_name_monit: 'monit'
-
-# nftables
-service_name_nftables: 'nftables'

@@ -30,7 +30,9 @@
     mode: "{{file_mode_nginx_cfg}}"
     owner: "{{file_owner_nginx_cfg}}"
     group: "{{file_group_nginx_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (nginx_monitor_monit_state == True)
   tags:
     - nginx
@@ -39,7 +41,7 @@
   file:
     state: absent
     path: "{{file_dst_nginx_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (nginx_monitor_monit_state == False)
   tags:
     - nginx
@@ -51,7 +53,9 @@
     mode: "{{file_mode_nginx_nft}}"
     owner: "{{file_owner_nginx_nft}}"
     group: "{{file_group_nginx_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (nginx_nftables_state == True)
   tags:
     - nginx
@@ -60,7 +64,7 @@
   file:
     state: absent
     path: "{{file_dst_nginx_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (nginx_nftables_state == False)
   tags:
     - nginx

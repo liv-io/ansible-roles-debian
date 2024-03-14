@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_unbound_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - unbound
 
@@ -38,7 +38,7 @@
   file:
     state: absent
     path: "{{file_dst_unbound_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - unbound
 

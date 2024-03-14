@@ -40,7 +40,9 @@
     mode: "{{file_mode_suricata_cfg}}"
     owner: "{{file_owner_suricata_cfg}}"
     group: "{{file_group_suricata_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (suricata_monitor_monit_state == True)
   tags:
     - suricata
@@ -49,7 +51,7 @@
   file:
     state: absent
     path: "{{file_dst_suricata_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (suricata_monitor_monit_state == False)
   tags:
     - suricata

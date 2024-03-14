@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.3 (2024-03-14)
+
+### Bugs
+
+- Fix `monit` and `nftables` check task
+
+### Enhancements
+
+- Change notify from `restart` to `reload`
+
 ## 2.1.2 (2024-01-04)
 
 ### Enhancements

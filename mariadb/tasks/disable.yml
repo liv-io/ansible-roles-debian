@@ -80,7 +80,7 @@
   file:
     state: absent
     path: "{{file_dst_mariadb_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - mariadb
 
@@ -91,7 +91,9 @@
     mode: "{{file_mode_mariadb_nft}}"
     owner: "{{file_owner_mariadb_nft}}"
     group: "{{file_group_mariadb_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (mariadb_nftables_state == True)
   tags:
     - mariadb
@@ -100,7 +102,7 @@
   file:
     state: absent
     path: "{{file_dst_mariadb_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (mariadb_nftables_state == False)
   tags:
     - mariadb

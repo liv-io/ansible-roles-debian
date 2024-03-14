@@ -43,20 +43,20 @@ file_mode_haproxy_nft: '0640'
 file_owner_haproxy_nft: 'root'
 file_group_haproxy_nft: 'root'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # generate dhparam
 command_cmd_generate_dhparam: "openssl dhparam -dsaparam -out {{file_dst_dhparam_pem}} 4096"
 
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
 # haproxy
 service_name_haproxy: 'haproxy'
-
-# monit
-service_name_monit: 'monit'
-
-# nftables
-service_name_nftables: 'nftables'

@@ -54,7 +54,7 @@
   file:
     state: absent
     path: "{{file_dst_openssh_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - openssh
 
@@ -65,7 +65,9 @@
     mode: "{{file_mode_openssh_nft}}"
     owner: "{{file_owner_openssh_nft}}"
     group: "{{file_group_openssh_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (openssh_nftables_state == True)
   tags:
     - openssh
@@ -74,7 +76,7 @@
   file:
     state: absent
     path: "{{file_dst_openssh_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (openssh_nftables_state == False)
   tags:
     - openssh

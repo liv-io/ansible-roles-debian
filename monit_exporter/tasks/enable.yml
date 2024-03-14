@@ -39,7 +39,9 @@
     mode: "{{file_mode_monit_exporter_cfg}}"
     owner: "{{file_owner_monit_exporter_cfg}}"
     group: "{{file_group_monit_exporter_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (monit_exporter_monitor_monit_state == True)
   tags:
     - monit_exporter
@@ -48,7 +50,7 @@
   file:
     state: absent
     path: "{{file_dst_monit_exporter_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (monit_exporter_monitor_monit_state == False)
   tags:
     - monit_exporter
@@ -60,7 +62,9 @@
     mode: "{{file_mode_monit_exporter_nft}}"
     owner: "{{file_owner_monit_exporter_nft}}"
     group: "{{file_group_monit_exporter_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (monit_exporter_nftables_state == True)
   tags:
     - monit_exporter
@@ -69,7 +73,7 @@
   file:
     state: absent
     path: "{{file_dst_monit_exporter_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (monit_exporter_nftables_state == False)
   tags:
     - monit_exporter

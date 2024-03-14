@@ -28,7 +28,9 @@
     mode: "{{file_mode_grafana_cfg}}"
     owner: "{{file_owner_grafana_cfg}}"
     group: "{{file_group_grafana_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (grafana_monitor_monit_state == True)
   tags:
     - grafana
@@ -37,7 +39,7 @@
   file:
     state: absent
     path: "{{file_dst_grafana_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (grafana_monitor_monit_state == False)
   tags:
     - grafana
@@ -49,7 +51,9 @@
     mode: "{{file_mode_grafana_nft}}"
     owner: "{{file_owner_grafana_nft}}"
     group: "{{file_group_grafana_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (grafana_nftables_state == True)
   tags:
     - grafana
@@ -58,7 +62,7 @@
   file:
     state: absent
     path: "{{file_dst_grafana_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (grafana_nftables_state == False)
   tags:
     - grafana

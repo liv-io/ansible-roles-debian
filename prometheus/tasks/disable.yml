@@ -132,7 +132,7 @@
   file:
     state: absent
     path: "{{file_dst_prometheus_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - prometheus
 
@@ -143,7 +143,9 @@
     mode: "{{file_mode_prometheus_nft}}"
     owner: "{{file_owner_prometheus_nft}}"
     group: "{{file_group_prometheus_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (prometheus_nftables_state == True)
   tags:
     - prometheus
@@ -152,7 +154,7 @@
   file:
     state: absent
     path: "{{file_dst_prometheus_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (prometheus_nftables_state == False)
   tags:
     - prometheus

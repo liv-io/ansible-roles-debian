@@ -54,7 +54,7 @@
   file:
     state: absent
     path: "{{file_dst_loki_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - loki
 
@@ -65,7 +65,9 @@
     mode: "{{file_mode_loki_nft}}"
     owner: "{{file_owner_loki_nft}}"
     group: "{{file_group_loki_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (loki_nftables_state == True)
   tags:
     - loki
@@ -74,7 +76,7 @@
   file:
     state: absent
     path: "{{file_dst_loki_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (loki_nftables_state == False)
   tags:
     - loki

@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_auditd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - auditd
 

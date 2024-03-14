@@ -69,15 +69,6 @@ file_mode_monit_exporter_nft: '0640'
 file_owner_monit_exporter_nft: 'root'
 file_group_monit_exporter_nft: 'root'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service monit_exporter
-command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # monit_exporter
 group_name_monit_exporter: 'monit_exporter'
 group_system_monit_exporter: True
@@ -96,11 +87,20 @@ user_password_update_monit_exporter: 'always'
 user_shell_monit_exporter: '/usr/sbin/nologin'
 user_system_monit_exporter: True
 
-# monit
-service_name_monit: 'monit'
+# check service monit_exporter
+command_cmd_check_service_monit_exporter: 'systemctl cat monit_exporter.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
 
 # monit_exporter
 service_name_monit_exporter: 'monit_exporter'
-
-# nftables
-service_name_nftables: 'nftables'

@@ -57,18 +57,6 @@ file_mode_smokeping_prober_nft: '0640'
 file_owner_smokeping_prober_nft: 'root'
 file_group_smokeping_prober_nft: 'root'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
-# check service smokeping_prober
-command_cmd_check_service_smokeping_prober: 'systemctl cat smokeping_prober.service > /dev/null 2>&1'
-
-# set capability
-command_cmd_set_capability: "setcap cap_net_raw=+ep /usr/local/bin/smokeping_prober"
-
 # smokeping_prober
 group_name_smokeping_prober: 'smokeping_prober'
 group_system_smokeping_prober: True
@@ -87,11 +75,23 @@ user_password_update_smokeping_prober: 'always'
 user_shell_smokeping_prober: '/usr/sbin/nologin'
 user_system_smokeping_prober: True
 
-# monit
-service_name_monit: 'monit'
+# check service smokeping_prober
+command_cmd_check_service_smokeping_prober: 'systemctl cat smokeping_prober.service > /dev/null 2>&1'
 
-# nftables
-service_name_nftables: 'nftables'
+# set capability
+command_cmd_set_capability: "setcap cap_net_raw=+ep /usr/local/bin/smokeping_prober"
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
 
 # smokeping_prober
 service_name_smokeping_prober: 'smokeping_prober'

@@ -14,7 +14,7 @@
   file:
     state: absent
     path: "{{file_dst_restic_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - restic
 

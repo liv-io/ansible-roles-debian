@@ -107,7 +107,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_forgejo_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - pod_forgejo
 
@@ -115,7 +115,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_forgejo_forgejo_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - pod_forgejo
 

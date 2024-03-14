@@ -22,7 +22,7 @@
   file:
     state: absent
     path: "{{file_dst_haproxy_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - haproxy
 
@@ -30,7 +30,7 @@
   file:
     state: absent
     path: "{{file_dst_haproxy_monit}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - haproxy
 

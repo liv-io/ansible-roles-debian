@@ -100,16 +100,6 @@
   tags:
     - apt
 
-- name: check service nftables
-  shell: "{{command_cmd_check_service_nftables}}"
-  register: register_check_service_nftables
-  changed_when: (register_check_service_nftables.rc > 1)
-  failed_when: (register_check_service_nftables.rc > 1)
-  check_mode: False
-  when: (apt_nftables_state == True)
-  tags:
-    - apt
-
 - name: create file apt.nft
   template:
     src: "{{file_src_apt_nft}}"
@@ -117,7 +107,7 @@
     mode: "{{file_mode_apt_nft}}"
     owner: "{{file_owner_apt_nft}}"
     group: "{{file_group_apt_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (apt_nftables_state == True)
   tags:
     - apt
@@ -126,7 +116,7 @@
   file:
     state: absent
     path: "{{file_dst_apt_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (apt_nftables_state == False)
   tags:
     - apt

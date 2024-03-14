@@ -39,7 +39,9 @@
     mode: "{{file_mode_auditd_cfg}}"
     owner: "{{file_owner_auditd_cfg}}"
     group: "{{file_group_auditd_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (auditd_monitor_monit_state == True)
   tags:
     - auditd
@@ -48,7 +50,7 @@
   file:
     state: absent
     path: "{{file_dst_auditd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (auditd_monitor_monit_state == False)
   tags:
     - auditd

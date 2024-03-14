@@ -25,7 +25,7 @@
   file:
     state: absent
     path: "{{file_dst_nginx_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - nginx
 
@@ -36,7 +36,9 @@
     mode: "{{file_mode_nginx_nft}}"
     owner: "{{file_owner_nginx_nft}}"
     group: "{{file_group_nginx_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (nginx_nftables_state == True)
   tags:
     - nginx
@@ -45,7 +47,7 @@
   file:
     state: absent
     path: "{{file_dst_nginx_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (nginx_nftables_state == False)
   tags:
     - nginx

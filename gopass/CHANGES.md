@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2024-03-14)
+
+### Bugs
+
+- Fix `nftables` check task
+
 ## 0.1.0 (2024-01-09)
 
 ### Features

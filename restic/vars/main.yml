@@ -101,8 +101,8 @@ cron_weekday_restic_run_backup: "{{restic_run_backup_weekday}}"
 cron_user_restic_run_backup: "{{file_owner_restic_run_backup}}"
 cron_job_restic_run_backup: "{{file_dst_restic_run_backup}}"
 
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
 
-# nftables
-service_name_nftables: 'nftables'
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'

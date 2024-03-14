@@ -24,7 +24,7 @@
   file:
     state: absent
     path: "{{file_dst_node_exporter_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - node_exporter
 
@@ -35,7 +35,9 @@
     mode: "{{file_mode_node_exporter_nft}}"
     owner: "{{file_owner_node_exporter_nft}}"
     group: "{{file_group_node_exporter_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (node_exporter_nftables_state == True)
   tags:
     - node_exporter
@@ -44,7 +46,7 @@
   file:
     state: absent
     path: "{{file_dst_node_exporter_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (node_exporter_nftables_state == False)
   tags:
     - node_exporter

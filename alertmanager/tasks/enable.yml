@@ -39,7 +39,9 @@
     mode: "{{file_mode_alertmanager_cfg}}"
     owner: "{{file_owner_alertmanager_cfg}}"
     group: "{{file_group_alertmanager_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (alertmanager_monitor_monit_state == True)
   tags:
     - alertmanager
@@ -48,7 +50,7 @@
   file:
     state: absent
     path: "{{file_dst_alertmanager_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (alertmanager_monitor_monit_state == False)
   tags:
     - alertmanager
@@ -60,7 +62,9 @@
     mode: "{{file_mode_alertmanager_nft}}"
     owner: "{{file_owner_alertmanager_nft}}"
     group: "{{file_group_alertmanager_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (alertmanager_nftables_state == True)
   tags:
     - alertmanager
@@ -69,7 +73,7 @@
   file:
     state: absent
     path: "{{file_dst_alertmanager_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (alertmanager_nftables_state == False)
   tags:
     - alertmanager

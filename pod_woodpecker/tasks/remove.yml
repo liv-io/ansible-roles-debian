@@ -49,7 +49,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_woodpecker_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   tags:
     - pod_woodpecker
 
@@ -57,7 +57,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_woodpecker_woodpecker_agent_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - pod_woodpecker
 
@@ -65,7 +65,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_woodpecker_woodpecker_server_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - pod_woodpecker
 

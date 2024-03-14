@@ -121,12 +121,6 @@ cron_weekday_mariadb_run_backup: "{{mariadb_run_backup_weekday}}"
 cron_user_mariadb_run_backup: "{{file_owner_mariadb_run_backup}}"
 cron_job_mariadb_run_backup: "{{file_dst_mariadb_run_backup}}"
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # flush-privileges
 command_cmd_flush_privileges: "mysql --defaults-file='/etc/mysql/credentials.cnf' -ne 'FLUSH PRIVILEGES'"
 
@@ -145,11 +139,17 @@ command_cmd_remove_test_database_access: "mysql --defaults-file='/etc/mysql/cred
 # remove-root-remote-access
 command_cmd_remove_root_remote_access: "mysql --defaults-file='/etc/mysql/credentials.cnf' -ne \"DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')\""
 
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
 # mariadb
 service_name_mariadb: 'mariadb'
-
-# monit
-service_name_monit: 'monit'
-
-# nftables
-service_name_nftables: 'nftables'

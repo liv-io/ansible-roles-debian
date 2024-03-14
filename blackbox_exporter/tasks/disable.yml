@@ -34,7 +34,7 @@
   file:
     state: absent
     path: "{{file_dst_blackbox_exporter_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - blackbox_exporter
 
@@ -45,7 +45,9 @@
     mode: "{{file_mode_blackbox_exporter_nft}}"
     owner: "{{file_owner_blackbox_exporter_nft}}"
     group: "{{file_group_blackbox_exporter_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (blackbox_exporter_nftables_state == True)
   tags:
     - blackbox_exporter
@@ -54,7 +56,7 @@
   file:
     state: absent
     path: "{{file_dst_blackbox_exporter_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (blackbox_exporter_nftables_state == False)
   tags:
     - blackbox_exporter

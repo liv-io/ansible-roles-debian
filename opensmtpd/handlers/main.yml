@@ -11,18 +11,6 @@
 - name: smtpctl aliases
   command: "{{command_cmd_smtpctl_aliases}}"
 
-- name: reload service monit
-  service:
-    state: reloaded
-    name: "{{service_name_monit}}"
-  when: (register_check_service_monit.rc == 0)
-
-- name: reload service nftables
-  service:
-    state: reloaded
-    name: "{{service_name_nftables}}"
-  when: (register_check_service_nftables.rc == 0)
-
 - name: start service opensmtpd
   service:
     state: started
@@ -32,3 +20,15 @@
   service:
     state: restarted
     name: "{{service_name_opensmtpd}}"
+
+- name: validate monit
+  shell: "{{command_cmd_validate_monit}}"
+
+- name: reload monit
+  shell: "{{command_cmd_reload_monit}}"
+
+- name: validate nftables
+  shell: "{{command_cmd_validate_nftables}}"
+
+- name: reload nftables
+  shell: "{{command_cmd_reload_nftables}}"

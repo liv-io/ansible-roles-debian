@@ -45,7 +45,7 @@
   file:
     state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   tags:
     - opensmtpd
 
@@ -56,7 +56,9 @@
     mode: "{{file_mode_opensmtpd_nft}}"
     owner: "{{file_owner_opensmtpd_nft}}"
     group: "{{file_group_opensmtpd_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (opensmtpd_nftables_state == True)
   tags:
     - opensmtpd
@@ -65,7 +67,7 @@
   file:
     state: absent
     path: "{{file_dst_opensmtpd_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (opensmtpd_nftables_state == False)
   tags:
     - opensmtpd

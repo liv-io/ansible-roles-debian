@@ -39,7 +39,9 @@
     mode: "{{file_mode_pod_forgejo_forgejo_cfg}}"
     owner: "{{file_owner_pod_forgejo_forgejo_cfg}}"
     group: "{{file_group_pod_forgejo_forgejo_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (pod_forgejo_monitor_monit_state == True)
   tags:
     - pod_forgejo
@@ -48,7 +50,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_forgejo_forgejo_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (pod_forgejo_monitor_monit_state == False)
   tags:
     - pod_forgejo
@@ -60,7 +62,9 @@
     mode: "{{file_mode_pod_forgejo_nft}}"
     owner: "{{file_owner_pod_forgejo_nft}}"
     group: "{{file_group_pod_forgejo_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (pod_forgejo_nftables_state == True)
   tags:
     - pod_forgejo
@@ -69,7 +73,7 @@
   file:
     state: absent
     path: "{{file_dst_pod_forgejo_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (pod_forgejo_nftables_state == False)
   tags:
     - pod_forgejo

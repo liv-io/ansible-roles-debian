@@ -39,7 +39,9 @@
     mode: "{{file_mode_promtail_cfg}}"
     owner: "{{file_owner_promtail_cfg}}"
     group: "{{file_group_promtail_cfg}}"
-  notify: reload service monit
+  notify:
+    - validate monit
+    - reload monit
   when: (promtail_monitor_monit_state == True)
   tags:
     - promtail
@@ -48,7 +50,7 @@
   file:
     state: absent
     path: "{{file_dst_promtail_cfg}}"
-  notify: reload service monit
+  notify: reload monit
   when: (promtail_monitor_monit_state == False)
   tags:
     - promtail
@@ -60,7 +62,9 @@
     mode: "{{file_mode_promtail_nft}}"
     owner: "{{file_owner_promtail_nft}}"
     group: "{{file_group_promtail_nft}}"
-  notify: reload service nftables
+  notify:
+    - validate nftables
+    - reload nftables
   when: (promtail_nftables_state == True)
   tags:
     - promtail
@@ -69,7 +73,7 @@
   file:
     state: absent
     path: "{{file_dst_promtail_nft}}"
-  notify: reload service nftables
+  notify: reload nftables
   when: (promtail_nftables_state == False)
   tags:
     - promtail

@@ -20,8 +20,8 @@ file_mode_resolver_nft: '0640'
 file_owner_resolver_nft: 'root'
 file_group_resolver_nft: 'root'
 
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
 
-# nftables
-service_name_nftables: 'nftables'
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'

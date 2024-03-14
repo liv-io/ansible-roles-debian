@@ -70,15 +70,6 @@ file_mode_mysqld_exporter_nft: '0640'
 file_owner_mysqld_exporter_nft: 'root'
 file_group_mysqld_exporter_nft: 'root'
 
-# check service monit
-command_cmd_check_service_monit: 'systemctl cat monit.service > /dev/null 2>&1'
-
-# check service mysqld_exporter
-command_cmd_check_service_mysqld_exporter: 'systemctl cat mysqld_exporter.service > /dev/null 2>&1'
-
-# check service nftables
-command_cmd_check_service_nftables: 'systemctl cat nftables.service > /dev/null 2>&1'
-
 # mysqld_exporter
 group_name_mysqld_exporter: 'mysqld_exporter'
 group_system_mysqld_exporter: True
@@ -97,11 +88,20 @@ user_password_update_mysqld_exporter: 'always'
 user_shell_mysqld_exporter: '/usr/sbin/nologin'
 user_system_mysqld_exporter: True
 
-# monit
-service_name_monit: 'monit'
+# check service mysqld_exporter
+command_cmd_check_service_mysqld_exporter: 'systemctl cat mysqld_exporter.service > /dev/null 2>&1'
 
-# nftables
-service_name_nftables: 'nftables'
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
 
 # mysqld_exporter
 service_name_mysqld_exporter: 'mysqld_exporter'

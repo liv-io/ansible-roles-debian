@@ -8,6 +8,9 @@
         - "vars/{{ansible_distribution_major_version}}.yml"
         - 'vars/main.yml'
 
+- name: validate nftables
+  command: "{{command_cmd_validate_nftables}}"
+
 - name: reload service nftables
   service:
     state: reloaded
