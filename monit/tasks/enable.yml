@@ -19,7 +19,7 @@
     group: "{{file_group_monitrc}}"
   notify:
     - validate monit
-    - reload service monit
+    - restart service monit
   tags:
     - monit
 

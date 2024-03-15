@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.4 (2024-03-15)
+
+### Enhancements
+
+- Restart service upon `monitrc` change
+
 ## 2.1.3 (2024-03-14)
 
 ### Bugs

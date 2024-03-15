@@ -17,6 +17,11 @@
     state: reloaded
     name: "{{service_name_monit}}"
 
+- name: restart service monit
+  service:
+    state: restarted
+    name: "{{service_name_monit}}"
+
 - name: validate nftables
   shell: "{{command_cmd_validate_nftables}}"
 

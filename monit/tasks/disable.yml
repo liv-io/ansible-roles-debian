@@ -17,6 +17,7 @@
     mode: "{{file_mode_monitrc}}"
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
+  notify: validate monit
   tags:
     - monit
 
