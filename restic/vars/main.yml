@@ -102,7 +102,7 @@ cron_user_restic_run_backup: "{{file_owner_restic_run_backup}}"
 cron_job_restic_run_backup: "{{file_dst_restic_run_backup}}"
 
 # reload nftables
-command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --file /etc/nftables.conf || true'
 
 # validate nftables
 command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'

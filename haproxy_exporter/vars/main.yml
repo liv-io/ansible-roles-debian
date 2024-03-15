@@ -82,7 +82,7 @@ command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 &&
 command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
 
 # reload nftables
-command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --file /etc/nftables.conf || true'
 
 # validate nftables
 command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
