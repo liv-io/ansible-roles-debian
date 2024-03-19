@@ -10,7 +10,13 @@ The headers are:
 - enhancements
 - features
 
-## 0.5.2 (2024-03-13)
+## 0.5.4 (2024-03-19)
+
+### Bugs
+
+- Add writable `/tmp` directory as tmpfs
+
+## 0.5.3 (2024-03-13)
 
 ### Bugs
 

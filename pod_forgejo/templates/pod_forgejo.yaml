@@ -36,6 +36,8 @@ spec:
       mountPath: /var/local/forgejo/ssh
     - name: forgejo-work
       mountPath: /var/local/forgejo/work
+    - name: forgejo-tmp
+      mountPath: /tmp
     workingDir: /
     env:
 {% if not (pod_forgejo_forgejo_config == "") %}
@@ -75,5 +77,8 @@ spec:
     hostPath:
       type: Directory
       path: {{file_dst_forgejo_work_dir}}
+  - name: forgejo-tmp
+    emptyDir:
+      sizeLimit: 128Mi
 
 status: {}
