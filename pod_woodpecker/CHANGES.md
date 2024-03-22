@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.3 (2024-03-22)
+
+### Bugs
+
+- Use slirp4netns (rootless / user-mode networking) for port handling
+
 ## 0.3.2 (2024-03-14)
 
 ### Bugs

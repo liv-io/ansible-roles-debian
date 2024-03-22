@@ -18,6 +18,7 @@ TimeoutStopSec=60
 ExecStartPre=+/usr/bin/chmod o+rw /run/podman
 ExecStartPre=+/usr/bin/chmod o+rw /run/podman/podman.sock
 ExecStart=/usr/bin/podman play kube \
+    --network slirp4netns:port_handler=slirp4netns \
 {% if not (pod_woodpecker_registry_username == "") %}
     --creds {{pod_woodpecker_registry_username}}:'{{pod_woodpecker_registry_password}}' \
 {% endif %}
