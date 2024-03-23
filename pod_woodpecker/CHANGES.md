@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 0.4.0 (2024-03-23)
+
+### Features
+
+- Update `pod_woodpecker_woodpecker_agent_version` from 2.3.0-1 to 2.4.1-1
+- Update `pod_woodpecker_woodpecker_server_version` from 2.3.0-1 to 2.4.1-1
+
 ## 0.3.3 (2024-03-22)
 
 ### Bugs
