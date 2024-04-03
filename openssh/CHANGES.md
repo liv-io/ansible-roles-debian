@@ -10,6 +10,15 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.2 (2024-04-03)
+
+### Bugs
+
+- Add missing parameter `openssh_login_grace_time` to template
+- Add missing parameter `openssh_max_auth_tries` in template
+- Add missing parameter `openssh_max_startups` in template
+- Add missing parameter `openssh_pubkey_accepted_algorithms` in template
+
 ## 2.3.1 (2024-04-03)
 
 ### Bugs
