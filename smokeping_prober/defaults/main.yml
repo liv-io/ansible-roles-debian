@@ -14,4 +14,4 @@ smokeping_prober_nftables_filter_rule: |
 
 smokeping_prober_nftables_state: False
 
-smokeping_prober_version: '0.8.0'
+smokeping_prober_version: '0.8.1'
