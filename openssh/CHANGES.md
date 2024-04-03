@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.1 (2024-04-03)
+
+### Bugs
+
+- Reduce `openssh_login_grace_time` to 60 seconds
+
 ## 2.3.0 (2024-04-03)
 
 ### Changes

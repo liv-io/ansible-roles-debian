@@ -231,7 +231,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : 300
+    Default    : 60
     Options    :
       Examples: 60 | 120 | 240
 

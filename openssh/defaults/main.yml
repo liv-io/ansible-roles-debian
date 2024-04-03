@@ -25,7 +25,7 @@ openssh_kex_algorithms: ['curve25519-sha256', 'curve25519-sha256@libssh.org']
 
 openssh_listen_address: ['0.0.0.0']
 
-openssh_login_grace_time: 300
+openssh_login_grace_time: 60
 
 openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
 
