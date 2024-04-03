@@ -25,9 +25,15 @@ openssh_kex_algorithms: ['curve25519-sha256', 'curve25519-sha256@libssh.org']
 
 openssh_listen_address: ['0.0.0.0']
 
+openssh_login_grace_time: 300
+
 openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
 
 openssh_match: []
+
+openssh_max_auth_tries: 3
+
+openssh_max_startups: '10:30:100'
 
 openssh_monitor_monit_state: False
 
@@ -47,9 +53,17 @@ openssh_print_motd: False
 
 openssh_print_last_log: True
 
-openssh_pubkey_authentication: True
+openssh_pubkey_accepted_algorithms:
+  - 'rsa-sha2-256'
+  - 'rsa-sha2-256-cert-v01@openssh.com'
+  - 'rsa-sha2-512'
+  - 'rsa-sha2-512-cert-v01@openssh.com'
+  - 'sk-ssh-ed25519-cert-v01@openssh.com'
+  - 'sk-ssh-ed25519@openssh.com'
+  - 'ssh-ed25519'
+  - 'ssh-ed25519-cert-v01@openssh.com'
 
-openssh_rsa_authentication: True
+openssh_pubkey_authentication: True
 
 openssh_tcp_keep_alive: True
 

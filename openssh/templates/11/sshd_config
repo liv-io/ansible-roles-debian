@@ -14,17 +14,12 @@
 
 #Include /etc/ssh/sshd_config.d/*.conf
 
-# PORT
-
 {% if not (openssh_port == []) %}
 {% for item in openssh_port %}
 Port {{item|int(22)}}
 {% endfor %}
-{% else %}
-Port 22
-{% endif %}
 
-# ADDRESS FAMILY
+{% endif %}
 
 {% if (openssh_address_family is match('any|all')) %}
 AddressFamily any
@@ -32,81 +27,48 @@ AddressFamily any
 AddressFamily inet
 {% elif (openssh_address_family is match('inet6|ipv6')) %}
 AddressFamily inet6
-{% else %}
-#AddressFamily any
 {% endif %}
-
-# LISTEN ADDRESS
 
 {% if not (openssh_listen_address == []) %}
 {% for item in openssh_listen_address %}
 ListenAddress {{item}}
 {% endfor %}
-{% else %}
-#ListenAddress 0.0.0.0
-#ListenAddress ::
-{% endif %}
 
-# HOST KEY
+{% endif %}
 
 {% if not (openssh_host_key == []) %}
 {% for item in openssh_host_key %}
 HostKey {{item}}
 {% endfor %}
-{% else %}
-HostKey /etc/ssh/ssh_host_rsa_key
-#HostKey /etc/ssh/ssh_host_dsa_key
-#HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
-{% endif %}
 
-# CIPHERS
+{% endif %}
 
 {% if not (openssh_ciphers == []) %}
 Ciphers {% for item in openssh_ciphers %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
-{% else %}
-Ciphers aes256-ctr,aes192-ctr
 {% endif %}
-
-# HOST KEY ALGORITHMS
 
 {% if not (openssh_host_key_algorithms == []) %}
 HostKeyAlgorithms {% for item in openssh_host_key_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
-{% else %}
-HostKeyAlgorithms ssh-ed25519,ssh-rsa
 {% endif %}
-
-# KEY EXCHANGE ALGORITHMS
 
 {% if not (openssh_kex_algorithms == []) %}
 KexAlgorithms {% for item in openssh_kex_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
-{% else %}
-KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 {% endif %}
-
-# MESSAGE AUTHENTICATION CODE ALGORITHMS
 
 {% if not (openssh_macs == []) %}
 MACs {% for item in openssh_macs %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
-{% else %}
-MACs hmac-sha2-512,hmac-sha2-256
 {% endif %}
-
 
 # Ciphers and keying
 #RekeyLimit default none
 
-# LOGGING
-
 # Logging
 #SyslogFacility AUTH
 #LogLevel INFO
-
-# AUTHENTICATION
 
 # Authentication:
 
@@ -177,8 +139,6 @@ ChallengeResponseAuthentication no
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
 
-# FORWARDING
-
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
@@ -195,9 +155,6 @@ X11UseLocalhost yes
 X11UseLocalhost no
 {% endif %}
 {% endif %}
-
-# OTHER
-
 #PermitTTY yes
 {% if (openssh_print_motd == True) %}
 PrintMotd yes
@@ -234,8 +191,6 @@ UseDNS no
 #ChrootDirectory none
 VersionAddendum {{openssh_version_addendum}}
 
-# BANNER
-
 # no default banner path
 {% if (openssh_banner == False) %}
 Banner none
@@ -255,8 +210,6 @@ AcceptEnv LANG LC_*
 # override default of no subsystems
 Subsystem	sftp	/usr/lib/openssh/sftp-server
 
-# CONDITIONAL
-
 {% if not (openssh_match == []) %}
 {% for item in openssh_match %}
 Match {{item.type}} {{item.name}}
@@ -274,23 +227,15 @@ Match {{item.type}} {{item.name}}
 #	ForceCommand cvs server
 {% endif %}
 
-# ACCESS RESTRICTION
-
 # Login is disallowed for user names that match one of the patterns.
 {% if not (openssh_deny_users == []) %}
 DenyUsers {% for item in openssh_deny_users %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
-
-{% else %}
-#DenyUsers
 
 {% endif %}
 
 # Login is allowed only for user names that match one of the patterns.
 {% if not (openssh_allow_users == []) %}
 AllowUsers {% for item in openssh_allow_users %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
-
-{% else %}
-#AllowUsers
 
 {% endif %}
 
@@ -299,17 +244,11 @@ AllowUsers {% for item in openssh_allow_users %}{{item}}{% if not loop.last %} {
 {% if not (openssh_deny_groups == []) %}
 DenyGroups {% for item in openssh_deny_groups %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
-{% else %}
-#DenyGroups
-
 {% endif %}
 
 # Login is allowed only for users whose primary group or
 # supplementary group list matches one of the patterns.
 {% if not (openssh_allow_groups == []) %}
 AllowGroups {% for item in openssh_allow_groups %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
-
-{% else %}
-#AllowGroups
 
 {% endif %}
