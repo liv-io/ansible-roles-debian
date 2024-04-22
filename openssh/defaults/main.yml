@@ -9,7 +9,7 @@ openssh_allow_users: []
 
 openssh_banner: True
 
-openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
+openssh_ciphers: ['aes256-ctr']
 
 openssh_compression: True
 
@@ -43,7 +43,7 @@ openssh_nftables_filter_rule: |
 
 openssh_nftables_state: False
 
-openssh_password_authentication: True
+openssh_password_authentication: False
 
 openssh_permit_root_login: False
 

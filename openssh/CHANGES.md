@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.3 (2024-04-22)
+
+### Enhancements
+
+- Limit `openssh_ciphers` to aes256-ctr
+- Set `openssh_password_authentication` to False
+
 ## 2.3.2 (2024-04-03)
 
 ### Bugs

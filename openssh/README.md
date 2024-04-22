@@ -140,7 +140,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['aes256-ctr', 'aes192-ctr']
+    Default    : ['aes256-ctr']
     Options    :
       Examples: ['aes256-ctr']
 
@@ -314,7 +314,7 @@ consult the following sections.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : True
+    Default    : False
     Options    : True | False
 
 `openssh_permit_root_login`
