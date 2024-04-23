@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.6.1 (2024-04-23)
+
+### Bugs
+
+- Correct sudo configuration
+
 ## 0.6.0 (2024-04-23)
 
 ### Changes

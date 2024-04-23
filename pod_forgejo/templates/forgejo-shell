@@ -2,4 +2,4 @@
 
 {{ansible_managed|comment(decoration='#')}}
 
-/usr/bin/sudo -u pod_forgejo /usr/bin/podman exec -i --env SSH_ORIGINAL_COMMAND="${SSH_ORIGINAL_COMMAND}" pod_forgejo-forgejo sh "${@}"
+/usr/bin/sudo -u root /usr/bin/podman exec -i --env SSH_ORIGINAL_COMMAND="${SSH_ORIGINAL_COMMAND}" pod_forgejo-forgejo sh "${@}"
