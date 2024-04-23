@@ -3,25 +3,11 @@
 # iptables
 package_name_iptables: 'iptables'
 
-# subgid
-file_src_subgid: 'subgid'
-file_dst_subgid: '/etc/subgid'
-file_mode_subgid: '0644'
-file_owner_subgid: 'root'
-file_group_subgid: 'root'
-
-# subuid
-file_src_subuid: 'subuid'
-file_dst_subuid: '/etc/subuid'
-file_mode_subuid: '0644'
-file_owner_subuid: 'root'
-file_group_subuid: 'root'
-
 # pod_woodpecker_etc.dir
 file_dst_pod_woodpecker_etc_dir: '/etc/pod_woodpecker'
 file_mode_pod_woodpecker_etc_dir: '0750'
 file_owner_pod_woodpecker_etc_dir: 'root'
-file_group_pod_woodpecker_etc_dir: 'pod_woodpecker'
+file_group_pod_woodpecker_etc_dir: 'root'
 
 # opt.dir
 file_dst_opt_dir: '/opt'
@@ -32,39 +18,39 @@ file_group_opt_dir: 'root'
 # pod_woodpecker_opt.dir
 file_dst_pod_woodpecker_opt_dir: '/opt/pod_woodpecker'
 file_mode_pod_woodpecker_opt_dir: '0755'
-file_owner_pod_woodpecker_opt_dir: 'pod_woodpecker'
-file_group_pod_woodpecker_opt_dir: 'pod_woodpecker'
+file_owner_pod_woodpecker_opt_dir: 'root'
+file_group_pod_woodpecker_opt_dir: 'root'
 
 # woodpecker-agent.dir
 file_dst_woodpecker_agent_dir: '/opt/pod_woodpecker/woodpecker-agent'
 file_mode_woodpecker_agent_dir: '0755'
-file_owner_woodpecker_agent_dir: 'pod_woodpecker'
-file_group_woodpecker_agent_dir: 'pod_woodpecker'
+file_owner_woodpecker_agent_dir: 'root'
+file_group_woodpecker_agent_dir: 'root'
 
 # woodpecker-agent_tmp.dir
 file_dst_woodpecker_agent_tmp_dir: '/opt/pod_woodpecker/woodpecker-agent/tmp'
 file_mode_woodpecker_agent_tmp_dir: '0750'
-file_owner_woodpecker_agent_tmp_dir: '29999'
-file_group_woodpecker_agent_tmp_dir: '29999'
+file_owner_woodpecker_agent_tmp_dir: '10000'
+file_group_woodpecker_agent_tmp_dir: '10000'
 
 # woodpecker-server.dir
 file_dst_woodpecker_server_dir: '/opt/pod_woodpecker/woodpecker-server'
 file_mode_woodpecker_server_dir: '0755'
-file_owner_woodpecker_server_dir: 'pod_woodpecker'
-file_group_woodpecker_server_dir: 'pod_woodpecker'
+file_owner_woodpecker_server_dir: 'root'
+file_group_woodpecker_server_dir: 'root'
 
 # woodpecker-server_db.dir
 file_dst_woodpecker_server_db_dir: '/opt/pod_woodpecker/woodpecker-server/db'
 file_mode_woodpecker_server_db_dir: '0750'
-file_owner_woodpecker_server_db_dir: '29999'
-file_group_woodpecker_server_db_dir: '29999'
+file_owner_woodpecker_server_db_dir: '10000'
+file_group_woodpecker_server_db_dir: '10000'
 
 # pod_woodpecker.default
 file_src_pod_woodpecker_default: 'pod_woodpecker.default'
 file_dst_pod_woodpecker_default: '/etc/default/pod_woodpecker'
 file_mode_pod_woodpecker_default: '0640'
 file_owner_pod_woodpecker_default: 'root'
-file_group_pod_woodpecker_default: 'pod_woodpecker'
+file_group_pod_woodpecker_default: 'root'
 
 # pod_woodpecker.service
 file_src_pod_woodpecker_service: 'pod_woodpecker.service'
@@ -78,7 +64,7 @@ file_src_pod_woodpecker_yaml: 'pod_woodpecker.yaml'
 file_dst_pod_woodpecker_yaml: '/etc/pod_woodpecker/pod_woodpecker.yaml'
 file_mode_pod_woodpecker_yaml: '0640'
 file_owner_pod_woodpecker_yaml: 'root'
-file_group_pod_woodpecker_yaml: 'pod_woodpecker'
+file_group_pod_woodpecker_yaml: 'root'
 
 # monit.d
 file_dst_monit_d: '/etc/monit.d'
@@ -113,32 +99,8 @@ file_mode_pod_woodpecker_nft: '0640'
 file_owner_pod_woodpecker_nft: 'root'
 file_group_pod_woodpecker_nft: 'root'
 
-# pod_woodpecker
-group_name_pod_woodpecker: 'pod_woodpecker'
-group_gid_pod_woodpecker: '10000'
-group_system_pod_woodpecker: False
-
-# pod_woodpecker
-user_name_pod_woodpecker: 'pod_woodpecker'
-user_comment_pod_woodpecker: 'Pod Woodpecker'
-user_uid_pod_woodpecker: '10000'
-user_group_pod_woodpecker: 'pod_woodpecker'
-user_groups_pod_woodpecker: ['systemd-journal']
-user_append_pod_woodpecker: True
-user_home_create_pod_woodpecker: True
-user_home_move_pod_woodpecker: False
-user_home_remove_pod_woodpecker: True
-user_home_force_pod_woodpecker: False
-user_password_pod_woodpecker: '!'
-user_password_update_pod_woodpecker: 'always'
-user_shell_pod_woodpecker: '/bin/bash'
-user_system_pod_woodpecker: False
-
 # check service pod_woodpecker
 command_cmd_check_service_pod_woodpecker: 'systemctl cat pod_woodpecker.service > /dev/null 2>&1'
-
-# loginctl enable_linger
-command_cmd_loginctl_enable_linger: 'loginctl enable-linger pod_woodpecker'
 
 # reload monit
 command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'

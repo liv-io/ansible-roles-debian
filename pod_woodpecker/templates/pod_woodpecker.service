@@ -9,8 +9,8 @@ After=network-online.target
 [Service]
 Type=forking
 RemainAfterExit=yes
-User=pod_woodpecker
-Group=pod_woodpecker
+User=root
+Group=root
 EnvironmentFile={{file_dst_pod_woodpecker_default}}
 Restart=always
 TimeoutStartSec=60

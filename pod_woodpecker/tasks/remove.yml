@@ -29,22 +29,6 @@
   tags:
     - pod_woodpecker
 
-- name: remove user pod_woodpecker
-  user:
-    state: absent
-    name: "{{user_name_pod_woodpecker}}"
-    remove: "{{user_home_remove_pod_woodpecker}}"
-    force: "{{user_home_force_pod_woodpecker}}"
-  tags:
-    - pod_woodpecker
-
-- name: remove group pod_woodpecker
-  group:
-    state: absent
-    name: "{{group_name_pod_woodpecker}}"
-  tags:
-    - pod_woodpecker
-
 - name: remove file pod_woodpecker.nft
   file:
     state: absent
