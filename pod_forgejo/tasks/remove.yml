@@ -29,22 +29,6 @@
   tags:
     - pod_forgejo
 
-- name: remove user pod_forgejo
-  user:
-    state: absent
-    name: "{{user_name_pod_forgejo}}"
-    remove: "{{user_home_remove_pod_forgejo}}"
-    force: "{{user_home_force_pod_forgejo}}"
-  tags:
-    - pod_forgejo
-
-- name: remove group pod_forgejo
-  group:
-    state: absent
-    name: "{{group_name_pod_forgejo}}"
-  tags:
-    - pod_forgejo
-
 - name: remove user forgejo
   user:
     state: absent

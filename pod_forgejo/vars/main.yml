@@ -1,24 +1,10 @@
 ---
 
-# subgid
-file_src_subgid: 'subgid'
-file_dst_subgid: '/etc/subgid'
-file_mode_subgid: '0644'
-file_owner_subgid: 'root'
-file_group_subgid: 'root'
-
-# subuid
-file_src_subuid: 'subuid'
-file_dst_subuid: '/etc/subuid'
-file_mode_subuid: '0644'
-file_owner_subuid: 'root'
-file_group_subuid: 'root'
-
 # pod_forgejo_etc.dir
 file_dst_pod_forgejo_etc_dir: '/etc/pod_forgejo'
 file_mode_pod_forgejo_etc_dir: '0750'
 file_owner_pod_forgejo_etc_dir: 'root'
-file_group_pod_forgejo_etc_dir: 'pod_forgejo'
+file_group_pod_forgejo_etc_dir: 'root'
 
 # opt.dir
 file_dst_opt_dir: '/opt'
@@ -29,33 +15,33 @@ file_group_opt_dir: 'root'
 # pod_forgejo_opt.dir
 file_dst_pod_forgejo_opt_dir: '/opt/pod_forgejo'
 file_mode_pod_forgejo_opt_dir: '0755'
-file_owner_pod_forgejo_opt_dir: 'pod_forgejo'
-file_group_pod_forgejo_opt_dir: 'pod_forgejo'
+file_owner_pod_forgejo_opt_dir: 'root'
+file_group_pod_forgejo_opt_dir: 'root'
 
 # forgejo.dir
 file_dst_forgejo_dir: '/opt/pod_forgejo/forgejo'
 file_mode_forgejo_dir: '0755'
-file_owner_forgejo_dir: 'pod_forgejo'
-file_group_forgejo_dir: 'pod_forgejo'
+file_owner_forgejo_dir: 'root'
+file_group_forgejo_dir: 'root'
 
 # forgejo_ssh.dir
 file_dst_forgejo_ssh_dir: '/opt/pod_forgejo/forgejo/ssh'
 file_mode_forgejo_ssh_dir: '0700'
-file_owner_forgejo_ssh_dir: '29999'
-file_group_forgejo_ssh_dir: '29999'
+file_owner_forgejo_ssh_dir: '10000'
+file_group_forgejo_ssh_dir: '10000'
 
 # forgejo_work.dir
 file_dst_forgejo_work_dir: '/opt/pod_forgejo/forgejo/work'
 file_mode_forgejo_work_dir: '0750'
-file_owner_forgejo_work_dir: '29999'
-file_group_forgejo_work_dir: '29999'
+file_owner_forgejo_work_dir: '10000'
+file_group_forgejo_work_dir: '10000'
 
 # pod_forgejo.default
 file_src_pod_forgejo_default: 'pod_forgejo.default'
 file_dst_pod_forgejo_default: '/etc/default/pod_forgejo'
 file_mode_pod_forgejo_default: '0640'
 file_owner_pod_forgejo_default: 'root'
-file_group_pod_forgejo_default: 'pod_forgejo'
+file_group_pod_forgejo_default: 'root'
 
 # pod_forgejo.service
 file_src_pod_forgejo_service: 'pod_forgejo.service'
@@ -69,7 +55,7 @@ file_src_pod_forgejo_yaml: 'pod_forgejo.yaml'
 file_dst_pod_forgejo_yaml: '/etc/pod_forgejo/pod_forgejo.yaml'
 file_mode_pod_forgejo_yaml: '0640'
 file_owner_pod_forgejo_yaml: 'root'
-file_group_pod_forgejo_yaml: 'pod_forgejo'
+file_group_pod_forgejo_yaml: 'root'
 
 # ssh.dir
 file_dst_ssh_dir: '/home/forgejo/.ssh'
@@ -138,27 +124,6 @@ file_mode_pod_forgejo_nft: '0640'
 file_owner_pod_forgejo_nft: 'root'
 file_group_pod_forgejo_nft: 'root'
 
-# pod_forgejo
-group_name_pod_forgejo: 'pod_forgejo'
-group_gid_pod_forgejo: '10000'
-group_system_pod_forgejo: False
-
-# pod_forgejo
-user_name_pod_forgejo: 'pod_forgejo'
-user_comment_pod_forgejo: 'Pod Forgejo'
-user_uid_pod_forgejo: '10000'
-user_group_pod_forgejo: 'pod_forgejo'
-user_groups_pod_forgejo: ['systemd-journal']
-user_append_pod_forgejo: True
-user_home_create_pod_forgejo: True
-user_home_move_pod_forgejo: False
-user_home_remove_pod_forgejo: True
-user_home_force_pod_forgejo: False
-user_password_pod_forgejo: '!'
-user_password_update_pod_forgejo: 'always'
-user_shell_pod_forgejo: '/bin/bash'
-user_system_pod_forgejo: False
-
 # forgejo
 group_name_forgejo: 'forgejo'
 group_system_forgejo: True
@@ -167,7 +132,7 @@ group_system_forgejo: True
 user_name_forgejo: 'forgejo'
 user_comment_forgejo: 'Forgejo'
 user_group_forgejo: 'forgejo'
-user_groups_forgejo: ['pod_forgejo']
+user_groups_forgejo: []
 user_append_forgejo: True
 user_home_create_forgejo: True
 user_home_move_forgejo: False
@@ -180,9 +145,6 @@ user_system_forgejo: True
 
 # check service pod_forgejo
 command_cmd_check_service_pod_forgejo: 'systemctl cat pod_forgejo.service > /dev/null 2>&1'
-
-# loginctl enable_linger
-command_cmd_loginctl_enable_linger: 'loginctl enable-linger pod_forgejo'
 
 # reload monit
 command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
