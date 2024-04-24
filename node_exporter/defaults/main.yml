@@ -10,4 +10,4 @@ node_exporter_nftables_filter_rule: |
 
 node_exporter_nftables_state: False
 
-node_exporter_version: '1.7.0'
+node_exporter_version: '1.8.0'
