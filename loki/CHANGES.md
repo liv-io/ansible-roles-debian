@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.10.0 (2024-05-03)
+
+### Bugs
+
+- Update Loki to version 2.9.8
+
 ## 2.9.0 (2024-04-12)
 
 ### Bugs
