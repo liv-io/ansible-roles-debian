@@ -74,33 +74,33 @@
   tags:
     - loki
 
-- name: create file boltdb-shipper-active.dir
+- name: create file tsdb-shipper-active.dir
   file:
     state: directory
-    path: "{{file_dst_boltdb_shipper_active_dir}}"
-    mode: "{{file_mode_boltdb_shipper_active_dir}}"
-    owner: "{{file_owner_boltdb_shipper_active_dir}}"
-    group: "{{file_group_boltdb_shipper_active_dir}}"
+    path: "{{file_dst_tsdb_shipper_active_dir}}"
+    mode: "{{file_mode_tsdb_shipper_active_dir}}"
+    owner: "{{file_owner_tsdb_shipper_active_dir}}"
+    group: "{{file_group_tsdb_shipper_active_dir}}"
   tags:
     - loki
 
-- name: create file boltdb-shipper-cache.dir
+- name: create file tsdb-shipper-cache.dir
   file:
     state: directory
-    path: "{{file_dst_boltdb_shipper_cache_dir}}"
-    mode: "{{file_mode_boltdb_shipper_cache_dir}}"
-    owner: "{{file_owner_boltdb_shipper_cache_dir}}"
-    group: "{{file_group_boltdb_shipper_cache_dir}}"
+    path: "{{file_dst_tsdb_shipper_cache_dir}}"
+    mode: "{{file_mode_tsdb_shipper_cache_dir}}"
+    owner: "{{file_owner_tsdb_shipper_cache_dir}}"
+    group: "{{file_group_tsdb_shipper_cache_dir}}"
   tags:
     - loki
 
-- name: create file boltdb-shipper-compactor.dir
+- name: create file tsdb-shipper-compactor.dir
   file:
     state: directory
-    path: "{{file_dst_boltdb_shipper_compactor_dir}}"
-    mode: "{{file_mode_boltdb_shipper_compactor_dir}}"
-    owner: "{{file_owner_boltdb_shipper_compactor_dir}}"
-    group: "{{file_group_boltdb_shipper_compactor_dir}}"
+    path: "{{file_dst_tsdb_shipper_compactor_dir}}"
+    mode: "{{file_mode_tsdb_shipper_compactor_dir}}"
+    owner: "{{file_owner_tsdb_shipper_compactor_dir}}"
+    group: "{{file_group_tsdb_shipper_compactor_dir}}"
   tags:
     - loki
 

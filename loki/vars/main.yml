@@ -3,23 +3,23 @@
 # unzip
 package_name_unzip: 'unzip'
 
-# boltdb-shipper-active.dir
-file_dst_boltdb_shipper_active_dir: '/data/loki/boltdb-shipper-active'
-file_mode_boltdb_shipper_active_dir: '0750'
-file_owner_boltdb_shipper_active_dir: 'loki'
-file_group_boltdb_shipper_active_dir: 'loki'
+# tsdb-shipper-active.dir
+file_dst_tsdb_shipper_active_dir: '/data/loki/tsdb-shipper-active'
+file_mode_tsdb_shipper_active_dir: '0750'
+file_owner_tsdb_shipper_active_dir: 'loki'
+file_group_tsdb_shipper_active_dir: 'loki'
 
-# boltdb-shipper-cache.dir
-file_dst_boltdb_shipper_cache_dir: '/data/loki/boltdb-shipper-cache'
-file_mode_boltdb_shipper_cache_dir: '0755'
-file_owner_boltdb_shipper_cache_dir: 'loki'
-file_group_boltdb_shipper_cache_dir: 'loki'
+# tsdb-shipper-cache.dir
+file_dst_tsdb_shipper_cache_dir: '/data/loki/tsdb-shipper-cache'
+file_mode_tsdb_shipper_cache_dir: '0755'
+file_owner_tsdb_shipper_cache_dir: 'loki'
+file_group_tsdb_shipper_cache_dir: 'loki'
 
-# boltdb-shipper-compactor.dir
-file_dst_boltdb_shipper_compactor_dir: '/data/loki/boltdb-shipper-compactor'
-file_mode_boltdb_shipper_compactor_dir: '0750'
-file_owner_boltdb_shipper_compactor_dir: 'loki'
-file_group_boltdb_shipper_compactor_dir: 'loki'
+# tsdb-shipper-compactor.dir
+file_dst_tsdb_shipper_compactor_dir: '/data/loki/tsdb-shipper-compactor'
+file_mode_tsdb_shipper_compactor_dir: '0750'
+file_owner_tsdb_shipper_compactor_dir: 'loki'
+file_group_tsdb_shipper_compactor_dir: 'loki'
 
 # chunks.dir
 file_dst_chunks_dir: '/data/loki/chunks'
