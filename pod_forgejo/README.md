@@ -160,7 +160,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '1.21.11-1-1'
+    Default    : '7.0.3-1'
     Options    :
       Examples: '1.21.4-0-1'
 
