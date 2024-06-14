@@ -206,7 +206,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.5.0-1'
+    Default    : '2.6.0-1'
     Options    :
       Examples: '2.1.1-1'
 
@@ -392,7 +392,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.5.0-1'
+    Default    : '2.6.0-1'
     Options    :
       Examples: '2.1.1-1'
 
