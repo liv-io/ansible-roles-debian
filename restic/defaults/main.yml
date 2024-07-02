@@ -61,4 +61,4 @@ restic_server_password: ''
 restic_server_port: '443'
 restic_server_username: ''
 
-restic_version: '0.16.4'
+restic_version: '0.16.5'
