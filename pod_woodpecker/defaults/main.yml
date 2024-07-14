@@ -19,7 +19,7 @@ pod_woodpecker_registry_password: ''
 pod_woodpecker_registry_username: ''
 
 pod_woodpecker_woodpecker_agent_read_only_root_filesystem: True
-pod_woodpecker_woodpecker_agent_version: '2.6.0-1'
+pod_woodpecker_woodpecker_agent_version: '2.6.0-3'
 pod_woodpecker_woodpecker_agent_woodpecker_agent_secret: ''
 pod_woodpecker_woodpecker_agent_woodpecker_backend: ''
 pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version: ''
