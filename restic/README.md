@@ -78,6 +78,15 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`restic_append_only`
+
+    Description: Control the 'restic_append_only' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : True
+    Options    : True | False
+
 `restic_cacert`
 
     Description: Define the 'restic_cacert' option.
@@ -370,7 +379,7 @@ consult the following sections.
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : "{{ansible_hostname}}"
     Options    :
       Examples: 'restic' | 'backup'
 

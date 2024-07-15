@@ -2,6 +2,8 @@
 
 restic_state: 'enable'
 
+restic_append_only: True
+
 restic_cacert: ''
 
 restic_exclude:
@@ -59,6 +61,6 @@ restic_run_backup_weekday: '*'
 restic_server_address: ''
 restic_server_password: ''
 restic_server_port: '443'
-restic_server_username: ''
+restic_server_username: "{{ansible_hostname}}"
 
 restic_version: '0.16.5'

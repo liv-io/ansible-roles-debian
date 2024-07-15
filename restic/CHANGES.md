@@ -10,6 +10,20 @@ The headers are:
 - enhancements
 - features
 
+## 4.0.0 (2024-07-15)
+
+### Changes
+
+- Change parameter `restic_server_username` to `{{ansible_hostname}}`
+
+### Enhancements
+
+- Minor script improvements
+
+### Features
+
+- Add parameter `restic_append_only`
+
 ## 3.5.2 (2024-07-02)
 
 ### Enhancements

@@ -43,10 +43,12 @@ REPOSITORY='{{file_dst_repository_conf}}'
 {% if not (restic_cacert == '') %}
 CA_FILE='{{restic_cacert}}'
 {% endif %}
+{% if (restic_append_only == False) %}
 KEEP_HOURLY='{{restic_keep_hourly}}'
 KEEP_DAILY='{{restic_keep_daily}}'
 KEEP_WEEKLY='{{restic_keep_weekly}}'
 KEEP_MONTHLY='{{restic_keep_monthly}}'
+{% endif %}
 LIMIT_DOWNLOAD='{{restic_limit_download}}'
 LIMIT_UPLOAD='{{restic_limit_upload}}'
 TEXTFILE_COLLECTOR='{{restic_monitor_prom_textfile_collector}}'
@@ -202,7 +204,7 @@ add_log_header() {
     echo "# ${name_upper} | ${date_time}" >>${LOG_FILE}
 }
 
-create_backup_repository() {
+initialize_repository() {
     # Get stats to verify backup repository
     ${RESTIC} stats --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
         {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
@@ -216,7 +218,7 @@ create_backup_repository() {
     fi
 }
 
-create_new_backup() {
+create_backup() {
     ${RESTIC} backup --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
         --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} --files-from ${INCLUDE} \
         --exclude-caches --exclude-file ${EXCLUDE} --compression auto \
@@ -225,7 +227,8 @@ create_new_backup() {
     log_and_exit_on_error "${?}" 'Unable to create new backup.'
 }
 
-remove_old_backups() {
+{% if (restic_append_only == False) %}
+remove_backups() {
     ${RESTIC} forget --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
         --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} \
         --keep-hourly ${KEEP_HOURLY} --keep-daily ${KEEP_DAILY} --keep-weekly ${KEEP_WEEKLY} --keep-monthly ${KEEP_MONTHLY} --prune \
@@ -234,8 +237,9 @@ remove_old_backups() {
         >>${LOG_FILE} 2>&1
     log_and_exit_on_error "${?}" 'Unable to remove old backups.'
 }
+{% endif %}
 
-check_backup_repository() {
+check_repository() {
     ${RESTIC} check --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
         --limit-download ${LIMIT_DOWNLOAD} --limit-upload ${LIMIT_UPLOAD} \
         --with-cache \
@@ -249,10 +253,12 @@ main() {
     check_script_user
     create_lockfile
     add_log_header 'backup started'
-    create_backup_repository
-    create_new_backup
-    remove_old_backups
-    check_backup_repository
+    initialize_repository
+    create_backup
+{% if (restic_append_only == False) %}
+    remove_backups
+{% endif %}
+    check_repository
     add_log_header 'backup successful'
     remove_lockfile
     log_and_exit '0' 'Backup created successfully.'
