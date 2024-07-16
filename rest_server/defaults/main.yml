@@ -2,6 +2,8 @@
 
 rest_server_state: 'enable'
 
+rest_server_htpasswd: ''
+
 rest_server_monitor_monit_state: False
 
 rest_server_nftables_filter_rule: |
@@ -11,8 +13,10 @@ rest_server_nftables_filter_rule: |
 rest_server_nftables_state: False
 
 rest_server_options:
+  - '--append-only'
+  - '--htpasswd-file /etc/rest-server/htpasswd'
   - '--path /data/rest-server'
+  - '--private-repos'
   - '--prometheus'
-  - '--no-auth'
 
-rest_server_version: '0.12.0'
+rest_server_version: '0.12.1'

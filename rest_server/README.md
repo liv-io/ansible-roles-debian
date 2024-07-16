@@ -78,6 +78,20 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`rest_server_htpasswd`
+
+    Description: Define the 'rest_server_htpasswd' option.
+                 htpasswd2 -cB /etc/rest-server/htpasswd <hostname>
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: |
+        host01:$2y$05$ysbpQ.BspHxXHr/P7Yod8OEyFnijMTwoGNDcxnl1MNTq42o.F1/uW
+        host02:$2y$05$nta91gn96NjSizfwIxPAiu3wyBHLJuHqeoiZNoqEWy65h13rXjUSq
+        host03:$2y$05$3O9ZkonUm4S6hxSJXckEyeRR5P1Yw3qqszhV7mKP3h/.5YAzBKZ8O
+
 `rest_server_monitor_monit_state`
 
     Description: Control the 'rest_server_monitor_monit_state' option.
@@ -115,9 +129,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['--path /data/rest-server', '--prometheus', '--no-auth']
+    Default    : ['--append-only', '--htpasswd-file /etc/rest-server/htpasswd', '--path /data/rest-server', '--private-repos', '--prometheus']
     Options    :
-      Examples: ['--prometheus'] | ['--path /data/restic', '--prometheus']
+      Examples: ['--htpasswd-file /etc/rest-server/htpasswd', '--path /data/rest-server', '--private-repos', '--prometheus']
       None    : []
 
 `rest_server_version`
@@ -126,7 +140,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.12.0'
+    Default    : '0.12.1'
     Options    :
       Examples: '0.9.5' | '0.9.6'
 

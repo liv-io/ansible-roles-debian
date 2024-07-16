@@ -88,3 +88,10 @@
     path: "{{file_dst_rest_server_tar_gz}}"
   tags:
     - rest_server
+
+- name: remove file rest-server_etc.dir
+  file:
+    state: absent
+    path: "{{file_dst_rest_server_etc_dir}}"
+  tags:
+    - rest_server

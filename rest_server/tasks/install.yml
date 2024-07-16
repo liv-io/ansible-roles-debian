@@ -37,6 +37,16 @@
   tags:
     - rest_server
 
+- name: create file rest-server_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_rest_server_etc_dir}}"
+    mode: "{{file_mode_rest_server_etc_dir}}"
+    owner: "{{file_owner_rest_server_etc_dir}}"
+    group: "{{file_group_rest_server_etc_dir}}"
+  tags:
+    - rest_server
+
 - name: create file data.dir
   file:
     state: directory
@@ -72,6 +82,7 @@
   unarchive:
     src: "{{file_src_rest_server}}"
     dest: "{{file_dst_rest_server}}"
+    mode: "{{file_mode_rest_server}}"
     owner: "{{file_owner_rest_server}}"
     group: "{{file_group_rest_server}}"
     exclude: "{{file_exclude_rest_server}}"
@@ -87,6 +98,16 @@
     mode: "{{file_mode_rest_server_service}}"
     owner: "{{file_owner_rest_server_service}}"
     group: "{{file_group_rest_server_service}}"
+  tags:
+    - rest_server
+
+- name: copy file htpasswd
+  copy:
+    content: "{{rest_server_htpasswd}}"
+    dest: "{{file_dst_htpasswd}}"
+    mode: "{{file_mode_htpasswd}}"
+    owner: "{{file_owner_htpasswd}}"
+    group: "{{file_group_htpasswd}}"
   tags:
     - rest_server
 
