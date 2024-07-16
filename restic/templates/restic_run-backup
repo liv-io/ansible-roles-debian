@@ -214,7 +214,7 @@ initialize_repository() {
         ${RESTIC} init --repository-file ${REPOSITORY} --password-file ${PASSWORD} \
             {% if not (restic_cacert == '') %}--cacert "${CA_FILE}"{% endif %} \
             >>${LOG_FILE} 2>&1
-        log_and_exit_on_error "${?}" 'Unable to create backup repository.'
+        log_and_exit_on_error "${?}" 'Unable to initialize backup repository.'
     fi
 }
 
