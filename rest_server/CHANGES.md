@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.1.0 (2024-07-27)
+
+### Features
+
+- Update rest-server to version 0.13.0
+
 ## 3.0.0 (2024-07-16)
 
 ### Changes

@@ -19,4 +19,4 @@ rest_server_options:
   - '--private-repos'
   - '--prometheus'
 
-rest_server_version: '0.12.1'
+rest_server_version: '0.13.0'
