@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.17.0 (2024-08-09)
+
+### Features
+
+- Update Prometheus to version 2.54.0
+
 ## 2.16.1 (2024-07-10)
 
 ### Bugs
