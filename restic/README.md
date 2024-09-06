@@ -389,7 +389,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.17.0'
+    Default    : '0.17.1'
     Options    :
       Examples: '0.9.3' | '0.9.2'
 
