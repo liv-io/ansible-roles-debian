@@ -85,19 +85,29 @@ vars:
       ssl_verify_client: True
       ssl_verify_depth: 1
       config: |
-        proxy_redirect off;
-
         location / {
-          proxy_pass            https://localhost:8006;
-          client_max_body_size  0;
-          proxy_buffering       off;
-          proxy_connect_timeout 3600s;
-          proxy_http_version    1.1;
-          proxy_read_timeout    3600s;
-          proxy_send_timeout    3600s;
-          proxy_set_header      Connection "upgrade";
-          proxy_set_header      Upgrade $http_upgrade;
-          send_timeout          3600s;
+            proxy_pass                         https://localhost:8080;
+
+            proxy_http_version                 1.1;
+            proxy_redirect                     off;
+            proxy_set_header Connection        "Upgrade";
+            proxy_set_header Host              $host;
+            proxy_set_header Upgrade           $http_upgrade;
+            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host  $http_host;
+            proxy_set_header X-Forwarded-Port  443;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Real-IP         $remote_addr;
+
+            chunked_transfer_encoding          off;
+            proxy_buffering                    off;
+            proxy_connect_timeout              3600s;
+            proxy_read_timeout                 3600s;
+            proxy_send_timeout                 3600s;
+            send_timeout                       3600s;
+
+            # Sets the maximum allowed size of the client request body.
+            client_max_body_size               0;
         }
 ```
 
@@ -126,11 +136,28 @@ vars:
     Options    :
       Examples: |
         location / {
-          proxy_pass http://localhost:8080;
-          proxy_set_header Host              $host;
-          proxy_set_header X-Real-IP         $remote_addr;
-          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_pass                         https://localhost:8080;
+
+            proxy_http_version                 1.1;
+            proxy_redirect                     off;
+            proxy_set_header Connection        "Upgrade";
+            proxy_set_header Host              $host;
+            proxy_set_header Upgrade           $http_upgrade;
+            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host  $http_host;
+            proxy_set_header X-Forwarded-Port  443;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Real-IP         $remote_addr;
+
+            chunked_transfer_encoding          off;
+            proxy_buffering                    off;
+            proxy_connect_timeout              3600s;
+            proxy_read_timeout                 3600s;
+            proxy_send_timeout                 3600s;
+            send_timeout                       3600s;
+
+            # Sets the maximum allowed size of the client request body.
+            client_max_body_size               0;
         }
       None: ''
 
