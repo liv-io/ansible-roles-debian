@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.1 (2024-09-28)
+
+### Enhancements
+
+- Enable ZFS scrubbing and trimming for all pools by default
+- Adjust the schedule for ZFS data integrity checks (scrubs) and space reclamation (trims)
+
 ## 2.1.0 (2023-10-19)
 
 ### Enhancements

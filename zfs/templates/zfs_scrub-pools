@@ -38,7 +38,7 @@ USER='{{file_owner_zfs_scrub_pools}}'
 LOCKFILE='/var/tmp/zfs_scrub-pools.lock'
 TEXTFILE_COLLECTOR='{{zfs_monitor_prom_textfile_collector}}'
 
-ZFS_SCRUB_POOLS_POOLS='{% for item in zfs_scrub_pools_pools %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}'
+POOLS='{% for item in zfs_scrub_pools_pools %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}'
 
 {% if (zfs_monitor_mail_state == True) %}
 MAIL_FROM_ADDRESS='{{zfs_monitor_mail_from_address}}'
@@ -191,7 +191,13 @@ get_scrub_status() {
 }
 
 scrub_zfs_pools() {
-    for pool in ${ZFS_SCRUB_POOLS_POOLS} ; do
+    if [ "${POOLS}" = "*" ]; then
+        pools=$(${ZPOOL} list -H -o name)
+    else
+        pools="${POOLS}"
+    fi
+
+    for pool in ${pools} ; do
         # Wait until previous scrub has finished
         get_scrub_status
 
@@ -202,7 +208,13 @@ scrub_zfs_pools() {
 }
 
 check_zfs_pools() {
-    for pool in ${ZFS_SCRUB_POOLS_POOLS} ; do
+    if [ "${POOLS}" = "*" ]; then
+        pools=$(${ZPOOL} list -H -o name)
+    else
+        pools="${POOLS}"
+    fi
+
+    for pool in ${pools} ; do
         # Wait until previous scrub has finished
         get_scrub_status
 
@@ -228,10 +240,10 @@ main() {
     scrub_zfs_pools
     check_zfs_pools
     remove_lockfile
-    if [ -z "${ZFS_SCRUB_POOLS_POOLS}" ]; then
+    if [ -z "${POOLS}" ]; then
         log_and_exit '0' 'No ZFS pools have been specified for scrubbing.'
     else
-        log_and_exit '0' 'Specified ZFS pools have been scrubbed and are healthy.'
+        log_and_exit '0' "ZFS pools have been scrubbed and are healthy: ${POOLS}"
     fi
 }
 

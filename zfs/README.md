@@ -254,9 +254,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : []
+    Default    : ['*']
     Options    :
-      Examples: ['tank'] | ['ssd_pool', 'hdd_pool'] |
+      Examples: ['*'] | ['tank'] | ['ssd_pool', 'hdd_pool'] |
                 ['ssd-slc_pool', 'ssd-mlc_pool', 'ssd-tlc_pool']
       None    : []
 
@@ -325,9 +325,9 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : []
+    Default    : ['*']
     Options    :
-      Examples: ['tank'] | ['ssd_pool', 'hdd_pool'] |
+      Examples: ['*'] | ['tank'] | ['ssd_pool', 'hdd_pool'] |
                 ['ssd-slc_pool', 'ssd-mlc_pool', 'ssd-tlc_pool']
       None    : []
 
