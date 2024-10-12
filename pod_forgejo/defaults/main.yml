@@ -2,14 +2,11 @@
 
 pod_forgejo_state: 'enable'
 
-pod_forgejo_forgejo_config: ''
-pod_forgejo_forgejo_custom_path: ''
-pod_forgejo_forgejo_install_port: ''
-pod_forgejo_forgejo_pid: ''
-pod_forgejo_forgejo_port: ''
+pod_forgejo_forgejo_environment_variables:
+  PORT: '3000'
+
 pod_forgejo_forgejo_read_only_root_filesystem: True
 pod_forgejo_forgejo_version: '8.0.3-1'
-pod_forgejo_forgejo_work_path: ''
 
 pod_forgejo_log_driver: 'journald'
 

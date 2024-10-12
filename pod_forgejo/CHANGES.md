@@ -10,6 +10,21 @@ The headers are:
 - enhancements
 - features
 
+## 1.0.0 (2024-10-07)
+
+### Changes
+
+- Remove parameter `pod_forgejo_forgejo_config`
+- Remove parameter `pod_forgejo_forgejo_custom_path`
+- Remove parameter `pod_forgejo_forgejo_install_port`
+- Remove parameter `pod_forgejo_forgejo_pid`
+- Remove parameter `pod_forgejo_forgejo_port`
+- Remove parameter `pod_forgejo_forgejo_work_path`
+
+### Features
+
+- Add parameter `pod_forgejo_forgejo_environment_variables`
+
 ## 0.8.2 (2024-09-11)
 
 ### Bugs

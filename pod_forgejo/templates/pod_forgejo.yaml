@@ -40,29 +40,11 @@ spec:
       mountPath: /tmp
     workingDir: /
     env:
-{% if not (pod_forgejo_forgejo_config == "") %}
-    - name: CONFIG
-      value: "{{pod_forgejo_forgejo_config}}"
-{% endif %}
-{% if not (pod_forgejo_forgejo_custom_path == "") %}
-    - name: CUSTOM_PATH
-      value: "{{pod_forgejo_forgejo_custom_path}}"
-{% endif %}
-{% if not (pod_forgejo_forgejo_install_port == "") %}
-    - name: INSTALL_PORT
-      value: "{{pod_forgejo_forgejo_install_port}}"
-{% endif %}
-{% if not (pod_forgejo_forgejo_pid == "") %}
-    - name: PID
-      value: "{{pod_forgejo_forgejo_pid}}"
-{% endif %}
-{% if not (pod_forgejo_forgejo_port == "") %}
-    - name: PORT
-      value: "{{pod_forgejo_forgejo_port}}"
-{% endif %}
-{% if not ( pod_forgejo_forgejo_work_path == "") %}
-    - name: WORK_PATH
-      value: "{{pod_forgejo_forgejo_work_path}}"
+{% if not (pod_forgejo_forgejo_environment_variables == {}) %}
+{% for key, value in pod_forgejo_forgejo_environment_variables.items() %}
+    - name: {{key|upper}}
+      value: '{{value}}'
+{% endfor %}
 {% endif %}
 
   dnsConfig: {}

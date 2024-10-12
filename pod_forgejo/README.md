@@ -90,60 +90,18 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`pod_forgejo_forgejo_config`
+`pod_forgejo_forgejo_environment_variables`
 
-    Description: --config
+    Description: Define the forgejo environment variables.
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : ''
+    Type       : Dictionary
+    Default    :
+      PORT: '3000'
     Options    :
-      Examples: '/mnt/work/custom/conf/app.ini'
-      None    : ''
-
-`pod_forgejo_forgejo_custom_path`
-
-    Description: --custom-path
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: '/mnt/work/custom'
-      None    : ''
-
-`pod_forgejo_forgejo_install_port`
-
-    Description: --install-port
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: '6000'
-      None    : ''
-
-`pod_forgejo_forgejo_pid`
-
-    Description: --pid
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: '' | ''
-      None    : ''
-
-`pod_forgejo_forgejo_port`
-
-    Description: --port
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: '6000'
-      None    : ''
+      Examples:
+        PORT: '3000'
+      None    : {}
 
 `pod_forgejo_forgejo_read_only_root_filesystem`
 
@@ -163,16 +121,6 @@ consult the following sections.
     Default    : '8.0.3-1'
     Options    :
       Examples: '1.21.4-0-1'
-
-`pod_forgejo_forgejo_work_path`
-
-    Description: --work-path
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: '/mnt/work'
 
 `pod_forgejo_log_driver`
 
