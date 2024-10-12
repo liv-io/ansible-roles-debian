@@ -1,3 +1,5 @@
 ---
 
 podman_state: 'install'
+
+podman_storage_driver: 'overlay'

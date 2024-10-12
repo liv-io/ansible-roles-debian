@@ -56,6 +56,16 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+`podman_storage_driver`
+
+    Description: storage.driver
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'overlay'
+    Options    :
+      Examples: 'overlay' | 'zfs'
+
 ## Conflicts
 
 ## Dependencies
@@ -126,3 +136,7 @@ consult the following sections.
 
     Version: 11
     Version: 12
+
+## Appendix
+
+- [storage.conf](https://github.com/containers/storage/blob/main/storage.conf)

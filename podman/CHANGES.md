@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 0.4.0 (2024-10-03)
+
+### Enhancements
+
+- Update `storage.conf` to version 1.55.0
+
+### Features
+
+- Add parameter `podman_storage_driver`
+
 ## 0.3.0 (2023-10-19)
 
 ### Enhancements
