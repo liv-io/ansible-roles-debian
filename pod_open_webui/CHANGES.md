@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.1 (2024-10-13)
+
+### Enhancements
+
+- Correct monit service name
+
 ## 0.1.0 (2024-10-13)
 
 ### Features
