@@ -124,7 +124,7 @@ consult the following sections.
 
 `pod_forgejo_log_driver`
 
-    Description: Define the 'pod_forgejo_proxy' option.
+    Description: Define the 'pod_forgejo_log_driver' option.
     Required   : False
     Value      : Predetermined
     Type       : String

@@ -141,7 +141,7 @@ consult the following sections.
 
 `pod_woodpecker_log_driver`
 
-    Description: Define the 'pod_woodpecker_proxy' option.
+    Description: Define the 'pod_woodpecker_log_driver' option.
     Required   : False
     Value      : Predetermined
     Type       : String
