@@ -1,0 +1,67 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_open_webui
+
+- name: check service pod_open_webui
+  shell: "{{command_cmd_check_service_pod_open_webui}}"
+  register: register_check_service_pod_open_webui
+  changed_when: (register_check_service_pod_open_webui.rc == 0)
+  failed_when: (register_check_service_pod_open_webui.rc > 1)
+  check_mode: False
+  tags:
+    - pod_open_webui
+
+- name: stop service pod_open_webui
+  service:
+    state: stopped
+    enabled: False
+    name: "{{service_name_pod_open_webui}}"
+    daemon_reload: True
+  when: (register_check_service_pod_open_webui.rc == 0)
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui.nft
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_nft}}"
+  notify: reload nftables
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui-open_webui.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_open_webui_cfg}}"
+  notify: reload monit
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui_etc.dir
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_etc_dir}}"
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui.default
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_default}}"
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui.service
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_service}}"
+  tags:
+    - pod_open_webui

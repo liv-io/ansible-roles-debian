@@ -1,0 +1,26 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+
+- name: restart service pod_open_webui
+  service:
+    state: restarted
+    name: "{{service_name_pod_open_webui}}"
+
+- name: validate monit
+  shell: "{{command_cmd_validate_monit}}"
+
+- name: reload monit
+  shell: "{{command_cmd_reload_monit}}"
+
+- name: validate nftables
+  shell: "{{command_cmd_validate_nftables}}"
+
+- name: reload nftables
+  shell: "{{command_cmd_reload_nftables}}"

@@ -1,0 +1,4 @@
+{{ansible_managed|comment(decoration='#')}}
+
+HTTP_PROXY="{{pod_open_webui_proxy}}"
+HTTPS_PROXY="{{pod_open_webui_proxy}}"

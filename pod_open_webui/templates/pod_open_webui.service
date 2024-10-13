@@ -1,0 +1,28 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Pod Open-WebUI
+Documentation=man:podman-generate-systemd(1)
+Wants=network.target
+After=network-online.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+User=root
+Group=root
+EnvironmentFile={{file_dst_pod_open_webui_default}}
+Restart=always
+TimeoutStartSec=60
+TimeoutStopSec=60
+ExecStart=/usr/bin/podman play kube \
+    --network slirp4netns:port_handler=slirp4netns \
+{% if (pod_open_webui_log_driver == "journald") %}
+    --log-driver journald \
+{% endif %}
+    {{file_dst_pod_open_webui_yaml}}
+ExecStop=/usr/bin/podman pod stop --time 15 pod_open_webui
+ExecStopPost=/usr/bin/podman pod rm --force pod_open_webui
+
+[Install]
+WantedBy=multi-user.target

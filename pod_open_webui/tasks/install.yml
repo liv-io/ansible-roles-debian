@@ -1,0 +1,109 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_open_webui
+
+- name: create file pod_open_webui_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_open_webui_etc_dir}}"
+    mode: "{{file_mode_pod_open_webui_etc_dir}}"
+    owner: "{{file_owner_pod_open_webui_etc_dir}}"
+    group: "{{file_group_pod_open_webui_etc_dir}}"
+  tags:
+    - pod_open_webui
+
+- name: create file opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_opt_dir}}"
+    mode: "{{file_mode_opt_dir}}"
+    owner: "{{file_owner_opt_dir}}"
+    group: "{{file_group_opt_dir}}"
+  tags:
+    - pod_open_webui
+
+- name: create file pod_open_webui_opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_open_webui_opt_dir}}"
+    mode: "{{file_mode_pod_open_webui_opt_dir}}"
+    owner: "{{file_owner_pod_open_webui_opt_dir}}"
+    group: "{{file_group_pod_open_webui_opt_dir}}"
+  tags:
+    - pod_open_webui
+
+- name: create file ollama.dir
+  file:
+    state: directory
+    path: "{{file_dst_ollama_dir}}"
+    mode: "{{file_mode_ollama_dir}}"
+    owner: "{{file_owner_ollama_dir}}"
+    group: "{{file_group_ollama_dir}}"
+  tags:
+    - pod_open_webui
+
+- name: create file open-webui.dir
+  file:
+    state: directory
+    path: "{{file_dst_open_webui_dir}}"
+    mode: "{{file_mode_open_webui_dir}}"
+    owner: "{{file_owner_open_webui_dir}}"
+    group: "{{file_group_open_webui_dir}}"
+  tags:
+    - pod_open_webui
+
+- name: create file pod_open_webui.service
+  template:
+    src: "{{file_src_pod_open_webui_service}}"
+    dest: "{{file_dst_pod_open_webui_service}}"
+    mode: "{{file_mode_pod_open_webui_service}}"
+    owner: "{{file_owner_pod_open_webui_service}}"
+    group: "{{file_group_pod_open_webui_service}}"
+  tags:
+    - pod_open_webui
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (pod_open_webui_monitor_monit_state == True)
+  tags:
+    - pod_open_webui
+
+- name: create file monit.d
+  file:
+    state: directory
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (pod_open_webui_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  tags:
+    - pod_open_webui
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (pod_open_webui_nftables_state == True)
+  tags:
+    - pod_open_webui
+
+- name: create file nftables.d
+  file:
+    state: directory
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (pod_open_webui_nftables_state == True) and (register_nftables_d.stat.exists == False)
+  tags:
+    - pod_open_webui

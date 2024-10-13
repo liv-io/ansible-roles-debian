@@ -1,0 +1,99 @@
+---
+
+# pod_open_webui_etc.dir
+file_dst_pod_open_webui_etc_dir: '/etc/pod_open_webui'
+file_mode_pod_open_webui_etc_dir: '0750'
+file_owner_pod_open_webui_etc_dir: 'root'
+file_group_pod_open_webui_etc_dir: 'root'
+
+# opt.dir
+file_dst_opt_dir: '/opt'
+file_mode_opt_dir: '0755'
+file_owner_opt_dir: 'root'
+file_group_opt_dir: 'root'
+
+# pod_open_webui_opt.dir
+file_dst_pod_open_webui_opt_dir: '/opt/pod_open_webui'
+file_mode_pod_open_webui_opt_dir: '0755'
+file_owner_pod_open_webui_opt_dir: 'root'
+file_group_pod_open_webui_opt_dir: 'root'
+
+# ollama.dir
+file_dst_ollama_dir: '/opt/pod_open_webui/ollama'
+file_mode_ollama_dir: '0700'
+file_owner_ollama_dir: 'root'
+file_group_ollama_dir: 'root'
+
+# open-webui.dir
+file_dst_open_webui_dir: '/opt/pod_open_webui/open-webui'
+file_mode_open_webui_dir: '0750'
+file_owner_open_webui_dir: 'root'
+file_group_open_webui_dir: 'root'
+
+# pod_open_webui.default
+file_src_pod_open_webui_default: 'pod_open_webui.default'
+file_dst_pod_open_webui_default: '/etc/default/pod_open_webui'
+file_mode_pod_open_webui_default: '0640'
+file_owner_pod_open_webui_default: 'root'
+file_group_pod_open_webui_default: 'root'
+
+# pod_open_webui.service
+file_src_pod_open_webui_service: 'pod_open_webui.service'
+file_dst_pod_open_webui_service: '/lib/systemd/system/pod_open_webui.service'
+file_mode_pod_open_webui_service: '0644'
+file_owner_pod_open_webui_service: 'root'
+file_group_pod_open_webui_service: 'root'
+
+# pod_open_webui.yaml
+file_src_pod_open_webui_yaml: 'pod_open_webui.yaml'
+file_dst_pod_open_webui_yaml: '/etc/pod_open_webui/pod_open_webui.yaml'
+file_mode_pod_open_webui_yaml: '0640'
+file_owner_pod_open_webui_yaml: 'root'
+file_group_pod_open_webui_yaml: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
+# pod_open_webui-open-webui.cfg
+file_src_pod_open_webui_open_webui_cfg: 'pod_open_webui-open-webui.cfg'
+file_dst_pod_open_webui_open_webui_cfg: '/etc/monit.d/pod_open_webui-open-webui.cfg'
+file_mode_pod_open_webui_open_webui_cfg: '0640'
+file_owner_pod_open_webui_open_webui_cfg: 'root'
+file_group_pod_open_webui_open_webui_cfg: 'root'
+
+# pod_open_webui.nft
+file_src_pod_open_webui_nft: 'pod_open_webui.nft'
+file_dst_pod_open_webui_nft: '/etc/nftables.d/pod_open_webui.conf'
+file_mode_pod_open_webui_nft: '0640'
+file_owner_pod_open_webui_nft: 'root'
+file_group_pod_open_webui_nft: 'root'
+
+# check service pod_open_webui
+command_cmd_check_service_pod_open_webui: 'systemctl cat pod_open_webui.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
+# open_webui_update-authorized_keys.path
+service_name_open_webui_update_authorized_keys_path: 'open_webui_update-authorized_keys.path'
+
+# pod_open_webui
+service_name_pod_open_webui: 'pod_open_webui'

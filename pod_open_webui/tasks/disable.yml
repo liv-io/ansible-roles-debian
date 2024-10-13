@@ -1,0 +1,71 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_open_webui
+
+- name: create file pod_open_webui.yaml
+  template:
+    src: "{{file_src_pod_open_webui_yaml}}"
+    dest: "{{file_dst_pod_open_webui_yaml}}"
+    mode: "{{file_mode_pod_open_webui_yaml}}"
+    owner: "{{file_owner_pod_open_webui_yaml}}"
+    group: "{{file_group_pod_open_webui_yaml}}"
+  tags:
+    - pod_open_webui
+
+- name: create file pod_open_webui.default
+  template:
+    src: "{{file_src_pod_open_webui_default}}"
+    dest: "{{file_dst_pod_open_webui_default}}"
+    mode: "{{file_mode_pod_open_webui_default}}"
+    owner: "{{file_owner_pod_open_webui_default}}"
+    group: "{{file_group_pod_open_webui_default}}"
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui-open_webui.cfg
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_open_webui_cfg}}"
+  notify: reload monit
+  tags:
+    - pod_open_webui
+
+- name: create file pod_open_webui.nft
+  template:
+    src: "{{file_src_pod_open_webui_nft}}"
+    dest: "{{file_dst_pod_open_webui_nft}}"
+    mode: "{{file_mode_pod_open_webui_nft}}"
+    owner: "{{file_owner_pod_open_webui_nft}}"
+    group: "{{file_group_pod_open_webui_nft}}"
+  notify:
+    - validate nftables
+    - reload nftables
+  when: (pod_open_webui_nftables_state == True)
+  tags:
+    - pod_open_webui
+
+- name: remove file pod_open_webui.nft
+  file:
+    state: absent
+    path: "{{file_dst_pod_open_webui_nft}}"
+  notify: reload nftables
+  when: (pod_open_webui_nftables_state == False)
+  tags:
+    - pod_open_webui
+
+- name: stop service pod_open_webui
+  service:
+    state: stopped
+    enabled: False
+    name: "{{service_name_pod_open_webui}}"
+    daemon_reload: True
+  tags:
+    - pod_open_webui

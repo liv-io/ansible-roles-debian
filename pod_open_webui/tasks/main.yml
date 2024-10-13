@@ -1,0 +1,24 @@
+---
+
+- name: assert operating system family and version
+  block:
+
+    - name: import tasks install
+      import_tasks: install.yml
+      when: not (pod_open_webui_state is match('false|no|remove|quiesce|inactive'))
+
+    - name: import tasks enable
+      import_tasks: enable.yml
+      when: (pod_open_webui_state is match('start|on|enable'))
+
+    - name: import tasks disable
+      import_tasks: disable.yml
+      when: (pod_open_webui_state is match('stop|off|disable'))
+
+    - name: import tasks remove
+      import_tasks: remove.yml
+      when: (pod_open_webui_state is match('false|no|remove'))
+
+  when: ((ansible_os_family == 'Debian') and (ansible_distribution_major_version is match('11|12')))
+  tags:
+    - pod_open_webui

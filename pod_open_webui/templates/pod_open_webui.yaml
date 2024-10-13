@@ -1,0 +1,61 @@
+---
+
+{{ansible_managed|comment(decoration='#')}}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: open_webui
+  name: pod_open_webui
+spec:
+  containers:
+  - name: open-webui
+    image: {{pod_open_webui_open_webui_address}}/open-webui:{{pod_open_webui_open_webui_version}}
+    ports:
+    - name: open-webui
+      containerPort: 8080
+      hostPort: 8080
+      protocol: TCP
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: {{pod_open_webui_open_webui_read_only_root_filesystem|lower}}
+      seLinuxOptions:
+        type: spc_t
+    volumeMounts:
+    - name: open-webui-ollama
+      mountPath: /root/.ollama
+    - name: open-webui-open-webui
+      mountPath: /app/backend/data
+    workingDir: /app/backend
+    env:
+{% if not (pod_open_webui_open_webui_environment_variables == {}) %}
+{% for key, value in pod_open_webui_open_webui_environment_variables.items() %}
+    - name: {{key|upper}}
+      value: {{value}}
+{% endfor %}
+{% endif %}
+
+  dnsConfig: {}
+  restartPolicy: Always
+
+  volumes:
+  - name: open-webui-ollama
+    hostPath:
+      type: Directory
+      path: {{file_dst_ollama_dir}}
+  - name: open-webui-open-webui
+    hostPath:
+      type: Directory
+      path: {{file_dst_open_webui_dir}}
+
+status: {}
