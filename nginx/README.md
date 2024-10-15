@@ -106,7 +106,6 @@ vars:
             proxy_send_timeout                 3600s;
             send_timeout                       3600s;
 
-            # Sets the maximum allowed size of the client request body.
             client_max_body_size               0;
         }
 ```
@@ -156,7 +155,6 @@ vars:
             proxy_send_timeout                 3600s;
             send_timeout                       3600s;
 
-            # Sets the maximum allowed size of the client request body.
             client_max_body_size               0;
         }
       None: ''

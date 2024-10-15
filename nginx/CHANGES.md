@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.3 (2024-10-15)
+
+### Enhancements
+
+- Minor cosmetic changes (indentation, comments)
+
 ## 2.1.2 (2024-03-14)
 
 ### Bugs
