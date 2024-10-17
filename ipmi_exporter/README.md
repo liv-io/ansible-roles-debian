@@ -162,7 +162,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '1.8.0'
+    Default    : '1.9.0'
     Options    :
       Examples: '1.6.1' | '1.7.0'
 

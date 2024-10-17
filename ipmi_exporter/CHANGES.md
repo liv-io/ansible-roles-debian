@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.4 (2024-10-17)
+
+### Bugs
+
+- Update ipmi_exporter to version 1.9.0
+
 ## 0.1.3 (2024-03-14)
 
 ### Bugs
