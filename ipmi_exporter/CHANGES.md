@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.1.5 (2024-10-21)
+
+### Bugs
+
+- Remove needless task `set capability cap_net_raw`
+
 ## 0.1.4 (2024-10-17)
 
 ### Bugs

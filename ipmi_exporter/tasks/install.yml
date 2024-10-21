@@ -98,14 +98,6 @@
   tags:
     - ipmi_exporter
 
-- name: set capability cap_net_raw
-  command: "{{command_cmd_set_cap_net_raw}}"
-  register: register_set_cap_net_raw
-  check_mode: False
-  when: register_unarchive_file_ipmi_exporter.changed
-  tags:
-    - ipmi_exporter
-
 - name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
