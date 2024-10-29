@@ -30,10 +30,13 @@ consult the following sections.
     pod_open_webui_state: 'enable'
     pod_open_webui_proxy: 'http://proxy.example.com:3128'
     pod_open_webui_open_webui_environment_variables:
-      DEFAULT_MODELS: "qwen2.5:14b"
+      DEFAULT_MODELS: 'llama3.2:3b'
+      HTTPS_PROXY: 'http://proxy.example.com:3128'
+      HTTP_PROXY: 'http://proxy.example.com:3128'
+      NO_PROXY: 'localhost, 127.0.0.1, ::1, ai.example.com'
       WEBUI_AUTH: False
-      WEBUI_NAME: "ai.example.com"
-      WEBUI_URL: "https://ai.example.com"
+      WEBUI_NAME: 'ai.example.com'
+      WEBUI_URL: 'https://ai.example.com'
 ```
 
 ### Disable
