@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.1 (2024-10-31)
+
+### Bugs
+
+- Update `pod_forgejo_forgejo_version` from 9.0.0-1 to 9.0.1-1
+
 ## 1.1.0 (2024-10-17)
 
 ### Features
