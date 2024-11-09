@@ -63,4 +63,4 @@ restic_server_password: ''
 restic_server_port: '443'
 restic_server_username: "{{ansible_hostname}}"
 
-restic_version: '0.17.2'
+restic_version: '0.17.3'
