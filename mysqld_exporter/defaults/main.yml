@@ -12,4 +12,4 @@ mysqld_exporter_nftables_filter_rule: |
 
 mysqld_exporter_nftables_state: False
 
-mysqld_exporter_version: '0.15.1'
+mysqld_exporter_version: '0.16.0'
