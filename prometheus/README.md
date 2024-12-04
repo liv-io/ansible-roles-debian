@@ -424,7 +424,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.55.1'
+    Default    : '3.0.1'
     Options    :
       Examples: '2.6.1' | '2.6.0'
 
