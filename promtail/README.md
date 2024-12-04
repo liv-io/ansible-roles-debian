@@ -265,7 +265,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '3.2.1'
+    Default    : '3.3.0'
     Options    :
       Examples: '1.5.0' | '1.6.0'
 
