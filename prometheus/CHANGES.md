@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.19.1 (2024-12-06)
+
+### Bugs
+
+- Fix memory graph in `node_exporter` dashboard
+
 ## 2.19.0 (2024-12-04)
 
 ### Changes

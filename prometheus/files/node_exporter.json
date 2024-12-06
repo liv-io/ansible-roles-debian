@@ -576,90 +576,25 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-blue",
+                "color": "green",
                 "value": null
-              },
-              {
-                "color": "light-blue",
-                "value": 5
-              },
-              {
-                "color": "blue",
-                "value": 10
-              },
-              {
-                "color": "super-light-purple",
-                "value": 15
-              },
-              {
-                "color": "light-purple",
-                "value": 20
-              },
-              {
-                "color": "purple",
-                "value": 25
-              },
-              {
-                "color": "super-light-yellow",
-                "value": 30
-              },
-              {
-                "color": "light-yellow",
-                "value": 35
-              },
-              {
-                "color": "yellow",
-                "value": 40
-              },
-              {
-                "color": "super-light-orange",
-                "value": 45
-              },
-              {
-                "color": "light-orange",
-                "value": 50
-              },
-              {
-                "color": "orange",
-                "value": 55
-              },
-              {
-                "color": "super-light-red",
-                "value": 60
-              },
-              {
-                "color": "light-red",
-                "value": 65
-              },
-              {
-                "color": "red",
-                "value": 70
-              },
-              {
-                "color": "semi-dark-red",
-                "value": 75
-              },
-              {
-                "color": "dark-red",
-                "value": 80
               }
             ]
           },
-          "unit": "decbytes",
-          "unitScale": true
+          "unit": "decbytes"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "active"
+              "options": "used"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "blue",
-                  "mode": "thresholds"
+                  "fixedColor": "light-red",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -667,14 +602,14 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "cache"
+              "options": "buff/cache"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "purple",
-                  "mode": "thresholds"
+                  "fixedColor": "light-orange",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -682,14 +617,14 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "buffers"
+              "options": "shared"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
+                  "fixedColor": "light-yellow",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -697,118 +632,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "kernel-stack"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "mapped"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "mlocked"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "page-tables"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "shmem"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "slab"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vmalloc-used"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
-                  "mode": "thresholds"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "total"
+              "options": "available"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
                   "fixedColor": "light-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "free"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
                   "mode": "fixed"
                 }
               }
@@ -841,17 +686,11 @@
       "repeatDirection": "h",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
           "editorMode": "code",
-          "expr": "(node_memory_Active_bytes{instance=\"$host\"}) or (node_memory_active_bytes{instance=\"$host\"})",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "active",
+          "expr": "node_memory_MemTotal_bytes{instance=\"$host\"} - node_memory_MemAvailable_bytes{instance=\"$host\"}",
+          "legendFormat": "used",
           "range": true,
-          "refId": "active"
+          "refId": "used"
         },
         {
           "datasource": {
@@ -859,82 +698,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "(node_memory_Cached_bytes{instance=\"$host\"}) or (node_memory_cache_bytes{instance=\"$host\"})",
+          "expr": "node_memory_Buffers_bytes{instance=\"$host\"} + node_memory_Cached_bytes{instance=\"$host\"} + node_memory_SReclaimable_bytes{instance=\"$host\"}",
           "hide": false,
           "instant": false,
-          "interval": "",
-          "legendFormat": "cache",
+          "legendFormat": "buff/cache",
           "range": true,
-          "refId": "cache"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "node_memory_Buffers_bytes{instance=\"$host\"}",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "buffers",
-          "range": true,
-          "refId": "buffers"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "node_memory_KernelStack_bytes{instance=\"$host\"}",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "kernel-stack",
-          "range": true,
-          "refId": "kernelstack"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "node_memory_Mapped_bytes{instance=\"$host\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "mapped",
-          "range": true,
-          "refId": "mapped"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "node_memory_Mlocked_bytes{instance=\"$host\"}",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "mlocked",
-          "range": true,
-          "refId": "mlocked"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "node_memory_PageTables_bytes{instance=\"$host\"}",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "page-tables",
-          "range": true,
-          "refId": "pagetables"
+          "refId": "buff/cache"
         },
         {
           "datasource": {
@@ -944,10 +713,9 @@
           "editorMode": "code",
           "expr": "node_memory_Shmem_bytes{instance=\"$host\"}",
           "hide": false,
-          "instant": false,
-          "legendFormat": "shmem",
+          "legendFormat": "shared",
           "range": true,
-          "refId": "shmem"
+          "refId": "shared"
         },
         {
           "datasource": {
@@ -955,12 +723,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "node_memory_Slab_bytes{instance=\"$host\"}",
+          "expr": "node_memory_MemAvailable_bytes{instance=\"$host\"}",
           "hide": false,
           "instant": false,
-          "legendFormat": "slab",
+          "legendFormat": "available",
           "range": true,
-          "refId": "slab"
+          "refId": "available"
         },
         {
           "datasource": {
@@ -968,26 +736,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "node_memory_VmallocUsed_bytes{instance=\"$host\"}",
+          "expr": "node_memory_MemFree_bytes{instance=\"$host\"}",
           "hide": false,
           "instant": false,
-          "interval": "",
-          "legendFormat": "vmalloc-used",
+          "legendFormat": "free",
           "range": true,
-          "refId": "vmallocused"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "(node_memory_MemTotal_bytes{instance=\"$host\"}) or (node_memory_size_bytes{instance=\"$host\"})",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "total",
-          "range": true,
-          "refId": "memtotal"
+          "refId": "free"
         }
       ],
       "title": "Usage",
@@ -1266,7 +1020,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": null
               },
               {
                 "color": "light-green",
@@ -1441,7 +1196,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-green"
+                "color": "super-light-green",
+                "value": null
               },
               {
                 "color": "light-green",
@@ -2925,6 +2681,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Node Exporter",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
