@@ -53,7 +53,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2.6.4'
+    Default    : '2.7'
     Options    :
       Examples: '2.6.0' | '2.6.1'
 
