@@ -10,6 +10,10 @@ The headers are:
 - enhancements
 - features
 
+## 2.20.1 (2025-01-13)
+
+- Fix `system_status` dashboard when only one monit check is displayed by removing the transformation `seriesToRow`
+
 ## 2.20.0 (2025-01-07)
 
 ### Bugs
