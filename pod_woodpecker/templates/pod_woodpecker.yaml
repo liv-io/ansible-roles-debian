@@ -44,77 +44,11 @@ spec:
       mountPath: /var/local/woodpecker-server/db
     workingDir: /
     env:
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_admin == "") %}
-    - name: WOODPECKER_ADMIN
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_admin}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_agent_secret == "") %}
-    - name: WOODPECKER_AGENT_SECRET
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_agent_secret}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_backend_http_proxy == "") %}
-    - name: WOODPECKER_BACKEND_HTTP_PROXY
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_backend_http_proxy}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_backend_https_proxy == "") %}
-    - name: WOODPECKER_BACKEND_HTTPS_PROXY
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_backend_https_proxy}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_backend_no_proxy == "") %}
-    - name: WOODPECKER_BACKEND_NO_PROXY
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_backend_no_proxy}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_github == "") %}
-    - name: WOODPECKER_GITHUB
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_github|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_github_client == "") %}
-    - name: WOODPECKER_GITHUB_CLIENT
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_github_client}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_github_secret == "") %}
-    - name: WOODPECKER_GITHUB_SECRET
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_github_secret}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_github_url == "") %}
-    - name: WOODPECKER_GITHUB_URL
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_github_url}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_grpc_addr == "") %}
-    - name: WOODPECKER_GRPC_ADDR
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_grpc_addr}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_grpc_secret == "") %}
-    - name: WOODPECKER_GRPC_SECRET
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_grpc_secret}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_host == "") %}
-    - name: WOODPECKER_HOST
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_host}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_log_level == "") %}
-    - name: WOODPECKER_LOG_LEVEL
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_log_level}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_metrics_server_addr == "") %}
-    - name: WOODPECKER_METRICS_SERVER_ADDR
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_metrics_server_addr}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_open == "") %}
-    - name: WOODPECKER_OPEN
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_open|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_orgs == "") %}
-    - name: WOODPECKER_ORGS
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_orgs}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_repo_owners == "") %}
-    - name: WOODPECKER_REPO_OWNERS
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_repo_owners}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_server_woodpecker_server_addr == "") %}
-    - name: WOODPECKER_SERVER_ADDR
-      value: "{{pod_woodpecker_woodpecker_server_woodpecker_server_addr}}"
+{% if not (pod_woodpecker_woodpecker_server_variables == {}) %}
+{% for key, value in pod_woodpecker_woodpecker_server_variables.items() %}
+    - name: {{key|upper}}
+      value: '{{value}}'
+{% endfor %}
 {% endif %}
 
   - name: woodpecker-agent
@@ -126,92 +60,38 @@ spec:
       protocol: TCP
     resources: {}
     securityContext:
-      allowPrivilegeEscalation: false
+      allowPrivilegeEscalation: true
       capabilities:
-        drop:
-        - CAP_MKNOD
-        - CAP_NET_RAW
-        - CAP_AUDIT_WRITE
-      privileged: false
+        add:
+          - SYS_ADMIN
+          - MKNOD
+          - SYS_CHROOT
+          - SETFCAP
+          - SYS_RESOURCE
+          - SETUID
+          - SETGID
+      privileged: true
       readOnlyRootFilesystem: {{pod_woodpecker_woodpecker_agent_read_only_root_filesystem|lower}}
-      runAsGroup: 10000
-      runAsUser: 10000
+      runAsGroup: 0
+      runAsUser: 0
       seLinuxOptions:
         type: spc_t
     volumeMounts:
-    - name: woodpecker-agent-tmp
-      mountPath: /var/local/woodpecker-agent/tmp
+    - name: woodpecker-agent-fuse
+      mountPath: /dev/fuse
+    - name: woodpecker-agent-containers
+      mountPath: /var/lib/containers
     - name: woodpecker-agent-podman-sock
       mountPath: /run/podman/podman.sock
+    - name: woodpecker-agent-tmp
+      mountPath: /var/local/woodpecker-agent/tmp
     workingDir: /
     env:
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_agent_secret == "") %}
-    - name: WOODPECKER_AGENT_SECRET
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_agent_secret}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend == "") %}
-    - name: WOODPECKER_BACKEND
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_API_VERSION
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_cert_path == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_CERT_PATH
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_cert_path}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_enable_ipv6 == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_ENABLE_IPV6
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_enable_ipv6|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_host == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_HOST
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_host}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_network == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_NETWORK
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_network}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_tls_verify == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_TLS_VERIFY
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_tls_verify|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_volumes == "") %}
-    - name: WOODPECKER_BACKEND_DOCKER_VOLUMES
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_volumes}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_backend_local_temp_dir == "") %}
-    - name: WOODPECKER_BACKEND_LOCAL_TEMP_DIR
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_backend_local_temp_dir}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_grpc_secure == "") %}
-    - name: WOODPECKER_GRPC_SECURE
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_grpc_secure|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_grpc_verify == "") %}
-    - name: WOODPECKER_GRPC_VERIFY
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_grpc_verify|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_healthcheck == "") %}
-    - name: WOODPECKER_HEALTHCHECK
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_healthcheck|lower}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_healthcheck_addr == "") %}
-    - name: WOODPECKER_HEALTHCHECK_ADDR
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_healthcheck_addr}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_hostname == "") %}
-    - name: WOODPECKER_HOSTNAME
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_hostname}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_log_level == "") %}
-    - name: WOODPECKER_LOG_LEVEL
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_log_level}}"
-{% endif %}
-{% if not (pod_woodpecker_woodpecker_agent_woodpecker_server == "") %}
-    - name: WOODPECKER_SERVER
-      value: "{{pod_woodpecker_woodpecker_agent_woodpecker_server}}"
+{% if not (pod_woodpecker_woodpecker_agent_variables == {}) %}
+{% for key, value in pod_woodpecker_woodpecker_agent_variables.items() %}
+    - name: {{key|upper}}
+      value: '{{value}}'
+{% endfor %}
 {% endif %}
 
   dnsConfig: {}
@@ -222,6 +102,16 @@ spec:
     hostPath:
       type: Directory
       path: {{file_dst_woodpecker_server_db_dir}}
+
+  - name: woodpecker-agent-containers
+    hostPath:
+      type: Directory
+      path: /var/lib/containers
+
+  - name: woodpecker-agent-fuse
+    hostPath:
+      type: Directory
+      path: /dev/fuse
 
   - name: woodpecker-agent-podman-sock
     hostPath:

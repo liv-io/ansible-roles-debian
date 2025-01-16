@@ -10,7 +10,55 @@ The headers are:
 - enhancements
 - features
 
-## 0.9.1(2025-01-12)
+## 1.0.0 (2025-01-16)
+
+### Changes
+
+- Remove parameter `pod_woodpecker_woodpecker_agent_version`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_agent_secret`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_cert_path`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_enable_ipv6`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_host`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_network`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_tls_verify`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_volumes`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_local_temp_dir`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_grpc_secure`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_grpc_verify`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_healthcheck`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_healthcheck_addr`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_hostname`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_log_level`
+- Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_server`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_admin`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_agent_secret`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_backend_http_proxy`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_backend_https_proxy`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_backend_no_proxy`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_github`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_github_client`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_github_secret`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_github_url`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_grpc_addr`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_grpc_secret`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_host`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_log_level`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_metrics_server_addr`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_open`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_orgs`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_repo_owners`
+- Remove parameter `pod_woodpecker_woodpecker_server_woodpecker_server_addr`
+
+### Features
+
+- Update `pod_woodpecker_woodpecker_agent_version` from 2.8.3-1 to 2.8.3-2
+- Update `pod_woodpecker_woodpecker_server_version` from 2.8.3-1 to 2.8.3-2
+- Add parameter `pod_woodpecker_woodpecker_agent_variables`
+- Add parameter `pod_woodpecker_woodpecker_server_variables`
+
+## 0.9.1 (2025-01-12)
 
 ### Features
 
