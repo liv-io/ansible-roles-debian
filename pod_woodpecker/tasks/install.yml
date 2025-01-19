@@ -58,6 +58,16 @@
   tags:
     - pod_woodpecker
 
+- name: create file woodpecker-agent-certs.dir
+  file:
+    state: directory
+    path: "{{file_dst_woodpecker_agent_certs_dir}}"
+    mode: "{{file_mode_woodpecker_agent_certs_dir}}"
+    owner: "{{file_owner_woodpecker_agent_certs_dir}}"
+    group: "{{file_group_woodpecker_agent_certs_dir}}"
+  tags:
+    - pod_woodpecker
+
 - name: create file woodpecker-agent-tmp.dir
   file:
     state: directory

@@ -10,6 +10,14 @@ The headers are:
 - enhancements
 - features
 
+## 1.1.0 (2025-01-19)
+
+### Features
+
+- Update `pod_woodpecker_woodpecker_agent_version` from 2.8.3-2 to 3.0.0-1
+- Update `pod_woodpecker_woodpecker_server_version` from 2.8.3-2 to 3.0.0-1
+- Add CA certificate directory for woodpecker-agent container
+
 ## 1.0.0 (2025-01-16)
 
 ### Changes

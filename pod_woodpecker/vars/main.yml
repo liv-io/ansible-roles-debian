@@ -27,6 +27,12 @@ file_mode_woodpecker_agent_dir: '0755'
 file_owner_woodpecker_agent_dir: 'root'
 file_group_woodpecker_agent_dir: 'root'
 
+# woodpecker-agent_certs.dir
+file_dst_woodpecker_agent_certs_dir: '/opt/pod_woodpecker/woodpecker-agent/certs'
+file_mode_woodpecker_agent_certs_dir: '0750'
+file_owner_woodpecker_agent_certs_dir: '10000'
+file_group_woodpecker_agent_certs_dir: '10000'
+
 # woodpecker-agent_tmp.dir
 file_dst_woodpecker_agent_tmp_dir: '/opt/pod_woodpecker/woodpecker-agent/tmp'
 file_mode_woodpecker_agent_tmp_dir: '0750'

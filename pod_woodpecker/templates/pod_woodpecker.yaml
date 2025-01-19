@@ -83,6 +83,8 @@ spec:
       mountPath: /var/lib/containers
     - name: woodpecker-agent-podman-sock
       mountPath: /run/podman/podman.sock
+    - name: woodpecker-agent-certs
+      mountPath: /var/local/woodpecker-agent/certs
     - name: woodpecker-agent-tmp
       mountPath: /var/local/woodpecker-agent/tmp
     workingDir: /
@@ -117,6 +119,11 @@ spec:
     hostPath:
       type: Directory
       path: /run/podman/podman.sock
+
+  - name: woodpecker-agent-certs
+    hostPath:
+      type: Directory
+      path: {{file_dst_woodpecker_agent_certs_dir}}
 
   - name: woodpecker-agent-tmp
     hostPath:
