@@ -129,7 +129,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.8.1'
+    Default    : '0.9.0'
     Options    :
       Examples: '0.1.0' | '0.2.0'
 
