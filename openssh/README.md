@@ -202,7 +202,7 @@ consult the following sections.
     Type       : Array
     Default    : ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com']
     Options    :
-      Examples: ['ssh-ed25519']
+      Examples: ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com', 'rsa-sha2-512', 'rsa-sha2-512-cert-v01@openssh.com']
 
 `openssh_kex_algorithms`
 
@@ -364,7 +364,7 @@ consult the following sections.
     Type       : Array
     Default    : ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com']
     Options    :
-      Examples:  ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com']
+      Examples:  ['ssh-ed25519', 'ssh-ed25519-cert-v01@openssh.com', 'sk-ssh-ed25519@openssh.com', 'sk-ssh-ed25519-cert-v01@openssh.com', 'rsa-sha2-256', 'rsa-sha2-256-cert-v01@openssh.com', 'rsa-sha2-512','rsa-sha2-512-cert-v01@openssh.com']
 
 `openssh_pubkey_authentication`
 

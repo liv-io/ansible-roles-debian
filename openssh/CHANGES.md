@@ -10,6 +10,10 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.5 (2025-01-25)
+
+- Remove RSA signature algorithms from PubkeyAcceptedAlgorithms/PubkeyAcceptedKeyTypes by default
+
 ## 2.3.4 (2025-01-25)
 
 ### Bugs
