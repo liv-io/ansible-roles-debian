@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.4 (2025-01-25)
+
+### Bugs
+
+- Fix PubkeyAcceptedKeyTypes option
+
+### Enhancements
+
+- Upgrade Ciphers, HostKeyAlgorithms, KexAlgorithms, MACs, PubkeyAcceptedAlgorithms/PubkeyAcceptedKeyTypes
+
 ## 2.3.3 (2024-04-22)
 
 ### Enhancements

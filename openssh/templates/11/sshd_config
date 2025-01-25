@@ -88,7 +88,7 @@ PubkeyAuthentication no
 PubkeyAuthentication yes
 {% endif %}
 {% if not (openssh_pubkey_accepted_algorithms == []) %}
-PubkeyAcceptedAlgorithms {% for item in openssh_pubkey_accepted_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
+PubkeyAcceptedKeyTypes {% for item in openssh_pubkey_accepted_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% endif %}
 
