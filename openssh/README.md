@@ -212,7 +212,7 @@ consult the following sections.
     Type       : Array
     Default    :
       Debian 11: ['sntrup4591761x25519-sha512@tinyssh.org', 'curve25519-sha256', 'curve25519-sha256@libssh.org']
-      debian 12: ['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
+      Debian 12: ['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
     Options    :
       Examples: ['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
 
