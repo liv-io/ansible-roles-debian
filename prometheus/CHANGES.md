@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 2.21.0 (2025-01-06)
+
+### Enhancements
+
+- Several small dashboard improvements
+- Update Grafana schemaVersion from 39 to 40
+
+### Features
+
+- Add dashboard `network_firewall`
+
 ## 2.20.1 (2025-01-13)
 
 - Fix `system_status` dashboard when only one monit check is displayed by removing the transformation `seriesToRow`

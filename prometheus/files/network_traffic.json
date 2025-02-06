@@ -15,131 +15,24 @@
       }
     ]
   },
-  "description": "Network Traffic (Firewalls and Hosts)",
+  "description": "Node Exporter Network Traffic",
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "out (-) / in (+)",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "bits",
-          "unitScale": true
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*_out$/"
-            },
-            "properties": [
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          }
-        ]
-      },
+      "collapsed": false,
       "gridPos": {
-        "h": 21,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 1,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=~\"$firewall\"}[5m])*8",
-          "instant": false,
-          "legendFormat": "{{instance}}_{{device}}_in",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$firewall\"}[5m])*8",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{instance}}_{{device}}_out",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Firewalls",
-      "type": "timeseries"
+      "id": 19,
+      "panels": [],
+      "title": "Firewall",
+      "type": "row"
     },
     {
       "datasource": {
@@ -155,9 +48,10 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "out (-) / in (+)",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -193,31 +87,17 @@
               }
             ]
           },
-          "unit": "bits",
-          "unitScale": true
+          "unit": "bps"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*_out$/"
-            },
-            "properties": [
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 21,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 1
       },
-      "id": 2,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [],
@@ -226,10 +106,12 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "multi",
+          "hideZeros": false,
+          "mode": "single",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -237,11 +119,12 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\"}[5m])*8",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$firewall\",device!~\"enc[0-9].*|lo[0-9].*|pflog[0-9].*|pfsync[0-9].*\"}[1m]) * 8",
           "instant": false,
-          "legendFormat": "{{instance}}_{{device}}_in",
+          "interval": "",
+          "legendFormat": "{{instance}} [{{device}}-in]",
           "range": true,
-          "refId": "A"
+          "refId": "ingress"
         },
         {
           "datasource": {
@@ -249,20 +132,145 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$host\"}[5m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$firewall\",device!~\"enc[0-9].*|lo[0-9].*|pflog[0-9].*|pfsync[0-9].*\"}[1m]) * -8",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{instance}}_{{device}}_out",
+          "interval": "",
+          "legendFormat": "{{instance}} [{{device}}-out]",
           "range": true,
-          "refId": "B"
+          "refId": "egress"
         }
       ],
-      "title": "Hosts",
+      "title": "",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 18,
+      "panels": [],
+      "title": "Host",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\",device!~\"lo.*\"}[1m]) * 8",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}} [{{device}}-in]",
+          "range": true,
+          "refId": "ingress"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$host\",device!~\"lo.*\"}[1m]) * -8",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}} [{{device}}-out]",
+          "range": true,
+          "refId": "egress"
+        }
+      ],
+      "title": "",
       "type": "timeseries"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 39,
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 40,
   "tags": [
     "network_traffic",
     "node_exporter",
@@ -276,13 +284,8 @@
           "text": [],
           "value": []
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
-        },
         "definition": "label_values(node_exporter_build_info,instance)",
-        "hide": 0,
-        "includeAll": false,
+        "description": "firewall hostname",
         "multi": true,
         "name": "firewall",
         "options": [],
@@ -292,9 +295,7 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "^fw|firewall.*",
-        "skipUrlSync": false,
-        "sort": 1,
+        "regex": ".*fw|firewall|-n-.*",
         "type": "query"
       },
       {
@@ -303,25 +304,18 @@
           "text": [],
           "value": []
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
-        },
-        "definition": "label_values(node_exporter_build_info,instance)",
-        "hide": 0,
-        "includeAll": false,
+        "definition": "label_values(node_exporter_build_info{instance!~\"$firewall\"},instance)",
+        "description": "host hostname",
         "multi": true,
         "name": "host",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(node_exporter_build_info,instance)",
+          "query": "label_values(node_exporter_build_info{instance!~\"$firewall\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "^(?!fw|firewall).*",
-        "skipUrlSync": false,
-        "sort": 1,
+        "regex": "",
         "type": "query"
       }
     ]
@@ -331,8 +325,8 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "browser",
   "title": "Network Traffic",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }

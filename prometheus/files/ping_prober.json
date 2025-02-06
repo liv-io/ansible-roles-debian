@@ -20,7 +20,6 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -39,6 +38,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -84,8 +84,7 @@
               }
             ]
           },
-          "unit": "s",
-          "unitScale": true
+          "unit": "s"
         },
         "overrides": []
       },
@@ -104,10 +103,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -126,8 +127,9 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 39,
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 40,
   "tags": [
     "blackbox_exporter",
     "ping_prober",
@@ -146,7 +148,6 @@
           "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(probe_duration_seconds,instance)",
-        "hide": 0,
         "includeAll": false,
         "multi": true,
         "name": "target",
@@ -158,7 +159,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
@@ -171,6 +171,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Ping Prober",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

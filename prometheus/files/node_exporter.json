@@ -15,18 +15,18 @@
       }
     ]
   },
+  "description": "Node Exporter",
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
       "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -149,6 +149,7 @@
           "refId": "memory"
         }
       ],
+      "title": "",
       "type": "stat"
     },
     {
@@ -181,6 +182,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -217,8 +219,7 @@
               }
             ]
           },
-          "unit": "percentunit",
-          "unitScale": true
+          "unit": "percentunit"
         },
         "overrides": [
           {
@@ -329,10 +330,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -434,6 +437,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -470,8 +474,7 @@
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": []
       },
@@ -491,10 +494,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -545,6 +550,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -677,11 +683,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -765,6 +772,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -865,8 +873,7 @@
               }
             ]
           },
-          "unit": "decbytes",
-          "unitScale": true
+          "unit": "decbytes"
         },
         "overrides": [
           {
@@ -917,11 +924,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -987,6 +995,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1101,8 +1110,7 @@
               }
             ]
           },
-          "unit": "percent",
-          "unitScale": false
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1122,10 +1130,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -1163,6 +1173,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1277,8 +1288,7 @@
               }
             ]
           },
-          "unit": "percent",
-          "unitScale": false
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1298,10 +1308,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -1336,9 +1348,10 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "reads (-) / writes (+)",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1370,12 +1383,12 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": [
           {
@@ -1408,10 +1421,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -1460,10 +1475,11 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "read (-) / write (+)",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "axisSoftMin": 2,
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1494,12 +1510,12 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "bytes",
-          "unitScale": true
+          "unit": "bytes"
         },
         "overrides": [
           {
@@ -1532,10 +1548,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -1619,7 +1637,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1729,7 +1748,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -1831,9 +1851,10 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "out (-) / in (+)",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1864,27 +1885,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "bits",
-          "unitScale": true
+          "unit": "bps"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*_out$/"
-            },
-            "properties": [
-              {
-                "id": "custom.transform",
-                "value": "negative-Y"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 6,
@@ -1902,10 +1910,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -1915,9 +1925,10 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_receive_bytes_total{instance=\"$host\"}[5m])*8",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$host\"}[1m]) * 8",
           "instant": false,
-          "legendFormat": "{{device}}_in",
+          "interval": "",
+          "legendFormat": "{{device}}-in",
           "range": true,
           "refId": "in"
         },
@@ -1927,10 +1938,10 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_network_transmit_bytes_total{instance=\"$host\"}[5m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$host\"}[1m]) * -8",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{device}}_out",
+          "legendFormat": "{{device}}-out",
           "range": true,
           "refId": "out"
         }
@@ -1955,6 +1966,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -1986,12 +1998,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": []
       },
@@ -2011,10 +2023,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -2048,9 +2062,10 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "out (-) / in (+)",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2081,12 +2096,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": [
           {
@@ -2131,10 +2146,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -2144,7 +2161,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp_InDatagrams{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp_InDatagrams{instance=\"$host\"}[1m])",
           "instant": false,
           "legendFormat": "v4_in",
           "range": true,
@@ -2156,7 +2173,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp_InErrors{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp_InErrors{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v4_in-errors",
@@ -2169,7 +2186,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp_OutDatagrams{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp_OutDatagrams{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v4_out",
@@ -2182,7 +2199,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp_NoPorts{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp_NoPorts{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v4_no-ports",
@@ -2195,7 +2212,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp6_InDatagrams{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp6_InDatagrams{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_in",
@@ -2208,7 +2225,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp6_InErrors{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp6_InErrors{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_in-errors",
@@ -2221,7 +2238,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp6_OutDatagrams{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp6_OutDatagrams{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_out",
@@ -2234,7 +2251,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Udp6_NoPorts{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Udp6_NoPorts{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_no-ports",
@@ -2259,9 +2276,10 @@
             "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
-            "axisLabel": "out (-) / in (+)",
+            "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
@@ -2292,12 +2310,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": [
           {
@@ -2342,10 +2360,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -2355,7 +2375,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Icmp_InMsgs{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Icmp_InMsgs{instance=\"$host\"}[1m])",
           "instant": false,
           "interval": "",
           "legendFormat": "v4_in",
@@ -2368,7 +2388,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Icmp_InErrors{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Icmp_InErrors{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v4_in-errors",
@@ -2381,7 +2401,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Icmp_OutMsgs{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Icmp_OutMsgs{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v4_out",
@@ -2394,7 +2414,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Icmp6_InMsgs{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Icmp6_InMsgs{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_in",
@@ -2407,7 +2427,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Icmp6_InErrors{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Icmp6_InErrors{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_in-errors",
@@ -2420,7 +2440,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_netstat_Icmp6_OutMsgs{instance=\"$host\"}[5m])",
+          "expr": "irate(node_netstat_Icmp6_OutMsgs{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "v6_out",
@@ -2449,6 +2469,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 50,
             "gradientMode": "none",
@@ -2480,7 +2501,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "super-light-blue"
+                "color": "super-light-blue",
+                "value": null
               },
               {
                 "color": "light-blue",
@@ -2548,8 +2570,7 @@
               }
             ]
           },
-          "unit": "none",
-          "unitScale": true
+          "unit": "none"
         },
         "overrides": [
           {
@@ -2599,10 +2620,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "desc"
         }
       },
+      "pluginVersion": "11.5.1",
       "repeat": "host",
       "repeatDirection": "h",
       "targets": [
@@ -2636,8 +2659,9 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 39,
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 40,
   "tags": [
     "node_exporter",
     "built-in"
@@ -2655,9 +2679,7 @@
           "uid": "PBFA97CFB590B2093"
         },
         "definition": "label_values(node_exporter_build_info,instance)",
-        "hide": 0,
         "includeAll": false,
-        "label": "",
         "multi": true,
         "name": "host",
         "options": [],
@@ -2668,8 +2690,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
@@ -2681,6 +2701,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Node Exporter",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }

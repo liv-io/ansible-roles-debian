@@ -98,6 +98,7 @@
     owner: "{{file_owner_dashboard_json}}"
     group: "{{file_group_dashboard_json}}"
   loop:
+    - 'network_firewall.json'
     - 'network_traffic.json'
     - 'node_exporter.json'
     - 'script_status.json'
