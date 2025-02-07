@@ -10,23 +10,29 @@ The headers are:
 - enhancements
 - features
 
+## 1.2.0 (2025-01-07)
+
+### Features
+
+- Update pod_forgejo_forgejo_version from 9.0.2-1 to 10.0.0-1
+
 ## 1.1.2 (2024-11-15)
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 9.0.1-1 to 9.0.2-1
+- Update pod_forgejo_forgejo_version from 9.0.1-1 to 9.0.2-1
 
 ## 1.1.1 (2024-10-31)
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 9.0.0-1 to 9.0.1-1
+- Update pod_forgejo_forgejo_version from 9.0.0-1 to 9.0.1-1
 
 ## 1.1.0 (2024-10-17)
 
 ### Features
 
-- Update `pod_forgejo_forgejo_version` from 8.0.3-1 to 9.0.0-1
+- Update pod_forgejo_forgejo_version from 8.0.3-1 to 9.0.0-1
 
 ## 1.0.0 (2024-10-07)
 
@@ -47,31 +53,31 @@ The headers are:
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 8.0.2-1 to 8.0.3-1
+- Update pod_forgejo_forgejo_version from 8.0.2-1 to 8.0.3-1
 
 ## 0.8.1 (2024-09-05)
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 8.0.0-1 to 8.0.2-1
+- Update pod_forgejo_forgejo_version from 8.0.0-1 to 8.0.2-1
 
 ## 0.8.0 (2024-08-06)
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 7.0.5-1 to 8.0.0-1
+- Update pod_forgejo_forgejo_version from 7.0.5-1 to 8.0.0-1
 
 ## 0.7.1 (2024-07-03)
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 7.0.3-1 to 7.0.5-1
+- Update pod_forgejo_forgejo_version from 7.0.3-1 to 7.0.5-1
 
 ## 0.7.0 (2024-05-28)
 
 ### Changes
 
-- Update `pod_forgejo_forgejo_version` from 1.21.11-1-1 to 7.0.3-1
+- Update pod_forgejo_forgejo_version from 1.21.11-1-1 to 7.0.3-1
 
 ## 0.6.1 (2024-04-23)
 
@@ -89,13 +95,13 @@ The headers are:
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 1.21.8-0-1 to 1.21.11-1-1
+- Update pod_forgejo_forgejo_version from 1.21.8-0-1 to 1.21.11-1-1
 
 ## 0.5.6 (2024-03-25)
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 1.21.7-0-1 to 1.21.8-0-1
+- Update pod_forgejo_forgejo_version from 1.21.7-0-1 to 1.21.8-0-1
 
 ## 0.5.5 (2024-03-22)
 
@@ -113,7 +119,7 @@ The headers are:
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 1.21.6-0-1 to 1.21.7-0-1
+- Update pod_forgejo_forgejo_version from 1.21.6-0-1 to 1.21.7-0-1
 
 ## 0.5.2 (2024-03-14)
 
@@ -125,7 +131,7 @@ The headers are:
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 1.21.5-0-1 to 1.21.6-0-1
+- Update pod_forgejo_forgejo_version from 1.21.5-0-1 to 1.21.6-0-1
 
 ## 0.5.0 (2024-02-02)
 
@@ -143,7 +149,7 @@ The headers are:
 
 ### Bugs
 
-- Update `pod_forgejo_forgejo_version` from 1.21.4-0-2 to 1.21.5-0-1
+- Update pod_forgejo_forgejo_version from 1.21.4-0-2 to 1.21.5-0-1
 
 ### Enhancements
 
