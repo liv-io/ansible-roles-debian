@@ -2699,7 +2699,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "browser",
   "title": "Node Exporter",
   "version": 7,
   "weekStart": ""

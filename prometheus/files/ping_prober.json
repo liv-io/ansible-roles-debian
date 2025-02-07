@@ -169,7 +169,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "browser",
   "title": "Ping Prober",
   "version": 3,
   "weekStart": ""

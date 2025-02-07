@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.21.2 (2025-01-07)
+
+### Enhancements
+
+- Set `browser` timezone by default
+
 ## 2.21.1 (2025-01-07)
 
 ### Enhancements

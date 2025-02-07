@@ -3982,7 +3982,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "browser",
   "title": "Script Status",
   "version": 3,
   "weekStart": ""

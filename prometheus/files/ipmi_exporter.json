@@ -1275,7 +1275,7 @@
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "",
+  "timezone": "browser",
   "title": "IPMI Exporter",
   "version": 3,
   "weekStart": ""
