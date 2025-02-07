@@ -457,7 +457,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#e1ffff",
+            "fixedColor": "#c4ffff",
             "mode": "fixed"
           },
           "mappings": [],
@@ -525,7 +525,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#ffc8ff",
+            "fixedColor": "#ffb8ff",
             "mode": "fixed"
           },
           "mappings": [],
@@ -1339,7 +1339,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "super-light-blue",
+            "fixedColor": "#a9caff",
             "mode": "fixed"
           },
           "mappings": [],
@@ -1407,7 +1407,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "#d1b5ff",
+            "fixedColor": "#caaaff",
             "mode": "fixed"
           },
           "mappings": [],
@@ -2219,6 +2219,6 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Network Firewall",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

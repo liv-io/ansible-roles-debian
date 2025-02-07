@@ -509,7 +509,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_context_switches_total{instance=\"$host\"}[5m])",
+          "expr": "irate(node_context_switches_total{instance=\"$host\"}[1m])",
           "instant": false,
           "legendFormat": "context switches",
           "range": true,
@@ -1323,7 +1323,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_disk_io_time_seconds_total{instance=\"$host\"}[5m])",
+          "expr": "irate(node_disk_io_time_seconds_total{instance=\"$host\"}[1m])",
           "instant": false,
           "legendFormat": "{{device}}",
           "range": true,
@@ -1436,7 +1436,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_disk_writes_completed_total{instance=\"$host\"}[5m])",
+          "expr": "irate(node_disk_writes_completed_total{instance=\"$host\"}[1m])",
           "instant": false,
           "interval": "",
           "legendFormat": "{{device}}_writes",
@@ -1449,7 +1449,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_disk_reads_completed_total{instance=\"$host\"}[5m])",
+          "expr": "irate(node_disk_reads_completed_total{instance=\"$host\"}[1m])",
           "hide": false,
           "instant": false,
           "legendFormat": "{{device}}_reads",
@@ -1563,7 +1563,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_disk_written_bytes_total{instance=\"$host\"}[5m])*512",
+          "expr": "irate(node_disk_written_bytes_total{instance=\"$host\"}[1m])*512",
           "instant": false,
           "interval": "",
           "legendFormat": "{{device}}_write",
@@ -1576,7 +1576,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "irate(node_disk_read_bytes_total{instance=\"$host\"}[5m])*512",
+          "expr": "irate(node_disk_read_bytes_total{instance=\"$host\"}[1m])*512",
           "hide": false,
           "instant": false,
           "legendFormat": "{{device}}_read",

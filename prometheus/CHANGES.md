@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.21.1 (2025-01-07)
+
+### Enhancements
+
+- Minor cosmetic dashboard improvements
+
 ## 2.21.0 (2025-01-06)
 
 ### Enhancements
