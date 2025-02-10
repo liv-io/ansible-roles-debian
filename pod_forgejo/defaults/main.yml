@@ -6,7 +6,7 @@ pod_forgejo_forgejo_environment_variables:
   PORT: '3000'
 
 pod_forgejo_forgejo_read_only_root_filesystem: True
-pod_forgejo_forgejo_version: '10.0.0-1'
+pod_forgejo_forgejo_version: '10.0.1-1'
 
 pod_forgejo_log_driver: 'journald'
 
