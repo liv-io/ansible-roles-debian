@@ -10,26 +10,32 @@ The headers are:
 - enhancements
 - features
 
-## 1.1.1 (2025-01-20)
+## 1.2.0 (2025-02-13)
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 3.0.0-1 to 3.0.1-1
-- Update `pod_woodpecker_woodpecker_server_version` from 3.0.0-1 to 3.0.1-1
+- Update pod_woodpecker_woodpecker_agent_version from 3.0.1-1 to 3.1.0-1
+- Update pod_woodpecker_woodpecker_server_version from 3.0.1-1 to 3.1.0-1
+
+## 1.1.1 (2025-01-20)
+
+### Bugs
+
+- Update pod_woodpecker_woodpecker_agent_version from 3.0.0-1 to 3.0.1-1
+- Update pod_woodpecker_woodpecker_server_version from 3.0.0-1 to 3.0.1-1
 
 ## 1.1.0 (2025-01-19)
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.8.3-2 to 3.0.0-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.8.3-2 to 3.0.0-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.8.3-2 to 3.0.0-1
+- Update pod_woodpecker_woodpecker_server_version from 2.8.3-2 to 3.0.0-1
 - Add CA certificate directory for woodpecker-agent container
 
 ## 1.0.0 (2025-01-16)
 
 ### Changes
 
-- Remove parameter `pod_woodpecker_woodpecker_agent_version`
 - Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_agent_secret`
 - Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend`
 - Remove parameter `pod_woodpecker_woodpecker_agent_woodpecker_backend_docker_api_version`
@@ -68,8 +74,8 @@ The headers are:
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.8.3-1 to 2.8.3-2
-- Update `pod_woodpecker_woodpecker_server_version` from 2.8.3-1 to 2.8.3-2
+- Update pod_woodpecker_woodpecker_agent_version from 2.8.3-1 to 2.8.3-2
+- Update pod_woodpecker_woodpecker_server_version from 2.8.3-1 to 2.8.3-2
 - Add parameter `pod_woodpecker_woodpecker_agent_variables`
 - Add parameter `pod_woodpecker_woodpecker_server_variables`
 
@@ -77,55 +83,55 @@ The headers are:
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.8.2-1 to 2.8.3-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.8.2-1 to 2.8.3-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.8.2-1 to 2.8.3-1
+- Update pod_woodpecker_woodpecker_server_version from 2.8.2-1 to 2.8.3-1
 
 ## 0.9.0 (2025-01-11)
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.7.1-1 to 2.8.2-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.7.1-1 to 2.8.2-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.7.1-1 to 2.8.2-1
+- Update pod_woodpecker_woodpecker_server_version from 2.7.1-1 to 2.8.2-1
 
 ## 0.8.2 (2024-09-16)
 
 ### Bugs
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.7.0-2 to 2.7.1-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.7.0-1 to 2.7.1-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.7.0-2 to 2.7.1-1
+- Update pod_woodpecker_woodpecker_server_version from 2.7.0-1 to 2.7.1-1
 
 ## 0.8.1 (2024-07-26)
 
 ### Enhancements
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.7.0-1 to 2.7.0-2
+- Update pod_woodpecker_woodpecker_agent_version from 2.7.0-1 to 2.7.0-2
 
 ## 0.8.0 (2024-07-22)
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.6.0-3 to 2.7.0-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.6.0-1 to 2.7.0-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.6.0-3 to 2.7.0-1
+- Update pod_woodpecker_woodpecker_server_version from 2.6.0-1 to 2.7.0-1
 
 ## 0.7.1 (2024-07-14)
 
 ### Enhancements
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.6.0-1 to 2.6.0-3
+- Update pod_woodpecker_woodpecker_agent_version from 2.6.0-1 to 2.6.0-3
 
 ## 0.7.0 (2024-06-14)
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.5.0-1 to 2.6.0-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.5.0-1 to 2.6.0-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.5.0-1 to 2.6.0-1
+- Update pod_woodpecker_woodpecker_server_version from 2.5.0-1 to 2.6.0-1
 
 ## 0.6.0 (2024-05-02)
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.4.1-1 to 2.5.0-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.4.1-1 to 2.5.0-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.4.1-1 to 2.5.0-1
+- Update pod_woodpecker_woodpecker_server_version from 2.4.1-1 to 2.5.0-1
 
 ## 0.5.0 (2024-04-23)
 
@@ -137,8 +143,8 @@ The headers are:
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.3.0-1 to 2.4.1-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.3.0-1 to 2.4.1-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.3.0-1 to 2.4.1-1
+- Update pod_woodpecker_woodpecker_server_version from 2.3.0-1 to 2.4.1-1
 
 ## 0.3.3 (2024-03-22)
 
@@ -162,8 +168,8 @@ The headers are:
 
 ### Features
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.2.2-3 to 2.3.0-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.2.2-2 to 2.3.0-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.2.2-3 to 2.3.0-1
+- Update pod_woodpecker_woodpecker_server_version from 2.2.2-2 to 2.3.0-1
 
 ## 0.2.0 (2024-01-30)
 
@@ -176,28 +182,28 @@ The headers are:
 
 ### Enhancements
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.2.2-2 to 2.2.2-3
+- Update pod_woodpecker_woodpecker_agent_version from 2.2.2-2 to 2.2.2-3
 
 ## 0.1.4 (2024-01-24)
 
 ### Enhancements
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.2.2-1 to 2.2.2-2
-- Update `pod_woodpecker_woodpecker_server_version` from 2.2.2-1 to 2.2.2-2
+- Update pod_woodpecker_woodpecker_agent_version from 2.2.2-1 to 2.2.2-2
+- Update pod_woodpecker_woodpecker_server_version from 2.2.2-1 to 2.2.2-2
 
 ## 0.1.3 (2024-01-22)
 
 ### Changes
 
-- Update `pod_woodpecker_woodpecker_agent_version` from 2.1.1-5 to 2.2.2-1
-- Update `pod_woodpecker_woodpecker_server_version` from 2.1.1-6 to 2.2.2-1
+- Update pod_woodpecker_woodpecker_agent_version from 2.1.1-5 to 2.2.2-1
+- Update pod_woodpecker_woodpecker_server_version from 2.1.1-6 to 2.2.2-1
 
 ## 0.1.2 (2024-01-02)
 
 ### Changes
 
 - Change parameter `pod_woodpecker_woodpecker_server_woodpecker_admin` from array to string
-- Update `pod_woodpecker_woodpecker_server_version` from 2.1.1-1 to 2.1.1-2
+- Update pod_woodpecker_woodpecker_server_version from 2.1.1-1 to 2.1.1-2
 
 ### Features
 
