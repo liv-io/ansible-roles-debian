@@ -37,4 +37,4 @@ ipmi_exporter_nftables_filter_rule: |
 
 ipmi_exporter_nftables_state: False
 
-ipmi_exporter_version: '1.9.0'
+ipmi_exporter_version: '1.10.0'
