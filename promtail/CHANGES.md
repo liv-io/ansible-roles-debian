@@ -10,11 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 3.4.2 (2025-02-14)
+
+### Bugs
+
+- Update Promtail to version 3.4.2
+
 ## 3.4.1 (2025-02-13)
 
 ### Features
 
-- Update Loki to version 3.4.1
+- Update Promtail to version 3.4.1
 
 ## 3.3.2 (2025-01-07)
 
