@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.4.0 (2025-02-17)
+
+### Features
+
+- Update node_exporter to version 1.9.0
+
 ## 2.3.2 (2024-07-15)
 
 ### Bugs
