@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.22.1 (2025-02-18)
+
+### Enhancements
+
+- Minor `Network Firewall` dashboard improvements
+
 ## 2.22.0 (2025-02-17)
 
 ### Features
