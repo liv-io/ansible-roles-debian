@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.0 (2025-02-27)
+
+### Features
+
+- Update blackbox_exporter to version 0.26.0
+
 ## 2.2.0 (2024-04-09)
 
 ### Features
