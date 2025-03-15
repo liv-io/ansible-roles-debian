@@ -1,0 +1,29 @@
+---
+
+# uv.dir
+file_dst_uv_dir: '/usr/local/src/uv'
+file_mode_uv_dir: '0755'
+file_owner_uv_dir: 'root'
+file_group_uv_dir: 'root'
+
+# uv-version.dir
+file_dst_uv_version_dir: "/usr/local/src/uv/uv-{{uv_version}}"
+file_mode_uv_version_dir: '0755'
+file_owner_uv_version_dir: 'root'
+file_group_uv_version_dir: 'root'
+
+# uv.tar.gz
+file_src_uv_tar_gz: "https://github.com/astral-sh/uv/releases/download/{{uv_version}}/uv-x86_64-unknown-linux-gnu.tar.gz"
+file_dst_uv_tar_gz: "/usr/local/src/uv/uv-{{uv_version}}/uv-x86_64-unknown-linux-gnu.tar.gz"
+file_mode_uv_tar_gz: '0644'
+file_owner_uv_tar_gz: 'root'
+file_group_uv_tar_gz: 'root'
+file_checksum_uv_tar_gz: "sha256:https://github.com/astral-sh/uv/releases/download/{{uv_version}}/uv-x86_64-unknown-linux-gnu.tar.gz.sha256"
+
+# uv
+file_src_uv: "/usr/local/src/uv/uv-{{uv_version}}/uv-x86_64-unknown-linux-gnu.tar.gz"
+file_dst_uv: '/usr/local/bin'
+file_mode_uv: '0755'
+file_owner_uv: 'root'
+file_group_uv: 'root'
+file_extra_opts_uv: ['--strip-components=1']

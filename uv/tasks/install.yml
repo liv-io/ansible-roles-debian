@@ -1,0 +1,54 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - uv
+
+- name: create file uv.dir
+  file:
+    state: directory
+    path: "{{file_dst_uv_dir}}"
+    mode: "{{file_mode_uv_dir}}"
+    owner: "{{file_owner_uv_dir}}"
+    group: "{{file_group_uv_dir}}"
+  tags:
+    - uv
+
+- name: create file uv-{{uv_version}}.dir
+  file:
+    state: directory
+    path: "{{file_dst_uv_version_dir}}"
+    mode: "{{file_mode_uv_version_dir}}"
+    owner: "{{file_owner_uv_version_dir}}"
+    group: "{{file_group_uv_version_dir}}"
+  tags:
+    - uv
+
+- name: download file uv.tar.gz
+  get_url:
+    url: "{{file_src_uv_tar_gz}}"
+    dest: "{{file_dst_uv_tar_gz}}"
+    mode: "{{file_mode_uv_tar_gz}}"
+    owner: "{{file_owner_uv_tar_gz}}"
+    group: "{{file_group_uv_tar_gz}}"
+    checksum: "{{file_checksum_uv_tar_gz}}"
+  tags:
+    - uv
+
+- name: unarchive file uv
+  unarchive:
+    src: "{{file_src_uv}}"
+    dest: "{{file_dst_uv}}"
+    mode: "{{file_mode_uv}}"
+    owner: "{{file_owner_uv}}"
+    group: "{{file_group_uv}}"
+    extra_opts: "{{file_extra_opts_uv}}"
+    remote_src: True
+  tags:
+    - uv
