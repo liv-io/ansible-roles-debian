@@ -20,6 +20,6 @@
 - name: remove file uv
   file:
     state: absent
-    path: "{{file_dst_uv}}"
+    path: "{{file_dst_uv}}/uv"
   tags:
     - uv

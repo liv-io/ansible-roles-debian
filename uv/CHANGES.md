@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.6.6-2 (2025-03-15)
+
+### Bugs
+
+- Fix remove task of uv binary
+
 ## 0.6.6-1 (2025-03-15)
 
 ### Features
