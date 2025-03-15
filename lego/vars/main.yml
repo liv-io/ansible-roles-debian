@@ -1,0 +1,23 @@
+---
+
+# lego.dir
+file_dst_lego_dir: '/usr/local/src/lego'
+file_mode_lego_dir: '0755'
+file_owner_lego_dir: 'root'
+file_group_lego_dir: 'root'
+
+# lego.tar.gz
+file_src_lego_tar_gz: "https://github.com/go-acme/lego/releases/download/v{{lego_version}}/lego_v{{lego_version}}_linux_amd64.tar.gz"
+file_dst_lego_tar_gz: "/usr/local/src/lego/lego_v{{lego_version}}_linux_amd64.tar.gz"
+file_mode_lego_tar_gz: '0644'
+file_owner_lego_tar_gz: 'root'
+file_group_lego_tar_gz: 'root'
+file_checksum_lego_tar_gz: "sha256:https://github.com/go-acme/lego/releases/download/v{{lego_version}}/lego_{{lego_version}}_checksums.txt"
+
+# lego
+file_src_lego: "/usr/local/src/lego/lego_v{{lego_version}}_linux_amd64.tar.gz"
+file_dst_lego: '/usr/local/bin'
+file_mode_lego: '0755'
+file_owner_lego: 'root'
+file_group_lego: 'root'
+file_include_lego: ['lego']

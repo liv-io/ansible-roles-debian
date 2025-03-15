@@ -1,0 +1,25 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - lego
+
+- name: remove file lego.dir
+  file:
+    state: absent
+    path: "{{file_dst_lego_dir}}"
+  tags:
+    - lego
+
+- name: remove file lego
+  file:
+    state: absent
+    path: "{{file_dst_lego}}/lego"
+  tags:
+    - lego

@@ -1,0 +1,44 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - lego
+
+- name: create file lego.dir
+  file:
+    state: directory
+    path: "{{file_dst_lego_dir}}"
+    mode: "{{file_mode_lego_dir}}"
+    owner: "{{file_owner_lego_dir}}"
+    group: "{{file_group_lego_dir}}"
+  tags:
+    - lego
+
+- name: download file lego.tar.gz
+  get_url:
+    url: "{{file_src_lego_tar_gz}}"
+    dest: "{{file_dst_lego_tar_gz}}"
+    mode: "{{file_mode_lego_tar_gz}}"
+    owner: "{{file_owner_lego_tar_gz}}"
+    group: "{{file_group_lego_tar_gz}}"
+    checksum: "{{file_checksum_lego_tar_gz}}"
+  tags:
+    - lego
+
+- name: unarchive file lego
+  unarchive:
+    src: "{{file_src_lego}}"
+    dest: "{{file_dst_lego}}"
+    mode: "{{file_mode_lego}}"
+    owner: "{{file_owner_lego}}"
+    group: "{{file_group_lego}}"
+    include: "{{file_include_lego}}"
+    remote_src: True
+  tags:
+    - lego
