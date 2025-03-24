@@ -4,22 +4,20 @@ server {
 
     # CORE
 
-    listen
-{%- if not (item.listen|default('') == '') %}
- {{item.listen}}:{{item.port|int}}
-{%- else %}
- *:{{item.port|int}}
-{%- endif %}
-{%- if (item.ssl_state|default(False) == True) %}
- ssl
-{%- endif %};
-    server_name {{item.name}}
-{%- if not (item.alias|default([]) == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+{% if not (item.listen|default([]) == []) %}
+{% for listen in item.listen %}
+    listen {{listen}}:{{item.port|int}}{% if (item.ssl_state|default(False) == True) %} ssl{% endif %};
+{% endfor %}
+{% else %}
+    listen 443 {% if (item.ssl_state|default(False) == True) %} ssl{% endif %};
+    listen [::]:443 {% if (item.ssl_state|default(False) == True) %} ssl{% endif %};
+{% endif %}
+    server_name {{item.name}};
 
     # LOG
 
-    error_log /var/log/nginx/{{item.name}}-{{item.port|int}}_error.log;
-    access_log /var/log/nginx/{{item.name}}-{{item.port|int}}_access.log
+    error_log /var/log/nginx/{{item.name}}_error.log;
+    access_log /var/log/nginx/{{item.name}}_access.log
 {%- if (item.ssl_state|default(False) == True) %}
  main_ssl;
 {% else %}
@@ -57,10 +55,13 @@ server {
 {% if not (item.ssl_ciphers|default('') == '') %}
     ssl_ciphers '{{item.ssl_ciphers}}';
 {% else %}
-    ssl_ciphers 'TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH';
+    ssl_ciphers 'ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256';
 {% endif %}
 {% if not (item.ssl_ecdh_curve|default('secp521r1') == '') %}
     ssl_ecdh_curve '{{item.ssl_ecdh_curve|default("secp521r1")}}';
+{% endif %}
+{% if (item.ssl_session_tickets|default(False) == False) %}
+    ssl_session_tickets off;
 {% endif %}
 {% if not (item.ssl_dhparam|default(file_dst_dhparam_pem) == '') %}
     ssl_dhparam '{{file_dst_dhparam_pem}}';

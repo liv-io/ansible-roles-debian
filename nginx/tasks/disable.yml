@@ -21,6 +21,19 @@
   tags:
     - nginx
 
+- name: create file default.conf
+  template:
+    src: "{{file_src_default_conf}}"
+    dest: "{{file_dst_default_conf}}"
+    mode: "{{file_mode_default_conf}}"
+    owner: "{{file_owner_default_conf}}"
+    group: "{{file_group_default_conf}}"
+  notify:
+    - check nginx
+    - reload service nginx
+  tags:
+    - nginx
+
 - name: remove file nginx.cfg
   file:
     state: absent

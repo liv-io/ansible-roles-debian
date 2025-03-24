@@ -10,6 +10,21 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-03-24)
+
+### Changes
+
+- Remove port from virtual host file name and log file
+
+### Enhancements
+
+- Update cipher suites
+- Disable SSL session tickets by default
+
+### Features
+
+- Add support for ACME client challenge
+
 ## 2.1.3 (2024-10-15)
 
 ### Enhancements

@@ -26,6 +26,16 @@
   tags:
     - nginx
 
+- name: create file challenges.dir
+  file:
+    state: directory
+    path: "{{file_dst_challenges_dir}}"
+    mode: "{{file_mode_challenges_dir}}"
+    owner: "{{file_owner_challenges_dir}}"
+    group: "{{file_group_challenges_dir}}"
+  tags:
+    - nginx
+
 - name: create file vhosts.d
   file:
     state: directory

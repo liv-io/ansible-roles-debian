@@ -34,6 +34,13 @@
   tags:
     - nginx
 
+- name: remove file default.conf
+  file:
+    state: absent
+    path: "{{file_dst_default_conf}}"
+  tags:
+    - nginx
+
 - name: remove file nginx.conf
   file:
     state: absent
@@ -52,5 +59,12 @@
   file:
     state: absent
     path: "{{file_dst_vhosts_d}}"
+  tags:
+    - nginx
+
+- name: remove file challenges.dir
+  file:
+    state: absent
+    path: "{{file_dst_challenges_dir}}"
   tags:
     - nginx

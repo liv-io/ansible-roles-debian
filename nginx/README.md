@@ -68,15 +68,6 @@ vars:
   nginx_config:
     - name: 'host.domain.tld'
       state: True
-      listen: '*'
-      port: 80
-      config: |
-        return 301 https://$server_name$request_uri;
-
-    - name: 'host.domain.tld'
-      state: True
-      listen: '*'
-      port: 443
       hsts_state: True
       ssl_state: True
       ssl_certificate: '/etc/ssl/example/host.domain.tld.crt'
@@ -184,9 +175,9 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '*'
+    Default    : ['0.0.0.0', '[::]']
     Options    :
-      Examples: '*' | '[::]' | '127.0.0.1' | '[:1]' | 'localhost'
+      Examples: ['*'] | ['127.0.0.1'] | '[:1]' | ['localhost']
 
 `name`
 
@@ -201,10 +192,10 @@ vars:
 `port`
 
     Description: Set the 'port' option.
-    Required   : True
+    Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : ''
+    Default    : '443'
     Options    :
       Examples: '80' | '8080' | '443' | 8443'
 
@@ -236,9 +227,9 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH'
+    Default    : 'ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256'
     Options    :
-      Examples: 'AES256+EECDH:AES256+EDH'
+      Examples: 'TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH'
 
 `ssl_client_certificate`
 
@@ -279,6 +270,15 @@ vars:
     Default    : ['TLSv1.2', 'TLSv1.3']
     Options    :
       Examples: ['TLSv1.3']
+
+`ssl_session_tickets`
+
+    Description: Control the 'ssl_session_tickets' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
 
 `ssl_state`
 
@@ -341,9 +341,7 @@ vars:
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'host.domain.tld', state: True, listen: '*', port: 80}] |
-                [{name: 'host.domain.tld', state: True, listen: '*', port: 443,
-                 hsts_state: True, ssl_state: True,
+      Examples: [{name: 'host.domain.tld', state: True, hsts_state: True, ssl_state: True,
                  ssl_certificate: '/etc/ssl/example/host.domain.tld.crt',
                  ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key',
                  ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt',
