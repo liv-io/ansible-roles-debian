@@ -10,6 +10,14 @@ The headers are:
 - enhancements
 - features
 
+## 2.22.3 (2025-03-24)
+
+### Enhancements
+
+- Decrease the `prometheus_global_evaluation_interval` from 30s to 15s
+- Decrease the `prometheus_global_scrape_interval` from 30s to 15s
+- Increase the `prometheus_storage_tsdb_retention_time` from 365d to 3y
+
 ## 2.22.2 (2025-02-26)
 
 ### Bugs

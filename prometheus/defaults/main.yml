@@ -12,8 +12,8 @@ prometheus_blackbox_exporter_icmp_ip4_manual_hosts: []
 
 prometheus_builtin_dashboards_state: True
 
-prometheus_global_evaluation_interval: '30s'
-prometheus_global_scrape_interval: '30s'
+prometheus_global_evaluation_interval: '15s'
+prometheus_global_scrape_interval: '15s'
 
 prometheus_haproxy_exporter_target_ansible_groups: []
 prometheus_haproxy_exporter_target_manual_hosts: []
@@ -57,6 +57,6 @@ prometheus_smokeping_prober_state: False
 prometheus_smokeping_prober_target_ansible_groups: []
 prometheus_smokeping_prober_target_manual_hosts: []
 
-prometheus_storage_tsdb_retention_time: '365d'
+prometheus_storage_tsdb_retention_time: '3y'
 
 prometheus_version: '3.2.1'

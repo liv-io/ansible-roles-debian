@@ -185,7 +185,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '30s'
+    Default    : '15s'
     Options    :
       Examples: '15s' | '30s' | '60s'
 
@@ -195,7 +195,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '30s'
+    Default    : '15s'
     Options    :
       Examples: '15s' | '30s' | '60s'
 
