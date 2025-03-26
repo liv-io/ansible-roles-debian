@@ -92,9 +92,9 @@
 {% if not (item.ssl_ciphers|default([]) == []) %}
   SSLCipherSuite '{{item.ssl_ciphers}}'
 {% else %}
-  SSLCipherSuite 'TLS_AES_256_GCM_SHA384:AES256+EECDH'
+  SSLCipherSuite 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305'
 {% endif %}
-{% if (item.ssl_session_tickets|default(True) == False) %}
+{% if (item.ssl_session_tickets|default(False) == False) %}
   # Disable use of TLS session tickets
   SSLSessionTickets Off
 {% endif %}

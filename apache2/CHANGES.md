@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.1.4 (2025-03-26)
+
+### Enhancements
+
+- Update cipher suites
+- Disable SSL session tickets by default
+
 ## 2.1.3 (2024-03-14)
 
 ### Bugs

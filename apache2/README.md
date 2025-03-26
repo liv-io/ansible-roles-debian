@@ -282,7 +282,7 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'TLS_AES_256_GCM_SHA384:AES256+EECDH'
+    Default    : 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305'
     Options    :
       Examples: 'TLS_AES_256_GCM_SHA384'
 
@@ -320,7 +320,7 @@ vars:
     Required   : False
     Value      : Predetermined
     Type       : Boolean
-    Default    : True
+    Default    : False
     Options    : True | False
 
 `ssl_state`
