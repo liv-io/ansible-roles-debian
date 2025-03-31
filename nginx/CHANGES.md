@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.1 (2025-03-31)
+
+### Enhancements
+
+- Update ECDH curves
+
 ## 3.0.0 (2025-03-24)
 
 ### Changes
