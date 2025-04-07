@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.6.12-1 (2025-04-07)
+
+### Features
+
+- Update uv to version 0.6.12
+
 ## 0.6.11-1 (2025-03-31)
 
 ### Features
