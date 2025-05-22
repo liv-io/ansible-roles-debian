@@ -114,7 +114,7 @@ consult the following sections.
                    prober: 'http'
                    timeout: '5s'
                    config: |
-                     valid_http_versions: ["HTTP/1.1", "HTTP/2"]
+                     valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
                      valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 301, 400, 401]
                      method: GET
                      no_follow_redirects: false
@@ -152,7 +152,7 @@ consult the following sections.
                   prober: 'http'
                   timeout: '5s'
                   config: |
-                    valid_http_versions: ["HTTP/1.1", "HTTP/2"]
+                    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
                     valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 301, 400]
                     method: GET
                     no_follow_redirects: false
@@ -165,7 +165,7 @@ consult the following sections.
                   prober: 'http'
                   timeout: '5s'
                   config: |
-                    valid_http_versions: ["HTTP/1.1", "HTTP/2"]
+                    valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
                     valid_status_codes: [200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 301, 400]
                     method: GET
                     no_follow_redirects: false

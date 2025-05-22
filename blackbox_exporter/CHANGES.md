@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.3.1 (2025-05-22)
+
+### Bugs
+
+- Fix `valid_http_versions` value
+
 ## 2.3.0 (2025-02-27)
 
 ### Features
