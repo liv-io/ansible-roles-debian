@@ -136,7 +136,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '3.5.0'
+    Default    : '3.5.1'
     Options    :
       Examples: '1.5.0' | '1.6.0'
 
