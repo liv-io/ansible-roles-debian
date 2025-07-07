@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 3.12.0-1 (2025-07-07)
+
+### Changes
+
+- Change versioning
+
+### Enhancements
+
+- Update shfmt to version 3.12.0
+
 ## 0.3.2 (2025-03-06)
 
 ### Enhancements

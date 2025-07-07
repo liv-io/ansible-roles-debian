@@ -61,7 +61,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '3.11.0'
+    Default    : '3.12.0'
     Options    :
       Examples: '3.5.0' | '3.6.0'
 
