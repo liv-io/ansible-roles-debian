@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.10.1-1 (2025-07-14)
+
+### Enhancements
+
+- Update ipmi_exporter to version 1.10.1
+
 ## 0.1.6 (2025-01-13)
 
 ### Enhancements
