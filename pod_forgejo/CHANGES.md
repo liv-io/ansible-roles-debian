@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 11.0.3-1 (2025-07-14)
+
+### Bugs
+
+- Update pod_forgejo_forgejo_version from 11.0.2-1 to 11.0.3-1
+
 ## 11.0.2-1 (2025-06-20)
 
 ### Bugs
