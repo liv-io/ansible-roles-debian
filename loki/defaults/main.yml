@@ -14,4 +14,4 @@ loki_nftables_state: False
 
 loki_retention_period: '365d'
 
-loki_version: '3.5.2'
+loki_version: '3.5.3'
