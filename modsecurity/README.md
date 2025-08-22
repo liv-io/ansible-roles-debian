@@ -204,8 +204,8 @@ consult the following sections.
 
     Version: >= 2.4
     Name   :
-      Debian 11: 'libmodsecurity3'
       Debian 12: 'libmodsecurity3'
+      Debian 13: 'libmodsecurity3'
 
 ## Requirements
 
@@ -227,5 +227,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

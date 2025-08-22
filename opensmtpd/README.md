@@ -335,8 +335,8 @@ consult the following sections.
 
     Version: >= 6.6
     Name   :
-      Debian 11: 'opensmtpd'
       Debian 12: 'opensmtpd'
+      Debian 13: 'opensmtpd'
 
 ## Requirements
 
@@ -358,5 +358,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

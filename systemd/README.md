@@ -254,8 +254,8 @@ vars:
 
     Version: >= 219
     Name   :
-      Debian 11: 'systemd'
       Debian 12: 'systemd'
+      Debian 13: 'systemd'
 
 ## Requirements
 
@@ -277,5 +277,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.5.0 (2025-08-21)
+
+### Changes
+
+- Add support for Debian 13 (Trixie)
+- Drop support for Debian 11 (Bullseye)
+
 ## 2.4.1 (2025-02-27)
 
 ### Features

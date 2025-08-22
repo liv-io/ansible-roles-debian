@@ -370,22 +370,22 @@ consult the following sections.
 
     Version: >= 3.0
     Name   :
-      Debian 11: 'chrony'
       Debian 12: 'chrony'
+      Debian 13: 'chrony'
 
 `bc`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'bc'
       Debian 12: 'bc'
+      Debian 13: 'bc'
 
 `mailx`
 
     Version: >= 8.0
     Name   :
-      Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
+      Debian 13: 'bsd-mailx'
 
 ## Requirements
 
@@ -407,5 +407,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

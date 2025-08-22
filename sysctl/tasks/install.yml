@@ -28,11 +28,12 @@
     owner: "{{file_owner_sysctl_conf}}"
     group: "{{file_group_sysctl_conf}}"
   register: register_sysctl_conf
+  when: ((ansible_os_family == 'Debian') and (ansible_distribution_major_version is match('12')))
   tags:
     - sysctl
 
 - name: set sysctl.conf
   shell: "{{command_cmd_set_sysctl}} {{file_dst_sysctl_conf}}"
-  when: (register_sysctl_conf is changed)
+  when: ((ansible_os_family == 'Debian') and (ansible_distribution_major_version is match('12'))) and (register_sysctl_conf is changed)
   tags:
     - sysctl

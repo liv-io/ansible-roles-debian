@@ -250,8 +250,8 @@ consult the following sections.
 
     Version: >= 2.0
     Name   :
-      Debian 11: 'unattended-upgrades'
       Debian 12: 'unattended-upgrades'
+      Debian 13: 'unattended-upgrades'
 
 ## Requirements
 
@@ -273,5 +273,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

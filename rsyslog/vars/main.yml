@@ -11,7 +11,7 @@ file_owner_config: 'root'
 file_group_config: 'root'
 
 # rsyslog.conf
-file_src_rsyslog_conf: "{{ansible_distribution_major_version}}/rsyslog.conf"
+file_src_rsyslog_conf: 'rsyslog.conf'
 file_dst_rsyslog_conf: '/etc/rsyslog.conf'
 file_mode_rsyslog_conf: '0644'
 file_owner_rsyslog_conf: 'root'

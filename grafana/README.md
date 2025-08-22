@@ -240,15 +240,15 @@ consult the following sections.
 
     Version: >= 7.0
     Name   :
-      Debian 11: 'grafana'
       Debian 12: 'grafana'
+      Debian 13: 'grafana'
 
 `gnupg1`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'gnupg1'
       Debian 12: 'gnupg1'
+      Debian 13: 'gnupg1'
 
 ## Requirements
 
@@ -270,5 +270,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

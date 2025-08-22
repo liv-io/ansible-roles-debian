@@ -210,8 +210,8 @@ vars:
 
     Version: >= 8.0
     Name   :
-      Debian 11: 'rsyslog'
       Debian 12: 'rsyslog'
+      Debian 13: 'rsyslog'
 
 ## Requirements
 
@@ -233,5 +233,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

@@ -67,8 +67,8 @@ consult the following sections.
 
     Version: >= 1.8
     Name   :
-      Debian 11: 'tmux'
       Debian 12: 'tmux'
+      Debian 13: 'tmux'
 
 ## Requirements
 
@@ -90,5 +90,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

@@ -13,7 +13,7 @@ package_name_chrony: 'chrony'
 package_name_mailx: 'bsd-mailx'
 
 # chrony.conf
-file_src_chrony_conf: 'chrony.conf'
+file_src_chrony_conf: "{{ansible_distribution_major_version}}/chrony.conf"
 file_dst_chrony_conf: '/etc/chrony/chrony.conf'
 file_mode_chrony_conf: '0644'
 file_owner_chrony_conf: 'root'

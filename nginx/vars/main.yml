@@ -16,7 +16,7 @@ file_group_config: 'root'
 file_dst_dhparam_pem: '/etc/nginx/dhparam.pem'
 
 # nginx.conf
-file_src_nginx_conf: 'nginx.conf'
+file_src_nginx_conf: "{{ansible_distribution_major_version}}/nginx.conf"
 file_dst_nginx_conf: '/etc/nginx/nginx.conf'
 file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'

@@ -10,16 +10,6 @@
   tags:
     - monit
 
-- name: remove package monit
-  package:
-    state: absent
-    name: "{{package_name_monit}}"
-    default_release: 'bullseye-backports'
-    install_recommends: False
-  when: (ansible_distribution_major_version is match('11'))
-  tags:
-    - monit
-
 - name: remove file monit.nft
   file:
     state: absent
@@ -33,7 +23,6 @@
     state: absent
     name: "{{package_name_monit}}"
     install_recommends: False
-  when: (ansible_distribution_major_version is match('12'))
   tags:
     - monit
 

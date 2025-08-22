@@ -15,6 +15,6 @@
       import_tasks: remove.yml
       when: (sudo_state is match('false|no|remove'))
 
-  when: ((ansible_os_family == 'Debian') and (ansible_distribution_major_version is match('11|12')))
+  when: ((ansible_os_family == 'Debian') and (ansible_distribution_major_version is match('12|13')))
   tags:
     - sudo

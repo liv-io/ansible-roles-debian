@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 0.8.13-1 (2025-08-10)
+
+### Changes
+
+- Add support for Debian 13 (Trixie)
+- Drop support for Debian 11 (Bullseye)
+
+### Features
+
+- Update uv to version 0.8.13
+
 ## 0.6.17-1 (2025-04-28)
 
 ### Features

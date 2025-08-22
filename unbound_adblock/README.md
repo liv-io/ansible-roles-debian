@@ -218,8 +218,8 @@ consult the following sections.
 
     Version: >= 7.0
     Name   :
-      Debian 11: 'curl'
       Debian 12: 'curl'
+      Debian 13: 'curl'
 
 ### Roles
 
@@ -247,5 +247,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

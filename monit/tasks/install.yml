@@ -14,18 +14,7 @@
   package:
     state: present
     name: "{{package_name_monit}}"
-    default_release: 'bullseye-backports'
     install_recommends: False
-  when: (ansible_distribution_major_version is match('11'))
-  tags:
-    - monit
-
-- name: install package monit
-  package:
-    state: present
-    name: "{{package_name_monit}}"
-    install_recommends: False
-  when: (ansible_distribution_major_version is match('12'))
   tags:
     - monit
 

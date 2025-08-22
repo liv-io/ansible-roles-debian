@@ -154,8 +154,8 @@ consult the following sections.
 
     Version: >= 6.0
     Name   :
-      Debian 11: 'unzip'
       Debian 12: 'unzip'
+      Debian 13: 'unzip'
 
 ### Roles
 
@@ -183,5 +183,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

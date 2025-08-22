@@ -76,43 +76,43 @@ consult the following sections.
 
     Version: >= 3.0
     Name   :
-      Debian 11: 'podman'
       Debian 12: 'podman'
+      Debian 13: 'podman'
 
 `catatonit`
 
     Version: >= 0.1
     Name   :
-      Debian 11: 'catatonit'
       Debian 12: 'catatonit'
+      Debian 13: 'catatonit'
 
 `dbus-user-session`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'dbus-user-session'
       Debian 12: 'dbus-user-session'
+      Debian 13: 'dbus-user-session'
 
 `fuse-overlayfs`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'fuse-overlayfs'
       Debian 12: 'fuse-overlayfs'
+      Debian 13: 'fuse-overlayfs'
 
 `rootlesskit`
 
     Version: >= 0.14
     Name   :
-      Debian 11: 'rootlesskit'
       Debian 12: 'rootlesskit'
+      Debian 13: 'rootlesskit'
 
 `slirp4netns`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'slirp4netns'
       Debian 12: 'slirp4netns'
+      Debian 13: 'slirp4netns'
 
 ## Requirements
 
@@ -134,8 +134,8 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13
 
 ## Appendix
 

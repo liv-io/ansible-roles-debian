@@ -317,8 +317,8 @@ vars:
 
     Version: >= 4.0
     Name   :
-      Debian 11: 'nsd'
       Debian 12: 'nsd'
+      Debian 13: 'nsd'
 
 ## Requirements
 
@@ -340,5 +340,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

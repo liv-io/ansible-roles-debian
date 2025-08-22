@@ -454,15 +454,15 @@ vars:
 
     Version: >= 1.8
     Name   :
-      Debian 11: 'nginx'
       Debian 12: 'nginx'
+      Debian 13: 'nginx'
 
 `openssl`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'openssl'
       Debian 12: 'openssl'
+      Debian 13: 'openssl'
 
 ## Requirements
 
@@ -484,5 +484,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

@@ -127,8 +127,8 @@ consult the following sections.
 
     Version: >= 3.0
     Name   :
-      Debian 11: 'hostname'
       Debian 12: 'hostname'
+      Debian 13: 'hostname'
 
 ## Requirements
 
@@ -150,5 +150,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

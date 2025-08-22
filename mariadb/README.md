@@ -406,29 +406,29 @@ vars:
 
     Version: >= 10.0
     Name   :
-      Debian 11: 'mariadb-client'
       Debian 12: 'mariadb-client'
+      Debian 13: 'mariadb-client'
 
 `mariadb-server`
 
     Version: >= 10.0
     Name   :
-      Debian 11: 'mariadb-server'
       Debian 12: 'mariadb-server'
+      Debian 13: 'mariadb-server'
 
 `mailx`
 
     Version: >= 8.0
     Name   :
-      Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
+      Debian 13: 'bsd-mailx'
 
 `python3-mysqldb`
 
     Version: >= 1.2
     Name   :
-      Debian 11: 'python3-mysqldb'
       Debian 12: 'python3-mysqldb'
+      Debian 13: 'python3-mysqldb'
 
 ## Requirements
 
@@ -450,5 +450,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

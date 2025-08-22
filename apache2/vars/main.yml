@@ -20,7 +20,7 @@ file_owner_000_default_link: 'root'
 file_group_000_default_link: 'root'
 
 # alias.conf
-file_src_alias_conf: "{{ansible_distribution_major_version}}/alias.conf"
+file_src_alias_conf: 'alias.conf'
 file_dst_alias_conf: '/etc/apache2/mods-available/alias.conf'
 file_mode_alias_conf: '0644'
 file_owner_alias_conf: 'root'
@@ -40,7 +40,7 @@ file_owner_apache2_conf: 'root'
 file_group_apache2_conf: 'root'
 
 # autoindex.conf
-file_src_autoindex_conf: "{{ansible_distribution_major_version}}/autoindex.conf"
+file_src_autoindex_conf: 'autoindex.conf'
 file_dst_autoindex_conf: '/etc/apache2/mods-available/autoindex.conf'
 file_mode_autoindex_conf: '0644'
 file_owner_autoindex_conf: 'root'
@@ -72,7 +72,7 @@ file_owner_default_ssl_link: 'root'
 file_group_default_ssl_link: 'root'
 
 # dir.conf
-file_src_dir_conf: "{{ansible_distribution_major_version}}/dir.conf"
+file_src_dir_conf: 'dir.conf'
 file_dst_dir_conf: '/etc/apache2/mods-available/dir.conf'
 file_mode_dir_conf: '0644'
 file_owner_dir_conf: 'root'
@@ -85,7 +85,7 @@ file_owner_dir_link: 'root'
 file_group_dir_link: 'root'
 
 # info.conf
-file_src_info_conf: "{{ansible_distribution_major_version}}/info.conf"
+file_src_info_conf: 'info.conf'
 file_dst_info_conf: '/etc/apache2/mods-available/info.conf'
 file_mode_info_conf: '0644'
 file_owner_info_conf: 'root'
@@ -115,7 +115,7 @@ file_owner_ports_conf: 'root'
 file_group_ports_conf: 'root'
 
 # security.conf
-file_src_security_conf: "{{ansible_distribution_major_version}}/security.conf"
+file_src_security_conf: 'security.conf'
 file_dst_security_conf: '/etc/apache2/conf-available/security.conf'
 file_mode_security_conf: '0644'
 file_owner_security_conf: 'root'
@@ -144,7 +144,7 @@ file_owner_ssl_link: 'root'
 file_group_ssl_link: 'root'
 
 # status.conf
-file_src_status_conf: "{{ansible_distribution_major_version}}/status.conf"
+file_src_status_conf: 'status.conf'
 file_dst_status_conf: '/etc/apache2/mods-available/status.conf'
 file_mode_status_conf: '0644'
 file_owner_status_conf: 'root'
@@ -157,7 +157,7 @@ file_owner_status_link: 'root'
 file_group_status_link: 'root'
 
 # userdir.conf
-file_src_userdir_conf: "{{ansible_distribution_major_version}}/userdir.conf"
+file_src_userdir_conf: 'userdir.conf'
 file_dst_userdir_conf: '/etc/apache2/mods-available/userdir.conf'
 file_mode_userdir_conf: '0644'
 file_owner_userdir_conf: 'root'

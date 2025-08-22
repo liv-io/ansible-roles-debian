@@ -42,25 +42,25 @@ vars:
           state: True
           comment: 'Debian - Base'
           distribution: "{{ansible_distribution_release}}"
-          components: ['main']
+          components: ['main', 'non-free-firmware']
 
         - url: 'http://ftp.ch.debian.org/debian'
           state: True
           comment: 'Debian - Updates'
           distribution: "{{ansible_distribution_release}}-updates"
-          components: ['main']
+          components: ['main', 'non-free-firmware']
 
         - url: 'http://security.debian.org/debian-security'
           state: True
           comment: 'Debian - Security'
           distribution: "{{ansible_distribution_release}}-security"
-          components: ['main']
+          components: ['main', 'non-free-firmware']
 
         - url: 'http://ftp.ch.debian.org/debian'
           state: True
           comment: 'Debian - Backports'
           distribution: "{{ansible_distribution_release}}-backports"
-          components: ['main']
+          components: ['main', 'non-free-firmware']
 ```
 
 ## Parameters
@@ -273,22 +273,22 @@ vars:
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'apt'
       Debian 12: 'apt'
+      Debian 13: 'apt'
 
 `gnupg1`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'gnupg1'
       Debian 12: 'gnupg1'
+      Debian 13: 'gnupg1'
 
 `mailx`
 
     Version: >= 8.0
     Name   :
-      Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
+      Debian 13: 'bsd-mailx'
 
 ## Requirements
 
@@ -310,5 +310,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

@@ -1,0 +1,257 @@
+{{ansible_managed|comment(decoration='#')}}
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+#Include /etc/ssh/sshd_config.d/*.conf
+
+{% if not (openssh_port == []) %}
+{% for item in openssh_port %}
+Port {{item|int(22)}}
+{% endfor %}
+
+{% endif %}
+
+{% if (openssh_address_family is match('any|all')) %}
+AddressFamily any
+{% elif (openssh_address_family is match('inet|ipv4')) %}
+AddressFamily inet
+{% elif (openssh_address_family is match('inet6|ipv6')) %}
+AddressFamily inet6
+{% endif %}
+
+{% if not (openssh_listen_address == []) %}
+{% for item in openssh_listen_address %}
+ListenAddress {{item}}
+{% endfor %}
+
+{% endif %}
+
+{% if not (openssh_host_key == []) %}
+{% for item in openssh_host_key %}
+HostKey {{item}}
+{% endfor %}
+
+{% endif %}
+
+{% if not (openssh_ciphers == []) %}
+Ciphers {% for item in openssh_ciphers %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% endif %}
+
+{% if not (openssh_host_key_algorithms == []) %}
+HostKeyAlgorithms {% for item in openssh_host_key_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% endif %}
+
+{% if not (openssh_kex_algorithms == []) %}
+KexAlgorithms {% for item in openssh_kex_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% endif %}
+
+{% if not (openssh_macs == []) %}
+MACs {% for item in openssh_macs %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% endif %}
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+LoginGraceTime {{openssh_login_grace_time}}
+{% if (openssh_permit_root_login == True) %}
+PermitRootLogin yes
+{% else %}
+PermitRootLogin no
+{% endif %}
+#StrictModes yes
+MaxAuthTries {{openssh_max_auth_tries}}
+#MaxSessions 10
+
+{% if (openssh_pubkey_authentication == False) %}
+PubkeyAuthentication no
+{% else %}
+PubkeyAuthentication yes
+{% endif %}
+{% if not (openssh_pubkey_accepted_algorithms == []) %}
+PubkeyAcceptedAlgorithms {% for item in openssh_pubkey_accepted_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% endif %}
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to "no" here!
+{% if (openssh_password_authentication == False) %}
+PasswordAuthentication no
+{% else %}
+PasswordAuthentication yes
+{% endif %}
+#PermitEmptyPasswords no
+
+# Change to "yes" to enable keyboard-interactive authentication.  Depending on
+# the system's configuration, this may involve passwords, challenge-response,
+# one-time passwords or some combination of these and other methods.
+# Beware issues with some PAM modules and threads.
+KbdInteractiveAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the KbdInteractiveAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via KbdInteractiveAuthentication may bypass
+# the setting of "PermitRootLogin prohibit-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and KbdInteractiveAuthentication to 'no'.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+{% if (openssh_x11_forwarding == True) %}
+X11Forwarding yes
+{% else %}
+X11Forwarding no
+{% endif %}
+{% if (openssh_x11_forwarding == True) %}
+X11DisplayOffset {{openssh_x11_display_offset|int(10)}}
+{% if (openssh_x11_use_localhost == True) %}
+X11UseLocalhost yes
+{% else %}
+X11UseLocalhost no
+{% endif %}
+{% endif %}
+#PermitTTY yes
+{% if (openssh_print_motd == True) %}
+PrintMotd yes
+{% else %}
+PrintMotd no
+{% endif %}
+{% if (openssh_print_last_log == False) %}
+PrintLastLog no
+{% else %}
+PrintLastLog yes
+{% endif %}
+{% if (openssh_tcp_keep_alive == False) %}
+TCPKeepAlive no
+{% else %}
+TCPKeepAlive yes
+{% endif %}
+#PermitUserEnvironment no
+{% if (openssh_compression == False) %}
+Compression no
+{% else %}
+Compression yes
+{% endif %}
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+{% if (openssh_use_dns == True) %}
+UseDNS yes
+{% else %}
+UseDNS no
+{% endif %}
+#PidFile /run/sshd.pid
+MaxStartups {{openssh_max_startups}}
+#PermitTunnel no
+#ChrootDirectory none
+VersionAddendum {{openssh_version_addendum}}
+
+# no default banner path
+{% if (openssh_banner == False) %}
+Banner none
+{% else %}
+Banner {{file_dst_banner}}
+{% endif %}
+
+{% if (openssh_debian_banner == True) %}
+DebianBanner yes
+{% else %}
+DebianBanner no
+{% endif %}
+
+# Allow client to pass locale and color environment variables
+AcceptEnv LANG LC_* COLORTERM NO_COLOR
+
+# override default of no subsystems
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+{% if not (openssh_match == []) %}
+{% for item in openssh_match %}
+Match {{item.type}} {{item.name}}
+{% for key, value in item.config.items() %}
+  {{key}} {{value}}
+{% endfor %}
+
+{% endfor %}
+{% else %}
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+{% endif %}
+
+# Login is disallowed for user names that match one of the patterns.
+{% if not (openssh_deny_users == []) %}
+DenyUsers {% for item in openssh_deny_users %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
+
+{% endif %}
+
+# Login is allowed only for user names that match one of the patterns.
+{% if not (openssh_allow_users == []) %}
+AllowUsers {% for item in openssh_allow_users %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
+
+{% endif %}
+
+# Login is disallowed for users whose primary group or
+# supplementary group list matches one of the patterns.
+{% if not (openssh_deny_groups == []) %}
+DenyGroups {% for item in openssh_deny_groups %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
+
+{% endif %}
+
+# Login is allowed only for users whose primary group or
+# supplementary group list matches one of the patterns.
+{% if not (openssh_allow_groups == []) %}
+AllowGroups {% for item in openssh_allow_groups %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
+
+{% endif %}

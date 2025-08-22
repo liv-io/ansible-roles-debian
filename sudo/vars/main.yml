@@ -11,7 +11,7 @@ file_group_config: 'root'
 file_validate_config: 'visudo -cf %s'
 
 # sudoers
-file_src_sudoers: "{{ansible_distribution_major_version}}/sudoers"
+file_src_sudoers: 'sudoers'
 file_dst_sudoers: '/etc/sudoers'
 file_mode_sudoers: '0440'
 file_owner_sudoers: 'root'

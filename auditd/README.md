@@ -215,15 +215,15 @@ vars:
 
     Version: >= 2.0
     Name   :
-      Debian 11: 'auditd'
       Debian 12: 'auditd'
+      Debian 13: 'auditd'
 
 `audispd_plugins`
 
     Version: >= 2.0
     Name   :
-      Debian 11: 'audispd-plugins'
       Debian 12: 'audispd-plugins'
+      Debian 13: 'audispd-plugins'
 
 ## Requirements
 
@@ -245,5 +245,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

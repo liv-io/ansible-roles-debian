@@ -45,8 +45,8 @@
 ### Support
 
 The following operating systems are supported:
-* Debian 11
 * Debian 12
+* Debian 13
 
 ### Dependencies
 

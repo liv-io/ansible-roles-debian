@@ -13,7 +13,7 @@ file_owner_config: 'root'
 file_group_config: 'root'
 
 # auditd.conf
-file_src_auditd_conf: "{{ansible_distribution_major_version}}/auditd.conf"
+file_src_auditd_conf: 'auditd.conf'
 file_dst_auditd_conf: '/etc/audit/auditd.conf'
 file_mode_auditd_conf: '0640'
 file_owner_auditd_conf: 'root'

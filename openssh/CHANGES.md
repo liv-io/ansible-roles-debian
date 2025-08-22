@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 2.4.0 (2025-08-10)
+
+### Changes
+
+- Add support for Debian 13 (Trixie)
+- Drop support for Debian 11 (Bullseye)
+
 ## 2.3.5 (2025-01-25)
 
 - Remove RSA signature algorithms from PubkeyAcceptedAlgorithms/PubkeyAcceptedKeyTypes by default

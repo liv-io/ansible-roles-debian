@@ -413,8 +413,8 @@ consult the following sections.
 
     Version: >= 1.9
     Name   :
-      Debian 11: 'unbound'
       Debian 12: 'unbound'
+      Debian 13: 'unbound'
 
 ## Requirements
 
@@ -436,5 +436,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

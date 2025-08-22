@@ -154,8 +154,8 @@ vars:
 
     Version: >= 20200601
     Name   :
-      Debian 11: 'ca-certificates'
       Debian 12: 'ca-certificates'
+      Debian 13: 'ca-certificates'
 
 ## Requirements
 
@@ -177,5 +177,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

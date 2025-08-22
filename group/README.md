@@ -169,5 +169,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

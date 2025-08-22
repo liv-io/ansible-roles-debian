@@ -28,7 +28,7 @@ openssh_host_key_algorithms:
   - 'sk-ssh-ed25519@openssh.com'
   - 'sk-ssh-ed25519-cert-v01@openssh.com'
 
-openssh_kex_algorithms: "{% if (ansible_distribution_major_version == '11') %}['sntrup4591761x25519-sha512@tinyssh.org','curve25519-sha256','curve25519-sha256@libssh.org']{% else %}['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']{% endif %}"
+openssh_kex_algorithms: "{% if (ansible_distribution_major_version == '12') %}['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']{% else %}['mlkem768x25519-sha256','sntrup761x25519-sha512','sntrup761x25519-sha512@openssh.com']{% endif %}"
 
 openssh_listen_address: ['0.0.0.0']
 

@@ -580,15 +580,15 @@ vars:
 
     Version: >= 2.4
     Name   :
-      Debian 11: 'apache2'
       Debian 12: 'apache2'
+      Debian 13: 'apache2'
 
 `apache2-utils`
 
     Version: >= 2.4
     Name   :
-      Debian 11: 'apache2-utils'
       Debian 12: 'apache2-utils'
+      Debian 13: 'apache2-utils'
 
 ## Requirements
 
@@ -610,5 +610,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

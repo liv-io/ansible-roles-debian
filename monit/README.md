@@ -506,8 +506,8 @@ vars:
 
     Version: >= 5.2
     Name   :
-      Debian 11: 'monit'
       Debian 12: 'monit'
+      Debian 13: 'monit'
 
 ## Requirements
 
@@ -529,5 +529,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

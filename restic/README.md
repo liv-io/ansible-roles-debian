@@ -405,15 +405,15 @@ consult the following sections.
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'bzip2'
       Debian 12: 'bzip2'
+      Debian 13: 'bzip2'
 
 `mailx`
 
     Version: >= 8.0
     Name   :
-      Debian 11: 'bsd-mailx'
       Debian 12: 'bsd-mailx'
+      Debian 13: 'bsd-mailx'
 
 ## Requirements
 
@@ -435,5 +435,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

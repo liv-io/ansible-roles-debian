@@ -106,8 +106,8 @@ consult the following sections.
 
     Version: >= 3.0
     Name   :
-      Debian 11: 'modsecurity-crs'
       Debian 12: 'modsecurity-crs'
+      Debian 13: 'modsecurity-crs'
 
 ## Requirements
 
@@ -129,5 +129,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

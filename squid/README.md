@@ -425,8 +425,8 @@ consult the following sections.
 
     Version: >= 4.0
     Name   :
-      Debian 11: 'squid'
       Debian 12: 'squid'
+      Debian 13: 'squid'
 
 ## Requirements
 
@@ -448,5 +448,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

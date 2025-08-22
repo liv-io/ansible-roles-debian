@@ -10,7 +10,7 @@ package_name_openssl: 'openssl'
 file_dst_dhparam_pem: '/etc/haproxy/dhparam.pem'
 
 # haproxy.cfg
-file_src_haproxy_cfg: "{{ansible_distribution_major_version}}/haproxy.cfg"
+file_src_haproxy_cfg: 'haproxy.cfg'
 file_dst_haproxy_cfg: '/etc/haproxy/haproxy.cfg'
 file_mode_haproxy_cfg: '0644'
 file_owner_haproxy_cfg: 'root'

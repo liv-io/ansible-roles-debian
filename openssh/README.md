@@ -211,10 +211,10 @@ consult the following sections.
     Value      : Arbitrary
     Type       : Array
     Default    :
-      Debian 11: ['sntrup4591761x25519-sha512@tinyssh.org', 'curve25519-sha256', 'curve25519-sha256@libssh.org']
       Debian 12: ['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
+      Debian 13: ['mlkem768x25519-sha256', 'sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
     Options    :
-      Examples: ['sntrup761x25519-sha512', 'sntrup761x25519-sha512@openssh.com']
+      Examples: ['mlkem768x25519-sha256']
 
 `openssh_listen_address`
 
@@ -441,8 +441,8 @@ consult the following sections.
 
     Version: >= 7.0
     Name   :
-      Debian 11: 'openssh-server'
       Debian 12: 'openssh-server'
+      Debian 13: 'openssh-server'
 
 ## Requirements
 
@@ -464,5 +464,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

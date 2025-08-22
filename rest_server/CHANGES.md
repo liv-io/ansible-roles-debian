@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 0.14.0-2 (2025-06-01)
+
+### Changes
+
+- Add support for Debian 13 (Trixie)
+- Drop support for Debian 11 (Bullseye)
+
 ## 0.14.0-1 (2025-06-01)
 
 ### Changes

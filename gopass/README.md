@@ -87,22 +87,22 @@ consult the following sections.
 
     Version: >= 1.15
     Name   :
-      Debian 11: 'gopass'
       Debian 12: 'gopass'
+      Debian 13: 'gopass'
 
 `gnupg1`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'gnupg1'
       Debian 12: 'gnupg1'
+      Debian 13: 'gnupg1'
 
 `rng-tools`
 
     Version: >= 2.0
     Name   :
-      Debian 11: 'rng-tools-debian'
       Debian 12: 'rng-tools-debian'
+      Debian 13: 'rng-tools-debian'
 
 ## Requirements
 
@@ -124,5 +124,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

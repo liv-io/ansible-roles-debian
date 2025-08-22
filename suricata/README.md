@@ -210,8 +210,8 @@ consult the following sections.
 
     Version: >= 5.0
     Name   :
-      Debian 11: 'suricata'
       Debian 12: 'suricata'
+      Debian 13: 'suricata'
 
 ## Requirements
 
@@ -233,5 +233,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

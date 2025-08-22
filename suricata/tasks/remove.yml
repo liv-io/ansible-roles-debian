@@ -14,28 +14,7 @@
   package:
     state: absent
     name: "{{package_name_suricata}}"
-    default_release: 'bullseye-backports'
     install_recommends: False
-  when: (ansible_distribution_major_version is match('11'))
-  tags:
-    - suricata
-
-- name: remove package suricata
-  package:
-    state: absent
-    name: "{{package_name_suricata}}"
-    install_recommends: False
-  when: (ansible_distribution_major_version is match('12'))
-  tags:
-    - suricata
-
-- name: remove package suricata-update
-  package:
-    state: absent
-    name: "{{package_name_suricata_update}}"
-    default_release: 'bullseye-backports'
-    install_recommends: False
-  when: (ansible_distribution_major_version is match('11'))
   tags:
     - suricata
 
@@ -44,7 +23,6 @@
     state: absent
     name: "{{package_name_suricata_update}}"
     install_recommends: False
-  when: (ansible_distribution_major_version is match('12'))
   tags:
     - suricata
 

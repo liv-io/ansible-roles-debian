@@ -242,8 +242,8 @@ vars:
 
     Version: >= 1.8
     Name   :
-      Debian 11: 'sudo'
       Debian 12: 'sudo'
+      Debian 13: 'sudo'
 
 ## Requirements
 
@@ -265,5 +265,5 @@ vars:
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

@@ -283,15 +283,15 @@ consult the following sections.
 
     Version: >= 1.8
     Name   :
-      Debian 11: 'haproxy'
       Debian 12: 'haproxy'
+      Debian 13: 'haproxy'
 
 `openssl`
 
     Version: >= 1.0
     Name   :
-      Debian 11: 'openssl'
       Debian 12: 'openssl'
+      Debian 13: 'openssl'
 
 ## Requirements
 
@@ -313,5 +313,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13

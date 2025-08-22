@@ -262,8 +262,8 @@ consult the following sections.
 
     Version: >= 247.0
     Name   :
-      Debian 11: 'systemd-timesyncd'
       Debian 12: 'systemd-timesyncd'
+      Debian 13: 'systemd-timesyncd'
 
 ## Requirements
 
@@ -285,5 +285,5 @@ consult the following sections.
 
 `debian`
 
-    Version: 11
     Version: 12
+    Version: 13
