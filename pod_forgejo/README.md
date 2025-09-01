@@ -118,7 +118,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '12.0.1-1'
+    Default    : '12.0.2-1'
     Options    :
       Examples: '1.21.4-0-1'
 
