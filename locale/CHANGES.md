@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.9.0-1 (2025-09-04)
+
+### Changes
+
+- Update kbd to version 2.9.0
+
 ## 2.8.0-2 (2025-08-17)
 
 ### Changes
