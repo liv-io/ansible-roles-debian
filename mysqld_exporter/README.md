@@ -140,7 +140,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.17.2'
+    Default    : '0.18.0'
     Options    :
       Examples: '0.10.0' | '0.11.0'
 
