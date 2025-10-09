@@ -54,5 +54,5 @@ Host *
     GSSAPIAuthentication yes
     Ciphers aes256-ctr,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com
     HostKeyAlgorithms ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,ssh-rsa
-    KexAlgorithms sntrup761x25519-sha512,sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha1
+    KexAlgorithms mlkem768x25519-sha256,sntrup761x25519-sha512,sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha1
     MACs hmac-sha2-512-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha1

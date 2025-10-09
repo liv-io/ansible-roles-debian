@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.4.1 (2025-10-09)
+
+### Enhancements
+
+- Allow outgoing connections to KexAlgorithms `mlkem768x25519-sha256` by default
+
 ## 2.4.0 (2025-08-10)
 
 ### Changes
