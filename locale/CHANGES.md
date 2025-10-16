@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 2.9.0-2 (2025-10-16)
+
+### Bugs
+
+- Disable `set keymap-vc` task until permission issue is resolved
+
 ## 2.9.0-1 (2025-09-04)
 
 ### Changes

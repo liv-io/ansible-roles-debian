@@ -50,11 +50,13 @@
   tags:
     - locale
 
-- name: set keymap-vc
-  command: "{{command_cmd_set_keymap_vc}}"
-  when: not (locale_keymap_vc == '') and not (register_keymap_vc.stdout == locale_keymap_vc)
-  tags:
-    - locale
+# FIXME: `localectl set-keymap us` fails with "Failed to set keymap: Access denied"
+
+#- name: set keymap-vc
+#  command: "{{command_cmd_set_keymap_vc}}"
+#  when: not (locale_keymap_vc == '') and not (register_keymap_vc.stdout == locale_keymap_vc)
+#  tags:
+#    - locale
 
 - name: get keymap-x11
   shell: "{{command_cmd_get_keymap_x11}}"
