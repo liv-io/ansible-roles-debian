@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.7.3-3 (2025-10-31)
+
+### Enhancements
+
+- Set missing `repeat by variable` option for new panels in `ipmi_exporter` dashboard
+
 ## 3.7.3-2 (2025-10-31)
 
 ### Enhancements

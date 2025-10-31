@@ -34,6 +34,7 @@
         "y": 0
       },
       "id": 22,
+      "maxPerRow": 8,
       "options": {
         "code": {
           "language": "plaintext",
@@ -44,6 +45,8 @@
         "mode": "html"
       },
       "pluginVersion": "12.2.1",
+      "repeat": "host",
+      "repeatDirection": "h",
       "title": "$host",
       "transparent": true,
       "type": "text"
@@ -93,6 +96,7 @@
         "y": 2
       },
       "id": 23,
+      "maxPerRow": 8,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -115,6 +119,8 @@
         "wideLayout": true
       },
       "pluginVersion": "12.2.1",
+      "repeat": "host",
+      "repeatDirection": "h",
       "targets": [
         {
           "datasource": {
