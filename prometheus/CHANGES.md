@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.7.3-2 (2025-10-31)
+
+### Enhancements
+
+- Add hostname header and system information to `ipmi_exporter` dashboard
+
 ## 3.7.3-1 (2025-10-30)
 
 ### Bugs
