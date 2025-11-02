@@ -10,7 +10,13 @@ The headers are:
 - enhancements
 - features
 
-## 0.28.4-1 (2025-11-02)
+## 0.28.4-1-2 (2025-11-02)
+
+### Bugs
+
+- Fix monit process check
+
+## 0.28.4-1-1 (2025-11-02)
 
 ### Features
 
