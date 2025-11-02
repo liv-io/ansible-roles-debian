@@ -1,0 +1,23 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_step_ca
+
+- name: verify required parameters
+  fail:
+    msg: "Please define all required parameters. See README.md for help."
+  no_log: True
+  when: (item == '')
+  loop:
+    - "{{pod_step_ca_registry_address}}"
+    - "{{pod_step_ca_registry_password}}"
+    - "{{pod_step_ca_registry_username}}"
+  tags:
+    - pod_step_ca

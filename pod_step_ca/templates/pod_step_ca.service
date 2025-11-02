@@ -1,0 +1,31 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Pod Step CA
+Documentation=man:podman-generate-systemd(1)
+Wants=network.target
+After=network-online.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+User=root
+Group=root
+EnvironmentFile={{file_dst_pod_step_ca_default}}
+Restart=always
+TimeoutStartSec=60
+TimeoutStopSec=60
+ExecStart=/usr/bin/podman play kube \
+    --network slirp4netns:port_handler=slirp4netns \
+{% if not (pod_step_ca_registry_username == "") %}
+    --creds {{pod_step_ca_registry_username}}:'{{pod_step_ca_registry_password}}' \
+{% endif %}
+{% if (pod_step_ca_log_driver == "journald") %}
+    --log-driver journald \
+{% endif %}
+    {{file_dst_pod_step_ca_yaml}}
+ExecStop=/usr/bin/podman pod stop --time 55 pod_step_ca
+ExecStopPost=/usr/bin/podman pod rm --force pod_step_ca
+
+[Install]
+WantedBy=multi-user.target

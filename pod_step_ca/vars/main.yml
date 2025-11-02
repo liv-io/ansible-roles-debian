@@ -1,0 +1,90 @@
+---
+
+# pod_step_ca_etc.dir
+file_dst_pod_step_ca_etc_dir: '/etc/pod_step_ca'
+file_mode_pod_step_ca_etc_dir: '0750'
+file_owner_pod_step_ca_etc_dir: 'root'
+file_group_pod_step_ca_etc_dir: 'root'
+
+# opt.dir
+file_dst_opt_dir: '/opt'
+file_mode_opt_dir: '0755'
+file_owner_opt_dir: 'root'
+file_group_opt_dir: 'root'
+
+# pod_step_ca_opt.dir
+file_dst_pod_step_ca_opt_dir: '/opt/pod_step_ca'
+file_mode_pod_step_ca_opt_dir: '0755'
+file_owner_pod_step_ca_opt_dir: 'root'
+file_group_pod_step_ca_opt_dir: 'root'
+
+# step_ca_data.dir
+file_dst_step_ca_data_dir: '/opt/pod_step_ca/data'
+file_mode_step_ca_data_dir: '0750'
+file_owner_step_ca_data_dir: '10000'
+file_group_step_ca_data_dir: '10000'
+
+# pod_step_ca.default
+file_src_pod_step_ca_default: 'pod_step_ca.default'
+file_dst_pod_step_ca_default: '/etc/default/pod_step_ca'
+file_mode_pod_step_ca_default: '0640'
+file_owner_pod_step_ca_default: 'root'
+file_group_pod_step_ca_default: 'root'
+
+# pod_step_ca.service
+file_src_pod_step_ca_service: 'pod_step_ca.service'
+file_dst_pod_step_ca_service: '/lib/systemd/system/pod_step_ca.service'
+file_mode_pod_step_ca_service: '0644'
+file_owner_pod_step_ca_service: 'root'
+file_group_pod_step_ca_service: 'root'
+
+# pod_step_ca.yaml
+file_src_pod_step_ca_yaml: 'pod_step_ca.yaml'
+file_dst_pod_step_ca_yaml: '/etc/pod_step_ca/pod_step_ca.yaml'
+file_mode_pod_step_ca_yaml: '0640'
+file_owner_pod_step_ca_yaml: 'root'
+file_group_pod_step_ca_yaml: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
+# pod_step_ca-step-ca.cfg
+file_src_pod_step_ca_step_ca_cfg: 'pod_step_ca-step-ca.cfg'
+file_dst_pod_step_ca_step_ca_cfg: '/etc/monit.d/pod_step_ca-step-ca.cfg'
+file_mode_pod_step_ca_step_ca_cfg: '0640'
+file_owner_pod_step_ca_step_ca_cfg: 'root'
+file_group_pod_step_ca_step_ca_cfg: 'root'
+
+# pod_step_ca.nft
+file_src_pod_step_ca_nft: 'pod_step_ca.nft'
+file_dst_pod_step_ca_nft: '/etc/nftables.d/pod_step_ca.conf'
+file_mode_pod_step_ca_nft: '0640'
+file_owner_pod_step_ca_nft: 'root'
+file_group_pod_step_ca_nft: 'root'
+
+# check service pod_step_ca
+command_cmd_check_service_pod_step_ca: 'systemctl cat pod_step_ca.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
+# pod_step_ca
+service_name_pod_step_ca: 'pod_step_ca'

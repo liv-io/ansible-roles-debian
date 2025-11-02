@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{{pod_step_ca_nftables_filter_rule}}

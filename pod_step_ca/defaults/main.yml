@@ -1,0 +1,27 @@
+---
+
+pod_step_ca_state: 'enable'
+
+pod_step_ca_step_ca_environment_variables:
+  ADDRESS: ":1443"
+
+pod_step_ca_step_ca_read_only_root_filesystem: True
+pod_step_ca_step_ca_version: '0.28.4-1'
+
+pod_step_ca_log_driver: 'journald'
+
+pod_step_ca_monitor_monit_state: False
+
+pod_step_ca_nftables_filter_rule: |
+  add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 443 counter accept comment "https from internal private addresses"
+  add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 443 counter accept comment "https from unique local addresses"
+  add rule ip filter OUTPUT ip daddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 80 counter accept comment "http to internal private addresses"
+  add rule ip6 filter OUTPUT ip6 daddr fc00::/7 ct state new tcp dport 80 counter accept comment "http to unique local addresses"
+
+pod_step_ca_nftables_state: False
+
+pod_step_ca_proxy: ''
+
+pod_step_ca_registry_address: ''
+pod_step_ca_registry_password: ''
+pod_step_ca_registry_username: ''

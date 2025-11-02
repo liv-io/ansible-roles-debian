@@ -1,0 +1,55 @@
+---
+
+{{ansible_managed|comment(decoration='#')}}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: step_ca
+  name: pod_step_ca
+spec:
+  containers:
+  - name: step-ca
+    image: {{pod_step_ca_registry_address}}/step-ca:{{pod_step_ca_step_ca_version}}
+    ports:
+    - name: step-ca-main
+      containerPort: {{pod_step_ca_step_ca_environment_variables.ADDRESS.rsplit(':', 1)[-1]}}
+      hostPort: 443
+      protocol: TCP
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: {{pod_step_ca_step_ca_read_only_root_filesystem|lower}}
+      runAsGroup: 10000
+      runAsUser: 10000
+      seLinuxOptions:
+        type: spc_t
+    volumeMounts:
+    - name: step-ca-data
+      mountPath: /var/local/step-ca/data
+    workingDir: /
+    env:
+{% if not (pod_step_ca_step_ca_environment_variables == {}) %}
+{% for key, value in pod_step_ca_step_ca_environment_variables.items() %}
+    - name: {{key|upper}}
+      value: '{{value}}'
+{% endfor %}
+{% endif %}
+
+  dnsConfig: {}
+  restartPolicy: Always
+
+  volumes:
+  - name: step-ca-data
+    hostPath:
+      type: Directory
+      path: {{file_dst_step_ca_data_dir}}
+
+status: {}
