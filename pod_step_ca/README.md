@@ -31,7 +31,7 @@ consult the following sections.
       ADDRESS: ":1443"
       ALLOW_DNS: "*.example.com"
       ALLOW_EMAIL: "@example.com"
-      COMMON_NAME: "liv CA"
+      COMMON_NAME: "example CA"
       DNS_NAMES: "ca.example.com"
 
     pod_step_ca_proxy: 'http://proxy.example.com:3128'
@@ -52,7 +52,7 @@ consult the following sections.
       ADDRESS: ":1443"
       ALLOW_DNS: "*.example.com"
       ALLOW_EMAIL: "@example.com"
-      COMMON_NAME: "liv CA"
+      COMMON_NAME: "example CA"
       DNS_NAMES: "ca.example.com"
 
     pod_step_ca_proxy: 'http://proxy.example.com:3128'
@@ -112,7 +112,7 @@ consult the following sections.
         ADDRESS: ":1443"
         ALLOW_DNS: "*.example.com"
         ALLOW_EMAIL: "@example.com"
-        COMMON_NAME: "liv CA"
+        COMMON_NAME: "example CA"
         DNS_NAMES: "ca.example.com"
       None    : {}
 
