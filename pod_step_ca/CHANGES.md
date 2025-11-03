@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.28.4-1-3 (2025-11-03)
+
+### Enhancements
+
+- Improve monit check by using HTTPS instead of TCP and specifying the `/health` endpoint
+
 ## 0.28.4-1-2 (2025-11-02)
 
 ### Bugs
