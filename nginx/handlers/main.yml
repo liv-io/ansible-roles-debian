@@ -27,3 +27,9 @@
 
 - name: reload nftables
   shell: "{{command_cmd_reload_nftables}}"
+
+- name: validate rsyslog
+  shell: "{{command_cmd_validate_rsyslog}}"
+
+- name: reload rsyslog
+  shell: "{{command_cmd_reload_rsyslog}}"

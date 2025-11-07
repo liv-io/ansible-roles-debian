@@ -17,13 +17,15 @@ nginx_log_format_main_ssl: |-
   '"$http_user_agent" "$http_x_forwarded_for" '
   '$ssl_protocol/$ssl_cipher '
 
-nginx_monitor_monit_state: False
+nginx_monit_state: False
 
 nginx_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "http, https from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport { 80, 443 } counter accept comment "http, https from unique local addresses"
 
 nginx_nftables_state: False
+
+nginx_rsyslog_state: False
 
 nginx_vhosts_d: 'vhosts.d'
 

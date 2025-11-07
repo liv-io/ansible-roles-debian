@@ -65,6 +65,29 @@
   tags:
     - nginx
 
+- name: create file nginx.rsyslog
+  template:
+    src: "{{file_src_nginx_rsyslog}}"
+    dest: "{{file_dst_nginx_rsyslog}}"
+    mode: "{{file_mode_nginx_rsyslog}}"
+    owner: "{{file_owner_nginx_rsyslog}}"
+    group: "{{file_group_nginx_rsyslog}}"
+  notify:
+    - validate rsyslog
+    - reload rsyslog
+  when: (nginx_rsyslog_state == True)
+  tags:
+    - nginx
+
+- name: remove file nginx.rsyslog
+  file:
+    state: absent
+    path: "{{file_dst_nginx_rsyslog}}"
+  notify: reload rsyslog
+  when: (nginx_rsyslog_state == False)
+  tags:
+    - nginx
+
 - name: stop service nginx
   service:
     state: stopped

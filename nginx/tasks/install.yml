@@ -64,7 +64,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (nginx_monitor_monit_state == True)
+  when: (nginx_monit_state == True)
   tags:
     - nginx
 
@@ -75,7 +75,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (nginx_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (nginx_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - nginx
 
@@ -95,5 +95,24 @@
     owner: "{{file_owner_nftables_d}}"
     group: "{{file_group_nftables_d}}"
   when: (nginx_nftables_state == True) and (register_nftables_d.stat.exists == False)
+  tags:
+    - nginx
+
+- name: stat file rsyslog.d
+  stat:
+    path: "{{file_dst_rsyslog_d}}"
+  register: register_rsyslog_d
+  when: (nginx_rsyslog_state == True)
+  tags:
+    - nginx
+
+- name: create file rsyslog.d
+  file:
+    state: directory
+    path: "{{file_dst_rsyslog_d}}"
+    mode: "{{file_mode_rsyslog_d}}"
+    owner: "{{file_owner_rsyslog_d}}"
+    group: "{{file_group_rsyslog_d}}"
+  when: (nginx_rsyslog_state == True) and (register_rsyslog_d.stat.exists == False)
   tags:
     - nginx

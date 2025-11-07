@@ -1,0 +1,33 @@
+{{ansible_managed|comment(decoration='#')}}
+
+input(
+    type="imfile"
+    File="/var/log/nginx/access.log"
+    Tag="nginx-access"
+    Severity="info"
+    Facility="local6"
+)
+
+input(
+    type="imfile"
+    File="/var/log/nginx/*_access.log"
+    Tag="nginx-access"
+    Severity="info"
+    Facility="local6"
+)
+
+input(
+    type="imfile"
+    File="/var/log/nginx/error.log"
+    Tag="nginx-error"
+    Severity="info"
+    Facility="local6"
+)
+
+input(
+    type="imfile"
+    File="/var/log/nginx/*_error.log"
+    Tag="nginx-error"
+    Severity="info"
+    Facility="local6"
+)

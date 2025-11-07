@@ -46,7 +46,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (nginx_monitor_monit_state == True)
+  when: (nginx_monit_state == True)
   tags:
     - nginx
 
@@ -55,7 +55,7 @@
     state: absent
     path: "{{file_dst_nginx_cfg}}"
   notify: reload monit
-  when: (nginx_monitor_monit_state == False)
+  when: (nginx_monit_state == False)
   tags:
     - nginx
 
@@ -79,6 +79,29 @@
     path: "{{file_dst_nginx_nft}}"
   notify: reload nftables
   when: (nginx_nftables_state == False)
+  tags:
+    - nginx
+
+- name: create file nginx.rsyslog
+  template:
+    src: "{{file_src_nginx_rsyslog}}"
+    dest: "{{file_dst_nginx_rsyslog}}"
+    mode: "{{file_mode_nginx_rsyslog}}"
+    owner: "{{file_owner_nginx_rsyslog}}"
+    group: "{{file_group_nginx_rsyslog}}"
+  notify:
+    - validate rsyslog
+    - reload rsyslog
+  when: (nginx_rsyslog_state == True)
+  tags:
+    - nginx
+
+- name: remove file nginx.rsyslog
+  file:
+    state: absent
+    path: "{{file_dst_nginx_rsyslog}}"
+  notify: reload rsyslog
+  when: (nginx_rsyslog_state == False)
   tags:
     - nginx
 

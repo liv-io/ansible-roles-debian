@@ -393,9 +393,9 @@ vars:
         '"$http_user_agent" http_x_forwarded_for:"$http_x_forwarded_for" '
         '$ssl_protocol/$ssl_cipher '
 
-`nginx_monitor_monit_state`
+`nginx_monit_state`
 
-    Description: Control the 'nginx_monitor_monit_state' option.
+    Description: Control the 'nginx_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -418,6 +418,15 @@ vars:
 `nginx_nftables_state`
 
     Description: Control the 'nginx_nftables_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`nginx_rsyslog_state`
+
+    Description: Control the 'nginx_rsyslog_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

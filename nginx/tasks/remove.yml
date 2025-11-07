@@ -18,6 +18,14 @@
   tags:
     - nginx
 
+- name: remove file nginx.rsyslog
+  file:
+    state: absent
+    path: "{{file_dst_nginx_rsyslog}}"
+  notify: reload rsyslog
+  tags:
+    - nginx
+
 - name: remove file nginx.nft
   file:
     state: absent

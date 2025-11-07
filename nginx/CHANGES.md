@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 4.0.0 (2025-11-07)
+
+### Changes
+
+- Rename parameter `nginx_monitor_monit_state` to `nginx_monit_state`
+
+### Features
+
+- Add parameter `nginx_rsyslog_state`
+
 ## 3.1.0 (2025-08-21)
 
 ### Changes
