@@ -1,0 +1,215 @@
+#!/usr/bin/env sh
+
+{{ansible_managed|comment(decoration='#')}}
+
+# Shell variables
+
+SHELL='/bin/sh'
+PATH='/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin'
+
+# Commands
+
+WHICH='/usr/bin/which' && [ -x ${WHICH} ] || { echo "Error: Command 'which' not found."; exit 127; }
+BASENAME=$(${WHICH} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
+DATE=$(${WHICH} date) || { echo "Error: Command 'date' not found."; exit 127; }
+ECHO=$(${WHICH} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
+EXPR=$(${WHICH} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+HOSTNAME=$(${WHICH} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
+LOGGER=$(${WHICH} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
+RM=$(${WHICH} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+TOUCH=$(${WHICH} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
+WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
+
+LEGO=$(${WHICH} lego) || { echo "Error: Command 'lego' not found."; exit 127; }
+
+{% if (lego_email_state == True) %}
+MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
+{% endif %}
+
+# Environment variables
+
+HOST=$(${HOSTNAME} -s) || { echo "Error: Host name unknown."; exit 68; }
+SCRIPT="$(${BASENAME} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute."; exit 126; }
+TIME_START=$(${DATE} '+%s')
+USER='{{file_owner_lego_renew_certificates}}'
+LOCKFILE='/var/tmp/lego_renew-certificates.lock'
+TEXTFILE_COLLECTOR='{{lego_prometheus_textfile_collector}}'
+
+DOMAINS='{% for item in lego_domains %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}'
+EMAIL='{{lego_email}}'
+SERVER='{{lego_server}}'
+APPS="apache2 nginx"
+
+{% if (lego_email_state == True) %}
+MAIL_FROM_ADDRESS='{{lego_email_from_address}}'
+MAIL_TO_ADDRESS='{% for item in lego_email_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+MAIL_SUBJECT='lego: Discard Blocks - Error ({{ansible_hostname}})'
+{% endif %}
+
+# Functions
+
+{% if (lego_email_state == True) %}
+mail_error() {
+    local exit_code=${1}
+    local message=${2}
+    local mail_body="ERROR
+
+Message     : ${message}
+Exit Code   : ${exit_code}
+Date & Time : $(${DATE} '+%Y-%m-%dT%H:%M:%S%z')
+
+SCRIPT
+
+Name        : ${SCRIPT_NAME}
+Type        : Shell script
+PID         : ${$}
+
+SYSTEM
+
+Hostname    : {{ansible_hostname}}
+FQDN        : {{ansible_fqdn}}"
+
+    ${ECHO} "${mail_body}" | ${MAILX} -r "${MAIL_FROM_ADDRESS}" -s "${MAIL_SUBJECT}" "${MAIL_TO_ADDRESS}" >/dev/null 2>&1
+}
+{% endif %}
+
+{% if (lego_prometheus_state == True) %}
+update_prom() {
+    local exit_code=${1}
+    local time_exec=${2}
+
+    if [ -w "${TEXTFILE_COLLECTOR}" ]; then
+        ${ECHO} -e "# HELP lego_renew_certificates_exit The script's exit code.\n"\
+"# TYPE lego_renew_certificates_exit counter\n"\
+"lego_renew_certificates_exit ${exit_code}" >"${TEXTFILE_COLLECTOR}/lego_renew_certificates_exit.prom"
+
+        if [ -z "${TIME_START}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/lego_renew_certificates_start.prom"
+        else
+            ${ECHO} -e "# HELP lego_renew_certificates_start The script's start time in epoch.\n"\
+"# TYPE lego_renew_certificates_start counter\n"\
+"lego_renew_certificates_start ${TIME_START}" >"${TEXTFILE_COLLECTOR}/lego_renew_certificates_start.prom"
+        fi
+
+        if [ -z "${time_exec}" ]; then
+            ${RM} -f "${TEXTFILE_COLLECTOR}/lego_renew_certificates_duration.prom"
+        else
+            ${ECHO} -e "# HELP lego_renew_certificates_duration The script's execution duration in seconds.\n"\
+"# TYPE lego_renew_certificates_duration counter\n"\
+"lego_renew_certificates_duration ${time_exec}" >"${TEXTFILE_COLLECTOR}/lego_renew_certificates_duration.prom"
+        fi
+    fi
+}
+{% endif %}
+
+check_script_user() {
+    if [ "$(${WHOAMI})" != "${USER}" ]; then
+        local exit_code=77
+        local message="Please run script as user '${USER}'"
+
+        if [ -t 1 ]; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        exit ${exit_code}
+    fi
+}
+
+create_lockfile() {
+    if [ ! -e "${LOCKFILE}" ]; then
+        ${TOUCH} ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not create lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile does already exist. Please investigate.'
+    fi
+}
+
+remove_lockfile() {
+    if [ -e "${LOCKFILE}" ]; then
+        ${RM} -f ${LOCKFILE} || log_and_exit_on_error "${?}" 'Could not remove lockfile. Please investigate.'
+    else
+        log_and_exit_on_error "${?}" 'Lockfile did not exist. Please investigate.'
+    fi
+}
+
+log_and_exit_on_error() {
+    local exit_code=${1}
+    local message=${2}
+
+    if [ "${exit_code}" -ne 0 ]; then
+        ${RM} -f ${LOCKFILE}
+
+        if [ -t 1 ]; then
+            ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}" >&2
+        fi
+
+        ${LOGGER} -t ${SCRIPT} "${message}"
+
+{% if (lego_email_state == True) %}
+        mail_error ${exit_code} "${message}"
+{% endif %}
+
+{% if (lego_prometheus_state == True) %}
+        update_prom "${exit_code}" "${time_exec}"
+{% endif %}
+
+        exit ${exit_code}
+    fi
+}
+
+log_and_exit() {
+    local time_end=$(${DATE} '+%s')
+    local time_exec=$(${EXPR} ${time_end} - ${TIME_START})
+    local time_hr=$(${DATE} -d "1970-01-01 ${time_exec} sec" '+%H:%M:%S')
+    local exit_code=${1}
+    local message=${2}
+
+    if [ -t 1 ]; then
+        ${ECHO} "$(${DATE} '+%Y-%m-%dT%H:%M:%S%z') - ${HOST} - ${SCRIPT}: ${message}"
+    fi
+
+    ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
+
+{% if (lego_prometheus_state == True) %}
+    update_prom "${exit_code}" "${time_exec}"
+{% endif %}
+
+    exit ${exit_code}
+}
+
+renew_certificates() {
+    if [ -n "${DOMAINS}" ]; then
+        for domain in ${DOMAINS} ; do
+            ${LEGO} \
+            --accept-tos \
+            --domains ${domain} \
+            --email ${EMAIL} \
+            --http \
+            --http.webroot /var/www/html/challenges/ \
+            --path /etc/lego \
+            --server ${SERVER} \
+            renew --no-random-sleep >/dev/null 2>&1
+            log_and_exit_on_error "${?}" "Unable to renew certificate for domain: ${domain}"
+        done
+    fi
+}
+
+reload_apps() {
+    if [ -n "${DOMAINS}" ]; then
+        for app in ${APPS} ; do
+            systemctl is-active ${app}.service >/dev/null 2>&1 && systemctl reload ${app}.service || true
+        done
+    fi
+}
+
+# Establish run order
+main() {
+    check_script_user
+    create_lockfile
+    renew_certificates
+    reload_apps
+    remove_lockfile
+    log_and_exit '0' 'Certificates renewed successfully.'
+}
+
+main

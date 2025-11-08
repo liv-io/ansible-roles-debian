@@ -7,6 +7,14 @@
       import_tasks: install.yml
       when: not (lego_state is match('false|no|remove|quiesce|inactive'))
 
+    - name: import tasks enable
+      import_tasks: enable.yml
+      when: (lego_state is match('start|on|enable'))
+
+    - name: import tasks disable
+      import_tasks: disable.yml
+      when: (lego_state is match('stop|off|disable'))
+
     - name: import tasks remove
       import_tasks: remove.yml
       when: (lego_state is match('false|no|remove'))

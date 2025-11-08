@@ -42,3 +42,13 @@
     remote_src: True
   tags:
     - lego
+
+- name: create file lego_renew-certificates
+  template:
+    src: "{{file_src_lego_renew_certificates}}"
+    dest: "{{file_dst_lego_renew_certificates}}"
+    mode: "{{file_mode_lego_renew_certificates}}"
+    owner: "{{file_owner_lego_renew_certificates}}"
+    group: "{{file_group_lego_renew_certificates}}"
+  tags:
+    - lego

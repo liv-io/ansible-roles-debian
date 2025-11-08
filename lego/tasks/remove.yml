@@ -10,6 +10,22 @@
   tags:
     - lego
 
+- name: remove cron lego_renew-certificates
+  cron:
+    state: absent
+    name: "{{cron_name_lego_renew_certificates}}"
+    cron_file: "{{cron_cron_file_lego_renew_certificates}}"
+    user: "{{cron_user_lego_renew_certificates}}"
+  tags:
+    - lego
+
+- name: remove file lego_renew-certificates
+  file:
+    state: absent
+    path: "{{file_dst_lego_renew_certificates}}"
+  tags:
+    - lego
+
 - name: remove file lego.dir
   file:
     state: absent

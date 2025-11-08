@@ -1,0 +1,27 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - lego
+
+- name: create cron lego_renew-certificates
+  cron:
+    state: present
+    disabled: True
+    name: "{{cron_name_lego_renew_certificates}}"
+    cron_file: "{{cron_cron_file_lego_renew_certificates}}"
+    day: "{{cron_day_lego_renew_certificates}}"
+    hour: "{{cron_hour_lego_renew_certificates}}"
+    minute: "{{cron_minute_lego_renew_certificates}}"
+    month: "{{cron_month_lego_renew_certificates}}"
+    weekday: "{{cron_weekday_lego_renew_certificates}}"
+    user: "{{cron_user_lego_renew_certificates}}"
+    job: "{{cron_job_lego_renew_certificates}}"
+  tags:
+    - lego

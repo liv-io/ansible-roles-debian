@@ -19,6 +19,26 @@ consult the following sections.
     lego_state: 'install'
 ```
 
+### Enable
+
+```
+- hosts: all
+  roles:
+    - role: lego
+  vars:
+    lego_state: 'enable'
+```
+
+### Disable
+
+```
+- hosts: all
+  roles:
+    - role: lego
+  vars:
+    lego_state: 'disable'
+```
+
 ### Remove
 
 ```
@@ -61,7 +81,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '4.22.2
+    Default    : '4.28.1'
     Options    :
       Examples: '4.22.0' | '4.22.1'
 

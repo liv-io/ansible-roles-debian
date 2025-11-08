@@ -21,3 +21,21 @@ file_mode_lego: '0755'
 file_owner_lego: 'root'
 file_group_lego: 'root'
 file_include_lego: ['lego']
+
+# lego_renew-certificates
+file_src_lego_renew_certificates: 'lego_renew-certificates'
+file_dst_lego_renew_certificates: '/usr/local/sbin/lego_renew-certificates'
+file_mode_lego_renew_certificates: '0754'
+file_owner_lego_renew_certificates: 'root'
+file_group_lego_renew_certificates: 'root'
+
+# lego_renew-certificates
+cron_name_lego_renew_certificates: 'lego: Renew Certificates'
+cron_cron_file_lego_renew_certificates: 'lego_renew-certificates'
+cron_day_lego_renew_certificates: "{{lego_renew_certificates_day}}"
+cron_hour_lego_renew_certificates: "{{lego_renew_certificates_hour}}"
+cron_minute_lego_renew_certificates: "{{lego_renew_certificates_minute}}"
+cron_month_lego_renew_certificates: "{{lego_renew_certificates_month}}"
+cron_weekday_lego_renew_certificates: "{{lego_renew_certificates_weekday}}"
+cron_user_lego_renew_certificates: "{{file_owner_lego_renew_certificates}}"
+cron_job_lego_renew_certificates: "{{file_dst_lego_renew_certificates}}"

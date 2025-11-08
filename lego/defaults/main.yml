@@ -1,5 +1,24 @@
 ---
 
-lego_state: 'install'
+lego_state: 'enable'
 
-lego_version: '4.22.2'
+lego_domains: []
+
+lego_email: ''
+
+lego_email_from_address: "root@{{ansible_domain}}"
+lego_email_state: False
+lego_email_to_address: ["admin@{{ansible_domain}}"]
+
+lego_prometheus_state: False
+lego_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'
+
+lego_renew_certificates_day: '*'
+lego_renew_certificates_hour: '5'
+lego_renew_certificates_minute: "{{45|random(seed=inventory_hostname)}}"
+lego_renew_certificates_month: '*'
+lego_renew_certificates_weekday: '*'
+
+lego_server: ''
+
+lego_version: '4.28.1'

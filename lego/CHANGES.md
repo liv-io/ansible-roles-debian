@@ -10,6 +10,13 @@ The headers are:
 - enhancements
 - features
 
+## 4.28.1-1 (2025-11-08)
+
+### Features
+
+- Update lego to version 4.28.1
+- Add script to renew certificates
+
 ## 4.22.2-2 (2025-08-17)
 
 ### Changes
