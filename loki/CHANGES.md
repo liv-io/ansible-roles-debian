@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.5.8-2 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `loki_monitor_monit_state` to `loki_monit_state`
+
 ## 3.5.8-1 (2025-11-05)
 
 ### Bugs

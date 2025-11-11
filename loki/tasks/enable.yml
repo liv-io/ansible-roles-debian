@@ -64,7 +64,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (loki_monitor_monit_state == True)
+  when: (loki_monit_state == True)
   tags:
     - loki
 
@@ -73,7 +73,7 @@
     state: absent
     path: "{{file_dst_loki_cfg}}"
   notify: reload monit
-  when: (loki_monitor_monit_state == False)
+  when: (loki_monit_state == False)
   tags:
     - loki
 

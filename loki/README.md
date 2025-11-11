@@ -89,9 +89,9 @@ consult the following sections.
     Default    : True
     Options    : True | False
 
-`loki_monitor_monit_state`
+`loki_monit_state`
 
-    Description: Control the 'loki_monitor_monit_state' option.
+    Description: Control the 'loki_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
