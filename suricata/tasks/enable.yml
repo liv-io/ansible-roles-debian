@@ -43,7 +43,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (suricata_monitor_monit_state == True)
+  when: (suricata_monit_state == True)
   tags:
     - suricata
 
@@ -52,7 +52,7 @@
     state: absent
     path: "{{file_dst_suricata_cfg}}"
   notify: reload monit
-  when: (suricata_monitor_monit_state == False)
+  when: (suricata_monit_state == False)
   tags:
     - suricata
 

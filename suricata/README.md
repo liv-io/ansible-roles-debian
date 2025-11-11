@@ -177,9 +177,9 @@ consult the following sections.
     Options    :
       Examples: 'eth0' | 'em0' | 'eno1' | 'ens18'
 
-`suricata_monitor_monit_state`
+`suricata_monit_state`
 
-    Description: Control the 'suricata_monitor_monit_state' option.
+    Description: Control the 'suricata_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

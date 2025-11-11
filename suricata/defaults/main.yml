@@ -10,7 +10,7 @@ suricata_home_net: '[192.168.0.0/16,172.16.0.0/12,10.0.0.0/8]'
 
 suricata_interface: "{{ansible_default_ipv4.interface}}"
 
-suricata_monitor_monit_state: False
+suricata_monit_state: False
 
 suricata_ruleset:
   - {state: 'true', name: 'et/open'}
