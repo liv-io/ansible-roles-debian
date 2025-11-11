@@ -10,11 +10,9 @@ zfs_check_pools_month: '*'
 zfs_check_pools_weekday: '*'
 zfs_check_pools_state: True
 
-zfs_monitor_mail_from_address: "root@{{ansible_domain}}"
-zfs_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-zfs_monitor_mail_state: False
-zfs_monitor_prom_state: False
-zfs_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
+zfs_mail_from_address: "root@{{ansible_domain}}"
+zfs_mail_to_address: ["admin@{{ansible_domain}}"]
+zfs_mail_state: False
 
 # ZFS scrub every month on the first day at 03:00
 zfs_scrub_pools_day: '1'
@@ -33,3 +31,6 @@ zfs_trim_pools_month: '*'
 zfs_trim_pools_pools: ['*']
 zfs_trim_pools_state: True
 zfs_trim_pools_weekday: '6'
+
+zfs_prometheus_state: False
+zfs_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'

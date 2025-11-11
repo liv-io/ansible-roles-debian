@@ -24,7 +24,7 @@ GREP=$(${WHICH} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 SLEEP=$(${WHICH} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
 ZPOOL=$(${WHICH} zpool) || { echo "Error: Command 'zpool' not found."; exit 127; }
 
-{% if (zfs_monitor_mail_state == True) %}
+{% if (zfs_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -36,19 +36,19 @@ SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_zfs_trim_pools}}'
 LOCKFILE='/var/tmp/zfs_trim-pools.lock'
-TEXTFILE_COLLECTOR='{{zfs_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{zfs_prometheus_textfile_collector}}'
 
 POOLS='{% for item in zfs_trim_pools_pools %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}'
 
-{% if (zfs_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{zfs_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in zfs_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (zfs_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{zfs_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in zfs_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='zfs: Trim Pool - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (zfs_monitor_mail_state == True) %}
+{% if (zfs_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -73,7 +73,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (zfs_monitor_prom_state == True) %}
+{% if (zfs_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -158,11 +158,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (zfs_monitor_mail_state == True) %}
+{% if (zfs_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (zfs_monitor_prom_state == True) %}
+{% if (zfs_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -183,7 +183,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (zfs_monitor_prom_state == True) %}
+{% if (zfs_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 

@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `zfs_monitor_mail_from_address` to `zfs_mail_from_address`
+- Rename parameter from `zfs_monitor_mail_to_address` to `zfs_mail_to_address`
+- Rename parameter from `zfs_monitor_mail_state` to `zfs_mail_state`
+- Rename parameter from `zfs_monitor_prom_state` to `zfs_prometheus_state`
+- Rename parameter from `zfs_monitor_prom_textfile_collector` to `zfs_prometheus_textfile_collector`
+
 ## 2.2.0 (2025-08-10)
 
 ### Changes
