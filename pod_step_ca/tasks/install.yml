@@ -64,7 +64,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (pod_step_ca_monitor_monit_state == True)
+  when: (pod_step_ca_monit_state == True)
   tags:
     - pod_step_ca
 
@@ -75,7 +75,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (pod_step_ca_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (pod_step_ca_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - pod_step_ca
 

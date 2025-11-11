@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.28.4-1-3 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `pod_step_ca_monitor_monit_state` to `pod_step_ca_monit_state`
+
 ## 0.28.4-1-3 (2025-11-03)
 
 ### Enhancements

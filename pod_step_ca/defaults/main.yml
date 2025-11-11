@@ -10,7 +10,7 @@ pod_step_ca_step_ca_version: '0.28.4-1'
 
 pod_step_ca_log_driver: 'journald'
 
-pod_step_ca_monitor_monit_state: False
+pod_step_ca_monit_state: False
 
 pod_step_ca_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 443 counter accept comment "https from internal private addresses"

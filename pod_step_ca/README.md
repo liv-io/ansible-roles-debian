@@ -146,9 +146,9 @@ consult the following sections.
       Examples: 'journald'
       None    : ''
 
-`pod_step_ca_monitor_monit_state`
+`pod_step_ca_monit_state`
 
-    Description: Control the 'pod_step_ca_monitor_monit_state' option.
+    Description: Control the 'pod_step_ca_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
