@@ -15,12 +15,10 @@ chrony_check_time_weekday: '*'
 chrony_check_time_offset_limit: 1
 chrony_check_time_state: True
 
-chrony_monitor_mail_from_address: "root@{{ansible_domain}}"
-chrony_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-chrony_monitor_mail_state: False
-chrony_monitor_monit_state: False
-chrony_monitor_prom_state: False
-chrony_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
+chrony_mail_from_address: "root@{{ansible_domain}}"
+chrony_mail_to_address: ["admin@{{ansible_domain}}"]
+chrony_mail_state: False
+chrony_monit_state: False
 
 chrony_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new udp dport 123 counter accept comment "ntp to any"
@@ -29,6 +27,9 @@ chrony_nftables_filter_rule: |
 chrony_nftables_state: False
 
 chrony_pool: []
+
+chrony_prometheus_state: False
+chrony_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 chrony_server:
   - {address: "ntp.{{ansible_domain}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default NTP server'}

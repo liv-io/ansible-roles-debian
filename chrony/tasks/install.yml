@@ -23,7 +23,7 @@
     state: present
     name: "{{package_name_mailx}}"
     install_recommends: False
-  when: (chrony_monitor_mail_state == True)
+  when: (chrony_mail_state == True)
   tags:
     - chrony
 
@@ -39,7 +39,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (chrony_monitor_monit_state == True)
+  when: (chrony_monit_state == True)
   tags:
     - chrony
 
@@ -50,7 +50,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (chrony_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (chrony_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - chrony
 

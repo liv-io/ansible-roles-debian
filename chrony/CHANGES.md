@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `chrony_monitor_mail_from_address` to `chrony_mail_from_address`
+- Rename parameter from `chrony_monitor_mail_to_address` to `chrony_mail_to_address`
+- Rename parameter from `chrony_monitor_mail_state` to `chrony_mail_state`
+- Rename parameter from `chrony_monitor_monit_state` to `chrony_monit_state`
+- Rename parameter from `chrony_monitor_prom_state` to `chrony_prometheus_state`
+- Rename parameter from `chrony_monitor_prom_textfile_collector` to `chrony_prometheus_textfile_collector`
+
 ## 2.2.0 (2025-08-17)
 
 ### Changes

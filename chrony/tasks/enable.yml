@@ -71,7 +71,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (chrony_monitor_monit_state == True)
+  when: (chrony_monit_state == True)
   tags:
     - chrony
 
@@ -80,7 +80,7 @@
     state: absent
     path: "{{file_dst_chronyd_cfg}}"
   notify: reload monit
-  when: (chrony_monitor_monit_state == False)
+  when: (chrony_monit_state == False)
   tags:
     - chrony
 

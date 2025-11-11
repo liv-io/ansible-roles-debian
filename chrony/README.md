@@ -200,9 +200,9 @@ consult the following sections.
     Default    : True
     Options    : True | False
 
-`chrony_monitor_mail_from_address`
+`chrony_mail_from_address`
 
-    Description: Define the 'chrony_monitor_mail_from_address' option.
+    Description: Define the 'chrony_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -210,9 +210,9 @@ consult the following sections.
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`chrony_monitor_mail_to_address`
+`chrony_mail_to_address`
 
-    Description: Define the 'chrony_monitor_mail_to_address' option.
+    Description: Define the 'chrony_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -221,42 +221,23 @@ consult the following sections.
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`chrony_monitor_mail_state`
+`chrony_mail_state`
 
-    Description: Control the 'chrony_monitor_mail_state' option.
+    Description: Control the 'chrony_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`chrony_monitor_monit_state`
+`chrony_monit_state`
 
-    Description: Control the 'chrony_monitor_monit_state' option.
+    Description: Control the 'chrony_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
-
-`chrony_monitor_prom_state`
-
-    Description: Control the 'chrony_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
-`chrony_monitor_prom_textfile_collector`
-
-    Description: Define the 'chrony_monitor_prom_textfile_collector' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/var/local/node_exporter/textfile_collector'
-    Options    :
-      Examples: '/var/local/node_exporter/textfile_collector'
 
 `chrony_nftables_filter_rule`
 
@@ -290,6 +271,25 @@ consult the following sections.
     Options    :
       Examples: [{address: 'pool.domain.tld', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'}]
       None    : []
+
+`chrony_prometheus_state`
+
+    Description: Control the 'chrony_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`chrony_prometheus_textfile_collector`
+
+    Description: Define the 'chrony_prometheus_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `chrony_server`
 

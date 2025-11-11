@@ -22,7 +22,7 @@ WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 
 CHRONYD='{{chronyd}}'
 
-{% if (chrony_monitor_mail_state == True) %}
+{% if (chrony_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -34,19 +34,19 @@ SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_chrony_update_time}}'
 LOCKFILE='/var/tmp/chrony_update-time.lock'
-TEXTFILE_COLLECTOR='{{chrony_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{chrony_prometheus_textfile_collector}}'
 
 CHRONY_SERVERS='{% for item in chrony_server %}{{item.address}}{% if not loop.last %} {% endif %}{% endfor %}'
 
-{% if (chrony_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{chrony_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in chrony_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (chrony_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{chrony_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in chrony_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='chrony: Update Time - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (chrony_monitor_mail_state == True) %}
+{% if (chrony_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -71,7 +71,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (chrony_monitor_prom_state == True) %}
+{% if (chrony_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -142,11 +142,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (chrony_monitor_mail_state == True) %}
+{% if (chrony_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (chrony_monitor_prom_state == True) %}
+{% if (chrony_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -167,7 +167,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (chrony_monitor_prom_state == True) %}
+{% if (chrony_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
