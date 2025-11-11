@@ -18,6 +18,6 @@ auditd_config_all:
 auditd_config_group: []
 auditd_config_host: []
 
-auditd_monitor_monit_state: False
+auditd_monit_state: False
 
 auditd_syslog_active: True

@@ -187,9 +187,9 @@ vars:
                     -w /etc/shadow -p wa
       None    : []
 
-`auditd_monitor_monit_state`
+`auditd_monit_state`
 
-    Description: Control the 'auditd_monitor_monit_state' option.
+    Description: Control the 'auditd_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
