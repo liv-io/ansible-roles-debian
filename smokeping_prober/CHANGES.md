@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.10.0-3 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `smokeping_prober_monitor_monit_state` to `smokeping_prober_monit_state`
+
 ## 0.10.0-2 (2025-08-10)
 
 ### Changes

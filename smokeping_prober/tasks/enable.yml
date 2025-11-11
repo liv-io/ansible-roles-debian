@@ -31,7 +31,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (smokeping_prober_monitor_monit_state == True)
+  when: (smokeping_prober_monit_state == True)
   tags:
     - smokeping_prober
 
@@ -40,7 +40,7 @@
     state: absent
     path: "{{file_dst_smokeping_prober_cfg}}"
   notify: reload monit
-  when: (smokeping_prober_monitor_monit_state == False)
+  when: (smokeping_prober_monit_state == False)
   tags:
     - smokeping_prober
 

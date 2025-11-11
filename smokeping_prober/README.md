@@ -89,9 +89,9 @@ consult the following sections.
                 ['host01.domain01.tld', 'host02.domain02.tld', 'host01.domain03.tld']
       None    : []
 
-`smokeping_prober_monitor_monit_state`
+`smokeping_prober_monit_state`
 
-    Description: Control the 'smokeping_prober_monitor_monit_state' option.
+    Description: Control the 'smokeping_prober_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
