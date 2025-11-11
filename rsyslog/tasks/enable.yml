@@ -31,7 +31,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (rsyslog_monitor_monit_state == True)
+  when: (rsyslog_monit_state == True)
   tags:
     - rsyslog
 
@@ -40,7 +40,7 @@
     state: absent
     path: "{{file_dst_rsyslog_cfg}}"
   notify: reload monit
-  when: (rsyslog_monitor_monit_state == False)
+  when: (rsyslog_monit_state == False)
   tags:
     - rsyslog
 
