@@ -109,9 +109,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`pod_woodpecker_monitor_monit_state`
+`pod_woodpecker_monit_state`
 
-    Description: Control the 'pod_woodpecker_monitor_monit_state' option.
+    Description: Control the 'pod_woodpecker_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

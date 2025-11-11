@@ -42,7 +42,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (pod_woodpecker_monitor_monit_state == True)
+  when: (pod_woodpecker_monit_state == True)
   tags:
     - pod_woodpecker
 
@@ -51,7 +51,7 @@
     state: absent
     path: "{{file_dst_pod_woodpecker_woodpecker_agent_cfg}}"
   notify: reload monit
-  when: (pod_woodpecker_monitor_monit_state == False)
+  when: (pod_woodpecker_monit_state == False)
   tags:
     - pod_woodpecker
 
@@ -65,7 +65,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (pod_woodpecker_monitor_monit_state == True)
+  when: (pod_woodpecker_monit_state == True)
   tags:
     - pod_woodpecker
 
@@ -74,7 +74,7 @@
     state: absent
     path: "{{file_dst_pod_woodpecker_woodpecker_server_cfg}}"
   notify: reload monit
-  when: (pod_woodpecker_monitor_monit_state == False)
+  when: (pod_woodpecker_monit_state == False)
   tags:
     - pod_woodpecker
 

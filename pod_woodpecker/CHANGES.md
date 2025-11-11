@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.11.0-1-1 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `pod_woodpecker_monitor_monit_state` to `pod_woodpecker_monit_state`
+
 ## 3.11.0-1 (2025-10-20)
 
 ### Features
