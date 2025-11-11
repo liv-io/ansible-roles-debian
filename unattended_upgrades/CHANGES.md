@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.5.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `unattended_upgrades_monitor_monit_state` to `unattended_upgrades_monit_state`
+
 ## 0.4.0 (2025-08-10)
 
 ### Changes

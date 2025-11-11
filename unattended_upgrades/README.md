@@ -128,9 +128,9 @@ consult the following sections.
     Default    : False
     Options    : True | False
 
-`unattended_upgrades_monitor_monit_state`
+`unattended_upgrades_monit_state`
 
-    Description: Control the 'unattended_upgrades_monitor_monit_state' option.
+    Description: Control the 'unattended_upgrades_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

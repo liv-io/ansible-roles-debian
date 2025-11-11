@@ -9,7 +9,7 @@ unattended_upgrades_automatic_reboot_with_users: True
 
 unattended_upgrades_install_on_shutdown: False
 
-unattended_upgrades_monitor_monit_state: False
+unattended_upgrades_monit_state: False
 
 unattended_upgrades_nftables_filter_rule: |
   add rule ip filter OUTPUT ct state new tcp dport { 80, 443 } counter accept comment "http, https to any"

@@ -42,7 +42,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (unattended_upgrades_monitor_monit_state == True)
+  when: (unattended_upgrades_monit_state == True)
   tags:
     - unattended_upgrades
 
@@ -51,7 +51,7 @@
     state: absent
     path: "{{file_dst_unattended_upgrades_cfg}}"
   notify: reload monit
-  when: (unattended_upgrades_monitor_monit_state == False)
+  when: (unattended_upgrades_monit_state == False)
   tags:
     - unattended_upgrades
 
