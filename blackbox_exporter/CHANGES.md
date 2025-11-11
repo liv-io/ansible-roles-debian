@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.27.0-3 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `blackbox_exporter_monitor_monit_stateblackbox_exporter_monit_state`
+
 ## 0.27.0-2 (2025-08-17)
 
 ### Changes

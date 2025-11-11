@@ -174,9 +174,9 @@ consult the following sections.
                     tls_config: {insecure_skip_verify: true}
                     preferred_ip_protocol: "ip6"
 
-`blackbox_exporter_monitor_monit_state`
+`blackbox_exporter_monit_state`
 
-    Description: Control the 'blackbox_exporter_monitor_monit_state' option.
+    Description: Control the 'blackbox_exporter_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
