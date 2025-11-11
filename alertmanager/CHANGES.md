@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.29.0-2 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `alertmanager_monitor_monit_state` to `alertmanager_monit_state`
+
 ## 0.29.0-1 (2025-10-04)
 
 ### Changes

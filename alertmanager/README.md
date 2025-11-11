@@ -168,9 +168,9 @@ consult the following sections.
               - to: 'user@example.com'
       None: ''
 
-`alertmanager_monitor_monit_state`
+`alertmanager_monit_state`
 
-    Description: Control the 'alertmanager_monitor_monit_state' option.
+    Description: Control the 'alertmanager_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
