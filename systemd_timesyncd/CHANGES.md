@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `systemd_timesyncd_monitor_mail_from_address` to `systemd_timesyncd_mail_from_address`
+- Rename parameter from `systemd_timesyncd_monitor_mail_to_address` to `systemd_timesyncd_mail_to_address`
+- Rename parameter from `systemd_timesyncd_monitor_mail_state` to `systemd_timesyncd_mail_state`
+- Rename parameter from `systemd_timesyncd_monitor_monit_state` to `systemd_timesyncd_monit_state`
+- Rename parameter from `systemd_timesyncd_monitor_prom_state` to `systemd_timesyncd_prometheus_state`
+- Rename parameter from `systemd_timesyncd_monitor_prom_textfile_collector` to `systemd_timesyncd_prometheus_textfile_collector`
+
 ## 2.3.0 (2025-08-10)
 
 ### Changes
@@ -108,7 +119,7 @@ The headers are:
 
 ### Bugs
 
-- Fix `systemd_timesyncd_monitor_monit_state` variable name in Ansible tasks
+- Fix `systemd_timesyncd_monit_state` variable name in Ansible tasks
 
 ## 1.0.1 (2022-12-13)
 

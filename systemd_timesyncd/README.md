@@ -131,9 +131,9 @@ consult the following sections.
       Examples: ['195.176.26.204', '195.176.26.205', '195.176.26.206', '192.33.96.101', '192.33.96.102']
       None    : []
 
-`systemd_timesyncd_monitor_mail_from_address`
+`systemd_timesyncd_mail_from_address`
 
-    Description: Define the 'systemd_timesyncd_monitor_mail_from_address' option.
+    Description: Define the 'systemd_timesyncd_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -141,9 +141,9 @@ consult the following sections.
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`systemd_timesyncd_monitor_mail_to_address`
+`systemd_timesyncd_mail_to_address`
 
-    Description: Define the 'systemd_timesyncd_monitor_mail_to_address' option.
+    Description: Define the 'systemd_timesyncd_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -152,42 +152,23 @@ consult the following sections.
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`systemd_timesyncd_monitor_mail_state`
+`systemd_timesyncd_mail_state`
 
-    Description: Control the 'systemd_timesyncd_monitor_mail_state' option.
+    Description: Control the 'systemd_timesyncd_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`systemd_timesyncd_monitor_monit_state`
+`systemd_timesyncd_monit_state`
 
-    Description: Control the 'systemd_timesyncd_monitor_monit_state' option.
+    Description: Control the 'systemd_timesyncd_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
-
-`systemd_timesyncd_monitor_prom_state`
-
-    Description: Control the 'systemd_timesyncd_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
-`systemd_timesyncd_monitor_prom_textfile_collector`
-
-    Description: Define the 'systemd_timesyncd_monitor_prom_textfile_collector' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/var/local/node_exporter/textfile_collector'
-    Options    :
-      Examples: '/var/local/node_exporter/textfile_collector'
 
 `systemd_timesyncd_nftables_filter_rule`
 
@@ -240,6 +221,25 @@ consult the following sections.
     Default    : 32
     Options    :
       Examples: 16 | 64 | 128
+
+`systemd_timesyncd_prometheus_state`
+
+    Description: Control the 'systemd_timesyncd_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`systemd_timesyncd_prometheus_textfile_collector`
+
+    Description: Define the 'systemd_timesyncd_prometheus_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `systemd_timesyncd_server`
 

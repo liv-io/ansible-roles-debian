@@ -56,7 +56,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (systemd_timesyncd_monitor_monit_state == True)
+  when: (systemd_timesyncd_monit_state == True)
   tags:
     - systemd_timesyncd
 
@@ -65,7 +65,7 @@
     state: absent
     path: "{{file_dst_systemd_timesyncd_cfg}}"
   notify: reload monit
-  when: (systemd_timesyncd_monitor_monit_state == False)
+  when: (systemd_timesyncd_monit_state == False)
   tags:
     - systemd_timesyncd
 
