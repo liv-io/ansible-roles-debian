@@ -279,9 +279,9 @@ consult the following sections.
     Options    :
       Examples: '10:30:60'
 
-`openssh_monitor_monit_state`
+`openssh_monit_state`
 
-    Description: Control the 'openssh_monitor_monit_state' option.
+    Description: Control the 'openssh_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

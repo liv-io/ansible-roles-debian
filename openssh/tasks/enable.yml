@@ -72,7 +72,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (openssh_monitor_monit_state == True)
+  when: (openssh_monit_state == True)
   tags:
     - openssh
 
@@ -81,7 +81,7 @@
     state: absent
     path: "{{file_dst_openssh_cfg}}"
   notify: reload monit
-  when: (openssh_monitor_monit_state == False)
+  when: (openssh_monit_state == False)
   tags:
     - openssh
 
