@@ -129,9 +129,9 @@ consult the following sections.
     Options    :
       Examples: '6' | 'Saturday'
 
-`fstrim_monitor_mail_from_address`
+`fstrim_mail_from_address`
 
-    Description: Define the 'fstrim_monitor_mail_from_address' option.
+    Description: Define the 'fstrim_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -139,9 +139,9 @@ consult the following sections.
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`fstrim_monitor_mail_to_address`
+`fstrim_mail_to_address`
 
-    Description: Define the 'fstrim_monitor_mail_to_address' option.
+    Description: Define the 'fstrim_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -150,27 +150,27 @@ consult the following sections.
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`fstrim_monitor_mail_state`
+`fstrim_mail_state`
 
-    Description: Control the 'fstrim_monitor_mail_state' option.
+    Description: Control the 'fstrim_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`fstrim_monitor_prom_state`
+`fstrim_prometheus_state`
 
-    Description: Control the 'fstrim_monitor_prom_state' option.
+    Description: Control the 'fstrim_prometheus_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`fstrim_monitor_prom_textfile_collector`
+`fstrim_prometheus_textfile_collector`
 
-    Description: Define the 'fstrim_monitor_prom_textfile_collector' option.
+    Description: Define the 'fstrim_prometheus_textfile_collector' option.
     Required   : False
     Value      : Arbitrary
     Type       : String

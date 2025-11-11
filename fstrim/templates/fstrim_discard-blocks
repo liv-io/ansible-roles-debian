@@ -23,7 +23,7 @@ WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 FSTRIM=$(${WHICH} fstrim) || { echo "Error: Command 'fstrim' not found."; exit 127; }
 TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 
-{% if (fstrim_monitor_mail_state == True) %}
+{% if (fstrim_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -35,19 +35,19 @@ SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_fstrim_discard_blocks}}'
 LOCKFILE='/var/tmp/fstrim_discard-blocks.lock'
-TEXTFILE_COLLECTOR='{{fstrim_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{fstrim_prometheus_textfile_collector}}'
 
 LOG_FILE='{{file_dst_fstrim_log}}'
 
-{% if (fstrim_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{fstrim_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in fstrim_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (fstrim_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{fstrim_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in fstrim_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='fstrim: Discard Blocks - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (fstrim_monitor_mail_state == True) %}
+{% if (fstrim_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -72,7 +72,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (fstrim_monitor_prom_state == True) %}
+{% if (fstrim_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -143,11 +143,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (fstrim_monitor_mail_state == True) %}
+{% if (fstrim_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (fstrim_monitor_prom_state == True) %}
+{% if (fstrim_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -170,7 +170,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (fstrim_monitor_prom_state == True) %}
+{% if (fstrim_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
