@@ -271,9 +271,9 @@ consult the following sections.
                  {address: '10.1.1.15', hostname: 'host03'}]
       None    : []
 
-`prometheus_monitor_monit_state`
+`prometheus_monit_state`
 
-    Description: Control the 'prometheus_monitor_monit_state' option.
+    Description: Control the 'prometheus_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.7.3-4 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `prometheus_monitor_monit_state` to `prometheus_monit_state`
+
 ## 3.7.3-3 (2025-10-31)
 
 ### Enhancements

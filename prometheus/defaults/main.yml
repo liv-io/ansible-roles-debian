@@ -25,7 +25,7 @@ prometheus_ipmi_exporter_target_manual_hosts: []
 prometheus_monit_exporter_target_ansible_groups: ['all']
 prometheus_monit_exporter_target_manual_hosts: []
 
-prometheus_monitor_monit_state: False
+prometheus_monit_state: False
 
 prometheus_mysqld_exporter_target_ansible_groups: []
 prometheus_mysqld_exporter_target_manual_hosts: []

@@ -160,7 +160,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (prometheus_monitor_monit_state == True)
+  when: (prometheus_monit_state == True)
   tags:
     - prometheus
 
@@ -169,7 +169,7 @@
     state: absent
     path: "{{file_dst_prometheus_cfg}}"
   notify: reload monit
-  when: (prometheus_monitor_monit_state == False)
+  when: (prometheus_monit_state == False)
   tags:
     - prometheus
 
