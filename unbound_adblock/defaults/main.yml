@@ -2,11 +2,12 @@
 
 unbound_adblock_state: 'enable'
 
-unbound_adblock_monitor_mail_from_address: "root@{{ansible_domain}}"
-unbound_adblock_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-unbound_adblock_monitor_mail_state: False
-unbound_adblock_monitor_prom_state: False
-unbound_adblock_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
+unbound_adblock_mail_from_address: "root@{{ansible_domain}}"
+unbound_adblock_mail_to_address: ["admin@{{ansible_domain}}"]
+unbound_adblock_mail_state: False
+
+unbound_adblock_prometheus_state: False
+unbound_adblock_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 unbound_adblock_source: 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts'
 
