@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `apache2_monitor_monit_state` to `apache2_monit_state`
+
 ## 2.2.0 (2025-08-21)
 
 ### Changes

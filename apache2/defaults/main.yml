@@ -28,7 +28,7 @@ apache2_modules:
   - {name: 'socache_shmcb', state: True}
   - {name: 'ssl', state: True}
 
-apache2_monitor_monit_state: False
+apache2_monit_state: False
 
 apache2_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "apache2 from internal private addresses"

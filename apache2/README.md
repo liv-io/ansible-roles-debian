@@ -492,9 +492,9 @@ vars:
       Examples: [{name: 'brotli', state: 'false'}, {name: 'http2', state: 'true'}, {name: 'rewrite', state: 'true'}]
       None    : []
 
-`apache2_monitor_monit_state`
+`apache2_monit_state`
 
-    Description: Control the 'apache2_monitor_monit_state' option.
+    Description: Control the 'apache2_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

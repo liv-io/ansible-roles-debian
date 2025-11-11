@@ -300,7 +300,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (apache2_monitor_monit_state == True)
+  when: (apache2_monit_state == True)
   tags:
     - apache2
 
@@ -309,7 +309,7 @@
     state: absent
     path: "{{file_dst_apache2_cfg}}"
   notify: reload monit
-  when: (apache2_monitor_monit_state == False)
+  when: (apache2_monit_state == False)
   tags:
     - apache2
 
