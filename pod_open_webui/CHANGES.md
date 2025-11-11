@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.3.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `pod_open_webui_monitor_monit_state` to `pod_open_webui_monit_state`
+
 ## 0.2.0 (2025-08-10)
 
 ### Changes

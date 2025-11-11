@@ -104,15 +104,6 @@ consult the following sections.
       Examples: 'journald'
       None    : ''
 
-`pod_open_webui_monitor_prom_state`
-
-    Description: Control the 'pod_open_webui_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
 `pod_open_webui_nftables_filter_rule`
 
     Description: Define the 'pod_open_webui_nftables_filter_rule' option.
@@ -179,6 +170,15 @@ consult the following sections.
     Default    : 'ollama'
     Options    :
       Examples: 'ollama'
+
+`pod_open_webui_prometheus_state`
+
+    Description: Control the 'pod_open_webui_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
 
 `pod_open_webui_proxy`
 

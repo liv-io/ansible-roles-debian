@@ -42,7 +42,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (pod_open_webui_monitor_monit_state == True)
+  when: (pod_open_webui_monit_state == True)
   tags:
     - pod_open_webui
 
@@ -51,7 +51,7 @@
     state: absent
     path: "{{file_dst_pod_open_webui_open_webui_cfg}}"
   notify: reload monit
-  when: (pod_open_webui_monitor_monit_state == False)
+  when: (pod_open_webui_monit_state == False)
   tags:
     - pod_open_webui
 
