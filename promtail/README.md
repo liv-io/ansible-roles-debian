@@ -79,9 +79,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`promtail_monitor_monit_state`
+`promtail_monit_state`
 
-    Description: Control the 'promtail_monitor_monit_state' option.
+    Description: Control the 'promtail_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

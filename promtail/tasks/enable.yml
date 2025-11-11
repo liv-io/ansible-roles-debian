@@ -42,7 +42,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (promtail_monitor_monit_state == True)
+  when: (promtail_monit_state == True)
   tags:
     - promtail
 
@@ -51,7 +51,7 @@
     state: absent
     path: "{{file_dst_promtail_cfg}}"
   notify: reload monit
-  when: (promtail_monitor_monit_state == False)
+  when: (promtail_monit_state == False)
   tags:
     - promtail
 
