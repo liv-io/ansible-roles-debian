@@ -133,9 +133,9 @@ consult the following sections.
       Examples: 'journald'
       None    : ''
 
-`pod_forgejo_monitor_mail_from_address`
+`pod_forgejo_mail_from_address`
 
-    Description: Define the 'pod_forgejo_monitor_mail_from_address' option.
+    Description: Define the 'pod_forgejo_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -143,18 +143,18 @@ consult the following sections.
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`pod_forgejo_monitor_mail_state`
+`pod_forgejo_mail_state`
 
-    Description: Control the 'pod_forgejo_monitor_mail_state' option.
+    Description: Control the 'pod_forgejo_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`pod_forgejo_monitor_mail_to_address`
+`pod_forgejo_mail_to_address`
 
-    Description: Define the 'pod_forgejo_monitor_mail_to_address' option.
+    Description: Define the 'pod_forgejo_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -163,33 +163,14 @@ consult the following sections.
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`pod_forgejo_monitor_monit_state`
+`pod_forgejo_monit_state`
 
-    Description: Control the 'pod_forgejo_monitor_monit_state' option.
+    Description: Control the 'pod_forgejo_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
-
-`pod_forgejo_monitor_prom_state`
-
-    Description: Control the 'pod_forgejo_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
-`pod_forgejo_monitor_prom_textfile_collector`
-
-    Description: Define the 'pod_forgejo_monitor_prom_textfile_collector' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/var/local/node_exporter/textfile_collector'
-    Options    :
-      Examples: '/var/local/node_exporter/textfile_collector'
 
 `pod_forgejo_nftables_filter_rule`
 
@@ -212,6 +193,25 @@ consult the following sections.
     Type       : Boolean
     Default    : False
     Options    : True | False
+
+`pod_forgejo_prometheus_state`
+
+    Description: Control the 'pod_forgejo_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`pod_forgejo_prometheus_textfile_collector`
+
+    Description: Define the 'pod_forgejo_prometheus_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `pod_forgejo_proxy`
 

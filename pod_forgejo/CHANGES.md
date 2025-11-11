@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 13.0.2-2 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `pod_forgejo_monitor_mail_from_address` to `pod_forgejo_mail_from_address`
+- Rename parameter from `pod_forgejo_monitor_mail_state` to `pod_forgejo_mail_state`
+- Rename parameter from `pod_forgejo_monitor_mail_to_address` to `pod_forgejo_mail_to_address`
+- Rename parameter from `pod_forgejo_monitor_monit_state` to `pod_forgejo_monit_state`
+- Rename parameter from `pod_forgejo_monitor_prom_state` to `pod_forgejo_prometheus_state`
+- Rename parameter from `pod_forgejo_monitor_prom_textfile_collector` to `pod_forgejo_prometheus_textfile_collector`
+
 ## 13.0.2-1 (2025-10-27)
 
 ### Bugs

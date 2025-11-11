@@ -10,18 +10,19 @@ pod_forgejo_forgejo_version: '13.0.2-1'
 
 pod_forgejo_log_driver: 'journald'
 
-pod_forgejo_monitor_mail_from_address: "root@{{ansible_domain}}"
-pod_forgejo_monitor_mail_state: False
-pod_forgejo_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-pod_forgejo_monitor_monit_state: False
-pod_forgejo_monitor_prom_state: False
-pod_forgejo_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
+pod_forgejo_mail_from_address: "root@{{ansible_domain}}"
+pod_forgejo_mail_state: False
+pod_forgejo_mail_to_address: ["admin@{{ansible_domain}}"]
+pod_forgejo_monit_state: False
 
 pod_forgejo_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3000 counter accept comment "http from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3000 counter accept comment "http from unique local addresses"
 
 pod_forgejo_nftables_state: False
+
+pod_forgejo_prometheus_state: False
+pod_forgejo_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 pod_forgejo_proxy: ''
 

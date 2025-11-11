@@ -42,7 +42,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (pod_forgejo_monitor_monit_state == True)
+  when: (pod_forgejo_monit_state == True)
   tags:
     - pod_forgejo
 
@@ -51,7 +51,7 @@
     state: absent
     path: "{{file_dst_pod_forgejo_forgejo_cfg}}"
   notify: reload monit
-  when: (pod_forgejo_monitor_monit_state == False)
+  when: (pod_forgejo_monit_state == False)
   tags:
     - pod_forgejo
 
