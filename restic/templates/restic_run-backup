@@ -23,7 +23,7 @@ WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 RESTIC='{{file_dst_restic}}' && [ -x ${RESTIC} ] || { echo "Error: Command 'restic' not found."; exit 127; }
 TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 
-{% if (restic_monitor_mail_state == True) %}
+{% if (restic_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -51,7 +51,7 @@ KEEP_MONTHLY='{{restic_keep_monthly}}'
 {% endif %}
 LIMIT_DOWNLOAD='{{restic_limit_download}}'
 LIMIT_UPLOAD='{{restic_limit_upload}}'
-TEXTFILE_COLLECTOR='{{restic_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{restic_prometheus_textfile_collector}}'
 
 {% if not (restic_http_proxy == '') %}
 export HTTP_PROXY='{{restic_http_proxy}}'
@@ -60,15 +60,15 @@ export HTTP_PROXY='{{restic_http_proxy}}'
 export HTTPS_PROXY='{{restic_https_proxy}}'
 {% endif %}
 
-{% if (restic_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{restic_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in restic_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (restic_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{restic_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in restic_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='restic: Run Backup - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (restic_monitor_mail_state == True) %}
+{% if (restic_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -93,7 +93,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (restic_monitor_prom_state == True) %}
+{% if (restic_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -163,11 +163,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (restic_monitor_mail_state == True) %}
+{% if (restic_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (restic_monitor_prom_state == True) %}
+{% if (restic_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -190,7 +190,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (restic_monitor_prom_state == True) %}
+{% if (restic_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 

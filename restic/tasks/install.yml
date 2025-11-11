@@ -23,7 +23,7 @@
     state: present
     name: "{{package_name_mailx}}"
     install_recommends: False
-  when: (restic_monitor_mail_state == True)
+  when: (restic_mail_state == True)
   tags:
     - restic
 

@@ -202,9 +202,9 @@ consult the following sections.
     Options    :
       Examples: 0 | 1024 | 4096 | 8192
 
-`restic_monitor_mail_from_address`
+`restic_mail_from_address`
 
-    Description: Define the 'restic_monitor_mail_from_address' option.
+    Description: Define the 'restic_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -212,9 +212,9 @@ consult the following sections.
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`restic_monitor_mail_to_address`
+`restic_mail_to_address`
 
-    Description: Define the 'restic_monitor_mail_to_address' option.
+    Description: Define the 'restic_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -223,33 +223,14 @@ consult the following sections.
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`restic_monitor_mail_state`
+`restic_mail_state`
 
-    Description: Control the 'restic_monitor_mail_state' option.
+    Description: Control the 'restic_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
-
-`restic_monitor_prom_state`
-
-    Description: Control the 'restic_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
-`restic_monitor_prom_textfile_collector`
-
-    Description: Define the 'restic_monitor_prom_textfile_collector' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/var/local/node_exporter/textfile_collector'
-    Options    :
-      Examples: '/var/local/node_exporter/textfile_collector'
 
 `restic_nftables_filter_rule`
 
@@ -282,6 +263,25 @@ consult the following sections.
     Default    : ''
     Options    :
       Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+
+`restic_prometheus_state`
+
+    Description: Control the 'restic_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`restic_prometheus_textfile_collector`
+
+    Description: Define the 'restic_prometheus_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `restic_repository_name`
 
