@@ -125,9 +125,9 @@ consult the following sections.
               ipmi:
                 - "ipmimonitoring"
 
-`ipmi_exporter_monitor_monit_state`
+`ipmi_exporter_monit_state`
 
-    Description: Control the 'ipmi_exporter_monitor_monit_state' option.
+    Description: Control the 'ipmi_exporter_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

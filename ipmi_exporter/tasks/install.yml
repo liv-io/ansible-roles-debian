@@ -102,7 +102,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (ipmi_exporter_monitor_monit_state == True)
+  when: (ipmi_exporter_monit_state == True)
   tags:
     - ipmi_exporter
 
@@ -113,7 +113,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (ipmi_exporter_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (ipmi_exporter_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - ipmi_exporter
 

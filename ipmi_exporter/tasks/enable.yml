@@ -43,7 +43,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (ipmi_exporter_monitor_monit_state == True)
+  when: (ipmi_exporter_monit_state == True)
   tags:
     - ipmi_exporter
 
@@ -52,7 +52,7 @@
     state: absent
     path: "{{file_dst_ipmi_exporter_cfg}}"
   notify: reload monit
-  when: (ipmi_exporter_monitor_monit_state == False)
+  when: (ipmi_exporter_monit_state == False)
   tags:
     - ipmi_exporter
 

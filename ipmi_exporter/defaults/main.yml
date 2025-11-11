@@ -29,7 +29,7 @@ ipmi_exporter_config: |
         sel:
           - "ipmi-sel"
 
-ipmi_exporter_monitor_monit_state: False
+ipmi_exporter_monit_state: False
 
 ipmi_exporter_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 9290 counter accept comment "ipmi_exporter from internal private addresses"
