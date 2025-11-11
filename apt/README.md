@@ -192,9 +192,9 @@ vars:
       Examples: 'http://proxy.domain.tld:3128'
       None    : ''
 
-`apt_monitor_mail_from_address`
+`apt_mail_from_address`
 
-    Description: Define the 'apt_monitor_mail_from_address' option.
+    Description: Define the 'apt_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -202,9 +202,9 @@ vars:
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`apt_monitor_mail_to_address`
+`apt_mail_to_address`
 
-    Description: Define the 'apt_monitor_mail_to_address' option.
+    Description: Define the 'apt_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -213,9 +213,9 @@ vars:
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`apt_monitor_mail_state`
+`apt_mail_state`
 
-    Description: Control the 'apt_monitor_mail_state' option.
+    Description: Control the 'apt_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
@@ -244,18 +244,18 @@ vars:
     Default    : False
     Options    : True | False
 
-`apt_monitor_prom_state`
+`apt_prometheus_state`
 
-    Description: Control the 'apt_monitor_prom_state' option.
+    Description: Control the 'apt_prometheus_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`apt_monitor_prom_textfile_collector`
+`apt_prometheus_textfile_collector`
 
-    Description: Define the 'apt_monitor_prom_textfile_collector' option.
+    Description: Define the 'apt_prometheus_textfile_collector' option.
     Required   : False
     Value      : Arbitrary
     Type       : String

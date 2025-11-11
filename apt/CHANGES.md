@@ -10,6 +10,16 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `apt_monitor_mail_from_address` to `apt_mail_from_address`
+- Rename parameter from `apt_monitor_mail_to_address` to `apt_mail_to_address`
+- Rename parameter from `apt_monitor_mail_state` to `apt_mail_state`
+- Rename parameter from `apt_monitor_prom_state` to `apt_prometheus_state`
+- Rename parameter from `apt_monitor_prom_textfile_collector` to `apt_prometheus_textfile_collector`
+
 ## 2.2.0 (2025-08-17)
 
 ### Changes

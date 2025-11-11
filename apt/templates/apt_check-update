@@ -25,7 +25,7 @@ GREP=$(${WHICH} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 TR=$(${WHICH} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 WC=$(${WHICH} wc) || { echo "Error: Command 'wc' not found."; exit 127; }
 
-{% if (apt_monitor_mail_state == True) %}
+{% if (apt_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -37,17 +37,17 @@ SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_apt_check_update}}'
 LOCKFILE='/var/tmp/apt_check-update.lock'
-TEXTFILE_COLLECTOR='{{apt_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{apt_prometheus_textfile_collector}}'
 
-{% if (apt_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{apt_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in apt_monitor_mail_to_address%}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (apt_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{apt_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in apt_mail_to_address%}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='apt: Check Update - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (apt_monitor_mail_state == True) %}
+{% if (apt_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -72,7 +72,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (apt_monitor_prom_state == True) %}
+{% if (apt_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -151,11 +151,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (apt_monitor_mail_state == True) %}
+{% if (apt_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (apt_monitor_prom_state == True) %}
+{% if (apt_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -176,7 +176,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (apt_monitor_prom_state == True) %}
+{% if (apt_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
