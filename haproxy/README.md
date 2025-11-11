@@ -146,9 +146,9 @@ consult the following sections.
           server host02 10.30.10.10:8332
       None: ''
 
-`haproxy_monitor_monit_state`
+`haproxy_monit_state`
 
-    Description: Control the 'haproxy_monitor_monit_state' option.
+    Description: Control the 'haproxy_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

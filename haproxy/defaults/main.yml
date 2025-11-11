@@ -4,7 +4,7 @@ haproxy_state: 'enable'
 
 haproxy_config: ''
 
-haproxy_monitor_monit_state: False
+haproxy_monit_state: False
 
 haproxy_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport { 80, 443 } counter accept comment "http, https from internal private addresses"

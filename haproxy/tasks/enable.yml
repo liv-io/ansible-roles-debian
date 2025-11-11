@@ -32,7 +32,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (haproxy_monitor_monit_state == True)
+  when: (haproxy_monit_state == True)
   tags:
     - haproxy
 
@@ -40,7 +40,7 @@
   file:
     state: absent
     path: "{{file_dst_haproxy_monit}}"
-  when: (haproxy_monitor_monit_state == False)
+  when: (haproxy_monit_state == False)
   notify: reload monit
   tags:
     - haproxy
