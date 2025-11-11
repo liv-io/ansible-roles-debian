@@ -43,7 +43,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (grafana_monitor_monit_state == True)
+  when: (grafana_monit_state == True)
   tags:
     - grafana
 
@@ -54,7 +54,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (grafana_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (grafana_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - grafana
 

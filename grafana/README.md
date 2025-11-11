@@ -78,9 +78,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`grafana_monitor_monit_state`
+`grafana_monit_state`
 
-    Description: Control the 'grafana_monitor_monit_state' option.
+    Description: Control the 'grafana_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
