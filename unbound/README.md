@@ -314,9 +314,9 @@ consult the following sections.
                 [{zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}]
       None    : []
 
-`unbound_monitor_monit_state`
+`unbound_monit_state`
 
-    Description: Control the 'unbound_monitor_monit_state' option.
+    Description: Control the 'unbound_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
