@@ -15,7 +15,7 @@
     state: present
     name: "{{package_name_mailx}}"
     install_recommends: False
-  when: (openntpd_monitor_mail_state == True)
+  when: (openntpd_mail_state == True)
   tags:
     - openntpd
 
@@ -31,7 +31,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (openntpd_monitor_monit_state == True)
+  when: (openntpd_monit_state == True)
   tags:
     - openntpd
 
@@ -42,7 +42,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (openntpd_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (openntpd_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - openntpd
 

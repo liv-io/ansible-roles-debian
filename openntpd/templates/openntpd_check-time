@@ -26,7 +26,7 @@ NTPCTL=$(${WHICH} ntpctl) || { echo "Error: Command 'ntpctl' not found."; exit 1
 SED=$(${WHICH} sed) || { echo "Error: Command 'sed' not found."; exit 127; }
 SLEEP=$(${WHICH} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
 
-{% if (openntpd_monitor_mail_state == True) %}
+{% if (openntpd_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -38,19 +38,19 @@ SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_openntpd_check_time}}'
 LOCKFILE='/var/tmp/openntpd_check-time.lock'
-TEXTFILE_COLLECTOR='{{openntpd_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{openntpd_prometheus_textfile_collector}}'
 
 OFFSET_LIMIT='{{openntpd_check_time_offset_limit}}'
 
-{% if (openntpd_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{openntpd_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in openntpd_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (openntpd_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{openntpd_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in openntpd_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='openntpd: Check Time - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (openntpd_monitor_mail_state == True) %}
+{% if (openntpd_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -75,7 +75,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (openntpd_monitor_prom_state == True) %}
+{% if (openntpd_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -154,11 +154,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (openntpd_monitor_mail_state == True) %}
+{% if (openntpd_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (openntpd_monitor_prom_state == True) %}
+{% if (openntpd_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -179,7 +179,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (openntpd_monitor_prom_state == True) %}
+{% if (openntpd_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 

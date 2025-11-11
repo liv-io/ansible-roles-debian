@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `openntpd_monitor_mail_from_address` to `openntpd_mail_from_address`
+- Rename parameter from `openntpd_monitor_mail_to_address` to `openntpd_mail_to_address`
+- Rename parameter from `openntpd_monitor_mail_state` to `openntpd_mail_state`
+- Rename parameter from `openntpd_monitor_monit_state` to `openntpd_monit_state`
+- Rename parameter from `openntpd_monitor_prom_state` to `openntpd_prometheus_state`
+- Rename parameter from `openntpd_monitor_prom_textfile_collector` to `openntpd_prometheus_textfile_collector`
+
 ## 2.2.0 (2025-08-10)
 
 ### Changes

@@ -56,7 +56,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (openntpd_monitor_monit_state == True)
+  when: (openntpd_monit_state == True)
   tags:
     - openntpd
 
@@ -65,7 +65,7 @@
     state: absent
     path: "{{file_dst_openntpd_cfg}}"
   notify: reload monit
-  when: (openntpd_monitor_monit_state == False)
+  when: (openntpd_monit_state == False)
   tags:
     - openntpd
 

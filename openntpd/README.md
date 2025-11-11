@@ -166,9 +166,9 @@ consult the following sections.
                 [{address: '10.0.0.10', comment: 'IPv4 interface'}]
       None    : []
 
-`openntpd_monitor_mail_from_address`
+`openntpd_mail_from_address`
 
-    Description: Define the 'openntpd_monitor_mail_from_address' option.
+    Description: Define the 'openntpd_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -176,9 +176,9 @@ consult the following sections.
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`openntpd_monitor_mail_to_address`
+`openntpd_mail_to_address`
 
-    Description: Define the 'openntpd_monitor_mail_to_address' option.
+    Description: Define the 'openntpd_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -187,42 +187,23 @@ consult the following sections.
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`openntpd_monitor_mail_state`
+`openntpd_mail_state`
 
-    Description: Control the 'openntpd_monitor_mail_state' option.
+    Description: Control the 'openntpd_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`openntpd_monitor_monit_state`
+`openntpd_monit_state`
 
-    Description: Control the 'openntpd_monitor_monit_state' option.
+    Description: Control the 'openntpd_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
-
-`openntpd_monitor_prom_state`
-
-    Description: Control the 'openntpd_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
-`openntpd_monitor_prom_textfile_collector`
-
-    Description: Define the 'openntpd_monitor_prom_textfile_collector' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/var/local/node_exporter/textfile_collector'
-    Options    :
-      Examples: '/var/local/node_exporter/textfile_collector'
 
 `openntpd_nftables_filter_rule`
 
@@ -248,6 +229,25 @@ consult the following sections.
     Type       : Boolean
     Default    : False
     Options    : True | False
+
+`openntpd_prometheus_state`
+
+    Description: Control the 'openntpd_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`openntpd_prometheus_textfile_collector`
+
+    Description: Define the 'openntpd_prometheus_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `openntpd_server`
 
