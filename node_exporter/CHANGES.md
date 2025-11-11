@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.10.2-2 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `node_exporter_monitor_monit_state` to `node_exporter_monit_state`
+
 ## 1.10.2-1 (2025-10-26)
 
 ### Bugs

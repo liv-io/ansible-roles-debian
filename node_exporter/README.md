@@ -78,9 +78,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`node_exporter_monitor_monit_state`
+`node_exporter_monit_state`
 
-    Description: Control the 'node_exporter_monitor_monit_state' option.
+    Description: Control the 'node_exporter_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

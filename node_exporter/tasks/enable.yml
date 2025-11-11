@@ -31,7 +31,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (node_exporter_monitor_monit_state == True)
+  when: (node_exporter_monit_state == True)
   tags:
     - node_exporter
 
@@ -40,7 +40,7 @@
     state: absent
     path: "{{file_dst_node_exporter_cfg}}"
   notify: reload monit
-  when: (node_exporter_monitor_monit_state == False)
+  when: (node_exporter_monit_state == False)
   tags:
     - node_exporter
 
