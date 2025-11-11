@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 4.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `mariadb_monitor_mail_from_address` to `mariadb_mail_from_address`
+- Rename parameter from `mariadb_monitor_mail_to_address` to `mariadb_mail_to_address`
+- Rename parameter from `mariadb_monitor_mail_state` to `mariadb_mail_state`
+- Rename parameter from `mariadb_monitor_monit_state` to `mariadb_monit_state`
+- Rename parameter from `mariadb_monitor_prom_state` to `mariadb_prometheus_state`
+- Rename parameter from `mariadb_monitor_prom_textfile_collector` to `mariadb_prometheus_textfile_collector`
+
 ## 3.3.0 (2025-08-17)
 
 ### Changes

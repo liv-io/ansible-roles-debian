@@ -10,18 +10,19 @@ mariadb_database_host: []
 
 mariadb_config_server: ''
 
-mariadb_monitor_mail_from_address: "root@{{ansible_domain}}"
-mariadb_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
-mariadb_monitor_mail_state: False
-mariadb_monitor_monit_state: False
-mariadb_monitor_prom_state: False
-mariadb_monitor_prom_textfile_collector: '/var/local/node_exporter/textfile_collector'
+mariadb_mail_from_address: "root@{{ansible_domain}}"
+mariadb_mail_to_address: ["admin@{{ansible_domain}}"]
+mariadb_mail_state: False
+mariadb_monit_state: False
 
 mariadb_nftables_filter_rule: |
   add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 3306 counter accept comment "mariadb from internal private addresses"
   add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 3306 counter accept comment "mariadb from unique local addresses"
 
 mariadb_nftables_state: False
+
+mariadb_prometheus_state: False
+mariadb_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'
 
 mariadb_root_password: ''
 

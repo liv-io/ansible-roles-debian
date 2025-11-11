@@ -194,9 +194,9 @@ vars:
         innodb_flush_log_at_trx_commit=0
         skip-innodb_doublewrite
 
-`mariadb_monitor_mail_from_address`
+`mariadb_mail_from_address`
 
-    Description: Define the 'mariadb_monitor_mail_from_address' option.
+    Description: Define the 'mariadb_mail_from_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -204,9 +204,9 @@ vars:
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-`mariadb_monitor_mail_to_address`
+`mariadb_mail_to_address`
 
-    Description: Define the 'mariadb_monitor_mail_to_address' option.
+    Description: Define the 'mariadb_mail_to_address' option.
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -215,42 +215,23 @@ vars:
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-`mariadb_monitor_mail_state`
+`mariadb_mail_state`
 
-    Description: Control the 'mariadb_monitor_mail_state' option.
+    Description: Control the 'mariadb_mail_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
 
-`mariadb_monitor_monit_state`
+`mariadb_monit_state`
 
-    Description: Control the 'mariadb_monitor_monit_state' option.
+    Description: Control the 'mariadb_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
     Default    : False
     Options    : True | False
-
-`mariadb_monitor_prom_state`
-
-    Description: Control the 'mariadb_monitor_prom_state' option.
-    Required   : False
-    Value      : Predetermined
-    Type       : Boolean
-    Default    : False
-    Options    : True | False
-
-`mariadb_monitor_prom_textfile_collector`
-
-    Description: Define the 'mariadb_monitor_prom_textfile_collector' option.
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/var/local/node_exporter/textfile_collector'
-    Options    :
-      Examples: '/var/local/node_exporter/textfile_collector'
 
 `mariadb_nftables_filter_rule`
 
@@ -273,6 +254,25 @@ vars:
     Type       : Boolean
     Default    : False
     Options    : True | False
+
+`mariadb_prometheus_state`
+
+    Description: Control the 'mariadb_prometheus_state' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : Boolean
+    Default    : False
+    Options    : True | False
+
+`mariadb_prometheus_textfile_collector`
+
+    Description: Define the 'mariadb_prometheus_textfile_collector' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/var/local/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/var/local/node_exporter/textfile_collector'
 
 `mariadb_root_password`
 

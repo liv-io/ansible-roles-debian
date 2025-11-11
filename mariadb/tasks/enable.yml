@@ -91,7 +91,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (mariadb_monitor_monit_state == True)
+  when: (mariadb_monit_state == True)
   tags:
     - mariadb
 
@@ -100,7 +100,7 @@
     state: absent
     path: "{{file_dst_mariadb_cfg}}"
   notify: reload monit
-  when: (mariadb_monitor_monit_state == False)
+  when: (mariadb_monit_state == False)
   tags:
     - mariadb
 

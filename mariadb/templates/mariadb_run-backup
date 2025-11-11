@@ -30,7 +30,7 @@ MYSQLDUMP=$(${WHICH} mysqldump) || { echo "Error: Command 'mysqldump' not found.
 SERVICE=$(${WHICH} service) || { echo "Error: Command 'service' not found."; exit 127; }
 TAR=$(${WHICH} tar) || { echo "Error: Command 'tar' not found."; exit 127; }
 
-{% if (mariadb_monitor_mail_state == True) %}
+{% if (mariadb_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -42,7 +42,7 @@ SCRIPT_NAME="$(${BASENAME} $0)" || { echo "Error: Command invoked cannot execute
 TIME_START=$(${DATE} '+%s')
 USER='{{file_owner_mariadb_run_backup}}'
 LOCKFILE='/var/tmp/mariadb_run-backup.lock'
-TEXTFILE_COLLECTOR='{{mariadb_monitor_prom_textfile_collector}}'
+TEXTFILE_COLLECTOR='{{mariadb_prometheus_textfile_collector}}'
 
 MARIADB_SERVICE_NAME='{{service_name_mariadb}}'
 CREDENTIALS_CNF='{{file_dst_credentials_cnf}}'
@@ -54,15 +54,15 @@ BACKUP_FILE_MODE='{{file_mode_mariadb_backup_file}}'
 BACKUP_EXCLUDE="{% if not (mariadb_run_backup_exclude == []) %}{% for item in mariadb_run_backup_exclude %}{{item}}{% if not loop.last %}|{% endif %}{% endfor %}{% else %} {% endif %}"
 KEEP_DAYS={{mariadb_run_backup_keep_days|int(2)}}
 
-{% if (mariadb_monitor_mail_state == True) %}
-MAIL_FROM_ADDRESS='{{mariadb_monitor_mail_from_address}}'
-MAIL_TO_ADDRESS='{% for item in mariadb_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (mariadb_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{mariadb_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in mariadb_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='MariaDB: Run Backup - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (mariadb_monitor_mail_state == True) %}
+{% if (mariadb_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -87,7 +87,7 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
-{% if (mariadb_monitor_prom_state == True) %}
+{% if (mariadb_prometheus_state == True) %}
 update_prom() {
     local exit_code=${1}
     local time_exec=${2}
@@ -158,11 +158,11 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (mariadb_monitor_mail_state == True) %}
+{% if (mariadb_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
-{% if (mariadb_monitor_prom_state == True) %}
+{% if (mariadb_prometheus_state == True) %}
         update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
@@ -183,7 +183,7 @@ log_and_exit() {
 
     ${LOGGER} -t ${SCRIPT} "${message} Duration: ${time_hr}"
 
-{% if (mariadb_monitor_prom_state == True) %}
+{% if (mariadb_prometheus_state == True) %}
     update_prom "${exit_code}" "${time_exec}"
 {% endif %}
 
