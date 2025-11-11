@@ -106,7 +106,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (squid_monitor_monit_state == True)
+  when: (squid_monit_state == True)
   tags:
     - squid
 
@@ -115,7 +115,7 @@
     state: absent
     path: "{{file_dst_squid_cfg}}"
   notify: reload monit
-  when: (squid_monitor_monit_state == False)
+  when: (squid_monit_state == False)
   tags:
     - squid
 

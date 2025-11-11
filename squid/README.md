@@ -302,9 +302,9 @@ consult the following sections.
     Options    :
       Examples: '128 KB' | '256 KB' | '512 KB'
 
-`squid_monitor_monit_state`
+`squid_monit_state`
 
-    Description: Control the 'squid_monitor_monit_state' option.
+    Description: Control the 'squid_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
