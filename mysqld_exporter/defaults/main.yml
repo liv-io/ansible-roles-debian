@@ -2,7 +2,7 @@
 
 mysqld_exporter_state: 'enable'
 
-mysqld_exporter_monitor_monit_state: False
+mysqld_exporter_monit_state: False
 
 mysqld_exporter_mysql_password: 'ruK.JSj23aN,48vbhELQ2-tUAu3.J5sB'
 

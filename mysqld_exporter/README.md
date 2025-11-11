@@ -93,9 +93,9 @@ consult the following sections.
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-`mysqld_exporter_monitor_monit_state`
+`mysqld_exporter_monit_state`
 
-    Description: Control the 'mysqld_exporter_monitor_monit_state' option.
+    Description: Control the 'mysqld_exporter_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

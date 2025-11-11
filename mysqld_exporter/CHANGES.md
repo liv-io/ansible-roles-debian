@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.18.0-2 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `mysqld_exporter_monitor_monit_state` to `mysqld_exporter_monit_state`
+
 ## 0.18.0-1 (2025-10-01)
 
 ### Changes

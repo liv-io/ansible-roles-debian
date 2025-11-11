@@ -42,7 +42,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (mysqld_exporter_monitor_monit_state == True)
+  when: (mysqld_exporter_monit_state == True)
   tags:
     - mysqld_exporter
 
@@ -51,7 +51,7 @@
     state: absent
     path: "{{file_dst_mysqld_exporter_cfg}}"
   notify: reload monit
-  when: (mysqld_exporter_monitor_monit_state == False)
+  when: (mysqld_exporter_monit_state == False)
   tags:
     - mysqld_exporter
 
