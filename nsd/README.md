@@ -226,9 +226,9 @@ vars:
     Default    : False
     Options    : True | False
 
-`nsd_monitor_monit_state`
+`nsd_monit_state`
 
-    Description: Control the 'nsd_monitor_monit_state' option.
+    Description: Control the 'nsd_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean

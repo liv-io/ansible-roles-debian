@@ -32,7 +32,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (nsd_monitor_monit_state == True)
+  when: (nsd_monit_state == True)
   tags:
     - nsd
 
@@ -41,7 +41,7 @@
     state: absent
     path: "{{file_dst_nsd_cfg}}"
   notify: reload monit
-  when: (nsd_monitor_monit_state == False)
+  when: (nsd_monit_state == False)
   tags:
     - nsd
 

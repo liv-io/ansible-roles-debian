@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.0 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `nsd_monitor_monit_state` to `nsd_monit_state`
+
 ## 2.2.0 (2024-08-21)
 
 ### Changes
