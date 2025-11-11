@@ -31,7 +31,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (rest_server_monitor_monit_state == True)
+  when: (rest_server_monit_state == True)
   tags:
     - rest_server
 
@@ -40,7 +40,7 @@
     state: absent
     path: "{{file_dst_rest_server_cfg}}"
   notify: reload monit
-  when: (rest_server_monitor_monit_state == False)
+  when: (rest_server_monit_state == False)
   tags:
     - rest_server
 

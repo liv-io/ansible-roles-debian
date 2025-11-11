@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.14.0-3 (2025-11-10)
+
+### Changes
+
+- Rename parameter from `rest_server_monitor_monit_state` to `rest_server_monit_state`
+
 ## 0.14.0-2 (2025-06-01)
 
 ### Changes

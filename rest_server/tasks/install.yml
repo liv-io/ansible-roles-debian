@@ -115,7 +115,7 @@
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
-  when: (rest_server_monitor_monit_state == True)
+  when: (rest_server_monit_state == True)
   tags:
     - rest_server
 
@@ -126,7 +126,7 @@
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
-  when: (rest_server_monitor_monit_state == True) and (register_monit_d.stat.exists == False)
+  when: (rest_server_monit_state == True) and (register_monit_d.stat.exists == False)
   tags:
     - rest_server
 

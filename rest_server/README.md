@@ -92,9 +92,9 @@ consult the following sections.
         host02:$2y$05$nta91gn96NjSizfwIxPAiu3wyBHLJuHqeoiZNoqEWy65h13rXjUSq
         host03:$2y$05$3O9ZkonUm4S6hxSJXckEyeRR5P1Yw3qqszhV7mKP3h/.5YAzBKZ8O
 
-`rest_server_monitor_monit_state`
+`rest_server_monit_state`
 
-    Description: Control the 'rest_server_monitor_monit_state' option.
+    Description: Control the 'rest_server_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
