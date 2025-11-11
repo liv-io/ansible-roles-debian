@@ -10,6 +10,18 @@ The headers are:
 - enhancements
 - features
 
+## 4.28.1-2 (2025-11-11)
+
+### Changes
+
+- Rename parameter from `lego_email_from_address` to `lego_mail_from_address`
+- Rename parameter from `lego_email_state` to `lego_mail_state`
+- Rename parameter from `lego_email_to_address` to `lego_mail_to_address`
+
+### Enhancements
+
+- Add missing documentation
+
 ## 4.28.1-1 (2025-11-08)
 
 ### Features

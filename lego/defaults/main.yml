@@ -6,9 +6,9 @@ lego_domains: []
 
 lego_email: ''
 
-lego_email_from_address: "root@{{ansible_domain}}"
-lego_email_state: False
-lego_email_to_address: ["admin@{{ansible_domain}}"]
+lego_mail_from_address: "root@{{ansible_domain}}"
+lego_mail_state: False
+lego_mail_to_address: ["admin@{{ansible_domain}}"]
 
 lego_prometheus_state: False
 lego_prometheus_textfile_collector: '/var/local/node_exporter/textfile_collector'

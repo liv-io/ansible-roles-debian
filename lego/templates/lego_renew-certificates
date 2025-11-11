@@ -22,7 +22,7 @@ WHOAMI=$(${WHICH} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 
 LEGO=$(${WHICH} lego) || { echo "Error: Command 'lego' not found."; exit 127; }
 
-{% if (lego_email_state == True) %}
+{% if (lego_mail_state == True) %}
 MAILX=$(${WHICH} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 
@@ -41,15 +41,15 @@ EMAIL='{{lego_email}}'
 SERVER='{{lego_server}}'
 APPS="apache2 nginx"
 
-{% if (lego_email_state == True) %}
-MAIL_FROM_ADDRESS='{{lego_email_from_address}}'
-MAIL_TO_ADDRESS='{% for item in lego_email_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% if (lego_mail_state == True) %}
+MAIL_FROM_ADDRESS='{{lego_mail_from_address}}'
+MAIL_TO_ADDRESS='{% for item in lego_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 MAIL_SUBJECT='lego: Discard Blocks - Error ({{ansible_hostname}})'
 {% endif %}
 
 # Functions
 
-{% if (lego_email_state == True) %}
+{% if (lego_mail_state == True) %}
 mail_error() {
     local exit_code=${1}
     local message=${2}
@@ -145,7 +145,7 @@ log_and_exit_on_error() {
 
         ${LOGGER} -t ${SCRIPT} "${message}"
 
-{% if (lego_email_state == True) %}
+{% if (lego_mail_state == True) %}
         mail_error ${exit_code} "${message}"
 {% endif %}
 
