@@ -57,7 +57,7 @@
   notify:
     - validate monit
     - reload monit
-  when: (opensmtpd_monitor_monit_state == True)
+  when: (opensmtpd_monit_state == True)
   tags:
     - opensmtpd
 
@@ -66,7 +66,7 @@
     state: absent
     path: "{{file_dst_opensmtpd_cfg}}"
   notify: reload monit
-  when: (opensmtpd_monitor_monit_state == False)
+  when: (opensmtpd_monit_state == False)
   tags:
     - opensmtpd
 

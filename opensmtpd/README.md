@@ -204,9 +204,9 @@ consult the following sections.
                  {config: {'match for any action "relay"'}, comment: 'Match: relay'}]
       None    : []
 
-`opensmtpd_monitor_monit_state`
+`opensmtpd_monit_state`
 
-    Description: Control the 'opensmtpd_monitor_monit_state' option.
+    Description: Control the 'opensmtpd_monit_state' option.
     Required   : False
     Value      : Predetermined
     Type       : Boolean
