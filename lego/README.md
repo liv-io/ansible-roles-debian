@@ -232,7 +232,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '4.28.1'
+    Default    : '4.29.0'
     Options    :
       Examples: '4.22.0' | '4.22.1'
 
