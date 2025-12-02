@@ -59,4 +59,4 @@ prometheus_smokeping_prober_target_manual_hosts: []
 
 prometheus_storage_tsdb_retention_time: '3y'
 
-prometheus_version: '3.7.3'
+prometheus_version: '3.8.0'
