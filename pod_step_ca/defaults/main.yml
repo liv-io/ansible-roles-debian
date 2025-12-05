@@ -6,7 +6,7 @@ pod_step_ca_step_ca_environment_variables:
   ADDRESS: ":1443"
 
 pod_step_ca_step_ca_read_only_root_filesystem: True
-pod_step_ca_step_ca_version: '0.28.4-1'
+pod_step_ca_step_ca_version: '0.29.0-1'
 
 pod_step_ca_log_driver: 'journald'
 
