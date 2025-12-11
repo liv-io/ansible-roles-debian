@@ -59,4 +59,4 @@ promtail_pipeline_stages_all: |
 promtail_pipeline_stages_group: ''
 promtail_pipeline_stages_host: ''
 
-promtail_version: '3.6.2'
+promtail_version: '3.6.3'
