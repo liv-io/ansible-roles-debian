@@ -21,4 +21,4 @@ lego_renew_certificates_weekday: '*'
 
 lego_server: ''
 
-lego_version: '4.29.0'
+lego_version: '4.30.1'
