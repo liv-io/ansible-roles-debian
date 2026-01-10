@@ -221,7 +221,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '3.12.0-1'
+    Default    : '3.12.0-2'
     Options    :
       Examples: '2.1.1-1'
 
