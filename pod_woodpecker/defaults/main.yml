@@ -20,7 +20,7 @@ pod_woodpecker_registry_username: ''
 
 pod_woodpecker_woodpecker_agent_read_only_root_filesystem: False
 pod_woodpecker_woodpecker_agent_variables: {}
-pod_woodpecker_woodpecker_agent_version: '3.13.0-1'
+pod_woodpecker_woodpecker_agent_version: '3.13.0-2'
 
 pod_woodpecker_woodpecker_server_read_only_root_filesystem: True
 pod_woodpecker_woodpecker_server_variables: {}
