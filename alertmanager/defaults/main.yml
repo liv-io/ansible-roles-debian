@@ -16,6 +16,6 @@ alertmanager_nftables_filter_rule: |
 
 alertmanager_nftables_state: False
 
-alertmanager_version: '0.31.0'
+alertmanager_version: '0.31.1'
 
 alertmanager_web_external_url: "https://alertmanager.{{ansible_domain}}"
