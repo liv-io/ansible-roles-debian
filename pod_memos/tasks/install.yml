@@ -1,0 +1,99 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - pod_memos
+
+- name: create file pod_memos_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_memos_etc_dir}}"
+    mode: "{{file_mode_pod_memos_etc_dir}}"
+    owner: "{{file_owner_pod_memos_etc_dir}}"
+    group: "{{file_group_pod_memos_etc_dir}}"
+  tags:
+    - pod_memos
+
+- name: create file opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_opt_dir}}"
+    mode: "{{file_mode_opt_dir}}"
+    owner: "{{file_owner_opt_dir}}"
+    group: "{{file_group_opt_dir}}"
+  tags:
+    - pod_memos
+
+- name: create file pod_memos_opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_pod_memos_opt_dir}}"
+    mode: "{{file_mode_pod_memos_opt_dir}}"
+    owner: "{{file_owner_pod_memos_opt_dir}}"
+    group: "{{file_group_pod_memos_opt_dir}}"
+  tags:
+    - pod_memos
+
+- name: create file memos_db.dir
+  file:
+    state: directory
+    path: "{{file_dst_memos_db_dir}}"
+    mode: "{{file_mode_memos_db_dir}}"
+    owner: "{{file_owner_memos_db_dir}}"
+    group: "{{file_group_memos_db_dir}}"
+  tags:
+    - pod_memos
+
+- name: create file pod_memos.service
+  template:
+    src: "{{file_src_pod_memos_service}}"
+    dest: "{{file_dst_pod_memos_service}}"
+    mode: "{{file_mode_pod_memos_service}}"
+    owner: "{{file_owner_pod_memos_service}}"
+    group: "{{file_group_pod_memos_service}}"
+  tags:
+    - pod_memos
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (pod_memos_monit_state == True)
+  tags:
+    - pod_memos
+
+- name: create file monit.d
+  file:
+    state: directory
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (pod_memos_monit_state == True) and (register_monit_d.stat.exists == False)
+  tags:
+    - pod_memos
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (pod_memos_nftables_state == True)
+  tags:
+    - pod_memos
+
+- name: create file nftables.d
+  file:
+    state: directory
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (pod_memos_nftables_state == True) and (register_nftables_d.stat.exists == False)
+  tags:
+    - pod_memos

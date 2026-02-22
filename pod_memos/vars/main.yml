@@ -1,0 +1,90 @@
+---
+
+# pod_memos_etc.dir
+file_dst_pod_memos_etc_dir: '/etc/pod_memos'
+file_mode_pod_memos_etc_dir: '0750'
+file_owner_pod_memos_etc_dir: 'root'
+file_group_pod_memos_etc_dir: 'root'
+
+# opt.dir
+file_dst_opt_dir: '/opt'
+file_mode_opt_dir: '0755'
+file_owner_opt_dir: 'root'
+file_group_opt_dir: 'root'
+
+# pod_memos_opt.dir
+file_dst_pod_memos_opt_dir: '/opt/pod_memos'
+file_mode_pod_memos_opt_dir: '0755'
+file_owner_pod_memos_opt_dir: 'root'
+file_group_pod_memos_opt_dir: 'root'
+
+# memos_db.dir
+file_dst_memos_db_dir: '/opt/pod_memos/db'
+file_mode_memos_db_dir: '0750'
+file_owner_memos_db_dir: '10000'
+file_group_memos_db_dir: '10000'
+
+# pod_memos.default
+file_src_pod_memos_default: 'pod_memos.default'
+file_dst_pod_memos_default: '/etc/default/pod_memos'
+file_mode_pod_memos_default: '0640'
+file_owner_pod_memos_default: 'root'
+file_group_pod_memos_default: 'root'
+
+# pod_memos.service
+file_src_pod_memos_service: 'pod_memos.service'
+file_dst_pod_memos_service: '/lib/systemd/system/pod_memos.service'
+file_mode_pod_memos_service: '0644'
+file_owner_pod_memos_service: 'root'
+file_group_pod_memos_service: 'root'
+
+# pod_memos.yaml
+file_src_pod_memos_yaml: 'pod_memos.yaml'
+file_dst_pod_memos_yaml: '/etc/pod_memos/pod_memos.yaml'
+file_mode_pod_memos_yaml: '0640'
+file_owner_pod_memos_yaml: 'root'
+file_group_pod_memos_yaml: 'root'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'root'
+
+# nftables.d
+file_dst_nftables_d: '/etc/nftables.d'
+file_mode_nftables_d: '0750'
+file_owner_nftables_d: 'root'
+file_group_nftables_d: 'root'
+
+# pod_memos-memos.cfg
+file_src_pod_memos_memos_cfg: 'pod_memos-memos.cfg'
+file_dst_pod_memos_memos_cfg: '/etc/monit.d/pod_memos-memos.cfg'
+file_mode_pod_memos_memos_cfg: '0640'
+file_owner_pod_memos_memos_cfg: 'root'
+file_group_pod_memos_memos_cfg: 'root'
+
+# pod_memos.nft
+file_src_pod_memos_nft: 'pod_memos.nft'
+file_dst_pod_memos_nft: '/etc/nftables.d/pod_memos.conf'
+file_mode_pod_memos_nft: '0640'
+file_owner_pod_memos_nft: 'root'
+file_group_pod_memos_nft: 'root'
+
+# check service pod_memos
+command_cmd_check_service_pod_memos: 'systemctl cat pod_memos.service > /dev/null 2>&1'
+
+# reload monit
+command_cmd_reload_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && systemctl reload monit || true'
+
+# validate monit
+command_cmd_validate_monit: 'systemctl is-active monit.service > /dev/null 2>&1 && monit -t || true'
+
+# reload nftables
+command_cmd_reload_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 &&  nft --file /etc/nftables.conf || true'
+
+# validate nftables
+command_cmd_validate_nftables: 'systemctl is-active nftables.service > /dev/null 2>&1 && nft --check --file /etc/nftables.conf || true'
+
+# pod_memos
+service_name_pod_memos: 'pod_memos'

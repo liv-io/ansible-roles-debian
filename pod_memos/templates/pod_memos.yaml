@@ -1,0 +1,57 @@
+---
+
+{{ansible_managed|comment(decoration='#')}}
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: memos
+  name: pod_memos
+spec:
+  containers:
+  - name: memos
+    image: {{pod_memos_registry_address}}/memos:{{pod_memos_memos_version}}
+    ports:
+{% if (pod_memos_memos_environment_variables.PORT is defined) %}
+    - name: memos-http
+      containerPort: {{pod_memos_memos_environment_variables.PORT}}
+      hostPort: {{pod_memos_memos_environment_variables.PORT}}
+      protocol: TCP
+{% endif %}
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      privileged: false
+      readOnlyRootFilesystem: {{pod_memos_memos_read_only_root_filesystem|lower}}
+      runAsGroup: 10000
+      runAsUser: 10000
+      seLinuxOptions:
+        type: spc_t
+    volumeMounts:
+    - name: memos-db
+      mountPath: /var/local/memos/db
+    workingDir: /
+    env:
+{% if not (pod_memos_memos_environment_variables == {}) %}
+{% for key, value in pod_memos_memos_environment_variables.items() %}
+    - name: {{key|upper}}
+      value: '{{value}}'
+{% endfor %}
+{% endif %}
+
+  dnsConfig: {}
+  restartPolicy: Always
+
+  volumes:
+  - name: memos-db
+    hostPath:
+      type: Directory
+      path: {{file_dst_memos_db_dir}}
+
+status: {}

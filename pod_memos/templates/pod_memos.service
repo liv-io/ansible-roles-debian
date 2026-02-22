@@ -1,0 +1,31 @@
+{{ansible_managed|comment(decoration='#')}}
+
+[Unit]
+Description=Pod memos
+Documentation=man:podman-generate-systemd(1)
+Wants=network.target
+After=network-online.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+User=root
+Group=root
+EnvironmentFile={{file_dst_pod_memos_default}}
+Restart=always
+TimeoutStartSec=60
+TimeoutStopSec=60
+ExecStart=/usr/bin/podman play kube \
+    --network slirp4netns:port_handler=slirp4netns \
+{% if not (pod_memos_registry_username == "") %}
+    --creds {{pod_memos_registry_username}}:'{{pod_memos_registry_password}}' \
+{% endif %}
+{% if (pod_memos_log_driver == "journald") %}
+    --log-driver journald \
+{% endif %}
+    {{file_dst_pod_memos_yaml}}
+ExecStop=/usr/bin/podman pod stop --time 55 pod_memos
+ExecStopPost=/usr/bin/podman pod rm --force pod_memos
+
+[Install]
+WantedBy=multi-user.target
