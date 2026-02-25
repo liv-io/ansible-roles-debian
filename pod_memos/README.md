@@ -28,8 +28,8 @@ consult the following sections.
   vars:
     pod_memos_state: 'enable'
     pod_memos_memos_environment_variables:
-      PORT: 8080
-    pod_memos_memos_version: '0.26.1-1'
+      PORT: 8081
+    pod_memos_memos_version: '0.26.2-1'
     pod_memos_proxy: 'http://proxy.example.com:3128'
     pod_memos_registry_address: 'registry.example.com'
     pod_memos_registry_password: 'sUlJr0kPZ1S0TX44aUdOVdQ90GbOBk6L'
@@ -45,8 +45,8 @@ consult the following sections.
   vars:
     pod_memos_state: 'disable'
     pod_memos_memos_environment_variables:
-      PORT: 8080
-    pod_memos_memos_version: '0.26.1-1'
+      PORT: 8081
+    pod_memos_memos_version: '0.26.2-1'
     pod_memos_proxy: 'http://proxy.example.com:3128'
     pod_memos_registry_address: 'registry.example.com'
     pod_memos_registry_password: 'sUlJr0kPZ1S0TX44aUdOVdQ90GbOBk6L'
@@ -98,7 +98,7 @@ consult the following sections.
     Value      : Arbitrary
     Type       : Dictionary
     Default    :
-        PORT: 8080
+        PORT: 8081
     Options    :
       Examples:
         PORT: 8081
@@ -119,7 +119,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.26.1-1'
+    Default    : '0.26.2-1'
     Options    :
       Examples: ''
 
@@ -150,11 +150,11 @@ consult the following sections.
     Value      : Arbitrary
     Type       : String
     Default    : |
-      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 8080 counter accept comment "http from internal private addresses"
-      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 8080 counter accept comment "http from unique local addresses"
+      add rule ip filter INPUT ip saddr { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 } ct state new tcp dport 8081 counter accept comment "http from internal private addresses"
+      add rule ip6 filter INPUT ip6 saddr fc00::/7 ct state new tcp dport 8081 counter accept comment "http from unique local addresses"
     Options    :
       Examples: |
-        add rule ip filter INPUT ct state new tcp dport 8080 counter accept comment "http from any"
+        add rule ip filter INPUT ct state new tcp dport 8081 counter accept comment "http from any"
 
 `pod_memos_nftables_state`
 
