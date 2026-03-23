@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.30.2-1-1 (2026-03-23)
+
+### Features
+
+- Update pod_step_ca_step_ca_version from 0.30.1-1 to 0.30.2-1
+
 ## 0.30.1-1-1 (2026-03-20)
 
 ### Features
