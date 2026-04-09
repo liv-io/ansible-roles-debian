@@ -209,7 +209,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.31.1'
+    Default    : '0.32.0'
     Options    :
       Examples: '0.15.3' | '0.16.0'
 
