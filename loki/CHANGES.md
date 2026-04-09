@@ -10,11 +10,11 @@ The headers are:
 - enhancements
 - features
 
-## 3.6.9-1 (2026-04-09)
+## 3.6.10-1 (2026-04-09)
 
 ### Bugs
 
-- Update Loki to version 3.6.9
+- Update Loki to version 3.6.10
 
 ## 3.6.8-1 (2026-03-27)
 
