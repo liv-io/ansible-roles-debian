@@ -6,7 +6,7 @@ pod_memos_memos_environment_variables:
   PORT: 8081
 
 pod_memos_memos_read_only_root_filesystem: True
-pod_memos_memos_version: '0.26.2-1'
+pod_memos_memos_version: '0.27.1-1'
 
 pod_memos_log_driver: 'journald'
 
