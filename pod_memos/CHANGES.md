@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.28.0-1-1 (2026-04-27)
+
+### Features
+
+- Update pod_memos_memos_version from 0.27.1-1 to 0.28.0-1
+
 ## 0.27.1-1-1 (2026-04-19)
 
 ### Bugs

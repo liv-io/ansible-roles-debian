@@ -119,7 +119,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.27.1-1'
+    Default    : '0.28.0-1'
     Options    :
       Examples: ''
 
