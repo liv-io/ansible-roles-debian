@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 4.35.2-1 (2026-04-27)
+
+### Bugs
+
+- Update lego to version 4.35.2
+
 ## 4.33.0-1 (2026-03-25)
 
 ### Features
