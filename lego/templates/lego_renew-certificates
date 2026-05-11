@@ -180,7 +180,7 @@ log_and_exit() {
 renew_certificates() {
     if [ -n "${DOMAINS}" ]; then
         for domain in ${DOMAINS} ; do
-            ${LEGO} \
+            ${LEGO} run \
             --accept-tos \
             --domains ${domain} \
             --email ${EMAIL} \
@@ -188,7 +188,7 @@ renew_certificates() {
             --http.webroot /var/www/html/challenges/ \
             --path /etc/lego \
             --server ${SERVER} \
-            renew --no-random-sleep >/dev/null 2>&1
+            --no-random-sleep >/dev/null 2>&1
             log_and_exit_on_error "${?}" "Unable to renew certificate for domain: ${domain}"
         done
     fi
