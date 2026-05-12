@@ -221,7 +221,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '3.14.0-1'
+    Default    : '3.14.1-1'
     Options    :
       Examples: '2.1.1-1'
 
@@ -253,7 +253,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '3.13.0-1'
+    Default    : '3.14.1-1'
     Options    :
       Examples: '2.1.1-1'
 
