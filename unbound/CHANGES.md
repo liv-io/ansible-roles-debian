@@ -16,6 +16,12 @@ The headers are:
 
 - Improve monit connectivity check
 
+## 3.0.1 (2026-05-26)
+
+### Enhancements
+
+- Improve monit connectivity check
+
 ## 3.0.0 (2025-11-10)
 
 ### Changes

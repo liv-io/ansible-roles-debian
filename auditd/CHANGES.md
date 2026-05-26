@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.1 (2026-06-26)
+
+### Enhancements
+
+- Improve monit connectivity check
+
 ## 3.0.0 (2025-11-10)
 
 ### Changes
