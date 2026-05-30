@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 3.0.3 (2026-05-30)
+
+### Bugs
+
+- Ensure compatibility with Ansible 12
+
 ## 3.0.2 (2026-05-26)
 
 ### Enhancements
@@ -42,6 +48,8 @@ The headers are:
 - Drop support for Debian 11 (Bullseye)
 
 ## 2.3.5 (2025-01-25)
+
+### Enhancements
 
 - Remove RSA signature algorithms from PubkeyAcceptedAlgorithms/PubkeyAcceptedKeyTypes by default
 
