@@ -2,8 +2,6 @@
 
 server {
 
-    # CORE
-
 {% if not (item.listen|default([]) == []) %}
 {% for listen in item.listen %}
     listen {{listen}}:{{item.port|int}}{% if (item.ssl_state|default(False) == True) %} ssl{% endif %};
@@ -14,8 +12,6 @@ server {
 {% endif %}
     server_name {{item.name}};
 
-    # LOG
-
     error_log /var/log/nginx/{{item.name}}_error.log;
     access_log /var/log/nginx/{{item.name}}_access.log
 {%- if (item.ssl_state|default(False) == True) %}
@@ -24,41 +20,29 @@ server {
  main;
 {% endif %}
 
-    # HEADER
-
 {% if (item.hsts_state|default(False) == True) %}
-    # HTTP Strict Transport Security (HSTS)
     add_header Strict-Transport-Security 'max-age={% if not (item.hsts_max_age|default('') == '') %}{{item.hsts_max_age|int(31536000)}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
 {% endif %}
 {% if (item.xss_protection_state|default(False) == True) %}
-    # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
-    add_header X-Frame-Options 'deny' always;
-    # X-Content-Type-Options: Disable MIME-sniffing (drive-by download attacks prevention)
     add_header X-Content-Type-Options 'nosniff' always;
-    # X-XSS-Protection: Enable XSS filter (cross-site scripting prevention)
+    add_header X-Frame-Options 'DENY' always;
     add_header X-XSS-Protection '1; mode=block' always;
 {% endif %}
 
 {% if (item.ssl_state|default(False) == True) %}
-    # SSL
-
-{% if not (item.ssl_protocols|default([]) == []) %}
-    ssl_protocols {% for ssl_protocols in item.ssl_protocols %}{{ssl_protocols}}{% if not loop.last %} {% endif %}{% endfor %};
-{% else %}
-    ssl_protocols TLSv1.2 TLSv1.3;
+{% if not (item.ssl_protocols|default('TLSv1.2 TLSv1.3') == []) %}
+    ssl_protocols {{item.ssl_protocols|default('TLSv1.2 TLSv1.3')}};
 {% endif %}
 {% if (item.ssl_prefer_server_ciphers|default(True) == False) %}
     ssl_prefer_server_ciphers off;
 {% else %}
     ssl_prefer_server_ciphers on;
 {% endif %}
-{% if not (item.ssl_ciphers|default('') == '') %}
-    ssl_ciphers '{{item.ssl_ciphers}}';
-{% else %}
-    ssl_ciphers 'ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256';
+{% if not (item.ssl_ciphers|default("TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH") == '') %}
+    ssl_ciphers '{{item.ssl_ciphers|default("TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH")}}';
 {% endif %}
-{% if not (item.ssl_ecdh_curve|default('x25519:secp521r1:secp384r1:prime256v1;') == '') %}
-    ssl_ecdh_curve '{{item.ssl_ecdh_curve|default("x25519:secp521r1:secp384r1:prime256v1")}}';
+{% if not (item.ssl_ecdh_curve|default("X25519MLKEM768:X25519:secp521r1:secp384r1") == '') %}
+    ssl_ecdh_curve '{{item.ssl_ecdh_curve|default("X25519MLKEM768:X25519:secp521r1:secp384r1")}}';
 {% endif %}
 {% if (item.ssl_session_tickets|default(False) == False) %}
     ssl_session_tickets off;
@@ -84,8 +68,6 @@ server {
     ssl_verify_depth {{item.ssl_verify_depth}};
 {% endif %}
 {% endif %}
-
-    # CONFIG
 
 {% if not (item.config == '') %}
 {{item.config|indent(width=4, first=True)}}

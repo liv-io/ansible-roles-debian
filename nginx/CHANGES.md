@@ -10,6 +10,17 @@ The headers are:
 - enhancements
 - features
 
+## 5.0.0 (2026-06-23)
+
+### Changes
+
+- Change `ssl_protocols` type from array to string
+
+### Enhancements
+
+- Add Post-Quantum Cryptography (PQC) support by default
+- Simplify config template
+
 ## 4.0.1 (2026-05-26)
 
 ### Enhancements

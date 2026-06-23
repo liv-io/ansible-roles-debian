@@ -78,24 +78,25 @@ vars:
       config: |
         location / {
             proxy_pass                         https://localhost:8080;
-
             proxy_http_version                 1.1;
             proxy_redirect                     off;
-            proxy_set_header Connection        "Upgrade";
-            proxy_set_header Host              $host;
-            proxy_set_header Upgrade           $http_upgrade;
+
+            proxy_set_header X-Real-IP         $remote_addr;
             proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Host  $http_host;
             proxy_set_header X-Forwarded-Port  443;
             proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Real-IP         $remote_addr;
+
+            proxy_set_header Connection        "Upgrade";
+            proxy_set_header Upgrade           $http_upgrade;
 
             chunked_transfer_encoding          off;
             proxy_buffering                    off;
-            proxy_connect_timeout              3600s;
-            proxy_read_timeout                 3600s;
-            proxy_send_timeout                 3600s;
-            send_timeout                       3600s;
+
+            proxy_connect_timeout              120s;
+            proxy_read_timeout                 120s;
+            proxy_send_timeout                 120s;
+            send_timeout                       120s;
 
             client_max_body_size               0;
         }
@@ -127,24 +128,25 @@ vars:
       Examples: |
         location / {
             proxy_pass                         https://localhost:8080;
-
             proxy_http_version                 1.1;
             proxy_redirect                     off;
-            proxy_set_header Connection        "Upgrade";
-            proxy_set_header Host              $host;
-            proxy_set_header Upgrade           $http_upgrade;
+
+            proxy_set_header X-Real-IP         $remote_addr;
             proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Host  $http_host;
             proxy_set_header X-Forwarded-Port  443;
             proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Real-IP         $remote_addr;
+
+            proxy_set_header Connection        "Upgrade";
+            proxy_set_header Upgrade           $http_upgrade;
 
             chunked_transfer_encoding          off;
             proxy_buffering                    off;
-            proxy_connect_timeout              3600s;
-            proxy_read_timeout                 3600s;
-            proxy_send_timeout                 3600s;
-            send_timeout                       3600s;
+
+            proxy_connect_timeout              120s;
+            proxy_read_timeout                 120s;
+            proxy_send_timeout                 120s;
+            send_timeout                       120s;
 
             client_max_body_size               0;
         }
@@ -227,7 +229,7 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256'
+    Default    : 'TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH'
     Options    :
       Examples: 'TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH'
 
@@ -248,9 +250,9 @@ vars:
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'secp521r1'
+    Default    : 'X25519MLKEM768:X25519:secp521r1:secp384r1'
     Options    :
-      Examples: 'secp384r1' | 'auto' | 'prime256v1:secp384r1'
+      Examples: 'secp384r1' | 'auto'
 
 `ssl_prefer_server_ciphers`
 
@@ -266,10 +268,10 @@ vars:
     Description: Define the 'ssl_protocols' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['TLSv1.2', 'TLSv1.3']
+    Type       : String
+    Default    : 'TLSv1.2 TLSv1.3'
     Options    :
-      Examples: ['TLSv1.3']
+      Examples: 'TLSv1.3'
 
 `ssl_session_tickets`
 
