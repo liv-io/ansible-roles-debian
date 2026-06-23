@@ -304,15 +304,25 @@ vars:
     Default    : True
     Options    : True | False
 
+`ssl_openssl_conf_cmd`
+
+    Description: Define the 'ssl_openssl_conf_cmd' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'X25519MLKEM768:X25519:P-384'
+    Options    :
+      Examples: 'X25519MLKEM768:X25519:P-256'
+
 `ssl_protocols`
 
     Description: Define the 'ssl_protocols' option.
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['-ALL', '+TLSv1.2', '+TLSv1.3']
+    Type       : String
+    Default    : '-ALL +TLSv1.2 +TLSv1.3'
     Options    :
-      Examples: ['-ALL', '+TLSv1.3']
+      Examples: '-ALL +TLSv1.3'
 
 `ssl_session_tickets`
 
