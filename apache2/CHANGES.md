@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 4.0.1 (2026-06-23)
+
+### Enhancements
+
+- Improve SSLCipherSuite
+
 ## 4.0.0 (2026-06-23)
 
 ### Changes
