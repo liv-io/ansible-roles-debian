@@ -10,9 +10,15 @@ The headers are:
 - enhancements
 - features
 
+## 3.13.0-1 (2026-07-06)
+
+### Features
+
+- Update Prometheus to version 3.13.0
+
 ## 3.12.0-1 (2026-05-28)
 
-### Bugs
+### Features
 
 - Update Prometheus to version 3.12.0
 
