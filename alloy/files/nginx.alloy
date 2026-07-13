@@ -1,0 +1,90 @@
+	stage.match {
+		selector = "{app=\"nginx-access\"}"
+
+		stage.regex {
+			expression = "^(?P<nginx_remote_addr>\\S+) \\- \\- \\[[^]]+\\] \"(?P<nginx_request>[^\"]+)\" (?P<nginx_status>[0-9]{3}) \\d+ \"(?P<nginx_referer>[^\"]+)\" \"(?P<nginx_user_agent>[^\"]+)\"$"
+		}
+	}
+
+	stage.match {
+		selector = "{app=\"nginx-error\"}"
+
+		stage.regex {
+			expression = "^\\[(?P<timestamp>[^]]+)\\] \\[(?P<level>\\w+)\\] \\[(?P<pid>\\d+)\\]: \\* (?P<message>.*)$"
+		}
+
+		stage.timestamp {
+			source = "time"
+			format = "RFC3339"
+		}
+
+		stage.match {
+			selector = "{level=\"emerg\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "critical",
+				}
+			}
+		}
+
+		stage.match {
+			selector = "{level=\"alert\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "critical",
+				}
+			}
+		}
+
+		stage.match {
+			selector = "{level=\"critical\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "critical",
+				}
+			}
+		}
+
+		stage.match {
+			selector = "{level=\"error\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "error",
+				}
+			}
+		}
+
+		stage.match {
+			selector = "{level=\"warning\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "warning",
+				}
+			}
+		}
+
+		stage.match {
+			selector = "{level=\"notice\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "info",
+				}
+			}
+		}
+
+		stage.match {
+			selector = "{level=\"info\"}"
+
+			stage.static_labels {
+				values = {
+					severity_normalized = "info",
+				}
+			}
+		}
+	}

@@ -1,0 +1,137 @@
+---
+
+- name: include variables
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_distribution_major_version}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - alloy
+
+- name: create group alloy
+  group:
+    state: present
+    name: "{{group_name_alloy}}"
+    system: "{{group_system_alloy}}"
+  tags:
+    - alloy
+
+- name: create user alloy
+  user:
+    state: present
+    name: "{{user_name_alloy}}"
+    comment: "{{user_comment_alloy}}"
+    group: "{{user_group_alloy}}"
+    append: "{{user_append_alloy}}"
+    createhome: "{{user_home_create_alloy}}"
+    move_home: "{{user_home_move_alloy}}"
+    remove: "{{user_home_remove_alloy}}"
+    force: "{{user_home_force_alloy}}"
+    password: "{{user_password_alloy}}"
+    update_password: "{{user_password_update_alloy}}"
+    shell: "{{user_shell_alloy}}"
+    system: "{{user_system_alloy}}"
+  tags:
+    - alloy
+
+- name: create file alloy_etc.dir
+  file:
+    state: directory
+    path: "{{file_dst_alloy_etc_dir}}"
+    mode: "{{file_mode_alloy_etc_dir}}"
+    owner: "{{file_owner_alloy_etc_dir}}"
+    group: "{{file_group_alloy_etc_dir}}"
+  tags:
+    - alloy
+
+- name: create file config.d
+  file:
+    state: directory
+    path: "{{file_dst_config_d}}"
+    mode: "{{file_mode_config_d}}"
+    owner: "{{file_owner_config_d}}"
+    group: "{{file_group_config_d}}"
+  tags:
+    - alloy
+
+- name: create file alloy_opt.dir
+  file:
+    state: directory
+    path: "{{file_dst_alloy_opt_dir}}"
+    mode: "{{file_mode_alloy_opt_dir}}"
+    owner: "{{file_owner_alloy_opt_dir}}"
+    group: "{{file_group_alloy_opt_dir}}"
+  tags:
+    - alloy
+
+- name: download file alloy.zip
+  get_url:
+    url: "{{file_src_alloy_zip}}"
+    dest: "{{file_dst_alloy_zip}}"
+    mode: "{{file_mode_alloy_zip}}"
+    owner: "{{file_owner_alloy_zip}}"
+    group: "{{file_group_alloy_zip}}"
+    checksum: "{{file_checksum_alloy_zip}}"
+  tags:
+    - alloy
+
+- name: unarchive file alloy
+  unarchive:
+    src: "{{file_src_alloy}}"
+    dest: "{{file_dst_alloy}}"
+    mode: "{{file_mode_alloy}}"
+    owner: "{{file_owner_alloy}}"
+    group: "{{file_group_alloy}}"
+    remote_src: True
+  tags:
+    - alloy
+
+- name: create file alloy.service
+  template:
+    src: "{{file_src_alloy_service}}"
+    dest: "{{file_dst_alloy_service}}"
+    mode: "{{file_mode_alloy_service}}"
+    owner: "{{file_owner_alloy_service}}"
+    group: "{{file_group_alloy_service}}"
+  tags:
+    - alloy
+
+- name: stat file monit.d
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (alloy_monit_state == True)
+  tags:
+    - alloy
+
+- name: create file monit.d
+  file:
+    state: directory
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (alloy_monit_state == True) and (register_monit_d.stat.exists == False)
+  tags:
+    - alloy
+
+- name: stat file nftables.d
+  stat:
+    path: "{{file_dst_nftables_d}}"
+  register: register_nftables_d
+  when: (alloy_nftables_state == True)
+  tags:
+    - alloy
+
+- name: create file nftables.d
+  file:
+    state: directory
+    path: "{{file_dst_nftables_d}}"
+    mode: "{{file_mode_nftables_d}}"
+    owner: "{{file_owner_nftables_d}}"
+    group: "{{file_group_nftables_d}}"
+  when: (alloy_nftables_state == True) and (register_nftables_d.stat.exists == False)
+  tags:
+    - alloy

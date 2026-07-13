@@ -1,0 +1,3 @@
+{{ansible_managed|comment(decoration='#')}}
+
+OPTIONS="--storage.path {{file_dst_alloy_opt_dir}} {{file_dst_config_alloy}}"

@@ -1,0 +1,6 @@
+loki.process "syslog" {
+	forward_to = [loki.write.default.receiver]
+
+	stage.label_drop {
+		values = ["facility", "service_name", "ip_address", "detected_level"]
+	}

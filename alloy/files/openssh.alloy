@@ -1,0 +1,29 @@
+	stage.match {
+		selector = "{job=\"syslog\"}"
+
+		stage.regex {
+			expression = "Accepted\\spublickey\\sfor\\s(?P<ssh_user>(\\w+))\\sfrom\\s(?P<ssh_source_ip>(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})"
+		}
+	}
+
+	stage.match {
+		selector = "{job=\"syslog\"}"
+
+		stage.regex {
+			expression = "sshd.*session\\s(?P<ssh_session_state>(\\w+))\\sfor user\\s(?P<ssh_session_user>(\\w+)).*"
+		}
+	}
+
+	stage.match {
+		selector = "{job=\"syslog\"}"
+
+		stage.regex {
+			expression = "su.*session\\sopened\\sfor\\suser\\sroot\\sby\\s(?P<root_login_user>(\\w+))\\("
+		}
+
+		stage.labels {
+			values = {
+				root_login_user = null,
+			}
+		}
+	}
