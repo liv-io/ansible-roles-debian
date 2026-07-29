@@ -10,7 +10,13 @@ The headers are:
 - enhancements
 - features
 
-## 1.11.1-3 (2026-07-11)
+## 1.12.1-1 (2026-07-29)
+
+### Bugs
+
+- Update node_exporter to version 1.12.1
+
+## 1.12.0-1 (2026-07-11)
 
 ### Features
 
