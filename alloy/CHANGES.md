@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 1.18.1-1 (2026-08-07)
+
+### Bugs
+
+- Update Alloy to version 1.18.1
+
 ## 1.17.1-1 (2026-07-13)
 
 ### Features

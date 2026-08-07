@@ -10,4 +10,4 @@ alloy_nftables_filter_rule: |
 
 alloy_nftables_state: False
 
-alloy_version: '1.17.1'
+alloy_version: '1.18.1'
