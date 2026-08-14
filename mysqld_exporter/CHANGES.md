@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.20.0-1 (2026-08-13)
+
+### Features
+
+- Update mysqld_exporter to version 0.20.0
+
 ## 0.19.0-3 (2026-05-26)
 
 ### Enhancements
