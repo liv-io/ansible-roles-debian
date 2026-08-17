@@ -10,6 +10,12 @@ The headers are:
 - enhancements
 - features
 
+## 0.34.0-1 (2026-08-17)
+
+### Features
+
+- Update alertmanager to version 0.34.0
+
 ## 0.33.1-1 (2026-07-05)
 
 ### Bugs
