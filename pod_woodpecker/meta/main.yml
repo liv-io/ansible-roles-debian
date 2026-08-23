@@ -1,4 +1,0 @@
----
-
-dependencies:
-  - {role: podman, when: not (pod_woodpecker_state is match('false|no|remove|quiesce|inactive'))}
