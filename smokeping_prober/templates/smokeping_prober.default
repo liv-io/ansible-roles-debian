@@ -1,3 +1,0 @@
-{{ansible_managed|comment(decoration='#')}}
-
-OPTIONS="--privileged {% for item in smokeping_prober_hosts %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}"
