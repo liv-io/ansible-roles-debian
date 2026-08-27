@@ -1,3 +1,0 @@
-{{ansible_managed|comment(decoration='#')}}
-
-{{alloy_nftables_filter_rule}}
