@@ -1,3 +1,0 @@
-{{ansible_managed|comment(decoration='#')}}
-
-{{rest_server_nftables_filter_rule}}
