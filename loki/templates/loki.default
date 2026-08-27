@@ -1,3 +1,0 @@
-{{ansible_managed|comment(decoration='#')}}
-
-OPTIONS="-config.file={{file_dst_loki_yaml}}"
