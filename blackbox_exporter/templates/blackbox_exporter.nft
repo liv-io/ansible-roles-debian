@@ -1,3 +1,0 @@
-{{ansible_managed|comment(decoration='#')}}
-
-{{blackbox_exporter_nftables_filter_rule}}
