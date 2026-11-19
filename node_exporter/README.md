@@ -115,7 +115,7 @@ consult the following sections.
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '1.12.1'
+    Default    : '1.13.0'
     Options    :
       Examples: '0.15.0' | '0.16.0'
 
